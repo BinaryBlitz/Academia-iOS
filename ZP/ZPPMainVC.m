@@ -8,8 +8,11 @@
 
 #import "ZPPMainVC.h"
 
-@interface ZPPMainVC ()
+//libs
+#import <VBFPopFlatButton.h>
 
+@interface ZPPMainVC ()
+@property (strong, nonatomic) VBFPopFlatButton *menuButton;
 @end
 
 @implementation ZPPMainVC
@@ -30,6 +33,13 @@
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
+
+//-(VBFPopFlatButton *)menuButton {
+//    if(!_menuButton) {
+//        _menuButton = [VBFPopFlatButton bu]
+//    }
+//}
+
 
 /*
 #pragma mark - Navigation

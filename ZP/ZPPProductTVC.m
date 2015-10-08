@@ -8,12 +8,15 @@
 
 #import "ZPPProductTVC.h"
 #import "ZPPProductsIngridientsCell.h"
-#import <LoremIpsum.h>
 #import "ZPPProductMainCell.h"
 #import "ZPPProductAboutCell.h"
 
 //categories
 #import "UIFont+ZPPFontCategory.h"
+
+//libs
+#import <LoremIpsum.h>
+
 
 
 static NSString *ZPPProductMainCellIdentifier = @"ZPPProductsMainCellIdentifier";
@@ -23,8 +26,9 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
 
 @interface ZPPProductTVC ()
 
-@property (assign, nonatomic) CGFloat screenHeight;
+//@property (assign, nonatomic) CGFloat screenHeight;
 @property (assign, nonatomic) NSInteger numberOfRows;
+
 
 @end
 
@@ -33,11 +37,11 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.screenHeight = [UIScreen mainScreen].bounds.size.height;
+  //  self.screenHeight = [UIScreen mainScreen].bounds.size.height;
 
-    [self registerCells];
+  //  [self registerCells];
     
-    self.tableView.backgroundColor = [UIColor blackColor];
+  //  self.tableView.backgroundColor = [UIColor blackColor];
     // Do any additional setup after loading the view.
 }
 
@@ -77,6 +81,7 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
     cell.priceLabel.text = [NSString stringWithFormat:@"365 ₽"];
     cell.addToBasketButton.layer.borderWidth = 2.0;
     cell.addToBasketButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    cell.contentView.backgroundColor = [UIColor blackColor];
 
     return cell;
 }
@@ -128,7 +133,7 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
     }
 }
 
-- (void)registerCells {
+- (void)registreCells  {
     UINib *ingridientsCell = [UINib nibWithNibName:@"ZPPProductsIngridientsCell" bundle:nil];
     [[self tableView] registerNib:ingridientsCell
            forCellReuseIdentifier:ZPPProductIngridientsCellIdentifier];
@@ -145,6 +150,15 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
 -(NSInteger)numberOfRows {
     return 5;
 }
+
+
+#pragma mark - lazy 
+
+//-(VBFPopFlatButton *)menuButton {
+//    if(!_menuButton) {
+//        _menuButton = [VBFPopFlatButton bu]
+//    }
+//}
 
 
 

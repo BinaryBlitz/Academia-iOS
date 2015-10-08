@@ -8,8 +8,10 @@
 
 #import "ZPPMainPageVC.h"
 #import "ZPPProductTVC.h"
+#import "ZPPAnotherProductsTVC.h"
 
 static NSString *ZPPProductPresenterID = @"ZPPProductPresenterID";
+static NSString *ZPPAnotherProductPresenterID = @"ZPPAnotherProductPresenterID";
 
 @interface ZPPMainPageVC ()
 
@@ -28,7 +30,12 @@ static NSString *ZPPProductPresenterID = @"ZPPProductPresenterID";
                                  instantiateViewControllerWithIdentifier:ZPPProductPresenterID];
     productTVC2.specindex = 2;
     
-    self.productViewControllers = @[productTVC, productTVC2];
+    ZPPAnotherProductsTVC *anotherProductsTVC =
+    [self.storyboard instantiateViewControllerWithIdentifier:ZPPAnotherProductPresenterID];
+    
+    
+    
+    self.productViewControllers = @[productTVC, productTVC2, anotherProductsTVC];
     
     self.delegate = self;
     self.dataSource = self;

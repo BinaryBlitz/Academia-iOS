@@ -25,7 +25,11 @@
 		191C98681BC047C500E10D4F /* ZPPProductsIngridientsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 191C98671BC047C500E10D4F /* ZPPProductsIngridientsCell.m */; settings = {ASSET_TAGS = (); }; };
 		191C986C1BC050C000E10D4F /* ZPPProductMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 191C986B1BC050C000E10D4F /* ZPPProductMainCell.m */; settings = {ASSET_TAGS = (); }; };
 		191C986E1BC050F300E10D4F /* ZPPProductMainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 191C986D1BC050F300E10D4F /* ZPPProductMainCell.xib */; settings = {ASSET_TAGS = (); }; };
+		198FA5371BC17204008BC11B /* ZPPProductAnotherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198FA5361BC17204008BC11B /* ZPPProductAnotherCell.xib */; settings = {ASSET_TAGS = (); }; };
 		19DA03E11BC12ADE00DC0636 /* UIFont+ZPPFontCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DA03E01BC12ADE00DC0636 /* UIFont+ZPPFontCategory.m */; settings = {ASSET_TAGS = (); }; };
+		19E6D4161BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E6D4151BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m */; settings = {ASSET_TAGS = (); }; };
+		19EC24A51BC65E3D00C333F6 /* ZPPProductAnotherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19EC24A41BC65E3D00C333F6 /* ZPPProductAnotherCell.m */; settings = {ASSET_TAGS = (); }; };
+		19EC24A81BC6601000C333F6 /* ZPPAnotherProductsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19EC24A71BC6601000C333F6 /* ZPPAnotherProductsTVC.m */; settings = {ASSET_TAGS = (); }; };
 		45234A6F844FF56D94658C3E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9EEF06E3D3C7DB053DFF64 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -78,8 +82,15 @@
 		191C986A1BC050C000E10D4F /* ZPPProductMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProductMainCell.h; sourceTree = "<group>"; };
 		191C986B1BC050C000E10D4F /* ZPPProductMainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPProductMainCell.m; sourceTree = "<group>"; };
 		191C986D1BC050F300E10D4F /* ZPPProductMainCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPProductMainCell.xib; sourceTree = "<group>"; };
+		198FA5361BC17204008BC11B /* ZPPProductAnotherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPProductAnotherCell.xib; sourceTree = "<group>"; };
 		19DA03DF1BC12ADE00DC0636 /* UIFont+ZPPFontCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+ZPPFontCategory.h"; sourceTree = "<group>"; };
 		19DA03E01BC12ADE00DC0636 /* UIFont+ZPPFontCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+ZPPFontCategory.m"; sourceTree = "<group>"; };
+		19E6D4141BC66E5200DF6EF9 /* ZPPProductsBaseTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProductsBaseTVC.h; sourceTree = "<group>"; };
+		19E6D4151BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPProductsBaseTVC.m; sourceTree = "<group>"; };
+		19EC24A31BC65E3D00C333F6 /* ZPPProductAnotherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProductAnotherCell.h; sourceTree = "<group>"; };
+		19EC24A41BC65E3D00C333F6 /* ZPPProductAnotherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPProductAnotherCell.m; sourceTree = "<group>"; };
+		19EC24A61BC6601000C333F6 /* ZPPAnotherProductsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPAnotherProductsTVC.h; sourceTree = "<group>"; };
+		19EC24A71BC6601000C333F6 /* ZPPAnotherProductsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPAnotherProductsTVC.m; sourceTree = "<group>"; };
 		E6092FFC7B589467189F0B0B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FBF21C48AB60C310F6FAB5FC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FD9EEF06E3D3C7DB053DFF64 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,12 +216,15 @@
 		191C98561BC0439100E10D4F /* main */ = {
 			isa = PBXGroup;
 			children = (
+				19E6D4171BC66F1C00DF6EF9 /* base */,
 				191C98531BC0438C00E10D4F /* ZPPMainVC.h */,
 				191C98541BC0438C00E10D4F /* ZPPMainVC.m */,
 				191C985C1BC0447800E10D4F /* ZPPMainPageVC.h */,
 				191C985D1BC0447800E10D4F /* ZPPMainPageVC.m */,
 				191C985F1BC044A700E10D4F /* ZPPProductTVC.h */,
 				191C98601BC044A700E10D4F /* ZPPProductTVC.m */,
+				19EC24A61BC6601000C333F6 /* ZPPAnotherProductsTVC.h */,
+				19EC24A71BC6601000C333F6 /* ZPPAnotherProductsTVC.m */,
 			);
 			name = main;
 			sourceTree = "<group>";
@@ -226,6 +240,7 @@
 		191C98651BC047A200E10D4F /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				19EC24A21BC65E1600C333F6 /* anotherProducts */,
 				191C98691BC0506E00E10D4F /* mainCells */,
 			);
 			name = cells;
@@ -244,6 +259,25 @@
 			name = mainCells;
 			sourceTree = "<group>";
 		};
+		198FA5341BC171C6008BC11B /* product */ = {
+			isa = PBXGroup;
+			children = (
+				191C98631BC044E900E10D4F /* ZPPProductsIngridientsCell.xib */,
+				191C986D1BC050F300E10D4F /* ZPPProductMainCell.xib */,
+				190E47771BC073EE00AC5379 /* ZPPProductMenuCell.xib */,
+				190E47791BC0756500AC5379 /* ZPPProductAboutCell.xib */,
+			);
+			name = product;
+			sourceTree = "<group>";
+		};
+		198FA5351BC171DF008BC11B /* anotherProducts */ = {
+			isa = PBXGroup;
+			children = (
+				198FA5361BC17204008BC11B /* ZPPProductAnotherCell.xib */,
+			);
+			name = anotherProducts;
+			sourceTree = "<group>";
+		};
 		19DA03DE1BC12AAF00DC0636 /* categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,12 +290,28 @@
 		19DA03E21BC12BF000DC0636 /* main */ = {
 			isa = PBXGroup;
 			children = (
-				191C98631BC044E900E10D4F /* ZPPProductsIngridientsCell.xib */,
-				191C986D1BC050F300E10D4F /* ZPPProductMainCell.xib */,
-				190E47771BC073EE00AC5379 /* ZPPProductMenuCell.xib */,
-				190E47791BC0756500AC5379 /* ZPPProductAboutCell.xib */,
+				198FA5351BC171DF008BC11B /* anotherProducts */,
+				198FA5341BC171C6008BC11B /* product */,
 			);
 			name = main;
+			sourceTree = "<group>";
+		};
+		19E6D4171BC66F1C00DF6EF9 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				19E6D4141BC66E5200DF6EF9 /* ZPPProductsBaseTVC.h */,
+				19E6D4151BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m */,
+			);
+			name = base;
+			sourceTree = "<group>";
+		};
+		19EC24A21BC65E1600C333F6 /* anotherProducts */ = {
+			isa = PBXGroup;
+			children = (
+				19EC24A31BC65E3D00C333F6 /* ZPPProductAnotherCell.h */,
+				19EC24A41BC65E3D00C333F6 /* ZPPProductAnotherCell.m */,
+			);
+			name = anotherProducts;
 			sourceTree = "<group>";
 		};
 		B0B07DA9F3702D7E9A2CECBF /* Pods */ = {
@@ -392,6 +442,7 @@
 				19014A5B1BC034CF001E0D77 /* LaunchScreen.storyboard in Resources */,
 				191C98641BC044E900E10D4F /* ZPPProductsIngridientsCell.xib in Resources */,
 				19014A581BC034CF001E0D77 /* Assets.xcassets in Resources */,
+				198FA5371BC17204008BC11B /* ZPPProductAnotherCell.xib in Resources */,
 				19014A531BC034CF001E0D77 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,11 +503,14 @@
 			files = (
 				190E477D1BC076D500AC5379 /* ZPPProductAboutCell.m in Sources */,
 				19014A561BC034CF001E0D77 /* ZP.xcdatamodeld in Sources */,
+				19E6D4161BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m in Sources */,
 				19DA03E11BC12ADE00DC0636 /* UIFont+ZPPFontCategory.m in Sources */,
 				19014A4D1BC034CF001E0D77 /* AppDelegate.m in Sources */,
 				191C98551BC0438C00E10D4F /* ZPPMainVC.m in Sources */,
 				19014A4A1BC034CF001E0D77 /* main.m in Sources */,
+				19EC24A81BC6601000C333F6 /* ZPPAnotherProductsTVC.m in Sources */,
 				191C98611BC044A700E10D4F /* ZPPProductTVC.m in Sources */,
+				19EC24A51BC65E3D00C333F6 /* ZPPProductAnotherCell.m in Sources */,
 				191C985E1BC0447800E10D4F /* ZPPMainPageVC.m in Sources */,
 				191C98681BC047C500E10D4F /* ZPPProductsIngridientsCell.m in Sources */,
 				191C986C1BC050C000E10D4F /* ZPPProductMainCell.m in Sources */,
