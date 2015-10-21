@@ -94,6 +94,11 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
                                        cell.productImageView.image = image;
                                    }];
     
+    CGSize size = cell.addToBasketButton.bounds.size;
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, 3)];
+    v.backgroundColor = [UIColor whiteColor];
+    [cell.addToBasketButton addSubview:v];
+    
     return cell;
 }
 

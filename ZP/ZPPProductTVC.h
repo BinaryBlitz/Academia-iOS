@@ -8,8 +8,10 @@
 
 #import "ZPPProductsBaseTVC.h"
 
+@class ZPPDish;
 @interface ZPPProductTVC : ZPPProductsBaseTVC
 
-@property (assign, nonatomic) NSInteger specindex;
+//@property (assign, nonatomic) NSInteger specindex;
+-(void)configureWithDish:(ZPPDish *) dish;
 
 @end

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ZPPMainMenuView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd1-kz-MP6">
+                    <rect key="frame" x="8" y="92" width="584" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="sId-kq-djL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                    <state key="normal" title="ПРОФИЛЬ"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCa-l1-dWj">
+                    <rect key="frame" x="8" y="150" width="584" height="50"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                    <state key="normal" title="ПРОМО КОД"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXR-4K-5lq">
+                    <rect key="frame" x="8" y="208" width="584" height="50"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                    <state key="normal" title="ПОДАРОЧНАЯ КАРТА"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOa-L1-h4e">
+                    <rect key="frame" x="8" y="266" width="584" height="50"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                    <state key="normal" title="ЗАКАЗЫ"/>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowBack" translatesAutoresizingMaskIntoConstraints="NO" id="U8j-9q-reP">
+                    <rect key="frame" x="270" y="8" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="220-YG-3fM"/>
+                        <constraint firstAttribute="height" constant="60" id="co6-t2-yzj"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xji-CM-F8r">
+                    <rect key="frame" x="8" y="324" width="584" height="50"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                    <state key="normal" title="ПОМОЩЬ"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="dCa-l1-dWj" firstAttribute="leading" secondItem="wd1-kz-MP6" secondAttribute="leading" id="12f-3Z-vnC"/>
+                <constraint firstItem="dCa-l1-dWj" firstAttribute="height" secondItem="wd1-kz-MP6" secondAttribute="height" id="5Q6-wn-1eP"/>
+                <constraint firstItem="Xji-CM-F8r" firstAttribute="trailing" secondItem="wd1-kz-MP6" secondAttribute="trailing" id="8IL-vQ-pMf"/>
+                <constraint firstItem="Xji-CM-F8r" firstAttribute="height" secondItem="wd1-kz-MP6" secondAttribute="height" id="8wC-1A-Nxo"/>
+                <constraint firstItem="wd1-kz-MP6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="99W-gZ-aNC"/>
+                <constraint firstItem="Xji-CM-F8r" firstAttribute="leading" secondItem="wd1-kz-MP6" secondAttribute="leading" id="AJ5-CN-AGf"/>
+                <constraint firstItem="U8j-9q-reP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="C61-p9-rbe"/>
+                <constraint firstItem="wd1-kz-MP6" firstAttribute="top" secondItem="U8j-9q-reP" secondAttribute="bottom" constant="24" id="CFy-Pf-PYc"/>
+                <constraint firstItem="dCa-l1-dWj" firstAttribute="trailing" secondItem="wd1-kz-MP6" secondAttribute="trailing" id="Czj-sO-MOG"/>
+                <constraint firstItem="U8j-9q-reP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Dm0-fv-PH4"/>
+                <constraint firstItem="IXR-4K-5lq" firstAttribute="height" secondItem="wd1-kz-MP6" secondAttribute="height" id="H9G-XX-gAc"/>
+                <constraint firstAttribute="trailing" secondItem="wd1-kz-MP6" secondAttribute="trailing" constant="8" id="J6E-bb-oud"/>
+                <constraint firstItem="Xji-CM-F8r" firstAttribute="top" secondItem="xOa-L1-h4e" secondAttribute="bottom" constant="8" id="KCH-7t-mZf"/>
+                <constraint firstItem="xOa-L1-h4e" firstAttribute="trailing" secondItem="wd1-kz-MP6" secondAttribute="trailing" id="S40-DN-dYN"/>
+                <constraint firstItem="xOa-L1-h4e" firstAttribute="top" secondItem="IXR-4K-5lq" secondAttribute="bottom" constant="8" id="aO4-VP-9ir"/>
+                <constraint firstItem="xOa-L1-h4e" firstAttribute="height" secondItem="wd1-kz-MP6" secondAttribute="height" id="apW-5J-K5o"/>
+                <constraint firstItem="dCa-l1-dWj" firstAttribute="top" secondItem="wd1-kz-MP6" secondAttribute="bottom" constant="8" id="cNm-qP-2Rv"/>
+                <constraint firstItem="IXR-4K-5lq" firstAttribute="top" secondItem="dCa-l1-dWj" secondAttribute="bottom" constant="8" id="eci-fP-iYC"/>
+                <constraint firstItem="IXR-4K-5lq" firstAttribute="trailing" secondItem="wd1-kz-MP6" secondAttribute="trailing" id="fcD-ux-har"/>
+                <constraint firstItem="xOa-L1-h4e" firstAttribute="leading" secondItem="wd1-kz-MP6" secondAttribute="leading" id="qXb-ul-6y1"/>
+                <constraint firstItem="IXR-4K-5lq" firstAttribute="leading" secondItem="wd1-kz-MP6" secondAttribute="leading" id="thB-Xb-q33"/>
+            </constraints>
+            <connections>
+                <outlet property="giftCardButton" destination="IXR-4K-5lq" id="YwN-bJ-ULp"/>
+                <outlet property="helpButton" destination="Xji-CM-F8r" id="xty-g3-yGu"/>
+                <outlet property="ordersButton" destination="xOa-L1-h4e" id="t1R-pc-Jwd"/>
+                <outlet property="profileButton" destination="wd1-kz-MP6" id="yVl-SA-jdo"/>
+                <outlet property="promoButton" destination="dCa-l1-dWj" id="mAD-aN-E1B"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="arrowBack" width="100" height="100"/>
+    </resources>
+</document>

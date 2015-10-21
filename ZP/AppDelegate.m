@@ -8,6 +8,13 @@
 
 #import "AppDelegate.h"
 
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+#import <DigitsKit/DigitsKit.h>
+#import <CocoaLumberjack.h>
+
+
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +24,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [DDLog addLogger:[DDASLLogger sharedInstance]];
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    
+    [Fabric with:@[[Crashlytics class], [Digits class]]];
+
+
+    
     return YES;
 }
 

@@ -10,14 +10,17 @@
 #import "ZPPProductsIngridientsCell.h"
 #import "ZPPProductMainCell.h"
 #import "ZPPProductAboutCell.h"
+#import "ZPPIngridient.h"
 
-//categories
+#import <AFNetworking/UIImageView+AFNetworking.h>
+
+// categories
 #import "UIFont+ZPPFontCategory.h"
 
-//libs
+#import "ZPPDish.h"
+
+// libs
 #import <LoremIpsum.h>
-
-
 
 static NSString *ZPPProductMainCellIdentifier = @"ZPPProductsMainCellIdentifier";
 static NSString *ZPPProductIngridientsCellIdentifier = @"ZPPProductCellIdentifier";
@@ -27,8 +30,10 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
 @interface ZPPProductTVC ()
 
 //@property (assign, nonatomic) CGFloat screenHeight;
-@property (assign, nonatomic) NSInteger numberOfRows;
 
+@property (strong, nonatomic) ZPPDish *dish;
+
+@property (assign, nonatomic) NSInteger numberOfRows;
 
 @end
 
@@ -37,11 +42,11 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-  //  self.screenHeight = [UIScreen mainScreen].bounds.size.height;
+    //  self.screenHeight = [UIScreen mainScreen].bounds.size.height;
 
-  //  [self registerCells];
-    
-  //  self.tableView.backgroundColor = [UIColor blackColor];
+    //  [self registerCells];
+
+    //  self.tableView.backgroundColor = [UIColor blackColor];
     // Do any additional setup after loading the view.
 }
 
@@ -50,8 +55,13 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
     // Dispose of any resources that can be recreated.
 }
 
+- (void)configureWithDish:(ZPPDish *)dish {
+    self.dish = dish;
+    [self.tableView reloadData];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return self.numberOfRows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -63,7 +73,7 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
     } else if (indexPath.row == [self.tableView numberOfRowsInSection:0] - 1) {
         return [self aboutCell];
     } else {
-        return [self ingridientsCell];
+        return [self ingridientsCellForIndexPath:indexPath];
     }
 }
 
@@ -71,14 +81,19 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
     ZPPProductMainCell *cell =
         [self.tableView dequeueReusableCellWithIdentifier:ZPPProductMainCellIdentifier];
 
-    [LoremIpsum asyncPlaceholderImageWithSize:CGSizeMake(640, self.screenHeight)
-                                   completion:^(UIImage *image) {
-                                       cell.productImageView.image = image;
-                                   }];
+    //    [LoremIpsum asyncPlaceholderImageWithSize:CGSizeMake(640, self.screenHeight)
+    //                                   completion:^(UIImage *image) {
+    //                                       cell.productImageView.image = image;
+    //                                   }];
+    NSURL *imgURL = [NSURL URLWithString:self.dish.urlAsString];
+    [cell.productImageView setImageWithURL:imgURL];
 
-    cell.nameLabel.text = [LoremIpsum word];
+    cell.nameLabel.text = self.dish.name;  //[LoremIpsum word];
     cell.ingridientsDescriptionLabel.text = [LoremIpsum wordsWithNumber:3];
-    cell.priceLabel.text = [NSString stringWithFormat:@"365 ₽"];
+    cell.priceLabel.text =
+        [NSString stringWithFormat:@"%@ ₽", self.dish.price];  //[self.dish.price stringValue];
+                                                                 ////[NSString
+                                                                 //stringWithFormat:@"365 ₽"];
     cell.addToBasketButton.layer.borderWidth = 2.0;
     cell.addToBasketButton.layer.borderColor = [UIColor whiteColor].CGColor;
     cell.contentView.backgroundColor = [UIColor blackColor];
@@ -86,22 +101,39 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
     return cell;
 }
 
-- (ZPPProductsIngridientsCell *)ingridientsCell {
+- (ZPPProductsIngridientsCell *)ingridientsCellForIndexPath:(NSIndexPath *)ip {
     ZPPProductsIngridientsCell *cell =
         [self.tableView dequeueReusableCellWithIdentifier:ZPPProductIngridientsCellIdentifier];
 
-    for (UIImageView *iv in cell.ingredientsImageViews) {
-        
-  
-        [LoremIpsum asyncPlaceholderImageWithSize:CGSizeMake(100, 100)
-                                       completion:^(UIImage *image) {
-                                           iv.image = image;
-                                       }];
+    NSInteger beg = ip.row - 2;
+
+    for (int i = 0; i < 3; i++) {
+        NSInteger index = beg * 3 + i;
+        if (index >= self.dish.ingridients.count) {
+            break;
+        }
+
+        UIImageView *iv = cell.ingredientsImageViews[i];
+        UILabel *label = cell.ingredientsLabels[i];
+        ZPPIngridient *ingr = self.dish.ingridients[index];
+        NSURL *url = [NSURL URLWithString:ingr.urlAsString];
+        [iv setImageWithURL:url];
+        label.text = ingr.name;
     }
 
-    for (UILabel *l in cell.ingredientsLabels) {
-        l.text = [LoremIpsum word];
-    }
+    //    for (UIImageView *iv in cell.ingredientsImageViews) {
+    //
+    //
+    //
+    //        [LoremIpsum asyncPlaceholderImageWithSize:CGSizeMake(100, 100)
+    //                                       completion:^(UIImage *image) {
+    //                                           iv.image = image;
+    //                                       }];
+    //    }
+
+    //    for (UILabel *l in cell.ingredientsLabels) {
+    //        l.text = [LoremIpsum word];
+    //    }
     return cell;
 }
 
@@ -115,7 +147,7 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
     ZPPProductAboutCell *cell =
         [self.tableView dequeueReusableCellWithIdentifier:ZPPProductAboutCellIdentifier];
 
-    cell.aboutTextView.text = [LoremIpsum sentencesWithNumber:3];
+    cell.aboutTextView.text = self.dish.dishDescription;  //[LoremIpsum sentencesWithNumber:3];
     cell.aboutTextView.textAlignment = NSTextAlignmentCenter;
     cell.aboutTextView.font = [UIFont boldFontOfSize:15];
     return cell;
@@ -129,11 +161,11 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
     } else if (indexPath.row == self.numberOfRows - 1) {
         return 380.0;
     } else {
-        return [UIScreen mainScreen].bounds.size.width/3.0 + 40;
+        return [UIScreen mainScreen].bounds.size.width / 3.0 + 40;
     }
 }
 
-- (void)registreCells  {
+- (void)registreCells {
     UINib *ingridientsCell = [UINib nibWithNibName:@"ZPPProductsIngridientsCell" bundle:nil];
     [[self tableView] registerNib:ingridientsCell
            forCellReuseIdentifier:ZPPProductIngridientsCellIdentifier];
@@ -145,22 +177,21 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
     [[self tableView] registerNib:aboutCell forCellReuseIdentifier:ZPPProductAboutCellIdentifier];
 }
 
-
-
--(NSInteger)numberOfRows {
-    return 5;
+- (NSInteger)numberOfRows {
+    NSInteger incr = 0;
+    if (self.dish.ingridients.count % 3 > 0) {
+        incr = 1;
+    }
+    return 3 + incr + self.dish.ingridients.count / 3;
 }
 
-
-#pragma mark - lazy 
+#pragma mark - lazy
 
 //-(VBFPopFlatButton *)menuButton {
 //    if(!_menuButton) {
 //        _menuButton = [VBFPopFlatButton bu]
 //    }
 //}
-
-
 
 /*
 #pragma mark - Navigation
