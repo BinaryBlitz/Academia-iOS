@@ -10,8 +10,13 @@
 
 @implementation ZPPProductAnotherCell
 
--(void)layoutSubviews {
-    [super layoutSubviews];
+//-(void)layoutSubviews {
+//    [super layoutSubviews];
+//    self.pictureImageView.layer.cornerRadius = self.pictureImageView.bounds.size.height/2.0;
+//    self.pictureImageView.layer.masksToBounds = YES;
+//}
+
+-(void)drawRect:(CGRect)rect {
     self.pictureImageView.layer.cornerRadius = self.pictureImageView.bounds.size.height/2.0;
     self.pictureImageView.layer.masksToBounds = YES;
 }

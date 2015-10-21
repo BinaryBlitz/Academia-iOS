@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+//#import "ZPPBeginScreenTVC.h"
 
-@interface ZPPMainVC : UIViewController
+@interface ZPPMainVC : UIViewController //<ZPPBeginScreenTVCDelegate>
+
+- (void)showRegistration;
 
 @end

@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
 
     self.screenHeight = [UIScreen mainScreen].bounds.size.height;
     self.tableView.backgroundColor = [UIColor blackColor];
@@ -28,4 +29,10 @@
 - (void)registreCells {
 }
 
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if([self.delegate respondsToSelector:@selector(didScroll:)]){
+        [self.delegate didScroll:scrollView];
+    }
+}
 @end

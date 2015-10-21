@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface ZPPMainPageVC : UIPageViewController <UIPageViewControllerDelegate,
-UIPageViewControllerDataSource>
+UIPageViewControllerDataSource, UIScrollViewDelegate>
 
 
 
