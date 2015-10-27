@@ -520,8 +520,6 @@
 			isa = PBXGroup;
 			children = (
 				191D7DD11BD531C600DBAFC4 /* registration category */,
-				1984EE3E1BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.h */,
-				1984EE3F1BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.m */,
 				1984EE431BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.h */,
 				1984EE441BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.m */,
 			);
@@ -600,6 +598,8 @@
 				19DA03E01BC12ADE00DC0636 /* UIFont+ZPPFontCategory.m */,
 				191D7DDB1BD5359700DBAFC4 /* UIView+UIViewCategory.h */,
 				191D7DDC1BD5359700DBAFC4 /* UIView+UIViewCategory.m */,
+				1984EE3E1BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.h */,
+				1984EE3F1BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
