@@ -34,7 +34,7 @@
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                     <state key="normal" title="ЗАКАЗЫ"/>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowBack" translatesAutoresizingMaskIntoConstraints="NO" id="U8j-9q-reP">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="U8j-9q-reP">
                     <rect key="frame" x="270" y="8" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="220-YG-3fM"/>
@@ -81,6 +81,6 @@
         </view>
     </objects>
     <resources>
-        <image name="arrowBack" width="100" height="100"/>
+        <image name="mainIcon.png" width="561" height="540"/>
     </resources>
 </document>
