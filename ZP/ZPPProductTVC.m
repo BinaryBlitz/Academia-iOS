@@ -93,10 +93,14 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
     cell.priceLabel.text =
         [NSString stringWithFormat:@"%@ ₽", self.dish.price];  //[self.dish.price stringValue];
                                                                  ////[NSString
-                                                                 //stringWithFormat:@"365 ₽"];
+    // stringWithFormat:@"365 ₽"];
     cell.addToBasketButton.layer.borderWidth = 2.0;
     cell.addToBasketButton.layer.borderColor = [UIColor whiteColor].CGColor;
     cell.contentView.backgroundColor = [UIColor blackColor];
+
+    [cell.addToBasketButton addTarget:self
+                               action:@selector(addToBasketAction:)
+                     forControlEvents:UIControlEventTouchUpInside];
 
     return cell;
 }
@@ -183,6 +187,12 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
         incr = 1;
     }
     return 3 + incr + self.dish.ingridients.count / 3;
+}
+
+#pragma mark - action
+
+- (void)addToBasketAction:(UIButton *)sender {
+    [self.productDelegate addItemIntoOrder:self.dish];
 }
 
 #pragma mark - lazy

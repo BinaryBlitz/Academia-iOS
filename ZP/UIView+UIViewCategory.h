@@ -10,6 +10,8 @@
 
 @interface UIView (UIViewCategory)
 
-- (void)shakeView ;
+- (void)shakeView;
+
+- (void)makeBordered;
 
 @end

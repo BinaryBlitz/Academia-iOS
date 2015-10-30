@@ -11,6 +11,7 @@
              //define class, so protocol can see MyClass
 @protocol ZPPProductsBaseTVCDelegate <NSObject>   //define delegate protocol
 - (void) didScroll: (UIScrollView *) sender;  //define delegate method to be implemented within another class
+
 @end //end protocol
 
 @interface ZPPProductsBaseTVC : UITableViewController

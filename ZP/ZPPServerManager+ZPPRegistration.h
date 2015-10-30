@@ -14,5 +14,10 @@
                  onSuccess:(void (^)(ZPPUser *user))success
                  onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
+- (void)POSTAuthenticateUserWithEmail:(NSString *)email
+                             password:(NSString *)password
+                            onSuccess:(void (^)(ZPPUser *user))success
+                            onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
 
 @end

@@ -12,10 +12,12 @@
 
 @interface UIViewController (ZPPValidationCategory)
 
--(BOOL)checkPhoneTextField:(REFormattedNumberField *)textField;
+- (BOOL)checkPhoneTextField:(REFormattedNumberField *)textField;
 
--(BOOL)checkEmailTextField:(UITextField *)textField;
--(BOOL)checkNameTextField:(UITextField *)textField;
--(BOOL)checkPasswordTextFied:(UITextField *)textField;
--(BOOL)checkPasswordEqualty:(UITextField *)firstField second:(UITextField *)secondTextField;
+- (BOOL)checkEmailTextField:(UITextField *)textField;
+- (BOOL)checkNameTextField:(UITextField *)textField;
+- (BOOL)checkPasswordTextFied:(UITextField *)textField;
+- (BOOL)checkPasswordEqualty:(UITextField *)firstField second:(UITextField *)secondTextField;
+
+- (void)accentTextField:(UITextField *)tf;
 @end

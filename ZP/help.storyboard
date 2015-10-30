@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GoE-OK-c79">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--HelpVC-->
+        <scene sceneID="KkW-eb-8Gy">
+            <objects>
+                <viewController id="pJv-kn-dup" customClass="ZPPHelpVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Q7j-14-07R"/>
+                        <viewControllerLayoutGuide type="bottom" id="Aht-Ty-lqa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1cp-DY-w9M">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fhv-3Y-mXd">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YvG-LJ-lgk">
+                                <rect key="frame" x="194" y="285" width="213" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="213" id="fvb-IG-tov"/>
+                                    <constraint firstAttribute="height" constant="30" id="zzh-oi-P7i"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <state key="normal" title="help@zp.ru">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7l-Qy-eqd">
+                                <rect key="frame" x="194" y="331" width="213" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="laQ-bG-fCd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <state key="normal" title="+79055670381">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Нужна помощь?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drw-Yy-uXO">
+                                <rect key="frame" x="194" y="248" width="213" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="d7v-ai-rxG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YvG-LJ-lgk" firstAttribute="leading" secondItem="drw-Yy-uXO" secondAttribute="leading" id="1N1-rq-Pj0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Fhv-3Y-mXd" secondAttribute="trailing" constant="-20" id="7BB-p5-gKw"/>
+                            <constraint firstItem="I7l-Qy-eqd" firstAttribute="leading" secondItem="YvG-LJ-lgk" secondAttribute="leading" id="7nS-O4-2eu"/>
+                            <constraint firstItem="I7l-Qy-eqd" firstAttribute="trailing" secondItem="YvG-LJ-lgk" secondAttribute="trailing" id="AgW-yC-rGB"/>
+                            <constraint firstItem="Fhv-3Y-mXd" firstAttribute="leading" secondItem="1cp-DY-w9M" secondAttribute="leadingMargin" constant="-20" id="WzS-rc-Sip"/>
+                            <constraint firstItem="Fhv-3Y-mXd" firstAttribute="top" secondItem="1cp-DY-w9M" secondAttribute="topMargin" id="aPS-wG-CkC"/>
+                            <constraint firstItem="YvG-LJ-lgk" firstAttribute="trailing" secondItem="drw-Yy-uXO" secondAttribute="trailing" id="qSW-fy-Xvi"/>
+                            <constraint firstItem="Aht-Ty-lqa" firstAttribute="top" secondItem="Fhv-3Y-mXd" secondAttribute="bottom" id="rtO-mi-gGa"/>
+                            <constraint firstItem="YvG-LJ-lgk" firstAttribute="top" secondItem="drw-Yy-uXO" secondAttribute="bottom" constant="16" id="sKa-0A-ATk"/>
+                            <constraint firstItem="YvG-LJ-lgk" firstAttribute="centerX" secondItem="1cp-DY-w9M" secondAttribute="centerX" id="sZy-oc-ebl"/>
+                            <constraint firstItem="YvG-LJ-lgk" firstAttribute="centerY" secondItem="1cp-DY-w9M" secondAttribute="centerY" id="u7e-A2-jCY"/>
+                            <constraint firstItem="I7l-Qy-eqd" firstAttribute="top" secondItem="YvG-LJ-lgk" secondAttribute="bottom" constant="16" id="yVW-oQ-NvE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="YkP-dM-F8Z"/>
+                    <connections>
+                        <outlet property="emailButton" destination="YvG-LJ-lgk" id="KW7-8W-FBS"/>
+                        <outlet property="phoneButton" destination="I7l-Qy-eqd" id="2Mo-Ie-4EU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HXx-cY-1zw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1359" y="370"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="g9t-fY-SmX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GoE-OK-c79" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WB0-47-xWg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pJv-kn-dup" kind="relationship" relationship="rootViewController" id="786-nC-m6w"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lrc-Jk-EHV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="547" y="370"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="back1.png" width="750" height="1334"/>
+    </resources>
+</document>

@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+ZPPViewControllerCategory.h"
+#import <TSMessage.h>
 
 @implementation UIViewController (ZPPViewControllerCategory)
 
@@ -23,31 +24,30 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)addCustomCloseButton {
+- (void)addCustomCloseButton {
     UIButton *closeButton = [self buttonWithImageName:@"cross"];
     [closeButton addTarget:self
-                   action:@selector(dismisVC)
-         forControlEvents:UIControlEventTouchUpInside];
+                    action:@selector(dismisVC)
+          forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *closeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
     self.navigationItem.rightBarButtonItem = closeButtonItem;
-    
-    
 }
 
--(void)dismisVC {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+- (void)dismisVC {
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
+
+                             }];
 }
 
--(UIButton *)buttonWithImageName:(NSString *)imgName {
+- (UIButton *)buttonWithImageName:(NSString *)imgName {
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30.0f, 30.0f)];
     backButton.tintColor = [UIColor whiteColor];
-    UIImage *backImage = [[UIImage imageNamed:imgName]
-                          imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *backImage =
+        [[UIImage imageNamed:imgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [backButton setBackgroundImage:backImage forState:UIControlStateNormal];
     [backButton setTitle:@"" forState:UIControlStateNormal];
-    
+
     return backButton;
 }
 
@@ -63,8 +63,26 @@
     return nil;
 }
 
+- (void)showWarningWithText:(NSString *)message {
+//    [TSMessage showNotificationInViewController:self.navigationController
+//                                          title:@"Ошибка"
+//                                       subtitle:message
+                         //                  type:TSMessageNotificationTypeWarning];
+    //    [TSMessage showNotificationWithTitle:@"Ошибка"
+    //                                subtitle:message
+    //                                    type:TSMessageNotificationTypeWarning];
 
-
-
+    [TSMessage showNotificationInViewController:self.navigationController
+                                          title:@"Ошибка"
+                                       subtitle:message
+                                          image:nil
+                                           type:TSMessageNotificationTypeWarning
+                                       duration:TSMessageNotificationDurationAutomatic
+                                       callback:nil
+                                    buttonTitle:nil
+                                 buttonCallback:nil
+                                     atPosition:TSMessageNotificationPositionNavBarOverlay
+                           canBeDismissedByUser:YES];
+}
 
 @end
