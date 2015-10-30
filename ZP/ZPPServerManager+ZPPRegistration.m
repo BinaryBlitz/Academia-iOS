@@ -12,7 +12,7 @@
 
 //#import <CocoaLumberjack.h>
 
-//static const int ddLogLevel = DDLogLevelDebug;
+// static const int ddLogLevel = DDLogLevelDebug;
 
 @implementation ZPPServerManager (ZPPRegistration)
 
@@ -34,6 +34,37 @@
         }
         failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
             [[self class] failureWithBlock:failure error:error operation:operation];
+        }];
+}
+
+- (void)POSTAuthenticateUserWithEmail:(NSString *)email
+                             password:(NSString *)password
+                            onSuccess:(void (^)(ZPPUser *user))success
+                            onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    if (!email || !password) {
+        if (failure) {
+            failure(nil, -1);
+        }
+        return;
+    }
+
+    //    "email": "foo@bar.com",
+    //    "password": "foobar"
+    NSDictionary *params = @{ @"email" : email, @"password" : password };
+
+    [self.requestOperationManager POST:@"user/authenticate.json"
+        parameters:params
+        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+
+            ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
+
+            if (success) {
+                success(user);
+            }
+
+        }
+        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error){
+
         }];
 }
 

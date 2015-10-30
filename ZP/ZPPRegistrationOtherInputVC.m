@@ -44,8 +44,7 @@ static NSString *ZPPShowRegistrationResultSegueIdentifier =
     self.textFields = [NSArray arrayWithArray:arr];
 
     for (UITextField *tf in self.textFields) {
-        tf.layer.borderWidth = 2.0;
-        tf.layer.borderColor = [UIColor blackColor].CGColor;
+        [tf makeBordered];
         tf.delegate = self;
     }
 
@@ -125,10 +124,10 @@ static NSString *ZPPShowRegistrationResultSegueIdentifier =
     return YES;
 }
 
-- (void)accentTextField:(UITextField *)tf {
-    [tf shakeView];
-    [tf becomeFirstResponder];
-}
+//- (void)accentTextField:(UITextField *)tf {
+//    [tf shakeView];
+//    [tf becomeFirstResponder];
+//}
 
 - (void)configureUser {
     self.user.firstName = self.nameTextField.text;

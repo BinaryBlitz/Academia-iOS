@@ -8,11 +8,15 @@
 
 #import "ZPPRegistrationCodeInputVC.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
+#import "UIViewController+ZPPValidationCategory.h"
 #import "ZPPRegistrationOtherInputVC.h"
 #import "ZPPUser.h"
+#import "UIView+UIViewCategory.h"
 
 static NSString *ZPPShowRegistrationOtherScreenSegueIdentifier =
     @"ZPPShowRegistrationOtherScreenSegueIdentifier";
+
+static NSString *ZPPCodeWarningMessage = @"Неправильный код";
 @interface ZPPRegistrationCodeInputVC ()
 //@property (strong, nonatomic) UIView *bottomSuper
 
@@ -27,9 +31,8 @@ static NSString *ZPPShowRegistrationOtherScreenSegueIdentifier =
     self.mainTF = self.codeTextField;
     self.bottomConstraint = self.bottomSuperviewConstraint;
     
-    self.codeTextField.layer.borderWidth = 2.0;
-    self.codeTextField.layer.borderColor = [UIColor blackColor].CGColor;
-    // Do any additional setup after loading the view.
+    [self.codeTextField makeBordered];
+       // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -96,8 +99,20 @@ static NSString *ZPPShowRegistrationOtherScreenSegueIdentifier =
 //}
 
 - (IBAction)submitCodeAction:(id)sender {
+    
+    if(![self checkCode]){
+        [self accentTextField:self.codeTextField];
+        [self showWarningWithText:ZPPCodeWarningMessage];
+    } else {
     [self performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier sender:nil];
+    }
 }
+
+- (BOOL)checkCode {
+    return NO;
+}
+
+
 
 #pragma mark - navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

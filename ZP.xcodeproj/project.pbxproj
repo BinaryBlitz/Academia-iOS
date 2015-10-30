@@ -22,6 +22,8 @@
 		190E47781BC073EE00AC5379 /* ZPPProductMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 190E47771BC073EE00AC5379 /* ZPPProductMenuCell.xib */; settings = {ASSET_TAGS = (); }; };
 		190E477A1BC0756500AC5379 /* ZPPProductAboutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 190E47791BC0756500AC5379 /* ZPPProductAboutCell.xib */; settings = {ASSET_TAGS = (); }; };
 		190E477D1BC076D500AC5379 /* ZPPProductAboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E477C1BC076D500AC5379 /* ZPPProductAboutCell.m */; settings = {ASSET_TAGS = (); }; };
+		190F9C761BE286BA0032E14D /* ZPPAuthenticationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 190F9C751BE286BA0032E14D /* ZPPAuthenticationVC.m */; settings = {ASSET_TAGS = (); }; };
+		190F9C781BE3A9860032E14D /* order.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 190F9C771BE3A9860032E14D /* order.storyboard */; settings = {ASSET_TAGS = (); }; };
 		191C98551BC0438C00E10D4F /* ZPPMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 191C98541BC0438C00E10D4F /* ZPPMainVC.m */; settings = {ASSET_TAGS = (); }; };
 		191C985E1BC0447800E10D4F /* ZPPMainPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 191C985D1BC0447800E10D4F /* ZPPMainPageVC.m */; settings = {ASSET_TAGS = (); }; };
 		191C98611BC044A700E10D4F /* ZPPProductTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 191C98601BC044A700E10D4F /* ZPPProductTVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -48,6 +50,10 @@
 		1984EE3C1BD13E63001D25D5 /* ZPPBeginScreenTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1984EE3B1BD13E63001D25D5 /* ZPPBeginScreenTVC.m */; settings = {ASSET_TAGS = (); }; };
 		1984EE401BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1984EE3F1BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.m */; settings = {ASSET_TAGS = (); }; };
 		1984EE451BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1984EE441BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.m */; settings = {ASSET_TAGS = (); }; };
+		198635661BDFB58E0070E3F7 /* help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 198635651BDFB58E0070E3F7 /* help.storyboard */; settings = {ASSET_TAGS = (); }; };
+		198635691BDFB6A00070E3F7 /* ZPPHelpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 198635681BDFB6A00070E3F7 /* ZPPHelpVC.m */; settings = {ASSET_TAGS = (); }; };
+		1986356D1BDFD04B0070E3F7 /* ZPPOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1986356C1BDFD04B0070E3F7 /* ZPPOrder.m */; settings = {ASSET_TAGS = (); }; };
+		198635701BDFD1950070E3F7 /* ZPPOrderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1986356F1BDFD1950070E3F7 /* ZPPOrderItem.m */; settings = {ASSET_TAGS = (); }; };
 		198A5C021BD5875B00710A36 /* ZPPServerManager+ZPPRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 198A5C011BD5875B00710A36 /* ZPPServerManager+ZPPRegistration.m */; settings = {ASSET_TAGS = (); }; };
 		198A5C051BD59F0000710A36 /* ZPPMainMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198A5C041BD59F0000710A36 /* ZPPMainMenuView.xib */; settings = {ASSET_TAGS = (); }; };
 		198A5C081BD5A90B00710A36 /* ZPPMainMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 198A5C071BD5A90B00710A36 /* ZPPMainMenuView.m */; settings = {ASSET_TAGS = (); }; };
@@ -106,6 +112,9 @@
 		190E47791BC0756500AC5379 /* ZPPProductAboutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPProductAboutCell.xib; sourceTree = "<group>"; };
 		190E477B1BC076D500AC5379 /* ZPPProductAboutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProductAboutCell.h; sourceTree = "<group>"; };
 		190E477C1BC076D500AC5379 /* ZPPProductAboutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPProductAboutCell.m; sourceTree = "<group>"; };
+		190F9C741BE286BA0032E14D /* ZPPAuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPAuthenticationVC.h; sourceTree = "<group>"; };
+		190F9C751BE286BA0032E14D /* ZPPAuthenticationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPAuthenticationVC.m; sourceTree = "<group>"; };
+		190F9C771BE3A9860032E14D /* order.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = order.storyboard; sourceTree = "<group>"; };
 		191C98531BC0438C00E10D4F /* ZPPMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPMainVC.h; sourceTree = "<group>"; };
 		191C98541BC0438C00E10D4F /* ZPPMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPMainVC.m; sourceTree = "<group>"; };
 		191C985C1BC0447800E10D4F /* ZPPMainPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPMainPageVC.h; sourceTree = "<group>"; };
@@ -153,6 +162,14 @@
 		1984EE3F1BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZPPViewControllerCategory.m"; sourceTree = "<group>"; };
 		1984EE431BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+ZPPNavigationControllerCategory.h"; sourceTree = "<group>"; };
 		1984EE441BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+ZPPNavigationControllerCategory.m"; sourceTree = "<group>"; };
+		198635651BDFB58E0070E3F7 /* help.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = help.storyboard; sourceTree = "<group>"; };
+		198635671BDFB6A00070E3F7 /* ZPPHelpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPHelpVC.h; sourceTree = "<group>"; };
+		198635681BDFB6A00070E3F7 /* ZPPHelpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPHelpVC.m; sourceTree = "<group>"; };
+		1986356B1BDFD04B0070E3F7 /* ZPPOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPOrder.h; sourceTree = "<group>"; };
+		1986356C1BDFD04B0070E3F7 /* ZPPOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPOrder.m; sourceTree = "<group>"; };
+		1986356E1BDFD1950070E3F7 /* ZPPOrderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPOrderItem.h; sourceTree = "<group>"; };
+		1986356F1BDFD1950070E3F7 /* ZPPOrderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPOrderItem.m; sourceTree = "<group>"; };
+		198635711BDFD2320070E3F7 /* ZPPItemProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPItemProtocol.h; sourceTree = "<group>"; };
 		198A5C001BD5875B00710A36 /* ZPPServerManager+ZPPRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZPPServerManager+ZPPRegistration.h"; sourceTree = "<group>"; };
 		198A5C011BD5875B00710A36 /* ZPPServerManager+ZPPRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZPPServerManager+ZPPRegistration.m"; sourceTree = "<group>"; };
 		198A5C041BD59F0000710A36 /* ZPPMainMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPMainMenuView.xib; sourceTree = "<group>"; };
@@ -285,9 +302,54 @@
 			name = userProfile;
 			sourceTree = "<group>";
 		};
+		190F9C701BE283200032E14D /* products */ = {
+			isa = PBXGroup;
+			children = (
+				191C985F1BC044A700E10D4F /* ZPPProductTVC.h */,
+				191C98601BC044A700E10D4F /* ZPPProductTVC.m */,
+				19EC24A61BC6601000C333F6 /* ZPPAnotherProductsTVC.h */,
+				19EC24A71BC6601000C333F6 /* ZPPAnotherProductsTVC.m */,
+				1984EE3A1BD13E63001D25D5 /* ZPPBeginScreenTVC.h */,
+				1984EE3B1BD13E63001D25D5 /* ZPPBeginScreenTVC.m */,
+			);
+			name = products;
+			sourceTree = "<group>";
+		};
+		190F9C711BE286410032E14D /* registration */ = {
+			isa = PBXGroup;
+			children = (
+				1984EE251BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.h */,
+				1984EE261BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.m */,
+				1984EE2B1BD123A8001D25D5 /* ZPPRegistrationCodeInputVC.h */,
+				1984EE2C1BD123A8001D25D5 /* ZPPRegistrationCodeInputVC.m */,
+				1984EE2E1BD12CD8001D25D5 /* ZPPRegistrationOtherInputVC.h */,
+				1984EE2F1BD12CD9001D25D5 /* ZPPRegistrationOtherInputVC.m */,
+				194617F51BD3DBFC001D13A3 /* ZPPRegistrationSuccesVC.h */,
+				194617F61BD3DBFC001D13A3 /* ZPPRegistrationSuccesVC.m */,
+			);
+			name = registration;
+			sourceTree = "<group>";
+		};
+		190F9C721BE2866C0032E14D /* authentication */ = {
+			isa = PBXGroup;
+			children = (
+				190F9C741BE286BA0032E14D /* ZPPAuthenticationVC.h */,
+				190F9C751BE286BA0032E14D /* ZPPAuthenticationVC.m */,
+			);
+			name = authentication;
+			sourceTree = "<group>";
+		};
+		190F9C791BE3A9E10032E14D /* order */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = order;
+			sourceTree = "<group>";
+		};
 		191C98501BC0431F00E10D4F /* model */ = {
 			isa = PBXGroup;
 			children = (
+				1986356A1BDFD0260070E3F7 /* order */,
 				198A5C091BD5B59F00710A36 /* product */,
 				191D7DEE1BD5695200DBAFC4 /* API */,
 				191D7DE41BD53DAB00DBAFC4 /* user */,
@@ -310,6 +372,7 @@
 		191C98521BC0433400E10D4F /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				198635641BDFB5000070E3F7 /* help */,
 				19062D8B1BD695C1003AC242 /* userProfile */,
 				1984EE241BD121E1001D25D5 /* registration */,
 				191C98561BC0439100E10D4F /* main */,
@@ -320,17 +383,12 @@
 		191C98561BC0439100E10D4F /* main */ = {
 			isa = PBXGroup;
 			children = (
+				190F9C701BE283200032E14D /* products */,
 				19E6D4171BC66F1C00DF6EF9 /* base */,
 				191C98531BC0438C00E10D4F /* ZPPMainVC.h */,
 				191C98541BC0438C00E10D4F /* ZPPMainVC.m */,
 				191C985C1BC0447800E10D4F /* ZPPMainPageVC.h */,
 				191C985D1BC0447800E10D4F /* ZPPMainPageVC.m */,
-				191C985F1BC044A700E10D4F /* ZPPProductTVC.h */,
-				191C98601BC044A700E10D4F /* ZPPProductTVC.m */,
-				19EC24A61BC6601000C333F6 /* ZPPAnotherProductsTVC.h */,
-				19EC24A71BC6601000C333F6 /* ZPPAnotherProductsTVC.m */,
-				1984EE3A1BD13E63001D25D5 /* ZPPBeginScreenTVC.h */,
-				1984EE3B1BD13E63001D25D5 /* ZPPBeginScreenTVC.m */,
 			);
 			name = main;
 			sourceTree = "<group>";
@@ -346,6 +404,7 @@
 		191C98651BC047A200E10D4F /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				190F9C791BE3A9E10032E14D /* order */,
 				19EC24A21BC65E1600C333F6 /* anotherProducts */,
 				191C98691BC0506E00E10D4F /* mainCells */,
 			);
@@ -455,6 +514,8 @@
 				19014A511BC034CF001E0D77 /* Main.storyboard */,
 				1984EE221BD110CC001D25D5 /* registration.storyboard */,
 				19062D8F1BD69DAF003AC242 /* profile.storyboard */,
+				198635651BDFB58E0070E3F7 /* help.storyboard */,
+				190F9C771BE3A9860032E14D /* order.storyboard */,
 			);
 			name = storyboards;
 			sourceTree = "<group>";
@@ -462,16 +523,10 @@
 		1984EE241BD121E1001D25D5 /* registration */ = {
 			isa = PBXGroup;
 			children = (
+				190F9C721BE2866C0032E14D /* authentication */,
+				190F9C711BE286410032E14D /* registration */,
 				1963EF1E1BD3E8DD00665916 /* base */,
 				1984EE3D1BD14F3A001D25D5 /* category */,
-				1984EE251BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.h */,
-				1984EE261BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.m */,
-				1984EE2B1BD123A8001D25D5 /* ZPPRegistrationCodeInputVC.h */,
-				1984EE2C1BD123A8001D25D5 /* ZPPRegistrationCodeInputVC.m */,
-				1984EE2E1BD12CD8001D25D5 /* ZPPRegistrationOtherInputVC.h */,
-				1984EE2F1BD12CD9001D25D5 /* ZPPRegistrationOtherInputVC.m */,
-				194617F51BD3DBFC001D13A3 /* ZPPRegistrationSuccesVC.h */,
-				194617F61BD3DBFC001D13A3 /* ZPPRegistrationSuccesVC.m */,
 			);
 			name = registration;
 			sourceTree = "<group>";
@@ -520,8 +575,6 @@
 			isa = PBXGroup;
 			children = (
 				191D7DD11BD531C600DBAFC4 /* registration category */,
-				1984EE431BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.h */,
-				1984EE441BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.m */,
 			);
 			name = category;
 			sourceTree = "<group>";
@@ -531,6 +584,26 @@
 			children = (
 			);
 			name = view;
+			sourceTree = "<group>";
+		};
+		198635641BDFB5000070E3F7 /* help */ = {
+			isa = PBXGroup;
+			children = (
+				198635671BDFB6A00070E3F7 /* ZPPHelpVC.h */,
+				198635681BDFB6A00070E3F7 /* ZPPHelpVC.m */,
+			);
+			name = help;
+			sourceTree = "<group>";
+		};
+		1986356A1BDFD0260070E3F7 /* order */ = {
+			isa = PBXGroup;
+			children = (
+				1986356B1BDFD04B0070E3F7 /* ZPPOrder.h */,
+				1986356C1BDFD04B0070E3F7 /* ZPPOrder.m */,
+				1986356E1BDFD1950070E3F7 /* ZPPOrderItem.h */,
+				1986356F1BDFD1950070E3F7 /* ZPPOrderItem.m */,
+			);
+			name = order;
 			sourceTree = "<group>";
 		};
 		198A5C031BD59EE100710A36 /* menu */ = {
@@ -551,6 +624,7 @@
 				198A5C0B1BD5B5C000710A36 /* ZPPIngridient.m */,
 				198A5C0E1BD5B60700710A36 /* ZPPDish.h */,
 				198A5C0F1BD5B60700710A36 /* ZPPDish.m */,
+				198635711BDFD2320070E3F7 /* ZPPItemProtocol.h */,
 			);
 			name = product;
 			sourceTree = "<group>";
@@ -600,6 +674,8 @@
 				191D7DDC1BD5359700DBAFC4 /* UIView+UIViewCategory.m */,
 				1984EE3E1BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.h */,
 				1984EE3F1BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.m */,
+				1984EE431BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.h */,
+				1984EE441BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -760,6 +836,7 @@
 				195457401BD7C57900A3BB46 /* back1.png in Resources */,
 				191C986E1BC050F300E10D4F /* ZPPProductMainCell.xib in Resources */,
 				1984EE231BD110CC001D25D5 /* registration.storyboard in Resources */,
+				190F9C781BE3A9860032E14D /* order.storyboard in Resources */,
 				190E47781BC073EE00AC5379 /* ZPPProductMenuCell.xib in Resources */,
 				19014A5B1BC034CF001E0D77 /* LaunchScreen.storyboard in Resources */,
 				191C98641BC044E900E10D4F /* ZPPProductsIngridientsCell.xib in Resources */,
@@ -771,6 +848,7 @@
 				19014A531BC034CF001E0D77 /* Main.storyboard in Resources */,
 				1902BD4C1BD7E4DB003E90A5 /* back3.png in Resources */,
 				19062D901BD69DAF003AC242 /* profile.storyboard in Resources */,
+				198635661BDFB58E0070E3F7 /* help.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -864,7 +942,9 @@
 				190E477D1BC076D500AC5379 /* ZPPProductAboutCell.m in Sources */,
 				191D7DE31BD53B0B00DBAFC4 /* ZPPServerManager.m in Sources */,
 				198A5C021BD5875B00710A36 /* ZPPServerManager+ZPPRegistration.m in Sources */,
+				198635691BDFB6A00070E3F7 /* ZPPHelpVC.m in Sources */,
 				194617F71BD3DBFC001D13A3 /* ZPPRegistrationSuccesVC.m in Sources */,
+				190F9C761BE286BA0032E14D /* ZPPAuthenticationVC.m in Sources */,
 				19014A561BC034CF001E0D77 /* ZP.xcdatamodeld in Sources */,
 				191D7DEA1BD53DD100DBAFC4 /* ZPPUserManager.m in Sources */,
 				1963EF211BD3E91100665916 /* ZPPRegistrationBaseVC.m in Sources */,
@@ -875,7 +955,9 @@
 				191D7DE71BD53DC000DBAFC4 /* ZPPUser.m in Sources */,
 				1984EE3C1BD13E63001D25D5 /* ZPPBeginScreenTVC.m in Sources */,
 				198A5C0C1BD5B5C000710A36 /* ZPPIngridient.m in Sources */,
+				1986356D1BDFD04B0070E3F7 /* ZPPOrder.m in Sources */,
 				198A5C101BD5B60700710A36 /* ZPPDish.m in Sources */,
+				198635701BDFD1950070E3F7 /* ZPPOrderItem.m in Sources */,
 				191D7DE01BD5363300DBAFC4 /* UIViewController+ZPPValidationCategory.m in Sources */,
 				191C98551BC0438C00E10D4F /* ZPPMainVC.m in Sources */,
 				19014A4A1BC034CF001E0D77 /* main.m in Sources */,

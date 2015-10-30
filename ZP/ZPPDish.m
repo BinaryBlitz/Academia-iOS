@@ -46,4 +46,11 @@
     return self;
 }
 
+- (NSInteger)priceOfItem {
+    return [self.price integerValue];
+}
+- (NSInteger)nameOfItem {
+    return self.name;
+}
+
 @end

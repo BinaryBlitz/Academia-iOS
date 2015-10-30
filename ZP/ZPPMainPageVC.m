@@ -20,7 +20,7 @@ static NSString *ZPPProductPresenterID = @"ZPPProductPresenterID";
 static NSString *ZPPAnotherProductPresenterID = @"ZPPAnotherProductPresenterID";
 static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID";
 
-@interface ZPPMainPageVC () <ZPPProductsBaseTVCDelegate, ZPPBeginScreenTVCDelegate>
+@interface ZPPMainPageVC () <ZPPProductsBaseTVCDelegate, ZPPBeginScreenTVCDelegate, ZPPProductScreenTVCDelegate>
 
 @property (strong, nonatomic) NSArray *productViewControllers;
 @property (strong, nonatomic) UIPageControl *pageControl;
@@ -183,6 +183,16 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
     }
 }
 
+#pragma mark - ZPPProductScreenTVCDelegate
+
+- (void) addItemIntoOrder:(id<ZPPItemProtocol>)item {
+    NSLog(@"item %@", [item nameOfItem]);
+    
+    ZPPMainVC *mainVC = (ZPPMainVC *)self.parentViewController;
+    
+    [mainVC addItemIntoOrder:item];
+}
+
 #pragma mark - dishes
 
 - (void)loadDishes {
@@ -214,6 +224,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
     for (ZPPDish *di in dishes) {
         ZPPProductTVC *productTVC = [self generateDishVC:di];
+        productTVC.productDelegate = self;
         [tmp addObject:productTVC];
     }
 
@@ -251,7 +262,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
     ZPPProductsBaseTVC *viewController = [self.viewControllers lastObject];
     
     if(!viewController) {
-        viewController = screens[0];
+        viewController = self.productViewControllers[0];
     }
     
     [self setViewControllers:@[viewController]

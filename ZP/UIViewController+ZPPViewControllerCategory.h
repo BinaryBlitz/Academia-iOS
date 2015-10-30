@@ -14,6 +14,8 @@
 
 -(void)addCustomCloseButton;
 
-- (UITableViewCell *)parentCellForView:(id)theView ;
+- (UITableViewCell *)parentCellForView:(id)theView;
+
+- (void)showWarningWithText:(NSString *)message;
 
 @end

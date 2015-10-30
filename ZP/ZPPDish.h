@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZPPItemProtocol.h"
 
-@interface ZPPDish : NSObject
+@interface ZPPDish : NSObject <ZPPItemProtocol>
 
 @property (copy, nonatomic, readonly) NSString *name;
 @property (copy, nonatomic, readonly) NSString *dishID;
-@property (copy, nonatomic,readonly) NSString *dishDescription;
+@property (copy, nonatomic, readonly) NSString *dishDescription;
 @property (copy, nonatomic, readonly) NSNumber *price;
 @property (copy, nonatomic, readonly) NSString *urlAsString;
 @property (strong, nonatomic, readonly) NSArray *ingridients;
@@ -23,5 +24,8 @@
                        price:(NSNumber *)price
                       imgURL:(NSString *)urlAsString
                  ingridients:(NSArray *)ingridients;
+
+- (NSInteger)priceOfItem;
+- (NSString *)nameOfItem;
 
 @end
