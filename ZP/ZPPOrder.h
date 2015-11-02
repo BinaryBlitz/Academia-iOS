@@ -11,6 +11,8 @@
 
 @interface ZPPOrder : NSObject
 
+@property (strong, nonatomic, readonly) NSMutableArray *items;
+
 - (void)addItem:(id<ZPPItemProtocol>)item;
 
 - (void)removeItem:(id<ZPPItemProtocol>)item;

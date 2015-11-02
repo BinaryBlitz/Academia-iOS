@@ -11,6 +11,7 @@
 #import "ZPPUserManager.h"
 
 #import "ZPPOrder.h"
+#import "ZPPOrderTVC.h"
 
 // libs
 #import <VBFPopFlatButton.h>
@@ -63,6 +64,11 @@ static float kZPPButtonOffset = 15.0f;
         if ([self.view.subviews containsObject:self.buttonView]) {
             [self.buttonView removeFromSuperview];
         }
+        if([self.view.subviews containsObject:self.orderView]) {
+            [self.orderView removeFromSuperview];
+            _order = nil;
+        }
+        
     }
 }
 
@@ -166,10 +172,10 @@ navigation
 }
 
 - (void)showOrderButton {
-    if(![self.view.subviews containsObject:self.orderView]) {
+    if (![self.view.subviews containsObject:self.orderView]) {
         [self.view addSubview:self.orderView];
     }
-    
+
     [UIView animateWithDuration:0.5
         delay:0.0
         usingSpringWithDamping:1.
@@ -199,13 +205,26 @@ navigation
 }
 
 - (void)showOrder {
-    [self showVCFromStoryboardWithName:@"order"];
+    //[self showVCFromStoryboardWithName:@"order"];
+    UINavigationController *initial =
+        (UINavigationController *)[self initialVCForStoryboardWithName:@"order"];
+
+    ZPPOrderTVC *orderTVC = [initial.viewControllers firstObject];
+
+    [orderTVC configureWithOrder:self.order];
+
+    [self presentViewController:initial
+                       animated:YES
+                     completion:^{
+
+                     }];
 }
 
 - (void)showVCFromStoryboardWithName:(NSString *)storyboardName {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    // UIStoryboard *sb = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
 
-    UIViewController *vc = [sb instantiateInitialViewController];
+    UIViewController *vc = [self
+        initialVCForStoryboardWithName:storyboardName];  //[sb instantiateInitialViewController];
 
     [self presentViewController:vc
                        animated:YES
@@ -214,10 +233,15 @@ navigation
                      }];
 }
 
+- (UIViewController *)initialVCForStoryboardWithName:(NSString *)storyboardName {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    UIViewController *vc = [sb instantiateInitialViewController];
+    return vc;
+}
+
 - (void)addItemIntoOrder:(id<ZPPItemProtocol>)item {
     [self.order addItem:item];
     [self showOrderButton];
-    
 }
 
 #pragma mark - lazy
@@ -299,8 +323,9 @@ navigation
         _orderView.layer.borderWidth = self.button.lineThickness;
         _orderView.layer.borderColor = [UIColor whiteColor].CGColor;
         _orderView.backgroundColor = [UIColor blackColor];
-        
-        UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showOrder)];
+
+        UITapGestureRecognizer *tapGR =
+            [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showOrder)];
         tapGR.numberOfTapsRequired = 1;
         tapGR.numberOfTouchesRequired = 1;
         [_orderView addGestureRecognizer:tapGR];
@@ -316,6 +341,5 @@ navigation
 
     return _order;
 }
-
 
 @end

@@ -36,4 +36,8 @@
     }
 }
 
+- (NSInteger)totalPrice {
+    return self.count * [self.item priceOfItem];
+}
+
 @end
