@@ -19,4 +19,6 @@
 - (void)addOneItem;
 - (void)removeOneItem;
 
+- (NSInteger)totalPrice;
+
 @end

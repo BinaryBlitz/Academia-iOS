@@ -24,6 +24,9 @@
 		190E477D1BC076D500AC5379 /* ZPPProductAboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E477C1BC076D500AC5379 /* ZPPProductAboutCell.m */; settings = {ASSET_TAGS = (); }; };
 		190F9C761BE286BA0032E14D /* ZPPAuthenticationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 190F9C751BE286BA0032E14D /* ZPPAuthenticationVC.m */; settings = {ASSET_TAGS = (); }; };
 		190F9C781BE3A9860032E14D /* order.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 190F9C771BE3A9860032E14D /* order.storyboard */; settings = {ASSET_TAGS = (); }; };
+		190F9C7D1BE3C1330032E14D /* ZPPOrderTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 190F9C7C1BE3C1330032E14D /* ZPPOrderTVC.m */; settings = {ASSET_TAGS = (); }; };
+		190F9C811BE3C1810032E14D /* ZPPOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 190F9C801BE3C1810032E14D /* ZPPOrderItemCell.xib */; settings = {ASSET_TAGS = (); }; };
+		190F9C841BE3C19A0032E14D /* ZPPOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 190F9C831BE3C19A0032E14D /* ZPPOrderItemCell.m */; settings = {ASSET_TAGS = (); }; };
 		191C98551BC0438C00E10D4F /* ZPPMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 191C98541BC0438C00E10D4F /* ZPPMainVC.m */; settings = {ASSET_TAGS = (); }; };
 		191C985E1BC0447800E10D4F /* ZPPMainPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 191C985D1BC0447800E10D4F /* ZPPMainPageVC.m */; settings = {ASSET_TAGS = (); }; };
 		191C98611BC044A700E10D4F /* ZPPProductTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 191C98601BC044A700E10D4F /* ZPPProductTVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -115,6 +118,11 @@
 		190F9C741BE286BA0032E14D /* ZPPAuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPAuthenticationVC.h; sourceTree = "<group>"; };
 		190F9C751BE286BA0032E14D /* ZPPAuthenticationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPAuthenticationVC.m; sourceTree = "<group>"; };
 		190F9C771BE3A9860032E14D /* order.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = order.storyboard; sourceTree = "<group>"; };
+		190F9C7B1BE3C1330032E14D /* ZPPOrderTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPOrderTVC.h; sourceTree = "<group>"; };
+		190F9C7C1BE3C1330032E14D /* ZPPOrderTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPOrderTVC.m; sourceTree = "<group>"; };
+		190F9C801BE3C1810032E14D /* ZPPOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPOrderItemCell.xib; sourceTree = "<group>"; };
+		190F9C821BE3C19A0032E14D /* ZPPOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPOrderItemCell.h; sourceTree = "<group>"; };
+		190F9C831BE3C19A0032E14D /* ZPPOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPOrderItemCell.m; sourceTree = "<group>"; };
 		191C98531BC0438C00E10D4F /* ZPPMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPMainVC.h; sourceTree = "<group>"; };
 		191C98541BC0438C00E10D4F /* ZPPMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPMainVC.m; sourceTree = "<group>"; };
 		191C985C1BC0447800E10D4F /* ZPPMainPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPMainPageVC.h; sourceTree = "<group>"; };
@@ -346,6 +354,33 @@
 			name = order;
 			sourceTree = "<group>";
 		};
+		190F9C7A1BE3C0F20032E14D /* order */ = {
+			isa = PBXGroup;
+			children = (
+				190F9C7B1BE3C1330032E14D /* ZPPOrderTVC.h */,
+				190F9C7C1BE3C1330032E14D /* ZPPOrderTVC.m */,
+			);
+			name = order;
+			sourceTree = "<group>";
+		};
+		190F9C7E1BE3C13B0032E14D /* order */ = {
+			isa = PBXGroup;
+			children = (
+				190F9C7F1BE3C1430032E14D /* orderItemCell */,
+			);
+			name = order;
+			sourceTree = "<group>";
+		};
+		190F9C7F1BE3C1430032E14D /* orderItemCell */ = {
+			isa = PBXGroup;
+			children = (
+				190F9C801BE3C1810032E14D /* ZPPOrderItemCell.xib */,
+				190F9C821BE3C19A0032E14D /* ZPPOrderItemCell.h */,
+				190F9C831BE3C19A0032E14D /* ZPPOrderItemCell.m */,
+			);
+			name = orderItemCell;
+			sourceTree = "<group>";
+		};
 		191C98501BC0431F00E10D4F /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +407,7 @@
 		191C98521BC0433400E10D4F /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				190F9C7A1BE3C0F20032E14D /* order */,
 				198635641BDFB5000070E3F7 /* help */,
 				19062D8B1BD695C1003AC242 /* userProfile */,
 				1984EE241BD121E1001D25D5 /* registration */,
@@ -404,6 +440,7 @@
 		191C98651BC047A200E10D4F /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				190F9C7E1BE3C13B0032E14D /* order */,
 				190F9C791BE3A9E10032E14D /* order */,
 				19EC24A21BC65E1600C333F6 /* anotherProducts */,
 				191C98691BC0506E00E10D4F /* mainCells */,
@@ -842,6 +879,7 @@
 				191C98641BC044E900E10D4F /* ZPPProductsIngridientsCell.xib in Resources */,
 				19014A581BC034CF001E0D77 /* Assets.xcassets in Resources */,
 				198FA5371BC17204008BC11B /* ZPPProductAnotherCell.xib in Resources */,
+				190F9C811BE3C1810032E14D /* ZPPOrderItemCell.xib in Resources */,
 				1902BD4E1BD7E714003E90A5 /* mainIcon.png in Resources */,
 				1984EE351BD13698001D25D5 /* ZPPBeginScreenCell.xib in Resources */,
 				198A5C051BD59F0000710A36 /* ZPPMainMenuView.xib in Resources */,
@@ -951,6 +989,8 @@
 				191D7DDD1BD5359700DBAFC4 /* UIView+UIViewCategory.m in Sources */,
 				19E6D4161BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m in Sources */,
 				19DA03E11BC12ADE00DC0636 /* UIFont+ZPPFontCategory.m in Sources */,
+				190F9C841BE3C19A0032E14D /* ZPPOrderItemCell.m in Sources */,
+				190F9C7D1BE3C1330032E14D /* ZPPOrderTVC.m in Sources */,
 				19014A4D1BC034CF001E0D77 /* AppDelegate.m in Sources */,
 				191D7DE71BD53DC000DBAFC4 /* ZPPUser.m in Sources */,
 				1984EE3C1BD13E63001D25D5 /* ZPPBeginScreenTVC.m in Sources */,
