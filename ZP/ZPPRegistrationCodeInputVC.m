@@ -109,7 +109,7 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
 }
 
 - (BOOL)checkCode {
-    return NO;
+    return YES;
 }
 
 

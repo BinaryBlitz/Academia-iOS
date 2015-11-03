@@ -12,6 +12,8 @@
 
 - (void)setCustomBackButton;
 
+- (void)setCustomNavigationBackButtonWithTransition;
+
 -(void)addCustomCloseButton;
 
 - (UITableViewCell *)parentCellForView:(id)theView;

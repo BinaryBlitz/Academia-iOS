@@ -15,6 +15,7 @@
 
 // libs
 #import <VBFPopFlatButton.h>
+#import <JSBadgeView.h>
 
 static float kZPPButtonDiametr = 40.0f;
 static float kZPPButtonOffset = 15.0f;
@@ -25,6 +26,7 @@ static float kZPPButtonOffset = 15.0f;
 @property (strong, nonatomic) VBFPopFlatButton *button;
 @property (strong, nonatomic) UIView *buttonView;
 @property (strong, nonatomic) UIView *orderView;
+@property (strong, nonatomic) JSBadgeView *badgeView;
 
 @property (assign, nonatomic) BOOL menuShowed;
 
@@ -36,20 +38,6 @@ static float kZPPButtonOffset = 15.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
-
-    //    if([[ZPPUserManager sharedInstance] checkUser]){
-    //        [self.view addSubview:self.mainMenu];
-    //        [self.view addSubview:self.buttonView];
-    //    } else {
-    //        if([self.view.subviews containsObject:self.mainMenu]) {
-    //            [self.mainMenu removeFromSuperview];
-    //        }
-    //        if([self.view.subviews containsObject:self.buttonView]) {
-    //            [self.buttonView removeFromSuperview];
-    //        }
-    //    }
-    //[self.view addSubview:self.mainMenu];
-    // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -64,11 +52,10 @@ static float kZPPButtonOffset = 15.0f;
         if ([self.view.subviews containsObject:self.buttonView]) {
             [self.buttonView removeFromSuperview];
         }
-        if([self.view.subviews containsObject:self.orderView]) {
+        if ([self.view.subviews containsObject:self.orderView]) {
             [self.orderView removeFromSuperview];
             _order = nil;
         }
-        
     }
 }
 
@@ -174,6 +161,8 @@ navigation
 - (void)showOrderButton {
     if (![self.view.subviews containsObject:self.orderView]) {
         [self.view addSubview:self.orderView];
+    } else {
+        return;
     }
 
     [UIView animateWithDuration:0.5
@@ -241,7 +230,14 @@ navigation
 
 - (void)addItemIntoOrder:(id<ZPPItemProtocol>)item {
     [self.order addItem:item];
+
     [self showOrderButton];
+
+    if ([self.order totalCount]) {
+        self.badgeView.badgeText = [NSString stringWithFormat:@"%@", @([self.order totalCount])];
+    } else {
+        self.badgeView.badgeText = nil;
+    }
 }
 
 #pragma mark - lazy
@@ -320,9 +316,40 @@ navigation
         _orderView = [[UIView alloc] initWithFrame:r];
 
         _orderView.layer.cornerRadius = _orderView.frame.size.height / 2.0;
-        _orderView.layer.borderWidth = self.button.lineThickness;
-        _orderView.layer.borderColor = [UIColor whiteColor].CGColor;
+        //  _orderView.layer.borderWidth = self.button.lineThickness;
+        //  _orderView.layer.borderColor = [UIColor whiteColor].CGColor;
         _orderView.backgroundColor = [UIColor blackColor];
+
+        CAShapeLayer *_border = [CAShapeLayer layer];
+        _border.lineWidth = self.button.lineThickness;
+        _border.strokeColor = [UIColor whiteColor].CGColor;
+        _border.fillColor = nil;
+        [_orderView.layer addSublayer:_border];
+        _border.path = [UIBezierPath bezierPathWithRoundedRect:_orderView.bounds
+                                                  cornerRadius:_orderView.frame.size.height / 2.0]
+                           .CGPath;
+
+        UIImageView *iv = [[UIImageView alloc]
+            initWithFrame:CGRectMake(kZPPButtonDiametr / 4.0, kZPPButtonDiametr / 4.0,
+                                     kZPPButtonDiametr / 2.0, kZPPButtonDiametr / 2.0)];
+
+        iv.image = [UIImage imageNamed:@"order"];
+
+        self.badgeView =
+            [[JSBadgeView alloc] initWithParentView:iv alignment:JSBadgeViewAlignmentTopRight];
+
+        self.badgeView.badgePositionAdjustment = CGPointMake(4, -4);
+
+        if ([self.order totalCount]) {
+            self.badgeView.badgeText =
+                [NSString stringWithFormat:@"%@", @([self.order totalCount])];
+        }
+        // [_orderView bringSubviewToFront:self.badgeView];
+
+        //  _orderView.clipsToBounds = YES;
+        [_orderView addSubview:iv];
+
+        [iv bringSubviewToFront:self.badgeView];
 
         UITapGestureRecognizer *tapGR =
             [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showOrder)];

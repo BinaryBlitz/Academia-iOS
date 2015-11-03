@@ -9,9 +9,15 @@
 #import "ZPPOrderTVC.h"
 #import "ZPPOrder.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
+#import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "ZPPOrderItemCell.h"
+#import "ZPPNoCreditCardCell.h"
+
+#import "ZPPCardViewController.h"
 
 static NSString *ZPPOrderItemCellReuseIdentifier = @"ZPPOrderItemCellReuseIdentifier";
+static NSString *ZPPNoCreditCardCellIdentifier = @"ZPPNoCreditCardCellIdentifier";
+static NSString *ZPPCardViewControllerIdentifier = @"ZPPCardViewControllerIdentifier";
 
 @interface ZPPOrderTVC ()
 
@@ -23,22 +29,24 @@ static NSString *ZPPOrderItemCellReuseIdentifier = @"ZPPOrderItemCellReuseIdenti
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self addCustomCloseButton];
-    
     [self registrateCells];
+    self.title = @"ЗАКАЗ";
+    //   [self setCustomNavigationBackButtonWithTransition];
+    
+    [self setNeedsStatusBarAppearanceUpdate];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view
-    // controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setCustomNavigationBackButtonWithTransition];
+    [self configureBackgroundImage];
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.translucent = NO;
+    //  [self.navigationController presentTransparentNavigationBar];
+    [self addCustomCloseButton];
 }
 
 - (void)configureWithOrder:(ZPPOrder *)order {
@@ -49,31 +57,64 @@ static NSString *ZPPOrderItemCellReuseIdentifier = @"ZPPOrderItemCellReuseIdenti
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    //#warning Incomplete implementation, return the number of sections
-    return self.order.items.count;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //#warning Incomplete implementation, return the number of rows
-    return self.order.items.count;
+
+    if (section == 2) {
+        return self.order.items.count;
+    } else {
+        return 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZPPOrderItemCell *cell =
-        [tableView dequeueReusableCellWithIdentifier:ZPPOrderItemCellReuseIdentifier
-                                        forIndexPath:indexPath];
+    if (indexPath.section == 2) {
+        ZPPOrderItem *orderItem = self.order.items[indexPath.row];
 
-    ZPPOrderItem *orderItem = self.order.items[indexPath.row];
+        ZPPOrderItemCell *cell =
+            [tableView dequeueReusableCellWithIdentifier:ZPPOrderItemCellReuseIdentifier
+                                            forIndexPath:indexPath];
+        [cell configureWithOrderItem:orderItem];
 
-    [cell configureWithOrderItem:orderItem];
+        return cell;
+    } else {
+        if (indexPath.section == 0) {
+            ZPPNoCreditCardCell *cell =
+                [self.tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
+            [cell.actionButton setTitle:@"Выберите карточку" forState:UIControlStateNormal];
 
-    return cell;
+            [cell.actionButton addTarget:self
+                                  action:@selector(showCardChooser)
+                        forControlEvents:UIControlEventTouchUpInside];
+
+            return cell;
+        } else {
+            ZPPNoCreditCardCell *cell =
+                [self.tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
+            [cell.actionButton setTitle:@"Выберите адрес" forState:UIControlStateNormal];
+
+            return cell;
+        }
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 30.f;
+    if (indexPath.section != 2) {
+        return 70.f;
+    } else {
+        return 50.0;
+    }
 }
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//
+//    if(indexPath.section == 0)
+//}
+//
 
 /*
 // Override to support conditional editing of the table view.
@@ -125,18 +166,46 @@ navigation
 }
 */
 
+#pragma mark - actions
+
+- (void)showCardChooser {
+    ZPPCardViewController *cardVC =
+        [self.storyboard instantiateViewControllerWithIdentifier:ZPPCardViewControllerIdentifier];
+
+    [self.navigationController pushViewController:cardVC animated:YES];
+    [self setNeedsStatusBarAppearanceUpdate];
+}
+
 #pragma mark - support
 
 - (void)registrateCells {
     [self registrateCellForClass:[ZPPOrderItemCell class]
                  reuseIdentifier:ZPPOrderItemCellReuseIdentifier];
+
+    [self registrateCellForClass:[ZPPNoCreditCardCell class]
+                 reuseIdentifier:ZPPNoCreditCardCellIdentifier];
 }
 
 - (void)registrateCellForClass:(Class) class reuseIdentifier:(NSString *)reuseIdentifier {
     NSString *className = NSStringFromClass(class);
     UINib *nib = [UINib nibWithNibName:className bundle:nil];
     [[self tableView] registerNib:nib forCellReuseIdentifier:reuseIdentifier];
+}
 
+    - (void)configureBackgroundImage {
+    CGRect r = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds),
+                          16 * CGRectGetWidth([UIScreen mainScreen].bounds) / 9);
+
+    UIImageView *iv = [[UIImageView alloc] initWithFrame:r];
+
+    iv.image = [UIImage imageNamed:@"back1"];
+
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundView = iv;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 @end

@@ -20,11 +20,14 @@ static NSString *ZPPProductPresenterID = @"ZPPProductPresenterID";
 static NSString *ZPPAnotherProductPresenterID = @"ZPPAnotherProductPresenterID";
 static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID";
 
-@interface ZPPMainPageVC () <ZPPProductsBaseTVCDelegate, ZPPBeginScreenTVCDelegate, ZPPProductScreenTVCDelegate>
+@interface ZPPMainPageVC () <ZPPProductsBaseTVCDelegate,
+                             ZPPBeginScreenTVCDelegate,
+                             ZPPProductScreenTVCDelegate>
 
 @property (strong, nonatomic) NSArray *productViewControllers;
 @property (strong, nonatomic) UIPageControl *pageControl;
 @property (strong, nonatomic) NSArray *dishes;
+
 @end
 
 @implementation ZPPMainPageVC
@@ -34,10 +37,10 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
     ZPPBeginScreenTVC *beginScreen = [self startScreen];
 
-    [self configureScreensWithArr:@[beginScreen]];
-  //  beginScreen.beginDelegate = self;
+    [self configureScreensWithArr:@[ beginScreen ]];
+    //  beginScreen.beginDelegate = self;
 
-  //  self.productViewControllers = @[ beginScreen ];
+    //  self.productViewControllers = @[ beginScreen ];
     for (ZPPProductsBaseTVC *vc in self.productViewControllers) {
         vc.delegate = self;
     }
@@ -68,13 +71,12 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
         //        self.productViewControllers = [self startScreen];
         //        self.delegate = nil;
         //        self.delegate = self;
-        
-        [self configureScreensWithArr:@[[self startScreen]]];
+
+        [self configureScreensWithArr:@[ [self startScreen] ]];
         [self setViewControllers:@[ self.productViewControllers[0] ]
                        direction:UIPageViewControllerNavigationDirectionForward
                         animated:NO
                       completion:nil];
-
     }
 }
 
@@ -172,30 +174,30 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
         ZPPMainVC *mainVC = (ZPPMainVC *)self.parentViewController;
         [mainVC showRegistration];
     } else {
-        
-        if(self.productViewControllers.count>1){//REDO костыль
-        [self setViewControllers:@[ self.productViewControllers[1] ]
-                       direction:UIPageViewControllerNavigationDirectionForward
-                        animated:YES
-                      completion:nil];  // redo
-        self.pageControl.currentPage = 1;
+        if (self.productViewControllers.count > 1) {  // REDO костыль
+            [self setViewControllers:@[ self.productViewControllers[1] ]
+                           direction:UIPageViewControllerNavigationDirectionForward
+                            animated:YES
+                          completion:nil];  // redo
+            self.pageControl.currentPage = 1;
         }
     }
 }
 
 #pragma mark - ZPPProductScreenTVCDelegate
 
-- (void) addItemIntoOrder:(id<ZPPItemProtocol>)item {
+- (void)addItemIntoOrder:(id<ZPPItemProtocol>)item {
     NSLog(@"item %@", [item nameOfItem]);
-    
+
     ZPPMainVC *mainVC = (ZPPMainVC *)self.parentViewController;
-    
+
     [mainVC addItemIntoOrder:item];
 }
 
 #pragma mark - dishes
 
 - (void)loadDishes {
+    
     [[ZPPServerManager sharedManager] GETDishesOnSuccesOnSuccess:^(NSArray *dishes) {
 
         NSArray *newControllers = [self dishControllersFromArr:dishes];
@@ -249,6 +251,10 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 }
 
 - (void)configureScreensWithArr:(NSArray *)screens {
+    
+    ZPPProductsBaseTVC *viewController = [self.viewControllers lastObject];
+    NSInteger currentIndex = [self.productViewControllers indexOfObject:viewController];
+    
     self.productViewControllers = screens;  //[self dishControllersFromArr:dishes];
     self.dataSource = nil;
     self.dataSource = self;
@@ -258,17 +264,17 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
     }
 
     self.pageControl.numberOfPages = self.productViewControllers.count;
-    
-    ZPPProductsBaseTVC *viewController = [self.viewControllers lastObject];
-    
-    if(!viewController) {
-        viewController = self.productViewControllers[0];
+
+    ZPPProductsBaseTVC *destVC = self.productViewControllers[currentIndex]; //[self.viewControllers lastObject];
+
+    if (!destVC) {
+        destVC = self.productViewControllers[0];
     }
-    
-    [self setViewControllers:@[viewController]
-                                  direction:UIPageViewControllerNavigationDirectionForward
-                                   animated:NO
-                                 completion:nil];
+
+    [self setViewControllers:@[ destVC ]
+                   direction:UIPageViewControllerNavigationDirectionForward
+                    animated:NO
+                  completion:nil];
 }
 
 //- (void)findScrollView {
