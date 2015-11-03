@@ -21,6 +21,12 @@
 static NSString *ZPPShowRegistrationResultSegueIdentifier =
     @"ZPPShowRegistrationResultSegueIdentifier";
 
+static NSString *ZPPNameErrMessage = @"Введите имя";
+static NSString *ZPPSurnameErrMaessage = @"Введите фамилию";
+static NSString *ZPPEmailErrMessage = @"Введите e-mail";
+static NSString *ZPPPasswordErrMessage = @"Введите пароль длинне 5 символов";
+static NSString *ZPPPaswordEqualtyErrMessage = @"Пароли должны совпадать";
+
 @interface ZPPRegistrationOtherInputVC () <UITextFieldDelegate>
 
 @property (strong, nonatomic) NSArray *textFields;
@@ -40,6 +46,9 @@ static NSString *ZPPShowRegistrationResultSegueIdentifier =
     [arr addObject:self.emailTextFild];
     [arr addObject:self.passwordTextField];
     [arr addObject:self.againPasswordTextField];
+    
+    self.nameTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    self.secondNameTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
 
     self.textFields = [NSArray arrayWithArray:arr];
 
@@ -98,26 +107,33 @@ static NSString *ZPPShowRegistrationResultSegueIdentifier =
 - (BOOL)chekAll {
     if (![self checkNameTextField:self.nameTextField]) {
         [self accentTextField:self.nameTextField];
+        [self showWarningWithText:ZPPNameErrMessage];
         return NO;
     }
 
     if (![self checkNameTextField:self.secondNameTextField]) {
         [self accentTextField:self.secondNameTextField];
+        [self showWarningWithText:ZPPSurnameErrMaessage];
+        
         return NO;
     }
 
     if (![self checkEmailTextField:self.emailTextFild]) {
         [self accentTextField:self.emailTextFild];
+        [self showWarningWithText:ZPPEmailErrMessage];
         return NO;
     }
 
     if (![self checkPasswordTextFied:self.passwordTextField]) {
         [self accentTextField:self.passwordTextField];
+        [self showWarningWithText:ZPPPasswordErrMessage];
+        
         return NO;
     }
 
     if (![self checkPasswordEqualty:self.passwordTextField second:self.againPasswordTextField]) {
         [self accentTextField:self.againPasswordTextField];
+        [self showWarningWithText:ZPPPaswordEqualtyErrMessage];
         return NO;
     }
 

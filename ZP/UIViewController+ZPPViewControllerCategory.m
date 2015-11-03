@@ -20,6 +20,23 @@
     self.navigationItem.leftBarButtonItem = backButtonItem;
 }
 
+- (void)setCustomNavigationBackButtonWithTransition {
+    //    UIImage *backBtn = [UIImage imageNamed:@"arrowBack"];
+    //    backBtn = [backBtn imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //    self.navigationItem.backBarButtonItem.title = @"";
+    //    self.navigationController.navigationBar.backIndicatorImage = backBtn;
+    //    self.navigationController.navigationBar.backIndicatorTransitionMaskImage = backBtn;
+    self.navigationItem.backBarButtonItem =
+        [[UIBarButtonItem alloc] initWithTitle:@""
+                                         style:UIBarButtonItemStyleBordered
+                                        target:nil
+                                        action:nil];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"arrowBack"] ;
+    self.navigationController.navigationBar.backIndicatorTransitionMaskImage =
+        [UIImage imageNamed:@"arrowBack"];
+}
+
 - (void)popBack {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -64,10 +81,10 @@
 }
 
 - (void)showWarningWithText:(NSString *)message {
-//    [TSMessage showNotificationInViewController:self.navigationController
-//                                          title:@"Ошибка"
-//                                       subtitle:message
-                         //                  type:TSMessageNotificationTypeWarning];
+    //    [TSMessage showNotificationInViewController:self.navigationController
+    //                                          title:@"Ошибка"
+    //                                       subtitle:message
+    //                  type:TSMessageNotificationTypeWarning];
     //    [TSMessage showNotificationWithTitle:@"Ошибка"
     //                                subtitle:message
     //                                    type:TSMessageNotificationTypeWarning];
