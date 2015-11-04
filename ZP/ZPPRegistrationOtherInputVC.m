@@ -17,6 +17,9 @@
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "UIButton+ZPPButtonCategory.h"
 #import "UIView+UIViewCategory.h"
+#import "UITableViewController+ZPPTVCCategory.h"
+
+#import "ZPPConsts.h"
 
 static NSString *ZPPShowRegistrationResultSegueIdentifier =
     @"ZPPShowRegistrationResultSegueIdentifier";
@@ -57,7 +60,7 @@ static NSString *ZPPPaswordEqualtyErrMessage = @"Пароли должны со�
         tf.delegate = self;
     }
 
-    [self configureBackgroundImage];
+    [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
     [self addCustomCloseButton];
     [self.navigationItem
         setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] init]]];
@@ -172,18 +175,5 @@ static NSString *ZPPPaswordEqualtyErrMessage = @"Пароли должны со�
     }
 }
 
-#pragma mark - back img
-
-- (void)configureBackgroundImage {
-    CGRect r = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds),
-                          16 * CGRectGetWidth([UIScreen mainScreen].bounds) / 9);
-
-    UIImageView *iv = [[UIImageView alloc] initWithFrame:r];
-
-    iv.image = [UIImage imageNamed:@"back1"];
-
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.backgroundView = iv;
-}
 
 @end

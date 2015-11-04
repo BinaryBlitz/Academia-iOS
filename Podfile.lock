@@ -38,6 +38,7 @@ PODS:
   - JSBadgeView (1.4.1)
   - LoremIpsum (1.0.0)
   - MagicalRecord (2.3.0)
+  - MBProgressHUD (0.9.1)
   - pop (1.0.8)
   - REFormattedNumberField (1.1.5)
   - SCLAlertView-Objective-C (0.7.7)
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - JSBadgeView
   - LoremIpsum
   - MagicalRecord
+  - MBProgressHUD
   - REFormattedNumberField
   - SCLAlertView-Objective-C
   - SDWebImage
@@ -78,6 +80,7 @@ SPEC CHECKSUMS:
   JSBadgeView: 3861ddee41094284d9468e6d0af5107f703aaac5
   LoremIpsum: 9029c55d36501b2ee0b05cc9ecda11d3a0479160
   MagicalRecord: 89eb7d7ead39fb37f01c3d010665ee94d17f8dba
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   REFormattedNumberField: be3d55dd709f65541fb26b7e1709da07903147f8
   SCLAlertView-Objective-C: 062808b4664add2d38d44b7867267985a02267ad

@@ -13,6 +13,8 @@
 
 @property (strong, nonatomic, readonly) NSMutableArray *items;
 
+@property (strong, nonatomic,readonly) NSDate *date;
+
 - (void)addItem:(id<ZPPItemProtocol>)item;
 
 - (void)removeItem:(id<ZPPItemProtocol>)item;

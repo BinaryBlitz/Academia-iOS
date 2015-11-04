@@ -12,6 +12,15 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
+//    self.layer.borderColor = [UIColor blackColor].CGColor;
+//    self.layer.borderWidth = 2.0f;
+}
+
+- (void)drawRect:(CGRect)rect {
+    self.actionButton.layer.borderColor = [UIColor blackColor].CGColor;
+    self.actionButton.layer.borderWidth = 2.0f;
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

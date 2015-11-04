@@ -14,10 +14,12 @@
 
 - (void)setCustomNavigationBackButtonWithTransition;
 
--(void)addCustomCloseButton;
+- (void)addCustomCloseButton;
 
 - (UITableViewCell *)parentCellForView:(id)theView;
 
 - (void)showWarningWithText:(NSString *)message;
+
+- (void)addPictureToNavItemWithNamePicture:(NSString *)name;
 
 @end

@@ -16,19 +16,21 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lM9-lr-Anz">
-                        <rect key="frame" x="31" y="7" width="258" height="29.5"/>
+                        <rect key="frame" x="58" y="7" width="204" height="29.5"/>
                         <animations/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                        <state key="normal" title="Button"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
                     </button>
                 </subviews>
                 <animations/>
                 <color key="backgroundColor" red="0.95637423547400613" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="lM9-lr-Anz" secondAttribute="trailing" constant="23" id="51R-aF-Zkk"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="lM9-lr-Anz" secondAttribute="trailing" constant="50" id="51R-aF-Zkk"/>
                     <constraint firstItem="lM9-lr-Anz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="AKx-WL-5bf"/>
-                    <constraint firstItem="lM9-lr-Anz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="23" id="V1b-Lw-gJL"/>
+                    <constraint firstItem="lM9-lr-Anz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="50" id="V1b-Lw-gJL"/>
                     <constraint firstAttribute="bottomMargin" secondItem="lM9-lr-Anz" secondAttribute="bottom" constant="-1" id="foX-y0-DHD"/>
                 </constraints>
             </tableViewCellContentView>
