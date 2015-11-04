@@ -11,6 +11,7 @@ pod 'DateTools'
 pod 'LoremIpsum'
 pod 'VBFPopFlatButton'
 pod 'REFormattedNumberField'
+pod 'MBProgressHUD'
 
 
 pod 'Fabric'

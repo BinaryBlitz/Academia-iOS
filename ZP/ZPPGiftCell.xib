@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="114" id="5xO-sR-SQr" customClass="ZPPGiftCell">
+            <rect key="frame" x="0.0" y="0.0" width="531" height="114"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5xO-sR-SQr" id="NUf-KQ-j8r">
+                <rect key="frame" x="0.0" y="0.0" width="531" height="113.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="giftCard.png" translatesAutoresizingMaskIntoConstraints="NO" id="JNv-Jz-Y2d">
+                        <rect key="frame" x="20" y="28" width="100" height="60"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="ZZw-S9-XOT"/>
+                            <constraint firstAttribute="height" constant="60" id="neq-Ll-mQ9"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGP-TD-y6p">
+                        <rect key="frame" x="128" y="20" width="304" height="30"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="f62-mc-J09"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ITc-6p-Q9O">
+                        <rect key="frame" x="481" y="43" width="30" height="30"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.70588235294117641" green="0.70588235294117641" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="1Ta-B8-A0R"/>
+                            <constraint firstAttribute="height" constant="30" id="Tnh-nd-edq"/>
+                        </constraints>
+                        <state key="normal" image="plus"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Evf-yk-cN0">
+                        <rect key="frame" x="128" y="50" width="345" height="21"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="xAn-E1-QYU"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kpz-PV-IyE">
+                        <rect key="frame" x="128" y="79" width="304" height="20"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="unK-HB-w1z"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <animations/>
+                <color key="backgroundColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="0.0" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="Evf-yk-cN0" firstAttribute="top" secondItem="lGP-TD-y6p" secondAttribute="bottom" id="0iV-5V-fq5"/>
+                    <constraint firstItem="JNv-Jz-Y2d" firstAttribute="leading" secondItem="NUf-KQ-j8r" secondAttribute="leadingMargin" constant="12" id="6Ha-Co-4GU"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ITc-6p-Q9O" secondAttribute="trailing" constant="12" id="DH4-rM-2u5"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Kpz-PV-IyE" secondAttribute="trailing" constant="91" id="FRo-eC-5SK"/>
+                    <constraint firstItem="Kpz-PV-IyE" firstAttribute="leading" secondItem="JNv-Jz-Y2d" secondAttribute="trailing" constant="8" id="Ks5-cf-6Xe"/>
+                    <constraint firstItem="Evf-yk-cN0" firstAttribute="leading" secondItem="JNv-Jz-Y2d" secondAttribute="trailing" constant="8" id="NAj-S3-644"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="lGP-TD-y6p" secondAttribute="trailing" constant="91" id="PhJ-Oi-2Xu"/>
+                    <constraint firstItem="lGP-TD-y6p" firstAttribute="top" secondItem="JNv-Jz-Y2d" secondAttribute="top" constant="-8" id="RO7-Ig-eQA"/>
+                    <constraint firstItem="Kpz-PV-IyE" firstAttribute="top" secondItem="Evf-yk-cN0" secondAttribute="bottom" constant="8" id="Sji-WP-aU8"/>
+                    <constraint firstItem="lGP-TD-y6p" firstAttribute="leading" secondItem="JNv-Jz-Y2d" secondAttribute="trailing" constant="8" id="SpB-NI-7zj"/>
+                    <constraint firstItem="ITc-6p-Q9O" firstAttribute="centerY" secondItem="JNv-Jz-Y2d" secondAttribute="centerY" id="fIr-vK-XZt"/>
+                    <constraint firstItem="JNv-Jz-Y2d" firstAttribute="top" secondItem="NUf-KQ-j8r" secondAttribute="topMargin" constant="20" id="jTl-Hz-P0b"/>
+                    <constraint firstItem="ITc-6p-Q9O" firstAttribute="leading" secondItem="Evf-yk-cN0" secondAttribute="trailing" constant="8" id="zNt-df-yZF"/>
+                </constraints>
+            </tableViewCellContentView>
+            <animations/>
+            <color key="backgroundColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="0.0" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="addButton" destination="ITc-6p-Q9O" id="MPf-vo-Dtq"/>
+                <outlet property="giftDescriptionLabel" destination="Evf-yk-cN0" id="NqE-fe-oEd"/>
+                <outlet property="giftImageView" destination="JNv-Jz-Y2d" id="ads-jY-cQR"/>
+                <outlet property="nameLabel" destination="lGP-TD-y6p" id="ezV-zN-Hp0"/>
+                <outlet property="priceLabel" destination="Kpz-PV-IyE" id="6gC-Ch-N0X"/>
+            </connections>
+            <point key="canvasLocation" x="415.5" y="197"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="giftCard.png" width="144" height="93"/>
+        <image name="plus" width="50" height="50"/>
+    </resources>
+</document>

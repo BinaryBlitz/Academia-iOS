@@ -10,14 +10,19 @@
 #import "ZPPOrder.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
+#import "UITableViewController+ZPPTVCCategory.h"
 #import "ZPPOrderItemCell.h"
 #import "ZPPNoCreditCardCell.h"
 
 #import "ZPPCardViewController.h"
+#import "ZPPOrderItemVC.h"
+
+#import "ZPPConsts.h"
 
 static NSString *ZPPOrderItemCellReuseIdentifier = @"ZPPOrderItemCellReuseIdentifier";
 static NSString *ZPPNoCreditCardCellIdentifier = @"ZPPNoCreditCardCellIdentifier";
 static NSString *ZPPCardViewControllerIdentifier = @"ZPPCardViewControllerIdentifier";
+static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
 
 @interface ZPPOrderTVC ()
 
@@ -32,7 +37,6 @@ static NSString *ZPPCardViewControllerIdentifier = @"ZPPCardViewControllerIdenti
     [self registrateCells];
     self.title = @"ЗАКАЗ";
     //   [self setCustomNavigationBackButtonWithTransition];
-    
     [self setNeedsStatusBarAppearanceUpdate];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 
@@ -41,12 +45,19 @@ static NSString *ZPPCardViewControllerIdentifier = @"ZPPCardViewControllerIdenti
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     [self setCustomNavigationBackButtonWithTransition];
-    [self configureBackgroundImage];
-    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.translucent = NO;
-    //  [self.navigationController presentTransparentNavigationBar];
+    [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
+    [self.navigationController presentTransparentNavigationBar];
+    
     [self addCustomCloseButton];
+    
+    [self.tableView reloadData];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self hideIsNeeded];
 }
 
 - (void)configureWithOrder:(ZPPOrder *)order {
@@ -57,7 +68,7 @@ static NSString *ZPPCardViewControllerIdentifier = @"ZPPCardViewControllerIdenti
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -72,41 +83,56 @@ static NSString *ZPPCardViewControllerIdentifier = @"ZPPCardViewControllerIdenti
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 2) {
+    if (indexPath.section == 0) {
+        ZPPNoCreditCardCell *cell =
+            [self.tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
+        [cell.actionButton setTitle:@"Выберите карточку" forState:UIControlStateNormal];
+
+        [cell.actionButton addTarget:self
+                              action:@selector(showCardChooser)
+                    forControlEvents:UIControlEventTouchUpInside];
+        return cell;
+    } else if (indexPath.section == 1) {
+        ZPPNoCreditCardCell *cell =
+            [self.tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
+        [cell.actionButton setTitle:@"Выберите адрес" forState:UIControlStateNormal];
+
+        return cell;
+
+    } else if (indexPath.section == 3) {
+        ZPPNoCreditCardCell *cell =
+            [self.tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
+        [cell.actionButton setTitle:@"Заказать" forState:UIControlStateNormal];
+
+        return cell;
+
+    } else {
+
         ZPPOrderItem *orderItem = self.order.items[indexPath.row];
 
         ZPPOrderItemCell *cell =
-            [tableView dequeueReusableCellWithIdentifier:ZPPOrderItemCellReuseIdentifier
-                                            forIndexPath:indexPath];
+            [tableView dequeueReusableCellWithIdentifier:ZPPOrderItemCellReuseIdentifier];
         [cell configureWithOrderItem:orderItem];
+        
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         return cell;
-    } else {
-        if (indexPath.section == 0) {
-            ZPPNoCreditCardCell *cell =
-                [self.tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
-            [cell.actionButton setTitle:@"Выберите карточку" forState:UIControlStateNormal];
-
-            [cell.actionButton addTarget:self
-                                  action:@selector(showCardChooser)
-                        forControlEvents:UIControlEventTouchUpInside];
-
-            return cell;
-        } else {
-            ZPPNoCreditCardCell *cell =
-                [self.tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
-            [cell.actionButton setTitle:@"Выберите адрес" forState:UIControlStateNormal];
-
-            return cell;
-        }
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section != 2) {
-        return 70.f;
+        return 60.f;
     } else {
         return 50.0;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section == 2) {
+        ZPPOrderItem *orderItem = self.order.items[indexPath.row];
+        
+        [self showItemModifier:orderItem];
     }
 }
 
@@ -176,6 +202,24 @@ navigation
     [self setNeedsStatusBarAppearanceUpdate];
 }
 
+- (void)showItemModifier:(ZPPOrderItem *)orderItem {
+    ZPPOrderItemVC *orderVC =
+        [self.storyboard instantiateViewControllerWithIdentifier:ZPPOrderItemVCIdentifier];
+
+    [orderVC configureWithOrder:self.order item:orderItem];
+
+    [self.navigationController pushViewController:orderVC animated:YES];
+}
+
+
+- (void)hideIsNeeded {
+    if(self.order.items.count <= 0) {
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    }
+
+}
+
 #pragma mark - support
 
 - (void)registrateCells {
@@ -186,23 +230,23 @@ navigation
                  reuseIdentifier:ZPPNoCreditCardCellIdentifier];
 }
 
-- (void)registrateCellForClass:(Class) class reuseIdentifier:(NSString *)reuseIdentifier {
-    NSString *className = NSStringFromClass(class);
-    UINib *nib = [UINib nibWithNibName:className bundle:nil];
-    [[self tableView] registerNib:nib forCellReuseIdentifier:reuseIdentifier];
-}
+//- (void)registrateCellForClass:(Class) class reuseIdentifier:(NSString *)reuseIdentifier {
+//    NSString *className = NSStringFromClass(class);
+//    UINib *nib = [UINib nibWithNibName:className bundle:nil];
+//    [[self tableView] registerNib:nib forCellReuseIdentifier:reuseIdentifier];
+//}
 
-    - (void)configureBackgroundImage {
-    CGRect r = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds),
-                          16 * CGRectGetWidth([UIScreen mainScreen].bounds) / 9);
-
-    UIImageView *iv = [[UIImageView alloc] initWithFrame:r];
-
-    iv.image = [UIImage imageNamed:@"back1"];
-
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.backgroundView = iv;
-}
+//    - (void)configureBackgroundImage {
+//    CGRect r = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds),
+//                          16 * CGRectGetWidth([UIScreen mainScreen].bounds) / 9);
+//
+//    UIImageView *iv = [[UIImageView alloc] initWithFrame:r];
+//
+//    iv.image = [UIImage imageNamed:@"back1"];
+//
+//    self.tableView.backgroundColor = [UIColor clearColor];
+//    self.tableView.backgroundView = iv;
+//}
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;

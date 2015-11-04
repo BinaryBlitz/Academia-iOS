@@ -26,15 +26,36 @@
     //    self.navigationItem.backBarButtonItem.title = @"";
     //    self.navigationController.navigationBar.backIndicatorImage = backBtn;
     //    self.navigationController.navigationBar.backIndicatorTransitionMaskImage = backBtn;
-    self.navigationItem.backBarButtonItem =
+    //    self.navigationItem.backBarButtonItem =
+    //        [[UIBarButtonItem alloc] initWithTitle:@""
+    //                                         style:UIBarButtonItemStyleBordered
+    //                                        target:nil
+    //                                        action:nil];
+    //
+    //    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    //    self.navigationController.navigationBar.backIndicatorImage = [[UIImage
+    //    imageNamed:@"arrowBack"]
+    //        imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    //    self.navigationController.navigationBar.backIndicatorTransitionMaskImage =
+    //        [UIImage imageNamed:@"arrowBack"];
+
+    UIBarButtonItem *backButtonItem =
         [[UIBarButtonItem alloc] initWithTitle:@""
-                                         style:UIBarButtonItemStyleBordered
+                                         style:UIBarButtonItemStylePlain
                                         target:nil
                                         action:nil];
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"arrowBack"] ;
-    self.navigationController.navigationBar.backIndicatorTransitionMaskImage =
-        [UIImage imageNamed:@"arrowBack"];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+
+    [self.navigationController.navigationBar
+        setBackIndicatorImage:[UIImage imageNamed:@"arrowBack"]];
+    [self.navigationController.navigationBar
+        setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"arrowBack"]];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+}
+
+- (void)addPictureToNavItemWithNamePicture:(NSString *)name {
+    self.navigationItem.titleView =
+        [[UIImageView alloc] initWithImage:[UIImage imageNamed:name]];
 }
 
 - (void)popBack {

@@ -10,6 +10,8 @@
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "ZPPAddNewCell.h"
 
+#import "UITableViewController+ZPPTVCCategory.h"
+
 static NSString *ZPPAddNewCellIdentifier = @"ZPPAddNewCellIdentifier";
 
 @interface ZPPCardViewController ()
@@ -117,10 +119,5 @@ navigation
     [self registrateCellForClass:[ZPPAddNewCell class] reuseIdentifier:ZPPAddNewCellIdentifier];
 }
 
-- (void)registrateCellForClass:(Class) class reuseIdentifier:(NSString *)reuseIdentifier {
-    NSString *className = NSStringFromClass(class);
-    UINib *nib = [UINib nibWithNibName:className bundle:nil];
-    [[self tableView] registerNib:nib forCellReuseIdentifier:reuseIdentifier];
-}
 
 @end

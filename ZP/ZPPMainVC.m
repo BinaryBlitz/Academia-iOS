@@ -12,6 +12,8 @@
 
 #import "ZPPOrder.h"
 #import "ZPPOrderTVC.h"
+#import "ZPPGiftTVC.h"
+#import "ZPPOrderHistoryTVC.h"
 
 // libs
 #import <VBFPopFlatButton.h>
@@ -45,6 +47,7 @@ static float kZPPButtonOffset = 15.0f;
     if ([[ZPPUserManager sharedInstance] checkUser]) {
         [self.view addSubview:self.mainMenu];
         [self.view addSubview:self.buttonView];
+        [self updateBadge];
     } else {
         if ([self.view.subviews containsObject:self.mainMenu]) {
             [self.mainMenu removeFromSuperview];
@@ -181,6 +184,27 @@ navigation
         }];
 }
 
+- (void)hideOrderButton {
+    if (![self.view.subviews containsObject:self.orderView]) {
+        return;
+    }
+
+    [UIView animateWithDuration:0.5
+        delay:0.0
+        usingSpringWithDamping:1.
+        initialSpringVelocity:1.
+        options:UIViewAnimationOptionCurveEaseInOut
+        animations:^{
+
+            CGRect r = self.orderView.frame;
+            r.origin.y = -kZPPButtonDiametr - kZPPButtonOffset;
+            self.orderView.frame = r;
+        }
+        completion:^(BOOL finished) {
+            _orderView = nil;
+        }];
+}
+
 - (void)showProfile {
     [self dissmisMenu];
 
@@ -193,20 +217,57 @@ navigation
     [self showVCFromStoryboardWithName:@"help"];
 }
 
+- (void)showGifts {
+    [self dissmisMenu];
+
+    //    UINavigationController *nvc =
+    //        (UINavigationController *)[self initialVCForStoryboardWithName:@"gifts"];
+
+    ZPPGiftTVC *gtvc = (ZPPGiftTVC *)
+        [self firstRealVCFormStoryBoardWithName:@"gifts"];  //[nvc.viewControllers firstObject];
+
+    [gtvc configureWithOrder:self.order];
+
+    [self presentViewController:gtvc.navigationController animated:YES completion:nil];
+}
+
+- (void)showOrderHistory {
+    [self dissmisMenu];
+
+    ZPPOrderHistoryTVC *ohtvc =
+        (ZPPOrderHistoryTVC *)[self firstRealVCFormStoryBoardWithName:@"orderHistory"];
+
+    [ohtvc configureWithOrder:self.order];
+
+    [self presentViewController:ohtvc.navigationController animated:YES completion:nil];
+
+    // UINavigationController *nvc =
+}
+
 - (void)showOrder {
     //[self showVCFromStoryboardWithName:@"order"];
-    UINavigationController *initial =
-        (UINavigationController *)[self initialVCForStoryboardWithName:@"order"];
+    //    UINavigationController *initial =
+    //        (UINavigationController *)[self initialVCForStoryboardWithName:@"order"];
 
-    ZPPOrderTVC *orderTVC = [initial.viewControllers firstObject];
+    ZPPOrderTVC *orderTVC = (ZPPOrderTVC *)
+        [self firstRealVCFormStoryBoardWithName:@"order"];  //[initial.viewControllers firstObject];
 
     [orderTVC configureWithOrder:self.order];
 
-    [self presentViewController:initial
+    [self presentViewController:orderTVC.navigationController
                        animated:YES
                      completion:^{
 
                      }];
+}
+
+- (UIViewController *)firstRealVCFormStoryBoardWithName:(NSString *)storyboardName {
+    UINavigationController *nvc =
+        (UINavigationController *)[self initialVCForStoryboardWithName:storyboardName];
+
+    UIViewController *vc = [nvc.viewControllers firstObject];
+
+    return vc;
 }
 
 - (void)showVCFromStoryboardWithName:(NSString *)storyboardName {
@@ -233,10 +294,19 @@ navigation
 
     [self showOrderButton];
 
-    if ([self.order totalCount]) {
-        self.badgeView.badgeText = [NSString stringWithFormat:@"%@", @([self.order totalCount])];
-    } else {
-        self.badgeView.badgeText = nil;
+    [self updateBadge];
+}
+
+- (void)updateBadge {
+    if (_order) {
+        if ([self.order totalCount]) {
+            [self showOrderButton];
+            self.badgeView.badgeText =
+                [NSString stringWithFormat:@"%@", @([self.order totalCount])];
+        } else {
+            self.badgeView.badgeText = nil;
+            [self hideOrderButton];
+        }
     }
 }
 
@@ -257,6 +327,14 @@ navigation
         [_mainMenu.helpButton addTarget:self
                                  action:@selector(showHelp)
                        forControlEvents:UIControlEventTouchUpInside];
+
+        [_mainMenu.giftCardButton addTarget:self
+                                     action:@selector(showGifts)
+                           forControlEvents:UIControlEventTouchUpInside];
+
+        [_mainMenu.ordersButton addTarget:self
+                                   action:@selector(showOrderHistory)
+                         forControlEvents:UIControlEventTouchUpInside];
     }
     return _mainMenu;
 }
