@@ -17,12 +17,14 @@
 
 //#import "ZPPOrderTVC.h"
 #import "ZPPOrderHistoryOrderTVC.h"
+#import "ZPPOrderTotalCell.h"
 
 #import "ZPPConsts.h"
 
 static NSString *ZPPOrderHistoryCellIdentifier = @"ZPPOrderHistoryCellIdentifier";
 static NSString *ZPPOrderTVCIdentifier = @"ZPPOrderTVCIdentifier";
 static NSString *ZPPOrderHistoryOrderTVCIdentifier = @"ZPPOrderHistoryOrderTVCIdentifier";
+static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
 
 @interface ZPPOrderHistoryTVC ()
 
@@ -42,7 +44,7 @@ static NSString *ZPPOrderHistoryOrderTVCIdentifier = @"ZPPOrderHistoryOrderTVCId
     // Uncomment the following line to display an Edit button in the navigation bar for this view
     // controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+
     self.tableView.tableFooterView = [[UIView alloc] init];
 
     [self registrateCells];
@@ -58,8 +60,8 @@ static NSString *ZPPOrderHistoryOrderTVCIdentifier = @"ZPPOrderHistoryOrderTVCId
 }
 
 - (void)configureWithOrder:(ZPPOrder *)order {
-//    ZPPOrder *secondOrder = [order copy];
-//    ZPPOrder *thirdOrder = [secondOrder copy];
+    //    ZPPOrder *secondOrder = [order copy];
+    //    ZPPOrder *thirdOrder = [secondOrder copy];
 
     self.orders = @[ order, order, order ];
     [self.tableView reloadData];
@@ -79,6 +81,7 @@ static NSString *ZPPOrderHistoryOrderTVCIdentifier = @"ZPPOrderHistoryOrderTVCId
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //#warning Incomplete implementation, return the number of rows
+
     return self.orders.count;
 }
 
@@ -108,18 +111,16 @@ static NSString *ZPPOrderHistoryOrderTVCIdentifier = @"ZPPOrderHistoryOrderTVCId
 #pragma mark - actions
 
 - (void)showOrderScreenWithOrder:(ZPPOrder *)order {
- //   UIStoryboard *sb = [UIStoryboard storyboardWithName:@"order" bundle:[NSBundle mainBundle]];
-    
-   // ZPPOrderTVC *orderTVC = [sb instantiateViewControllerWithIdentifier:ZPPOrderTVCIdentifier];
-    
-    ZPPOrderHistoryOrderTVC *orderTVC = [self.storyboard instantiateViewControllerWithIdentifier:ZPPOrderHistoryOrderTVCIdentifier];
-    
+    //   UIStoryboard *sb = [UIStoryboard storyboardWithName:@"order" bundle:[NSBundle mainBundle]];
+
+    // ZPPOrderTVC *orderTVC = [sb instantiateViewControllerWithIdentifier:ZPPOrderTVCIdentifier];
+
+    ZPPOrderHistoryOrderTVC *orderTVC =
+        [self.storyboard instantiateViewControllerWithIdentifier:ZPPOrderHistoryOrderTVCIdentifier];
+
     [orderTVC configureWithOrder:order];
-    
+
     [self.navigationController pushViewController:orderTVC animated:YES];
-    
-    
-    
 }
 
 /*
@@ -177,6 +178,9 @@ navigation
 - (void)registrateCells {
     [self registrateCellForClass:[ZPPOrderHistoryCell class]
                  reuseIdentifier:ZPPOrderHistoryCellIdentifier];
+    //
+    //    [self registrateCellForClass:[ZPPOrderTotalCell class]
+    //                 reuseIdentifier:ZPPOrderTotalCellIdentifier];
 }
 
 @end

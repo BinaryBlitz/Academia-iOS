@@ -11,8 +11,10 @@
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UITableViewController+ZPPTVCCategory.h"
+
 #import "ZPPOrderItemCell.h"
 #import "ZPPNoCreditCardCell.h"
+#import "ZPPOrderTotalCell.h"
 
 #import "ZPPCardViewController.h"
 #import "ZPPOrderItemVC.h"
@@ -21,6 +23,8 @@
 
 static NSString *ZPPOrderItemCellReuseIdentifier = @"ZPPOrderItemCellReuseIdentifier";
 static NSString *ZPPNoCreditCardCellIdentifier = @"ZPPNoCreditCardCellIdentifier";
+static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
+
 static NSString *ZPPCardViewControllerIdentifier = @"ZPPCardViewControllerIdentifier";
 static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
 
@@ -45,17 +49,17 @@ static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
     [self setCustomNavigationBackButtonWithTransition];
     [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
     [self.navigationController presentTransparentNavigationBar];
-    
+
     [self addCustomCloseButton];
-    
+
     [self.tableView reloadData];
 }
 
--(void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self hideIsNeeded];
 }
@@ -68,7 +72,7 @@ static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -85,7 +89,7 @@ static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         ZPPNoCreditCardCell *cell =
-            [self.tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
+            [tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
         [cell.actionButton setTitle:@"Выберите карточку" forState:UIControlStateNormal];
 
         [cell.actionButton addTarget:self
@@ -94,12 +98,25 @@ static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
         return cell;
     } else if (indexPath.section == 1) {
         ZPPNoCreditCardCell *cell =
-            [self.tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
+            [tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
         [cell.actionButton setTitle:@"Выберите адрес" forState:UIControlStateNormal];
 
         return cell;
 
     } else if (indexPath.section == 3) {
+        //        ZPPNoCreditCardCell *cell =
+        //            [self.tableView
+        //            dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
+        //        [cell.actionButton setTitle:@"Заказать" forState:UIControlStateNormal];
+
+        ZPPOrderTotalCell *cell =
+            [tableView dequeueReusableCellWithIdentifier:ZPPOrderTotalCellIdentifier];
+
+        [cell configureWithOrder:self.order];
+
+        return cell;
+
+    } else if (indexPath.section == 4) {
         ZPPNoCreditCardCell *cell =
             [self.tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
         [cell.actionButton setTitle:@"Заказать" forState:UIControlStateNormal];
@@ -107,13 +124,12 @@ static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
         return cell;
 
     } else {
-
         ZPPOrderItem *orderItem = self.order.items[indexPath.row];
 
         ZPPOrderItemCell *cell =
             [tableView dequeueReusableCellWithIdentifier:ZPPOrderItemCellReuseIdentifier];
         [cell configureWithOrderItem:orderItem];
-        
+
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         return cell;
@@ -121,17 +137,19 @@ static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section != 2) {
+    if (indexPath.section == 3) {
+        return 100.f;
+    } else if (indexPath.section != 2) {
         return 60.f;
     } else {
-        return 50.0;
+        return 50.f;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 2) {
+    if (indexPath.section == 2) {
         ZPPOrderItem *orderItem = self.order.items[indexPath.row];
-        
+
         [self showItemModifier:orderItem];
     }
 }
@@ -211,13 +229,12 @@ navigation
     [self.navigationController pushViewController:orderVC animated:YES];
 }
 
-
 - (void)hideIsNeeded {
-    if(self.order.items.count <= 0) {
-        [self dismissViewControllerAnimated:YES completion:^{
-        }];
+    if (self.order.items.count <= 0) {
+        [self dismissViewControllerAnimated:YES
+                                 completion:^{
+                                 }];
     }
-
 }
 
 #pragma mark - support
@@ -228,6 +245,9 @@ navigation
 
     [self registrateCellForClass:[ZPPNoCreditCardCell class]
                  reuseIdentifier:ZPPNoCreditCardCellIdentifier];
+
+    [self registrateCellForClass:[ZPPOrderTotalCell class]
+                 reuseIdentifier:ZPPOrderTotalCellIdentifier];
 }
 
 //- (void)registrateCellForClass:(Class) class reuseIdentifier:(NSString *)reuseIdentifier {
