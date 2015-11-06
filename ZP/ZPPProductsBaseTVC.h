@@ -7,15 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZPPItemProtocol.h"
 
-             //define class, so protocol can see MyClass
-@protocol ZPPProductsBaseTVCDelegate <NSObject>   //define delegate protocol
-- (void) didScroll: (UIScrollView *) sender;  //define delegate method to be implemented within another class
+@protocol ZPPProductsBaseTVCDelegate <NSObject>
+- (void) didScroll: (UIScrollView *) sender;
 
-@end //end protocol
+@end
+
+
+@protocol ZPPProductScreenTVCDelegate <NSObject>
+- (void) addItemIntoOrder:(id<ZPPItemProtocol>)item;
+@end //
 
 @interface ZPPProductsBaseTVC : UITableViewController
 @property (nonatomic, weak) id <ZPPProductsBaseTVCDelegate> delegate;
+@property (nonatomic, weak) id <ZPPProductScreenTVCDelegate> productDelegate;
 
 @property (assign, nonatomic, readonly) CGFloat screenHeight;
 - (void)registreCells;

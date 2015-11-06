@@ -197,28 +197,44 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 #pragma mark - dishes
 
 - (void)loadDishes {
-    
-    [[ZPPServerManager sharedManager] GETDishesOnSuccesOnSuccess:^(NSArray *dishes) {
+    __weak typeof(self) weakSelf = self;
+    [[ZPPServerManager sharedManager] getDayMenuOnSuccess:^(NSArray *meals, NSArray *dishes,
+                                                            NSArray *stuff) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (strongSelf) {
+        NSArray *newControllers = [strongSelf dishControllersFromArr:dishes];
+        ZPPAnotherProductsTVC *stuffTVC = [strongSelf generateAnotherProductsVC:stuff];
+        stuffTVC.productDelegate = strongSelf;
 
-        NSArray *newControllers = [self dishControllersFromArr:dishes];
-
-        NSArray *arr = [@[ [self startScreen] ]
-            arrayByAddingObjectsFromArray:newControllers];  //[self dishControllersFromArr:dishes];
-
-        [self configureScreensWithArr:arr];
-
-        //        self.dataSource = nil;
-        //        self.dataSource = self;
-        //
-        //        for (ZPPProductsBaseTVC *vc in self.productViewControllers) {
-        //            vc.delegate = self;
-        //        }
-        //
-        //        self.pageControl.numberOfPages = self.productViewControllers.count;
-        // self.pageControl.currentPage =
+        NSArray *arr = [@[ [strongSelf startScreen] ] arrayByAddingObjectsFromArray:newControllers];
+        arr = [arr arrayByAddingObject:stuffTVC];
+        [strongSelf configureScreensWithArr:arr];
+        }
     } onFailure:^(NSError *error, NSInteger statusCode){
 
     }];
+    //    [[ZPPServerManager sharedManager] GETDishesOnSuccesOnSuccess:^(NSArray *dishes) {
+    //
+    //        NSArray *newControllers = [self dishControllersFromArr:dishes];
+    //
+    //        NSArray *arr = [@[ [self startScreen] ]
+    //            arrayByAddingObjectsFromArray:newControllers];  //[self
+    //            dishControllersFromArr:dishes];
+    //
+    //        [self configureScreensWithArr:arr];
+    //
+    //        //        self.dataSource = nil;
+    //        //        self.dataSource = self;
+    //        //
+    //        //        for (ZPPProductsBaseTVC *vc in self.productViewControllers) {
+    //        //            vc.delegate = self;
+    //        //        }
+    //        //
+    //        //        self.pageControl.numberOfPages = self.productViewControllers.count;
+    //        // self.pageControl.currentPage =
+    //    } onFailure:^(NSError *error, NSInteger statusCode){
+    //
+    //    }];
 }
 
 - (NSArray *)dishControllersFromArr:(NSArray *)dishes {
@@ -242,6 +258,14 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
     return productTVC;
 }
 
+- (ZPPAnotherProductsTVC *)generateAnotherProductsVC:(NSArray *)products {
+    ZPPAnotherProductsTVC *anotherTVC =
+        [self.storyboard instantiateViewControllerWithIdentifier:ZPPAnotherProductPresenterID];
+
+    [anotherTVC configureWithStuffs:products];
+    return anotherTVC;
+}
+
 - (ZPPBeginScreenTVC *)startScreen {
     ZPPBeginScreenTVC *beginScreen =
         [self.storyboard instantiateViewControllerWithIdentifier:ZPPBeginScreenTVCStoryboardID];
@@ -251,10 +275,9 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 }
 
 - (void)configureScreensWithArr:(NSArray *)screens {
-    
     ZPPProductsBaseTVC *viewController = [self.viewControllers lastObject];
     NSInteger currentIndex = [self.productViewControllers indexOfObject:viewController];
-    
+
     self.productViewControllers = screens;  //[self dishControllersFromArr:dishes];
     self.dataSource = nil;
     self.dataSource = self;
@@ -265,7 +288,10 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
     self.pageControl.numberOfPages = self.productViewControllers.count;
 
-    ZPPProductsBaseTVC *destVC = self.productViewControllers[currentIndex]; //[self.viewControllers lastObject];
+    ZPPProductsBaseTVC *destVC;
+    if(currentIndex<self.productViewControllers.count){
+    destVC = self.productViewControllers[currentIndex];  //[self.viewControllers lastObject];
+    }
 
     if (!destVC) {
         destVC = self.productViewControllers[0];

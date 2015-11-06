@@ -19,6 +19,8 @@
 
 - (void)removeItem:(id<ZPPItemProtocol>)item;
 
+- (void)checkAllAndRemoveEmpty;
+
 - (NSInteger)totalCount;
 
 - (NSInteger)totalPrice;

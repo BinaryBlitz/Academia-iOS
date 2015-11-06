@@ -15,6 +15,8 @@
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 
+#import "ZPPDish.h"
+
 //#import "ZPPOrderTVC.h"
 #import "ZPPOrderHistoryOrderTVC.h"
 #import "ZPPOrderTotalCell.h"
@@ -37,6 +39,7 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -63,7 +66,7 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
     //    ZPPOrder *secondOrder = [order copy];
     //    ZPPOrder *thirdOrder = [secondOrder copy];
 
-    self.orders = @[ order, order, order ];
+    self.orders = [self testOrders];  //@[ order, order, order ];
     [self.tableView reloadData];
 }
 
@@ -181,6 +184,59 @@ navigation
     //
     //    [self registrateCellForClass:[ZPPOrderTotalCell class]
     //                 reuseIdentifier:ZPPOrderTotalCellIdentifier];
+}
+
+#pragma mark - tests
+
+- (NSArray *)testOrders {
+    ZPPOrder *order = [[ZPPOrder alloc] init];
+    ZPPOrder *secondOrder = [[ZPPOrder alloc] init];
+    ZPPOrder *thirdOrder = [[ZPPOrder alloc] init];
+
+    ZPPDish *d1 = [[ZPPDish alloc] initWithName:@"Super meal"
+                                         dishID:nil
+                                       subtitle:nil
+                                dishDescription:nil
+                                          price:@(499)
+                                         imgURL:nil
+                                    ingridients:nil];
+    ZPPDish *d2 = [[ZPPDish alloc] initWithName:@"Diet meal"
+                                         dishID:nil
+                                       subtitle:nil
+                                dishDescription:nil
+                                          price:@(399)
+                                         imgURL:nil
+                                    ingridients:nil];
+    ZPPDish *d3 = [[ZPPDish alloc] initWithName:@"Hamburger"
+                                         dishID:nil
+                                       subtitle:nil
+                                dishDescription:nil
+                                          price:@(200)
+                                         imgURL:nil
+                                    ingridients:nil];
+    ZPPDish *d4 = [[ZPPDish alloc] initWithName:@"Salad"
+                                         dishID:nil
+                                       subtitle:nil
+                                dishDescription:nil
+                                          price:@(200)
+                                         imgURL:nil
+                                    ingridients:nil];
+
+    [order addItem:d1];
+    [order addItem:d1];
+    [order addItem:d4];
+    [order addItem:d2];
+
+    [secondOrder addItem:d4];
+    [secondOrder addItem:d1];
+    [secondOrder addItem:d3];
+    [secondOrder addItem:d3];
+
+    [thirdOrder addItem:d3];
+    [thirdOrder addItem:d2];
+    [thirdOrder addItem:d2];
+
+    return @[ order, secondOrder, thirdOrder ];
 }
 
 @end

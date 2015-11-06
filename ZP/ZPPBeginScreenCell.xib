@@ -29,12 +29,12 @@
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                         <state key="normal" title="НАЧАТЬ"/>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zpIcon" translatesAutoresizingMaskIntoConstraints="NO" id="2GH-UC-6z4">
-                        <rect key="frame" x="132.5" y="8" width="55" height="55"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="big_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="2GH-UC-6z4">
+                        <rect key="frame" x="60" y="68" width="200" height="128"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="55" id="PTH-aw-eTc"/>
-                            <constraint firstAttribute="width" constant="55" id="dYk-NN-z6Z"/>
+                            <constraint firstAttribute="height" constant="128" id="PTH-aw-eTc"/>
+                            <constraint firstAttribute="width" constant="200" id="dYk-NN-z6Z"/>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -47,7 +47,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="VM1-80-t2A" secondAttribute="trailing" constant="-8" id="Xtn-TB-Ga2"/>
                     <constraint firstAttribute="bottomMargin" secondItem="VM1-80-t2A" secondAttribute="bottom" constant="-8" id="hnx-mu-m6c"/>
                     <constraint firstItem="6zS-xG-LWg" firstAttribute="centerX" secondItem="hOk-Db-sRu" secondAttribute="centerX" id="lIh-t6-Ykk"/>
-                    <constraint firstItem="2GH-UC-6z4" firstAttribute="top" secondItem="hOk-Db-sRu" secondAttribute="topMargin" id="wo6-n8-vb7"/>
+                    <constraint firstItem="2GH-UC-6z4" firstAttribute="top" secondItem="hOk-Db-sRu" secondAttribute="topMargin" constant="60" id="wo6-n8-vb7"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>
@@ -61,6 +61,6 @@
     </objects>
     <resources>
         <image name="back3.png" width="750" height="1334"/>
-        <image name="zpIcon" width="91" height="91"/>
+        <image name="big_logo.png" width="404" height="305"/>
     </resources>
 </document>

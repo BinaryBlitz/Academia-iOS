@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--ProfileVC-->
@@ -28,13 +29,13 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qs9-IE-Y7q">
                                                     <rect key="frame" x="151" y="0.0" width="299" height="45"/>
                                                     <subviews>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Фамилия" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0zV-e1-0KY">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Фамилия" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0zV-e1-0KY" customClass="ZPPCustomTextField">
                                                             <rect key="frame" x="155.5" y="8" width="139.5" height="30"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
                                                         </textField>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Имя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bD8-HI-Fvs">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Имя" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bD8-HI-Fvs" customClass="ZPPCustomTextField">
                                                             <rect key="frame" x="0.0" y="7" width="139.5" height="30"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -74,7 +75,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="E-Mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wkv-Fb-M54">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="E-Mail" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wkv-Fb-M54" customClass="ZPPCustomTextField">
                                                     <rect key="frame" x="150" y="8" width="299" height="30"/>
                                                     <animations/>
                                                     <constraints>
@@ -95,64 +96,8 @@
                                         <animations/>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="0.0" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="45" id="Mmy-4D-Jwl">
-                                        <rect key="frame" x="0.0" y="154" width="600" height="45"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mmy-4D-Jwl" id="w9P-gG-MRK">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vp2-xY-Ecg">
-                                                    <rect key="frame" x="150" y="8" width="299" height="30"/>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="Zk4-9C-pVS"/>
-                                                        <constraint firstAttribute="width" constant="299" id="zKo-TC-LPW"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
-                                                </textField>
-                                            </subviews>
-                                            <animations/>
-                                            <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="0.0" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="Vp2-xY-Ecg" firstAttribute="centerX" secondItem="w9P-gG-MRK" secondAttribute="centerX" id="KXF-eh-owU"/>
-                                                <constraint firstItem="Vp2-xY-Ecg" firstAttribute="centerY" secondItem="w9P-gG-MRK" secondAttribute="centerY" id="w6f-DE-h8H"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="0.0" colorSpace="calibratedRGB"/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="45" id="PvQ-qv-l98">
-                                        <rect key="frame" x="0.0" y="199" width="600" height="45"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PvQ-qv-l98" id="y4t-pS-deq">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Подтвердить пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vG8-o5-92W">
-                                                    <rect key="frame" x="150" y="8" width="299" height="30"/>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="299" id="ENr-Y7-DUx"/>
-                                                        <constraint firstAttribute="height" constant="30" id="O3i-0C-jxO"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES"/>
-                                                </textField>
-                                            </subviews>
-                                            <animations/>
-                                            <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="0.0" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="vG8-o5-92W" firstAttribute="centerX" secondItem="y4t-pS-deq" secondAttribute="centerX" id="qUx-F0-glx"/>
-                                                <constraint firstItem="vG8-o5-92W" firstAttribute="centerY" secondItem="y4t-pS-deq" secondAttribute="centerY" id="uJs-Ua-JI3"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="0.0" colorSpace="calibratedRGB"/>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="59" id="Mnq-UY-dUY">
-                                        <rect key="frame" x="0.0" y="244" width="600" height="59"/>
+                                        <rect key="frame" x="0.0" y="154" width="600" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mnq-UY-dUY" id="hC7-Jr-72l">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
@@ -161,16 +106,15 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30r-dG-oAq">
                                                     <rect key="frame" x="150.5" y="9.5" width="299" height="40"/>
                                                     <animations/>
-                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="299" id="Vk8-D0-Pap"/>
                                                         <constraint firstAttribute="height" constant="40" id="gBD-Z6-woV"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                    <state key="normal" title="СОХРАНИТЬ ПРОФИЛЬ"/>
-                                                    <connections>
-                                                        <action selector="saveAction:" destination="KyC-iC-gYW" eventType="touchUpInside" id="zox-73-1ZG"/>
-                                                    </connections>
+                                                    <state key="normal" title="ИЗМЕНИТЬ ПАРОЛЬ">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
                                                 </button>
                                             </subviews>
                                             <animations/>
@@ -183,11 +127,42 @@
                                         <animations/>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="0.0" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="78" id="1Gh-z4-TXe">
-                                        <rect key="frame" x="0.0" y="303" width="600" height="78"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="59" id="sf6-qo-QTk">
+                                        <rect key="frame" x="0.0" y="213" width="600" height="59"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sf6-qo-QTk" id="aat-iW-h8Z">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bIo-SN-2KO">
+                                                    <rect key="frame" x="150.5" y="9.5" width="299" height="40"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="299" id="0sp-mk-OyB"/>
+                                                        <constraint firstAttribute="height" constant="40" id="uxd-3Q-FeD"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <state key="normal" title="СОХРАНИТЬ ПРОФИЛЬ">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <animations/>
+                                            <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="0.0" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="bIo-SN-2KO" firstAttribute="centerY" secondItem="aat-iW-h8Z" secondAttribute="centerY" id="bQG-Oy-w0B"/>
+                                                <constraint firstItem="bIo-SN-2KO" firstAttribute="centerX" secondItem="aat-iW-h8Z" secondAttribute="centerX" id="dGo-bY-cl8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="0.0" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="94" id="1Gh-z4-TXe">
+                                        <rect key="frame" x="0.0" y="272" width="600" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Gh-z4-TXe" id="ecJ-Gw-yUY">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="78"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="94"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                         </tableViewCellContentView>
@@ -195,7 +170,7 @@
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="52" id="KgX-z6-NJK">
-                                        <rect key="frame" x="0.0" y="381" width="600" height="52"/>
+                                        <rect key="frame" x="0.0" y="366" width="600" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KgX-z6-NJK" id="OnM-v1-i8C">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
@@ -236,11 +211,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="6gb-Nr-TKX"/>
                     <connections>
-                        <outlet property="againPasswordTextField" destination="vG8-o5-92W" id="0r9-Ok-3zH"/>
-                        <outlet property="emailTextFild" destination="wkv-Fb-M54" id="Y7E-fE-b68"/>
-                        <outlet property="nameTextField" destination="bD8-HI-Fvs" id="pAp-xi-CI6"/>
-                        <outlet property="passwordTextField" destination="Vp2-xY-Ecg" id="qyp-XP-dGW"/>
-                        <outlet property="secondNameTextField" destination="0zV-e1-0KY" id="8vD-zQ-Xg4"/>
+                        <outlet property="changePasswordButton" destination="30r-dG-oAq" id="BZF-Tx-wEM"/>
+                        <outlet property="emailTextField" destination="wkv-Fb-M54" id="5AC-Mq-bi9"/>
+                        <outlet property="nameTextField" destination="bD8-HI-Fvs" id="FJu-bz-4Vh"/>
+                        <outlet property="saveProfileButton" destination="bIo-SN-2KO" id="WuI-JI-YwM"/>
+                        <outlet property="secondNameTextField" destination="0zV-e1-0KY" id="Qye-av-scG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKc-TD-0em" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -266,5 +241,113 @@
             </objects>
             <point key="canvasLocation" x="3390" y="293"/>
         </scene>
+        <!--Change PasswordVC-->
+        <scene sceneID="kTm-ex-iFa">
+            <objects>
+                <viewController storyboardIdentifier="ZPPChangePasswordVCIdentifier" id="hDv-Ng-WpK" customClass="ZPPChangePasswordVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5Fw-hm-Pdm"/>
+                        <viewControllerLayoutGuide type="bottom" id="teW-M7-XZb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PdJ-w9-azr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back1.png" translatesAutoresizingMaskIntoConstraints="NO" id="YRZ-d9-dPO">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Sh-f0-HiC">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Новый пароль (еще раз)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BsN-bq-jp9">
+                                        <rect key="frame" x="208" y="285" width="184" height="30"/>
+                                        <animations/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="xmr-XA-dqW"/>
+                                            <constraint firstAttribute="width" constant="184" id="xsg-2C-BXE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Новый пароль" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KzJ-WN-KOn">
+                                        <rect key="frame" x="208" y="247" width="184" height="30"/>
+                                        <animations/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="184" id="Lje-EV-ZSP"/>
+                                            <constraint firstAttribute="height" constant="30" id="aVb-Zs-B2W"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TTJ-OS-Gjp">
+                                        <rect key="frame" x="208" y="323" width="184" height="30"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="twc-Px-bya"/>
+                                        </constraints>
+                                        <state key="normal" title="ОК"/>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Старый пароль" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KQn-sr-qrn">
+                                        <rect key="frame" x="208" y="209" width="184" height="30"/>
+                                        <animations/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="184" id="NTi-N3-KIk"/>
+                                            <constraint firstAttribute="height" constant="30" id="dyn-ke-iDd"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
+                                    </textField>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="BsN-bq-jp9" firstAttribute="centerX" secondItem="3Sh-f0-HiC" secondAttribute="centerX" id="9c2-yA-pCi"/>
+                                    <constraint firstItem="BsN-bq-jp9" firstAttribute="trailing" secondItem="KQn-sr-qrn" secondAttribute="trailing" id="FYz-wB-AuG"/>
+                                    <constraint firstItem="BsN-bq-jp9" firstAttribute="centerY" secondItem="3Sh-f0-HiC" secondAttribute="centerY" id="MzR-nk-Wb1"/>
+                                    <constraint firstItem="TTJ-OS-Gjp" firstAttribute="leading" secondItem="BsN-bq-jp9" secondAttribute="leading" id="Tsj-Y9-NBl"/>
+                                    <constraint firstItem="KzJ-WN-KOn" firstAttribute="leading" secondItem="KQn-sr-qrn" secondAttribute="leading" id="XOz-3t-xGx"/>
+                                    <constraint firstItem="KzJ-WN-KOn" firstAttribute="top" secondItem="KQn-sr-qrn" secondAttribute="bottom" constant="8" id="f1B-XA-JpY"/>
+                                    <constraint firstItem="BsN-bq-jp9" firstAttribute="top" secondItem="KzJ-WN-KOn" secondAttribute="bottom" constant="8" id="gSc-ua-MNu"/>
+                                    <constraint firstItem="TTJ-OS-Gjp" firstAttribute="trailing" secondItem="BsN-bq-jp9" secondAttribute="trailing" id="jHb-jJ-oWJ"/>
+                                    <constraint firstItem="BsN-bq-jp9" firstAttribute="leading" secondItem="KQn-sr-qrn" secondAttribute="leading" id="oPw-mF-lBQ"/>
+                                    <constraint firstItem="KzJ-WN-KOn" firstAttribute="trailing" secondItem="KQn-sr-qrn" secondAttribute="trailing" id="tbK-Mv-g9g"/>
+                                    <constraint firstItem="TTJ-OS-Gjp" firstAttribute="top" secondItem="BsN-bq-jp9" secondAttribute="bottom" constant="8" id="te8-5D-A1s"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="teW-M7-XZb" firstAttribute="top" secondItem="YRZ-d9-dPO" secondAttribute="bottom" id="2l8-h4-3Gn"/>
+                            <constraint firstItem="YRZ-d9-dPO" firstAttribute="top" secondItem="PdJ-w9-azr" secondAttribute="topMargin" id="3rT-BZ-ejh"/>
+                            <constraint firstItem="3Sh-f0-HiC" firstAttribute="top" secondItem="PdJ-w9-azr" secondAttribute="topMargin" id="DJY-ic-Xac"/>
+                            <constraint firstItem="teW-M7-XZb" firstAttribute="top" secondItem="3Sh-f0-HiC" secondAttribute="bottom" id="ICj-Au-96y"/>
+                            <constraint firstItem="YRZ-d9-dPO" firstAttribute="leading" secondItem="PdJ-w9-azr" secondAttribute="leadingMargin" constant="-20" id="Y2W-Jh-TpE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YRZ-d9-dPO" secondAttribute="trailing" constant="-20" id="bLs-qa-ZaH"/>
+                            <constraint firstItem="3Sh-f0-HiC" firstAttribute="leading" secondItem="PdJ-w9-azr" secondAttribute="leadingMargin" constant="-20" id="ivK-LU-Fkw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3Sh-f0-HiC" secondAttribute="trailing" constant="-20" id="sBI-ZC-St0"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="againPasswordTextField" destination="BsN-bq-jp9" id="mhF-7V-QJG"/>
+                        <outlet property="doneButton" destination="TTJ-OS-Gjp" id="UXD-Wp-uVu"/>
+                        <outlet property="oldPasswordTextField" destination="KQn-sr-qrn" id="nG1-Ib-jhA"/>
+                        <outlet property="superViewBottomConstr" destination="ICj-Au-96y" id="vBJ-OC-39r"/>
+                        <outlet property="userNewPasswordTextField" destination="KzJ-WN-KOn" id="a4I-1y-668"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Dr-Wg-ds0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5033" y="285"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="back1.png" width="750" height="1334"/>
+    </resources>
 </document>

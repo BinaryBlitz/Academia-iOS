@@ -27,7 +27,7 @@ static NSString *ZPPShowRegistrationResultSegueIdentifier =
 static NSString *ZPPNameErrMessage = @"Введите имя";
 static NSString *ZPPSurnameErrMaessage = @"Введите фамилию";
 static NSString *ZPPEmailErrMessage = @"Введите e-mail";
-static NSString *ZPPPasswordErrMessage = @"Введите пароль длинне 5 символов";
+//static NSString *ZPPPasswordErrMessage = @"Введите пароль длинне 5 символов";
 static NSString *ZPPPaswordEqualtyErrMessage = @"Пароли должны совпадать";
 
 @interface ZPPRegistrationOtherInputVC () <UITextFieldDelegate>

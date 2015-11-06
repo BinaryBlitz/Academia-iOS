@@ -10,16 +10,19 @@
 #import "ZPPOrder.h"
 
 #import "ZPPGiftCell.h"
+#import "ZPPActivateCardCell.h"
+
 #import "ZPPGift.h"
 
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
-
 #import "UITableViewController+ZPPTVCCategory.h"
+#import "UIButton+ZPPButtonCategory.h"
 
 #import "ZPPConsts.h"
 
 static NSString *ZPPGiftCellIdentifier = @"ZPPGiftCellIdentifier";
+static NSString *ZPPActivateCardCellIdentifier = @"ZPPActivateCardCellIdentifier";
 
 @interface ZPPGiftTVC ()
 
@@ -34,7 +37,8 @@ static NSString *ZPPGiftCellIdentifier = @"ZPPGiftCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSString *descr = @"Подарочная карта";
-    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+
     [self registrateCells];
 
     ZPPGift *firstGift = [[ZPPGift alloc] initWith:@"На один ланч" description:descr price:@(3000)];
@@ -43,10 +47,8 @@ static NSString *ZPPGiftCellIdentifier = @"ZPPGiftCellIdentifier";
     ZPPGift *thirdGift = [[ZPPGift alloc] initWith:@"На три ланча" description:descr price:@(8000)];
 
     self.gifts = @[ firstGift, secondGift, thirdGift ];
-    
-    
+
     [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
-    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -58,7 +60,7 @@ static NSString *ZPPGiftCellIdentifier = @"ZPPGiftCellIdentifier";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
     [self.navigationController presentTransparentNavigationBar];
     [self addCustomCloseButton];
 }
@@ -76,35 +78,52 @@ static NSString *ZPPGiftCellIdentifier = @"ZPPGiftCellIdentifier";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Incomplete implementation, return the number of sections
-    return 1;
+    //#warning Incomplete implementation, return the number of sections
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete implementation, return the number of rows
-    return self.gifts.count;
+    //#warning Incomplete implementation, return the number of rows
+    if (section == 0) {
+        return self.gifts.count;
+    } else {
+        return 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZPPGiftCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPGiftCellIdentifier];
+    if (indexPath.section == 0) {
+        ZPPGiftCell *cell =
+            [self.tableView dequeueReusableCellWithIdentifier:ZPPGiftCellIdentifier];
 
-    ZPPGift *g = self.gifts[indexPath.row];
+        ZPPGift *g = self.gifts[indexPath.row];
 
-    [cell configureWithGift:g];
+        [cell configureWithGift:g];
 
-    [cell.addButton addTarget:self
-                       action:@selector(addToCard:)
-             forControlEvents:UIControlEventTouchUpInside];
+        [cell.addButton addTarget:self
+                           action:@selector(addToCard:)
+                 forControlEvents:UIControlEventTouchUpInside];
 
-    // Configure the cell...
+        return cell;
+    } else {
+        ZPPActivateCardCell *cell =
+            [tableView dequeueReusableCellWithIdentifier:ZPPActivateCardCellIdentifier];
 
-    return cell;
+        [cell.doneButton addTarget:self
+                            action:@selector(activateCard:)
+                  forControlEvents:UIControlEventTouchUpInside];
+
+        return cell;
+    }
 }
 
-
-- (CGFloat )tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 110.f;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        return 110.f;
+    } else {
+        return 175.f;
+    }
 }
 
 /*
@@ -171,10 +190,23 @@ navigation
     }
 }
 
+- (void)activateCard:(UIButton *)sender {
+    [sender startIndicating];
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
+                   dispatch_get_main_queue(), ^{
+                       [sender stopIndication];
+                       [self showSuccessWithText:@"Карта добавлена"];
+
+                   });
+}
+
 #pragma mark - support
 
 - (void)registrateCells {
     [self registrateCellForClass:[ZPPGiftCell class] reuseIdentifier:ZPPGiftCellIdentifier];
+    [self registrateCellForClass:[ZPPActivateCardCell class]
+                 reuseIdentifier:ZPPActivateCardCellIdentifier];
 }
 
 //- (void)registrateCellForClass:(Class) class reuseIdentifier:(NSString *)reuseIdentifier {
@@ -182,6 +214,5 @@ navigation
 //    UINib *nib = [UINib nibWithNibName:className bundle:nil];
 //    [[self tableView] registerNib:nib forCellReuseIdentifier:reuseIdentifier];
 //}
-
 
 @end

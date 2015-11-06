@@ -16,6 +16,7 @@
 @property (copy, nonatomic) NSNumber *price;
 @property (copy, nonatomic) NSString *urlAsString;
 @property (strong, nonatomic) NSArray *ingridients;
+@property (copy, nonatomic) NSString *subtitle;
 
 @end
 
@@ -29,6 +30,7 @@
 
 - (instancetype)initWithName:(NSString *)name
                       dishID:(NSString *)dishID
+                    subtitle:(NSString *)subtitle
              dishDescription:(NSString *)dishDescription
                        price:(NSNumber *)price
                       imgURL:(NSString *)urlAsString
@@ -37,6 +39,11 @@
     if (self) {
         self.name = name;
         self.dishID = dishID;
+        if(![subtitle isEqual:[NSNull null]]){
+        self.subtitle = subtitle;
+        } else {
+            self.subtitle = nil;
+        }
         self.dishDescription = dishDescription;
         self.price = price;
         self.urlAsString = urlAsString;

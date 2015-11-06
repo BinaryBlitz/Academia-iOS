@@ -46,6 +46,14 @@
     }
 }
 
+- (void)checkAllAndRemoveEmpty {
+    for(ZPPOrderItem *order in self.items) {
+        if(order.count == 0) {
+            [self.items removeObject:order];
+        }
+    }
+}
+
 - (ZPPOrderItem *)orderItemForItem:(id<ZPPItemProtocol>)item {
     for (ZPPOrderItem *oi in self.items) {
         if ([oi.item isEqual:item]) {

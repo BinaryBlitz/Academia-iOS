@@ -13,6 +13,7 @@
 
 @property (copy, nonatomic, readonly) NSString *name;
 @property (copy, nonatomic, readonly) NSString *dishID;
+@property (copy, nonatomic, readonly) NSString *subtitle;
 @property (copy, nonatomic, readonly) NSString *dishDescription;
 @property (copy, nonatomic, readonly) NSNumber *price;
 @property (copy, nonatomic, readonly) NSString *urlAsString;
@@ -20,6 +21,7 @@
 
 - (instancetype)initWithName:(NSString *)name
                       dishID:(NSString *)dishID
+                    subtitle:(NSString *)subtitle
              dishDescription:(NSString *)dishDescription
                        price:(NSNumber *)price
                       imgURL:(NSString *)urlAsString
