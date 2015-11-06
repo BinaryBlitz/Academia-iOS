@@ -17,6 +17,7 @@ NSString *const ZPPDishDescription = @"description";
 NSString *const ZPPDishPrice = @"price";
 NSString *const ZPPDishImgURL = @"image_url";
 NSString *const ZPPDishIngridients = @"ingredients";
+NSString *const ZPPDishSubtitle = @"subtitle";
 
 @implementation ZPPDishHelper
 
@@ -24,6 +25,7 @@ NSString *const ZPPDishIngridients = @"ingredients";
     NSString *name = dict[ZPPDishName];
     NSString *dishID = dict[ZPPDishID];
     NSString *dishDescription = dict[ZPPDishDescription];
+    NSString *subtitle = dict[ZPPDishSubtitle];
     NSNumber *dishPrice = dict[ZPPDishPrice];
     NSString *imgUrlAppend = dict[ZPPDishImgURL];
     NSString *dishImgURL = [ZPPServerBaseUrl stringByAppendingString:imgUrlAppend];
@@ -32,6 +34,7 @@ NSString *const ZPPDishIngridients = @"ingredients";
 
     ZPPDish *dish = [[ZPPDish alloc] initWithName:name
                                            dishID:dishID
+                                         subtitle:subtitle
                                   dishDescription:dishDescription
                                             price:dishPrice
                                            imgURL:dishImgURL
@@ -49,5 +52,15 @@ NSString *const ZPPDishIngridients = @"ingredients";
 
     return [NSArray arrayWithArray:tmpArr];
 }
+
+//- (NSArray *)parseMeals:(NSArray *)meals {
+//    NSMutableArray *tmpArr = [NSMutableArray array];
+//    for (NSDictionary *d in dishes) {
+//        ZPPDish *dish = [[self class] dishFromDict:d];
+//        [tmpArr addObject:dish];
+//    }
+//
+//    return [NSArray arrayWithArray:tmpArr];
+//}
 
 @end

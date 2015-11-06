@@ -8,6 +8,8 @@
 
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import <TSMessage.h>
+#import <VBFPopFlatButton.h>
+#import <MBProgressHUD.h>
 
 @implementation UIViewController (ZPPViewControllerCategory)
 
@@ -79,7 +81,7 @@
 }
 
 - (UIButton *)buttonWithImageName:(NSString *)imgName {
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30.0f, 30.0f)];
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25.0f, 25.0f)];
     backButton.tintColor = [UIColor whiteColor];
     UIImage *backImage =
         [[UIImage imageNamed:imgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -122,5 +124,21 @@
                                      atPosition:TSMessageNotificationPositionNavBarOverlay
                            canBeDismissedByUser:YES];
 }
+
+- (void)showSuccessWithText:(NSString *)text {
+    VBFPopFlatButton *button = [[VBFPopFlatButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)
+                                                            buttonType:buttonOkType
+                                                           buttonStyle:buttonPlainStyle
+                                                 animateToInitialState:YES];
+    
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:hud];
+    hud.customView = button;
+    hud.labelText = text;
+    hud.mode = MBProgressHUDModeCustomView;
+    [hud show:YES];
+    [hud hide:YES afterDelay:2];
+}
+
 
 @end

@@ -20,7 +20,7 @@
 #import "ZPPDish.h"
 
 // libs
-#import <LoremIpsum.h>
+//#import <LoremIpsum.h>
 
 static NSString *ZPPProductMainCellIdentifier = @"ZPPProductsMainCellIdentifier";
 static NSString *ZPPProductIngridientsCellIdentifier = @"ZPPProductCellIdentifier";
@@ -42,12 +42,6 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //  self.screenHeight = [UIScreen mainScreen].bounds.size.height;
-
-    //  [self registerCells];
-
-    //  self.tableView.backgroundColor = [UIColor blackColor];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,7 +83,7 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
     [cell.productImageView setImageWithURL:imgURL];
 
     cell.nameLabel.text = self.dish.name;  //[LoremIpsum word];
-    cell.ingridientsDescriptionLabel.text = [LoremIpsum wordsWithNumber:3];
+    cell.ingridientsDescriptionLabel.text = self.dish.subtitle;//[LoremIpsum wordsWithNumber:3];
     cell.priceLabel.text =
         [NSString stringWithFormat:@"%@ ₽", self.dish.price];  //[self.dish.price stringValue];
                                                                  ////[NSString
@@ -124,20 +118,6 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
         [iv setImageWithURL:url];
         label.text = ingr.name;
     }
-
-    //    for (UIImageView *iv in cell.ingredientsImageViews) {
-    //
-    //
-    //
-    //        [LoremIpsum asyncPlaceholderImageWithSize:CGSizeMake(100, 100)
-    //                                       completion:^(UIImage *image) {
-    //                                           iv.image = image;
-    //                                       }];
-    //    }
-
-    //    for (UILabel *l in cell.ingredientsLabels) {
-    //        l.text = [LoremIpsum word];
-    //    }
     return cell;
 }
 

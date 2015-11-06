@@ -49,6 +49,21 @@
 		194617F71BD3DBFC001D13A3 /* ZPPRegistrationSuccesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 194617F61BD3DBFC001D13A3 /* ZPPRegistrationSuccesVC.m */; };
 		1948C51C1BEB5CCE00084BC8 /* ZPPOrderTotalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C51B1BEB5CCE00084BC8 /* ZPPOrderTotalCell.m */; };
 		1948C51E1BEB5CE900084BC8 /* ZPPOrderTotalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1948C51D1BEB5CE900084BC8 /* ZPPOrderTotalCell.xib */; };
+		1948C5231BEB83B100084BC8 /* ZPPActivateCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C5221BEB83B100084BC8 /* ZPPActivateCardCell.m */; };
+		1948C5251BEB83EC00084BC8 /* ZPPActivateCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1948C5241BEB83EC00084BC8 /* ZPPActivateCardCell.xib */; };
+		1948C5271BEBABFD00084BC8 /* promocode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1948C5261BEBABFD00084BC8 /* promocode.storyboard */; };
+		1948C52B1BEBACA500084BC8 /* ZPPPromoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C52A1BEBACA500084BC8 /* ZPPPromoVC.m */; };
+		1948C52E1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C52D1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.m */; };
+		1948C5321BEBB3B500084BC8 /* ZPPCustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C5311BEBB3B500084BC8 /* ZPPCustomTextField.m */; };
+		1948C5351BEBBC5E00084BC8 /* ZPPChangePasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C5341BEBBC5E00084BC8 /* ZPPChangePasswordVC.m */; };
+		1948C5381BEC14C100084BC8 /* ZPPLunch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C5371BEC14C100084BC8 /* ZPPLunch.m */; };
+		1948C53B1BEC17E600084BC8 /* ZPPLunchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C53A1BEC17E600084BC8 /* ZPPLunchHelper.m */; };
+		1948C53E1BEC19B800084BC8 /* ZPPStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C53D1BEC19B800084BC8 /* ZPPStuff.m */; };
+		1948C5411BEC204500084BC8 /* ZPPStuffHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C5401BEC204500084BC8 /* ZPPStuffHelper.m */; };
+		1948C5431BEC2B2400084BC8 /* back4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1948C5421BEC2B2400084BC8 /* back4.png */; };
+		1948C5451BEC326000084BC8 /* big_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1948C5441BEC326000084BC8 /* big_logo.png */; };
+		1948C5471BEC38CA00084BC8 /* load.png in Resources */ = {isa = PBXBuildFile; fileRef = 1948C5461BEC38CA00084BC8 /* load.png */; };
+		1948C54B1BEC3A1800084BC8 /* ZPPLunchTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C54A1BEC3A1800084BC8 /* ZPPLunchTVC.m */; };
 		195457401BD7C57900A3BB46 /* back1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1954573F1BD7C57900A3BB46 /* back1.png */; };
 		1963EF211BD3E91100665916 /* ZPPRegistrationBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1963EF201BD3E91100665916 /* ZPPRegistrationBaseVC.m */; };
 		1984EE231BD110CC001D25D5 /* registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1984EE221BD110CC001D25D5 /* registration.storyboard */; };
@@ -184,6 +199,31 @@
 		1948C51A1BEB5CCE00084BC8 /* ZPPOrderTotalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPOrderTotalCell.h; sourceTree = "<group>"; };
 		1948C51B1BEB5CCE00084BC8 /* ZPPOrderTotalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPOrderTotalCell.m; sourceTree = "<group>"; };
 		1948C51D1BEB5CE900084BC8 /* ZPPOrderTotalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPOrderTotalCell.xib; sourceTree = "<group>"; };
+		1948C5211BEB83B100084BC8 /* ZPPActivateCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPActivateCardCell.h; sourceTree = "<group>"; };
+		1948C5221BEB83B100084BC8 /* ZPPActivateCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPActivateCardCell.m; sourceTree = "<group>"; };
+		1948C5241BEB83EC00084BC8 /* ZPPActivateCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPActivateCardCell.xib; sourceTree = "<group>"; };
+		1948C5261BEBABFD00084BC8 /* promocode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = promocode.storyboard; sourceTree = "<group>"; };
+		1948C5291BEBACA500084BC8 /* ZPPPromoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPPromoVC.h; sourceTree = "<group>"; };
+		1948C52A1BEBACA500084BC8 /* ZPPPromoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPPromoVC.m; sourceTree = "<group>"; };
+		1948C52C1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+ZPPTextFieldCategory.h"; sourceTree = "<group>"; };
+		1948C52D1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ZPPTextFieldCategory.m"; sourceTree = "<group>"; };
+		1948C5301BEBB3B500084BC8 /* ZPPCustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPCustomTextField.h; sourceTree = "<group>"; };
+		1948C5311BEBB3B500084BC8 /* ZPPCustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPCustomTextField.m; sourceTree = "<group>"; };
+		1948C5331BEBBC5E00084BC8 /* ZPPChangePasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPChangePasswordVC.h; sourceTree = "<group>"; };
+		1948C5341BEBBC5E00084BC8 /* ZPPChangePasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPChangePasswordVC.m; sourceTree = "<group>"; };
+		1948C5361BEC14C100084BC8 /* ZPPLunch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPLunch.h; sourceTree = "<group>"; };
+		1948C5371BEC14C100084BC8 /* ZPPLunch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPLunch.m; sourceTree = "<group>"; };
+		1948C5391BEC17E600084BC8 /* ZPPLunchHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPLunchHelper.h; sourceTree = "<group>"; };
+		1948C53A1BEC17E600084BC8 /* ZPPLunchHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPLunchHelper.m; sourceTree = "<group>"; };
+		1948C53C1BEC19B800084BC8 /* ZPPStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPStuff.h; sourceTree = "<group>"; };
+		1948C53D1BEC19B800084BC8 /* ZPPStuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPStuff.m; sourceTree = "<group>"; };
+		1948C53F1BEC204500084BC8 /* ZPPStuffHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPStuffHelper.h; sourceTree = "<group>"; };
+		1948C5401BEC204500084BC8 /* ZPPStuffHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPStuffHelper.m; sourceTree = "<group>"; };
+		1948C5421BEC2B2400084BC8 /* back4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back4.png; sourceTree = "<group>"; };
+		1948C5441BEC326000084BC8 /* big_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big_logo.png; sourceTree = "<group>"; };
+		1948C5461BEC38CA00084BC8 /* load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load.png; sourceTree = "<group>"; };
+		1948C5491BEC3A1800084BC8 /* ZPPLunchTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPLunchTVC.h; sourceTree = "<group>"; };
+		1948C54A1BEC3A1800084BC8 /* ZPPLunchTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPLunchTVC.m; sourceTree = "<group>"; };
 		1954573F1BD7C57900A3BB46 /* back1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back1.png; sourceTree = "<group>"; };
 		1963EF1F1BD3E91100665916 /* ZPPRegistrationBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPRegistrationBaseVC.h; sourceTree = "<group>"; };
 		1963EF201BD3E91100665916 /* ZPPRegistrationBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPRegistrationBaseVC.m; sourceTree = "<group>"; };
@@ -361,6 +401,8 @@
 			children = (
 				19062D8C1BD69ACB003AC242 /* ZPPProfileVC.h */,
 				19062D8D1BD69ACB003AC242 /* ZPPProfileVC.m */,
+				1948C5331BEBBC5E00084BC8 /* ZPPChangePasswordVC.h */,
+				1948C5341BEBBC5E00084BC8 /* ZPPChangePasswordVC.m */,
 			);
 			name = userProfile;
 			sourceTree = "<group>";
@@ -374,6 +416,8 @@
 				19EC24A71BC6601000C333F6 /* ZPPAnotherProductsTVC.m */,
 				1984EE3A1BD13E63001D25D5 /* ZPPBeginScreenTVC.h */,
 				1984EE3B1BD13E63001D25D5 /* ZPPBeginScreenTVC.m */,
+				1948C5491BEC3A1800084BC8 /* ZPPLunchTVC.h */,
+				1948C54A1BEC3A1800084BC8 /* ZPPLunchTVC.m */,
 			);
 			name = products;
 			sourceTree = "<group>";
@@ -448,6 +492,7 @@
 		191C98511BC0432400E10D4F /* view */ = {
 			isa = PBXGroup;
 			children = (
+				1948C52F1BEBB39400084BC8 /* textfield */,
 				198A5C031BD59EE100710A36 /* menu */,
 				191D7DF81BD5766C00DBAFC4 /* buttons */,
 				1984EE411BD1504F001D25D5 /* view */,
@@ -460,6 +505,7 @@
 		191C98521BC0433400E10D4F /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				1948C5281BEBAC7A00084BC8 /* promocode */,
 				19D2426C1BEA2C6B007A0FEB /* orderHistory */,
 				194235401BE92D650014BD9A /* gift */,
 				198FD97E1BE7B60E00A30B4D /* cards */,
@@ -477,10 +523,10 @@
 			children = (
 				190F9C701BE283200032E14D /* products */,
 				19E6D4171BC66F1C00DF6EF9 /* base */,
-				191C98531BC0438C00E10D4F /* ZPPMainVC.h */,
-				191C98541BC0438C00E10D4F /* ZPPMainVC.m */,
 				191C985C1BC0447800E10D4F /* ZPPMainPageVC.h */,
 				191C985D1BC0447800E10D4F /* ZPPMainPageVC.m */,
+				191C98531BC0438C00E10D4F /* ZPPMainVC.h */,
+				191C98541BC0438C00E10D4F /* ZPPMainVC.m */,
 			);
 			name = main;
 			sourceTree = "<group>";
@@ -498,7 +544,7 @@
 			children = (
 				19D2426D1BEA31D2007A0FEB /* order history */,
 				194235441BE931AC0014BD9A /* gift */,
-				198FD9831BE7B82200A30B4D /* card */,
+				198FD9831BE7B82200A30B4D /* credit_card */,
 				190F9C7E1BE3C13B0032E14D /* order */,
 				19EC24A21BC65E1600C333F6 /* anotherProducts */,
 				191C98691BC0506E00E10D4F /* mainCells */,
@@ -596,9 +642,8 @@
 		194235441BE931AC0014BD9A /* gift */ = {
 			isa = PBXGroup;
 			children = (
-				194235451BE931C80014BD9A /* ZPPGiftCell.h */,
-				194235461BE931C80014BD9A /* ZPPGiftCell.m */,
-				194235481BE931DE0014BD9A /* ZPPGiftCell.xib */,
+				1948C5201BEB833F00084BC8 /* activate_card */,
+				1948C51F1BEB833300084BC8 /* gift_cell */,
 			);
 			name = gift;
 			sourceTree = "<group>";
@@ -622,13 +667,54 @@
 			name = orderTotal;
 			sourceTree = "<group>";
 		};
+		1948C51F1BEB833300084BC8 /* gift_cell */ = {
+			isa = PBXGroup;
+			children = (
+				194235451BE931C80014BD9A /* ZPPGiftCell.h */,
+				194235461BE931C80014BD9A /* ZPPGiftCell.m */,
+				194235481BE931DE0014BD9A /* ZPPGiftCell.xib */,
+			);
+			name = gift_cell;
+			sourceTree = "<group>";
+		};
+		1948C5201BEB833F00084BC8 /* activate_card */ = {
+			isa = PBXGroup;
+			children = (
+				1948C5211BEB83B100084BC8 /* ZPPActivateCardCell.h */,
+				1948C5221BEB83B100084BC8 /* ZPPActivateCardCell.m */,
+				1948C5241BEB83EC00084BC8 /* ZPPActivateCardCell.xib */,
+			);
+			name = activate_card;
+			sourceTree = "<group>";
+		};
+		1948C5281BEBAC7A00084BC8 /* promocode */ = {
+			isa = PBXGroup;
+			children = (
+				1948C5291BEBACA500084BC8 /* ZPPPromoVC.h */,
+				1948C52A1BEBACA500084BC8 /* ZPPPromoVC.m */,
+			);
+			name = promocode;
+			sourceTree = "<group>";
+		};
+		1948C52F1BEBB39400084BC8 /* textfield */ = {
+			isa = PBXGroup;
+			children = (
+				1948C5301BEBB3B500084BC8 /* ZPPCustomTextField.h */,
+				1948C5311BEBB3B500084BC8 /* ZPPCustomTextField.m */,
+			);
+			name = textfield;
+			sourceTree = "<group>";
+		};
 		1954573E1BD7C54E00A3BB46 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				1948C5461BEC38CA00084BC8 /* load.png */,
 				19D2426A1BEA2705007A0FEB /* giftCard.png */,
 				1954573F1BD7C57900A3BB46 /* back1.png */,
 				1902BD4B1BD7E4DB003E90A5 /* back3.png */,
 				1902BD4D1BD7E713003E90A5 /* mainIcon.png */,
+				1948C5421BEC2B2400084BC8 /* back4.png */,
+				1948C5441BEC326000084BC8 /* big_logo.png */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -652,6 +738,7 @@
 				190F9C771BE3A9860032E14D /* order.storyboard */,
 				19D242601BEA1728007A0FEB /* gifts.storyboard */,
 				19D242761BEA3B81007A0FEB /* orderHistory.storyboard */,
+				1948C5261BEBABFD00084BC8 /* promocode.storyboard */,
 			);
 			name = storyboards;
 			sourceTree = "<group>";
@@ -753,6 +840,10 @@
 				198A5C0E1BD5B60700710A36 /* ZPPDish.h */,
 				198A5C0F1BD5B60700710A36 /* ZPPDish.m */,
 				198635711BDFD2320070E3F7 /* ZPPItemProtocol.h */,
+				1948C5361BEC14C100084BC8 /* ZPPLunch.h */,
+				1948C5371BEC14C100084BC8 /* ZPPLunch.m */,
+				1948C53C1BEC19B800084BC8 /* ZPPStuff.h */,
+				1948C53D1BEC19B800084BC8 /* ZPPStuff.m */,
 			);
 			name = product;
 			sourceTree = "<group>";
@@ -764,6 +855,10 @@
 				198A5C131BD5B6D900710A36 /* ZPPIngridientHelper.m */,
 				198A5C151BD5B8B900710A36 /* ZPPDishHelper.h */,
 				198A5C161BD5B8B900710A36 /* ZPPDishHelper.m */,
+				1948C5391BEC17E600084BC8 /* ZPPLunchHelper.h */,
+				1948C53A1BEC17E600084BC8 /* ZPPLunchHelper.m */,
+				1948C53F1BEC204500084BC8 /* ZPPStuffHelper.h */,
+				1948C5401BEC204500084BC8 /* ZPPStuffHelper.m */,
 			);
 			name = helpers;
 			sourceTree = "<group>";
@@ -785,14 +880,6 @@
 			name = product;
 			sourceTree = "<group>";
 		};
-		198FA5351BC171DF008BC11B /* anotherProducts */ = {
-			isa = PBXGroup;
-			children = (
-				198FA5361BC17204008BC11B /* ZPPProductAnotherCell.xib */,
-			);
-			name = anotherProducts;
-			sourceTree = "<group>";
-		};
 		198FD9781BE7A9CA00A30B4D /* cardCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -812,14 +899,14 @@
 			name = cards;
 			sourceTree = "<group>";
 		};
-		198FD9831BE7B82200A30B4D /* card */ = {
+		198FD9831BE7B82200A30B4D /* credit_card */ = {
 			isa = PBXGroup;
 			children = (
 				198FD9841BE7B84C00A30B4D /* ZPPAddNewCell.h */,
 				198FD9851BE7B84C00A30B4D /* ZPPAddNewCell.m */,
 				198FD9871BE7B91E00A30B4D /* ZPPAddNewCell.xib */,
 			);
-			name = card;
+			name = credit_card;
 			sourceTree = "<group>";
 		};
 		19D242661BEA1C53007A0FEB /* consts */ = {
@@ -866,6 +953,8 @@
 				1984EE441BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.m */,
 				19D242631BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.h */,
 				19D242641BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.m */,
+				1948C52C1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.h */,
+				1948C52D1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -873,7 +962,6 @@
 		19DA03E21BC12BF000DC0636 /* main */ = {
 			isa = PBXGroup;
 			children = (
-				198FA5351BC171DF008BC11B /* anotherProducts */,
 				198FA5341BC171C6008BC11B /* product */,
 			);
 			name = main;
@@ -893,6 +981,7 @@
 			children = (
 				19EC24A31BC65E3D00C333F6 /* ZPPProductAnotherCell.h */,
 				19EC24A41BC65E3D00C333F6 /* ZPPProductAnotherCell.m */,
+				198FA5361BC17204008BC11B /* ZPPProductAnotherCell.xib */,
 			);
 			name = anotherProducts;
 			sourceTree = "<group>";
@@ -1025,6 +1114,7 @@
 				190E477A1BC0756500AC5379 /* ZPPProductAboutCell.xib in Resources */,
 				195457401BD7C57900A3BB46 /* back1.png in Resources */,
 				19D242771BEA3B81007A0FEB /* orderHistory.storyboard in Resources */,
+				1948C5271BEBABFD00084BC8 /* promocode.storyboard in Resources */,
 				191C986E1BC050F300E10D4F /* ZPPProductMainCell.xib in Resources */,
 				1984EE231BD110CC001D25D5 /* registration.storyboard in Resources */,
 				190F9C781BE3A9860032E14D /* order.storyboard in Resources */,
@@ -1038,6 +1128,8 @@
 				198FA5371BC17204008BC11B /* ZPPProductAnotherCell.xib in Resources */,
 				190F9C811BE3C1810032E14D /* ZPPOrderItemCell.xib in Resources */,
 				1902BD4E1BD7E714003E90A5 /* mainIcon.png in Resources */,
+				1948C5431BEC2B2400084BC8 /* back4.png in Resources */,
+				1948C5471BEC38CA00084BC8 /* load.png in Resources */,
 				19D2426B1BEA2705007A0FEB /* giftCard.png in Resources */,
 				1984EE351BD13698001D25D5 /* ZPPBeginScreenCell.xib in Resources */,
 				198A5C051BD59F0000710A36 /* ZPPMainMenuView.xib in Resources */,
@@ -1047,6 +1139,8 @@
 				1948C51E1BEB5CE900084BC8 /* ZPPOrderTotalCell.xib in Resources */,
 				1902BD4C1BD7E4DB003E90A5 /* back3.png in Resources */,
 				19062D901BD69DAF003AC242 /* profile.storyboard in Resources */,
+				1948C5451BEC326000084BC8 /* big_logo.png in Resources */,
+				1948C5251BEB83EC00084BC8 /* ZPPActivateCardCell.xib in Resources */,
 				198635661BDFB58E0070E3F7 /* help.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1134,6 +1228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1948C51C1BEB5CCE00084BC8 /* ZPPOrderTotalCell.m in Sources */,
+				1948C5321BEBB3B500084BC8 /* ZPPCustomTextField.m in Sources */,
 				191D7DFB1BD5768900DBAFC4 /* UIButton+ZPPButtonCategory.m in Sources */,
 				198A5C081BD5A90B00710A36 /* ZPPMainMenuView.m in Sources */,
 				1984EE451BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.m in Sources */,
@@ -1157,30 +1252,39 @@
 				190F9C841BE3C19A0032E14D /* ZPPOrderItemCell.m in Sources */,
 				190F9C7D1BE3C1330032E14D /* ZPPOrderTVC.m in Sources */,
 				198FD9861BE7B84C00A30B4D /* ZPPAddNewCell.m in Sources */,
+				1948C54B1BEC3A1800084BC8 /* ZPPLunchTVC.m in Sources */,
+				1948C5381BEC14C100084BC8 /* ZPPLunch.m in Sources */,
 				19D242691BEA1C67007A0FEB /* ZPPConsts.m in Sources */,
+				1948C5231BEB83B100084BC8 /* ZPPActivateCardCell.m in Sources */,
 				19014A4D1BC034CF001E0D77 /* AppDelegate.m in Sources */,
 				194235471BE931C80014BD9A /* ZPPGiftCell.m in Sources */,
 				191D7DE71BD53DC000DBAFC4 /* ZPPUser.m in Sources */,
 				1984EE3C1BD13E63001D25D5 /* ZPPBeginScreenTVC.m in Sources */,
 				198A5C0C1BD5B5C000710A36 /* ZPPIngridient.m in Sources */,
+				1948C52B1BEBACA500084BC8 /* ZPPPromoVC.m in Sources */,
 				1986356D1BDFD04B0070E3F7 /* ZPPOrder.m in Sources */,
 				198A5C101BD5B60700710A36 /* ZPPDish.m in Sources */,
 				198635701BDFD1950070E3F7 /* ZPPOrderItem.m in Sources */,
 				191D7DE01BD5363300DBAFC4 /* UIViewController+ZPPValidationCategory.m in Sources */,
 				191C98551BC0438C00E10D4F /* ZPPMainVC.m in Sources */,
+				1948C53E1BEC19B800084BC8 /* ZPPStuff.m in Sources */,
 				19014A4A1BC034CF001E0D77 /* main.m in Sources */,
 				198A5C171BD5B8B900710A36 /* ZPPDishHelper.m in Sources */,
+				1948C53B1BEC17E600084BC8 /* ZPPLunchHelper.m in Sources */,
+				1948C52E1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.m in Sources */,
 				1984EE301BD12CD9001D25D5 /* ZPPRegistrationOtherInputVC.m in Sources */,
 				19EC24A81BC6601000C333F6 /* ZPPAnotherProductsTVC.m in Sources */,
 				19D242651BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.m in Sources */,
 				1984EE271BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.m in Sources */,
 				191C98611BC044A700E10D4F /* ZPPProductTVC.m in Sources */,
+				1948C5411BEC204500084BC8 /* ZPPStuffHelper.m in Sources */,
 				191D7DF61BD56C2600DBAFC4 /* ZPPUserHelper.m in Sources */,
 				19EC24A51BC65E3D00C333F6 /* ZPPProductAnotherCell.m in Sources */,
 				1984EE331BD13664001D25D5 /* ZPPBeginScreenCell.m in Sources */,
 				19D2427A1BEA4CEC007A0FEB /* ZPPOrderHistoryOrderTVC.m in Sources */,
 				194235431BE930210014BD9A /* ZPPGiftTVC.m in Sources */,
 				1942353F1BE8F6C20014BD9A /* ZPPOrderItemVC.m in Sources */,
+				1948C5351BEBBC5E00084BC8 /* ZPPChangePasswordVC.m in Sources */,
 				1984EE401BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.m in Sources */,
 				198A5C1B1BD5BE0B00710A36 /* ZPPServerManager+ZPPDishesSeverManager.m in Sources */,
 				191C985E1BC0447800E10D4F /* ZPPMainPageVC.m in Sources */,

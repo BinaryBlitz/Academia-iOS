@@ -34,17 +34,6 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7l-Qy-eqd">
-                                <rect key="frame" x="194" y="331" width="213" height="30"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="laQ-bG-fCd"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                <state key="normal" title="+79055670381">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Нужна помощь?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drw-Yy-uXO">
                                 <rect key="frame" x="194" y="248" width="213" height="21"/>
                                 <animations/>
@@ -55,28 +44,40 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="+79055670381" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Usm-g7-b3e">
+                                <rect key="frame" x="194" y="323" width="213" height="38"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="vw7-Us-xAT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
+                            </textView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YvG-LJ-lgk" firstAttribute="leading" secondItem="drw-Yy-uXO" secondAttribute="leading" id="1N1-rq-Pj0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Fhv-3Y-mXd" secondAttribute="trailing" constant="-20" id="7BB-p5-gKw"/>
-                            <constraint firstItem="I7l-Qy-eqd" firstAttribute="leading" secondItem="YvG-LJ-lgk" secondAttribute="leading" id="7nS-O4-2eu"/>
-                            <constraint firstItem="I7l-Qy-eqd" firstAttribute="trailing" secondItem="YvG-LJ-lgk" secondAttribute="trailing" id="AgW-yC-rGB"/>
+                            <constraint firstItem="Usm-g7-b3e" firstAttribute="trailing" secondItem="YvG-LJ-lgk" secondAttribute="trailing" id="UNQ-xo-Wlg"/>
+                            <constraint firstItem="Usm-g7-b3e" firstAttribute="leading" secondItem="YvG-LJ-lgk" secondAttribute="leading" id="Ve7-gw-xvv"/>
                             <constraint firstItem="Fhv-3Y-mXd" firstAttribute="leading" secondItem="1cp-DY-w9M" secondAttribute="leadingMargin" constant="-20" id="WzS-rc-Sip"/>
                             <constraint firstItem="Fhv-3Y-mXd" firstAttribute="top" secondItem="1cp-DY-w9M" secondAttribute="topMargin" id="aPS-wG-CkC"/>
+                            <constraint firstItem="Usm-g7-b3e" firstAttribute="top" secondItem="YvG-LJ-lgk" secondAttribute="bottom" constant="8" id="mdD-34-14m"/>
                             <constraint firstItem="YvG-LJ-lgk" firstAttribute="trailing" secondItem="drw-Yy-uXO" secondAttribute="trailing" id="qSW-fy-Xvi"/>
                             <constraint firstItem="Aht-Ty-lqa" firstAttribute="top" secondItem="Fhv-3Y-mXd" secondAttribute="bottom" id="rtO-mi-gGa"/>
                             <constraint firstItem="YvG-LJ-lgk" firstAttribute="top" secondItem="drw-Yy-uXO" secondAttribute="bottom" constant="16" id="sKa-0A-ATk"/>
                             <constraint firstItem="YvG-LJ-lgk" firstAttribute="centerX" secondItem="1cp-DY-w9M" secondAttribute="centerX" id="sZy-oc-ebl"/>
                             <constraint firstItem="YvG-LJ-lgk" firstAttribute="centerY" secondItem="1cp-DY-w9M" secondAttribute="centerY" id="u7e-A2-jCY"/>
-                            <constraint firstItem="I7l-Qy-eqd" firstAttribute="top" secondItem="YvG-LJ-lgk" secondAttribute="bottom" constant="16" id="yVW-oQ-NvE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YkP-dM-F8Z"/>
                     <connections>
                         <outlet property="emailButton" destination="YvG-LJ-lgk" id="KW7-8W-FBS"/>
-                        <outlet property="phoneButton" destination="I7l-Qy-eqd" id="2Mo-Ie-4EU"/>
+                        <outlet property="phoneTextView" destination="Usm-g7-b3e" id="Njh-e9-Gxm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HXx-cY-1zw" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -24,6 +24,7 @@ static NSString *ZPPAddNewCellIdentifier = @"ZPPAddNewCellIdentifier";
     [super viewDidLoad];
     [self registrateCells];
     [self setCustomNavigationBackButtonWithTransition];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

@@ -20,7 +20,7 @@
 #import <JSBadgeView.h>
 
 static float kZPPButtonDiametr = 40.0f;
-static float kZPPButtonOffset = 15.0f;
+static float kZPPButtonOffset  = 15.0f;
 
 @interface ZPPMainVC ()
 @property (strong, nonatomic) VBFPopFlatButton *menuButton;
@@ -244,6 +244,12 @@ navigation
     // UINavigationController *nvc =
 }
 
+- (void)showPromoCodeInput {
+    [self dissmisMenu];
+
+    [self showVCFromStoryboardWithName:@"promocode"];
+}
+
 - (void)showOrder {
     //[self showVCFromStoryboardWithName:@"order"];
     //    UINavigationController *initial =
@@ -335,6 +341,9 @@ navigation
         [_mainMenu.ordersButton addTarget:self
                                    action:@selector(showOrderHistory)
                          forControlEvents:UIControlEventTouchUpInside];
+        [_mainMenu.promoButton addTarget:self
+                                  action:@selector(showPromoCodeInput)
+                        forControlEvents:UIControlEventTouchUpInside];
     }
     return _mainMenu;
 }

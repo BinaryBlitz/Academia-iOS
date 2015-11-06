@@ -39,7 +39,8 @@ static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self registrateCells];
-    self.title = @"ЗАКАЗ";
+    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+    //self.title = @"ЗАКАЗ";
     //   [self setCustomNavigationBackButtonWithTransition];
     [self setNeedsStatusBarAppearanceUpdate];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;

@@ -22,4 +22,6 @@
 
 - (void)addPictureToNavItemWithNamePicture:(NSString *)name;
 
+- (void)showSuccessWithText:(NSString *)text;
+
 @end

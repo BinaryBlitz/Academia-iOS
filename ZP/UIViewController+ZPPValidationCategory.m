@@ -10,6 +10,15 @@
 #import <REFormattedNumberField.h>
 #import "UIView+UIViewCategory.h"
 
+//static NSString *ZPPNameErrMessage = @"Введите имя";
+//static NSString *ZPPSurnameErrMaessage = @"Введите фамилию";
+//static NSString *ZPPEmailErrMessage = @"Введите e-mail";
+NSString *const ZPPPasswordErrMessage = @"Введите пароль длинне 5 символов";
+//static NSString *ZPPPaswordEqualtyErrMessage = @"Пароли должны совпадать";
+
+
+
+
 @implementation UIViewController (ZPPValidationCategory)
 - (BOOL)checkPhoneTextField:(REFormattedNumberField *)textField {
     return textField.unformattedText.length == 10;

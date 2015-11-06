@@ -9,6 +9,7 @@
 #import "ZPPHelpVC.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
+#import "UIView+UIViewCategory.h"
 
 #import <MessageUI/MessageUI.h>
 
@@ -22,22 +23,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    self.emailButton.layer.borderColor = [UIColor blackColor].CGColor;
-    self.emailButton.layer.borderWidth = 2.0f;
-    self.phoneButton.layer.borderColor = [UIColor blackColor].CGColor;
-    self.phoneButton.layer.borderWidth = 2.0f;
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+
+//    self.emailButton.layer.borderColor = [UIColor blackColor].CGColor;
+//    self.emailButton.layer.borderWidth = 2.0f;
+//    self.phoneButton.layer.borderColor = [UIColor blackColor].CGColor;
+//    self.phoneButton.layer.borderWidth = 2.0f;
+    
+    [self.emailButton makeBordered];
+    [self.phoneTextView makeBordered];
 
     [self.emailButton addTarget:self
                          action:@selector(sendEmail)
                forControlEvents:UIControlEventTouchUpInside];
 
-    [self.phoneButton addTarget:self
-                         action:@selector(makeCall)
-               forControlEvents:UIControlEventTouchUpInside];
-
-    //    [self.navigationController presentTransparentNavigationBar];
-    //
-    //    [self addCustomCloseButton];
+//    [self.phoneButton addTarget:self
+//                         action:@selector(makeCall)
+//               forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -99,15 +101,15 @@
     }
 }
 
-- (void)makeCall {
-    NSString *phoneNumber = [@"tel://" stringByAppendingString:self.phoneButton.titleLabel.text];
-    
-    NSLog(@"%@", phoneNumber);
-
-    if ([[UIApplication sharedApplication] canOpenURL : [NSURL URLWithString:phoneNumber ]]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
-    }
-}
+//- (void)makeCall {
+//    NSString *phoneNumber = [@"tel://" stringByAppendingString:self.phoneButton.titleLabel.text];
+//
+//    NSLog(@"%@", phoneNumber);
+//
+//    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:phoneNumber]]) {
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
+//    }
+//}
 /*
 #pragma mark - Navigation
 

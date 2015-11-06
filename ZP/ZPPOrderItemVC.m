@@ -11,8 +11,12 @@
 #import "ZPPOrderItem.h"
 #import "UIView+UIViewCategory.h"
 
+#import "UIViewController+ZPPViewControllerCategory.h"
+
 #import <MBProgressHUD.h>
 #import <VBFPopFlatButton.h>
+
+#import "ZPPConsts.h"
 
 @interface ZPPOrderItemVC ()
 @property (strong, nonatomic) ZPPOrder *order;
@@ -24,6 +28,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
     // Do any additional setup after loading the view.
 }
 
@@ -44,7 +50,7 @@
     [self.doneButton addTarget:self
                         action:@selector(saveItem)
               forControlEvents:UIControlEventTouchUpInside];
-    
+
     [self.doneButton setExclusiveTouch:YES];
     [self.deleteButton setExclusiveTouch:YES];
 
@@ -57,6 +63,12 @@
     self.minusButton.layer.cornerRadius = 35.0;
 
     [self updateScreen];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+    [self.order checkAllAndRemoveEmpty];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,7 +86,8 @@
 - (void)updateScreen {
     self.nameLabel.text = [self.orderItem.item nameOfItem];
     self.countLabel.text = [NSString stringWithFormat:@"%@", @(self.orderItem.count)];
-    self.priceLabel.text = [NSString stringWithFormat:@"%@", @(self.orderItem.totalPrice)];
+    self.priceLabel.text =
+        [NSString stringWithFormat:@"%@%@", @(self.orderItem.totalPrice), ZPPRoubleSymbol];
 
     if (self.orderItem.count <= 0) {
         self.minusButton.enabled = NO;

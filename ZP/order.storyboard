@@ -58,7 +58,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="0TA-E0-PrT"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -112,11 +112,16 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Fj3-xA-E5i"/>
                                     <constraint firstAttribute="height" constant="40" id="u3Z-fg-ME7"/>
                                 </constraints>
-                                <state key="normal" title="УУДАЛИТЬ"/>
+                                <state key="normal" title="УДАЛИТЬ"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Fj3-xA-E5i"/>
+                                    </mask>
+                                </variation>
                             </button>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="DEi-ag-2NV" firstAttribute="top" secondItem="yLa-VW-K7B" secondAttribute="topMargin" id="2gP-wU-qa6"/>
                             <constraint firstItem="ncF-po-8FF" firstAttribute="top" secondItem="w2v-EE-bD8" secondAttribute="bottom" constant="8" id="4wg-HL-Ilm"/>

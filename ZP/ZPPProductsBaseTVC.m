@@ -18,7 +18,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
 
     self.screenHeight = [UIScreen mainScreen].bounds.size.height;
     self.tableView.backgroundColor = [UIColor blackColor];
@@ -26,12 +25,19 @@
     [self registreCells];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                          atScrollPosition:UITableViewScrollPositionTop
+                                  animated:NO];
+}
+
 - (void)registreCells {
 }
 
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if([self.delegate respondsToSelector:@selector(didScroll:)]){
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if ([self.delegate respondsToSelector:@selector(didScroll:)]) {
         [self.delegate didScroll:scrollView];
     }
 }

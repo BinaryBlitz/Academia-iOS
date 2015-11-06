@@ -10,4 +10,9 @@
 
 @interface ZPPAnotherProductsTVC : ZPPProductsBaseTVC
 
+
+
+- (void)configureWithStuffs:(NSArray *)stuffs;
+
+
 @end
