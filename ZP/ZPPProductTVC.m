@@ -143,9 +143,9 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
     } else if (indexPath.row == 1) {
         return 67.0;
     } else if (indexPath.row == self.numberOfRows - 1) {
-        return 380.0;
+        return 280.0;
     } else {
-        return [UIScreen mainScreen].bounds.size.width / 3.0 + 40;
+        return [UIScreen mainScreen].bounds.size.width / 3.0 + 20;
     }
 }
 

@@ -93,6 +93,7 @@
 		198FD9811BE7B7BC00A30B4D /* ZPPCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198FD9801BE7B7BC00A30B4D /* ZPPCardViewController.m */; };
 		198FD9861BE7B84C00A30B4D /* ZPPAddNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 198FD9851BE7B84C00A30B4D /* ZPPAddNewCell.m */; };
 		198FD9881BE7B91E00A30B4D /* ZPPAddNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198FD9871BE7B91E00A30B4D /* ZPPAddNewCell.xib */; };
+		19C5018E1BEE4EBB00575F78 /* ZPPAdressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C5018D1BEE4EBB00575F78 /* ZPPAdressVC.m */; };
 		19D242611BEA1728007A0FEB /* gifts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19D242601BEA1728007A0FEB /* gifts.storyboard */; };
 		19D242651BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D242641BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.m */; };
 		19D242691BEA1C67007A0FEB /* ZPPConsts.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D242681BEA1C67007A0FEB /* ZPPConsts.m */; };
@@ -275,6 +276,8 @@
 		198FD9841BE7B84C00A30B4D /* ZPPAddNewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPAddNewCell.h; sourceTree = "<group>"; };
 		198FD9851BE7B84C00A30B4D /* ZPPAddNewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPAddNewCell.m; sourceTree = "<group>"; };
 		198FD9871BE7B91E00A30B4D /* ZPPAddNewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPAddNewCell.xib; sourceTree = "<group>"; };
+		19C5018C1BEE4EBB00575F78 /* ZPPAdressVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPAdressVC.h; sourceTree = "<group>"; };
+		19C5018D1BEE4EBB00575F78 /* ZPPAdressVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPAdressVC.m; sourceTree = "<group>"; };
 		19D242601BEA1728007A0FEB /* gifts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = gifts.storyboard; sourceTree = "<group>"; };
 		19D242631BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+ZPPTVCCategory.h"; sourceTree = "<group>"; };
 		19D242641BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+ZPPTVCCategory.m"; sourceTree = "<group>"; };
@@ -505,6 +508,7 @@
 		191C98521BC0433400E10D4F /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				19C5018B1BEE4DB700575F78 /* maps */,
 				1948C5281BEBAC7A00084BC8 /* promocode */,
 				19D2426C1BEA2C6B007A0FEB /* orderHistory */,
 				194235401BE92D650014BD9A /* gift */,
@@ -909,6 +913,15 @@
 			name = credit_card;
 			sourceTree = "<group>";
 		};
+		19C5018B1BEE4DB700575F78 /* maps */ = {
+			isa = PBXGroup;
+			children = (
+				19C5018C1BEE4EBB00575F78 /* ZPPAdressVC.h */,
+				19C5018D1BEE4EBB00575F78 /* ZPPAdressVC.m */,
+			);
+			name = maps;
+			sourceTree = "<group>";
+		};
 		19D242661BEA1C53007A0FEB /* consts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1265,6 +1278,7 @@
 				1986356D1BDFD04B0070E3F7 /* ZPPOrder.m in Sources */,
 				198A5C101BD5B60700710A36 /* ZPPDish.m in Sources */,
 				198635701BDFD1950070E3F7 /* ZPPOrderItem.m in Sources */,
+				19C5018E1BEE4EBB00575F78 /* ZPPAdressVC.m in Sources */,
 				191D7DE01BD5363300DBAFC4 /* UIViewController+ZPPValidationCategory.m in Sources */,
 				191C98551BC0438C00E10D4F /* ZPPMainVC.m in Sources */,
 				1948C53E1BEC19B800084BC8 /* ZPPStuff.m in Sources */,
@@ -1438,7 +1452,7 @@
 				INFOPLIST_FILE = ZP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ZPP.ZP;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.binaryblitz.ZP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1452,7 +1466,7 @@
 				INFOPLIST_FILE = ZP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ZPP.ZP;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.binaryblitz.ZP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

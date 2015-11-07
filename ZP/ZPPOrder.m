@@ -47,11 +47,26 @@
 }
 
 - (void)checkAllAndRemoveEmpty {
-    for(ZPPOrderItem *order in self.items) {
-        if(order.count == 0) {
-            [self.items removeObject:order];
+ //   NSMutableArray *tmpArr = [NSMutableArray array];
+    
+    for (int i = 0; i < self.items.count; i++) {
+        ZPPOrderItem *orderItem = self.items[i];
+        if(orderItem.count == 0) {
+            [self.items removeObject:orderItem];
+            i--;
         }
     }
+    
+//    for(ZPPOrderItem *orderItem in self.items) {
+//        if(orderItem.count == 0) {
+//            [tmpArr addObject:orderItem];
+//        }
+//    }
+//    for(ZPPOrderItem *oredrItem in tmpArr) {
+//        [self.items removeObject:oredrItem];
+//    }
+    
+    
 }
 
 - (ZPPOrderItem *)orderItemForItem:(id<ZPPItemProtocol>)item {
