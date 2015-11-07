@@ -60,6 +60,7 @@ install_resource()
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "DateTools/DateTools/DateTools.bundle"
   install_resource "Digits/DigitsKit.framework/Versions/A/Resources/DigitsKitResources.bundle"
+  install_resource "GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
   install_resource "TSMessages/Pod/Assets/NotificationBackgroundError.png"
   install_resource "TSMessages/Pod/Assets/NotificationBackgroundError@2x.png"
   install_resource "TSMessages/Pod/Assets/NotificationBackgroundErrorIcon.png"
@@ -82,6 +83,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "DateTools/DateTools/DateTools.bundle"
   install_resource "Digits/DigitsKit.framework/Versions/A/Resources/DigitsKitResources.bundle"
+  install_resource "GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
   install_resource "TSMessages/Pod/Assets/NotificationBackgroundError.png"
   install_resource "TSMessages/Pod/Assets/NotificationBackgroundError@2x.png"
   install_resource "TSMessages/Pod/Assets/NotificationBackgroundErrorIcon.png"

@@ -20,18 +20,19 @@ NSString *const ZPPIngridientURL = @"image_url";
     NSString *name = dict[ZPPIngridientName];
     NSString *ingridientID = dict[ZPPIngridientID];
     NSString *urlAppend = dict[ZPPIngridientURL];
-    
-    NSString *urlAsString = [ZPPServerBaseUrl stringByAppendingString:urlAppend];
-    
-    return [[ZPPIngridient alloc] initWithName:name
-                                  ingridientID:ingridientID
-                                   urlAsString:urlAsString];
+    NSString *urlAsString = nil;
+    if (![urlAppend isEqual:[NSNull null]]) {
+        urlAsString = [ZPPServerBaseUrl stringByAppendingString:urlAppend];
+    }
+
+    return
+        [[ZPPIngridient alloc] initWithName:name ingridientID:ingridientID urlAsString:urlAsString];
 }
 
-+(NSArray *)parseIngridients:(NSArray *)ingridients {
++ (NSArray *)parseIngridients:(NSArray *)ingridients {
     NSMutableArray *tmpArr = [NSMutableArray array];
-    
-    for(NSDictionary *d in ingridients) {
+
+    for (NSDictionary *d in ingridients) {
         ZPPIngridient *ingridient = [[self class] ingridientFromDict:d];
         [tmpArr addObject:ingridient];
     }

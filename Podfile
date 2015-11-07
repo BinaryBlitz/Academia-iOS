@@ -13,9 +13,12 @@ pod 'VBFPopFlatButton'
 pod 'REFormattedNumberField'
 pod 'MBProgressHUD'
 
+pod 'INTULocationManager'
 
 pod 'Fabric'
 pod 'Crashlytics'
+
+pod 'GoogleMaps'
 
 pod 'Digits'
 pod 'TwitterCore'

@@ -19,6 +19,8 @@
 #import "ZPPCardViewController.h"
 #import "ZPPOrderItemVC.h"
 
+#import "ZPPAdressVC.h"
+
 #import "ZPPConsts.h"
 
 static NSString *ZPPOrderItemCellReuseIdentifier = @"ZPPOrderItemCellReuseIdentifier";
@@ -27,6 +29,7 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
 
 static NSString *ZPPCardViewControllerIdentifier = @"ZPPCardViewControllerIdentifier";
 static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
+static NSString *ZPPAdressVCIdentifier = @"ZPPAdressVCIdentifier";
 
 @interface ZPPOrderTVC ()
 
@@ -40,7 +43,7 @@ static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
     [super viewDidLoad];
     [self registrateCells];
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
-    //self.title = @"ЗАКАЗ";
+    // self.title = @"ЗАКАЗ";
     //   [self setCustomNavigationBackButtonWithTransition];
     [self setNeedsStatusBarAppearanceUpdate];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -77,8 +80,6 @@ static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //#warning Incomplete implementation, return the number of rows
-
     if (section == 2) {
         return self.order.items.count;
     } else {
@@ -102,14 +103,13 @@ static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
             [tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
         [cell.actionButton setTitle:@"Выберите адрес" forState:UIControlStateNormal];
 
+        [cell.actionButton addTarget:self
+                              action:@selector(showMap)
+                    forControlEvents:UIControlEventTouchUpInside];
+
         return cell;
 
     } else if (indexPath.section == 3) {
-        //        ZPPNoCreditCardCell *cell =
-        //            [self.tableView
-        //            dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
-        //        [cell.actionButton setTitle:@"Заказать" forState:UIControlStateNormal];
-
         ZPPOrderTotalCell *cell =
             [tableView dequeueReusableCellWithIdentifier:ZPPOrderTotalCellIdentifier];
 
@@ -219,6 +219,13 @@ navigation
 
     [self.navigationController pushViewController:cardVC animated:YES];
     [self setNeedsStatusBarAppearanceUpdate];
+}
+
+- (void)showMap {
+    ZPPAdressVC *adressVC =
+        [self.storyboard instantiateViewControllerWithIdentifier:ZPPAdressVCIdentifier];
+
+    [self.navigationController pushViewController:adressVC animated:YES];
 }
 
 - (void)showItemModifier:(ZPPOrderItem *)orderItem {
