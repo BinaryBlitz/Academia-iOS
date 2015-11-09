@@ -16,10 +16,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="1234 5678 9012..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vvu-Hs-Sza" customClass="BKCardNumberField">
-                        <rect key="frame" x="8" y="53" width="304" height="30"/>
+                        <rect key="frame" x="16" y="49" width="288" height="34"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="zjS-Fe-Z3O"/>
+                            <constraint firstAttribute="height" constant="34" id="zjS-Fe-Z3O"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                         <textInputTraits key="textInputTraits"/>
@@ -30,8 +30,8 @@
                 <constraints>
                     <constraint firstItem="vvu-Hs-Sza" firstAttribute="top" secondItem="jW1-Km-tpg" secondAttribute="topMargin" constant="-1" id="9HX-lF-Cld"/>
                     <constraint firstAttribute="bottomMargin" secondItem="vvu-Hs-Sza" secondAttribute="bottom" constant="-1.5" id="Dbi-Wx-lcG"/>
-                    <constraint firstItem="vvu-Hs-Sza" firstAttribute="leading" secondItem="jW1-Km-tpg" secondAttribute="leadingMargin" id="buK-wn-kLK"/>
-                    <constraint firstItem="vvu-Hs-Sza" firstAttribute="trailing" secondItem="jW1-Km-tpg" secondAttribute="trailingMargin" id="zyd-I2-kgU"/>
+                    <constraint firstItem="vvu-Hs-Sza" firstAttribute="leading" secondItem="jW1-Km-tpg" secondAttribute="leadingMargin" constant="8" id="buK-wn-kLK"/>
+                    <constraint firstItem="vvu-Hs-Sza" firstAttribute="trailing" secondItem="jW1-Km-tpg" secondAttribute="trailingMargin" constant="-8" id="zyd-I2-kgU"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">

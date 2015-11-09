@@ -20,7 +20,7 @@
 #import <JSBadgeView.h>
 
 static float kZPPButtonDiametr = 40.0f;
-static float kZPPButtonOffset  = 15.0f;
+static float kZPPButtonOffset = 15.0f;
 
 @interface ZPPMainVC ()
 @property (strong, nonatomic) VBFPopFlatButton *menuButton;
@@ -267,6 +267,17 @@ navigation
                      }];
 }
 
+- (void)showMyCards {
+    [self dissmisMenu];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"order" bundle:nil];
+    UIViewController *vc =
+        [storyboard instantiateViewControllerWithIdentifier:@"ZPPCardViewControllerIdentifier"];
+
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+
+    [self presentViewController:nvc animated:YES completion:nil];
+}
+
 - (UIViewController *)firstRealVCFormStoryBoardWithName:(NSString *)storyboardName {
     UINavigationController *nvc =
         (UINavigationController *)[self initialVCForStoryboardWithName:storyboardName];
@@ -337,13 +348,18 @@ navigation
         [_mainMenu.giftCardButton addTarget:self
                                      action:@selector(showGifts)
                            forControlEvents:UIControlEventTouchUpInside];
-
+        
         [_mainMenu.ordersButton addTarget:self
                                    action:@selector(showOrderHistory)
                          forControlEvents:UIControlEventTouchUpInside];
+        
         [_mainMenu.promoButton addTarget:self
                                   action:@selector(showPromoCodeInput)
                         forControlEvents:UIControlEventTouchUpInside];
+
+        [_mainMenu.myCardsButton addTarget:self
+                                    action:@selector(showMyCards)
+                          forControlEvents:UIControlEventTouchUpInside];
     }
     return _mainMenu;
 }

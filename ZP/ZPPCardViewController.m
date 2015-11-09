@@ -8,17 +8,26 @@
 
 #import "ZPPCardViewController.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
+#import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "ZPPAddNewCell.h"
+#import "ZPPCreditCardInfoCell.h"
+
+#import "ZPPCreditCard.h"
+
+#import "ZPPCardInputTVC.h"
 
 #import "ZPPConsts.h"
 
 #import "UITableViewController+ZPPTVCCategory.h"
 
 static NSString *ZPPAddNewCellIdentifier = @"ZPPAddNewCellIdentifier";
+static NSString *ZPPCreditCardInfoCellIdentifier = @"ZPPCreditCardInfoCellIdentifier";
 
 static NSString *ZPPCardInputTVCIdentifier = @"ZPPCardInputTVCIdentifier";
 
-@interface ZPPCardViewController ()
+@interface ZPPCardViewController () <ZPPNewCreditCardDelegate>
+
+@property (strong, nonatomic) NSMutableArray *cards;
 
 @end
 
@@ -32,6 +41,9 @@ static NSString *ZPPCardInputTVCIdentifier = @"ZPPCardInputTVCIdentifier";
 
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
     [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
+    [self addCustomCloseButton];
+
+    self.cards = [[self testCards] mutableCopy];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -43,6 +55,7 @@ static NSString *ZPPCardInputTVCIdentifier = @"ZPPCardInputTVCIdentifier";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationController presentTransparentNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,12 +67,16 @@ static NSString *ZPPCardInputTVCIdentifier = @"ZPPCardInputTVCIdentifier";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     //#warning Incomplete implementation, return the number of sections
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //#warning Incomplete implementation, return the number of rows
-    return 1;
+    if (section == 0) {
+        return 1;
+    } else {
+        return self.cards.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -71,84 +88,82 @@ static NSString *ZPPCardInputTVCIdentifier = @"ZPPCardInputTVCIdentifier";
         ZPPAddNewCell *cell =
             [self.tableView dequeueReusableCellWithIdentifier:ZPPAddNewCellIdentifier];
 
-        // Configure the cell...
-
         return cell;
     } else {
+        ZPPCreditCardInfoCell *cell =
+            [tableView dequeueReusableCellWithIdentifier:ZPPCreditCardInfoCellIdentifier];
+        ZPPCreditCard *card = self.cards[indexPath.row];
+
+        [cell configureWithCard:card];
+
+        if (self.cardDelegate) {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+
+        return cell;
     }
 
     return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 0 && indexPath.row == 0) {
+    if (indexPath.section == 0 && indexPath.row == 0) {
         [self showCardInput];
+    } else {
+        ZPPCreditCard *c = self.cards[indexPath.row];
+        [self didChooseCard:c];
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44.f;
 }
 
 #pragma mark - actions
 
 - (void)showCardInput {
-    UIViewController *vc =
+    ZPPCardInputTVC *vc = (ZPPCardInputTVC *)
         [self.storyboard instantiateViewControllerWithIdentifier:ZPPCardInputTVCIdentifier];
-    
+
+    vc.cardCreateDelegate = self;
+
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView
-commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath
-*)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath]
-withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new
-row to the table view
+- (void)didChooseCard:(ZPPCreditCard *)card {
+    if (self.cardDelegate) {
+        [self.cardDelegate configureWithCard:card sender:self];
+    } else {
     }
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
-toIndexPath:(NSIndexPath *)toIndexPath {
+#pragma mark - new credit card delgate
+
+- (void)cardCreated:(ZPPCreditCard *)card sender:(id)sender {
+    [self.cards addObject:card];
+    [self.tableView reloadData];
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before
-navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - support
 
 - (void)registrateCells {
     [self registrateCellForClass:[ZPPAddNewCell class] reuseIdentifier:ZPPAddNewCellIdentifier];
+    [self registrateCellForClass:[ZPPCreditCardInfoCell class]
+                 reuseIdentifier:ZPPCreditCardInfoCellIdentifier];
+}
+
+#pragma mark - test card
+// TEST
+
+- (NSArray *)testCards {
+    ZPPCreditCard *firstCard =
+        [[ZPPCreditCard alloc] initWithCardNumber:@"4693951212341234" month:8 year:2016 cvc:111];
+    ZPPCreditCard *secondCard =
+        [[ZPPCreditCard alloc] initWithCardNumber:@"4545567887650987" month:10 year:2020 cvc:234];
+    ZPPCreditCard *thirdCard =
+        [[ZPPCreditCard alloc] initWithCardNumber:@"5547938465930202" month:1 year:2018 cvc:345];
+
+    return @[ firstCard, secondCard, thirdCard ];
 }
 
 @end
