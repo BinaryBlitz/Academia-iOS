@@ -186,6 +186,25 @@
             </objects>
             <point key="canvasLocation" x="1443" y="1031"/>
         </scene>
+        <!--Card InputTVC-->
+        <scene sceneID="5tB-0w-ddQ">
+            <objects>
+                <tableViewController storyboardIdentifier="ZPPCardInputTVCIdentifier" id="whz-9x-vAU" customClass="ZPPCardInputTVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zby-Pv-xVg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="whz-9x-vAU" id="0nP-84-dZb"/>
+                            <outlet property="delegate" destination="whz-9x-vAU" id="wPS-Qr-Us8"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RJ6-vw-TRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1443" y="1777"/>
+        </scene>
         <!--AdressVC-->
         <scene sceneID="9mF-Up-Lb8">
             <objects>

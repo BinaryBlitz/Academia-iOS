@@ -15,6 +15,8 @@ pod 'MBProgressHUD'
 
 pod 'INTULocationManager'
 
+pod 'BKMoneyKit'
+
 pod 'Fabric'
 pod 'Crashlytics'
 

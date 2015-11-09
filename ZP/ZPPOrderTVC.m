@@ -15,6 +15,7 @@
 #import "ZPPOrderItemCell.h"
 #import "ZPPNoCreditCardCell.h"
 #import "ZPPOrderTotalCell.h"
+#import "ZPPOrderAddressCell.h"
 
 #import "ZPPCardViewController.h"
 #import "ZPPOrderItemVC.h"
@@ -26,12 +27,13 @@
 static NSString *ZPPOrderItemCellReuseIdentifier = @"ZPPOrderItemCellReuseIdentifier";
 static NSString *ZPPNoCreditCardCellIdentifier = @"ZPPNoCreditCardCellIdentifier";
 static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
+static NSString *ZPPOrderAddressCellIdentifier = @"ZPPOrderAddressCellIdentifier";
 
 static NSString *ZPPCardViewControllerIdentifier = @"ZPPCardViewControllerIdentifier";
 static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
 static NSString *ZPPAdressVCIdentifier = @"ZPPAdressVCIdentifier";
 
-@interface ZPPOrderTVC ()
+@interface ZPPOrderTVC () <ZPPAdressDelegate>
 
 @property (strong, nonatomic) ZPPOrder *order;
 
@@ -99,15 +101,26 @@ static NSString *ZPPAdressVCIdentifier = @"ZPPAdressVCIdentifier";
                     forControlEvents:UIControlEventTouchUpInside];
         return cell;
     } else if (indexPath.section == 1) {
-        ZPPNoCreditCardCell *cell =
-            [tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
-        [cell.actionButton setTitle:@"Выберите адрес" forState:UIControlStateNormal];
+        if (!self.order.address) {
+            ZPPNoCreditCardCell *cell =
+                [tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
+            [cell.actionButton setTitle:@"Выберите адрес" forState:UIControlStateNormal];
 
-        [cell.actionButton addTarget:self
-                              action:@selector(showMap)
-                    forControlEvents:UIControlEventTouchUpInside];
+            [cell.actionButton addTarget:self
+                                  action:@selector(showMap)
+                        forControlEvents:UIControlEventTouchUpInside];
 
-        return cell;
+            return cell;
+        } else {
+            ZPPOrderAddressCell *cell =
+                [self.tableView dequeueReusableCellWithIdentifier:ZPPOrderAddressCellIdentifier];
+            [cell configureWithAddress:self.order.address];
+
+            [cell.chooseAnotherButton addTarget:self
+                                         action:@selector(showMap)
+                               forControlEvents:UIControlEventTouchUpInside];
+            return cell;
+        }
 
     } else if (indexPath.section == 3) {
         ZPPOrderTotalCell *cell =
@@ -141,6 +154,11 @@ static NSString *ZPPAdressVCIdentifier = @"ZPPAdressVCIdentifier";
     if (indexPath.section == 3) {
         return 100.f;
     } else if (indexPath.section != 2) {
+        if(indexPath.section == 1){
+            if(self.order.address) {
+                return 110.0;
+            } 
+        }
         return 60.f;
     } else {
         return 50.f;
@@ -224,6 +242,7 @@ navigation
 - (void)showMap {
     ZPPAdressVC *adressVC =
         [self.storyboard instantiateViewControllerWithIdentifier:ZPPAdressVCIdentifier];
+    adressVC.addressDelegate = self;
 
     [self.navigationController pushViewController:adressVC animated:YES];
 }
@@ -245,17 +264,24 @@ navigation
     }
 }
 
+#pragma mark - ZPPAddressDelegate
+
+- (void)configureWithAddress:(ZPPAddress *)address sender:(id)sender {
+    self.order.address = address;
+    [self.tableView reloadData];
+}
+
 #pragma mark - support
 
 - (void)registrateCells {
     [self registrateCellForClass:[ZPPOrderItemCell class]
                  reuseIdentifier:ZPPOrderItemCellReuseIdentifier];
-
     [self registrateCellForClass:[ZPPNoCreditCardCell class]
                  reuseIdentifier:ZPPNoCreditCardCellIdentifier];
-
     [self registrateCellForClass:[ZPPOrderTotalCell class]
                  reuseIdentifier:ZPPOrderTotalCellIdentifier];
+    [self registrateCellForClass:[ZPPOrderAddressCell class]
+                 reuseIdentifier:ZPPOrderAddressCellIdentifier];
 }
 
 //- (void)registrateCellForClass:(Class) class reuseIdentifier:(NSString *)reuseIdentifier {

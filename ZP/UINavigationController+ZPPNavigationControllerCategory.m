@@ -16,6 +16,7 @@
     [self.navigationBar setTranslucent:YES];
     [self.navigationBar setShadowImage:[UIImage new]];
     [self setNavigationBarHidden:NO animated:YES];
+    
 }
 
 - (void)hideTransparentNavigationBar

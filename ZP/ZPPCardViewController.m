@@ -10,9 +10,13 @@
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "ZPPAddNewCell.h"
 
+#import "ZPPConsts.h"
+
 #import "UITableViewController+ZPPTVCCategory.h"
 
 static NSString *ZPPAddNewCellIdentifier = @"ZPPAddNewCellIdentifier";
+
+static NSString *ZPPCardInputTVCIdentifier = @"ZPPCardInputTVCIdentifier";
 
 @interface ZPPCardViewController ()
 
@@ -25,13 +29,20 @@ static NSString *ZPPAddNewCellIdentifier = @"ZPPAddNewCellIdentifier";
     [self registrateCells];
     [self setCustomNavigationBackButtonWithTransition];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    
+
+    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+    [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view
     // controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,12 +67,32 @@ static NSString *ZPPAddNewCellIdentifier = @"ZPPAddNewCellIdentifier";
     //    UITableViewCell *cell = [tableView
     //    dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
 
-    ZPPAddNewCell *cell =
-        [self.tableView dequeueReusableCellWithIdentifier:ZPPAddNewCellIdentifier];
+    if (indexPath.section == 0) {
+        ZPPAddNewCell *cell =
+            [self.tableView dequeueReusableCellWithIdentifier:ZPPAddNewCellIdentifier];
 
-    // Configure the cell...
+        // Configure the cell...
 
-    return cell;
+        return cell;
+    } else {
+    }
+
+    return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section == 0 && indexPath.row == 0) {
+        [self showCardInput];
+    }
+}
+
+#pragma mark - actions
+
+- (void)showCardInput {
+    UIViewController *vc =
+        [self.storyboard instantiateViewControllerWithIdentifier:ZPPCardInputTVCIdentifier];
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*
@@ -119,6 +150,5 @@ navigation
 - (void)registrateCells {
     [self registrateCellForClass:[ZPPAddNewCell class] reuseIdentifier:ZPPAddNewCellIdentifier];
 }
-
 
 @end
