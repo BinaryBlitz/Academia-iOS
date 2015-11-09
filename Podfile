@@ -19,6 +19,7 @@ pod 'Fabric'
 pod 'Crashlytics'
 
 pod 'GoogleMaps'
+pod 'LMGeocoder'
 
 pod 'Digits'
 pod 'TwitterCore'

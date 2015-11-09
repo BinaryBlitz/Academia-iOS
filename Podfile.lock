@@ -38,6 +38,7 @@ PODS:
   - HexColors (2.2.1)
   - INTULocationManager (4.1.1)
   - JSBadgeView (1.4.1)
+  - LMGeocoder (1.0.3)
   - LoremIpsum (1.0.0)
   - MagicalRecord (2.3.0)
   - MBProgressHUD (0.9.1)
@@ -63,6 +64,7 @@ DEPENDENCIES:
   - GoogleMaps
   - INTULocationManager
   - JSBadgeView
+  - LMGeocoder
   - LoremIpsum
   - MagicalRecord
   - MBProgressHUD
@@ -84,6 +86,7 @@ SPEC CHECKSUMS:
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
   INTULocationManager: 83c7373048d583cda57e25eefb9bb8a3675acf16
   JSBadgeView: 3861ddee41094284d9468e6d0af5107f703aaac5
+  LMGeocoder: 100572f9e572a26d3506ee0604d6629bea391767
   LoremIpsum: 9029c55d36501b2ee0b05cc9ecda11d3a0479160
   MagicalRecord: 89eb7d7ead39fb37f01c3d010665ee94d17f8dba
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
