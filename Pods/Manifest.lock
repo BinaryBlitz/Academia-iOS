@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - BKMoneyKit (0.0.5)
   - CocoaLumberjack (2.0.1):
     - CocoaLumberjack/Default (= 2.0.1)
     - CocoaLumberjack/Extensions (= 2.0.1)
@@ -56,6 +57,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - BKMoneyKit
   - CocoaLumberjack
   - Crashlytics
   - DateTools
@@ -77,6 +79,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
+  BKMoneyKit: acd201075dae1e99d146ea97bf3b756152b519fd
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
   Crashlytics: 41c082440d2e14da444186fff65e79c0b4b35d4c
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60

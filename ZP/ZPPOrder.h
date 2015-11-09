@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "ZPPItemProtocol.h"
 
+@class ZPPAddress;
 @interface ZPPOrder : NSObject
 
 @property (strong, nonatomic, readonly) NSMutableArray *items;
-
 @property (strong, nonatomic,readonly) NSDate *date;
+@property (strong, nonatomic) ZPPAddress *address;
 
 - (void)addItem:(id<ZPPItemProtocol>)item;
 
