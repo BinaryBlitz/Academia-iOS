@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class ZPPCreditCard;
+
+@protocol ZPPNewCreditCardDelegate <NSObject>
+
+- (void)cardCreated:(ZPPCreditCard *)card sender:(id)sender;
+
+@end
+
+
 @interface ZPPCardInputTVC : UITableViewController
+
+@property (weak, nonatomic) id <ZPPNewCreditCardDelegate> cardCreateDelegate;
 
 @end

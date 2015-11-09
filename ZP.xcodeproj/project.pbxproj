@@ -30,6 +30,8 @@
 		1907C75A1BF0C820003BA62E /* ZPPCardNumberInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1907C7591BF0C820003BA62E /* ZPPCardNumberInputCell.xib */; };
 		1907C75F1BF0D34C003BA62E /* ZPPCardDateCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1907C75D1BF0D34C003BA62E /* ZPPCardDateCodeCell.m */; };
 		1907C7601BF0D34C003BA62E /* ZPPCardDateCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1907C75E1BF0D34C003BA62E /* ZPPCardDateCodeCell.xib */; };
+		1907C7641BF0E597003BA62E /* ZPPCreditCardInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1907C7621BF0E597003BA62E /* ZPPCreditCardInfoCell.m */; };
+		1907C7651BF0E597003BA62E /* ZPPCreditCardInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1907C7631BF0E597003BA62E /* ZPPCreditCardInfoCell.xib */; };
 		190E47781BC073EE00AC5379 /* ZPPProductMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 190E47771BC073EE00AC5379 /* ZPPProductMenuCell.xib */; };
 		190E477A1BC0756500AC5379 /* ZPPProductAboutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 190E47791BC0756500AC5379 /* ZPPProductAboutCell.xib */; };
 		190E477D1BC076D500AC5379 /* ZPPProductAboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E477C1BC076D500AC5379 /* ZPPProductAboutCell.m */; };
@@ -177,6 +179,9 @@
 		1907C75C1BF0D34C003BA62E /* ZPPCardDateCodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPCardDateCodeCell.h; sourceTree = "<group>"; };
 		1907C75D1BF0D34C003BA62E /* ZPPCardDateCodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPCardDateCodeCell.m; sourceTree = "<group>"; };
 		1907C75E1BF0D34C003BA62E /* ZPPCardDateCodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPCardDateCodeCell.xib; sourceTree = "<group>"; };
+		1907C7611BF0E597003BA62E /* ZPPCreditCardInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPCreditCardInfoCell.h; sourceTree = "<group>"; };
+		1907C7621BF0E597003BA62E /* ZPPCreditCardInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPCreditCardInfoCell.m; sourceTree = "<group>"; };
+		1907C7631BF0E597003BA62E /* ZPPCreditCardInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPCreditCardInfoCell.xib; sourceTree = "<group>"; };
 		190E47771BC073EE00AC5379 /* ZPPProductMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPProductMenuCell.xib; sourceTree = "<group>"; };
 		190E47791BC0756500AC5379 /* ZPPProductAboutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPProductAboutCell.xib; sourceTree = "<group>"; };
 		190E477B1BC076D500AC5379 /* ZPPProductAboutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProductAboutCell.h; sourceTree = "<group>"; };
@@ -482,6 +487,9 @@
 		1907C7511BF0C44C003BA62E /* card_cell */ = {
 			isa = PBXGroup;
 			children = (
+				1907C7611BF0E597003BA62E /* ZPPCreditCardInfoCell.h */,
+				1907C7621BF0E597003BA62E /* ZPPCreditCardInfoCell.m */,
+				1907C7631BF0E597003BA62E /* ZPPCreditCardInfoCell.xib */,
 			);
 			name = card_cell;
 			sourceTree = "<group>";
@@ -1244,6 +1252,7 @@
 				194235491BE931DE0014BD9A /* ZPPGiftCell.xib in Resources */,
 				191C98641BC044E900E10D4F /* ZPPProductsIngridientsCell.xib in Resources */,
 				19014A581BC034CF001E0D77 /* Assets.xcassets in Resources */,
+				1907C7651BF0E597003BA62E /* ZPPCreditCardInfoCell.xib in Resources */,
 				198FA5371BC17204008BC11B /* ZPPProductAnotherCell.xib in Resources */,
 				190F9C811BE3C1810032E14D /* ZPPOrderItemCell.xib in Resources */,
 				1907C7601BF0D34C003BA62E /* ZPPCardDateCodeCell.xib in Resources */,
@@ -1377,6 +1386,7 @@
 				1948C54B1BEC3A1800084BC8 /* ZPPLunchTVC.m in Sources */,
 				1948C5381BEC14C100084BC8 /* ZPPLunch.m in Sources */,
 				19D242691BEA1C67007A0FEB /* ZPPConsts.m in Sources */,
+				1907C7641BF0E597003BA62E /* ZPPCreditCardInfoCell.m in Sources */,
 				1948C5231BEB83B100084BC8 /* ZPPActivateCardCell.m in Sources */,
 				19014A4D1BC034CF001E0D77 /* AppDelegate.m in Sources */,
 				194235471BE931C80014BD9A /* ZPPGiftCell.m in Sources */,

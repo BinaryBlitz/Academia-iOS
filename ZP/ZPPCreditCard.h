@@ -10,6 +10,18 @@
 
 @interface ZPPCreditCard : NSObject
 
+@property (strong, nonatomic, readonly) NSString *cardNumber;
+@property (assign, nonatomic, readonly) NSInteger month;
+@property (assign, nonatomic, readonly) NSInteger year;
+
+- (instancetype)initWithCardNumber:(NSString *)cardNumber
+                             month:(NSInteger)month
+                              year:(NSInteger)year
+                               cvc:(NSInteger)cvc;
+
+- (NSString *)formattedDate;
+
+
 
 
 @end

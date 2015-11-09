@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class ZPPCreditCard;
+
+@protocol ZPPCardDelegate <NSObject>
+
+- (void)configureWithCard:(ZPPCreditCard *)address sender:(id)sender;
+
+@end
+
 @interface ZPPCardViewController : UITableViewController
+
+@property (weak, nonatomic) id <ZPPCardDelegate> cardDelegate;
 
 @end

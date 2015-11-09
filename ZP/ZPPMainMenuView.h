@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *giftCardButton;
 @property (weak, nonatomic) IBOutlet UIButton *ordersButton;
 @property (weak, nonatomic) IBOutlet UIButton *helpButton;
+@property (weak, nonatomic) IBOutlet UIButton *myCardsButton;
 
 
 - (void)showCompletion:(void (^)())completion;
