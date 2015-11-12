@@ -73,6 +73,17 @@
     self.navigationItem.rightBarButtonItem = closeButtonItem;
 }
 
+- (UIButton *)addRightButtonWithName:(NSString *)name {
+    UIButton *closeButton = [self buttonWithImageName:name];
+//    [closeButton addTarget:self
+//                    action:@selector(dismisVC)
+//          forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *closeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
+    self.navigationItem.rightBarButtonItem = closeButtonItem;
+    
+    return closeButton;
+}
+
 - (void)dismisVC {
     [self dismissViewControllerAnimated:YES
                              completion:^{

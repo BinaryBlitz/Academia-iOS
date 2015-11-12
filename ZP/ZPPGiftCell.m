@@ -9,10 +9,21 @@
 #import "ZPPGiftCell.h"
 #import "ZPPGift.h"
 
+#import <JSBadgeView.h>
+
+@interface ZPPGiftCell ()
+
+@property (strong, nonatomic) JSBadgeView *badgeView;
+
+@end
+
 @implementation ZPPGiftCell
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    self.badgeView =
+    [[JSBadgeView alloc] initWithParentView:self.addButton alignment:JSBadgeViewAlignmentTopRight];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -25,6 +36,14 @@
     self.nameLabel.text = gift.name;
     self.giftDescriptionLabel.text = gift.giftDescription;
     self.priceLabel.text = [NSString stringWithFormat:@"%@",gift.price];
+}
+
+- (void)setBadgeCount:(NSInteger )badgeCount {
+    if(badgeCount){
+        self.badgeView.badgeText = [NSString stringWithFormat:@"%@",@(badgeCount)];
+    } else {
+        self.badgeView.badgeText = nil;
+    }
 }
 
 @end

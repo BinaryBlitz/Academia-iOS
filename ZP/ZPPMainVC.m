@@ -447,9 +447,7 @@ navigation
             self.badgeView.badgeText =
                 [NSString stringWithFormat:@"%@", @([self.order totalCount])];
         }
-        // [_orderView bringSubviewToFront:self.badgeView];
 
-        //  _orderView.clipsToBounds = YES;
         [_orderView addSubview:iv];
 
         [iv bringSubviewToFront:self.badgeView];
