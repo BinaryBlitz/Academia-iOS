@@ -18,4 +18,6 @@
 
 - (void)configureWithGift:(ZPPGift *)gift;
 
+- (void)setBadgeCount:(NSInteger)badgeCount;
+
 @end

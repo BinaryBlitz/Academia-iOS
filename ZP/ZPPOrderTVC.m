@@ -16,6 +16,8 @@
 #import "ZPPNoCreditCardCell.h"
 #import "ZPPOrderTotalCell.h"
 #import "ZPPOrderAddressCell.h"
+#import "ZPPCreditCardInfoCell.h"
+#import "ZPPCardInOrderCell.h"
 
 #import "ZPPCardViewController.h"
 #import "ZPPOrderItemVC.h"
@@ -28,12 +30,14 @@ static NSString *ZPPOrderItemCellReuseIdentifier = @"ZPPOrderItemCellReuseIdenti
 static NSString *ZPPNoCreditCardCellIdentifier = @"ZPPNoCreditCardCellIdentifier";
 static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
 static NSString *ZPPOrderAddressCellIdentifier = @"ZPPOrderAddressCellIdentifier";
+static NSString *ZPPCreditCardInfoCellIdentifier = @"ZPPCreditCardInfoCellIdentifier";
+static NSString *ZPPCardInOrderCellIdentifier = @"ZPPCardInOrderCellIdentifier";
 
 static NSString *ZPPCardViewControllerIdentifier = @"ZPPCardViewControllerIdentifier";
 static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
 static NSString *ZPPAdressVCIdentifier = @"ZPPAdressVCIdentifier";
 
-@interface ZPPOrderTVC () <ZPPAdressDelegate>
+@interface ZPPOrderTVC () <ZPPAdressDelegate, ZPPCardDelegate>
 
 @property (strong, nonatomic) ZPPOrder *order;
 
@@ -92,14 +96,32 @@ static NSString *ZPPAdressVCIdentifier = @"ZPPAdressVCIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        ZPPNoCreditCardCell *cell =
-            [tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
-        [cell.actionButton setTitle:@"Выберите карточку" forState:UIControlStateNormal];
+        if (!self.order.card) {
+            ZPPNoCreditCardCell *cell =
+                [tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
+            [cell.actionButton setTitle:@"Выберите карту" forState:UIControlStateNormal];
 
-        [cell.actionButton addTarget:self
-                              action:@selector(showCardChooser)
-                    forControlEvents:UIControlEventTouchUpInside];
-        return cell;
+            [cell.actionButton addTarget:self
+                                  action:@selector(buttonsAction:)
+                        forControlEvents:UIControlEventTouchUpInside];
+            return cell;
+        } else {
+            ZPPCardInOrderCell *cell =
+                [tableView dequeueReusableCellWithIdentifier:ZPPCreditCardInfoCellIdentifier];
+            [cell configureWithCard:self.order.card];
+
+            [cell.chooseAnotherButton addTarget:self
+                                         action:@selector(buttonsAction:)
+                               forControlEvents:UIControlEventTouchUpInside];
+
+            //            ZPPCreditCardInfoCell *cell =
+            //                [tableView
+            //                dequeueReusableCellWithIdentifier:ZPPCreditCardInfoCellIdentifier];
+            //
+            //            [cell configureWithCard:self.order.card];
+
+            return cell;
+        }
     } else if (indexPath.section == 1) {
         if (!self.order.address) {
             ZPPNoCreditCardCell *cell =
@@ -107,7 +129,7 @@ static NSString *ZPPAdressVCIdentifier = @"ZPPAdressVCIdentifier";
             [cell.actionButton setTitle:@"Выберите адрес" forState:UIControlStateNormal];
 
             [cell.actionButton addTarget:self
-                                  action:@selector(showMap)
+                                  action:@selector(buttonsAction:)
                         forControlEvents:UIControlEventTouchUpInside];
 
             return cell;
@@ -117,7 +139,7 @@ static NSString *ZPPAdressVCIdentifier = @"ZPPAdressVCIdentifier";
             [cell configureWithAddress:self.order.address];
 
             [cell.chooseAnotherButton addTarget:self
-                                         action:@selector(showMap)
+                                         action:@selector(buttonsAction:)
                                forControlEvents:UIControlEventTouchUpInside];
             return cell;
         }
@@ -154,10 +176,12 @@ static NSString *ZPPAdressVCIdentifier = @"ZPPAdressVCIdentifier";
     if (indexPath.section == 3) {
         return 100.f;
     } else if (indexPath.section != 2) {
-        if(indexPath.section == 1){
-            if(self.order.address) {
-                return 110.0;
-            } 
+        if (indexPath.section == 1 && self.order.address) {
+            return 110.0;
+        }
+
+        if (indexPath.section == 0 && self.order.card) {
+            return 90.0;
         }
         return 60.f;
     } else {
@@ -231,9 +255,23 @@ navigation
 
 #pragma mark - actions
 
+- (void)buttonsAction:(UIButton *)sender {
+    UITableViewCell *cell = [self parentCellForView:sender];
+    if (cell) {
+        NSIndexPath *ip = [self.tableView indexPathForCell:cell];
+        if (ip.section == 0) {
+            [self showCardChooser];
+        } else if (ip.section == 1) {
+            [self showMap];
+        }
+    }
+}
+
 - (void)showCardChooser {
     ZPPCardViewController *cardVC =
         [self.storyboard instantiateViewControllerWithIdentifier:ZPPCardViewControllerIdentifier];
+
+    cardVC.cardDelegate = self;
 
     [self.navigationController pushViewController:cardVC animated:YES];
     [self setNeedsStatusBarAppearanceUpdate];
@@ -271,6 +309,13 @@ navigation
     [self.tableView reloadData];
 }
 
+#pragma mark - card delegate
+
+- (void)configureWithCard:(ZPPCreditCard *)card sender:(id)sender {
+    self.order.card = card;
+    [self.tableView reloadData];
+}
+
 #pragma mark - support
 
 - (void)registrateCells {
@@ -282,6 +327,10 @@ navigation
                  reuseIdentifier:ZPPOrderTotalCellIdentifier];
     [self registrateCellForClass:[ZPPOrderAddressCell class]
                  reuseIdentifier:ZPPOrderAddressCellIdentifier];
+    [self registrateCellForClass:[ZPPCreditCardInfoCell class]
+                 reuseIdentifier:ZPPCreditCardInfoCellIdentifier];
+    [self registrateCellForClass:[ZPPCardInOrderCell class]
+                 reuseIdentifier:ZPPCreditCardInfoCellIdentifier];
 }
 
 //- (void)registrateCellForClass:(Class) class reuseIdentifier:(NSString *)reuseIdentifier {

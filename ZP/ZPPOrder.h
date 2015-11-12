@@ -10,15 +10,20 @@
 #import "ZPPItemProtocol.h"
 
 @class ZPPAddress;
+@class ZPPCreditCard;
+@class ZPPOrderItem;
 @interface ZPPOrder : NSObject
 
 @property (strong, nonatomic, readonly) NSMutableArray *items;
 @property (strong, nonatomic,readonly) NSDate *date;
 @property (strong, nonatomic) ZPPAddress *address;
+@property (strong, nonatomic) ZPPCreditCard *card;
 
 - (void)addItem:(id<ZPPItemProtocol>)item;
 
 - (void)removeItem:(id<ZPPItemProtocol>)item;
+
+- (ZPPOrderItem *)orderItemForItem:(id<ZPPItemProtocol>)item;
 
 - (void)checkAllAndRemoveEmpty;
 

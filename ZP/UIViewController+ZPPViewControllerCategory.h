@@ -24,4 +24,6 @@
 
 - (void)showSuccessWithText:(NSString *)text;
 
+- (UIButton *)addRightButtonWithName:(NSString *)name;
+
 @end

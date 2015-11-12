@@ -13,7 +13,7 @@
 
 @protocol ZPPCardDelegate <NSObject>
 
-- (void)configureWithCard:(ZPPCreditCard *)address sender:(id)sender;
+- (void)configureWithCard:(ZPPCreditCard *)card sender:(id)sender;
 
 @end
 

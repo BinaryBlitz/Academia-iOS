@@ -133,6 +133,7 @@ static NSString *ZPPCardInputTVCIdentifier = @"ZPPCardInputTVCIdentifier";
 - (void)didChooseCard:(ZPPCreditCard *)card {
     if (self.cardDelegate) {
         [self.cardDelegate configureWithCard:card sender:self];
+        [self.navigationController popViewControllerAnimated:YES];
     } else {
     }
 }
