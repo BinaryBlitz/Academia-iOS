@@ -12,4 +12,6 @@
 - (void)stopIndication;
 
 - (void)startIndicating;
+
+- (void)startIndicatingWithType:(UIActivityIndicatorViewStyle)style;
 @end

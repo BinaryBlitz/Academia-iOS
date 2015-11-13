@@ -14,4 +14,7 @@
 
 + (ZPPAddress *)addresFromAddres:(LMAddress *)addr;
 
+
++ (NSArray *)addressesFromFoursquareDict:(id)responseObject;
+
 @end

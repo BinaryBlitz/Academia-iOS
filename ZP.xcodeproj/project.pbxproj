@@ -120,6 +120,7 @@
 		19D2427A1BEA4CEC007A0FEB /* ZPPOrderHistoryOrderTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D242791BEA4CEC007A0FEB /* ZPPOrderHistoryOrderTVC.m */; };
 		19DA03E11BC12ADE00DC0636 /* UIFont+ZPPFontCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DA03E01BC12ADE00DC0636 /* UIFont+ZPPFontCategory.m */; };
 		19DADF401BF36CE8007D9DF2 /* ZPPSearchResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF3F1BF36CE8007D9DF2 /* ZPPSearchResultController.m */; };
+		19DADF431BF5CB03007D9DF2 /* ZPPMapSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF421BF5CB03007D9DF2 /* ZPPMapSearcher.m */; };
 		19E6D4161BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E6D4151BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m */; };
 		19EC24A51BC65E3D00C333F6 /* ZPPProductAnotherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19EC24A41BC65E3D00C333F6 /* ZPPProductAnotherCell.m */; };
 		19EC24A81BC6601000C333F6 /* ZPPAnotherProductsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19EC24A71BC6601000C333F6 /* ZPPAnotherProductsTVC.m */; };
@@ -336,6 +337,8 @@
 		19DA03E01BC12ADE00DC0636 /* UIFont+ZPPFontCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+ZPPFontCategory.m"; sourceTree = "<group>"; };
 		19DADF3E1BF36CE8007D9DF2 /* ZPPSearchResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPSearchResultController.h; sourceTree = "<group>"; };
 		19DADF3F1BF36CE8007D9DF2 /* ZPPSearchResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPSearchResultController.m; sourceTree = "<group>"; };
+		19DADF411BF5CB03007D9DF2 /* ZPPMapSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPMapSearcher.h; sourceTree = "<group>"; };
+		19DADF421BF5CB03007D9DF2 /* ZPPMapSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPMapSearcher.m; sourceTree = "<group>"; };
 		19E6D4141BC66E5200DF6EF9 /* ZPPProductsBaseTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProductsBaseTVC.h; sourceTree = "<group>"; };
 		19E6D4151BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPProductsBaseTVC.m; sourceTree = "<group>"; };
 		19EC24A31BC65E3D00C333F6 /* ZPPProductAnotherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProductAnotherCell.h; sourceTree = "<group>"; };
@@ -1124,6 +1127,8 @@
 		19DADF3D1BF368AE007D9DF2 /* map */ = {
 			isa = PBXGroup;
 			children = (
+				19DADF411BF5CB03007D9DF2 /* ZPPMapSearcher.h */,
+				19DADF421BF5CB03007D9DF2 /* ZPPMapSearcher.m */,
 			);
 			name = map;
 			sourceTree = "<group>";
@@ -1446,6 +1451,7 @@
 				1907C7401BF08B03003BA62E /* ZPPAddress.m in Sources */,
 				1907C74F1BF0C2AC003BA62E /* ZPPCreditCard.m in Sources */,
 				198A5C171BD5B8B900710A36 /* ZPPDishHelper.m in Sources */,
+				19DADF431BF5CB03007D9DF2 /* ZPPMapSearcher.m in Sources */,
 				1948C53B1BEC17E600084BC8 /* ZPPLunchHelper.m in Sources */,
 				1948C52E1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.m in Sources */,
 				1984EE301BD12CD9001D25D5 /* ZPPRegistrationOtherInputVC.m in Sources */,
