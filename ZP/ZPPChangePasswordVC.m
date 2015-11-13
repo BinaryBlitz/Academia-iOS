@@ -25,6 +25,10 @@
     self.mainTF = self.oldPasswordTextField;
     self.bottomConstraint = self.superViewBottomConstr;
 
+    [self.oldPasswordTextField makeBordered];
+    [self.userNewPasswordTextField makeBordered];
+    [self.againPasswordTextField makeBordered];
+
     [self.doneButton addTarget:self
                         action:@selector(confirmNewPassword:)
               forControlEvents:UIControlEventTouchUpInside];
