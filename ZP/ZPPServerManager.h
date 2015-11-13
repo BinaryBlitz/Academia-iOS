@@ -12,6 +12,7 @@
 static const int ddLogLevel = DDLogLevelDebug;
 
 extern NSString *const ZPPServerBaseUrl;
+extern NSString *const ZPPNoInternetConnectionMessage;
 
 typedef void (^failureBlock)(NSError *_Nullable error, NSInteger statusCode);
 @class AFHTTPRequestOperation;
@@ -23,5 +24,5 @@ typedef void (^failureBlock)(NSError *_Nullable error, NSInteger statusCode);
 + (ZPPServerManager *)sharedManager;
 + (void)failureWithBlock:(failureBlock)block
                    error:(NSError *)error
-               operation:(AFHTTPRequestOperation *) operation;
+               operation:(AFHTTPRequestOperation *)operation;
 @end

@@ -11,11 +11,14 @@
 
 #import <CocoaLumberjack.h>
 
-//typedef void (^failureBlock)(NSError *error, NSInteger statusCode);
+// typedef void (^failureBlock)(NSError *error, NSInteger statusCode);
 
-//static const int ddLogLevel = DDLogLevelInfo;
+// static const int ddLogLevel = DDLogLevelInfo;
 
 NSString *const ZPPServerBaseUrl = @"http://zpapp.binaryblitz.ru";
+
+NSString *const ZPPNoInternetConnectionMessage = @"Проверьте интернет "
+                                                 @"соединение";
 
 @interface ZPPServerManager ()
 
@@ -28,26 +31,24 @@ NSString *const ZPPServerBaseUrl = @"http://zpapp.binaryblitz.ru";
 
 + (ZPPServerManager *)sharedManager {
     static ZPPServerManager *manager = nil;
-    
+
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [[ZPPServerManager alloc] init];
     });
-    
+
     return manager;
 }
 
 - (id)init {
     self = [super init];
     if (self) {
-        NSString *apiPath =
-        [NSString stringWithFormat:@"%@",
-         ZPPServerBaseUrl];//, @"api"];
+        NSString *apiPath = [NSString stringWithFormat:@"%@", ZPPServerBaseUrl];  //, @"api"];
         self.baseURL = apiPath;
         //[NSString stringWithFormat:@"http://%@:%@/", @"192.168.1.39", @"3000"];
         NSURL *url = [NSURL URLWithString:apiPath];
         // url.port = @3000;
-        
+
         self.requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
     }
     return self;
@@ -56,22 +57,20 @@ NSString *const ZPPServerBaseUrl = @"http://zpapp.binaryblitz.ru";
 //#pragma mark - categories and topics
 
 //- (void)GETCategoriesOnSuccess:(void (^)(NSArray *topics))successAF
-//onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+// onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
 //
 //
 //}
 
 #pragma mark - support
 
-+ (void)failureWithBlock:( failureBlock)block error:(NSError *)error operation:(AFHTTPRequestOperation *) operation {
-    
++ (void)failureWithBlock:(failureBlock)block
+                   error:(NSError *)error
+               operation:(AFHTTPRequestOperation *)operation {
     DDLogError(@"err %@", error);
-    if(block) {
+    if (block) {
         block(error, operation.response.statusCode);
     }
-    
-    
 }
-
 
 @end

@@ -19,6 +19,8 @@
 
 #import "ZPPSearchResultController.h"
 
+#import "ZPPCustomTextField.h"
+
 #import "ZPPConsts.h"
 
 #import "LMGeocoder.h"
@@ -59,27 +61,6 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
-    //    INTULocationManager *locMgr = [INTULocationManager sharedInstance];
-    //    [locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
-    //                                       timeout:10.0
-    //                          delayUntilAuthorized:YES
-    //                                         block:^(CLLocation *currentLocation,
-    //                                                 INTULocationAccuracy achievedAccuracy,
-    //                                                 INTULocationStatus status) {
-    //
-    //                                             if (status == INTULocationStatusSuccess) {
-    //                                                 [self moveCameraToCoordinate:currentLocation
-    //                                                                                  .coordinate];
-    //
-    //                                             } else if (status == INTULocationStatusTimedOut)
-    //                                             {
-    //                                             } else {
-    //                                                 // An error occurred, more info is available
-    //                                                 by
-    //                                                 // looking at the specific status returned.
-    //                                             }
-    //                                         }];
-
     [self showCurrentLocation];
 
     //    +55.75674918,+37.60394961
@@ -102,6 +83,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
     [self.view addSubview:self.searchButton];
     //[self.view bringSubviewToFront:self.addressSearchBar];
     [self.view bringSubviewToFront:self.actionButton];
+    [self.view bringSubviewToFront:self.addresTextField];
 
     // UIImage imageNamed:@"currentLocation"
     UIButton *b = [self addRightButtonWithName:@"currentLocation"];
@@ -202,6 +184,21 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 }
 
 #pragma mark - lazy
+
+- (UITextField *)addresTextField {
+    if (!_addresTextField) {
+        CGSize size = [UIScreen mainScreen].bounds.size;
+        CGRect r = self.navigationController.navigationBar.frame;
+
+        _addresTextField = [[ZPPCustomTextField alloc]
+            initWithFrame:CGRectMake(0, r.size.height + r.origin.x, size.width, 40)];
+        _addresTextField.backgroundColor = [UIColor whiteColor];
+        _addresTextField.layer.cornerRadius = 5.0;
+        
+    }
+
+    return _addresTextField;
+}
 
 - (UIView *)centralView {
     if (!_centralView) {

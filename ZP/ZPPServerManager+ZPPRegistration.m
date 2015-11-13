@@ -9,6 +9,7 @@
 #import "ZPPServerManager+ZPPRegistration.h"
 #import <AFNetworking.h>
 #import "ZPPUserHelper.h"
+#import "ZPPUserManager.h"
 
 //#import <CocoaLumberjack.h>
 
@@ -63,7 +64,53 @@
             }
 
         }
-        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error){
+        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+            [[self class] failureWithBlock:failure error:error operation:operation];
+        }];
+}
+
+- (void)PATCHUpdateUserWithName:(NSString *)name
+                       lastName:(NSString *)lastName
+                          email:(NSString *)email
+                      onSuccess:(void (^)())success
+                      onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    if (!name && !lastName && !email) {
+        if (failure) {
+            failure(nil, -1);
+        }
+        return;
+    }
+
+    NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
+
+    if (name) {
+        userDict[@"first_name"] = name;
+    }
+
+    if (lastName) {
+        userDict[@"last_name"] = lastName;
+    }
+
+    if (email) {
+        userDict[@"email"] = email;
+    }
+
+    NSDictionary *params =
+        @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken,
+           @"user" : userDict };
+
+    [self.requestOperationManager PATCH:@"user.json"
+        parameters:params
+        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+
+            DDLogInfo(@"update succes");
+            if (success) {
+                success();
+            }
+        }
+        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+
+            [[self class] failureWithBlock:failure error:error operation:operation];
 
         }];
 }

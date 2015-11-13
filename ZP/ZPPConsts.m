@@ -12,3 +12,4 @@ NSString *const ZPPBackgroundImageName = @"back1";
 NSString *const ZPPRoubleSymbol = @"₽";
 NSString *const ZPPLogoImageName = @"zpIcon";
 
+

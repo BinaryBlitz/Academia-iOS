@@ -19,5 +19,11 @@
                             onSuccess:(void (^)(ZPPUser *user))success
                             onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
+- (void)PATCHUpdateUserWithName:(NSString *)name
+                       lastName:(NSString *)lastName
+                          email:(NSString *)email
+                      onSuccess:(void (^)())success
+                      onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
 
 @end

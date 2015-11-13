@@ -96,39 +96,8 @@
                                         <animations/>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="0.0" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="59" id="Mnq-UY-dUY">
-                                        <rect key="frame" x="0.0" y="154" width="600" height="59"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mnq-UY-dUY" id="hC7-Jr-72l">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30r-dG-oAq">
-                                                    <rect key="frame" x="150.5" y="9.5" width="299" height="40"/>
-                                                    <animations/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="299" id="Vk8-D0-Pap"/>
-                                                        <constraint firstAttribute="height" constant="40" id="gBD-Z6-woV"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                    <state key="normal" title="ИЗМЕНИТЬ ПАРОЛЬ">
-                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                </button>
-                                            </subviews>
-                                            <animations/>
-                                            <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="0.0" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="30r-dG-oAq" firstAttribute="centerY" secondItem="hC7-Jr-72l" secondAttribute="centerY" id="DpB-bJ-4EG"/>
-                                                <constraint firstItem="30r-dG-oAq" firstAttribute="centerX" secondItem="hC7-Jr-72l" secondAttribute="centerX" id="JRm-8u-VQX"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="0.0" colorSpace="calibratedRGB"/>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="59" id="sf6-qo-QTk">
-                                        <rect key="frame" x="0.0" y="213" width="600" height="59"/>
+                                        <rect key="frame" x="0.0" y="154" width="600" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sf6-qo-QTk" id="aat-iW-h8Z">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
@@ -153,6 +122,37 @@
                                             <constraints>
                                                 <constraint firstItem="bIo-SN-2KO" firstAttribute="centerY" secondItem="aat-iW-h8Z" secondAttribute="centerY" id="bQG-Oy-w0B"/>
                                                 <constraint firstItem="bIo-SN-2KO" firstAttribute="centerX" secondItem="aat-iW-h8Z" secondAttribute="centerX" id="dGo-bY-cl8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="0.0" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="59" id="Mnq-UY-dUY">
+                                        <rect key="frame" x="0.0" y="213" width="600" height="59"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mnq-UY-dUY" id="hC7-Jr-72l">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30r-dG-oAq">
+                                                    <rect key="frame" x="150.5" y="9.5" width="299" height="40"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="299" id="Vk8-D0-Pap"/>
+                                                        <constraint firstAttribute="height" constant="40" id="gBD-Z6-woV"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <state key="normal" title="ИЗМЕНИТЬ ПАРОЛЬ">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <animations/>
+                                            <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="0.0" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="30r-dG-oAq" firstAttribute="centerY" secondItem="hC7-Jr-72l" secondAttribute="centerY" id="DpB-bJ-4EG"/>
+                                                <constraint firstItem="30r-dG-oAq" firstAttribute="centerX" secondItem="hC7-Jr-72l" secondAttribute="centerX" id="JRm-8u-VQX"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
