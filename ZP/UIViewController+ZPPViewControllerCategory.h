@@ -26,4 +26,6 @@
 
 - (UIButton *)addRightButtonWithName:(NSString *)name;
 
+- (void)showNoInternetVC;
+
 @end

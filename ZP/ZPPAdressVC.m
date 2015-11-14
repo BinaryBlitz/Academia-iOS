@@ -157,7 +157,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 - (void)moveCameraToCoordinate:(CLLocationCoordinate2D)coordinate {
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinate.latitude
                                                             longitude:coordinate.longitude
-                                                                 zoom:12];
+                                                                 zoom:17];
 
     self.mapView_.camera = camera;
 }
@@ -191,10 +191,9 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
         CGRect r = self.navigationController.navigationBar.frame;
 
         _addresTextField = [[ZPPCustomTextField alloc]
-            initWithFrame:CGRectMake(0, r.size.height + r.origin.x, size.width, 40)];
+            initWithFrame:CGRectMake(20, r.size.height + 20, size.width - 40, 40)];
         _addresTextField.backgroundColor = [UIColor whiteColor];
         _addresTextField.layer.cornerRadius = 5.0;
-        
     }
 
     return _addresTextField;

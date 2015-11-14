@@ -11,9 +11,13 @@
 #import <DigitsKit/DigitsKit.h>
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
+#import "UIButton+ZPPButtonCategory.h"
 #import <REFormattedNumberField.h>
 #import "ZPPRegistrationCodeInputVC.h"
 #import "ZPPUser.h"
+
+#import "ZPPSmsVerificationManager.h"
+#import "ZPPServerManager.h"
 
 #import "UIView+UIViewCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
@@ -27,6 +31,8 @@ static NSString *ZPPShowAuthenticationSegueIdentifier = @"ZPPShowAuthenticationS
 static NSString *ZPPPhoneWarningMessage = @"Формат номера неправильный";
 
 @interface ZPPRegistrationPhoneInputVC () <UITextFieldDelegate>
+
+@property (strong, nonatomic) NSString *code;
 
 @end
 
@@ -95,14 +101,27 @@ navigation
 }
 */
 - (IBAction)acceptAction:(UIButton *)sender {
-    //
-    //    [[Digits sharedInstance] authenticateWithCompletion:^(DGTSession *session, NSError *error)
-    //    {
-    //
-    //    }];
-
     if ([self checkPhoneTextField:self.phoneNumberTextFiled]) {
-        [self performSegueWithIdentifier:ZPPShowNumberEnterScreenSegueIdentifier sender:nil];
+        NSInteger code = arc4random() % 10000;
+
+        self.code = [NSString stringWithFormat:@"%ld", (long)code];
+        NSString *number = self.user.phoneNumber;  // self.phoneNumberTextFiled.text;
+
+        [sender startIndicating];
+        [[ZPPSmsVerificationManager shared] POSTCode:self.code
+            toNumber:number
+            onSuccess:^{
+                [sender stopIndication];
+                [self performSegueWithIdentifier:ZPPShowNumberEnterScreenSegueIdentifier
+                                          sender:nil];
+            }
+            onFailure:^(NSError *error, NSInteger statusCode) {
+                [sender stopIndication];
+                [self showWarningWithText:ZPPNoInternetConnectionMessage];
+
+            }];
+
+        //  [self performSegueWithIdentifier:ZPPShowNumberEnterScreenSegueIdentifier sender:nil];
     } else {
         [self.phoneNumberTextFiled.superview shakeView];
         [self showWarningWithText:ZPPPhoneWarningMessage];
@@ -122,6 +141,8 @@ navigation
         ZPPUser *user = [self user];
 
         [destVC setUser:user];
+        [destVC setCode:self.code];
+        self.code = nil;
     }
 }
 

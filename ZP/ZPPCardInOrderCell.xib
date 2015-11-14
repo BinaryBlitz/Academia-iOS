@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvo-Cb-YXH">
-                        <rect key="frame" x="243" y="16" width="70" height="21"/>
+                        <rect key="frame" x="192" y="16" width="70" height="21"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="70" id="9vr-jm-a1R"/>
@@ -26,8 +26,8 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIO-Rr-QtR" customClass="BKCardNumberLabel">
-                        <rect key="frame" x="8" y="16" width="227" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SIO-Rr-QtR" customClass="BKCardNumberLabel">
+                        <rect key="frame" x="58" y="16" width="126" height="20.5"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,12 +51,12 @@
                     <constraint firstItem="yvo-Cb-YXH" firstAttribute="leading" secondItem="SIO-Rr-QtR" secondAttribute="trailing" constant="8" symbolic="YES" id="3nh-4F-OST"/>
                     <constraint firstItem="Z91-sf-fqH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="9" id="46F-Jf-ROD"/>
                     <constraint firstItem="SIO-Rr-QtR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="7Q2-I2-FaN"/>
-                    <constraint firstItem="SIO-Rr-QtR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="BbF-Dx-och"/>
+                    <constraint firstItem="SIO-Rr-QtR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="50" id="BbF-Dx-och"/>
                     <constraint firstItem="yvo-Cb-YXH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="Izj-u2-6pL"/>
                     <constraint firstItem="Z91-sf-fqH" firstAttribute="top" secondItem="yvo-Cb-YXH" secondAttribute="bottom" constant="14" id="aUL-WL-8B3"/>
                     <constraint firstItem="SIO-Rr-QtR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="clD-jX-UD7"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Z91-sf-fqH" secondAttribute="trailing" constant="8" id="lQc-FH-roC"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="yvo-Cb-YXH" secondAttribute="trailing" constant="-1" id="pAz-WX-NwL"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="yvo-Cb-YXH" secondAttribute="trailing" constant="50" id="pAz-WX-NwL"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">

@@ -10,6 +10,7 @@
 #import <TSMessage.h>
 #import <VBFPopFlatButton.h>
 #import <MBProgressHUD.h>
+#import "ZPPNoInternetConnectionVC.h"
 
 @implementation UIViewController (ZPPViewControllerCategory)
 
@@ -56,8 +57,7 @@
 }
 
 - (void)addPictureToNavItemWithNamePicture:(NSString *)name {
-    self.navigationItem.titleView =
-        [[UIImageView alloc] initWithImage:[UIImage imageNamed:name]];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:name]];
 }
 
 - (void)popBack {
@@ -75,12 +75,12 @@
 
 - (UIButton *)addRightButtonWithName:(NSString *)name {
     UIButton *closeButton = [self buttonWithImageName:name];
-//    [closeButton addTarget:self
-//                    action:@selector(dismisVC)
-//          forControlEvents:UIControlEventTouchUpInside];
+    //    [closeButton addTarget:self
+    //                    action:@selector(dismisVC)
+    //          forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *closeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
     self.navigationItem.rightBarButtonItem = closeButtonItem;
-    
+
     return closeButton;
 }
 
@@ -141,7 +141,7 @@
                                                             buttonType:buttonOkType
                                                            buttonStyle:buttonPlainStyle
                                                  animateToInitialState:YES];
-    
+
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:hud];
     hud.customView = button;
@@ -151,5 +151,21 @@
     [hud hide:YES afterDelay:2];
 }
 
+- (void)showNoInternetVC {
+    if (![self respondsToSelector:@selector(tryAgainSender:)]) {
+        return;
+    }
+    //   id<ZPPNoInternetDelegate> respToDel =
+
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ZPPNoInternetConnectionVC *vc =
+        [sb instantiateViewControllerWithIdentifier:@"ZPPNoInternetConnectionVCIdentifier"];
+
+    // id<ZPPNoInternetDelegate> respToDel = self;
+
+    vc.noInternetDelegate = self;
+
+    [self presentViewController:vc animated:YES completion:nil];
+}
 
 @end

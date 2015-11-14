@@ -14,6 +14,9 @@
 #import "ZPPOrderTVC.h"
 #import "ZPPGiftTVC.h"
 #import "ZPPOrderHistoryTVC.h"
+#import "ZPPNoInternetConnectionVC.h"
+
+#import "UIViewController+ZPPViewControllerCategory.h"
 
 // libs
 #import <VBFPopFlatButton.h>
@@ -22,7 +25,7 @@
 static float kZPPButtonDiametr = 40.0f;
 static float kZPPButtonOffset = 15.0f;
 
-@interface ZPPMainVC ()
+@interface ZPPMainVC () <ZPPNoInternetDelegate>
 @property (strong, nonatomic) VBFPopFlatButton *menuButton;
 @property (strong, nonatomic) ZPPMainMenuView *mainMenu;
 @property (strong, nonatomic) VBFPopFlatButton *button;
@@ -205,6 +208,10 @@ navigation
         }];
 }
 
+- (void)showNoInternetScreen {
+    [self showNoInternetVC];
+}
+
 - (void)showProfile {
     [self dissmisMenu];
 
@@ -306,6 +313,8 @@ navigation
     return vc;
 }
 
+#pragma mark - ordre
+
 - (void)addItemIntoOrder:(id<ZPPItemProtocol>)item {
     [self.order addItem:item];
 
@@ -325,6 +334,11 @@ navigation
             [self hideOrderButton];
         }
     }
+}
+
+#pragma mark - no internet connection delegate
+
+- (void)tryAgainSender:(id)sender {
 }
 
 #pragma mark - lazy
@@ -348,11 +362,11 @@ navigation
         [_mainMenu.giftCardButton addTarget:self
                                      action:@selector(showGifts)
                            forControlEvents:UIControlEventTouchUpInside];
-        
+
         [_mainMenu.ordersButton addTarget:self
                                    action:@selector(showOrderHistory)
                          forControlEvents:UIControlEventTouchUpInside];
-        
+
         [_mainMenu.promoButton addTarget:self
                                   action:@selector(showPromoCodeInput)
                         forControlEvents:UIControlEventTouchUpInside];

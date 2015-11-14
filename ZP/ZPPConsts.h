@@ -12,3 +12,5 @@ extern NSString *const ZPPBackgroundImageName;
 extern NSString *const ZPPRoubleSymbol;
 extern NSString *const ZPPLogoImageName;
 
+extern NSString *const ZPPSMSAppID;
+

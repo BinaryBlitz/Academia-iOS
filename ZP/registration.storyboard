@@ -202,6 +202,17 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2zB-tO-V6l">
+                                        <rect key="frame" x="8" y="567" width="584" height="25"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="uii-xI-Coh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
@@ -212,8 +223,11 @@
                                     <constraint firstItem="iat-Kn-0YD" firstAttribute="trailing" secondItem="MbK-vx-PMo" secondAttribute="trailing" id="bGL-Oh-2ea"/>
                                     <constraint firstItem="MbK-vx-PMo" firstAttribute="top" secondItem="mZS-7n-8aJ" secondAttribute="bottom" constant="8" id="ff2-2E-jDZ"/>
                                     <constraint firstItem="iat-Kn-0YD" firstAttribute="leading" secondItem="MbK-vx-PMo" secondAttribute="leading" id="h4p-H7-aKt"/>
+                                    <constraint firstAttribute="bottom" secondItem="2zB-tO-V6l" secondAttribute="bottom" constant="8" id="kqM-jd-RCl"/>
                                     <constraint firstItem="MbK-vx-PMo" firstAttribute="centerX" secondItem="g85-Er-GuU" secondAttribute="centerX" id="o6g-pf-GLO"/>
+                                    <constraint firstAttribute="trailing" secondItem="2zB-tO-V6l" secondAttribute="trailing" constant="8" id="tVh-lg-17a"/>
                                     <constraint firstItem="iat-Kn-0YD" firstAttribute="top" secondItem="MbK-vx-PMo" secondAttribute="bottom" constant="8" id="wtt-AV-370"/>
+                                    <constraint firstItem="2zB-tO-V6l" firstAttribute="leading" secondItem="g85-Er-GuU" secondAttribute="leading" constant="8" id="wzo-Jb-DDv"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -231,6 +245,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="againCodeButton" destination="2zB-tO-V6l" id="lsu-aj-d3m"/>
                         <outlet property="bottomSuperviewConstraint" destination="7YW-RG-1Pt" id="tDJ-hu-eCy"/>
                         <outlet property="codeTextField" destination="MbK-vx-PMo" id="OXg-6L-uMi"/>
                         <segue destination="WuL-FN-fQ6" kind="show" identifier="ZPPShowRegistrationOtherScreenSegueIdentifier" id="VQN-il-Tae"/>
@@ -263,13 +278,13 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Trv-DG-5m6">
                                                     <rect key="frame" x="151" y="0.0" width="299" height="45"/>
                                                     <subviews>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Фамилия" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uAp-Do-q58">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Фамилия" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uAp-Do-q58" customClass="ZPPCustomTextField">
                                                             <rect key="frame" x="155.5" y="8" width="139.5" height="30"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
                                                         </textField>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Имя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VMa-25-ptg">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Имя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VMa-25-ptg" customClass="ZPPCustomTextField">
                                                             <rect key="frame" x="0.0" y="7" width="139.5" height="30"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -309,7 +324,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="E-Mail (sample@domen.ab)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ORe-v5-mtL">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="E-Mail (sample@domen.ab)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ORe-v5-mtL" customClass="ZPPCustomTextField">
                                                     <rect key="frame" x="150" y="8" width="299" height="30"/>
                                                     <animations/>
                                                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -339,7 +354,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w60-R4-6Fa">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w60-R4-6Fa" customClass="ZPPCustomTextField">
                                                     <rect key="frame" x="150" y="8" width="299" height="30"/>
                                                     <animations/>
                                                     <constraints>
@@ -367,7 +382,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Подтвердить пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yOs-hy-Xs2">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Подтвердить пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yOs-hy-Xs2" customClass="ZPPCustomTextField">
                                                     <rect key="frame" x="150" y="8" width="299" height="30"/>
                                                     <animations/>
                                                     <constraints>
@@ -453,20 +468,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back1.png" translatesAutoresizingMaskIntoConstraints="NO" id="ocD-Er-s9P">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back1.png" translatesAutoresizingMaskIntoConstraints="NO" id="ocD-Er-s9P">
                                 <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <animations/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H2d-hp-kwL">
-                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1g-Se-fhQ">
-                                        <rect key="frame" x="184" y="250.5" width="233" height="35"/>
+                                        <rect key="frame" x="184" y="282.5" width="233" height="35"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="233" id="rrw-i0-dQ1"/>
-                                            <constraint firstAttribute="height" constant="35" id="zhd-X4-IHU"/>
+                                            <constraint firstAttribute="height" constant="35" id="dj9-4B-xQw"/>
+                                            <constraint firstAttribute="width" constant="233" id="hhv-C9-8RC"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <state key="normal" title="СДЕЛАТЬ ЗАКАЗ">
@@ -477,11 +492,10 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6JT-mj-5DZ">
-                                        <rect key="frame" x="184" y="179.5" width="233" height="63"/>
+                                        <rect key="frame" x="184" y="211.5" width="233" height="63"/>
                                         <animations/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="233" id="C5C-hX-KAS"/>
-                                            <constraint firstAttribute="height" constant="63" id="GsJ-39-U94"/>
+                                            <constraint firstAttribute="height" constant="63" id="vQP-MK-VMx"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -491,25 +505,21 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="C1g-Se-fhQ" firstAttribute="centerY" secondItem="H2d-hp-kwL" secondAttribute="centerY" constant="-10" id="034-pC-Eju"/>
-                                    <constraint firstItem="C1g-Se-fhQ" firstAttribute="top" secondItem="6JT-mj-5DZ" secondAttribute="bottom" constant="8" id="P0O-y7-9fG"/>
-                                    <constraint firstItem="C1g-Se-fhQ" firstAttribute="centerX" secondItem="H2d-hp-kwL" secondAttribute="centerX" id="k4H-Ke-ACL"/>
-                                    <constraint firstItem="C1g-Se-fhQ" firstAttribute="leading" secondItem="6JT-mj-5DZ" secondAttribute="leading" id="lY3-AP-MgN"/>
-                                    <constraint firstItem="C1g-Se-fhQ" firstAttribute="trailing" secondItem="6JT-mj-5DZ" secondAttribute="trailing" id="p4A-Gn-Erh"/>
+                                    <constraint firstItem="C1g-Se-fhQ" firstAttribute="leading" secondItem="6JT-mj-5DZ" secondAttribute="leading" id="6WE-X8-5Fp"/>
+                                    <constraint firstItem="C1g-Se-fhQ" firstAttribute="top" secondItem="6JT-mj-5DZ" secondAttribute="bottom" constant="8" id="7wm-Fu-cMr"/>
+                                    <constraint firstItem="C1g-Se-fhQ" firstAttribute="centerY" secondItem="H2d-hp-kwL" secondAttribute="centerY" id="PcD-Cx-3hY"/>
+                                    <constraint firstItem="C1g-Se-fhQ" firstAttribute="trailing" secondItem="6JT-mj-5DZ" secondAttribute="trailing" id="dEg-9Q-N8i"/>
+                                    <constraint firstItem="C1g-Se-fhQ" firstAttribute="centerX" secondItem="H2d-hp-kwL" secondAttribute="centerX" id="gIA-hE-zmT"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ocD-Er-s9P" firstAttribute="top" secondItem="DVr-SK-Rsu" secondAttribute="bottom" constant="-20" id="1iP-2V-6Db"/>
-                            <constraint firstItem="5Df-Nq-Mzt" firstAttribute="top" secondItem="H2d-hp-kwL" secondAttribute="bottom" id="9nx-yu-x2p"/>
-                            <constraint firstItem="H2d-hp-kwL" firstAttribute="leading" secondItem="7e1-53-1Hc" secondAttribute="leadingMargin" constant="-20" id="FGW-Px-awC"/>
-                            <constraint firstItem="H2d-hp-kwL" firstAttribute="top" secondItem="DVr-SK-Rsu" secondAttribute="bottom" constant="-20" id="PUm-7P-8mu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ocD-Er-s9P" secondAttribute="trailing" constant="-20" id="W9z-VP-1dm"/>
-                            <constraint firstItem="ocD-Er-s9P" firstAttribute="leading" secondItem="7e1-53-1Hc" secondAttribute="leadingMargin" constant="-20" id="WmF-w9-1tV"/>
-                            <constraint firstItem="5Df-Nq-Mzt" firstAttribute="top" secondItem="ocD-Er-s9P" secondAttribute="bottom" id="cSa-fI-Z4R"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="H2d-hp-kwL" secondAttribute="trailing" constant="-20" id="svI-7n-Pr8"/>
+                            <constraint firstItem="5Df-Nq-Mzt" firstAttribute="top" secondItem="H2d-hp-kwL" secondAttribute="bottom" id="MxK-3G-JkC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="H2d-hp-kwL" secondAttribute="trailing" constant="-20" id="Uyy-S2-Vmz"/>
+                            <constraint firstItem="H2d-hp-kwL" firstAttribute="leading" secondItem="7e1-53-1Hc" secondAttribute="leadingMargin" constant="-20" id="kIX-Pz-Zf2"/>
+                            <constraint firstItem="H2d-hp-kwL" firstAttribute="top" secondItem="7e1-53-1Hc" secondAttribute="topMargin" id="tox-dR-Cdq"/>
                         </constraints>
                     </view>
                     <connections>

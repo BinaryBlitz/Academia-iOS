@@ -12,27 +12,46 @@
 #import "ZPPRegistrationOtherInputVC.h"
 #import "ZPPUser.h"
 #import "UIView+UIViewCategory.h"
+#import "ZPPSmsVerificationManager.h"
+#import "ZPPServerManager.h"
 
 static NSString *ZPPShowRegistrationOtherScreenSegueIdentifier =
     @"ZPPShowRegistrationOtherScreenSegueIdentifier";
 
 static NSString *ZPPCodeWarningMessage = @"Неправильный код";
-@interface ZPPRegistrationCodeInputVC ()
-//@property (strong, nonatomic) UIView *bottomSuper
+@interface ZPPRegistrationCodeInputVC ()  //<UITextFieldDelegate>
 
 @property (strong, nonatomic) ZPPUser *user;
+
+@property (strong, nonatomic) NSString *code;
 @end
 
 @implementation ZPPRegistrationCodeInputVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    if ([[ZPPSmsVerificationManager shared] canSendAgain]) {
+        [[ZPPSmsVerificationManager shared] startTimer];
+    }
+
+    [self setButtonTextForTime:[ZPPSmsVerificationManager shared].currentTime];
+    __weak typeof(self) weakSelf = self;
+    [ZPPSmsVerificationManager shared].timerCounter = ^(NSInteger time) {
+
+        [weakSelf setButtonTextForTime:time];
+    };
+
     self.mainTF = self.codeTextField;
     self.bottomConstraint = self.bottomSuperviewConstraint;
-    
+
     [self.codeTextField makeBordered];
-       // Do any additional setup after loading the view.
+    //    self.codeTextField.delegate = self;
+
+    [self.againCodeButton addTarget:self
+                             action:@selector(sendAgain)
+                   forControlEvents:UIControlEventTouchUpInside];
+    // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -41,7 +60,7 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
     [self setCustomBackButton];
     [self addCustomCloseButton];
 
-  //  [self registerForKeyboardNotifications];
+    //  [self registerForKeyboardNotifications];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -52,7 +71,7 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-   // [[NSNotificationCenter defaultCenter] removeObserver:self];
+    // [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,80 +83,79 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
     _user = user;
 }
 
-//- (void)registerForKeyboardNotifications {
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardWillShow:)
-//                                                 name:UIKeyboardWillShowNotification
-//                                               object:nil];
-//
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardWillHide:)
-//                                                 name:UIKeyboardWillHideNotification
-//                                               object:nil];
-//}
+- (void)setCode:(NSString *)code {
+    _code = code;
+}
 
-//- (void)keyboardWillShow:(NSNotification *)aNotification {
-//    NSDictionary *info = [aNotification userInfo];
-//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-//
-//    [self.view layoutIfNeeded];
-//    [UIView animateWithDuration:0.3
-//                     animations:^{
-//                         self.bottomSuperviewConstraint.constant = kbSize.height;
-//                         [self.codeTextField.superview layoutIfNeeded];
-//                         [self.view layoutIfNeeded];
-//                     }];
-//}
-//
-//- (void)keyboardWillHide:(NSNotification *)aNotification {
-//    [self.view layoutIfNeeded];
-//    [UIView animateWithDuration:0.3
-//                     animations:^{
-//                         self.bottomSuperviewConstraint.constant = 0;
-//                         [self.view layoutIfNeeded];
-//                     }];
-//}
+#pragma mark - action
 
 - (IBAction)submitCodeAction:(id)sender {
-    
-    if(![self checkCode]){
+    if (![self checkCode]) {
         [self accentTextField:self.codeTextField];
         [self showWarningWithText:ZPPCodeWarningMessage];
     } else {
-    [self performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier sender:nil];
+        [[ZPPSmsVerificationManager shared] invalidateTimer];
+        [self performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier sender:nil];
     }
 }
 
 - (BOOL)checkCode {
-    return YES;
+    return [self.codeTextField.text isEqualToString:self.code];
+    // return YES;
 }
 
+- (void)sendAgain {
+    if (![[ZPPSmsVerificationManager shared] canSendAgain]) {
+        return;
+    }
 
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [[ZPPSmsVerificationManager shared] POSTCode:self.code
+        toNumber:self.user.phoneNumber
+        onSuccess:^{
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            [self showSuccessWithText:@"Код отправлен"];
+            [[ZPPSmsVerificationManager shared] startTimer];
+        }
+        onFailure:^(NSError *error, NSInteger statusCode) {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            [self showWarningWithText:ZPPNoInternetConnectionMessage];
+        }];
+}
 
 #pragma mark - navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:ZPPShowRegistrationOtherScreenSegueIdentifier]) {
-        
         ZPPRegistrationOtherInputVC *destVC =
-        (ZPPRegistrationOtherInputVC *)segue.destinationViewController;
-        
+            (ZPPRegistrationOtherInputVC *)segue.destinationViewController;
+
         ZPPUser *user = [self user];
-        
+
         [destVC setUser:user];
-        
-        
     }
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - support
 
-// In a storyboard-based application, you will often want to do a little preparation before
-navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)setButtonTextForTime:(NSInteger)time {
+    NSAttributedString *text;
+    if (time != -1) {
+        time = ZPPMaxCount - time;
+
+        NSString *timeString = [NSString
+            stringWithFormat:@"До повторной отправки %ld " @"секунд",
+                             (long)time];
+
+        text = [[NSAttributedString alloc] initWithString:timeString attributes:@{}];
+    } else {
+        NSDictionary *underlineAttribute =
+            @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) };
+        text = [[NSAttributedString alloc] initWithString:@"Отправить повторно"
+                                               attributes:underlineAttribute];
+    }
+
+    [self.againCodeButton setAttributedTitle:text forState:UIControlStateNormal];
 }
-*/
+
 
 @end

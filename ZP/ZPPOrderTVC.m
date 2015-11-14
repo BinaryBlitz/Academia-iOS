@@ -9,6 +9,7 @@
 #import "ZPPOrderTVC.h"
 #import "ZPPOrder.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
+#import "UIButton+ZPPButtonCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UITableViewController+ZPPTVCCategory.h"
 
@@ -21,6 +22,7 @@
 
 #import "ZPPCardViewController.h"
 #import "ZPPOrderItemVC.h"
+#import "ZPPOrderResultVC.h"
 
 #import "ZPPAdressVC.h"
 
@@ -36,6 +38,7 @@ static NSString *ZPPCardInOrderCellIdentifier = @"ZPPCardInOrderCellIdentifier";
 static NSString *ZPPCardViewControllerIdentifier = @"ZPPCardViewControllerIdentifier";
 static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
 static NSString *ZPPAdressVCIdentifier = @"ZPPAdressVCIdentifier";
+static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
 @interface ZPPOrderTVC () <ZPPAdressDelegate, ZPPCardDelegate>
 
@@ -157,6 +160,10 @@ static NSString *ZPPAdressVCIdentifier = @"ZPPAdressVCIdentifier";
             [self.tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
         [cell.actionButton setTitle:@"Заказать" forState:UIControlStateNormal];
 
+        [cell.actionButton addTarget:self
+                              action:@selector(buttonsAction:)
+                    forControlEvents:UIControlEventTouchUpInside];
+
         return cell;
 
     } else {
@@ -263,6 +270,8 @@ navigation
             [self showCardChooser];
         } else if (ip.section == 1) {
             [self showMap];
+        } else if (ip.section == 4) {
+            [self showResultScreenSender:sender];
         }
     }
 }
@@ -302,6 +311,19 @@ navigation
     }
 }
 
+- (void)showResultScreenSender:(UIButton *)sender {
+    // redo
+    [sender startIndicatingWithType:UIActivityIndicatorViewStyleGray];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)),
+                   dispatch_get_main_queue(), ^{
+                       [sender stopIndication];
+
+                       ZPPOrderResultVC *orvc = [self resultScreen];
+
+                       [self presentViewController:orvc animated:YES completion:nil];
+                   });
+}
+
 #pragma mark - ZPPAddressDelegate
 
 - (void)configureWithAddress:(ZPPAddress *)address sender:(id)sender {
@@ -331,6 +353,12 @@ navigation
                  reuseIdentifier:ZPPCreditCardInfoCellIdentifier];
     [self registrateCellForClass:[ZPPCardInOrderCell class]
                  reuseIdentifier:ZPPCreditCardInfoCellIdentifier];
+}
+
+- (ZPPOrderResultVC *)resultScreen {
+    ZPPOrderResultVC *orvc =
+        [self.storyboard instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
+    return orvc;
 }
 
 //- (void)registrateCellForClass:(Class) class reuseIdentifier:(NSString *)reuseIdentifier {

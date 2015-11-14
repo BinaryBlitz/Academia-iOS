@@ -14,4 +14,6 @@
 
 - (void)makeBordered;
 
+- (void)makeBorderedWithColor:(UIColor *)color;
+
 @end

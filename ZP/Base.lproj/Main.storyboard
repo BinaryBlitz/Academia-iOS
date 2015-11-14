@@ -67,6 +67,55 @@
             </objects>
             <point key="canvasLocation" x="1653" y="318"/>
         </scene>
+        <!--No Internet ConnectionVC-->
+        <scene sceneID="0ob-9R-AD5">
+            <objects>
+                <viewController storyboardIdentifier="ZPPNoInternetConnectionVCIdentifier" id="XTF-2c-RRL" customClass="ZPPNoInternetConnectionVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bm7-fk-lwB"/>
+                        <viewControllerLayoutGuide type="bottom" id="1lP-cM-Wgg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3WN-dN-N06">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back2.png" translatesAutoresizingMaskIntoConstraints="NO" id="gAf-ou-155">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Riz-Ie-Z1U">
+                                <rect key="frame" x="157" y="538" width="285" height="42"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="285" id="Oa5-Wg-N7P"/>
+                                    <constraint firstAttribute="height" constant="42" id="j75-1D-Jeu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <state key="normal" title="Обновить">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gAf-ou-155" firstAttribute="top" secondItem="3WN-dN-N06" secondAttribute="topMargin" id="3F1-vo-2of"/>
+                            <constraint firstItem="1lP-cM-Wgg" firstAttribute="top" secondItem="gAf-ou-155" secondAttribute="bottom" id="J64-nW-EDn"/>
+                            <constraint firstItem="Riz-Ie-Z1U" firstAttribute="centerX" secondItem="3WN-dN-N06" secondAttribute="centerX" id="Mq2-AT-Cfu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gAf-ou-155" secondAttribute="trailing" constant="-20" id="Pm5-Sn-rlo"/>
+                            <constraint firstItem="gAf-ou-155" firstAttribute="leading" secondItem="3WN-dN-N06" secondAttribute="leadingMargin" constant="-20" id="chw-xy-ael"/>
+                            <constraint firstItem="1lP-cM-Wgg" firstAttribute="top" secondItem="Riz-Ie-Z1U" secondAttribute="bottom" constant="20" id="qCF-mC-g96"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tryAgainButton" destination="Riz-Ie-Z1U" id="YI0-8z-Y78"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dVn-cB-htb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1649" y="1081"/>
+        </scene>
         <!--Another ProductsTVC-->
         <scene sceneID="KEA-ki-wF3">
             <objects>
@@ -106,4 +155,7 @@
             <point key="canvasLocation" x="3107" y="318"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="back2.png" width="750" height="1334"/>
+    </resources>
 </document>

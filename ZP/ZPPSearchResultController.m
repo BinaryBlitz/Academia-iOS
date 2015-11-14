@@ -32,7 +32,7 @@ static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //self.results = [self testArr];  // test
+    // self.results = [self testArr];  // test
 
     [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
@@ -52,7 +52,7 @@ static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier
 
     [self.searchBar becomeFirstResponder];
 
- //   [self searchWithText:@"Россия"];
+    //   [self searchWithText:@"Россия"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -99,6 +99,8 @@ static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier
 
     if (self.addressSearchDelegate) {
         [self.addressSearchDelegate configureWithAddress:address sender:self];
+
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
