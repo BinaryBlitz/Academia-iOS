@@ -76,7 +76,7 @@ static NSString *ZPPChangePasswordVCIdentifier = @"ZPPChangePasswordVCIdentifier
     }
 
     if (![self.secondNameTextField.text isEqualToString:u.lastName]) {
-        if ([self checkNameTextField:self.secondNameTextField]) {
+        if (![self checkNameTextField:self.secondNameTextField]) {
             [self accentTextField:self.secondNameTextField];
             return;
         } else {

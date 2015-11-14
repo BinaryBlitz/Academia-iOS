@@ -167,6 +167,88 @@
             </objects>
             <point key="canvasLocation" x="2233" y="350"/>
         </scene>
+        <!--Order ResultVC-->
+        <scene sceneID="6T6-mq-HcJ">
+            <objects>
+                <viewController storyboardIdentifier="ZPPOrderResultVCIdentifier" id="lTd-A2-o9z" customClass="ZPPOrderResultVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Zs-up-fiz"/>
+                        <viewControllerLayoutGuide type="bottom" id="Nzz-hs-yh5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="deV-eD-seD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Bbb-Sj-dO2">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVN-i6-UvI">
+                                <rect key="frame" x="70" y="535" width="460" height="45"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="YlQ-Za-d5j"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <state key="normal" title="НАЗАД В МЕНЮ"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ВАШ ЗАКАЗ УЖЕ В ПУТИ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5a6-sQ-EqW">
+                                <rect key="frame" x="20" y="98" width="560" height="41"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="CJe-OX-4Ir"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KE4-J7-Hbc">
+                                <rect key="frame" x="70" y="159" width="460" height="40"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="WOM-DC-6uh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <state key="normal" title="СВЯЗАТЬСЯ С КУРЬЕРОМ"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="JcM-rS-zxY">
+                                <rect key="frame" x="162" y="207" width="276" height="320"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="276" id="e8F-6h-JCc"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5a6-sQ-EqW" firstAttribute="top" secondItem="7Zs-up-fiz" secondAttribute="bottom" constant="78" id="4dC-wz-Gz8"/>
+                            <constraint firstItem="Bbb-Sj-dO2" firstAttribute="top" secondItem="deV-eD-seD" secondAttribute="topMargin" id="6Sj-qH-agb"/>
+                            <constraint firstItem="KE4-J7-Hbc" firstAttribute="leading" secondItem="deV-eD-seD" secondAttribute="leadingMargin" constant="50" id="7vn-9N-oCr"/>
+                            <constraint firstItem="5a6-sQ-EqW" firstAttribute="trailing" secondItem="deV-eD-seD" secondAttribute="trailingMargin" id="GV0-wz-3Cr"/>
+                            <constraint firstItem="CVN-i6-UvI" firstAttribute="top" secondItem="JcM-rS-zxY" secondAttribute="bottom" constant="8" id="Lel-mw-m1S"/>
+                            <constraint firstItem="KE4-J7-Hbc" firstAttribute="top" secondItem="5a6-sQ-EqW" secondAttribute="bottom" constant="20" id="Lvo-W0-nsc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CVN-i6-UvI" secondAttribute="trailing" constant="50" id="WZw-ez-6RM"/>
+                            <constraint firstItem="Nzz-hs-yh5" firstAttribute="top" secondItem="Bbb-Sj-dO2" secondAttribute="bottom" id="Yro-Yi-mVy"/>
+                            <constraint firstItem="5a6-sQ-EqW" firstAttribute="leading" secondItem="deV-eD-seD" secondAttribute="leadingMargin" id="Zfi-So-JzZ"/>
+                            <constraint firstItem="Bbb-Sj-dO2" firstAttribute="leading" secondItem="deV-eD-seD" secondAttribute="leadingMargin" constant="-20" id="b8j-eX-Gzb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Bbb-Sj-dO2" secondAttribute="trailing" constant="-20" id="fF8-vC-5z6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KE4-J7-Hbc" secondAttribute="trailing" constant="50" id="h80-Gi-7Za"/>
+                            <constraint firstItem="JcM-rS-zxY" firstAttribute="centerX" secondItem="deV-eD-seD" secondAttribute="centerX" id="i95-Jl-XMm"/>
+                            <constraint firstItem="Nzz-hs-yh5" firstAttribute="top" secondItem="CVN-i6-UvI" secondAttribute="bottom" constant="20" id="noc-KW-tgh"/>
+                            <constraint firstItem="JcM-rS-zxY" firstAttribute="top" secondItem="KE4-J7-Hbc" secondAttribute="bottom" constant="8" id="qwU-m6-YV1"/>
+                            <constraint firstItem="CVN-i6-UvI" firstAttribute="leading" secondItem="deV-eD-seD" secondAttribute="leadingMargin" constant="50" id="z8D-mR-5UU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backToMenuButton" destination="CVN-i6-UvI" id="1m6-kq-joF"/>
+                        <outlet property="callCourierButton" destination="KE4-J7-Hbc" id="8j0-kd-lEL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eef-em-BEg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2969" y="350"/>
+        </scene>
         <!--Card View Controller-->
         <scene sceneID="pQM-QO-ajU">
             <objects>
@@ -286,6 +368,8 @@
     </scenes>
     <resources>
         <image name="back1.png" width="750" height="1334"/>
+        <image name="back2.png" width="750" height="1334"/>
+        <image name="mainIcon.png" width="561" height="540"/>
         <image name="minusBlack" width="50" height="50"/>
         <image name="plusBlack" width="50" height="50"/>
     </resources>

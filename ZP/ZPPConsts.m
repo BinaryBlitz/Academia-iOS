@@ -12,4 +12,6 @@ NSString *const ZPPBackgroundImageName = @"back1";
 NSString *const ZPPRoubleSymbol = @"₽";
 NSString *const ZPPLogoImageName = @"zpIcon";
 
+NSString *const ZPPSMSAppID = @"cfc26fd6-c3a9-59a4-bd33-04834a0a8bc7";
+
 

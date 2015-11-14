@@ -13,7 +13,11 @@
 @interface ZPPRegistrationCodeInputVC : ZPPRegistrationBaseVC
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomSuperviewConstraint;
 @property (weak, nonatomic) IBOutlet UITextField *codeTextField;
+@property (weak, nonatomic) IBOutlet UIButton *againCodeButton;
 
--(void)setUser:(ZPPUser *)user;
+- (void)setUser:(ZPPUser *)user;
+- (void)setCode:(NSString *)code;
+
+
 
 @end

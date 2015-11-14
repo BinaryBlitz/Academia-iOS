@@ -202,16 +202,19 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
                                                             NSArray *stuff) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (strongSelf) {
-        NSArray *newControllers = [strongSelf dishControllersFromArr:dishes];
-        ZPPAnotherProductsTVC *stuffTVC = [strongSelf generateAnotherProductsVC:stuff];
-        stuffTVC.productDelegate = strongSelf;
+            NSArray *newControllers = [strongSelf dishControllersFromArr:dishes];
+            ZPPAnotherProductsTVC *stuffTVC = [strongSelf generateAnotherProductsVC:stuff];
+            stuffTVC.productDelegate = strongSelf;
 
-        NSArray *arr = [@[ [strongSelf startScreen] ] arrayByAddingObjectsFromArray:newControllers];
-        arr = [arr arrayByAddingObject:stuffTVC];
-        [strongSelf configureScreensWithArr:arr];
+            NSArray *arr =
+                [@[ [strongSelf startScreen] ] arrayByAddingObjectsFromArray:newControllers];
+            arr = [arr arrayByAddingObject:stuffTVC];
+            [strongSelf configureScreensWithArr:arr];
         }
     } onFailure:^(NSError *error, NSInteger statusCode){
 
+        ZPPMainVC *mvc = (ZPPMainVC *)weakSelf.parentViewController;
+        [mvc showNoInternetScreen];
     }];
     //    [[ZPPServerManager sharedManager] GETDishesOnSuccesOnSuccess:^(NSArray *dishes) {
     //
@@ -289,8 +292,8 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
     self.pageControl.numberOfPages = self.productViewControllers.count;
 
     ZPPProductsBaseTVC *destVC;
-    if(currentIndex<self.productViewControllers.count){
-    destVC = self.productViewControllers[currentIndex];  //[self.viewControllers lastObject];
+    if (currentIndex < self.productViewControllers.count) {
+        destVC = self.productViewControllers[currentIndex];  //[self.viewControllers lastObject];
     }
 
     if (!destVC) {

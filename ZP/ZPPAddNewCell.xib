@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="wLu-rU-boI">
-                        <rect key="frame" x="8" y="23" width="30" height="30"/>
+                        <rect key="frame" x="16" y="23" width="30" height="30"/>
                         <animations/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -30,7 +30,7 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добавить" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVc-DC-vLI">
-                        <rect key="frame" x="46" y="27" width="266" height="20.5"/>
+                        <rect key="frame" x="54" y="27" width="258" height="20.5"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -41,7 +41,7 @@
                 <color key="backgroundColor" red="0.0" green="0.61156106651376152" blue="0.68965022935779818" alpha="0.0" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="wLu-rU-boI" firstAttribute="centerY" secondItem="HEa-gY-Irp" secondAttribute="centerY" id="4sk-83-7RS"/>
-                    <constraint firstItem="wLu-rU-boI" firstAttribute="leading" secondItem="HEa-gY-Irp" secondAttribute="leadingMargin" id="HXj-qA-qBR"/>
+                    <constraint firstItem="wLu-rU-boI" firstAttribute="leading" secondItem="HEa-gY-Irp" secondAttribute="leadingMargin" constant="8" id="HXj-qA-qBR"/>
                     <constraint firstItem="HVc-DC-vLI" firstAttribute="trailing" secondItem="HEa-gY-Irp" secondAttribute="trailingMargin" id="YYY-4E-nck"/>
                     <constraint firstItem="HVc-DC-vLI" firstAttribute="leading" secondItem="wLu-rU-boI" secondAttribute="trailing" constant="8" id="rI3-EH-4CF"/>
                     <constraint firstItem="HVc-DC-vLI" firstAttribute="centerY" secondItem="HEa-gY-Irp" secondAttribute="centerY" id="wlI-Hu-rte"/>
