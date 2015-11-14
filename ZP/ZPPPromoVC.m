@@ -9,7 +9,10 @@
 #import "ZPPPromoVC.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
+#import "UIViewController+ZPPValidationCategory.h"
 #import "UIButton+ZPPButtonCategory.h"
+#import "UIView+UIViewCategory.h"
+#import "ZPPServerManager+ZPPPromoCodeManager.h"
 
 #import "ZPPConsts.h"
 
@@ -27,6 +30,8 @@
 
     self.bottomConstraint = self.bottomConstr;
     self.mainTF = self.codeTextField;
+
+    [self.codeTextField makeBordered];
 
     [self.doneButton addTarget:self
                         action:@selector(confirmCode:)
@@ -46,16 +51,29 @@
 #pragma marl - actions
 
 - (void)confirmCode:(UIButton *)sender {
+    if (![self checkPromoCodeTextField:self.codeTextField]) {
+        [self accentTextField:self.codeTextField];
+        [self showWarningWithText:ZPPPromoCodeErrorMessage];
+    }
+
     [sender startIndicating];
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)),
-                   dispatch_get_main_queue(), ^{
-                       [sender stopIndication];
+    [[ZPPServerManager sharedManager] POSTPromocCode:self.codeTextField.text
+        onSuccess:^{
+            [sender stopIndication];
+            [self showSuccessWithText:@"Код добавлен"];
 
-                       [self showSuccessWithText:@"Код добавлен"];
-                       
-                       self.codeTextField.text = @"";
-                   });
+            self.codeTextField.text = @"";
+        }
+        onFailure:^(NSError *error, NSInteger statusCode) {
+            [sender stopIndication];
+            [self showWarningWithText:ZPPWrongCardNumber];
+        }];
+}
+
+#pragma mark - support
+
+- (BOOL)checkCode {
 }
 
 /*

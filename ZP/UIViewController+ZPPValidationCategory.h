@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 extern NSString *const ZPPPasswordErrMessage;
+extern NSString *const ZPPPromoCodeErrorMessage;
 
 @class REFormattedNumberField;
 
@@ -20,6 +21,8 @@ extern NSString *const ZPPPasswordErrMessage;
 - (BOOL)checkNameTextField:(UITextField *)textField;
 - (BOOL)checkPasswordTextFied:(UITextField *)textField;
 - (BOOL)checkPasswordEqualty:(UITextField *)firstField second:(UITextField *)secondTextField;
+
+- (BOOL)checkPromoCodeTextField:(UITextField *)textField;
 
 - (void)accentTextField:(UITextField *)tf;
 @end
