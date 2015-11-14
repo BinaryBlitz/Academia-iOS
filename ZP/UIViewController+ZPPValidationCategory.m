@@ -10,14 +10,14 @@
 #import <REFormattedNumberField.h>
 #import "UIView+UIViewCategory.h"
 
-//static NSString *ZPPNameErrMessage = @"Введите имя";
-//static NSString *ZPPSurnameErrMaessage = @"Введите фамилию";
-//static NSString *ZPPEmailErrMessage = @"Введите e-mail";
-NSString *const ZPPPasswordErrMessage = @"Введите пароль длинне 5 символов";
-//static NSString *ZPPPaswordEqualtyErrMessage = @"Пароли должны совпадать";
-
-
-
+// static NSString *ZPPNameErrMessage = @"Введите имя";
+// static NSString *ZPPSurnameErrMaessage = @"Введите фамилию";
+// static NSString *ZPPEmailErrMessage = @"Введите e-mail";
+NSString *const ZPPPasswordErrMessage = @"Введите пароль длинне 5 "
+                                        @"символов";
+NSString *const ZPPPromoCodeErrorMessage = @"Код должен быть длиннее 3 "
+                                           @"символов";
+// static NSString *ZPPPaswordEqualtyErrMessage = @"Пароли должны совпадать";
 
 @implementation UIViewController (ZPPValidationCategory)
 - (BOOL)checkPhoneTextField:(REFormattedNumberField *)textField {
@@ -51,7 +51,9 @@ NSString *const ZPPPasswordErrMessage = @"Введите пароль длинн
     return [firstField.text isEqualToString:secondTextField.text];
 }
 
-
+- (BOOL)checkPromoCodeTextField:(UITextField *)textField {
+    return textField.text.length > 3;
+}
 
 - (void)accentTextField:(UITextField *)tf {
     [tf shakeView];
