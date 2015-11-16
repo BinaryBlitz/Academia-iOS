@@ -7,6 +7,14 @@
 //
 
 #import "ZPPServerManager.h"
+
+typedef NS_ENUM(NSInteger, ZPPPasswordChangeStatus) {
+    ZPPPasswordChangeStatusOldWrong,
+    ZPPPasswordChangeStatusNewWrong,
+    ZPPPasswordChangeStatusSuccess,
+    ZPPPasswordChangeStatusUndefined
+};
+
 @class ZPPUser;
 @interface ZPPServerManager (ZPPRegistration)
 
@@ -25,5 +33,10 @@
                       onSuccess:(void (^)())success
                       onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
+- (void)PATChPasswordOldPassword:(NSString *)oldPassword
+                     newPassword:(NSString *)userNewPassword
+                      completion:(void (^)(ZPPPasswordChangeStatus status,
+                                           NSError *err,
+                                           NSInteger stausCode))completion;
 
 @end

@@ -10,6 +10,7 @@
 
 extern NSString *const ZPPPasswordErrMessage;
 extern NSString *const ZPPPromoCodeErrorMessage;
+extern NSString *const ZPPPaswordEqualtyErrMessage;
 
 @class REFormattedNumberField;
 
