@@ -26,8 +26,7 @@
                     subtitle:(NSString *)subtitle
                        descr:(NSString *)descr
                        price:(NSNumber *)price
-                      imgURL:(NSURL *)imgUrl
-{
+                      imgURL:(NSURL *)imgUrl {
     self = [super init];
     if (self) {
         self.name = name;
@@ -56,6 +55,10 @@
 
 - (NSInteger)priceOfItem {
     return self.price.integerValue;
+}
+
+- (NSString *)identifierOfItem {
+    return [NSString stringWithFormat:@"%@", self.lunchIdentifier];
 }
 
 @end

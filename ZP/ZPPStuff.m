@@ -43,4 +43,8 @@
     return self.price.integerValue;
 }
 
+- (NSString *)identifierOfItem {
+    return [NSString stringWithFormat:@"%@",self.stufId];
+}
+
 @end

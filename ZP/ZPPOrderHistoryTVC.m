@@ -17,7 +17,8 @@
 
 #import "ZPPDish.h"
 
-//#import "ZPPOrderTVC.h"
+#import "ZPPServerManager+ZPPOrderServerManager.h"
+
 #import "ZPPOrderHistoryOrderTVC.h"
 #import "ZPPOrderTotalCell.h"
 
@@ -39,35 +40,41 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+    [self registrateCells];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view
-    // controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
     self.tableView.tableFooterView = [[UIView alloc] init];
 
-    [self registrateCells];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController presentTransparentNavigationBar];
     [self addCustomCloseButton];
+
     [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
-    //[self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self
+                            action:@selector(loadOrders)
+                  forControlEvents:UIControlEventValueChanged];
+
+    self.tableView.backgroundView.layer.zPosition -= 1;
+
+    //   [self.tableView bringSubviewToFront:self.refreshControl];
+
     [self setCustomNavigationBackButtonWithTransition];
+    
+    [self loadOrders];
 }
 
 - (void)configureWithOrder:(ZPPOrder *)order {
     //    ZPPOrder *secondOrder = [order copy];
     //    ZPPOrder *thirdOrder = [secondOrder copy];
 
-    self.orders = [self testOrders];  //@[ order, order, order ];
-    [self.tableView reloadData];
+    //    self.orders = [self testOrders];  //@[ order, order, order ];
+    //    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -126,55 +133,27 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
     [self.navigationController pushViewController:orderTVC animated:YES];
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+- (void)loadOrders {
+    [self.refreshControl beginRefreshing];
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView
-commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath
-*)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath]
-withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new
-row to the table view
+    if (self.tableView.contentOffset.y == 0) {
+        [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y -
+                                                            self.refreshControl.frame.size.height)
+                                animated:YES];
     }
-}
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
-toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+    [[ZPPServerManager sharedManager] GETOldOrdersOnSuccess:^(NSArray *orders) {
+        [self.refreshControl endRefreshing];
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+        self.orders = orders;
 
-/*
-#pragma mark - Navigation
+        [self.tableView reloadData];
+    } onFailure:^(NSError *error, NSInteger statusCode) {
+        [self.refreshControl endRefreshing];
 
-// In a storyboard-based application, you will often want to do a little preparation before
-navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+        [self showWarningWithText:ZPPNoInternetConnectionMessage];
+    }];
 }
-*/
 
 #pragma mark - support
 
@@ -188,55 +167,55 @@ navigation
 
 #pragma mark - tests
 
-- (NSArray *)testOrders {
-    ZPPOrder *order = [[ZPPOrder alloc] init];
-    ZPPOrder *secondOrder = [[ZPPOrder alloc] init];
-    ZPPOrder *thirdOrder = [[ZPPOrder alloc] init];
-
-    ZPPDish *d1 = [[ZPPDish alloc] initWithName:@"Super meal"
-                                         dishID:nil
-                                       subtitle:nil
-                                dishDescription:nil
-                                          price:@(499)
-                                         imgURL:nil
-                                    ingridients:nil];
-    ZPPDish *d2 = [[ZPPDish alloc] initWithName:@"Diet meal"
-                                         dishID:nil
-                                       subtitle:nil
-                                dishDescription:nil
-                                          price:@(399)
-                                         imgURL:nil
-                                    ingridients:nil];
-    ZPPDish *d3 = [[ZPPDish alloc] initWithName:@"Hamburger"
-                                         dishID:nil
-                                       subtitle:nil
-                                dishDescription:nil
-                                          price:@(200)
-                                         imgURL:nil
-                                    ingridients:nil];
-    ZPPDish *d4 = [[ZPPDish alloc] initWithName:@"Salad"
-                                         dishID:nil
-                                       subtitle:nil
-                                dishDescription:nil
-                                          price:@(200)
-                                         imgURL:nil
-                                    ingridients:nil];
-
-    [order addItem:d1];
-    [order addItem:d1];
-    [order addItem:d4];
-    [order addItem:d2];
-
-    [secondOrder addItem:d4];
-    [secondOrder addItem:d1];
-    [secondOrder addItem:d3];
-    [secondOrder addItem:d3];
-
-    [thirdOrder addItem:d3];
-    [thirdOrder addItem:d2];
-    [thirdOrder addItem:d2];
-
-    return @[ order, secondOrder, thirdOrder ];
-}
+//- (NSArray *)testOrders {
+//    ZPPOrder *order = [[ZPPOrder alloc] init];
+//    ZPPOrder *secondOrder = [[ZPPOrder alloc] init];
+//    ZPPOrder *thirdOrder = [[ZPPOrder alloc] init];
+//
+//    ZPPDish *d1 = [[ZPPDish alloc] initWithName:@"Super meal"
+//                                         dishID:nil
+//                                       subtitle:nil
+//                                dishDescription:nil
+//                                          price:@(499)
+//                                         imgURL:nil
+//                                    ingridients:nil];
+//    ZPPDish *d2 = [[ZPPDish alloc] initWithName:@"Diet meal"
+//                                         dishID:nil
+//                                       subtitle:nil
+//                                dishDescription:nil
+//                                          price:@(399)
+//                                         imgURL:nil
+//                                    ingridients:nil];
+//    ZPPDish *d3 = [[ZPPDish alloc] initWithName:@"Hamburger"
+//                                         dishID:nil
+//                                       subtitle:nil
+//                                dishDescription:nil
+//                                          price:@(200)
+//                                         imgURL:nil
+//                                    ingridients:nil];
+//    ZPPDish *d4 = [[ZPPDish alloc] initWithName:@"Salad"
+//                                         dishID:nil
+//                                       subtitle:nil
+//                                dishDescription:nil
+//                                          price:@(200)
+//                                         imgURL:nil
+//                                    ingridients:nil];
+//
+//    [order addItem:d1];
+//    [order addItem:d1];
+//    [order addItem:d4];
+//    [order addItem:d2];
+//
+//    [secondOrder addItem:d4];
+//    [secondOrder addItem:d1];
+//    [secondOrder addItem:d3];
+//    [secondOrder addItem:d3];
+//
+//    [thirdOrder addItem:d3];
+//    [thirdOrder addItem:d2];
+//    [thirdOrder addItem:d2];
+//
+//    return @[ order, secondOrder, thirdOrder ];
+//}
 
 @end

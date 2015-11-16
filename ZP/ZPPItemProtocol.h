@@ -12,6 +12,8 @@
 
 - (NSInteger)priceOfItem;
 - (NSString *)nameOfItem;
+- (NSString *)identifierOfItem;
+
 
 
 @end
