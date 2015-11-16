@@ -17,7 +17,9 @@ NSString *const ZPPPasswordErrMessage = @"Введите пароль длинн
                                         @"символов";
 NSString *const ZPPPromoCodeErrorMessage = @"Код должен быть длиннее 3 "
                                            @"символов";
-// static NSString *ZPPPaswordEqualtyErrMessage = @"Пароли должны совпадать";
+
+
+NSString *const ZPPPaswordEqualtyErrMessage = @"Пароли должны совпадать";
 
 @implementation UIViewController (ZPPValidationCategory)
 - (BOOL)checkPhoneTextField:(REFormattedNumberField *)textField {

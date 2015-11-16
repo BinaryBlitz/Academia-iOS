@@ -13,6 +13,8 @@
 #import "UIView+UIViewCategory.h"
 #import "UIButton+ZPPButtonCategory.h"
 
+#import "ZPPServerManager+ZPPRegistration.h"
+
 #import "ZPPConsts.h"
 
 @implementation ZPPChangePasswordVC
@@ -35,9 +37,22 @@
 }
 
 - (BOOL)checkAll {
+    if (![self checkPasswordTextFied:self.oldPasswordTextField]) {
+        [self accentTextField:self.oldPasswordTextField];
+        [self showWarningWithText:ZPPPasswordErrMessage];
+        return NO;
+    }
+
     if (![self checkPasswordTextFied:self.userNewPasswordTextField]) {
         [self accentTextField:self.userNewPasswordTextField];
         [self showWarningWithText:ZPPPasswordErrMessage];
+        return NO;
+    }
+
+    if (![self checkPasswordEqualty:self.userNewPasswordTextField
+                             second:self.againPasswordTextField]) {
+        [self accentTextField:self.againPasswordTextField];
+        [self showWarningWithText:ZPPPaswordEqualtyErrMessage];
         return NO;
     }
 
@@ -48,12 +63,37 @@
     if ([self checkAll]) {
         [self.doneButton startIndicating];
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)),
-                       dispatch_get_main_queue(), ^{
-                           [self.doneButton stopIndication];
-                           [self showSuccessWithText:@"Пароль обновлен!"];
+        [[ZPPServerManager sharedManager]
+            PATChPasswordOldPassword:self.oldPasswordTextField.text
+                         newPassword:self.userNewPasswordTextField.text
+                          completion:^(ZPPPasswordChangeStatus status, NSError *err,
+                                       NSInteger statusCode) {
+                              [self.doneButton stopIndication];
+                         //     [self clearFields];
 
-                       });
+                              switch (status) {
+                                  case ZPPPasswordChangeStatusSuccess:
+                                      [self showSuccessWithText:@"Пароль " @"обновлен" @"!"];
+                                      [self clearFields];
+                                      break;
+                                  case ZPPPasswordChangeStatusOldWrong:
+                                      [self showWarningWithText:@"Неверный старый " @"пароль"];
+                                      break;
+                                  case ZPPPasswordChangeStatusNewWrong:
+                                      [self showWarningWithText:@"Новый " @"пароль не "
+                                            @"подходит, " @"попробуйте "
+                                            @"другой " @"пароль"];
+                                      break;
+
+                                  case ZPPPasswordChangeStatusUndefined:
+                                      [self showWarningWithText:ZPPNoInternetConnectionMessage];
+                                      break;
+
+                                  default:
+                                      break;
+                              }
+
+                          }];
     }
 }
 
@@ -63,6 +103,12 @@
     [self.oldPasswordTextField makeBordered];
     [self.userNewPasswordTextField makeBordered];
     [self.againPasswordTextField makeBordered];
+}
+
+- (void)clearFields {
+    self.oldPasswordTextField.text = @"";
+    self.userNewPasswordTextField.text = @"";
+    self.againPasswordTextField.text = @"";
 }
 
 @end
