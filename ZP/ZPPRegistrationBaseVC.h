@@ -10,7 +10,7 @@
 
 @interface ZPPRegistrationBaseVC : UIViewController
 
-@property (weak, nonatomic) UITextField *mainTF;
+@property (weak, nonatomic) UIView *mainTF;
 @property (weak, nonatomic) NSLayoutConstraint *bottomConstraint;
 
 @end

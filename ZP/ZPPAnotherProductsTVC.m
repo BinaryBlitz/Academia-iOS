@@ -91,6 +91,10 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
     [cell.addProductButton addTarget:self
                               action:@selector(addToCard:)
                     forControlEvents:UIControlEventTouchUpInside];
+    
+//    self.
+//    
+//    cell setBadgeCount:<#(NSInteger)#>
 
     return cell;
 }

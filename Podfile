@@ -1,4 +1,4 @@
-platform :ios, "7.0"
+platform :ios, "8.0"
 
 pod "AFNetworking"
 pod 'CocoaLumberjack'
@@ -12,6 +12,8 @@ pod 'LoremIpsum'
 pod 'VBFPopFlatButton'
 pod 'REFormattedNumberField'
 pod 'MBProgressHUD'
+pod "RMDateSelectionViewController", "~> 2.0.3"
+
 
 pod 'INTULocationManager'
 

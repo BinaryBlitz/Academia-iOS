@@ -22,7 +22,7 @@
 }
 
 - (void)configureWithOrderItem:(ZPPOrderItem *)orderItem {
-    self.countLabel.text = [NSString stringWithFormat:@"%@X", @(orderItem.count)];
+    self.countLabel.text = [NSString stringWithFormat:@"%@ X", @(orderItem.count)];
     self.nameLabel.text = [orderItem.item nameOfItem];
     self.priceLabel.text = [NSString stringWithFormat:@"%@₽", @([orderItem totalPrice])];
 }
