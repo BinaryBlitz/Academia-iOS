@@ -15,4 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addProductButton;
 
+- (void)setBadgeCount:(NSInteger )badgeCount;
+
 @end
