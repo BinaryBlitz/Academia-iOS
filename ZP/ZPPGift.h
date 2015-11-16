@@ -17,9 +17,10 @@
 
 - (instancetype)initWith:(NSString *)name
              description:(NSString *)giftDescription
-                   price:(NSNumber *)price;
+                   price:(NSNumber *)price
+              identifier:(NSNumber *)giftIdentifier;
 
-- (NSInteger)priceOfItem;
-- (NSString *)nameOfItem;
+//- (NSInteger)priceOfItem;
+//- (NSString *)nameOfItem;
 
 @end

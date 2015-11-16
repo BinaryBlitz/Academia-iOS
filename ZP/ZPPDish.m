@@ -56,8 +56,12 @@
 - (NSInteger)priceOfItem {
     return [self.price integerValue];
 }
-- (NSInteger)nameOfItem {
+- (NSString *)nameOfItem {
     return self.name;
+}
+
+-(NSString *)identifierOfItem {
+    return self.dishID;
 }
 
 @end

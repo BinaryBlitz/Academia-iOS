@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ZPPItemProtocol.h"
 
-@interface ZPPLunch : UIViewController <ZPPItemProtocol>
+@interface ZPPLunch : NSObject <ZPPItemProtocol>
 
 @property (strong, nonatomic, readonly) NSString *name;
 @property (strong, nonatomic, readonly) NSNumber *lunchIdentifier;

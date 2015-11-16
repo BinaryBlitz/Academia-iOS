@@ -129,6 +129,10 @@
 		19DADF571BF64A0B007D9DF2 /* ZPPOrderResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF561BF64A0B007D9DF2 /* ZPPOrderResultVC.m */; };
 		19DADF5A1BF658DD007D9DF2 /* ZPPSmsVerificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF591BF658DD007D9DF2 /* ZPPSmsVerificationManager.m */; };
 		19DADF5F1BF75E46007D9DF2 /* ZPPServerManager+ZPPPromoCodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF5E1BF75E46007D9DF2 /* ZPPServerManager+ZPPPromoCodeManager.m */; };
+		19DADF631BF760ED007D9DF2 /* ZPPServerManager+ZPPOrderServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF621BF760ED007D9DF2 /* ZPPServerManager+ZPPOrderServerManager.m */; };
+		19DADF671BF762F8007D9DF2 /* ZPPOrderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF661BF762F8007D9DF2 /* ZPPOrderHelper.m */; };
+		19DADF6B1BF76807007D9DF2 /* ZPPGiftHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF6A1BF76807007D9DF2 /* ZPPGiftHelper.m */; };
+		19DADF6F1BF768BC007D9DF2 /* ZPPServerManager+ZPPGiftServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF6E1BF768BC007D9DF2 /* ZPPServerManager+ZPPGiftServerManager.m */; };
 		19E6D4161BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E6D4151BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m */; };
 		19EC24A51BC65E3D00C333F6 /* ZPPProductAnotherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19EC24A41BC65E3D00C333F6 /* ZPPProductAnotherCell.m */; };
 		19EC24A81BC6601000C333F6 /* ZPPAnotherProductsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19EC24A71BC6601000C333F6 /* ZPPAnotherProductsTVC.m */; };
@@ -362,6 +366,14 @@
 		19DADF591BF658DD007D9DF2 /* ZPPSmsVerificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPSmsVerificationManager.m; sourceTree = "<group>"; };
 		19DADF5D1BF75E46007D9DF2 /* ZPPServerManager+ZPPPromoCodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZPPServerManager+ZPPPromoCodeManager.h"; sourceTree = "<group>"; };
 		19DADF5E1BF75E46007D9DF2 /* ZPPServerManager+ZPPPromoCodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZPPServerManager+ZPPPromoCodeManager.m"; sourceTree = "<group>"; };
+		19DADF611BF760ED007D9DF2 /* ZPPServerManager+ZPPOrderServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZPPServerManager+ZPPOrderServerManager.h"; sourceTree = "<group>"; };
+		19DADF621BF760ED007D9DF2 /* ZPPServerManager+ZPPOrderServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZPPServerManager+ZPPOrderServerManager.m"; sourceTree = "<group>"; };
+		19DADF651BF762F8007D9DF2 /* ZPPOrderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPOrderHelper.h; sourceTree = "<group>"; };
+		19DADF661BF762F8007D9DF2 /* ZPPOrderHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPOrderHelper.m; sourceTree = "<group>"; };
+		19DADF691BF76807007D9DF2 /* ZPPGiftHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPGiftHelper.h; sourceTree = "<group>"; };
+		19DADF6A1BF76807007D9DF2 /* ZPPGiftHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPGiftHelper.m; sourceTree = "<group>"; };
+		19DADF6D1BF768BC007D9DF2 /* ZPPServerManager+ZPPGiftServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZPPServerManager+ZPPGiftServerManager.h"; sourceTree = "<group>"; };
+		19DADF6E1BF768BC007D9DF2 /* ZPPServerManager+ZPPGiftServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZPPServerManager+ZPPGiftServerManager.m"; sourceTree = "<group>"; };
 		19E6D4141BC66E5200DF6EF9 /* ZPPProductsBaseTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProductsBaseTVC.h; sourceTree = "<group>"; };
 		19E6D4151BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPProductsBaseTVC.m; sourceTree = "<group>"; };
 		19EC24A31BC65E3D00C333F6 /* ZPPProductAnotherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProductAnotherCell.h; sourceTree = "<group>"; };
@@ -756,6 +768,8 @@
 		191D7DEE1BD5695200DBAFC4 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				19DADF6C1BF76898007D9DF2 /* gifts */,
+				19DADF601BF760D5007D9DF2 /* order */,
 				19DADF5C1BF75E16007D9DF2 /* promocode */,
 				19DADF3D1BF368AE007D9DF2 /* map */,
 				191D7DF01BD5699500DBAFC4 /* base */,
@@ -824,6 +838,7 @@
 		1942354A1BE9337D0014BD9A /* gift */ = {
 			isa = PBXGroup;
 			children = (
+				19DADF681BF7678C007D9DF2 /* helper */,
 				1942354B1BE933E30014BD9A /* ZPPGift.h */,
 				1942354C1BE933E30014BD9A /* ZPPGift.m */,
 			);
@@ -989,6 +1004,7 @@
 		1986356A1BDFD0260070E3F7 /* order */ = {
 			isa = PBXGroup;
 			children = (
+				19DADF641BF762CA007D9DF2 /* helper */,
 				1986356B1BDFD04B0070E3F7 /* ZPPOrder.h */,
 				1986356C1BDFD04B0070E3F7 /* ZPPOrder.m */,
 				1986356E1BDFD1950070E3F7 /* ZPPOrderItem.h */,
@@ -1209,6 +1225,42 @@
 				19DADF5E1BF75E46007D9DF2 /* ZPPServerManager+ZPPPromoCodeManager.m */,
 			);
 			name = promocode;
+			sourceTree = "<group>";
+		};
+		19DADF601BF760D5007D9DF2 /* order */ = {
+			isa = PBXGroup;
+			children = (
+				19DADF611BF760ED007D9DF2 /* ZPPServerManager+ZPPOrderServerManager.h */,
+				19DADF621BF760ED007D9DF2 /* ZPPServerManager+ZPPOrderServerManager.m */,
+			);
+			name = order;
+			sourceTree = "<group>";
+		};
+		19DADF641BF762CA007D9DF2 /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				19DADF651BF762F8007D9DF2 /* ZPPOrderHelper.h */,
+				19DADF661BF762F8007D9DF2 /* ZPPOrderHelper.m */,
+			);
+			name = helper;
+			sourceTree = "<group>";
+		};
+		19DADF681BF7678C007D9DF2 /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				19DADF691BF76807007D9DF2 /* ZPPGiftHelper.h */,
+				19DADF6A1BF76807007D9DF2 /* ZPPGiftHelper.m */,
+			);
+			name = helper;
+			sourceTree = "<group>";
+		};
+		19DADF6C1BF76898007D9DF2 /* gifts */ = {
+			isa = PBXGroup;
+			children = (
+				19DADF6D1BF768BC007D9DF2 /* ZPPServerManager+ZPPGiftServerManager.h */,
+				19DADF6E1BF768BC007D9DF2 /* ZPPServerManager+ZPPGiftServerManager.m */,
+			);
+			name = gifts;
 			sourceTree = "<group>";
 		};
 		19E6D4171BC66F1C00DF6EF9 /* base */ = {
@@ -1480,9 +1532,11 @@
 			files = (
 				1948C51C1BEB5CCE00084BC8 /* ZPPOrderTotalCell.m in Sources */,
 				1948C5321BEBB3B500084BC8 /* ZPPCustomTextField.m in Sources */,
+				19DADF671BF762F8007D9DF2 /* ZPPOrderHelper.m in Sources */,
 				191D7DFB1BD5768900DBAFC4 /* UIButton+ZPPButtonCategory.m in Sources */,
 				198A5C081BD5A90B00710A36 /* ZPPMainMenuView.m in Sources */,
 				1984EE451BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.m in Sources */,
+				19DADF6B1BF76807007D9DF2 /* ZPPGiftHelper.m in Sources */,
 				198A5C141BD5B6D900710A36 /* ZPPIngridientHelper.m in Sources */,
 				1984EE2D1BD123A8001D25D5 /* ZPPRegistrationCodeInputVC.m in Sources */,
 				190E477D1BC076D500AC5379 /* ZPPProductAboutCell.m in Sources */,
@@ -1493,6 +1547,7 @@
 				19DADF5F1BF75E46007D9DF2 /* ZPPServerManager+ZPPPromoCodeManager.m in Sources */,
 				1907C7491BF0A7AA003BA62E /* ZPPAddressHelper.m in Sources */,
 				198635691BDFB6A00070E3F7 /* ZPPHelpVC.m in Sources */,
+				19DADF6F1BF768BC007D9DF2 /* ZPPServerManager+ZPPGiftServerManager.m in Sources */,
 				194617F71BD3DBFC001D13A3 /* ZPPRegistrationSuccesVC.m in Sources */,
 				190F9C761BE286BA0032E14D /* ZPPAuthenticationVC.m in Sources */,
 				19014A561BC034CF001E0D77 /* ZP.xcdatamodeld in Sources */,
@@ -1538,6 +1593,7 @@
 				19DADF431BF5CB03007D9DF2 /* ZPPMapSearcher.m in Sources */,
 				1948C53B1BEC17E600084BC8 /* ZPPLunchHelper.m in Sources */,
 				1948C52E1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.m in Sources */,
+				19DADF631BF760ED007D9DF2 /* ZPPServerManager+ZPPOrderServerManager.m in Sources */,
 				1984EE301BD12CD9001D25D5 /* ZPPRegistrationOtherInputVC.m in Sources */,
 				19EC24A81BC6601000C333F6 /* ZPPAnotherProductsTVC.m in Sources */,
 				19D242651BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.m in Sources */,

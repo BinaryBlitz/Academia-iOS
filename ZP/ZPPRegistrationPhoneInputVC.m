@@ -76,7 +76,7 @@ static NSString *ZPPPhoneWarningMessage = @"Формат номера непра
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    //  [self.phoneNumberTextFiled becomeFirstResponder];
+    [self.phoneNumberTextFiled becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
