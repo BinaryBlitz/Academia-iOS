@@ -15,15 +15,17 @@
 #import "ZPPSmsVerificationManager.h"
 #import "ZPPServerManager.h"
 
+#import "ZPPConsts.h"
+
 static NSString *ZPPShowRegistrationOtherScreenSegueIdentifier =
     @"ZPPShowRegistrationOtherScreenSegueIdentifier";
 
 static NSString *ZPPCodeWarningMessage = @"Неправильный код";
 @interface ZPPRegistrationCodeInputVC ()  //<UITextFieldDelegate>
 
-@property (strong, nonatomic) ZPPUser *user;
+//@property (strong, nonatomic) ZPPUser *user;
 
-@property (strong, nonatomic) NSString *code;
+//@property (strong, nonatomic) NSString *code;
 @end
 
 @implementation ZPPRegistrationCodeInputVC
@@ -34,6 +36,8 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
     if ([[ZPPSmsVerificationManager shared] canSendAgain]) {
         [[ZPPSmsVerificationManager shared] startTimer];
     }
+    
+    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
     [self setButtonTextForTime:[ZPPSmsVerificationManager shared].currentTime];
     __weak typeof(self) weakSelf = self;
@@ -79,13 +83,13 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setUser:(ZPPUser *)user {
-    _user = user;
-}
+//- (void)setUser:(ZPPUser *)user {
+//    _user = user;
+//}
 
-- (void)setCode:(NSString *)code {
-    _code = code;
-}
+//- (void)setCode:(NSString *)code {
+//    _code = code;
+//}
 
 #pragma mark - action
 

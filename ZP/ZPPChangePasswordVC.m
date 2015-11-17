@@ -37,26 +37,57 @@
 }
 
 - (BOOL)checkAll {
+//    if (![self checkPasswordTextFied:self.oldPasswordTextField]) {
+//        [self accentTextField:self.oldPasswordTextField];
+//        [self showWarningWithText:ZPPPasswordErrMessage];
+//        return NO;
+//    }
+//
+//    if (![self checkPasswordTextFied:self.userNewPasswordTextField]) {
+//        [self accentTextField:self.userNewPasswordTextField];
+//        [self showWarningWithText:ZPPPasswordErrMessage];
+//        return NO;
+//    }
+//
+//    if (![self checkPasswordEqualty:self.userNewPasswordTextField
+//                             second:self.againPasswordTextField]) {
+//        [self accentTextField:self.againPasswordTextField];
+//        [self showWarningWithText:ZPPPaswordEqualtyErrMessage];
+//        return NO;
+//    }
+//
+//    return YES;
+    
+    return [self checkOldPassword] && [self checkNewPassword];
+}
+
+- (BOOL)checkOldPassword {
     if (![self checkPasswordTextFied:self.oldPasswordTextField]) {
         [self accentTextField:self.oldPasswordTextField];
         [self showWarningWithText:ZPPPasswordErrMessage];
         return NO;
     }
+    return YES;
+}
 
+
+- (BOOL)checkNewPassword {
+    
     if (![self checkPasswordTextFied:self.userNewPasswordTextField]) {
         [self accentTextField:self.userNewPasswordTextField];
         [self showWarningWithText:ZPPPasswordErrMessage];
         return NO;
     }
-
+    
     if (![self checkPasswordEqualty:self.userNewPasswordTextField
                              second:self.againPasswordTextField]) {
         [self accentTextField:self.againPasswordTextField];
         [self showWarningWithText:ZPPPaswordEqualtyErrMessage];
         return NO;
     }
-
+    
     return YES;
+    
 }
 
 - (void)confirmNewPassword:(UIButton *)sender {

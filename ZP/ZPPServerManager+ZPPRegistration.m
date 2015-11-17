@@ -130,4 +130,30 @@
                    });
 }
 
+// redo!
+- (void)checkUserWithPhoneNumber:(NSString *)phoneNumber
+                      completion:(void (^)(ZPPUserStatus status, NSError *err, NSInteger stausCode))
+                                     completion {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)),
+                   dispatch_get_main_queue(), ^{
+
+                       if (completion) {
+                           completion(arc4random() % 3, nil, 200);
+                       }
+                   });
+}
+
+- (void)renewPasswordWithNumber:(NSString *)number
+                           code:(NSString *)code
+                       password:(NSString *)password
+                      onSuccess:(void (^)())success
+                      onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)),
+                   dispatch_get_main_queue(), ^{
+                       if (success) {
+                           success();
+                       }
+                   });
+}
+
 @end

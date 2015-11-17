@@ -110,6 +110,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 }
 
 - (void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position {
+    [self.addresTextField resignFirstResponder];
     [[LMGeocoder sharedInstance] reverseGeocodeCoordinate:position.target
                                                   service:kLMGeocoderGoogleService
                                         completionHandler:^(NSArray *results, NSError *error) {
@@ -122,6 +123,10 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
                                                 self.addresTextField.text = [adr formatedDescr];
                                             }
                                         }];
+}
+
+- (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
+    [self.addresTextField resignFirstResponder];
 }
 
 #pragma mark - actions

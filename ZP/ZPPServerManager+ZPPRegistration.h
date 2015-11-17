@@ -15,6 +15,12 @@ typedef NS_ENUM(NSInteger, ZPPPasswordChangeStatus) {
     ZPPPasswordChangeStatusUndefined
 };
 
+typedef NS_ENUM(NSInteger, ZPPUserStatus) {
+    ZPPUserStatusExist,
+    ZPPUserStatusNotExist,
+    ZPPUserStatusUndefined
+};
+
 @class ZPPUser;
 @interface ZPPServerManager (ZPPRegistration)
 
@@ -38,5 +44,15 @@ typedef NS_ENUM(NSInteger, ZPPPasswordChangeStatus) {
                       completion:(void (^)(ZPPPasswordChangeStatus status,
                                            NSError *err,
                                            NSInteger stausCode))completion;
+
+- (void)checkUserWithPhoneNumber:(NSString *)phoneNumber
+                      completion:(void (^)(ZPPUserStatus status, NSError *err, NSInteger stausCode))
+                                     completion;
+
+- (void)renewPasswordWithNumber:(NSString *)number
+                           code:(NSString *)code
+                       password:(NSString *)password
+                      onSuccess:(void (^)())success
+                      onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
 @end

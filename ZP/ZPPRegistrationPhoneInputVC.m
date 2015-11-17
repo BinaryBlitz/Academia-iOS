@@ -19,6 +19,8 @@
 #import "ZPPSmsVerificationManager.h"
 #import "ZPPServerManager.h"
 
+#import "ZPPConsts.h"
+
 #import "UIView+UIViewCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "UIViewController+ZPPValidationCategory.h"
@@ -28,11 +30,11 @@ static NSString *ZPPShowNumberEnterScreenSegueIdentifier =
 
 static NSString *ZPPShowAuthenticationSegueIdentifier = @"ZPPShowAuthenticationSegueIdentifier";
 
-static NSString *ZPPPhoneWarningMessage = @"Формат номера неправильный";
+//static NSString *ZPPPhoneWarningMessage = @"Формат номера неправильный";
 
 @interface ZPPRegistrationPhoneInputVC () <UITextFieldDelegate>
 
-@property (strong, nonatomic) NSString *code;
+//@property (strong, nonatomic) NSString *code;
 
 @end
 
@@ -43,6 +45,8 @@ static NSString *ZPPPhoneWarningMessage = @"Формат номера непра
 
     // self.phoneNumberTextFiled.delegate = self;
     // self.phoneNumberTextFiled.tag = 102;
+    
+    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 

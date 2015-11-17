@@ -21,6 +21,8 @@ NSString *const ZPPPromoCodeErrorMessage = @"Код должен быть дли
 
 NSString *const ZPPPaswordEqualtyErrMessage = @"Пароли должны совпадать";
 
+NSString *const ZPPPhoneWarningMessage = @"Формат номера неправильный";
+
 @implementation UIViewController (ZPPValidationCategory)
 - (BOOL)checkPhoneTextField:(REFormattedNumberField *)textField {
     return textField.unformattedText.length == 10;

@@ -15,6 +15,12 @@
 #import "UIButton+ZPPButtonCategory.h"
 #import "ZPPUserManager.h"
 
+#import "ZPPConsts.h"
+
+static NSString *ZPPPasswordRenewPhoneInputVCIdentifier = @"ZPPPasswordRenewPhoneInputVCIdentifier";
+
+static NSString *ZPPWrongEmailOrPasswordMessage = @"E-mail или пароль неверные";
+
 @interface ZPPAuthenticationVC ()
 
 @end
@@ -23,9 +29,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
     self.mainTF = self.emailTextField;
     self.bottomConstraint = self.bottomSuperviewConstraint;
+
+    [self setCustomNavigationBackButtonWithTransition];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -40,6 +50,10 @@
     [self.doneButton addTarget:self
                         action:@selector(doneAction:)
               forControlEvents:UIControlEventTouchUpInside];
+
+    [self.renewPasswordButton addTarget:self
+                                 action:@selector(showPasswordRenew:)
+                       forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)doneAction:(UIButton *)sender {
@@ -56,20 +70,36 @@
     [self authenticateUser];
 }
 
+- (void)showPasswordRenew:(UIButton *)sender {
+    UIViewController *vc = [self.storyboard
+        instantiateViewControllerWithIdentifier:ZPPPasswordRenewPhoneInputVCIdentifier];
+
+    [self.navigationController pushViewController:vc animated:YES];
+
+    //  [self performSegueWithIdentifier:ZPPShowPasswordRenewPhoneInputSegueIdentifier sender:nil];
+}
+
 - (void)authenticateUser {
     [self.doneButton startIndicating];
     [[ZPPServerManager sharedManager] POSTAuthenticateUserWithEmail:self.emailTextField.text
         password:self.passwordTextField.text
         onSuccess:^(ZPPUser *user) {
-            
+
             [self.doneButton stopIndication];
-            
+
             [[ZPPUserManager sharedInstance] setUser:user];
 
             [self dismissViewControllerAnimated:YES completion:nil];
         }
         onFailure:^(NSError *error, NSInteger statusCode) {
+            NSLog(@"%ld", statusCode);
+
             [self.doneButton stopIndication];
+            if (statusCode == 401) {
+                [self showWarningWithText:ZPPWrongEmailOrPasswordMessage];
+            } else {
+                [self showWarningWithText:ZPPNoInternetConnectionMessage];
+            }
             NSLog(@"err");
         }];
 }

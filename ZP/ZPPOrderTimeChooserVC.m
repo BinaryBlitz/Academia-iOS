@@ -21,6 +21,8 @@
 
 #import "NSDate+ZPPDateCategory.h"
 
+static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
+
 @interface ZPPOrderTimeChooserVC ()
 @property (strong, nonatomic) ZPPOrder *order;
 @property (strong, nonatomic) UIImageView *checkMark;
@@ -48,14 +50,21 @@
 }
 
 - (void)makeOrderAction:(UIButton *)sender {
+    UIViewController *vc =
+    [self.storyboard instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
+    
+    [self presentViewController:vc animated:YES completion:^{
+       // [self dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
 
 - (void)orderNowAction:(UIButton *)sender {
     [self addCheckmarkToButton:sender];
+    [self.atTimeButton setTitle:@"КО ВРЕМЕНИ" forState:UIControlStateNormal];
 }
 
 - (void)orderAtTimeAction:(UIButton *)sender {
-    [self addCheckmarkToButton:sender];
+    //  [self addCheckmarkToButton:sender];
     [self showTimePicker];
 }
 
@@ -90,12 +99,13 @@
                        ((UIDatePicker *)controller.contentView).date);
                  NSString *dateStr = [NSString
                      stringWithFormat:
-                         @"К %@.%@ в ", @([d month]),
+                         @"%@.%@ в ", @([d month]),
                          @([d day])];  //[d formattedDateWithStyle:NSDateFormatterShortStyle];
 
                  NSString *resString = [d timeStringfromDate];
                  resString = [dateStr stringByAppendingString:resString];
                  [self.atTimeButton setTitle:resString forState:UIControlStateNormal];
+                 [self addCheckmarkToButton:self.atTimeButton];
              }];
 
     // Create cancel action
@@ -103,6 +113,9 @@
                                                  style:RMActionStyleCancel
                                             andHandler:^(RMActionController *controller) {
                                                 NSLog(@"Date selection was canceled");
+                                              //  [self.atTimeButton setTitle:@"КО ВРЕМЕНИ" forState:UIControlStateNormal];
+                                               // [self.checkMark removeFromSuperview];
+                                            
                                             }];
 
     // Create date selection view controller
@@ -112,8 +125,9 @@
                                                  andCancelAction:cancelAction];
 
     dateSelectionController.datePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:30 * 60];
+    dateSelectionController.datePicker.maximumDate = [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24 * 2];
 
-    dateSelectionController.title = @"Ко времени";
+    dateSelectionController.title = @"Выбор времени доставки";
     dateSelectionController.message = @"Когда вы хотите получить заказ?";
 
     //    RMAction *in15MinAction = [RMAction actionWithTitle:@"15 Min"
@@ -133,6 +147,7 @@
                  NSLog(@"90 Min button tapped");
 
                  [self.atTimeButton setTitle:@"Через 90 минут" forState:UIControlStateNormal];
+                 [self addCheckmarkToButton:self.atTimeButton];
              }];
     in90MinAction.dismissesActionController = YES;
 
@@ -145,6 +160,7 @@
                  NSLog(@"45 Min button tapped");
 
                  [self.atTimeButton setTitle:@"Через 45 минут" forState:UIControlStateNormal];
+                 [self addCheckmarkToButton:self.atTimeButton];
 
              }];
     in45MinAction.dismissesActionController = YES;
@@ -157,6 +173,7 @@
                      [NSDate dateWithTimeIntervalSinceNow:60 * 60];
                  NSLog(@"60 Min button tapped");
                  [self.atTimeButton setTitle:@"Через 60 минут" forState:UIControlStateNormal];
+                 [self addCheckmarkToButton:self.atTimeButton];
 
              }];
     in60MinAction.dismissesActionController = YES;
@@ -197,6 +214,8 @@
         [b addSubview:self.checkMark];
     }
 }
+
+
 
 #pragma mark - lazy
 
