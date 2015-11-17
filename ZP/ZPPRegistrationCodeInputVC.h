@@ -15,8 +15,13 @@
 @property (weak, nonatomic) IBOutlet UITextField *codeTextField;
 @property (weak, nonatomic) IBOutlet UIButton *againCodeButton;
 
-- (void)setUser:(ZPPUser *)user;
-- (void)setCode:(NSString *)code;
+@property (strong, nonatomic) ZPPUser *user;
+@property (strong, nonatomic) NSString *code;
+
+////- (void)setUser:(ZPPUser *)user;
+//- (void)setCode:(NSString *)code;
+
+- (BOOL)checkCode;
 
 
 

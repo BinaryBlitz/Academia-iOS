@@ -36,6 +36,8 @@ static float kZPPButtonOffset = 15.0f;
 @property (assign, nonatomic) BOOL menuShowed;
 
 @property (strong, nonatomic) ZPPOrder *order;
+
+@property (assign, nonatomic) BOOL animationShoved;
 @end
 
 @implementation ZPPMainVC
@@ -47,6 +49,9 @@ static float kZPPButtonOffset = 15.0f;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
+    //  [self showViewWithAnimation];
+
     if ([[ZPPUserManager sharedInstance] checkUser]) {
         [self.view addSubview:self.mainMenu];
         [self.view addSubview:self.buttonView];
@@ -63,6 +68,7 @@ static float kZPPButtonOffset = 15.0f;
             _order = nil;
         }
     }
+    [self showViewWithAnimation];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -313,7 +319,57 @@ navigation
     return vc;
 }
 
-#pragma mark - ordre
+#pragma mark - support
+
+- (void)showViewWithAnimation {
+    if(self.animationShoved){
+        return;
+    }
+    
+    self.animationShoved = YES;
+    
+    CGRect r = [UIScreen mainScreen].bounds;
+    UIView *v = [[UIView alloc] initWithFrame:r];
+    v.backgroundColor = [UIColor whiteColor];
+    
+    CGFloat offset = 24;
+    CGFloat len = r.size.width - offset*2;
+
+    CGRect ivr = CGRectMake(offset, (r.size.height - len) / 2.0, len, len);
+
+    UIImageView *iv = [[UIImageView alloc] initWithFrame:ivr];
+    iv.image = [UIImage imageNamed:@"iconBigColor"];
+    [v addSubview:iv];
+
+    CGRect btmr = CGRectMake(len * 0.272, 0.867 * len, 0.75 * len, 0.13 * len);
+    CGRect upr = CGRectMake(len * 0.13, 0.706 * len, len, 0.13 * len);
+    UIView *bottomView = [[UIView alloc] initWithFrame:btmr];
+    UIView *upperrView = [[UIView alloc] initWithFrame:upr];
+
+    bottomView.backgroundColor = [UIColor whiteColor];
+    upperrView.backgroundColor = [UIColor whiteColor];
+    [iv addSubview:bottomView];
+    [iv addSubview:upperrView];
+
+    [self.view addSubview:v];
+
+    [UIView animateWithDuration:1
+                     animations:^{
+                         CGRect nbtmr = bottomView.frame;
+                         nbtmr.origin.x = len;
+                         bottomView.frame = nbtmr;  // CGRectMake(<#CGFloat x#>, <#CGFloat y#>,
+                                                    // <#CGFloat width#>, <#CGFloat height#>)
+
+                         CGRect nupr = upperrView.frame;
+                         nupr.origin.x = len;
+                         upperrView.frame = nupr;
+
+                     } completion:^(BOOL finished) {
+                         [v removeFromSuperview];
+                     }];
+}
+
+#pragma mark - ordrer
 
 - (void)addItemIntoOrder:(id<ZPPItemProtocol>)item {
     [self.order addItem:item];

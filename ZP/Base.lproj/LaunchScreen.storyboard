@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -18,18 +19,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="load.png" translatesAutoresizingMaskIntoConstraints="NO" id="PXi-HX-vBG">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconBigColorNoWords.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nf0-8Z-0NQ">
+                                <rect key="frame" x="28" y="28" width="544" height="544"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Nf0-8Z-0NQ" secondAttribute="height" multiplier="1:1" id="B9D-MC-wC5"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="PXi-HX-vBG" secondAttribute="bottom" id="ADO-Ww-INn"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="PXi-HX-vBG" secondAttribute="trailing" constant="-20" id="KvN-4v-5A2"/>
-                            <constraint firstItem="PXi-HX-vBG" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="uDn-wM-6ZT"/>
-                            <constraint firstItem="PXi-HX-vBG" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="xQf-f8-JKZ"/>
+                            <constraint firstItem="Nf0-8Z-0NQ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="8" id="Bfo-de-SdQ"/>
+                            <constraint firstItem="Nf0-8Z-0NQ" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" constant="-8" id="Uya-zr-FCN"/>
+                            <constraint firstItem="Nf0-8Z-0NQ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="WNQ-HJ-fCi"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -39,6 +42,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="load.png" width="750" height="1334"/>
+        <image name="iconBigColorNoWords.png" width="605" height="605"/>
     </resources>
 </document>
