@@ -146,6 +146,7 @@
 		19F378F31BFA93BC004827A0 /* ZPPPasswordRenewCodeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378F21BFA93BC004827A0 /* ZPPPasswordRenewCodeInput.m */; };
 		19F378F71BFA9EA0004827A0 /* ZPPDelivery.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378F61BFA9EA0004827A0 /* ZPPDelivery.m */; };
 		19F378FA1BFB14CA004827A0 /* ZPPPasswordRenewPasswordInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378F91BFB14CA004827A0 /* ZPPPasswordRenewPasswordInput.m */; };
+		19F378FE1BFBBDF3004827A0 /* ZPPPaymentWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378FD1BFBBDF3004827A0 /* ZPPPaymentWebController.m */; };
 		45234A6F844FF56D94658C3E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9EEF06E3D3C7DB053DFF64 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -407,6 +408,8 @@
 		19F378F61BFA9EA0004827A0 /* ZPPDelivery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPDelivery.m; sourceTree = "<group>"; };
 		19F378F81BFB14CA004827A0 /* ZPPPasswordRenewPasswordInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPPasswordRenewPasswordInput.h; sourceTree = "<group>"; };
 		19F378F91BFB14CA004827A0 /* ZPPPasswordRenewPasswordInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPPasswordRenewPasswordInput.m; sourceTree = "<group>"; };
+		19F378FC1BFBBDF3004827A0 /* ZPPPaymentWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPPaymentWebController.h; sourceTree = "<group>"; };
+		19F378FD1BFBBDF3004827A0 /* ZPPPaymentWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPPaymentWebController.m; sourceTree = "<group>"; };
 		E6092FFC7B589467189F0B0B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FBF21C48AB60C310F6FAB5FC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FD9EEF06E3D3C7DB053DFF64 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -678,6 +681,7 @@
 		190F9C7A1BE3C0F20032E14D /* order */ = {
 			isa = PBXGroup;
 			children = (
+				19F378FB1BFBBDD5004827A0 /* payment */,
 				190C6BBA1BFA1B6F00533509 /* order time */,
 				19DADF541BF6349A007D9DF2 /* order results */,
 				190F9C7B1BE3C1330032E14D /* ZPPOrderTVC.h */,
@@ -1358,6 +1362,15 @@
 			name = deliveryItem;
 			sourceTree = "<group>";
 		};
+		19F378FB1BFBBDD5004827A0 /* payment */ = {
+			isa = PBXGroup;
+			children = (
+				19F378FC1BFBBDF3004827A0 /* ZPPPaymentWebController.h */,
+				19F378FD1BFBBDF3004827A0 /* ZPPPaymentWebController.m */,
+			);
+			name = payment;
+			sourceTree = "<group>";
+		};
 		B0B07DA9F3702D7E9A2CECBF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1670,6 +1683,7 @@
 				1907C7581BF0C80D003BA62E /* ZPPCardNumberInputCell.m in Sources */,
 				19014A4A1BC034CF001E0D77 /* main.m in Sources */,
 				1907C7551BF0C4B0003BA62E /* ZPPCardInputTVC.m in Sources */,
+				19F378FE1BFBBDF3004827A0 /* ZPPPaymentWebController.m in Sources */,
 				1907C75F1BF0D34C003BA62E /* ZPPCardDateCodeCell.m in Sources */,
 				1907C7401BF08B03003BA62E /* ZPPAddress.m in Sources */,
 				1907C74F1BF0C2AC003BA62E /* ZPPCreditCard.m in Sources */,

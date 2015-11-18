@@ -11,6 +11,8 @@
 
 #import <JSBadgeView.h>
 
+#import "ZPPConsts.h"
+
 @interface ZPPGiftCell ()
 
 @property (strong, nonatomic) JSBadgeView *badgeView;
@@ -21,9 +23,9 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    
-    self.badgeView =
-    [[JSBadgeView alloc] initWithParentView:self.addButton alignment:JSBadgeViewAlignmentTopRight];
+
+    self.badgeView = [[JSBadgeView alloc] initWithParentView:self.addButton
+                                                   alignment:JSBadgeViewAlignmentTopRight];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -35,12 +37,12 @@
 - (void)configureWithGift:(ZPPGift *)gift {
     self.nameLabel.text = gift.name;
     self.giftDescriptionLabel.text = gift.giftDescription;
-    self.priceLabel.text = [NSString stringWithFormat:@"%@",gift.price];
+    self.priceLabel.text = [NSString stringWithFormat:@"%@%@", gift.price, ZPPRoubleSymbol];
 }
 
-- (void)setBadgeCount:(NSInteger )badgeCount {
-    if(badgeCount){
-        self.badgeView.badgeText = [NSString stringWithFormat:@"%@",@(badgeCount)];
+- (void)setBadgeCount:(NSInteger)badgeCount {
+    if (badgeCount) {
+        self.badgeView.badgeText = [NSString stringWithFormat:@"%@", @(badgeCount)];
     } else {
         self.badgeView.badgeText = nil;
     }

@@ -37,24 +37,56 @@
                             <constraint firstAttribute="width" constant="200" id="dYk-NN-z6Z"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDn-qe-5x7">
+                        <rect key="frame" x="135" y="338" width="50.5" height="24"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MwZ-NN-nSR">
+                        <rect key="frame" x="8" y="79" width="304" height="24"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zpIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Rk2-cm-Fxl">
+                        <rect key="frame" x="133" y="8" width="55" height="55"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="55" id="9Pp-hi-2ui"/>
+                            <constraint firstAttribute="height" constant="55" id="uqm-wz-beO"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <animations/>
                 <constraints>
+                    <constraint firstItem="MwZ-NN-nSR" firstAttribute="leading" secondItem="hOk-Db-sRu" secondAttribute="leadingMargin" id="00e-Ds-eZZ"/>
                     <constraint firstItem="VM1-80-t2A" firstAttribute="top" secondItem="hOk-Db-sRu" secondAttribute="topMargin" constant="-8" id="AA9-cI-umz"/>
+                    <constraint firstItem="Rk2-cm-Fxl" firstAttribute="centerX" secondItem="hOk-Db-sRu" secondAttribute="centerX" id="Czn-vf-Vof"/>
+                    <constraint firstItem="MwZ-NN-nSR" firstAttribute="top" secondItem="Rk2-cm-Fxl" secondAttribute="bottom" constant="16" id="N4Q-vb-ZGi"/>
                     <constraint firstAttribute="bottomMargin" secondItem="6zS-xG-LWg" secondAttribute="bottom" constant="34.5" id="NcE-XA-Sul"/>
+                    <constraint firstItem="Rk2-cm-Fxl" firstAttribute="top" secondItem="hOk-Db-sRu" secondAttribute="topMargin" id="Rn5-bV-f79"/>
                     <constraint firstItem="2GH-UC-6z4" firstAttribute="centerX" secondItem="hOk-Db-sRu" secondAttribute="centerX" id="TRB-Ih-462"/>
                     <constraint firstItem="VM1-80-t2A" firstAttribute="leading" secondItem="hOk-Db-sRu" secondAttribute="leadingMargin" constant="-8" id="UL1-kK-3HB"/>
                     <constraint firstAttribute="trailingMargin" secondItem="VM1-80-t2A" secondAttribute="trailing" constant="-8" id="Xtn-TB-Ga2"/>
+                    <constraint firstItem="MwZ-NN-nSR" firstAttribute="trailing" secondItem="hOk-Db-sRu" secondAttribute="trailingMargin" id="YLC-uJ-03W"/>
+                    <constraint firstItem="VDn-qe-5x7" firstAttribute="centerX" secondItem="hOk-Db-sRu" secondAttribute="centerX" id="ZDc-hg-CBN"/>
                     <constraint firstAttribute="bottomMargin" secondItem="VM1-80-t2A" secondAttribute="bottom" constant="-8" id="hnx-mu-m6c"/>
                     <constraint firstItem="6zS-xG-LWg" firstAttribute="centerX" secondItem="hOk-Db-sRu" secondAttribute="centerX" id="lIh-t6-Ykk"/>
                     <constraint firstItem="2GH-UC-6z4" firstAttribute="top" secondItem="hOk-Db-sRu" secondAttribute="topMargin" constant="60" id="wo6-n8-vb7"/>
+                    <constraint firstItem="6zS-xG-LWg" firstAttribute="top" secondItem="VDn-qe-5x7" secondAttribute="bottom" constant="16" id="yh2-Xr-SeL"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>
             <connections>
                 <outlet property="backImageView" destination="VM1-80-t2A" id="uFd-pa-SLc"/>
                 <outlet property="beginButton" destination="6zS-xG-LWg" id="bOp-Oi-i3Y"/>
+                <outlet property="descrLabel" destination="VDn-qe-5x7" id="PM3-8A-lTA"/>
                 <outlet property="logoImageView" destination="2GH-UC-6z4" id="xSL-UN-kqc"/>
+                <outlet property="smallImageView" destination="Rk2-cm-Fxl" id="WYN-Pe-VE0"/>
+                <outlet property="upperDescrLabel" destination="MwZ-NN-nSR" id="l6k-Db-Oj2"/>
             </connections>
             <point key="canvasLocation" x="353" y="454.5"/>
         </tableViewCell>
@@ -62,5 +94,6 @@
     <resources>
         <image name="back3.png" width="750" height="1334"/>
         <image name="big_logo.png" width="404" height="305"/>
+        <image name="zpIcon" width="91" height="91"/>
     </resources>
 </document>

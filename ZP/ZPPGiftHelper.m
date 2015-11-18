@@ -15,16 +15,16 @@ static NSString *ZPPGiftDescription = @"Подарочная карта";
 
 + (NSArray *)testGifts {
     NSString *descr = ZPPGiftDescription;
-    ZPPGift *firstGift = [[ZPPGift alloc] initWith:@"На один ланч"
-                                       description:descr
+    ZPPGift *firstGift = [[ZPPGift alloc] initWith:ZPPGiftDescription
+                                       description:nil
                                              price:@(3000)
                                         identifier:@(3000)];
-    ZPPGift *secondGift = [[ZPPGift alloc] initWith:@"На два ланча"
-                                        description:descr
+    ZPPGift *secondGift = [[ZPPGift alloc] initWith:ZPPGiftDescription
+                                        description:nil
                                               price:@(6000)
                                          identifier:@(6000)];
-    ZPPGift *thirdGift = [[ZPPGift alloc] initWith:@"На три ланча"
-                                       description:descr
+    ZPPGift *thirdGift = [[ZPPGift alloc] initWith:ZPPGiftDescription
+                                       description:nil
                                              price:@(8000)
                                         identifier:@(8000)];
 

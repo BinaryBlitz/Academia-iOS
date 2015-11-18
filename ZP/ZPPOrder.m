@@ -101,7 +101,20 @@
     return _items;
 }
 
+- (NSString *)orderDescr {
+    NSString *descrString = @"";
+    for (ZPPOrderItem *item in self.items) {
+        NSString *str = [item.item nameOfItem];
+        if (descrString.length != 0) {
+            str = [@", " stringByAppendingString:str];
+        } else {
+            str = [str capitalizedString];
+        }
+        descrString = [descrString stringByAppendingString:str];
+    }
 
+    return descrString;
+}
 
 
 @end
