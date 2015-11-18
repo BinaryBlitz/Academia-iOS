@@ -19,6 +19,9 @@
 @property (strong, nonatomic) ZPPAddress *address;
 @property (strong, nonatomic) ZPPCreditCard *card;
 
+@property (strong, nonatomic) NSString *identifier;
+@property (strong, nonatomic) NSString *alfaNumber;
+
 - (void)addItem:(id<ZPPItemProtocol>)item;
 
 - (void)removeItem:(id<ZPPItemProtocol>)item;
@@ -30,5 +33,9 @@
 - (NSInteger)totalCount;
 
 - (NSInteger)totalPrice;
+
+- (NSString *)orderDescr;
+
+
 
 @end

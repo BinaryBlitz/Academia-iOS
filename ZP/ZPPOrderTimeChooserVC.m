@@ -11,6 +11,7 @@
 #import "UIView+UIViewCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
+#import "UIButton+ZPPButtonCategory.h"
 
 #import "ZPPOrder.h"
 
@@ -21,11 +22,21 @@
 
 #import "NSDate+ZPPDateCategory.h"
 
+#import "ZPPPaymentManager.h"
+
+#import "ZPPPaymentWebController.h"
+#import "ZPPServerManager.h"
+
+@import SafariServices;
+
 static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
-@interface ZPPOrderTimeChooserVC ()
+@interface ZPPOrderTimeChooserVC () <ZPPPaymentViewDelegate>
 @property (strong, nonatomic) ZPPOrder *order;
 @property (strong, nonatomic) UIImageView *checkMark;
+
+@property (strong, nonatomic) NSString *alfaORderID;
+@property (strong, nonatomic) NSString *bindingID;
 
 @end
 
@@ -50,12 +61,7 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 }
 
 - (void)makeOrderAction:(UIButton *)sender {
-    UIViewController *vc =
-    [self.storyboard instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
-    
-    [self presentViewController:vc animated:YES completion:^{
-       // [self dismissViewControllerAnimated:YES completion:nil];
-    }];
+    [self startPayment];
 }
 
 - (void)orderNowAction:(UIButton *)sender {
@@ -64,7 +70,6 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 }
 
 - (void)orderAtTimeAction:(UIButton *)sender {
-    //  [self addCheckmarkToButton:sender];
     [self showTimePicker];
 }
 
@@ -86,7 +91,85 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
                    forControlEvents:UIControlEventTouchUpInside];
 }
 
-#pragma mark - time picker
+#pragma mark - support
+
+- (void)addCheckmarkToButton:(UIButton *)b {
+    if ([b.subviews containsObject:self.checkMark]) {
+        return;
+    } else {
+        [self.checkMark removeFromSuperview];
+        [b addSubview:self.checkMark];
+    }
+}
+
+#pragma mark - lazy
+
+- (UIImageView *)checkMark {
+    if (!_checkMark) {
+        CGRect r = self.nowButton.frame;
+        CGFloat leng = r.size.height / 2.0;
+
+        UIImageView *iv = [[UIImageView alloc]
+            initWithFrame:CGRectMake(r.size.width - leng * 1.5f, (r.size.height - leng) / 2.0, leng,
+                                     leng)];
+        iv.image = [UIImage imageNamed:@"checkMark"];
+
+        _checkMark = iv;
+    }
+
+    return _checkMark;
+}
+
+#pragma mark - payment
+
+- (void)startPayment {
+    self.order.identifier = [NSString stringWithFormat:@"zpp_%u", arc4random() & 1000];
+
+    [self.makeOrderButton startIndicating];
+    [[ZPPPaymentManager sharedManager] registrateOrder:self.order
+        onSuccess:^(NSURL *url, NSString *orderIDAlfa) {
+            [self.makeOrderButton stopIndication];
+
+            self.order.alfaNumber = orderIDAlfa;
+            [self showWebViewWithURl:url];
+
+        }
+        onFailure:^(NSError *error, NSInteger statusCode) {
+            [self.makeOrderButton stopIndication];
+
+            [self showWarningWithText:ZPPNoInternetConnectionMessage];
+        }];
+}
+
+- (void)didShowPageWithUrl:(NSURL *)url sender:(UIViewController *)vc{
+    // https://test.paymentgate.ru/testpayment/merchants/zdorovoepitanie/finish.html?orderId=5cc56c99-4550-46be-a2fa-422a10f96040
+
+    NSString *destString = [NSString
+        stringWithFormat:@"%@/%@/%@?orderId=%@", [ZPPPaymentManager sharedManager].baseURL,
+                         ZPPCentralURL, ZPPPaymentFinishURL, self.order.alfaNumber];
+    if ([url.absoluteString isEqualToString:destString]) {
+        [vc dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }
+}
+
+- (void)showWebViewWithURl:(NSURL *)url {
+    ZPPPaymentWebController *wc = [[ZPPPaymentWebController alloc] init];
+    [wc configureWithURL:url];
+
+    UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:wc];
+
+    //    [navC addCustomCloseButton];
+    navC.navigationBar.barTintColor = [UIColor blackColor];
+
+    [self presentViewController:navC animated:YES completion:nil];
+}
+
+- (void)checkORderStatus {
+}
+
+#pragma mark - time shooser
 
 - (void)showTimePicker {
     RMAction *selectAction = [RMAction
@@ -113,9 +196,7 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
                                                  style:RMActionStyleCancel
                                             andHandler:^(RMActionController *controller) {
                                                 NSLog(@"Date selection was canceled");
-                                              //  [self.atTimeButton setTitle:@"КО ВРЕМЕНИ" forState:UIControlStateNormal];
-                                               // [self.checkMark removeFromSuperview];
-                                            
+
                                             }];
 
     // Create date selection view controller
@@ -125,18 +206,11 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
                                                  andCancelAction:cancelAction];
 
     dateSelectionController.datePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:30 * 60];
-    dateSelectionController.datePicker.maximumDate = [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24 * 2];
+    dateSelectionController.datePicker.maximumDate =
+        [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24 * 2];
 
     dateSelectionController.title = @"Выбор времени доставки";
     dateSelectionController.message = @"Когда вы хотите получить заказ?";
-
-    //    RMAction *in15MinAction = [RMAction actionWithTitle:@"15 Min"
-    //    style:RMActionStyleAdditional andHandler:^(RMActionController *controller) {
-    //        ((UIDatePicker *)controller.contentView).date = [NSDate
-    //        dateWithTimeIntervalSinceNow:15*60];
-    //        NSLog(@"15 Min button tapped");
-    //    }];
-    //    in15MinAction.dismissesActionController = NO;
 
     RMAction *in90MinAction = [RMAction
         actionWithTitle:@"90 минут"
@@ -184,55 +258,7 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
     [dateSelectionController addAction:groupedAction];
 
-    //    RMAction *nowAction = [RMAction
-    //        actionWithTitle:@"Как можно скорее!"
-    //                  style:RMActionStyleAdditional
-    //             andHandler:^(RMActionController *controller) {
-    //                 ((UIDatePicker *)controller.contentView).date =
-    //                     [NSDate dateWithTimeIntervalSinceNow:30 * 60];
-    //                 NSLog(@"Now button tapped");
-    //
-    //                 [self.atTimeButton setTitle:@"Как можно скорее!"
-    //                 forState:UIControlStateNormal];
-    //
-    //             }];
-    //  nowAction.dismissesActionController = YES;
-
-    // [dateSelectionController addAction:nowAction];
-
-    // Now just present the date selection controller using the standard iOS presentation method
     [self presentViewController:dateSelectionController animated:YES completion:nil];
-}
-
-#pragma mark - support
-
-- (void)addCheckmarkToButton:(UIButton *)b {
-    if ([b.subviews containsObject:self.checkMark]) {
-        return;
-    } else {
-        [self.checkMark removeFromSuperview];
-        [b addSubview:self.checkMark];
-    }
-}
-
-
-
-#pragma mark - lazy
-
-- (UIImageView *)checkMark {
-    if (!_checkMark) {
-        CGRect r = self.nowButton.frame;
-        CGFloat leng = r.size.height / 2.0;
-
-        UIImageView *iv = [[UIImageView alloc]
-            initWithFrame:CGRectMake(r.size.width - leng * 1.5f, (r.size.height - leng) / 2.0, leng,
-                                     leng)];
-        iv.image = [UIImage imageNamed:@"checkMark"];
-
-        _checkMark = iv;
-    }
-
-    return _checkMark;
 }
 
 @end

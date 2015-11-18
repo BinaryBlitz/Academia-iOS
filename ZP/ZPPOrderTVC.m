@@ -30,6 +30,13 @@
 
 #import "ZPPConsts.h"
 
+
+
+
+#import "ZPPPaymentManager.h"
+
+@import SafariServices;
+
 static NSString *ZPPOrderItemCellReuseIdentifier = @"ZPPOrderItemCellReuseIdentifier";
 static NSString *ZPPNoCreditCardCellIdentifier = @"ZPPNoCreditCardCellIdentifier";
 static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
@@ -119,13 +126,6 @@ static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdenti
             [cell.chooseAnotherButton addTarget:self
                                          action:@selector(buttonsAction:)
                                forControlEvents:UIControlEventTouchUpInside];
-
-            //            ZPPCreditCardInfoCell *cell =
-            //                [tableView
-            //                dequeueReusableCellWithIdentifier:ZPPCreditCardInfoCellIdentifier];
-            //
-            //            [cell configureWithCard:self.order.card];
-
             return cell;
         }
     } else if (indexPath.section == 1) {
@@ -261,8 +261,24 @@ static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdenti
 - (void)showResultScreenSender:(UIButton *)sender {
     ZPPOrderTimeChooserVC *orvc = [self resultScreen];
     [orvc configureWithOrder:self.order];
-    //[self presentViewController:orvc animated:YES completion:nil];
+//    [self presentViewController:orvc animated:YES completion:nil];
     [self.navigationController pushViewController:orvc animated:YES];
+    
+//    [[ZPPPaymentManager sharedManager] registrateWithOrderNum:@"num3" onSuccess:^{
+//        
+//    } onFailure:^(NSError *error, NSInteger statusCode) {
+//        
+//    }];
+    
+  
+//    
+//    [[ZPPPaymentManager sharedManager] registrateWithOrderNum:@"num3" onSuccess:^(NSURL *url, NSString *orderIDAlfa) {
+//        SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:url entersReaderIfAvailable:NO];
+//        [self presentViewController:svc animated:YES completion:nil];
+//        
+//    } onFailure:^(NSError *error, NSInteger statusCode) {
+//        
+//    }];
 }
 
 #pragma mark - ZPPAddressDelegate

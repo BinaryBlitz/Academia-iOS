@@ -211,33 +211,11 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
             arr = [arr arrayByAddingObject:stuffTVC];
             [strongSelf configureScreensWithArr:arr];
         }
-    } onFailure:^(NSError *error, NSInteger statusCode){
+    } onFailure:^(NSError *error, NSInteger statusCode) {
 
         ZPPMainVC *mvc = (ZPPMainVC *)weakSelf.parentViewController;
         [mvc showNoInternetScreen];
     }];
-    //    [[ZPPServerManager sharedManager] GETDishesOnSuccesOnSuccess:^(NSArray *dishes) {
-    //
-    //        NSArray *newControllers = [self dishControllersFromArr:dishes];
-    //
-    //        NSArray *arr = [@[ [self startScreen] ]
-    //            arrayByAddingObjectsFromArray:newControllers];  //[self
-    //            dishControllersFromArr:dishes];
-    //
-    //        [self configureScreensWithArr:arr];
-    //
-    //        //        self.dataSource = nil;
-    //        //        self.dataSource = self;
-    //        //
-    //        //        for (ZPPProductsBaseTVC *vc in self.productViewControllers) {
-    //        //            vc.delegate = self;
-    //        //        }
-    //        //
-    //        //        self.pageControl.numberOfPages = self.productViewControllers.count;
-    //        // self.pageControl.currentPage =
-    //    } onFailure:^(NSError *error, NSInteger statusCode){
-    //
-    //    }];
 }
 
 - (NSArray *)dishControllersFromArr:(NSArray *)dishes {

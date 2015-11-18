@@ -14,6 +14,7 @@
 @property (assign, nonatomic) NSInteger month;
 @property (assign, nonatomic) NSInteger year;
 @property (assign, nonatomic) NSInteger cvc;
+@property (strong, nonatomic) NSString *bindID;
 
 @end
 
@@ -29,6 +30,20 @@
         self.month = month;
         self.year = year;
         self.cvc = cvc;
+    }
+    return self;
+}
+
+- (instancetype)initWithCardNumber:(NSString *)cardNumber
+                             month:(NSInteger)month
+                              year:(NSInteger)year
+                            bindID:(NSString *)bindID {
+    self = [super init];
+    if (self) {
+        self.cardNumber = cardNumber;
+        self.month = month;
+        self.year = year;
+        self.bindID = bindID;
     }
     return self;
 }

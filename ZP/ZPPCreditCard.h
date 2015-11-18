@@ -13,11 +13,19 @@
 @property (strong, nonatomic, readonly) NSString *cardNumber;
 @property (assign, nonatomic, readonly) NSInteger month;
 @property (assign, nonatomic, readonly) NSInteger year;
+@property (strong, nonatomic, readonly) NSString *bindID;
 
 - (instancetype)initWithCardNumber:(NSString *)cardNumber
                              month:(NSInteger)month
                               year:(NSInteger)year
                                cvc:(NSInteger)cvc;
+
+- (instancetype)initWithCardNumber:(NSString *)cardNumber
+                             month:(NSInteger)month
+                              year:(NSInteger)year
+                            bindID:(NSString *)bindID;
+
+
 
 - (NSString *)formattedDate;
 
