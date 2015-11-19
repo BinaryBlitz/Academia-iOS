@@ -41,13 +41,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:2];
+        NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:1];
 
         UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:nip];
         cell.accessoryType = UITableViewCellAccessoryNone;
         return cell;
     } else {
-        NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:3];
+        NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:2];
         return [super tableView:tableView cellForRowAtIndexPath:nip];
     }
 }
@@ -58,10 +58,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:2];
+        NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:1];
         return [super tableView:tableView heightForRowAtIndexPath:nip];
     } else {
-        NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:3];
+        NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:2];
         return [super tableView:tableView heightForRowAtIndexPath:nip];
     }
 }

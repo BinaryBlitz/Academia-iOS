@@ -17,8 +17,8 @@
 #import "ZPPNoCreditCardCell.h"
 #import "ZPPOrderTotalCell.h"
 #import "ZPPOrderAddressCell.h"
-#import "ZPPCreditCardInfoCell.h"
-#import "ZPPCardInOrderCell.h"
+//#import "ZPPCreditCardInfoCell.h"
+//#import "ZPPCardInOrderCell.h"
 
 #import "ZPPCardViewController.h"
 #import "ZPPOrderItemVC.h"
@@ -92,11 +92,11 @@ static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdenti
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 2) {
+    if (section == 1) {
         return self.order.items.count;
     } else {
         return 1;
@@ -105,27 +105,28 @@ static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdenti
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        if (!self.order.card) {
-            ZPPNoCreditCardCell *cell =
-                [tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
-            [cell.actionButton setTitle:@"Выберите карту" forState:UIControlStateNormal];
-
-            [cell.actionButton addTarget:self
-                                  action:@selector(buttonsAction:)
-                        forControlEvents:UIControlEventTouchUpInside];
-            return cell;
-        } else {
-            ZPPCardInOrderCell *cell =
-                [tableView dequeueReusableCellWithIdentifier:ZPPCreditCardInfoCellIdentifier];
-            [cell configureWithCard:self.order.card];
-
-            [cell.chooseAnotherButton addTarget:self
-                                         action:@selector(buttonsAction:)
-                               forControlEvents:UIControlEventTouchUpInside];
-            return cell;
-        }
-    } else if (indexPath.section == 1) {
+    if (indexPath.section == -1) {
+//        if (!self.order.card) {
+//            ZPPNoCreditCardCell *cell =
+//                [tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
+//            [cell.actionButton setTitle:@"Выберите карту" forState:UIControlStateNormal];
+//
+//            [cell.actionButton addTarget:self
+//                                  action:@selector(buttonsAction:)
+//                        forControlEvents:UIControlEventTouchUpInside];
+//            return cell;
+//        } else {
+//            ZPPCardInOrderCell *cell =
+//                [tableView dequeueReusableCellWithIdentifier:ZPPCreditCardInfoCellIdentifier];
+//            [cell configureWithCard:self.order.card];
+//
+//            [cell.chooseAnotherButton addTarget:self
+//                                         action:@selector(buttonsAction:)
+//                               forControlEvents:UIControlEventTouchUpInside];
+//            return cell;
+//        }
+        return nil;
+    } else if (indexPath.section == 0) {
         if (!self.order.address) {
             ZPPNoCreditCardCell *cell =
                 [tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
@@ -147,7 +148,7 @@ static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdenti
             return cell;
         }
 
-    } else if (indexPath.section == 3) {
+    } else if (indexPath.section == 2) {
         ZPPOrderTotalCell *cell =
             [tableView dequeueReusableCellWithIdentifier:ZPPOrderTotalCellIdentifier];
 
@@ -155,7 +156,7 @@ static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdenti
 
         return cell;
 
-    } else if (indexPath.section == 4) {
+    } else if (indexPath.section == 3) {
         ZPPNoCreditCardCell *cell =
             [self.tableView dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
         [cell.actionButton setTitle:@"Заказать" forState:UIControlStateNormal];
@@ -180,14 +181,14 @@ static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdenti
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 3) {
+    if (indexPath.section == 2) {
         return 100.f;
-    } else if (indexPath.section != 2) {
-        if (indexPath.section == 1 && self.order.address) {
+    } else if (indexPath.section != 1) {
+        if (indexPath.section == 0 && self.order.address) {
             return 110.0;
         }
 
-        if (indexPath.section == 0 && self.order.card) {
+        if (indexPath.section == -1 && self.order.card) {
             return 90.0;
         }
         return 60.f;
@@ -197,7 +198,7 @@ static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdenti
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 2) {
+    if (indexPath.section == 1) {
         ZPPOrderItem *orderItem = self.order.items[indexPath.row];
 
         [self showItemModifier:orderItem];
@@ -210,11 +211,11 @@ static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdenti
     UITableViewCell *cell = [self parentCellForView:sender];
     if (cell) {
         NSIndexPath *ip = [self.tableView indexPathForCell:cell];
-        if (ip.section == 0) {
+        if (ip.section == -1) {
             [self showCardChooser];
-        } else if (ip.section == 1) {
+        } else if (ip.section == 0) {
             [self showMap];
-        } else if (ip.section == 4) {
+        } else if (ip.section == 3) {
             [self showResultScreenSender:sender];
         }
     }
@@ -304,10 +305,10 @@ static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdenti
                  reuseIdentifier:ZPPOrderTotalCellIdentifier];
     [self registrateCellForClass:[ZPPOrderAddressCell class]
                  reuseIdentifier:ZPPOrderAddressCellIdentifier];
-    [self registrateCellForClass:[ZPPCreditCardInfoCell class]
-                 reuseIdentifier:ZPPCreditCardInfoCellIdentifier];
-    [self registrateCellForClass:[ZPPCardInOrderCell class]
-                 reuseIdentifier:ZPPCreditCardInfoCellIdentifier];
+//    [self registrateCellForClass:[ZPPCreditCardInfoCell class]
+//                 reuseIdentifier:ZPPCreditCardInfoCellIdentifier];
+//    [self registrateCellForClass:[ZPPCardInOrderCell class]
+//                 reuseIdentifier:ZPPCreditCardInfoCellIdentifier];
 }
 
 - (ZPPOrderTimeChooserVC *)resultScreen {
@@ -316,23 +317,6 @@ static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdenti
     return orvc;
 }
 
-//- (void)registrateCellForClass:(Class) class reuseIdentifier:(NSString *)reuseIdentifier {
-//    NSString *className = NSStringFromClass(class);
-//    UINib *nib = [UINib nibWithNibName:className bundle:nil];
-//    [[self tableView] registerNib:nib forCellReuseIdentifier:reuseIdentifier];
-//}
-
-//    - (void)configureBackgroundImage {
-//    CGRect r = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds),
-//                          16 * CGRectGetWidth([UIScreen mainScreen].bounds) / 9);
-//
-//    UIImageView *iv = [[UIImageView alloc] initWithFrame:r];
-//
-//    iv.image = [UIImage imageNamed:@"back1"];
-//
-//    self.tableView.backgroundColor = [UIColor clearColor];
-//    self.tableView.backgroundView = iv;
-//}
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
