@@ -32,6 +32,8 @@ static NSString *ZPPProductIngridientsCellIdentifier = @"ZPPProductCellIdentifie
 static NSString *ZPPProductMenuCellIdentifier = @"ZPPProductMenuCellIdentifier";
 static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier";
 
+static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
+
 @interface ZPPProductTVC ()
 
 //@property (assign, nonatomic) CGFloat screenHeight;
@@ -47,7 +49,11 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self showBottomCells];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,33 +96,26 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
     NSURL *imgURL = [NSURL URLWithString:self.dish.urlAsString];
     [cell.productImageView setImageWithURL:imgURL];
 
-    cell.nameLabel.text = self.dish.name;  //[LoremIpsum word];
-    cell.ingridientsDescriptionLabel.text = self.dish.subtitle;//[LoremIpsum wordsWithNumber:3];
+    cell.nameLabel.text = self.dish.name;                        //[LoremIpsum word];
+    cell.ingridientsDescriptionLabel.text = self.dish.subtitle;  //[LoremIpsum wordsWithNumber:3];
     cell.priceLabel.text =
         [NSString stringWithFormat:@"%@ ₽", self.dish.price];  //[self.dish.price stringValue];
                                                                  ////[NSString
- 
-    
+
     [cell.addToBasketButton makeBorderedWithColor:[UIColor whiteColor]];
     cell.contentView.backgroundColor = [UIColor blackColor];
-    
-    
-    
 
     [cell.addToBasketButton addTarget:self
                                action:@selector(addToBasketAction:)
                      forControlEvents:UIControlEventTouchUpInside];
-    
+
     ZPPOrderItem *orderItem = [self.order orderItemForItem:self.dish];
-    
+
     if (orderItem) {
         [cell.addToBasketButton setTitle:@"ЗАКАЗАТЬ ЕЩЕ" forState:UIControlStateNormal];
-        
+
         //[cell setBadgeCount:orderItem.count];
     }
-
-    
-    
 
     return cell;
 }
@@ -198,7 +197,31 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
     [self.tableView reloadData];
 }
 
-#pragma mark - lazy
+#pragma mark - animation
+
+- (void)showBottomCells {
+    BOOL isShowed = [[NSUserDefaults standardUserDefaults] boolForKey:ZPPIsTutorialAnimationShowed];
+
+    if (!isShowed) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:ZPPIsTutorialAnimationShowed];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+
+        NSIndexPath *ip = [NSIndexPath indexPathForRow:2 inSection:0];
+        [self.tableView scrollToRowAtIndexPath:ip
+                              atScrollPosition:UITableViewScrollPositionBottom
+                                      animated:YES];
+
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)),
+                       dispatch_get_main_queue(), ^{
+                           [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+                           NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:0];
+                           [self.tableView scrollToRowAtIndexPath:ip
+                                                 atScrollPosition:UITableViewScrollPositionTop
+                                                         animated:YES];
+                       });
+    }
+}
 
 //-(VBFPopFlatButton *)menuButton {
 //    if(!_menuButton) {
