@@ -40,9 +40,9 @@
                                              selector:@selector(reachabilityChanged:)
                                                  name:kReachabilityChangedNotification
                                                object:nil];
- 
-//    [self.centralLogo.superview addSubview:self.spinner];
-//    [self startSpin];
+
+    //    [self.centralLogo.superview addSubview:self.spinner];
+    //    [self startSpin];
 
     //  [self animate];
 }
@@ -61,7 +61,7 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    if(![self.centralLogo.superview.subviews containsObject:self.spinner]) {
+    if (![self.centralLogo.superview.subviews containsObject:self.spinner]) {
         [self.centralLogo.superview addSubview:self.spinner];
         [self startSpin];
     }
@@ -101,37 +101,122 @@
     return _spinner;
 }
 
-- (void)spinWithOptions:(UIViewAnimationOptions)options {
-    // this spin completes 360 degrees every 2 seconds
-    [UIView animateWithDuration:0.5f
-        delay:0.0f
-        options:options
-        animations:^{
-            self.spinner.transform = CGAffineTransformRotate(self.spinner.transform, M_PI / 2);
-        }
-        completion:^(BOOL finished) {
-            if (finished) {
-                if (self.animating) {
-                    // if flag still set, keep spinning with constant speed
-                    [self spinWithOptions:UIViewAnimationOptionCurveLinear];
-                } else if (options != UIViewAnimationOptionCurveEaseOut) {
-                    // one last spin, with deceleration
-                    [self spinWithOptions:UIViewAnimationOptionCurveEaseOut];
-                }
-            }
-        }];
-}
-
+//- (void)spinWithOptions:(UIViewAnimationOptions)options directionForward:(BOOL)isForward {
+//    // this spin completes 360 degrees every 2 seconds
+//    [UIView animateWithDuration:0.5f
+//        delay:1.0f
+//        options:options
+//        animations:^{
+//            self.spinner.transform =
+//                CGAffineTransformRotate(self.spinner.transform, isForward ? 2 * M_PI_2 : -2 *
+//                M_PI);
+//        }
+//        completion:^(BOOL finished) {
+//            if (finished) {
+//                if (self.animating) {
+//                    //                    // if flag still set, keep spinning with constant speed
+//                    //                    [self spinWithOptions:UIViewAnimationOptionCurveLinear
+//                    //                    directionForward:!isForward];
+//                    //                } else if (options != UIViewAnimationOptionCurveEaseOut) {
+//                    // one last spin, with deceleration
+//                    [self spinWithOptions:UIViewAnimationOptionCurveEaseOut
+//                         directionForward:!isForward];
+//                }
+//            }
+//        }];
+//}
+//
 - (void)startSpin {
     if (!self.animating) {
         self.animating = YES;
-        [self spinWithOptions:UIViewAnimationOptionCurveEaseIn];
+        // [self spinWithOptions:UIViewAnimationOptionCurveEaseIn directionForward:YES];
+
+        [self animateForward:YES delay:0.f];
     }
 }
 
 - (void)stopSpin {
     // set the flag to stop spinning after one last 90 degree increment
     self.animating = NO;
+}
+
+- (void)animateForward:(BOOL)isForward delay:(float)delay {
+    CGFloat direction = isForward ? 1.0f : -1.0f;  // -1.0f to rotate other way
+     self.spinner.transform = CGAffineTransformIdentity;
+        [UIView animateKeyframesWithDuration:1.0
+            delay:delay
+            options:UIViewKeyframeAnimationOptionCalculationModePaced |
+                    UIViewAnimationOptionCurveEaseInOut
+            animations:^{
+                [UIView addKeyframeWithRelativeStartTime:0.0
+                                        relativeDuration:0.0
+                                              animations:^{
+                                                  self.spinner.transform =
+                                                      CGAffineTransformMakeRotation(M_PI * 2.0f /
+                                                      3.0f *
+                                                                                    direction);
+                                              }];
+                [UIView addKeyframeWithRelativeStartTime:0.0
+                                        relativeDuration:0.0
+                                              animations:^{
+                                                  self.spinner.transform =
+                                                      CGAffineTransformMakeRotation(M_PI * 4.0f /
+                                                      3.0f *
+                                                                                    direction);
+                                              }];
+                [UIView addKeyframeWithRelativeStartTime:0.0
+                                        relativeDuration:0.0
+                                              animations:^{
+                                                  self.spinner.transform =
+                                                  CGAffineTransformIdentity;
+                                              }];
+            }
+            completion:^(BOOL finished) {
+    
+                if (self.animating) {
+                    [self animateForward:!isForward delay:1.5];
+                }
+            }];
+
+//    [UIView animateWithDuration:2.0
+//        delay:delay
+//        usingSpringWithDamping:0.1
+//        initialSpringVelocity:2.0
+//        options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionBeginFromCurrentState
+//        animations:^{
+//
+//            self.spinner.transform = CGAffineTransformMakeRotation(M_PI_2 * direction);
+//
+//            //            [UIView addKeyframeWithRelativeStartTime:0.0
+//            //                                    relativeDuration:0.0
+//            //                                          animations:^{
+//            //                                              self.spinner.transform =
+//            //                                              CGAffineTransformMakeRotation(M_PI *
+//            //                                              2.0f / 3.0f *
+//            //                                                                            direction);
+//            //                                          }];
+//            //            [UIView addKeyframeWithRelativeStartTime:0.0
+//            //                                    relativeDuration:0.0
+//            //                                          animations:^{
+//            //                                              self.spinner.transform =
+//            //                                              CGAffineTransformMakeRotation(M_PI *
+//            //                                              4.0f / 3.0f *
+//            //                                                                            direction);
+//            //                                          }];
+//            //            [UIView addKeyframeWithRelativeStartTime:0.0
+//            //                                    relativeDuration:0.0
+//            //                                          animations:^{
+//            //                                              self.spinner.transform =
+//            //                                              CGAffineTransformIdentity;
+//            //                                          }];
+//
+//        }
+//        completion:^(BOOL finished) {
+//
+//            if (self.animating && finished) {
+//                [self animateForward:!isForward delay:2];
+//            }
+//        }];
 }
 
 @end
