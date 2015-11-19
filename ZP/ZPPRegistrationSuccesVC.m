@@ -11,7 +11,7 @@
 
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 
-@interface ZPPRegistrationSuccesVC()
+@interface ZPPRegistrationSuccesVC ()
 
 @property (strong, nonatomic) ZPPUser *user;
 
@@ -19,43 +19,38 @@
 
 @implementation ZPPRegistrationSuccesVC
 
--(void)viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem
-     setLeftBarButtonItem:[[UIBarButtonItem alloc]
-                           initWithCustomView:[[UIView alloc] init]]];
-
+        setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] init]]];
 }
 
+- (void)setUser:(ZPPUser *)user {
+    // _user = user;
 
-
--(void)setUser:(ZPPUser *)user {
-   // _user = user;
-    
     NSString *name = user.firstName;
     self.greatingLabel.text = [NSString
-                               stringWithFormat:@"Пздравляем, %@\n Вы зарегистрировались", name];
-    
-    _user = user;
+        stringWithFormat:@"Поздравляем, %@\n Вы зарегистрировались!",
+                         name];
 
+    _user = user;
 }
 
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
     [self.navigationController presentTransparentNavigationBar];
     NSString *name = self.user.firstName;
     self.greatingLabel.text = [NSString
-                               stringWithFormat:@"Пздравляем, %@\n Вы зарегистрировались", name];
-
-    
+        stringWithFormat:@"Поздравляем, %@\n Вы зарегистрировались!",
+                         name];
 }
 
 - (IBAction)makeOrderAction:(id)sender {
-    
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
+
+                             }];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ZPPGift.h"
+#import "ZPPConsts.h"
 
 @interface ZPPGift ()
 
@@ -34,7 +35,7 @@
 }
 
 - (NSString *)nameOfItem {
-    return self.name;
+    return [NSString stringWithFormat:@"%@ на %@%@", self.name, self.price, ZPPRoubleSymbol];
 }
 
 - (NSInteger)priceOfItem {
@@ -42,7 +43,7 @@
 }
 
 - (NSString *)identifierOfItem {
-    return [NSString stringWithFormat:@"%@", self.giftIdentifier];
+     return [NSString stringWithFormat:@"%@", self.giftIdentifier];
 }
 
 @end

@@ -30,9 +30,6 @@
 
 #import "ZPPConsts.h"
 
-
-
-
 #import "ZPPPaymentManager.h"
 
 @import SafariServices;
@@ -261,24 +258,25 @@ static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdenti
 - (void)showResultScreenSender:(UIButton *)sender {
     ZPPOrderTimeChooserVC *orvc = [self resultScreen];
     [orvc configureWithOrder:self.order];
-//    [self presentViewController:orvc animated:YES completion:nil];
+    //    [self presentViewController:orvc animated:YES completion:nil];
     [self.navigationController pushViewController:orvc animated:YES];
-    
-//    [[ZPPPaymentManager sharedManager] registrateWithOrderNum:@"num3" onSuccess:^{
-//        
-//    } onFailure:^(NSError *error, NSInteger statusCode) {
-//        
-//    }];
-    
-  
-//    
-//    [[ZPPPaymentManager sharedManager] registrateWithOrderNum:@"num3" onSuccess:^(NSURL *url, NSString *orderIDAlfa) {
-//        SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:url entersReaderIfAvailable:NO];
-//        [self presentViewController:svc animated:YES completion:nil];
-//        
-//    } onFailure:^(NSError *error, NSInteger statusCode) {
-//        
-//    }];
+
+    //    [[ZPPPaymentManager sharedManager] registrateWithOrderNum:@"num3" onSuccess:^{
+    //
+    //    } onFailure:^(NSError *error, NSInteger statusCode) {
+    //
+    //    }];
+
+    //
+    //    [[ZPPPaymentManager sharedManager] registrateWithOrderNum:@"num3" onSuccess:^(NSURL *url,
+    //    NSString *orderIDAlfa) {
+    //        SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:url
+    //        entersReaderIfAvailable:NO];
+    //        [self presentViewController:svc animated:YES completion:nil];
+    //
+    //    } onFailure:^(NSError *error, NSInteger statusCode) {
+    //
+    //    }];
 }
 
 #pragma mark - ZPPAddressDelegate

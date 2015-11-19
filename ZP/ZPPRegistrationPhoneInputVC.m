@@ -53,7 +53,7 @@ static NSString *ZPPShowAuthenticationSegueIdentifier = @"ZPPShowAuthenticationS
     self.mainTF = (UITextField *)self.phoneNumberTextFiled;
     self.bottomConstraint = self.bottomSuperviewConstraint;
 
-    self.phoneNumberTextFiled.format = @"(XXX) XXX-XXXX";
+    self.phoneNumberTextFiled.format = @"(XXX) XXX-XX-XX";
 
     UIView *v = self.phoneNumberTextFiled.superview;
 
