@@ -10,6 +10,7 @@
 #import "ZPPStuff.h"
 
 #import "ZPPServerManager.h"
+#import "ZPPImageWorker.h"
 
 @implementation ZPPStuffHelper
 
@@ -40,7 +41,11 @@
         [tmpArr addObject:l];
     }
 
-    return [NSArray arrayWithArray:tmpArr];
+    NSArray *arr = [NSArray arrayWithArray:tmpArr];
+
+    [ZPPImageWorker preheatImagesOfObjects:arr];
+
+    return arr;
 }
 
 @end

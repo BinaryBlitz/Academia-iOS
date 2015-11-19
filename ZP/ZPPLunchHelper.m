@@ -10,6 +10,8 @@
 #import "ZPPLunch.h"
 #import "ZPPServerManager.h"
 
+#import "ZPPImageWorker.h"
+
 @implementation ZPPLunchHelper
 
 + (ZPPLunch *)lunchFromDict:(NSDictionary *)dict {
@@ -39,8 +41,13 @@
         ZPPLunch *l = [[self class] lunchFromDict:d];
         [tmpArr addObject:l];
     }
+    
 
-    return [NSArray arrayWithArray:tmpArr];
+    NSArray *res = [NSArray arrayWithArray:tmpArr];
+    
+    [ZPPImageWorker preheatImagesOfObjects:res];
+
+    return res;
 }
 
 @end

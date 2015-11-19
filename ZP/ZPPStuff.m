@@ -44,7 +44,11 @@
 }
 
 - (NSString *)identifierOfItem {
-    return [NSString stringWithFormat:@"%@",self.stufId];
+    return [NSString stringWithFormat:@"%@", self.stufId];
+}
+
+- (NSURL *)URLOfImage {
+    return self.imgURl;
 }
 
 @end

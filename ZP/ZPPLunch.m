@@ -61,4 +61,8 @@
     return [NSString stringWithFormat:@"%@", self.lunchIdentifier];
 }
 
+- (NSURL *)URLOfImage {
+    return self.imgURL;
+}
+
 @end

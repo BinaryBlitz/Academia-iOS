@@ -39,8 +39,8 @@
     if (self) {
         self.name = name;
         self.dishID = dishID;
-        if(![subtitle isEqual:[NSNull null]]){
-        self.subtitle = subtitle;
+        if (![subtitle isEqual:[NSNull null]]) {
+            self.subtitle = subtitle;
         } else {
             self.subtitle = nil;
         }
@@ -48,7 +48,6 @@
         self.price = price;
         self.urlAsString = urlAsString;
         self.ingridients = ingridients;
-        
     }
     return self;
 }
@@ -60,8 +59,16 @@
     return self.name;
 }
 
--(NSString *)identifierOfItem {
+- (NSString *)identifierOfItem {
     return self.dishID;
+}
+
+- (NSURL *)URLOfImage {
+    NSURL *res;
+    if (self.urlAsString) {
+        res = [NSURL URLWithString:self.urlAsString];
+    }
+    return res;
 }
 
 @end

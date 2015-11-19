@@ -148,7 +148,8 @@
 		19F378FA1BFB14CA004827A0 /* ZPPPasswordRenewPasswordInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378F91BFB14CA004827A0 /* ZPPPasswordRenewPasswordInput.m */; };
 		19F378FE1BFBBDF3004827A0 /* ZPPPaymentWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378FD1BFBBDF3004827A0 /* ZPPPaymentWebController.m */; };
 		19F379011BFE2489004827A0 /* DTCustomColoredAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F379001BFE2489004827A0 /* DTCustomColoredAccessory.m */; };
-		45234A6F844FF56D94658C3E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9EEF06E3D3C7DB053DFF64 /* libPods.a */; };
+		19F379061BFE862F004827A0 /* ZPPImageWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F379051BFE862F004827A0 /* ZPPImageWorker.m */; };
+		FB37B27DD0451E1AB7410CE8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B80D287D1FAB7ABCC6A7E759 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -414,9 +415,12 @@
 		19F378FF1BFE2489004827A0 /* DTCustomColoredAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCustomColoredAccessory.h; sourceTree = "<group>"; };
 		19F379001BFE2489004827A0 /* DTCustomColoredAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCustomColoredAccessory.m; sourceTree = "<group>"; };
 		19F379021BFE2AED004827A0 /* ZPPConfigureWithOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPConfigureWithOrder.h; sourceTree = "<group>"; };
+		19F379031BFE84A2004827A0 /* ZPPWithImageURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPWithImageURL.h; sourceTree = "<group>"; };
+		19F379041BFE862F004827A0 /* ZPPImageWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPImageWorker.h; sourceTree = "<group>"; };
+		19F379051BFE862F004827A0 /* ZPPImageWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPImageWorker.m; sourceTree = "<group>"; };
+		B80D287D1FAB7ABCC6A7E759 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6092FFC7B589467189F0B0B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FBF21C48AB60C310F6FAB5FC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		FD9EEF06E3D3C7DB053DFF64 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -424,7 +428,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45234A6F844FF56D94658C3E /* libPods.a in Frameworks */,
+				FB37B27DD0451E1AB7410CE8 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,6 +731,8 @@
 				198A5C091BD5B59F00710A36 /* product */,
 				191D7DEE1BD5695200DBAFC4 /* API */,
 				191D7DE41BD53DAB00DBAFC4 /* user */,
+				19F379041BFE862F004827A0 /* ZPPImageWorker.h */,
+				19F379051BFE862F004827A0 /* ZPPImageWorker.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1103,11 +1109,12 @@
 				198A5C0B1BD5B5C000710A36 /* ZPPIngridient.m */,
 				198A5C0E1BD5B60700710A36 /* ZPPDish.h */,
 				198A5C0F1BD5B60700710A36 /* ZPPDish.m */,
-				198635711BDFD2320070E3F7 /* ZPPItemProtocol.h */,
 				1948C5361BEC14C100084BC8 /* ZPPLunch.h */,
 				1948C5371BEC14C100084BC8 /* ZPPLunch.m */,
 				1948C53C1BEC19B800084BC8 /* ZPPStuff.h */,
 				1948C53D1BEC19B800084BC8 /* ZPPStuff.m */,
+				198635711BDFD2320070E3F7 /* ZPPItemProtocol.h */,
+				19F379031BFE84A2004827A0 /* ZPPWithImageURL.h */,
 			);
 			name = product;
 			sourceTree = "<group>";
@@ -1390,7 +1397,7 @@
 		B9AAD5556FA2D274BB8C3D21 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FD9EEF06E3D3C7DB053DFF64 /* libPods.a */,
+				B80D287D1FAB7ABCC6A7E759 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1645,6 +1652,7 @@
 				19D242751BEA389B007A0FEB /* ZPPOrderHistoryTVC.m in Sources */,
 				198FD97C1BE7A9F800A30B4D /* ZPPNoCreditCardCell.m in Sources */,
 				19DADF5F1BF75E46007D9DF2 /* ZPPServerManager+ZPPPromoCodeManager.m in Sources */,
+				19F379061BFE862F004827A0 /* ZPPImageWorker.m in Sources */,
 				1907C7491BF0A7AA003BA62E /* ZPPAddressHelper.m in Sources */,
 				198635691BDFB6A00070E3F7 /* ZPPHelpVC.m in Sources */,
 				19DADF6F1BF768BC007D9DF2 /* ZPPServerManager+ZPPGiftServerManager.m in Sources */,

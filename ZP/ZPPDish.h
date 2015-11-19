@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "ZPPItemProtocol.h"
+#import "ZPPWithImageURL.h"
 
-@interface ZPPDish : NSObject <ZPPItemProtocol>
+@interface ZPPDish : NSObject <ZPPItemProtocol,ZPPWithImageURL>
 
 @property (copy, nonatomic, readonly) NSString *name;
 @property (copy, nonatomic, readonly) NSString *dishID;

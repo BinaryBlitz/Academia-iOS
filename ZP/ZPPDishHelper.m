@@ -11,6 +11,8 @@
 #import "ZPPServerManager.h"
 #import "ZPPIngridientHelper.h"
 
+#import "ZPPImageWorker.h"
+
 NSString *const ZPPDishName = @"name";
 NSString *const ZPPDishID = @"id";
 NSString *const ZPPDishDescription = @"description";
@@ -50,7 +52,11 @@ NSString *const ZPPDishSubtitle = @"subtitle";
         [tmpArr addObject:dish];
     }
 
-    return [NSArray arrayWithArray:tmpArr];
+    NSArray *res = [NSArray arrayWithArray:tmpArr];
+
+    [ZPPImageWorker preheatImagesOfObjects:res];
+
+    return res;
 }
 
 //- (NSArray *)parseMeals:(NSArray *)meals {
