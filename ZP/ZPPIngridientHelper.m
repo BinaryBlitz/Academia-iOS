@@ -10,6 +10,8 @@
 #import "ZPPIngridient.h"
 #import "ZPPServerManager.h"
 
+#import "ZPPImageWorker.h"
+
 NSString *const ZPPIngridientName = @"name";
 NSString *const ZPPIngridientID = @"id";
 NSString *const ZPPIngridientURL = @"image_url";
@@ -36,7 +38,12 @@ NSString *const ZPPIngridientURL = @"image_url";
         ZPPIngridient *ingridient = [[self class] ingridientFromDict:d];
         [tmpArr addObject:ingridient];
     }
-    return [NSArray arrayWithArray:tmpArr];
+
+    NSArray *res = [NSArray arrayWithArray:tmpArr];
+
+    [ZPPImageWorker preheatImagesOfObjects:res];
+
+    return res;
 }
 
 @end

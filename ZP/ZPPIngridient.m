@@ -8,7 +8,7 @@
 
 #import "ZPPIngridient.h"
 
-@interface ZPPIngridient()
+@interface ZPPIngridient ()
 @property (copy, nonatomic) NSString *name;
 @property (copy, nonatomic) NSString *ingridientID;
 @property (copy, nonatomic) NSString *urlAsString;
@@ -33,6 +33,13 @@
     return self;
 }
 
+- (NSURL *)URLOfImage {
+    NSURL *res;
+    if (self.urlAsString) {
+        res = [NSURL URLWithString:self.urlAsString];
+    }
 
+    return res;
+}
 
 @end

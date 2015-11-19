@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZPPWithImageURL.h"
 
-@interface ZPPIngridient : NSObject
+@interface ZPPIngridient : NSObject <ZPPWithImageURL>
 
 @property (copy, nonatomic, readonly) NSString *name;
 @property (copy, nonatomic, readonly) NSString *ingridientID;

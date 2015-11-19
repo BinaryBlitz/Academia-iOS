@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ZPPItemProtocol.h"
+#import "ZPPWithImageURL.h"
 
-@interface ZPPLunch : NSObject <ZPPItemProtocol>
+@interface ZPPLunch : NSObject <ZPPItemProtocol,ZPPWithImageURL>
 
 @property (strong, nonatomic, readonly) NSString *name;
 @property (strong, nonatomic, readonly) NSNumber *lunchIdentifier;
