@@ -171,8 +171,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
 - (void)didPressBeginButton {
     if (![[ZPPUserManager sharedInstance] checkUser]) {
-        ZPPMainVC *mainVC = (ZPPMainVC *)self.parentViewController;
-        [mainVC showRegistration];
+        [[self mainVC] showRegistration];
     } else {
         if (self.productViewControllers.count > 1) {  // REDO костыль
             [self setViewControllers:@[ self.productViewControllers[1] ]
@@ -234,6 +233,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
     ZPPProductTVC *productTVC =
         [self.storyboard instantiateViewControllerWithIdentifier:ZPPProductPresenterID];
 
+    [productTVC configureWithOrder:[self mainVC].order];
     [productTVC configureWithDish:dish];
 
     return productTVC;
@@ -243,6 +243,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
     ZPPAnotherProductsTVC *anotherTVC =
         [self.storyboard instantiateViewControllerWithIdentifier:ZPPAnotherProductPresenterID];
 
+    [anotherTVC configureWithOrder:[self mainVC].order];
     [anotherTVC configureWithStuffs:products];
     return anotherTVC;
 }
@@ -284,24 +285,10 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
                   completion:nil];
 }
 
-//- (void)findScrollView {
-//    for (UIView *v in self.view.subviews) {
-//        if ([v isKindOfClass:[UIScrollView class]]) {
-//            UIScrollView *scrollView = (UIScrollView *)v;
-//            scrollView.delegate = self;
-//        }
-//    }
-//}
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before
-navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (ZPPMainVC *)mainVC {
+    return (ZPPMainVC *)self.parentViewController;
 }
-*/
+
 
 @end

@@ -12,12 +12,17 @@
 #import "ZPPProductAboutCell.h"
 #import "ZPPIngridient.h"
 
+#import "UIView+UIViewCategory.h"
+
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
 // categories
 #import "UIFont+ZPPFontCategory.h"
 
 #import "ZPPDish.h"
+
+#import "ZPPOrder.h"
+#import "ZPPOrderItem.h"
 
 // libs
 //#import <LoremIpsum.h>
@@ -34,6 +39,7 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
 @property (strong, nonatomic) ZPPDish *dish;
 
 @property (assign, nonatomic) NSInteger numberOfRows;
+@property (strong, nonatomic) ZPPOrder *order;
 
 @end
 
@@ -48,7 +54,9 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)configureWithOrder:(ZPPOrder *)order {
+    self.order = order;
+}
 - (void)configureWithDish:(ZPPDish *)dish {
     self.dish = dish;
     [self.tableView reloadData];
@@ -87,14 +95,28 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
     cell.priceLabel.text =
         [NSString stringWithFormat:@"%@ ₽", self.dish.price];  //[self.dish.price stringValue];
                                                                  ////[NSString
-    // stringWithFormat:@"365 ₽"];
-    cell.addToBasketButton.layer.borderWidth = 2.0;
-    cell.addToBasketButton.layer.borderColor = [UIColor whiteColor].CGColor;
+ 
+    
+    [cell.addToBasketButton makeBorderedWithColor:[UIColor whiteColor]];
     cell.contentView.backgroundColor = [UIColor blackColor];
+    
+    
+    
 
     [cell.addToBasketButton addTarget:self
                                action:@selector(addToBasketAction:)
                      forControlEvents:UIControlEventTouchUpInside];
+    
+    ZPPOrderItem *orderItem = [self.order orderItemForItem:self.dish];
+    
+    if (orderItem) {
+        [cell.addToBasketButton setTitle:@"ЗАКАЗАТЬ ЕЩЕ" forState:UIControlStateNormal];
+        
+        //[cell setBadgeCount:orderItem.count];
+    }
+
+    
+    
 
     return cell;
 }
@@ -173,6 +195,7 @@ static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier
 
 - (void)addToBasketAction:(UIButton *)sender {
     [self.productDelegate addItemIntoOrder:self.dish];
+    [self.tableView reloadData];
 }
 
 #pragma mark - lazy

@@ -35,7 +35,7 @@ static float kZPPButtonOffset = 15.0f;
 
 @property (assign, nonatomic) BOOL menuShowed;
 
-@property (strong, nonatomic) ZPPOrder *order;
+//@property (strong, nonatomic) ZPPOrder *order;
 
 @property (assign, nonatomic) BOOL animationShoved;
 @end

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ZPPItemProtocol.h"
 
+//@class ZPPOrder;
+
 @protocol ZPPProductsBaseTVCDelegate <NSObject>
 - (void) didScroll: (UIScrollView *) sender;
 
@@ -22,8 +24,12 @@
 @interface ZPPProductsBaseTVC : UITableViewController
 @property (nonatomic, weak) id <ZPPProductsBaseTVCDelegate> delegate;
 @property (nonatomic, weak) id <ZPPProductScreenTVCDelegate> productDelegate;
+//@property (strong, nonatomic) Z
+
 
 @property (assign, nonatomic, readonly) CGFloat screenHeight;
 - (void)registreCells;
+
+
 
 @end

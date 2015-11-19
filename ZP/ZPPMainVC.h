@@ -10,6 +10,7 @@
 //#import "ZPPBeginScreenTVC.h"
 #import "ZPPItemProtocol.h"
 
+@class ZPPOrder;
 @interface ZPPMainVC : UIViewController //<ZPPBeginScreenTVCDelegate>
 
 - (void)showRegistration;
@@ -18,5 +19,6 @@
 
 - (void)showNoInternetScreen;
 
+@property (strong, nonatomic) ZPPOrder *order;
 
 @end
