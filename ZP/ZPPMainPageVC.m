@@ -196,6 +196,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 #pragma mark - dishes
 
 - (void)loadDishes {
+    
     __weak typeof(self) weakSelf = self;
     [[ZPPServerManager sharedManager] getDayMenuOnSuccess:^(NSArray *meals, NSArray *dishes,
                                                             NSArray *stuff) {
@@ -212,8 +213,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
         }
     } onFailure:^(NSError *error, NSInteger statusCode) {
 
-        ZPPMainVC *mvc = (ZPPMainVC *)weakSelf.parentViewController;
-        [mvc showNoInternetScreen];
+        [[self mainVC] showNoInternetScreen];
     }];
 }
 
@@ -285,10 +285,8 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
                   completion:nil];
 }
 
-
 - (ZPPMainVC *)mainVC {
     return (ZPPMainVC *)self.parentViewController;
 }
-
 
 @end
