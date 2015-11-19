@@ -147,6 +147,7 @@
 		19F378F71BFA9EA0004827A0 /* ZPPDelivery.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378F61BFA9EA0004827A0 /* ZPPDelivery.m */; };
 		19F378FA1BFB14CA004827A0 /* ZPPPasswordRenewPasswordInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378F91BFB14CA004827A0 /* ZPPPasswordRenewPasswordInput.m */; };
 		19F378FE1BFBBDF3004827A0 /* ZPPPaymentWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378FD1BFBBDF3004827A0 /* ZPPPaymentWebController.m */; };
+		19F379011BFE2489004827A0 /* DTCustomColoredAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F379001BFE2489004827A0 /* DTCustomColoredAccessory.m */; };
 		45234A6F844FF56D94658C3E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9EEF06E3D3C7DB053DFF64 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -410,6 +411,9 @@
 		19F378F91BFB14CA004827A0 /* ZPPPasswordRenewPasswordInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPPasswordRenewPasswordInput.m; sourceTree = "<group>"; };
 		19F378FC1BFBBDF3004827A0 /* ZPPPaymentWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPPaymentWebController.h; sourceTree = "<group>"; };
 		19F378FD1BFBBDF3004827A0 /* ZPPPaymentWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPPaymentWebController.m; sourceTree = "<group>"; };
+		19F378FF1BFE2489004827A0 /* DTCustomColoredAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCustomColoredAccessory.h; sourceTree = "<group>"; };
+		19F379001BFE2489004827A0 /* DTCustomColoredAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCustomColoredAccessory.m; sourceTree = "<group>"; };
+		19F379021BFE2AED004827A0 /* ZPPConfigureWithOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPConfigureWithOrder.h; sourceTree = "<group>"; };
 		E6092FFC7B589467189F0B0B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FBF21C48AB60C310F6FAB5FC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FD9EEF06E3D3C7DB053DFF64 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -767,6 +771,7 @@
 				191C985D1BC0447800E10D4F /* ZPPMainPageVC.m */,
 				191C98531BC0438C00E10D4F /* ZPPMainVC.h */,
 				191C98541BC0438C00E10D4F /* ZPPMainVC.m */,
+				19F379021BFE2AED004827A0 /* ZPPConfigureWithOrder.h */,
 			);
 			name = main;
 			sourceTree = "<group>";
@@ -1051,6 +1056,8 @@
 		1984EE411BD1504F001D25D5 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				19F378FF1BFE2489004827A0 /* DTCustomColoredAccessory.h */,
+				19F379001BFE2489004827A0 /* DTCustomColoredAccessory.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1708,6 +1715,7 @@
 				1907C76B1BF14E57003BA62E /* ZPPCardInOrderCell.m in Sources */,
 				1948C5351BEBBC5E00084BC8 /* ZPPChangePasswordVC.m in Sources */,
 				1984EE401BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.m in Sources */,
+				19F379011BFE2489004827A0 /* DTCustomColoredAccessory.m in Sources */,
 				198A5C1B1BD5BE0B00710A36 /* ZPPServerManager+ZPPDishesSeverManager.m in Sources */,
 				191C985E1BC0447800E10D4F /* ZPPMainPageVC.m in Sources */,
 				1942354D1BE933E30014BD9A /* ZPPGift.m in Sources */,

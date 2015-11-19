@@ -45,6 +45,7 @@
 
         UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:nip];
         cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.accessoryView = nil;
         return cell;
     } else {
         NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:2];

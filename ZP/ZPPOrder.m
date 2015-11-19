@@ -71,7 +71,7 @@
 
 - (ZPPOrderItem *)orderItemForItem:(id<ZPPItemProtocol>)item {
     for (ZPPOrderItem *oi in self.items) {
-        if ([oi.item isEqual:item]) {
+        if ([[oi.item identifierOfItem] isEqual:[item identifierOfItem]]) {
             return oi;
         }
     }

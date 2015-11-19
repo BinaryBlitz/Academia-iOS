@@ -16,7 +16,9 @@
 #import <UIImageView+AFNetworking.h>
 
 #import "ZPPConsts.h"
+#import "ZPPOrder.h"
 
+#import "ZPPOrderItem.h"
 //#import <LoremIpsum.h>
 
 static NSString *ZPPProductAnotherCellIdentifier = @"ZPPProductAnotherCellIdentifier";
@@ -28,6 +30,7 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
 @interface ZPPAnotherProductsTVC ()
 
 @property (strong, nonatomic) NSArray *anotherProducts;
+@property (strong, nonatomic) ZPPOrder *order;
 
 @end
 
@@ -38,10 +41,18 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
 
 }
 
+- (void)configureWithOrder:(ZPPOrder *)order {
+    self.order = order;
+}
 - (void)configureWithStuffs:(NSArray *)stuffs {
     self.anotherProducts = stuffs;
     [self.tableView reloadData];
 }
+
+//- (void)configureWithStuffs:(NSArray *)stuffs order:(ZPPOrder *)order {
+//    self.order = order;
+//    [self configureWithStuffs:stuffs];
+//}
 
 #pragma mark - UITableViewDataSource
 
@@ -82,11 +93,15 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
 
     ZPPStuff *stuff = self.anotherProducts[indexPath.row];
 
-    cell.nameLabel.text = stuff.name;
-    cell.productDescriptionLabel.text = stuff.stuffDescr;
-    cell.priceLabel.text = [NSString stringWithFormat:@"%@%@", stuff.price, ZPPRoubleSymbol];
 
-    [cell.pictureImageView setImageWithURL:stuff.imgURl];
+    ZPPOrderItem *orderItem = [self.order orderItemForItem:stuff];
+    
+    if (orderItem) {
+        [cell setBadgeCount:orderItem.count];
+    }
+    
+    [cell configureWithStuff:stuff];
+    
 
     [cell.addProductButton addTarget:self
                               action:@selector(addToCard:)
@@ -149,5 +164,7 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
             [self.productDelegate addItemIntoOrder:stuff];
         }
     }
+    
+    [self.tableView reloadData];
 }
 @end
