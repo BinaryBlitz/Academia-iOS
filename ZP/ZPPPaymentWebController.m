@@ -30,6 +30,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.title = @"ОПЛАТА";
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+
     [self addCustomCloseButton];
     self.navigationController.navigationBar.translucent = YES;
     // self.navigationController.navigationBar.backgroundColor = [UIColor blackColor];

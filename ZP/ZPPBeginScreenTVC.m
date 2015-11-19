@@ -165,6 +165,7 @@ navigation
 
     switch (state) {
         case ZPPCurrentBeginStateOpen:
+            text = @"ПОСМОТРЕТЬ МЕНЮ";
 
             break;
         case ZPPCurrentBeginStateMorning:

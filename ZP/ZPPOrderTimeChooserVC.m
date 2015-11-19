@@ -147,16 +147,31 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
     NSString *destString = [NSString
         stringWithFormat:@"%@/%@/%@?orderId=%@", [ZPPPaymentManager sharedManager].baseURL,
                          ZPPCentralURL, ZPPPaymentFinishURL, self.order.alfaNumber];
+    
+    NSLog(@"\n%@\n%@",url.absoluteString,destString);
     if ([url.absoluteString isEqualToString:destString]) {
         [vc dismissViewControllerAnimated:YES completion:^{
             
+            
+            
         }];
+        
+        UIViewController *vc =
+        [self.storyboard instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
+        
+        [self presentViewController:vc animated:YES completion:^{
+            // [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+
+        
+      //  [self ]
     }
 }
 
 - (void)showWebViewWithURl:(NSURL *)url {
     ZPPPaymentWebController *wc = [[ZPPPaymentWebController alloc] init];
     [wc configureWithURL:url];
+    wc.paymentDelegate = self;
 
     UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:wc];
 
@@ -166,7 +181,10 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
     [self presentViewController:navC animated:YES completion:nil];
 }
 
-- (void)checkORderStatus {
+
+
+
+- (void)checkOrderStatus {
 }
 
 #pragma mark - time shooser
