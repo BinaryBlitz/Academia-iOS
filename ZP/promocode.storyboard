@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -22,11 +23,97 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLG-ZO-VX4">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xzk-E6-kwm">
+                                <rect key="frame" x="8" y="363" width="584" height="237"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ваш личный промо-код" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eng-WI-5FC">
+                                        <rect key="frame" x="8" y="42" width="568" height="21"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="FVk-0i-s6X"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" red="0.30196078431372547" green="0.30196078431372547" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0999e" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciR-e8-YwJ" customClass="ZPPCustomLabel">
+                                        <rect key="frame" x="8" y="64" width="568" height="26"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="26" id="owE-q6-D4A"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWS-uC-ZVE">
+                                        <rect key="frame" x="8" y="107" width="568" height="39"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="Y2L-Pw-iMx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Пригласить по смс">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhL-3J-Hqt">
+                                        <rect key="frame" x="8" y="154" width="568" height="39"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="7Kg-f0-TAe"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Пригласить по e-mail">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TC-WH-5aG">
+                                        <rect key="frame" x="8" y="209" width="568" height="20"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="XUj-r1-oAn"/>
+                                        </constraints>
+                                        <state key="normal" title="Пригласить в социальных сетях">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="mhL-3J-Hqt" firstAttribute="leading" secondItem="Xzk-E6-kwm" secondAttribute="leading" constant="8" id="0on-17-rsA"/>
+                                    <constraint firstItem="0TC-WH-5aG" firstAttribute="top" secondItem="mhL-3J-Hqt" secondAttribute="bottom" constant="16" id="1Av-Qm-C0Y"/>
+                                    <constraint firstAttribute="trailing" secondItem="Eng-WI-5FC" secondAttribute="trailing" constant="8" id="4iv-lP-qRv"/>
+                                    <constraint firstItem="qWS-uC-ZVE" firstAttribute="leading" secondItem="Xzk-E6-kwm" secondAttribute="leading" constant="8" id="4l8-rW-Ycs"/>
+                                    <constraint firstAttribute="trailing" secondItem="qWS-uC-ZVE" secondAttribute="trailing" constant="8" id="5Fi-YL-q3n"/>
+                                    <constraint firstItem="mhL-3J-Hqt" firstAttribute="top" secondItem="qWS-uC-ZVE" secondAttribute="bottom" constant="8" id="77h-rP-a3l"/>
+                                    <constraint firstAttribute="bottom" secondItem="0TC-WH-5aG" secondAttribute="bottom" constant="8" id="E83-lh-vOI"/>
+                                    <constraint firstItem="qWS-uC-ZVE" firstAttribute="top" secondItem="ciR-e8-YwJ" secondAttribute="bottom" constant="17" id="FyP-fj-xmE"/>
+                                    <constraint firstItem="Eng-WI-5FC" firstAttribute="top" secondItem="Xzk-E6-kwm" secondAttribute="top" constant="8" id="NEn-G9-o7O"/>
+                                    <constraint firstAttribute="width" secondItem="Xzk-E6-kwm" secondAttribute="height" multiplier="584:237" id="QrM-xd-p2R"/>
+                                    <constraint firstAttribute="trailing" secondItem="0TC-WH-5aG" secondAttribute="trailing" constant="8" id="RFp-Oq-B84"/>
+                                    <constraint firstAttribute="trailing" secondItem="mhL-3J-Hqt" secondAttribute="trailing" constant="8" id="XAh-y7-GMb"/>
+                                    <constraint firstAttribute="trailing" secondItem="ciR-e8-YwJ" secondAttribute="trailing" constant="8" id="fSG-pm-EP5"/>
+                                    <constraint firstItem="ciR-e8-YwJ" firstAttribute="top" secondItem="Eng-WI-5FC" secondAttribute="bottom" constant="1" id="gkU-ZL-YUD"/>
+                                    <constraint firstAttribute="height" constant="237" id="iN3-op-7KJ"/>
+                                    <constraint firstItem="ciR-e8-YwJ" firstAttribute="leading" secondItem="Xzk-E6-kwm" secondAttribute="leading" constant="8" id="pia-52-g78"/>
+                                    <constraint firstItem="0TC-WH-5aG" firstAttribute="leading" secondItem="Xzk-E6-kwm" secondAttribute="leading" constant="8" id="w9E-Am-c4g"/>
+                                    <constraint firstItem="Eng-WI-5FC" firstAttribute="leading" secondItem="Xzk-E6-kwm" secondAttribute="leading" constant="8" id="xAj-Bd-1xl"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="237" id="zp2-GU-w6T"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="QrM-xd-p2R"/>
+                                        <exclude reference="NEn-G9-o7O"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLG-ZO-VX4" customClass="ZPPCustomTouchTransperentView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="54a-5u-s1w">
-                                        <rect key="frame" x="208" y="285" width="184" height="30"/>
+                                        <rect key="frame" x="208" y="215" width="184" height="30"/>
                                         <animations/>
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -37,7 +124,7 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIJ-9M-KeT">
-                                        <rect key="frame" x="208" y="323" width="184" height="30"/>
+                                        <rect key="frame" x="208" y="253" width="184" height="30"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -45,8 +132,8 @@
                                         </constraints>
                                         <state key="normal" title="ДАЛЕЕ"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите промокод для активации" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGt-42-pWV">
-                                        <rect key="frame" x="8" y="256" width="584" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите промо-код" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGt-42-pWV">
+                                        <rect key="frame" x="8" y="186" width="584" height="20.5"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20.5" id="1ty-Yz-V9Z"/>
@@ -59,7 +146,7 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="54a-5u-s1w" firstAttribute="centerY" secondItem="RLG-ZO-VX4" secondAttribute="centerY" id="1i8-Eq-UdJ"/>
+                                    <constraint firstItem="54a-5u-s1w" firstAttribute="centerY" secondItem="RLG-ZO-VX4" secondAttribute="centerY" constant="-70" id="1i8-Eq-UdJ"/>
                                     <constraint firstItem="HIJ-9M-KeT" firstAttribute="leading" secondItem="54a-5u-s1w" secondAttribute="leading" id="G2J-Mc-htg"/>
                                     <constraint firstItem="54a-5u-s1w" firstAttribute="centerX" secondItem="RLG-ZO-VX4" secondAttribute="centerX" id="Sgn-X7-Tyk"/>
                                     <constraint firstItem="HIJ-9M-KeT" firstAttribute="trailing" secondItem="54a-5u-s1w" secondAttribute="trailing" id="YDG-Bb-WzW"/>
@@ -76,11 +163,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="RLG-ZO-VX4" secondAttribute="trailing" constant="-20" id="0yI-6t-uNb"/>
                             <constraint firstItem="RLG-ZO-VX4" firstAttribute="top" secondItem="LtI-NJ-WFT" secondAttribute="topMargin" id="1ZJ-h7-pR8"/>
                             <constraint firstItem="6pt-Ck-TJ5" firstAttribute="top" secondItem="LtI-NJ-WFT" secondAttribute="topMargin" id="5bT-QT-vxE"/>
+                            <constraint firstItem="UUZ-rS-f2o" firstAttribute="top" secondItem="Xzk-E6-kwm" secondAttribute="bottom" id="9IB-o8-F34"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Xzk-E6-kwm" secondAttribute="trailing" constant="-12" id="L8m-z6-Vnh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6pt-Ck-TJ5" secondAttribute="trailing" constant="-20" id="Lg6-dx-KqL"/>
                             <constraint firstItem="UUZ-rS-f2o" firstAttribute="top" secondItem="6pt-Ck-TJ5" secondAttribute="bottom" id="UP7-f4-4aV"/>
                             <constraint firstItem="UUZ-rS-f2o" firstAttribute="top" secondItem="RLG-ZO-VX4" secondAttribute="bottom" id="bQC-mh-809"/>
                             <constraint firstItem="6pt-Ck-TJ5" firstAttribute="leading" secondItem="LtI-NJ-WFT" secondAttribute="leadingMargin" constant="-20" id="c7V-pt-Swf"/>
                             <constraint firstItem="RLG-ZO-VX4" firstAttribute="leading" secondItem="LtI-NJ-WFT" secondAttribute="leadingMargin" constant="-20" id="iDE-Q8-ccZ"/>
+                            <constraint firstItem="Xzk-E6-kwm" firstAttribute="leading" secondItem="LtI-NJ-WFT" secondAttribute="leadingMargin" constant="-12" id="uZe-2P-S2h"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="H34-xx-IzY"/>
@@ -88,6 +178,10 @@
                         <outlet property="bottomConstr" destination="bQC-mh-809" id="EFJ-Il-DBP"/>
                         <outlet property="codeTextField" destination="54a-5u-s1w" id="I1b-i3-eNP"/>
                         <outlet property="doneButton" destination="HIJ-9M-KeT" id="OHj-tg-WfW"/>
+                        <outlet property="emailShare" destination="mhL-3J-Hqt" id="wnM-27-bvw"/>
+                        <outlet property="promocodeLabel" destination="ciR-e8-YwJ" id="rM0-Iv-SYf"/>
+                        <outlet property="smsInviteButton" destination="qWS-uC-ZVE" id="i4k-U3-ZYI"/>
+                        <outlet property="socialMediaShare" destination="0TC-WH-5aG" id="Tdz-9Z-cqU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jEi-I4-5uo" userLabel="First Responder" sceneMemberID="firstResponder"/>
