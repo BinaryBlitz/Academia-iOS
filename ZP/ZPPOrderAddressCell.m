@@ -13,9 +13,9 @@
 
 - (void)configureWithAddress:(ZPPAddress *)address {
     self.addresDescrLabel.text = @"Адрес доставки";
-    self.addresLabel.text = [NSString stringWithFormat:@"%@, %@", address.city, address.addres];
+    self.addresLabel.text = [NSString stringWithFormat:@"%@", [address formatedDescr]];
 
- //   [self.chooseAnotherButton setTitle:@"Выбрать другой адерс" forState:UIControlStateNormal];
+        //   [self.chooseAnotherButton setTitle:@"Выбрать другой адерс" forState:UIControlStateNormal];
 
     NSDictionary *underlineAttribute =
         @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) };

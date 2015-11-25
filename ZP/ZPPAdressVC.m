@@ -34,7 +34,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 
 @import GoogleMaps;
 
-@interface ZPPAdressVC () <GMSMapViewDelegate, ZPPAdressDelegate>
+@interface ZPPAdressVC () <GMSMapViewDelegate, ZPPAdressDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) GMSMapView *mapView_;
 
@@ -52,6 +52,10 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 
 @property (strong, nonatomic) UIButton *searchButton;
 
+@property (strong, nonatomic) ZPPAddress *selectedAddress;
+
+@property (assign, nonatomic) BOOL needUpdate;
+
 @end
 
 @implementation ZPPAdressVC
@@ -60,6 +64,8 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
     [super viewDidLoad];
 
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+
+    self.needUpdate = YES;
 
     [self showCurrentLocation];
 
@@ -80,7 +86,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
     //[self.view addSubview:self.addressSearchBar];
     [self.view addSubview:self.centralView];
     [self.view addSubview:self.actionButton];
-    [self.view addSubview:self.searchButton];
+    // [self.view addSubview:self.searchButton];
     //[self.view bringSubviewToFront:self.addressSearchBar];
     [self.view bringSubviewToFront:self.actionButton];
     [self.view bringSubviewToFront:self.addresTextField];
@@ -91,10 +97,13 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
     [b addTarget:self
                   action:@selector(showCurrentLocation)
         forControlEvents:UIControlEventTouchUpInside];
+    //[self addGradient];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self addGradient];
+    // [self addGradient];
 }
 
 //- (void)viewDidLayoutSubviews {
@@ -109,44 +118,57 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
     //  [self.navigationController hideTransparentNavigationBar];
 }
 
-- (void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position {
-    [self.addresTextField resignFirstResponder];
-    [[LMGeocoder sharedInstance] reverseGeocodeCoordinate:position.target
-                                                  service:kLMGeocoderGoogleService
-                                        completionHandler:^(NSArray *results, NSError *error) {
-                                            if (results.count && !error) {
-                                                LMAddress *address = [results firstObject];
-                                                // NSLog(@"Address: %@", address.formattedAddress);
-                                                ZPPAddress *adr =
-                                                    [ZPPAddressHelper addresFromAddres:address];
+- (void)mapView:(GMSMapView *)mapView idleAtCameraPosition:(GMSCameraPosition *)position {
+    // [self.addresTextField resignFirstResponder];
 
-                                                self.addresTextField.text = [adr formatedDescr];
-                                            }
-                                        }];
+    if (self.needUpdate) {
+        [[LMGeocoder sharedInstance] reverseGeocodeCoordinate:position.target
+                                                      service:kLMGeocoderGoogleService
+                                            completionHandler:^(NSArray *results, NSError *error) {
+                                                if (results.count && !error) {
+                                                    LMAddress *address = [results firstObject];
+                                                    ZPPAddress *adr =
+                                                        [ZPPAddressHelper addresFromAddres:address];
+
+                                                    self.addresTextField.text = [adr formatedDescr];
+
+                                                    self.selectedAddress = adr;
+                                                }
+                                            }];
+    } else {
+        self.needUpdate = YES;
+    }
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
-    [self.addresTextField resignFirstResponder];
+    //   [self.addresTextField resignFirstResponder];
 }
 
 #pragma mark - actions
 
 - (void)chooseLocation:(UIButton *)sender {
-    [[LMGeocoder sharedInstance]
-        reverseGeocodeCoordinate:self.mapView_.camera.target
-                         service:kLMGeocoderGoogleService
-               completionHandler:^(NSArray *results, NSError *error) {
-                   if (results.count && !error) {
-                       LMAddress *addr = [results firstObject];
+    if (self.addressDelegate) {
+        if (self.selectedAddress) {
+            [self.addressDelegate configureWithAddress:self.selectedAddress sender:self];
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            [[LMGeocoder sharedInstance]
+                reverseGeocodeCoordinate:self.mapView_.camera.target
+                                 service:kLMGeocoderGoogleService
+                       completionHandler:^(NSArray *results, NSError *error) {
+                           if (results.count && !error) {
+                               LMAddress *addr = [results firstObject];
 
-                       ZPPAddress *address = [ZPPAddressHelper addresFromAddres:addr];
+                               ZPPAddress *address = [ZPPAddressHelper addresFromAddres:addr];
 
-                       if (self.addressDelegate) {
-                           [self.addressDelegate configureWithAddress:address sender:self];
-                           [self.navigationController popViewControllerAnimated:YES];
-                       }
-                   }
-               }];
+                               if (self.addressDelegate) {
+                                   [self.addressDelegate configureWithAddress:address sender:self];
+                                   [self.navigationController popViewControllerAnimated:YES];
+                               }
+                           }
+                       }];
+        }
+    }
 }
 
 - (void)showAddressChooser {
@@ -188,6 +210,13 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
                                          }];
 }
 
+#pragma mark - UITextFielDelegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    [self showAddressChooser];
+    return NO;
+}
+
 #pragma mark - lazy
 
 - (UITextField *)addresTextField {
@@ -199,6 +228,12 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
             initWithFrame:CGRectMake(20, r.size.height + 20, size.width - 40, 40)];
         _addresTextField.backgroundColor = [UIColor whiteColor];
         _addresTextField.layer.cornerRadius = 5.0;
+
+        _addresTextField.delegate = self;
+
+        //        [_addresTextField addTarget:self
+        //                             action:@selector(showAddressChooser)
+        //                   forControlEvents:UIControlEventTouchUpInside];
     }
 
     return _addresTextField;
@@ -208,7 +243,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
     if (!_centralView) {
         CGSize s = [UIScreen mainScreen].bounds.size;
         _centralView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"marker"]];
-        _centralView.frame = CGRectMake(s.width / 2.0 - 15, s.height / 2.0 - 30, 30, 30);
+        _centralView.frame = CGRectMake(s.width / 2.0 - 30, s.height / 2.0 - 60, 60, 60);
         _centralView.backgroundColor = [UIColor clearColor];
     }
     return _centralView;
@@ -255,25 +290,43 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 
 - (void)configureWithAddress:(ZPPAddress *)address sender:(id)sender {
     [self moveCameraToCoordinate:address.coordinate];
+
+    self.needUpdate = NO;
+
+    // GMSCameraUpdate *targ = [GMSCameraUpdate setTarget:address.coordinate];
+
+    //[self.mapView_ moveCamera:targ];
+
+    self.addresTextField.text = [address formatedDescr];
+
+    self.selectedAddress = address;
 }
 
-//
-//- (void)addGradient {
-//   // UIView *view = self.navigationController.navigationBar.ba; //
-//   self.navigationController.navigationItem;
-//    if (![[view.layer.sublayers firstObject] isKindOfClass:[CAGradientLayer class]]) {
-//        CAGradientLayer *gradient = [CAGradientLayer layer];
-//        gradient.frame = view.bounds;
-//
-//        gradient.endPoint = CGPointMake(0.5, 0);
-//        gradient.startPoint = CGPointMake(0.5, 1.0);
-//
-//        gradient.colors =
-//        [NSArray arrayWithObjects:(id)[[UIColor clearColor] CGColor],
-//         (id)[[UIColor colorWithWhite:0 alpha:0.5] CGColor], nil];
-//        [view.layer insertSublayer:gradient atIndex:0];
-//    }
-//
-//}
+#pragma mark - ui
+
+- (void)addGradient {
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    CGRect fr = self.navigationController.navigationBar.bounds;
+
+    fr.origin.y = 0;
+    fr.size.height = fr.size.height + 20;
+
+    gradientLayer.frame = fr;  // self.navigationController.navigationBar.bounds;
+
+    gradientLayer.colors = @[
+        (__bridge id)[UIColor colorWithWhite:0.2 alpha:0.5]
+            .CGColor,
+        (__bridge id)[UIColor clearColor].CGColor
+    ];
+    gradientLayer.startPoint = CGPointMake(0.5, 0.0);
+    gradientLayer.endPoint = CGPointMake(0.5, 1.0);
+
+    UIGraphicsBeginImageContext(gradientLayer.bounds.size);
+    [gradientLayer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *gradientImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [self.navigationController.navigationBar setBackgroundImage:gradientImage
+                                                  forBarMetrics:UIBarMetricsDefault];
+}
 
 @end

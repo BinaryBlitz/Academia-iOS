@@ -79,6 +79,7 @@ static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:ZPPSearchResultCellIdentifier];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     cell.contentView.backgroundColor = [UIColor clearColor];
     cell.backgroundColor = [UIColor clearColor];
@@ -97,11 +98,14 @@ static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier
         return;
     }
 
-    if (self.addressSearchDelegate) {
-        [self.addressSearchDelegate configureWithAddress:address sender:self];
+    self.searchBar.text = address.addres;
+    [self searchWithText:address.addres];
 
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+    //    if (self.addressSearchDelegate) {
+    //        [self.addressSearchDelegate configureWithAddress:address sender:self];
+    //
+    //        [self dismissViewControllerAnimated:YES completion:nil];
+    //    }
 }
 
 //- (void)setResults:(NSArray *)results {
@@ -135,22 +139,61 @@ static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier
     [self searchWithText:searchText];
 }
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    if (self.addressSearchDelegate) {
+        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        [[ZPPMapSearcher shared] searcDaDataWithAddress:searchBar.text
+            count:@(1)
+            onSuccess:^(NSArray *addresses) {
+
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                ZPPAddress *adr = [addresses lastObject];
+
+                [self.addressSearchDelegate configureWithAddress:adr sender:self];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+            onFailure:^(NSError *error, NSInteger statusCode){
+                
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
+            }];
+
+        //[self.addressSearchDelegate configureWithAddress:address sender:self];
+
+      //  [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
 #pragma mark - server
 
 - (void)searchWithText:(NSString *)text {
     if (!text || text.length < 3) {
+//        self.searchBar.text = @"";
         return;
     }
 
-    [[ZPPMapSearcher shared] searchAddres:text
+    [[ZPPMapSearcher shared] searcDaDataWithAddress:text
+        count:@(10)
         onSuccess:^(NSArray *addresses) {
 
             self.results = addresses;
             [self.tableView reloadData];
+
         }
         onFailure:^(NSError *error, NSInteger statusCode){
 
         }];
+
+    //    [[ZPPMapSearcher shared] searchAddres:text
+    //        onSuccess:^(NSArray *addresses) {
+    //
+    //            self.results = addresses;
+    //            [self.tableView reloadData];
+    //        }
+    //        onFailure:^(NSError *error, NSInteger statusCode){
+    //
+    //        }];
 }
 
 @end

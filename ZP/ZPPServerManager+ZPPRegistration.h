@@ -33,6 +33,9 @@ typedef NS_ENUM(NSInteger, ZPPUserStatus) {
                             onSuccess:(void (^)(ZPPUser *user))success
                             onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
+- (void)getCurrentUserOnSuccess:(void (^)(ZPPUser *user))success
+                      onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
 - (void)PATCHUpdateUserWithName:(NSString *)name
                        lastName:(NSString *)lastName
                           email:(NSString *)email

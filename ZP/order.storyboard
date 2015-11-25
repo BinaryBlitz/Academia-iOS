@@ -393,7 +393,7 @@
                                 </state>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yFP-He-Sb0">
-                                <rect key="frame" x="35" y="470" width="530" height="3"/>
+                                <rect key="frame" x="35" y="477" width="530" height="3"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -401,7 +401,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ВАШ ЗАКАЗ НА:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDl-9Z-NAy">
-                                <rect key="frame" x="35" y="481" width="530" height="21"/>
+                                <rect key="frame" x="35" y="496" width="530" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Tx7-uB-iUW"/>
@@ -410,11 +410,11 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtO-Bv-deI">
-                                <rect key="frame" x="35" y="510" width="530" height="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtO-Bv-deI">
+                                <rect key="frame" x="35" y="525" width="530" height="12"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="27" id="smn-gU-vft"/>
+                                    <constraint firstAttribute="height" constant="12" id="smn-gU-vft"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -427,7 +427,7 @@
                                     <constraint firstAttribute="height" constant="40" id="N28-N1-gAe"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                <state key="normal" title="КО ВРЕМЕНИ">
+                                <state key="normal" title="ВЫБРАТЬ ВРЕМЯ">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
@@ -442,8 +442,8 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите время:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nd6-Pc-txl">
-                                <rect key="frame" x="229.5" y="203.5" width="141.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Когда доставить?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nd6-Pc-txl">
+                                <rect key="frame" x="229.5" y="203" width="141.5" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -469,7 +469,7 @@
                             <constraint firstItem="Nd6-Pc-txl" firstAttribute="centerX" secondItem="whY-80-1ZM" secondAttribute="centerX" id="TWN-Ym-1cC"/>
                             <constraint firstItem="rHJ-13-fY8" firstAttribute="top" secondItem="DtO-Bv-deI" secondAttribute="bottom" constant="8" id="V7u-3B-saq"/>
                             <constraint firstItem="rHJ-13-fY8" firstAttribute="trailing" secondItem="DtO-Bv-deI" secondAttribute="trailing" constant="-30" id="VeM-dX-4fM"/>
-                            <constraint firstItem="oDl-9Z-NAy" firstAttribute="top" secondItem="yFP-He-Sb0" secondAttribute="bottom" constant="8" id="Zh9-ny-BSH"/>
+                            <constraint firstItem="oDl-9Z-NAy" firstAttribute="top" secondItem="yFP-He-Sb0" secondAttribute="bottom" constant="16" id="Zh9-ny-BSH"/>
                             <constraint firstItem="oDl-9Z-NAy" firstAttribute="trailing" secondItem="yFP-He-Sb0" secondAttribute="trailing" id="bv0-UI-usv"/>
                             <constraint firstItem="DtO-Bv-deI" firstAttribute="top" secondItem="oDl-9Z-NAy" secondAttribute="bottom" constant="8" id="fdJ-u5-ggv"/>
                             <constraint firstItem="1zi-FC-caJ" firstAttribute="top" secondItem="whY-80-1ZM" secondAttribute="topMargin" id="nR7-0M-9Qj"/>
@@ -490,7 +490,7 @@
                         <outlet property="atTimeButton" destination="RGc-TG-NFr" id="QHx-dG-Rqj"/>
                         <outlet property="makeOrderButton" destination="rHJ-13-fY8" id="vv6-9m-lp9"/>
                         <outlet property="nowButton" destination="6La-up-uWH" id="2MD-Md-1JV"/>
-                        <outlet property="totalPriceLabel" destination="DtO-Bv-deI" id="9jS-b6-83X"/>
+                        <outlet property="totalPriceLabel" destination="oDl-9Z-NAy" id="Lw9-oV-jzt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fi7-EC-8Ny" userLabel="First Responder" sceneMemberID="firstResponder"/>

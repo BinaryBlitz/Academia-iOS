@@ -15,7 +15,7 @@
 @interface ZPPOrder : NSObject
 
 @property (strong, nonatomic, readonly) NSMutableArray *items;
-@property (strong, nonatomic,readonly) NSDate *date;
+@property (strong, nonatomic) NSDate *date;
 @property (strong, nonatomic) ZPPAddress *address;
 @property (strong, nonatomic) ZPPCreditCard *card;
 
@@ -35,7 +35,5 @@
 - (NSInteger)totalPrice;
 
 - (NSString *)orderDescr;
-
-
 
 @end

@@ -22,6 +22,14 @@
 static NSString *ZPPClientSecret = @"EPD0Y5G10BHTNEFFBYDNCUOKYJZSEWVYYZVIUB03CAEHGJFB";
 static NSString *ZPPClientID = @"W2EIJVGKHTJMB5NGC21UV1AVRNJW4MUYKVLLG0MZV31N0IUQ";
 
+static NSString *ZPPDaDataID = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
+
+@interface ZPPMapSearcher ()
+
+@property (strong, nonatomic) AFHTTPRequestOperationManager *manager;
+
+@end
+
 @implementation ZPPMapSearcher
 
 - (void)searchAddres:(NSString *)addresString
@@ -34,13 +42,21 @@ static NSString *ZPPClientID = @"W2EIJVGKHTJMB5NGC21UV1AVRNJW4MUYKVLLG0MZV31N0IU
         return;
     }
 
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [self searcDaDataWithAddress:addresString count:@(10) onSuccess:success onFailure:failure];
+}
+
+- (void)searchInForsquareWithAddress:(NSString *)addresString
+                           onSuccess:(void (^)(NSArray *addresses))success
+                           onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    AFHTTPRequestOperationManager *manager =
+        self.manager;  //[AFHTTPRequestOperationManager manager];
     NSString *string = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search"];
 
- //   NSString *correctString = [addresString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //   NSString *correctString = [addresString
+    //   stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     // redo locale
-    
-   // NSString *correctString = [[NSString alloc] initw
+
+    // NSString *correctString = [[NSString alloc] initw
     NSDictionary *params = @{
         @"v" : @"20130815",
         @"locale" : @"ru",
@@ -56,27 +72,140 @@ static NSString *ZPPClientID = @"W2EIJVGKHTJMB5NGC21UV1AVRNJW4MUYKVLLG0MZV31N0IU
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
 
             NSLog(@"%@", responseObject);
-            
-//            NSDictionary *respDict = responseObject[@"response"];
-//            
-//            if(respDict && ![respDict isEqual:[NSNull null]]) {
-//                NSArray *venues = respDict[@"venues"];
-//                
-//            }
+
+            //            NSDictionary *respDict = responseObject[@"response"];
+            //
+            //            if(respDict && ![respDict isEqual:[NSNull null]]) {
+            //                NSArray *venues = respDict[@"venues"];
+            //
+            //            }
             NSArray *addrs = [ZPPAddressHelper addressesFromFoursquareDict:responseObject];
-            if(success) {
+            if (success) {
                 success(addrs);
             }
-            
+
         }
         failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
 
             NSLog(@"failure %@", error);
-            
-            if(failure) {
+
+            if (failure) {
                 failure(error, operation.response.statusCode);
             }
         }];
+}
+
+- (void)searcDaDataWithAddress:(NSString *)addresString
+                         count:(NSNumber *)count
+                     onSuccess:(void (^)(NSArray *addresses))success
+                     onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    //    AFHTTPRequestOperationManager *manager =
+    //        self.manager;  //[AFHTTPRequestOperationManager manager];
+    //    NSString *string = [NSString
+    //    stringWithFormat:@"https://dadata.ru/api/v2/suggest/address"];
+    //
+    //    NSDictionary *params = @{ @"query" : addresString};
+    //
+    //    // AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //
+    //    //  [manager.requestSerializer setValue:@"SomeValue" forHTTPHeaderField:@"Content-Type"]
+    //
+    //    NSString *tokenString = [NSString stringWithFormat:@"Token %@", ZPPDaDataID];
+    //    [manager.requestSerializer setValue:tokenString forHTTPHeaderField:@"Authorization"];
+    //    [manager.requestSerializer setValue:@"application/json"
+    //    forHTTPHeaderField:@"Content-Type"];
+    //    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    //
+    //        [manager POST:string parameters:params
+    //        constructingBodyWithBlock:^(id<AFMultipartFormData>
+    //        _Nonnull formData) {
+    //
+    ////            NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:params];
+    ////            [formData appendPartWithHeaders:nil body:myData];
+    //
+    //        } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject)
+    //        {
+    //             NSLog(@"%@", responseObject);
+    //        } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+    //            NSLog(@"%@", error);
+    //        }];
+
+    //    [manager POST:string
+    //        parameters:params
+    //        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+    //            NSLog(@"%@", responseObject);
+    //        }
+    //        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+    //            NSLog(@"%@", error);
+    //        }];
+
+    NSString *string = [NSString stringWithFormat:@"https://dadata.ru/api/v2/suggest/address"];
+    NSURL *URL = [NSURL URLWithString:string];
+    NSMutableURLRequest *request =
+        [NSMutableURLRequest requestWithURL:URL
+                                cachePolicy:NSURLRequestReloadIgnoringCacheData
+                            timeoutInterval:10];
+
+    //    NSDictionary *params = @{ @"query" : addresString };
+    //    NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:params];
+    NSString *tokenString = [NSString stringWithFormat:@"Token %@", ZPPDaDataID];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:tokenString forHTTPHeaderField:@"Authorization"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//    NSString *bodyStr = [NSString
+//        stringWithFormat:@"{\"query\":\"%@\", \"locations\": [{ \"region\": \"москва\" }]}",
+//                         addresString];
+
+    NSDictionary *params = @{
+        @"query" : addresString,
+        @"count" : count,
+        @"locations" : @[ @{@"region" : @"москва"} ]
+    };
+    
+    NSString *paramsString = [self bv_jsonStringWithPrettyPrint:YES dict:params];
+
+    [request setHTTPBody:[paramsString dataUsingEncoding:NSUTF8StringEncoding]];
+
+    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    op.responseSerializer = [AFJSONResponseSerializer serializer];
+    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+        NSLog(@"JSON responseObject: %@ ", responseObject);
+
+        NSArray *suggestions = responseObject[@"suggestions"];
+        NSArray *addresses = [ZPPAddressHelper addressesFromDaDataDicts:suggestions];
+
+        if (success) {
+            success(addresses);
+        }
+
+        //   NSLog(@"JSON responseObject: %@ ", responseObject);
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", [error localizedDescription]);
+
+        if (failure) {
+            failure(error, operation.response.statusCode);
+        }
+
+    }];
+    [op start];
+}
+
+- (NSString *)bv_jsonStringWithPrettyPrint:(BOOL)prettyPrint dict:(NSDictionary *)dict {
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization
+        dataWithJSONObject:dict
+                   options:(NSJSONWritingOptions)(prettyPrint ? NSJSONWritingPrettyPrinted : 0)
+                     error:&error];
+
+    if (!jsonData) {
+        NSLog(@"bv_jsonStringWithPrettyPrint: error: %@", error.localizedDescription);
+        return @"{}";
+    } else {
+        return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
 }
 
 + (instancetype)shared {
@@ -91,6 +220,7 @@ static NSString *ZPPClientID = @"W2EIJVGKHTJMB5NGC21UV1AVRNJW4MUYKVLLG0MZV31N0IU
 - (instancetype)init {
     self = [super init];
     if (self) {
+        self.manager = [[AFHTTPRequestOperationManager alloc] init];
         // [self propertiesInitializing];
     }
     return self;

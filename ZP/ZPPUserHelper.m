@@ -16,6 +16,7 @@ NSString const *ZPPPhoneNumber = @"phone_number";
 NSString const *ZPPAPIToken = @"api_token";
 NSString const *ZPPUserID = @"id";
 NSString const *ZPPUserPassword = @"password";
+NSString const *ZPPUserPromocode = @"promo_code";
 
 @implementation ZPPUserHelper
 
@@ -60,6 +61,7 @@ NSString const *ZPPUserPassword = @"password";
     NSString *phoneNumber;
     NSString *userID;
     NSString *apiToken;
+    NSString *promocode;
     if (dict[ZPPAPIToken]) {
         apiToken = dict[ZPPAPIToken];
     }
@@ -80,12 +82,17 @@ NSString const *ZPPUserPassword = @"password";
     if (dict[ZPPUserID]) {
         userID = dict[ZPPUserID];
     }
+    
+    if(dict[ZPPUserPromocode]) {
+        promocode = dict[ZPPUserPromocode];
+    }
     ZPPUser *user = [[ZPPUser alloc] initWihtName:firstName
                                          lastName:lastName
                                             email:email
                                       phoneNumber:phoneNumber
                                            userID:userID
-                                           apiKey:apiToken];
+                                           apiKey:apiToken
+                                        promocode:promocode];
 
     return user;
 }

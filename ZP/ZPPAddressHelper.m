@@ -56,17 +56,62 @@
     NSDictionary *locationDict = dict[@"location"];
     double lat = [locationDict[@"lat"] doubleValue];
     double lon = [locationDict[@"lng"] doubleValue];
-    
-    
+
     CLLocationCoordinate2D c = CLLocationCoordinate2DMake(lat, lon);
     NSString *country = locationDict[@"country"];
     NSString *city = locationDict[@"city"];
     NSArray *formattedAddresses = locationDict[@"formattedAddress"];
-    
+
     NSString *address = [formattedAddresses componentsJoinedByString:@" "];
 
     ZPPAddress *a =
         [[ZPPAddress alloc] initWithCoordinate:c Country:country city:city address:address];
+
+    return a;
+}
+
++ (NSArray *)addressesFromDaDataDicts:(NSArray *)dicts {
+    NSMutableArray *tmp = [NSMutableArray array];
+    for (NSDictionary *d in dicts) {
+   //     NSDictionary *geoDict = d[@"data"];
+
+        //        if([geoDict[@"geo_lat"] isEqual:[NSNull null]]) {
+        //            continue;
+        //        }
+
+        ZPPAddress *a = [[self class] addresFromDaDataDict:d];
+
+        [tmp addObject:a];
+    }
+
+    return [NSArray arrayWithArray:tmp];
+}
+
++ (ZPPAddress *)addresFromDaDataDict:(NSDictionary *)dict {
+    NSDictionary *locationDict = dict[@"data"];
+    NSString *unrestricted_value = dict[@"unrestricted_value"];
+
+    CLLocationCoordinate2D c = CLLocationCoordinate2DMake(0, 0);
+    if (locationDict[@"geo_lat"] && ![locationDict[@"geo_lat"] isEqual:[NSNull null]]) {
+        
+        double lat = [locationDict[@"geo_lat"] doubleValue];
+        double lon = [locationDict[@"geo_lon"] doubleValue];
+        c = CLLocationCoordinate2DMake(lat, lon);
+    }
+
+    //    double lat = [locationDict[@"geo_lat"] doubleValue];
+    //    double lon = [locationDict[@"geo_lat"] doubleValue];
+
+    // CLLocationCoordinate2D c = CLLocationCoordinate2DMake(0, 0);//CLLocationCoordinate2DMake(lat,
+    // lon);
+    // NSString *country = locationDict[@"country"];
+    //  NSString *city = locationDict[@"city"];
+    //   NSArray *formattedAddresses = locationDict[@"formattedAddress"];
+
+    //   NSString *address = [formattedAddresses componentsJoinedByString:@" "];
+
+    ZPPAddress *a =
+        [[ZPPAddress alloc] initWithCoordinate:c Country:nil city:nil address:unrestricted_value];
 
     return a;
 }

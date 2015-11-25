@@ -75,6 +75,7 @@
                  phoneNumber:(NSString *)phoneNumber
                       userID:(NSString *)userID
                       apiKey:(NSString *)apiKey
+                   promocode:(NSString *)promocode;
 {
     self = [super init];
     if (self) {
@@ -84,6 +85,7 @@
         self.phoneNumber = phoneNumber;
         self.userID = userID;
         self.apiToken = apiKey;
+        self.promoCode = promocode;
     }
     return self;
 }

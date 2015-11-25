@@ -156,4 +156,26 @@
                    });
 }
 
+- (void)getCurrentUserOnSuccess:(void (^)(ZPPUser *user))success
+                      onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    NSDictionary *params = @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
+
+    [self.requestOperationManager GET:@"user.json"
+        parameters:params
+        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+            NSLog(@"resp %@", responseObject);
+            
+            ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
+            
+            if(success) {
+                success(user);
+            }
+            
+        }
+        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error){
+            NSLog(@"err %@", error);
+            [[self class] failureWithBlock:failure error:error operation:operation];
+        }];
+}
+
 @end

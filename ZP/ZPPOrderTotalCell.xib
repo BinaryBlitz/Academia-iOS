@@ -24,22 +24,12 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ВАШ ЗАКАЗ НА:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AC-gD-fI0">
-                        <rect key="frame" x="58" y="19" width="230" height="21"/>
+                        <rect key="frame" x="58" y="27" width="230" height="21"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Ov4-0m-6fq"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GXy-60-uSH">
-                        <rect key="frame" x="58" y="57" width="230" height="27"/>
-                        <animations/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="27" id="4xP-cz-F2H"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -49,19 +39,16 @@
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="hvd-NF-TZp" secondAttribute="trailing" constant="50" id="15V-Ll-TI1"/>
                     <constraint firstItem="hvd-NF-TZp" firstAttribute="top" secondItem="bPK-HI-o6E" secondAttribute="topMargin" id="8jf-4M-ovp"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="GXy-60-uSH" secondAttribute="trailing" constant="50" id="I6I-I3-PyJ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="4AC-gD-fI0" secondAttribute="trailing" constant="50" id="NfK-ng-vlc"/>
                     <constraint firstItem="hvd-NF-TZp" firstAttribute="leading" secondItem="bPK-HI-o6E" secondAttribute="leadingMargin" constant="50" id="fcJ-B3-7lc"/>
-                    <constraint firstItem="GXy-60-uSH" firstAttribute="top" secondItem="4AC-gD-fI0" secondAttribute="bottom" constant="17" id="fpk-jp-gCb"/>
-                    <constraint firstItem="4AC-gD-fI0" firstAttribute="top" secondItem="hvd-NF-TZp" secondAttribute="bottom" constant="8" id="iTa-nz-G1x"/>
-                    <constraint firstItem="GXy-60-uSH" firstAttribute="leading" secondItem="bPK-HI-o6E" secondAttribute="leadingMargin" constant="50" id="q6I-gD-nwN"/>
+                    <constraint firstItem="4AC-gD-fI0" firstAttribute="top" secondItem="hvd-NF-TZp" secondAttribute="bottom" constant="16" id="iTa-nz-G1x"/>
                     <constraint firstItem="4AC-gD-fI0" firstAttribute="leading" secondItem="bPK-HI-o6E" secondAttribute="leadingMargin" constant="50" id="rIw-Do-hCy"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
             <connections>
-                <outlet property="priceLabel" destination="GXy-60-uSH" id="qFg-Ok-Hkk"/>
+                <outlet property="priceLabel" destination="4AC-gD-fI0" id="JH5-Zx-ZOs"/>
             </connections>
             <point key="canvasLocation" x="211" y="234.5"/>
         </tableViewCell>
