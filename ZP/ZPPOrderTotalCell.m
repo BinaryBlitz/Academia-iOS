@@ -24,8 +24,8 @@
 }
 
 - (void)configureWithOrder:(ZPPOrder *)order {
-    self.priceLabel.text =
-        [NSString stringWithFormat:@"%@%@", @([order totalPrice]), ZPPRoubleSymbol];
+    self.priceLabel.text = [NSString
+        stringWithFormat:@"ВАШ ЗАКАЗ НА: %@%@", @([order totalPrice]), ZPPRoubleSymbol];
 }
 
 @end

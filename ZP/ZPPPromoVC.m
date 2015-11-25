@@ -13,6 +13,7 @@
 #import "UIButton+ZPPButtonCategory.h"
 #import "UIView+UIViewCategory.h"
 #import "ZPPServerManager+ZPPPromoCodeManager.h"
+#import "ZPPServerManager+ZPPRegistration.h"
 #import <MessageUI/MessageUI.h>
 
 #import "ZPPCustomLabel.h"
@@ -54,6 +55,12 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController presentTransparentNavigationBar];
+
+    //    [[ZPPServerManager sharedManager] getCurrentUserOnSuccess:^(ZPPUser *user) {
+    //
+    //    } onFailure:^(NSError *error, NSInteger statusCode){
+    //
+    //    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -116,8 +123,8 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
         //        message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK"
         //        otherButtonTitles:nil];
         //        [warningAlert show];
-        [self showWarningWithText:@"Устройство не поддерживает " @"отправк"
-                                                                                         @"у " @"смс"];
+        [self showWarningWithText:@"Устройство не поддерживает "
+              @"отпра" @"в" @"к" @"у" @" " @"смс"];
         return;
     }
 
@@ -172,8 +179,8 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
 
         [self presentViewController:mail animated:YES completion:NULL];
     } else {
-        [self showWarningWithText:@"Устройство не поддерживает " @"отправк"
-                                                                                         @"у " @"e-mail"];
+        [self showWarningWithText:@"Устройство не поддерживает "
+              @"отправ" @"к" @"у" @" " @"e-mail"];
     }
 }
 #pragma mark - social

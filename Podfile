@@ -14,6 +14,7 @@ pod 'VBFPopFlatButton'
 pod 'REFormattedNumberField'
 pod 'MBProgressHUD'
 pod "RMDateSelectionViewController", "~> 2.0.3"
+pod 'ActionSheetPicker-3.0'
 
 
 pod 'INTULocationManager'

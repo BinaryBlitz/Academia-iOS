@@ -9,6 +9,7 @@
 #import "ZPPOrderTVC.h"
 #import "ZPPOrder.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
+#import "UIView+UIViewCategory.h"
 #import "UIButton+ZPPButtonCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UITableViewController+ZPPTVCCategory.h"
@@ -48,6 +49,8 @@ static NSString *ZPPOrderItemVCIdentifier = @"ZPPOrderItemVCIdentifier";
 static NSString *ZPPAdressVCIdentifier = @"ZPPAdressVCIdentifier";
 static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdentifier";
+
+static NSString *ZPPNoAddresMessage = @"Выберите адрес доставки!";
 
 @interface ZPPOrderTVC () <ZPPAdressDelegate, ZPPCardDelegate>
 
@@ -267,6 +270,20 @@ static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdenti
 }
 
 - (void)showResultScreenSender:(UIButton *)sender {
+    
+    if (!self.order.address) {
+        [self showWarningWithText: ZPPNoAddresMessage];
+        NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:0];
+        ZPPNoCreditCardCell *cell = [self.tableView cellForRowAtIndexPath:ip];
+        
+        if (cell && [cell isKindOfClass:[ZPPNoCreditCardCell class]]) {
+            [cell.actionButton shakeView];
+        }
+        
+        return;
+    }
+    
+    
     ZPPOrderTimeChooserVC *orvc = [self resultScreen];
     [orvc configureWithOrder:self.order];
     //    [self presentViewController:orvc animated:YES completion:nil];

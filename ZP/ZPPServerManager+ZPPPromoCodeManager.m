@@ -27,7 +27,7 @@ NSString *const ZPPWrongCardNumber = @"Неправильный код, попр
         @{ @"code" : code,
            @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
 
-    [self.requestOperationManager POST:@"code"
+    [self.requestOperationManager POST:@"promo_codes/redeem.json"
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
 

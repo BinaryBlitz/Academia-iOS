@@ -27,6 +27,8 @@
 #import "ZPPPaymentWebController.h"
 #import "ZPPServerManager.h"
 
+#import "ActionSheetPicker.h"
+
 @import SafariServices;
 
 static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
@@ -53,7 +55,8 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
 - (void)viewWillAppear:(BOOL)animated {
     self.totalPriceLabel.text =
-        [NSString stringWithFormat:@"%@%@", @(self.order.totalPrice), ZPPRoubleSymbol];
+        [NSString stringWithFormat:@"ВАШ ЗАКАЗ НА: %@%@", @(self.order.totalPrice),
+                                   ZPPRoubleSymbol];
 }
 
 - (void)configureWithOrder:(ZPPOrder *)order {
@@ -66,11 +69,13 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
 - (void)orderNowAction:(UIButton *)sender {
     [self addCheckmarkToButton:sender];
-    [self.atTimeButton setTitle:@"КО ВРЕМЕНИ" forState:UIControlStateNormal];
+    [self.atTimeButton setTitle:@"ВЫБРАТЬ ВРЕМЯ" forState:UIControlStateNormal];
 }
 
 - (void)orderAtTimeAction:(UIButton *)sender {
-    [self showTimePicker];
+    //  [self showTimePicker];
+
+    [self addTimePicker:sender];
 }
 
 - (void)configureButtons {
@@ -141,30 +146,30 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
         }];
 }
 
-- (void)didShowPageWithUrl:(NSURL *)url sender:(UIViewController *)vc{
+- (void)didShowPageWithUrl:(NSURL *)url sender:(UIViewController *)vc {
     // https://test.paymentgate.ru/testpayment/merchants/zdorovoepitanie/finish.html?orderId=5cc56c99-4550-46be-a2fa-422a10f96040
 
     NSString *destString = [NSString
         stringWithFormat:@"%@/%@/%@?orderId=%@", [ZPPPaymentManager sharedManager].baseURL,
                          ZPPCentralURL, ZPPPaymentFinishURL, self.order.alfaNumber];
-    
-    NSLog(@"\n%@\n%@",url.absoluteString,destString);
-    if ([url.absoluteString isEqualToString:destString]) {
-        [vc dismissViewControllerAnimated:YES completion:^{
-            
-            
-            
-        }];
-        
-        UIViewController *vc =
-        [self.storyboard instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
-        
-        [self presentViewController:vc animated:YES completion:^{
-            // [self dismissViewControllerAnimated:YES completion:nil];
-        }];
 
-        
-      //  [self ]
+    NSLog(@"\n%@\n%@", url.absoluteString, destString);
+    if ([url.absoluteString isEqualToString:destString]) {
+        [vc dismissViewControllerAnimated:YES
+                               completion:^{
+
+                               }];
+
+        UIViewController *vc =
+            [self.storyboard instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
+
+        [self presentViewController:vc
+                           animated:YES
+                         completion:^{
+                             // [self dismissViewControllerAnimated:YES completion:nil];
+                         }];
+
+        //  [self ]
     }
 }
 
@@ -180,9 +185,6 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
     [self presentViewController:navC animated:YES completion:nil];
 }
-
-
-
 
 - (void)checkOrderStatus {
 }
@@ -277,6 +279,33 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
     [dateSelectionController addAction:groupedAction];
 
     [self presentViewController:dateSelectionController animated:YES completion:nil];
+}
+
+- (void)addTimePicker:(UIButton *)sender {
+    NSMutableArray *arr = [NSMutableArray array];
+
+    NSInteger time = [[NSDate new] hour] > 11 ? [[NSDate new] hour] : 11;
+
+    for (int i = time; i < 24; i++) {
+        NSString *timeString = [NSString stringWithFormat:@"%@:00 - %@:00", @(i), @(i + 1)];
+        [arr addObject:timeString];
+    }
+
+    // NSArray *colors = [NSArray arrayWithObjects:@"Red", @"Green", @"Blue", @"Orange", nil];
+
+    [ActionSheetStringPicker showPickerWithTitle:@"Select a Color"
+        rows:[NSArray arrayWithArray:arr]
+        initialSelection:0
+        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+            // NSLog(@"Picker: %@, Index: %ld, value: %@", picker, selectedIndex, selectedValue);
+
+            [sender setTitle:selectedValue forState:UIControlStateNormal];
+            [self addCheckmarkToButton:self.atTimeButton];
+        }
+        cancelBlock:^(ActionSheetStringPicker *picker) {
+            NSLog(@"Block Picker Canceled");
+        }
+        origin:sender];
 }
 
 @end

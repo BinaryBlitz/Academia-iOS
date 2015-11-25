@@ -34,7 +34,7 @@
 }
 
 - (NSString *)formatedDescr {
-    return [NSString  stringWithFormat:@"%@ %@",self.city, self.addres];
+    return [NSString  stringWithFormat:@"%@", self.addres];
 }
 
 @end

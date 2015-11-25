@@ -47,6 +47,7 @@
 		190F9C7D1BE3C1330032E14D /* ZPPOrderTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 190F9C7C1BE3C1330032E14D /* ZPPOrderTVC.m */; };
 		190F9C811BE3C1810032E14D /* ZPPOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 190F9C801BE3C1810032E14D /* ZPPOrderItemCell.xib */; };
 		190F9C841BE3C19A0032E14D /* ZPPOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 190F9C831BE3C19A0032E14D /* ZPPOrderItemCell.m */; };
+		1910D9FA1C05F20800F2536F /* ZPPTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1910D9F91C05F20800F2536F /* ZPPTimeManager.m */; };
 		191C98551BC0438C00E10D4F /* ZPPMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 191C98541BC0438C00E10D4F /* ZPPMainVC.m */; };
 		191C985E1BC0447800E10D4F /* ZPPMainPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 191C985D1BC0447800E10D4F /* ZPPMainPageVC.m */; };
 		191C98611BC044A700E10D4F /* ZPPProductTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 191C98601BC044A700E10D4F /* ZPPProductTVC.m */; };
@@ -236,6 +237,8 @@
 		190F9C801BE3C1810032E14D /* ZPPOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPOrderItemCell.xib; sourceTree = "<group>"; };
 		190F9C821BE3C19A0032E14D /* ZPPOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPOrderItemCell.h; sourceTree = "<group>"; };
 		190F9C831BE3C19A0032E14D /* ZPPOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPOrderItemCell.m; sourceTree = "<group>"; };
+		1910D9F81C05F20800F2536F /* ZPPTimeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPTimeManager.h; sourceTree = "<group>"; };
+		1910D9F91C05F20800F2536F /* ZPPTimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPTimeManager.m; sourceTree = "<group>"; };
 		191C98531BC0438C00E10D4F /* ZPPMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPMainVC.h; sourceTree = "<group>"; };
 		191C98541BC0438C00E10D4F /* ZPPMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPMainVC.m; sourceTree = "<group>"; };
 		191C985C1BC0447800E10D4F /* ZPPMainPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPMainPageVC.h; sourceTree = "<group>"; };
@@ -727,6 +730,15 @@
 			name = orderItemCell;
 			sourceTree = "<group>";
 		};
+		1910D9F71C05F1D200F2536F /* time manager */ = {
+			isa = PBXGroup;
+			children = (
+				1910D9F81C05F20800F2536F /* ZPPTimeManager.h */,
+				1910D9F91C05F20800F2536F /* ZPPTimeManager.m */,
+			);
+			name = "time manager";
+			sourceTree = "<group>";
+		};
 		191C98501BC0431F00E10D4F /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -889,8 +901,6 @@
 		191D7DF81BD5766C00DBAFC4 /* buttons */ = {
 			isa = PBXGroup;
 			children = (
-				191D7DF91BD5768900DBAFC4 /* UIButton+ZPPButtonCategory.h */,
-				191D7DFA1BD5768900DBAFC4 /* UIButton+ZPPButtonCategory.m */,
 			);
 			name = buttons;
 			sourceTree = "<group>";
@@ -1089,6 +1099,7 @@
 		1986356A1BDFD0260070E3F7 /* order */ = {
 			isa = PBXGroup;
 			children = (
+				1910D9F71C05F1D200F2536F /* time manager */,
 				19F378F41BFA9E7C004827A0 /* deliveryItem */,
 				19DADF641BF762CA007D9DF2 /* helper */,
 				1986356B1BDFD04B0070E3F7 /* ZPPOrder.h */,
@@ -1235,6 +1246,7 @@
 		19DA03DE1BC12AAF00DC0636 /* categories */ = {
 			isa = PBXGroup;
 			children = (
+				19E762811C036F160008821A /* button */,
 				190C6BBE1BFA2E4F00533509 /* date */,
 				191D7DD11BD531C600DBAFC4 /* registration category */,
 				19DA03DF1BC12ADE00DC0636 /* UIFont+ZPPFontCategory.h */,
@@ -1364,6 +1376,15 @@
 				19E6D4151BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m */,
 			);
 			name = base;
+			sourceTree = "<group>";
+		};
+		19E762811C036F160008821A /* button */ = {
+			isa = PBXGroup;
+			children = (
+				191D7DF91BD5768900DBAFC4 /* UIButton+ZPPButtonCategory.h */,
+				191D7DFA1BD5768900DBAFC4 /* UIButton+ZPPButtonCategory.m */,
+			);
+			name = button;
 			sourceTree = "<group>";
 		};
 		19EC24A21BC65E1600C333F6 /* anotherProducts */ = {
@@ -1695,6 +1716,7 @@
 				1907C7441BF09500003BA62E /* ZPPOrderAddressCell.m in Sources */,
 				19DADF571BF64A0B007D9DF2 /* ZPPOrderResultVC.m in Sources */,
 				198FD9861BE7B84C00A30B4D /* ZPPAddNewCell.m in Sources */,
+				1910D9FA1C05F20800F2536F /* ZPPTimeManager.m in Sources */,
 				1948C54B1BEC3A1800084BC8 /* ZPPLunchTVC.m in Sources */,
 				1948C5381BEC14C100084BC8 /* ZPPLunch.m in Sources */,
 				19D242691BEA1C67007A0FEB /* ZPPConsts.m in Sources */,

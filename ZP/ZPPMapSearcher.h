@@ -14,6 +14,12 @@
            onSuccess:(void (^)(NSArray *addresses))success
            onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
+
+- (void)searcDaDataWithAddress:(NSString *)addresString
+                         count:(NSNumber *)count
+                     onSuccess:(void (^)(NSArray *addresses))success
+                     onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
 + (instancetype)shared;
 
 @end
