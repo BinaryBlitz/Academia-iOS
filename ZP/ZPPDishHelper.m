@@ -10,6 +10,7 @@
 #import "ZPPDish.h"
 #import "ZPPServerManager.h"
 #import "ZPPIngridientHelper.h"
+#import "ZPPBadgeHelper.h"
 
 #import "ZPPImageWorker.h"
 
@@ -20,6 +21,7 @@ NSString *const ZPPDishPrice = @"price";
 NSString *const ZPPDishImgURL = @"image_url";
 NSString *const ZPPDishIngridients = @"ingredients";
 NSString *const ZPPDishSubtitle = @"subtitle";
+NSString *const ZPPDishBadges = @"badges";
 
 @implementation ZPPDishHelper
 
@@ -33,6 +35,8 @@ NSString *const ZPPDishSubtitle = @"subtitle";
     NSString *dishImgURL = [ZPPServerBaseUrl stringByAppendingString:imgUrlAppend];
     NSArray *ingsTmp = dict[ZPPDishIngridients];
     NSArray *ingridients = [ZPPIngridientHelper parseIngridients:ingsTmp];
+    NSArray *badgesDicts = dict[ZPPDishBadges];
+    NSArray *badges = [ZPPBadgeHelper parseBadgeArray:badgesDicts];
 
     ZPPDish *dish = [[ZPPDish alloc] initWithName:name
                                            dishID:dishID
@@ -40,7 +44,8 @@ NSString *const ZPPDishSubtitle = @"subtitle";
                                   dishDescription:dishDescription
                                             price:dishPrice
                                            imgURL:dishImgURL
-                                      ingridients:ingridients];
+                                      ingridients:ingridients
+                                           badges:badges];
 
     return dish;
 }

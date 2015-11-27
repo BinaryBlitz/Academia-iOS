@@ -19,6 +19,7 @@
 @property (copy, nonatomic, readonly) NSNumber *price;
 @property (copy, nonatomic, readonly) NSString *urlAsString;
 @property (strong, nonatomic, readonly) NSArray *ingridients;
+@property (strong, nonatomic, readonly) NSArray *badges;
 
 - (instancetype)initWithName:(NSString *)name
                       dishID:(NSString *)dishID
@@ -26,7 +27,8 @@
              dishDescription:(NSString *)dishDescription
                        price:(NSNumber *)price
                       imgURL:(NSString *)urlAsString
-                 ingridients:(NSArray *)ingridients;
+                 ingridients:(NSArray *)ingridients
+                      badges:(NSArray *)badges;
 
 - (NSInteger)priceOfItem;
 - (NSString *)nameOfItem;

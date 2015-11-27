@@ -15,6 +15,7 @@
 NSString *const ZPPIngridientName = @"name";
 NSString *const ZPPIngridientID = @"id";
 NSString *const ZPPIngridientURL = @"image_url";
+NSString *const ZPPIngridientWeight = @"weight";
 
 @implementation ZPPIngridientHelper
 
@@ -27,8 +28,16 @@ NSString *const ZPPIngridientURL = @"image_url";
         urlAsString = [ZPPServerBaseUrl stringByAppendingString:urlAppend];
     }
 
-    return
-        [[ZPPIngridient alloc] initWithName:name ingridientID:ingridientID urlAsString:urlAsString];
+    NSNumber *weight;  // dict[ZPPIngridientWeight];
+
+    if (dict[ZPPIngridientWeight] && ![dict[ZPPIngridientWeight] isEqual:[NSNull null]]) {
+        weight = dict[ZPPIngridientWeight];
+    }
+
+    return [[ZPPIngridient alloc] initWithName:name
+                                  ingridientID:ingridientID
+                                   urlAsString:urlAsString
+                                        weight:weight];
 }
 
 + (NSArray *)parseIngridients:(NSArray *)ingridients {

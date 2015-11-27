@@ -10,7 +10,11 @@
 #import "ZPPProductsIngridientsCell.h"
 #import "ZPPProductMainCell.h"
 #import "ZPPProductAboutCell.h"
+#import "ZPPBadgeCell.h"
+#import "ZPPIngridientAnotherCell.h"
 #import "ZPPIngridient.h"
+
+#import "UITableViewController+ZPPTVCCategory.h"
 
 #import "UIView+UIViewCategory.h"
 
@@ -20,6 +24,7 @@
 #import "UIFont+ZPPFontCategory.h"
 
 #import "ZPPDish.h"
+#import "ZPPBadge.h"
 
 #import "ZPPOrder.h"
 #import "ZPPOrderItem.h"
@@ -31,6 +36,8 @@ static NSString *ZPPProductMainCellIdentifier = @"ZPPProductsMainCellIdentifier"
 static NSString *ZPPProductIngridientsCellIdentifier = @"ZPPProductCellIdentifier";
 static NSString *ZPPProductMenuCellIdentifier = @"ZPPProductMenuCellIdentifier";
 static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier";
+static NSString *ZPPBadgeCellIdentifier = @"ZPPBadgeCellIdentifier";
+static NSString *ZPPIngridientAnotherCellIdentifier = @"ZPPIngridientAnotherCellIdentifier";
 
 static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 
@@ -39,6 +46,8 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 //@property (assign, nonatomic) CGFloat screenHeight;
 
 @property (strong, nonatomic) ZPPDish *dish;
+
+@property (assign, nonatomic) BOOL isLunch;
 
 @property (assign, nonatomic) NSInteger numberOfRows;
 @property (strong, nonatomic) ZPPOrder *order;
@@ -68,20 +77,46 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     [self.tableView reloadData];
 }
 
+- (void)configureWithLunch:(ZPPDish *)lunch {
+    self.dish = lunch;
+    self.isLunch = YES;
+    [self.tableView reloadData];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (self.dish.badges.count) {
+        return 2;
+    } else {
+        return 1;
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.numberOfRows;
+    if (section == 0) {
+        return self.numberOfRows;
+    } else {
+        NSInteger incr = 0;
+        if (self.dish.badges.count % 3 > 0) {
+            incr = 1;
+        }
+        return self.dish.badges.count / 3 + incr;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        return [self productMainCell];
-    } else if (indexPath.row == 1) {
-        return [self menuCell];
-    } else if (indexPath.row == [self.tableView numberOfRowsInSection:0] - 1) {
-        return [self aboutCell];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            return [self productMainCell];
+        } else if (indexPath.row == 1) {
+            return [self menuCell];
+        } else if (indexPath.row == [self.tableView numberOfRowsInSection:0] - 1) {
+            return [self aboutCell];
+        } else {
+            return [self commonIngridientCellForIndexPath:indexPath];
+        }
     } else {
-        return [self ingridientsCellForIndexPath:indexPath];
+        return [self badgeCellForIndexPath:indexPath];
     }
 }
 
@@ -120,6 +155,30 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     return cell;
 }
 
+- (UITableViewCell *)commonIngridientCellForIndexPath:(NSIndexPath *)ip {
+    if (self.isLunch) {
+        return [self ingridientAnotherCellForIndexPath:ip];
+    } else {
+        return [self ingridientsCellForIndexPath:ip];
+    }
+}
+
+- (ZPPIngridientAnotherCell *)ingridientAnotherCellForIndexPath:(NSIndexPath *)ip {
+    ZPPIngridientAnotherCell *cell =
+        [self.tableView dequeueReusableCellWithIdentifier:ZPPIngridientAnotherCellIdentifier];
+
+    ZPPIngridient *ingr = self.dish.ingridients[ip.row - 2];
+
+    cell.nameLabel.text = ingr.name;
+    if (ingr.weight) {
+        cell.priceLabel.text = [NSString stringWithFormat:@"%@ г", ingr.weight];
+    } else {
+        cell.priceLabel.text = @"";
+    }
+
+    return cell;
+}
+
 - (ZPPProductsIngridientsCell *)ingridientsCellForIndexPath:(NSIndexPath *)ip {
     ZPPProductsIngridientsCell *cell =
         [self.tableView dequeueReusableCellWithIdentifier:ZPPProductIngridientsCellIdentifier];
@@ -142,6 +201,27 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     return cell;
 }
 
+- (ZPPBadgeCell *)badgeCellForIndexPath:(NSIndexPath *)ip {
+    ZPPBadgeCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPBadgeCellIdentifier];
+
+    NSInteger beg = ip.row;
+
+    for (int i = 0; i < 3; i++) {
+        NSInteger index = beg * 3 + i;
+        if (index >= self.dish.badges.count) {
+            break;
+        }
+
+        UIImageView *iv = cell.badgesImageViews[i];
+        UILabel *label = cell.badgesLabels[i];
+        ZPPBadge *badge = self.dish.badges[index];
+        // NSURL *url = [NSURL URLWithString:badge.urlAsString];
+        [iv setImageWithURL:badge.imgURL];
+        label.text = badge.name;
+    }
+    return cell;
+}
+
 - (UITableViewCell *)menuCell {
     UITableViewCell *cell =
         [self.tableView dequeueReusableCellWithIdentifier:ZPPProductMenuCellIdentifier];
@@ -159,14 +239,22 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        return self.screenHeight;
-    } else if (indexPath.row == 1) {
-        return 67.0;
-    } else if (indexPath.row == self.numberOfRows - 1) {
-        return 280.0;
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            return self.screenHeight;
+        } else if (indexPath.row == 1) {
+            return 67.0;
+        } else if (indexPath.row == self.numberOfRows - 1) {
+            return 280.0;
+        } else {
+            if (!self.isLunch) {
+                return [UIScreen mainScreen].bounds.size.width / 3.0 + 20;
+            } else {
+                return 50.f;
+            }
+        }
     } else {
-        return [UIScreen mainScreen].bounds.size.width / 3.0 + 20;
+        return 280.0;
     }
 }
 
@@ -180,14 +268,22 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     [[self tableView] registerNib:menuCell forCellReuseIdentifier:ZPPProductMenuCellIdentifier];
     UINib *aboutCell = [UINib nibWithNibName:@"ZPPProductAboutCell" bundle:nil];
     [[self tableView] registerNib:aboutCell forCellReuseIdentifier:ZPPProductAboutCellIdentifier];
+
+    [self registrateCellForClass:[ZPPBadgeCell class] reuseIdentifier:ZPPBadgeCellIdentifier];
+    [self registrateCellForClass:[ZPPIngridientAnotherCell class]
+                 reuseIdentifier:ZPPIngridientAnotherCellIdentifier];
 }
 
 - (NSInteger)numberOfRows {
-    NSInteger incr = 0;
-    if (self.dish.ingridients.count % 3 > 0) {
-        incr = 1;
+    if (!self.isLunch) {
+        NSInteger incr = 0;
+        if (self.dish.ingridients.count % 3 > 0) {
+            incr++;
+        }
+        return 3 + incr + self.dish.ingridients.count / 3;
+    } else {
+        return 3 + self.dish.ingridients.count;
     }
-    return 3 + incr + self.dish.ingridients.count / 3;
 }
 
 #pragma mark - action

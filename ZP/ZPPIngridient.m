@@ -12,6 +12,7 @@
 @property (copy, nonatomic) NSString *name;
 @property (copy, nonatomic) NSString *ingridientID;
 @property (copy, nonatomic) NSString *urlAsString;
+@property (strong, nonatomic) NSNumber *weight;
 
 @end
 
@@ -23,12 +24,13 @@
 
 - (instancetype)initWithName:(NSString *)name
                 ingridientID:(NSString *)ingridientID
-                 urlAsString:(NSString *)urlAsString {
+                 urlAsString:(NSString *)urlAsString  weight:(NSNumber *)weight{
     self = [super init];
     if (self) {
         self.name = name;
         self.ingridientID = ingridientID;
         self.urlAsString = urlAsString;
+        self.weight = weight;
     }
     return self;
 }

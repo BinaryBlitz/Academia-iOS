@@ -17,6 +17,7 @@
 @property (copy, nonatomic) NSString *urlAsString;
 @property (strong, nonatomic) NSArray *ingridients;
 @property (copy, nonatomic) NSString *subtitle;
+@property (strong, nonatomic) NSArray *badges;
 
 @end
 
@@ -34,7 +35,8 @@
              dishDescription:(NSString *)dishDescription
                        price:(NSNumber *)price
                       imgURL:(NSString *)urlAsString
-                 ingridients:(NSArray *)ingridients {
+                 ingridients:(NSArray *)ingridients
+                      badges:(NSArray *)badges {
     self = [super init];
     if (self) {
         self.name = name;
@@ -48,6 +50,8 @@
         self.price = price;
         self.urlAsString = urlAsString;
         self.ingridients = ingridients;
+        
+        self.badges = badges;
     }
     return self;
 }
