@@ -43,28 +43,32 @@
                                 dishDescription:nil
                                           price:@(499)
                                          imgURL:nil
-                                    ingridients:nil];
+                                    ingridients:nil
+                                         badges:nil];
     ZPPDish *d2 = [[ZPPDish alloc] initWithName:@"Diet meal"
                                          dishID:nil
                                        subtitle:nil
                                 dishDescription:nil
                                           price:@(399)
                                          imgURL:nil
-                                    ingridients:nil];
+                                    ingridients:nil
+                                         badges:nil];
     ZPPDish *d3 = [[ZPPDish alloc] initWithName:@"Hamburger"
                                          dishID:nil
                                        subtitle:nil
                                 dishDescription:nil
                                           price:@(200)
                                          imgURL:nil
-                                    ingridients:nil];
+                                    ingridients:nil
+                                         badges:nil];
     ZPPDish *d4 = [[ZPPDish alloc] initWithName:@"Salad"
                                          dishID:nil
                                        subtitle:nil
                                 dishDescription:nil
                                           price:@(200)
                                          imgURL:nil
-                                    ingridients:nil];
+                                    ingridients:nil
+                                         badges:nil];
 
     [order addItem:d1];
     [order addItem:d1];
@@ -82,6 +86,5 @@
 
     return @[ order, secondOrder, thirdOrder ];
 }
-
 
 @end

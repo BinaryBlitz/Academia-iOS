@@ -114,6 +114,12 @@
 		198FD9811BE7B7BC00A30B4D /* ZPPCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198FD9801BE7B7BC00A30B4D /* ZPPCardViewController.m */; };
 		198FD9861BE7B84C00A30B4D /* ZPPAddNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 198FD9851BE7B84C00A30B4D /* ZPPAddNewCell.m */; };
 		198FD9881BE7B91E00A30B4D /* ZPPAddNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198FD9871BE7B91E00A30B4D /* ZPPAddNewCell.xib */; };
+		19B3A9731C073CFD0089F02A /* ZPPBadgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A9721C073CFD0089F02A /* ZPPBadgeCell.m */; };
+		19B3A9771C073D470089F02A /* ZPPBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A9761C073D470089F02A /* ZPPBadge.m */; };
+		19B3A97A1C073DE00089F02A /* ZPPBadgeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A9791C073DE00089F02A /* ZPPBadgeHelper.m */; };
+		19B3A97C1C079EC20089F02A /* ZPPBadgeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19B3A97B1C079EC20089F02A /* ZPPBadgeCell.xib */; };
+		19B3A9811C07AC430089F02A /* ZPPIngridientAnotherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A97F1C07AC430089F02A /* ZPPIngridientAnotherCell.m */; };
+		19B3A9821C07AC430089F02A /* ZPPIngridientAnotherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19B3A9801C07AC430089F02A /* ZPPIngridientAnotherCell.xib */; };
 		19C5018E1BEE4EBB00575F78 /* ZPPAdressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C5018D1BEE4EBB00575F78 /* ZPPAdressVC.m */; };
 		19D242611BEA1728007A0FEB /* gifts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19D242601BEA1728007A0FEB /* gifts.storyboard */; };
 		19D242651BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D242641BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.m */; };
@@ -355,6 +361,16 @@
 		198FD9841BE7B84C00A30B4D /* ZPPAddNewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPAddNewCell.h; sourceTree = "<group>"; };
 		198FD9851BE7B84C00A30B4D /* ZPPAddNewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPAddNewCell.m; sourceTree = "<group>"; };
 		198FD9871BE7B91E00A30B4D /* ZPPAddNewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPAddNewCell.xib; sourceTree = "<group>"; };
+		19B3A9711C073CFD0089F02A /* ZPPBadgeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPBadgeCell.h; sourceTree = "<group>"; };
+		19B3A9721C073CFD0089F02A /* ZPPBadgeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPBadgeCell.m; sourceTree = "<group>"; };
+		19B3A9751C073D470089F02A /* ZPPBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPBadge.h; sourceTree = "<group>"; };
+		19B3A9761C073D470089F02A /* ZPPBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPBadge.m; sourceTree = "<group>"; };
+		19B3A9781C073DE00089F02A /* ZPPBadgeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPBadgeHelper.h; sourceTree = "<group>"; };
+		19B3A9791C073DE00089F02A /* ZPPBadgeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPBadgeHelper.m; sourceTree = "<group>"; };
+		19B3A97B1C079EC20089F02A /* ZPPBadgeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPBadgeCell.xib; sourceTree = "<group>"; };
+		19B3A97E1C07AC430089F02A /* ZPPIngridientAnotherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPIngridientAnotherCell.h; sourceTree = "<group>"; };
+		19B3A97F1C07AC430089F02A /* ZPPIngridientAnotherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPIngridientAnotherCell.m; sourceTree = "<group>"; };
+		19B3A9801C07AC430089F02A /* ZPPIngridientAnotherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPIngridientAnotherCell.xib; sourceTree = "<group>"; };
 		19C5018C1BEE4EBB00575F78 /* ZPPAdressVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPAdressVC.h; sourceTree = "<group>"; };
 		19C5018D1BEE4EBB00575F78 /* ZPPAdressVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPAdressVC.m; sourceTree = "<group>"; };
 		19D242601BEA1728007A0FEB /* gifts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = gifts.storyboard; sourceTree = "<group>"; };
@@ -825,6 +841,8 @@
 		191C98691BC0506E00E10D4F /* mainCells */ = {
 			isa = PBXGroup;
 			children = (
+				19B3A97D1C07AC140089F02A /* ingridientsAnotherCell */,
+				19B3A9741C073D170089F02A /* badge */,
 				1984EE391BD136FB001D25D5 /* product about */,
 				1984EE381BD136E2001D25D5 /* product main */,
 				1984EE371BD136CD001D25D5 /* ingridients */,
@@ -1123,6 +1141,7 @@
 		198A5C091BD5B59F00710A36 /* product */ = {
 			isa = PBXGroup;
 			children = (
+				19B3A9701C073CE70089F02A /* badge */,
 				1942354A1BE9337D0014BD9A /* gift */,
 				198A5C111BD5B6BE00710A36 /* helpers */,
 				198A5C0A1BD5B5C000710A36 /* ZPPIngridient.h */,
@@ -1200,6 +1219,37 @@
 				1907C7501BF0C441003BA62E /* add_new */,
 			);
 			name = credit_card;
+			sourceTree = "<group>";
+		};
+		19B3A9701C073CE70089F02A /* badge */ = {
+			isa = PBXGroup;
+			children = (
+				19B3A9751C073D470089F02A /* ZPPBadge.h */,
+				19B3A9761C073D470089F02A /* ZPPBadge.m */,
+				19B3A9781C073DE00089F02A /* ZPPBadgeHelper.h */,
+				19B3A9791C073DE00089F02A /* ZPPBadgeHelper.m */,
+			);
+			name = badge;
+			sourceTree = "<group>";
+		};
+		19B3A9741C073D170089F02A /* badge */ = {
+			isa = PBXGroup;
+			children = (
+				19B3A9711C073CFD0089F02A /* ZPPBadgeCell.h */,
+				19B3A9721C073CFD0089F02A /* ZPPBadgeCell.m */,
+				19B3A97B1C079EC20089F02A /* ZPPBadgeCell.xib */,
+			);
+			name = badge;
+			sourceTree = "<group>";
+		};
+		19B3A97D1C07AC140089F02A /* ingridientsAnotherCell */ = {
+			isa = PBXGroup;
+			children = (
+				19B3A97E1C07AC430089F02A /* ZPPIngridientAnotherCell.h */,
+				19B3A97F1C07AC430089F02A /* ZPPIngridientAnotherCell.m */,
+				19B3A9801C07AC430089F02A /* ZPPIngridientAnotherCell.xib */,
+			);
+			name = ingridientsAnotherCell;
 			sourceTree = "<group>";
 		};
 		19C5018B1BEE4DB700575F78 /* maps */ = {
@@ -1550,6 +1600,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				190E477A1BC0756500AC5379 /* ZPPProductAboutCell.xib in Resources */,
+				19B3A9821C07AC430089F02A /* ZPPIngridientAnotherCell.xib in Resources */,
 				1907C74B1BF0B5BE003BA62E /* barBackground.png in Resources */,
 				195457401BD7C57900A3BB46 /* back1.png in Resources */,
 				19D242771BEA3B81007A0FEB /* orderHistory.storyboard in Resources */,
@@ -1557,6 +1608,7 @@
 				1907C7461BF0951D003BA62E /* ZPPOrderAddressCell.xib in Resources */,
 				191C986E1BC050F300E10D4F /* ZPPProductMainCell.xib in Resources */,
 				1984EE231BD110CC001D25D5 /* registration.storyboard in Resources */,
+				19B3A97C1C079EC20089F02A /* ZPPBadgeCell.xib in Resources */,
 				1907C75A1BF0C820003BA62E /* ZPPCardNumberInputCell.xib in Resources */,
 				190F9C781BE3A9860032E14D /* order.storyboard in Resources */,
 				1907C76C1BF14E57003BA62E /* ZPPCardInOrderCell.xib in Resources */,
@@ -1684,7 +1736,9 @@
 				19DADF6B1BF76807007D9DF2 /* ZPPGiftHelper.m in Sources */,
 				198A5C141BD5B6D900710A36 /* ZPPIngridientHelper.m in Sources */,
 				1984EE2D1BD123A8001D25D5 /* ZPPRegistrationCodeInputVC.m in Sources */,
+				19B3A9731C073CFD0089F02A /* ZPPBadgeCell.m in Sources */,
 				190E477D1BC076D500AC5379 /* ZPPProductAboutCell.m in Sources */,
+				19B3A9811C07AC430089F02A /* ZPPIngridientAnotherCell.m in Sources */,
 				191D7DE31BD53B0B00DBAFC4 /* ZPPServerManager.m in Sources */,
 				19F378FA1BFB14CA004827A0 /* ZPPPasswordRenewPasswordInput.m in Sources */,
 				198A5C021BD5875B00710A36 /* ZPPServerManager+ZPPRegistration.m in Sources */,
@@ -1707,6 +1761,7 @@
 				19F3790A1BFE9132004827A0 /* ZPPCustomLabel.m in Sources */,
 				191D7DDD1BD5359700DBAFC4 /* UIView+UIViewCategory.m in Sources */,
 				19DADF501BF62D1E007D9DF2 /* ZPPCardNumberTextField.m in Sources */,
+				19B3A97A1C073DE00089F02A /* ZPPBadgeHelper.m in Sources */,
 				19DADF491BF61715007D9DF2 /* ZPPNoInternetConnectionVC.m in Sources */,
 				198FD9811BE7B7BC00A30B4D /* ZPPCardViewController.m in Sources */,
 				19E6D4161BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m in Sources */,
@@ -1756,6 +1811,7 @@
 				191C98611BC044A700E10D4F /* ZPPProductTVC.m in Sources */,
 				1948C5411BEC204500084BC8 /* ZPPStuffHelper.m in Sources */,
 				191D7DF61BD56C2600DBAFC4 /* ZPPUserHelper.m in Sources */,
+				19B3A9771C073D470089F02A /* ZPPBadge.m in Sources */,
 				19EC24A51BC65E3D00C333F6 /* ZPPProductAnotherCell.m in Sources */,
 				1984EE331BD13664001D25D5 /* ZPPBeginScreenCell.m in Sources */,
 				19F378F01BFA85AD004827A0 /* ZPPPasswordRenewPhoneInputVC.m in Sources */,

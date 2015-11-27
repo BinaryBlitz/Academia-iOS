@@ -24,5 +24,6 @@
 //@property (assign, nonatomic) NSInteger specindex;
 - (void)configureWithOrder:(ZPPOrder *)order;
 - (void)configureWithDish:(ZPPDish *)dish;
+- (void)configureWithLunch:(ZPPDish *)lunch;
 
 @end

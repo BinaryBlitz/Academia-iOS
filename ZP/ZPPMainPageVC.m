@@ -196,18 +196,20 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 #pragma mark - dishes
 
 - (void)loadDishes {
-    
     __weak typeof(self) weakSelf = self;
     [[ZPPServerManager sharedManager] getDayMenuOnSuccess:^(NSArray *meals, NSArray *dishes,
                                                             NSArray *stuff) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (strongSelf) {
-            NSArray *newControllers = [strongSelf dishControllersFromArr:dishes];
+            NSArray *dishControllers = [strongSelf dishControllersFromArr:dishes];
+            NSArray *mealControllers = [strongSelf lunchControllersFromArr:meals];
+
             ZPPAnotherProductsTVC *stuffTVC = [strongSelf generateAnotherProductsVC:stuff];
             stuffTVC.productDelegate = strongSelf;
 
             NSArray *arr =
-                [@[ [strongSelf startScreen] ] arrayByAddingObjectsFromArray:newControllers];
+                [@[ [strongSelf startScreen] ] arrayByAddingObjectsFromArray:mealControllers];
+            arr = [arr arrayByAddingObjectsFromArray:dishControllers];
             arr = [arr arrayByAddingObject:stuffTVC];
             [strongSelf configureScreensWithArr:arr];
         }
@@ -229,12 +231,37 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
     return [NSArray arrayWithArray:tmp];
 }
 
+- (NSArray *)lunchControllersFromArr:(NSArray *)lunches {
+    NSMutableArray *tmp = [NSMutableArray array];
+    
+    for (ZPPDish *lunch in lunches) {
+        ZPPProductTVC *productTVC = [self generateLunchVC:lunch];
+        productTVC.productDelegate = self;
+        [tmp addObject:productTVC];
+    }
+    
+    return [NSArray arrayWithArray:tmp];
+}
+
 - (ZPPProductTVC *)generateDishVC:(ZPPDish *)dish {
+    ZPPProductTVC *productTVC = [self productTVC];
+    [productTVC configureWithDish:dish];
+
+    return productTVC;
+}
+
+- (ZPPProductTVC *)generateLunchVC:(ZPPDish *)lunch {
+    ZPPProductTVC *productTVC = [self productTVC];
+    [productTVC configureWithLunch:lunch];
+
+    return productTVC;
+}
+
+- (ZPPProductTVC *)productTVC {
     ZPPProductTVC *productTVC =
         [self.storyboard instantiateViewControllerWithIdentifier:ZPPProductPresenterID];
 
     [productTVC configureWithOrder:[self mainVC].order];
-    [productTVC configureWithDish:dish];
 
     return productTVC;
 }
