@@ -18,10 +18,14 @@
 @implementation ZPPOrderItem
 
 - (instancetype)initWithItem:(id<ZPPItemProtocol>)item {
+    return [self initWithItem:item count:1];
+}
+
+- (instancetype)initWithItem:(id<ZPPItemProtocol>)item count:(NSInteger)count {
     self = [super init];
     if (self) {
         self.item = item;
-        self.count = 1;
+        self.count = count;
     }
     return self;
 }

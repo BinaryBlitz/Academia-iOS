@@ -13,7 +13,7 @@
 #import "ZPPUser.h"
 #import "UIView+UIViewCategory.h"
 #import "ZPPSmsVerificationManager.h"
-#import "ZPPServerManager.h"
+#import "ZPPServerManager+ZPPRegistration.h"
 
 #import "ZPPConsts.h"
 
@@ -36,7 +36,7 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
     if ([[ZPPSmsVerificationManager shared] canSendAgain]) {
         [[ZPPSmsVerificationManager shared] startTimer];
     }
-    
+
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
     [self setButtonTextForTime:[ZPPSmsVerificationManager shared].currentTime];
@@ -114,17 +114,19 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
     }
 
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [[ZPPSmsVerificationManager shared] POSTCode:self.code
-        toNumber:self.user.phoneNumber
-        onSuccess:^{
+
+    [[ZPPServerManager sharedManager] sendSmsToPhoneNumber:self.user.phoneNumber
+        onSuccess:^(NSString *tmpToken){
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             [self showSuccessWithText:@"Код отправлен"];
             [[ZPPSmsVerificationManager shared] startTimer];
+
         }
         onFailure:^(NSError *error, NSInteger statusCode) {
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             [self showWarningWithText:ZPPNoInternetConnectionMessage];
         }];
+
 }
 
 #pragma mark - navigation
@@ -160,6 +162,5 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
 
     [self.againCodeButton setAttributedTitle:text forState:UIControlStateNormal];
 }
-
 
 @end

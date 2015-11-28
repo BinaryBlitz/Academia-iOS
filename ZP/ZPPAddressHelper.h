@@ -13,9 +13,12 @@
 @interface ZPPAddressHelper : NSObject
 
 + (ZPPAddress *)addresFromAddres:(LMAddress *)addr;
++ (ZPPAddress *)addressFromDict:(NSDictionary *)dict;
 
 
 + (NSArray *)addressesFromFoursquareDict:(id)responseObject;
 + (NSArray *)addressesFromDaDataDicts:(NSArray *)dicts;
+
+
 
 @end

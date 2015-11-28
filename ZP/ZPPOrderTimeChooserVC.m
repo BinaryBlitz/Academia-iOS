@@ -22,7 +22,8 @@
 
 #import "NSDate+ZPPDateCategory.h"
 
-#import "ZPPPaymentManager.h"
+//#import "ZPPPaymentManager.h"
+#import "ZPPServerManager+ZPPOrderServerManager.h"
 
 #import "ZPPPaymentWebController.h"
 #import "ZPPServerManager.h"
@@ -131,46 +132,51 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
     self.order.identifier = [NSString stringWithFormat:@"zpp_%u", arc4random() & 1000];
 
     [self.makeOrderButton startIndicating];
-    [[ZPPPaymentManager sharedManager] registrateOrder:self.order
-        onSuccess:^(NSURL *url, NSString *orderIDAlfa) {
-            [self.makeOrderButton stopIndication];
-
-            self.order.alfaNumber = orderIDAlfa;
-            [self showWebViewWithURl:url];
-
-        }
-        onFailure:^(NSError *error, NSInteger statusCode) {
-            [self.makeOrderButton stopIndication];
-
-            [self showWarningWithText:ZPPNoInternetConnectionMessage];
-        }];
+    [[ZPPServerManager sharedManager] POSTOrder:self.order onSuccess:^(ZPPOrder *order) {
+        [self.makeOrderButton stopIndication];
+    } onFailure:^(NSError *error, NSInteger statusCode) {
+        [self.makeOrderButton stopIndication];
+    }];
+//    [[ZPPPaymentManager sharedManager] registrateOrder:self.order
+//        onSuccess:^(NSURL *url, NSString *orderIDAlfa) {
+//            [self.makeOrderButton stopIndication];
+//
+//            self.order.alfaNumber = orderIDAlfa;
+//            [self showWebViewWithURl:url];
+//
+//        }
+//        onFailure:^(NSError *error, NSInteger statusCode) {
+//            [self.makeOrderButton stopIndication];
+//
+//            [self showWarningWithText:ZPPNoInternetConnectionMessage];
+//        }];
 }
 
 - (void)didShowPageWithUrl:(NSURL *)url sender:(UIViewController *)vc {
     // https://test.paymentgate.ru/testpayment/merchants/zdorovoepitanie/finish.html?orderId=5cc56c99-4550-46be-a2fa-422a10f96040
 
-    NSString *destString = [NSString
-        stringWithFormat:@"%@/%@/%@?orderId=%@", [ZPPPaymentManager sharedManager].baseURL,
-                         ZPPCentralURL, ZPPPaymentFinishURL, self.order.alfaNumber];
-
-    NSLog(@"\n%@\n%@", url.absoluteString, destString);
-    if ([url.absoluteString isEqualToString:destString]) {
-        [vc dismissViewControllerAnimated:YES
-                               completion:^{
-
-                               }];
-
-        UIViewController *vc =
-            [self.storyboard instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
-
-        [self presentViewController:vc
-                           animated:YES
-                         completion:^{
-                             // [self dismissViewControllerAnimated:YES completion:nil];
-                         }];
-
-        //  [self ]
-    }
+//    NSString *destString = [NSString
+//        stringWithFormat:@"%@/%@/%@?orderId=%@", [ZPPPaymentManager sharedManager].baseURL,
+//                         ZPPCentralURL, ZPPPaymentFinishURL, self.order.alfaNumber];
+//
+//    NSLog(@"\n%@\n%@", url.absoluteString, destString);
+//    if ([url.absoluteString isEqualToString:destString]) {
+//        [vc dismissViewControllerAnimated:YES
+//                               completion:^{
+//
+//                               }];
+//
+//        UIViewController *vc =
+//            [self.storyboard instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
+//
+//        [self presentViewController:vc
+//                           animated:YES
+//                         completion:^{
+//                             // [self dismissViewControllerAnimated:YES completion:nil];
+//                         }];
+//
+//        //  [self ]
+//    }
 }
 
 - (void)showWebViewWithURl:(NSURL *)url {

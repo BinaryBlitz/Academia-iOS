@@ -201,9 +201,6 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
             return 110.0;
         }
 
-        if (indexPath.section == -1 && self.order.card) {
-            return 90.0;
-        }
         return 60.f;
     } else {
         return 50.f;
@@ -316,10 +313,10 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
 
 #pragma mark - card delegate
 
-- (void)configureWithCard:(ZPPCreditCard *)card sender:(id)sender {
-    self.order.card = card;
-    [self.tableView reloadData];
-}
+//- (void)configureWithCard:(ZPPCreditCard *)card sender:(id)sender {
+//    self.order.card = card;
+//    [self.tableView reloadData];
+//}
 
 #pragma mark - support
 

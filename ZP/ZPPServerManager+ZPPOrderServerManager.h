@@ -8,9 +8,13 @@
 
 #import "ZPPServerManager.h"
 
+@class ZPPOrder;
 @interface ZPPServerManager (ZPPOrderServerManager)
 
 - (void)GETOldOrdersOnSuccess:(void (^)(NSArray *orders))success
                     onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
+- (void)POSTOrder:(ZPPOrder *)order onSuccess:(void (^)(ZPPOrder *order))success
+        onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
 @end

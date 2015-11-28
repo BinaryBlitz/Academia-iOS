@@ -11,27 +11,31 @@
 #import "ZPPOrderItem.h"
 
 #import "ZPPConsts.h"
+#import <DateTools.h>
 
 @implementation ZPPOrderHistoryCell
 
 - (void)configureWithOrder:(ZPPOrder *)order {
-    self.orderName.text = @"Заказ от 27.02.2012";
+    NSString *dateString =
+        [NSString stringWithFormat:@"Заказ от %ld.%ld.%ld", [order.date day],
+                                   [order.date month], [order.date year]];
+    self.orderName.text = dateString;
 
-//    NSString *descrString = @"";
-//    for (ZPPOrderItem *item in order.items) {
-//        NSString *str = [item.item nameOfItem];
-//        if (descrString.length != 0) {
-//            str = [@", " stringByAppendingString:str];
-//        } else {
-//            str = [str capitalizedString];
-//        }
-//        descrString = [descrString stringByAppendingString:str];
-//    }
+    //    NSString *descrString = @"";
+    //    for (ZPPOrderItem *item in order.items) {
+    //        NSString *str = [item.item nameOfItem];
+    //        if (descrString.length != 0) {
+    //            str = [@", " stringByAppendingString:str];
+    //        } else {
+    //            str = [str capitalizedString];
+    //        }
+    //        descrString = [descrString stringByAppendingString:str];
+    //    }
 
-    self.descrLabel.text = [order orderDescr]; //descrString;
+    self.descrLabel.text = [order orderDescr];  // descrString;
 
-    self.priceLabel.text =
-        [NSString stringWithFormat:@"На сумму: %@%@", @([order totalPrice]), ZPPRoubleSymbol];
+    self.priceLabel.text = [NSString
+        stringWithFormat:@"На сумму: %@%@", @([order totalPrice]), ZPPRoubleSymbol];
 }
 
 @end

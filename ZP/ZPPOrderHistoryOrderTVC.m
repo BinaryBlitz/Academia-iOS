@@ -30,7 +30,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        NSInteger count = [super tableView:tableView numberOfRowsInSection:2];
+        NSInteger count = [super tableView:tableView numberOfRowsInSection:1];
         NSLog(@"%@", @(count));
         return count;  //[super tableView:tableView numberOfRowsInSection:2];
     } else {

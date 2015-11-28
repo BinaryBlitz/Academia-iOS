@@ -58,4 +58,10 @@ typedef NS_ENUM(NSInteger, ZPPUserStatus) {
                       onSuccess:(void (^)())success
                       onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
+#pragma mark - new registration
+
+- (void)sendSmsToPhoneNumber:(NSString *)phoneNumber
+                   onSuccess:(void (^)(NSString *tempToken))success
+                   onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
 @end

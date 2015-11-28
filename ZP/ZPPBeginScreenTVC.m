@@ -9,16 +9,24 @@
 #import "ZPPBeginScreenTVC.h"
 #import "ZPPBeginScreenCell.h"
 #import "UIView+UIViewCategory.h"
+#import "NSDate+ZPPDateCategory.h"
 
 #import "ZPPUserManager.h"
+
+#import "ZPPTimeManager.h"
 
 #import <DateTools.h>
 
 typedef NS_ENUM(NSInteger, ZPPCurrentBeginState) {
-    ZPPCurrentBeginStateNight,
-    ZPPCurrentBeginStateMorning,
+    ZPPCurrentBeginStateClosed,
     ZPPCurrentBeginStateOpen,
     ZPPCurrentBeginStateNotLoged
+};
+
+typedef NS_ENUM(NSInteger, ZPPCurrentDayNightState) {
+    ZPPCurrentDayNightStateMorning,
+    ZPPCurrentDayNightStateNight,
+    ZPPCurrentDayNightStateDay
 };
 
 static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
@@ -74,17 +82,16 @@ navigation
     [cell.beginButton addTarget:self
                          action:@selector(beginButtonAction:)
                forControlEvents:UIControlEventTouchUpInside];
-    
+
     ZPPCurrentBeginState state = [self currentState];
-    
-    if(state == ZPPCurrentBeginStateMorning || state == ZPPCurrentBeginStateNight) {
+
+    if (state == ZPPCurrentBeginStateClosed) {
         cell.logoImageView.hidden = YES;
         cell.smallImageView.hidden = NO;
     } else {
         cell.logoImageView.hidden = NO;
         cell.smallImageView.hidden = YES;
     }
-    
 
     return cell;
 }
@@ -116,13 +123,9 @@ navigation
 
     switch (state) {
         case ZPPCurrentBeginStateOpen:
-
             break;
-        case ZPPCurrentBeginStateMorning:
-            text = [NSString stringWithFormat:@"%@%@", morningString, userName];
-            break;
-        case ZPPCurrentBeginStateNight:
-            text = [NSString stringWithFormat:@"%@%@", nightString, userName];
+        case ZPPCurrentBeginStateClosed:
+            text = [NSString stringWithFormat:@"%@%@", morningString, userName];  // redo
             break;
         case ZPPCurrentBeginStateNotLoged:
             break;
@@ -137,15 +140,19 @@ navigation
 
     ZPPCurrentBeginState state = [self currentState];
 
-    NSString *makePreorder = @"Мы открываемся в 11:00";
+    NSDate *now;
+    if ([ZPPTimeManager sharedManager].openTime) {
+        now = [ZPPTimeManager sharedManager].openTime;
+    }
+
+    NSString *makePreorder = [NSString
+        stringWithFormat:@"Мы открываемся %@ в %@", [now dateStringFromDate],
+                         [now timeStringfromDate]];  //@"Мы открываемся в 11:00";
 
     switch (state) {
         case ZPPCurrentBeginStateOpen:
             break;
-        case ZPPCurrentBeginStateMorning:
-            text = makePreorder.copy;  //[makePreorder stringByAppendingString:@"11"];
-            break;
-        case ZPPCurrentBeginStateNight:
+        case ZPPCurrentBeginStateClosed:
             text = makePreorder.copy;  //[makePreorder stringByAppendingString:@"11"];
             break;
         case ZPPCurrentBeginStateNotLoged:
@@ -161,18 +168,14 @@ navigation
 
     ZPPCurrentBeginState state = [self currentState];
 
-    NSString *makePreorder = @"СДЕЛАТЬ ПРЕДЗАКАЗ";
+    //   NSString *makePreorder = @"СДЕЛАТЬ ПРЕДЗАКАЗ";
 
     switch (state) {
         case ZPPCurrentBeginStateOpen:
             text = @"ПОСМОТРЕТЬ МЕНЮ";
-
             break;
-        case ZPPCurrentBeginStateMorning:
-            text = makePreorder.copy;
-            break;
-        case ZPPCurrentBeginStateNight:
-            text = makePreorder.copy;
+        case ZPPCurrentBeginStateClosed:
+            text = @"СДЕЛАТЬ ПРЕДЗАКАЗ";
             break;
         case ZPPCurrentBeginStateNotLoged:
 
@@ -183,16 +186,15 @@ navigation
 }
 
 - (ZPPCurrentBeginState)currentState {
-    //return ZPPCurrentBeginStateNotLoged;
-    
-    NSDate *now = [NSDate new];
+    // return ZPPCurrentBeginStateNotLoged;
+
+//    NSDate *now = [ZPPTimeManager sharedManager].currentTime;  //[NSDate new];
+//    NSDate *openTime = [ZPPTimeManager sharedManager].openTime;
 
     if (![[ZPPUserManager sharedInstance] checkUser]) {
         return ZPPCurrentBeginStateNotLoged;
-    } else if ([now hour] < 6) {
-        return ZPPCurrentBeginStateNight;
-    } else if ([now hour] < 11) {
-        return ZPPCurrentBeginStateMorning;
+    } else if (![ZPPTimeManager sharedManager].isOpen) {
+        return ZPPCurrentBeginStateClosed;
     } else {
         return ZPPCurrentBeginStateOpen;
     }

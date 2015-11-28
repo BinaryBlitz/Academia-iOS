@@ -82,20 +82,20 @@ NSString *const ZPPCentralURL = @"merchants/zdorovoepitanie";
     NSNumber *totalPrice = @(100 * [order totalPrice]);
 
     NSDictionary *params;
-    if (order.card.bindID) {
-        params = @{
-            @"userName" : @"zdorovoepitanie_auto-api",
-            @"password" : @"zdorovoepitanie",
-            @"amount" : totalPrice,
-            @"currency" : @"810",
-            @"language" : @"ru",
-            @"description" : [order description],
-            @"orderNumber" : order.identifier,
-            @"clientId" : userID,
-            @"bindingId" : order.card.bindID,
-            @"returnUrl" : ZPPPaymentFinishURL
-        };
-    } else {
+//    if (order.card.bindID) {
+//        params = @{
+//            @"userName" : @"zdorovoepitanie_auto-api",
+//            @"password" : @"zdorovoepitanie",
+//            @"amount" : totalPrice,
+//            @"currency" : @"810",
+//            @"language" : @"ru",
+//            @"description" : [order description],
+//            @"orderNumber" : order.identifier,
+//            @"clientId" : userID,
+//            @"bindingId" : order.card.bindID,
+//            @"returnUrl" : ZPPPaymentFinishURL
+//        };
+//    } else {
         params = @{
             @"userName" : @"zdorovoepitanie-api",
             @"password" : @"zdorovoepitanie",
@@ -107,7 +107,7 @@ NSString *const ZPPCentralURL = @"merchants/zdorovoepitanie";
             @"clientId" : userID,
             @"returnUrl" : ZPPPaymentFinishURL
         };
-    }
+//    }
     
     [self registerWith:params onSuccess:success onFailure:failure];
 }
