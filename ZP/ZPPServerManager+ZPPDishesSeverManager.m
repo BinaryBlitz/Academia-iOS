@@ -12,6 +12,7 @@
 #import "ZPPDishHelper.h"
 #import "ZPPLunchHelper.h"
 #import "ZPPStuffHelper.h"
+#import "ZPPTimeManager.h"
 
 @implementation ZPPServerManager (ZPPDishesSeverManager)
 
@@ -46,7 +47,7 @@
         }];
 }
 
-- (void)getDayMenuOnSuccess:(void (^)(NSArray *meals, NSArray *dishes, NSArray *stuff))success
+- (void)getDayMenuOnSuccess:(void (^)(NSArray *meals, NSArray *dishes, NSArray *stuff, ZPPTimeManager *timeManager))success
                   onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
     ZPPUser *user = [ZPPUserManager sharedInstance].user;
     if (!user.apiToken) {
@@ -62,16 +63,32 @@
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
 
             NSLog(@"%@",responseObject);
-            NSArray *lunchs = [ZPPDishHelper parseDishes:responseObject[@"lunches"]];//[ZPPLunchHelper parseLunches:responseObject[@"lunches"]];
-            NSArray *dishes = [ZPPDishHelper parseDishes:responseObject[@"dishes"]];
-            NSArray *stuffs = [ZPPStuffHelper parseStuff:responseObject[@"stuff"]];
+            
+            
+            NSArray *lunchs; //= [ZPPDishHelper parseDishes:responseObject[@"lunches"]];//[ZPPLunchHelper parseLunches:responseObject[@"lunches"]];
+            NSArray *dishes ;//= [ZPPDishHelper parseDishes:responseObject[@"dishes"]];
+            NSArray *stuffs ;//= [ZPPStuffHelper parseStuff:responseObject[@"stuff"]];
+            ZPPTimeManager *timeManager;
+            
+         //   if(responseObject[@"current_time"] && ![responseObject[@"current_time"] isEqual:[NSNull null]]) {
+                
+                [[ZPPTimeManager sharedManager] configureWithDict:responseObject];
+                timeManager = [ZPPTimeManager sharedManager];
+//            } else {
+            //    [[ZPPTimeManager sharedManager] resetTimeManager];
+               lunchs = [ZPPDishHelper parseDishes:responseObject[@"lunches"]];//[ZPPLunchHelper parseLunches:responseObject[@"lunches"]];
+                dishes = [ZPPDishHelper parseDishes:responseObject[@"dishes"]];
+                stuffs = [ZPPStuffHelper parseStuff:responseObject[@"stuff"]];
+           // }
+            
+            
 //            NSArray *stuff = responseObject[@"dishes"];
 //            NSMutableArray *lunchTMP = [NSMutableArray array];
 //            NSMutableArray *dishesTMP = [NSMutableArray array];
 //            NSMutableArray *stuffTMP = [NSMutableArray array];
             
             if(success) {
-                success(lunchs,dishes, stuffs);
+                success(lunchs,dishes, stuffs, timeManager);
             }
             
             

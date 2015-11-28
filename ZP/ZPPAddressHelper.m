@@ -36,6 +36,19 @@
     return address;
 }
 
++ (ZPPAddress *)addressFromDict:(NSDictionary *)dict {
+    NSString *address = dict[@"address"];
+    double lat = [dict[@"latitude"] doubleValue];
+    double lon = [dict[@"longitude"] doubleValue];
+
+    CLLocationCoordinate2D loc = CLLocationCoordinate2DMake(lat, lon);
+
+    ZPPAddress *a =
+        [[ZPPAddress alloc] initWithCoordinate:loc Country:nil city:nil address:address];
+
+    return a;
+}
+
 + (NSArray *)addressesFromFoursquareDict:(id)responseObject {
     NSDictionary *respDict = responseObject[@"response"];
 
@@ -73,7 +86,7 @@
 + (NSArray *)addressesFromDaDataDicts:(NSArray *)dicts {
     NSMutableArray *tmp = [NSMutableArray array];
     for (NSDictionary *d in dicts) {
-   //     NSDictionary *geoDict = d[@"data"];
+        //     NSDictionary *geoDict = d[@"data"];
 
         //        if([geoDict[@"geo_lat"] isEqual:[NSNull null]]) {
         //            continue;
@@ -93,22 +106,10 @@
 
     CLLocationCoordinate2D c = CLLocationCoordinate2DMake(0, 0);
     if (locationDict[@"geo_lat"] && ![locationDict[@"geo_lat"] isEqual:[NSNull null]]) {
-        
         double lat = [locationDict[@"geo_lat"] doubleValue];
         double lon = [locationDict[@"geo_lon"] doubleValue];
         c = CLLocationCoordinate2DMake(lat, lon);
     }
-
-    //    double lat = [locationDict[@"geo_lat"] doubleValue];
-    //    double lon = [locationDict[@"geo_lat"] doubleValue];
-
-    // CLLocationCoordinate2D c = CLLocationCoordinate2DMake(0, 0);//CLLocationCoordinate2DMake(lat,
-    // lon);
-    // NSString *country = locationDict[@"country"];
-    //  NSString *city = locationDict[@"city"];
-    //   NSArray *formattedAddresses = locationDict[@"formattedAddress"];
-
-    //   NSString *address = [formattedAddresses componentsJoinedByString:@" "];
 
     ZPPAddress *a =
         [[ZPPAddress alloc] initWithCoordinate:c Country:nil city:nil address:unrestricted_value];

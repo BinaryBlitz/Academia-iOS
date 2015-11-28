@@ -164,16 +164,67 @@
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
             NSLog(@"resp %@", responseObject);
+
+            ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
+
+            if (success) {
+                success(user);
+            }
+
+        }
+        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+            NSLog(@"err %@", error);
+            [[self class] failureWithBlock:failure error:error operation:operation];
+        }];
+}
+
+#pragma mark - new registration
+
+- (void)sendSmsToPhoneNumber:(NSString *)phoneNumber
+                   onSuccess:(void (^)(NSString *tempToken))success
+                   onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+   // phoneNumber = [@"7" stringByAppendingString:phoneNumber];
+    NSLog(@"phone number %@", phoneNumber);
+    NSDictionary *params = @{ @"phone_number" : phoneNumber };
+
+    [self.requestOperationManager POST:@"user/send_verification_code.json"
+        parameters:params
+        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+
+            NSLog(@"%@",responseObject);
+            NSString *tempToken = @"";
+            if (success) {
+                success(tempToken);
+            }
+
+        }
+        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+            [[self class] failureWithBlock:failure error:error operation:operation];
+        }];
+}
+
+- (void)verifyPhoneNumber:(NSString *)phoneNumber
+                     code:(NSString *)code
+                    token:(NSString *)token
+                onSuccess:(void (^)(ZPPUser *user))success
+                onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    phoneNumber = [@"7" stringByAppendingString:phoneNumber];
+    NSDictionary *params = @{ @"phone_number" : phoneNumber, @"sms_verification_code" : code };
+
+    [self.requestOperationManager GET:@"user/verify_phone_number.json"
+        parameters:params
+        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+            
+            
+//            if()
             
             ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
             
-            if(success) {
+            if(success ) {
                 success(user);
             }
-            
         }
-        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error){
-            NSLog(@"err %@", error);
+        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
             [[self class] failureWithBlock:failure error:error operation:operation];
         }];
 }

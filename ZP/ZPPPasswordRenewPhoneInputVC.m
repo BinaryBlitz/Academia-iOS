@@ -78,23 +78,23 @@ static NSString *ZPPPasswordRenewCodeInputIdentifier = @"ZPPPasswordRenewCodeInp
 
 - (void)sendCode {
     
-    NSInteger code = arc4random() % 10000;
-    
-    self.code = [NSString stringWithFormat:@"%ld", (long)code];
-    NSString *number = self.user.phoneNumber;
-    
-    
-    [[ZPPSmsVerificationManager shared] POSTCode:self.code toNumber:number onSuccess:^{
-        [self.doneButton stopIndication];
-        
-        [self showCodeInput];
-        
-    } onFailure:^(NSError *error, NSInteger statusCode) {
-        [self.doneButton stopIndication];
-        
-        [self showWarningWithText:ZPPNoInternetConnectionMessage];
-        
-    }];
+//    NSInteger code = arc4random() % 10000;
+//    
+//    self.code = [NSString stringWithFormat:@"%ld", (long)code];
+//    NSString *number = self.user.phoneNumber;
+//    
+//    
+//    [[ZPPSmsVerificationManager shared] POSTCode:self.code toNumber:number onSuccess:^{
+//        [self.doneButton stopIndication];
+//        
+//        [self showCodeInput];
+//        
+//    } onFailure:^(NSError *error, NSInteger statusCode) {
+//        [self.doneButton stopIndication];
+//        
+//        [self showWarningWithText:ZPPNoInternetConnectionMessage];
+//        
+//    }];
     
 
 }
@@ -103,7 +103,7 @@ static NSString *ZPPPasswordRenewCodeInputIdentifier = @"ZPPPasswordRenewCodeInp
     ZPPPasswordRenewCodeInput *vc = [self.storyboard instantiateViewControllerWithIdentifier:ZPPPasswordRenewCodeInputIdentifier];
     
     [vc setUser:[self user]];
-    [vc setCode:self.code];
+ //   [vc setCode:self.code];
     
     [self.navigationController pushViewController:vc animated:YES];
     

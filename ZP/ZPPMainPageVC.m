@@ -198,20 +198,28 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 - (void)loadDishes {
     __weak typeof(self) weakSelf = self;
     [[ZPPServerManager sharedManager] getDayMenuOnSuccess:^(NSArray *meals, NSArray *dishes,
-                                                            NSArray *stuff) {
+                                                            NSArray *stuff,
+                                                            ZPPTimeManager *timeManager) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (strongSelf) {
+            // if (!timeManager) {
             NSArray *dishControllers = [strongSelf dishControllersFromArr:dishes];
             NSArray *mealControllers = [strongSelf lunchControllersFromArr:meals];
-
-            ZPPAnotherProductsTVC *stuffTVC = [strongSelf generateAnotherProductsVC:stuff];
-            stuffTVC.productDelegate = strongSelf;
 
             NSArray *arr =
                 [@[ [strongSelf startScreen] ] arrayByAddingObjectsFromArray:mealControllers];
             arr = [arr arrayByAddingObjectsFromArray:dishControllers];
-            arr = [arr arrayByAddingObject:stuffTVC];
+
+            if (stuff.count) {
+                ZPPAnotherProductsTVC *stuffTVC = [strongSelf generateAnotherProductsVC:stuff];
+                stuffTVC.productDelegate = strongSelf;
+                arr = [arr arrayByAddingObject:stuffTVC];
+            }
+
             [strongSelf configureScreensWithArr:arr];
+            //  } else {
+            // [strongSelf configureScreensWithArr:@[ [strongSelf startScreen] ]];
+            //   }
         }
     } onFailure:^(NSError *error, NSInteger statusCode) {
 
@@ -233,13 +241,13 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
 - (NSArray *)lunchControllersFromArr:(NSArray *)lunches {
     NSMutableArray *tmp = [NSMutableArray array];
-    
+
     for (ZPPDish *lunch in lunches) {
         ZPPProductTVC *productTVC = [self generateLunchVC:lunch];
         productTVC.productDelegate = self;
         [tmp addObject:productTVC];
     }
-    
+
     return [NSArray arrayWithArray:tmp];
 }
 

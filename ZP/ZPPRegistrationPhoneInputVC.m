@@ -16,8 +16,9 @@
 #import "ZPPRegistrationCodeInputVC.h"
 #import "ZPPUser.h"
 
-#import "ZPPSmsVerificationManager.h"
-#import "ZPPServerManager.h"
+//#import "ZPPSmsVerificationManager.h"
+//#import "ZPPServerManager.h"
+#import "ZPPServerManager+ZPPRegistration.h"
 
 #import "ZPPConsts.h"
 
@@ -30,7 +31,7 @@ static NSString *ZPPShowNumberEnterScreenSegueIdentifier =
 
 static NSString *ZPPShowAuthenticationSegueIdentifier = @"ZPPShowAuthenticationSegueIdentifier";
 
-//static NSString *ZPPPhoneWarningMessage = @"Формат номера неправильный";
+// static NSString *ZPPPhoneWarningMessage = @"Формат номера неправильный";
 
 @interface ZPPRegistrationPhoneInputVC () <UITextFieldDelegate>
 
@@ -45,7 +46,7 @@ static NSString *ZPPShowAuthenticationSegueIdentifier = @"ZPPShowAuthenticationS
 
     // self.phoneNumberTextFiled.delegate = self;
     // self.phoneNumberTextFiled.tag = 102;
-    
+
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -106,26 +107,22 @@ navigation
 */
 - (IBAction)acceptAction:(UIButton *)sender {
     if ([self checkPhoneTextField:self.phoneNumberTextFiled]) {
-        NSInteger code = arc4random() % 10000;
-
-        self.code = [NSString stringWithFormat:@"%ld", (long)code];
         NSString *number = self.user.phoneNumber;  // self.phoneNumberTextFiled.text;
 
         [sender startIndicating];
-        [[ZPPSmsVerificationManager shared] POSTCode:self.code
-            toNumber:number
-            onSuccess:^{
+
+        [[ZPPServerManager sharedManager] sendSmsToPhoneNumber:number
+            onSuccess:^(NSString *tmpToken) {
                 [sender stopIndication];
                 [self performSegueWithIdentifier:ZPPShowNumberEnterScreenSegueIdentifier
                                           sender:nil];
+
             }
             onFailure:^(NSError *error, NSInteger statusCode) {
                 [sender stopIndication];
                 [self showWarningWithText:ZPPNoInternetConnectionMessage];
-
             }];
 
-        //  [self performSegueWithIdentifier:ZPPShowNumberEnterScreenSegueIdentifier sender:nil];
     } else {
         [self.phoneNumberTextFiled.superview shakeView];
         [self showWarningWithText:ZPPPhoneWarningMessage];
@@ -145,8 +142,8 @@ navigation
         ZPPUser *user = [self user];
 
         [destVC setUser:user];
-        [destVC setCode:self.code];
-        self.code = nil;
+        //        [destVC setCode:self.code];
+        //        self.code = nil;
     }
 }
 

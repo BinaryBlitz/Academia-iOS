@@ -16,6 +16,7 @@
 @property (copy, nonatomic) NSString *phoneNumber;//
 @property (copy, nonatomic) NSString *password;//
 @property (copy, nonatomic) NSString *promoCode;
+@property (copy, nonatomic) NSString *balance;
 
 @property (copy, nonatomic, readonly) NSString *apiToken;//
 @property (copy, nonatomic, readonly) NSString *userID;//
@@ -29,6 +30,7 @@
                  phoneNumber:(NSString *)phoneNumber
                       userID:(NSString *)userID
                       apiKey:(NSString *)apiKey
-                   promocode:(NSString *)promocode;
+                   promocode:(NSString *)promocode
+                     balance:(NSString *)balance;
 
 @end

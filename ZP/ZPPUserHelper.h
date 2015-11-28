@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString const*ZPPFirstName;// = @"first_name";
-extern NSString const*ZPPLastName ;//= @"last_name";
-extern NSString const*ZPPUserEmail;// = @"email";
-extern NSString const*ZPPPhoneNumber;// = @"phone_number";
-extern NSString const*ZPPAPIToken;// = @"api_token";
-extern NSString const*ZPPUserID;// = @"id";
-extern NSString const*ZPPUserPassword;
+extern NSString const *ZPPFirstName;    // = @"first_name";
+extern NSString const *ZPPLastName;     //= @"last_name";
+extern NSString const *ZPPUserEmail;    // = @"email";
+extern NSString const *ZPPPhoneNumber;  // = @"phone_number";
+extern NSString const *ZPPAPIToken;     // = @"api_token";
+extern NSString const *ZPPUserID;       // = @"id";
+extern NSString const *ZPPUserPassword;
+extern NSString const *ZPPUserPromocode;
+extern NSString const *ZPPUserBalance;
 
 @class ZPPUser;
 

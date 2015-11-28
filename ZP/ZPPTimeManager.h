@@ -10,4 +10,15 @@
 
 @interface ZPPTimeManager : NSObject
 
+@property (assign, nonatomic, readonly) BOOL isOpen;
+@property (strong, nonatomic, readonly) NSDate *openTime;
+@property (strong, nonatomic, readonly) NSDate *currentTime;
+
++ (ZPPTimeManager *)sharedManager;
+
+- (void)configureWithDict:(NSDictionary *)dict;
+- (void)resetTimeManager;
+
+
+
 @end

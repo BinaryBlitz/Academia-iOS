@@ -19,10 +19,44 @@
     return [NSString stringWithFormat:@"%@:%@", hourString, minuteString];
 }
 
+- (NSString *)dateStringFromDate {
+//    NSString *day = [self day];
+    
+    return [NSString stringWithFormat:@"%ld.%ld",[self day], [self month]];
+    
+}
+
 + (NSString *)zpp_formatedNum:(NSInteger)num {
     return num < 10 ? [NSString stringWithFormat:@"0%ld", (long)num]
                     : [NSString stringWithFormat:@"%ld", num];
 }
 
+
++ (NSDate *)customDateFromString:(NSString *)dateAsString {
+    
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    
+    df.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    
+    [df setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    df.locale = [NSLocale systemLocale];
+    
+    return [df dateFromString:dateAsString];
+}
+
+//2015-11-28T12:00:00.000+03:00
+
++ (NSDate *)customDateFromstringWithRegion:(NSString *)dateString {
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ";
+   // [df setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    df.locale = [NSLocale systemLocale];
+    
+    return [df dateFromString:dateString];
+    
+    
+}
 
 @end

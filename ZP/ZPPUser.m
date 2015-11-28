@@ -9,14 +9,12 @@
 #import "ZPPUser.h"
 #import "ZPPUserHelper.h"
 
-
-//static NSString *ZPPFirstName = @"first_name";
-//static NSString *ZPPLastName = @"last_name";
-//static NSString *ZPPUserEmail = @"email";
-//static NSString *ZPPPhoneNumber = @"phone_number";
-//static NSString *ZPPAPIToken = @"api_token";
-//static NSString *ZPPUserID = @"id";
-
+// static NSString *ZPPFirstName = @"first_name";
+// static NSString *ZPPLastName = @"last_name";
+// static NSString *ZPPUserEmail = @"email";
+// static NSString *ZPPPhoneNumber = @"phone_number";
+// static NSString *ZPPAPIToken = @"api_token";
+// static NSString *ZPPUserID = @"id";
 
 @interface ZPPUser ()
 
@@ -26,23 +24,18 @@
 //@property (copy, nonatomic) NSString *email;//
 //@property (copy, nonatomic) NSString *phoneNumber;//
 //@property (copy, nonatomic) NSString *password;//
-@property (copy, nonatomic) NSString *apiToken;//
-@property (copy, nonatomic) NSString *userID;//
-
-
-
+@property (copy, nonatomic) NSString *apiToken;  //
+@property (copy, nonatomic) NSString *userID;    //
 
 @end
 
 @implementation ZPPUser
 
-
-
 //- (instancetype)initWithDict:(NSDictionary *)dict {
 //    self = [super init];
 //    if (self) {
 //        //   self.apiToken = [dict objectForKey:ZPPAPIToken];
-//        
+//
 //        if(dict[ZPPAPIToken]){
 //            self.apiToken = dict[ZPPAPIToken];
 //        }
@@ -55,19 +48,18 @@
 //        if(dict [ZPPUserEmail]) {
 //            self.email = [dict objectForKey:ZPPUserEmail];
 //        }
-//        
+//
 //        if(dict[ZPPPhoneNumber]) {
 //            self.phoneNumber = dict[ZPPPhoneNumber];
 //        }
-//        
+//
 //        if(dict[ZPPUserID]) {
 //            self.phoneNumber = dict[ZPPPhoneNumber];
 //        }
-//        
+//
 //    }
 //    return self;
 //}
-
 
 - (instancetype)initWihtName:(NSString *)name
                     lastName:(NSString *)lastName
@@ -75,7 +67,8 @@
                  phoneNumber:(NSString *)phoneNumber
                       userID:(NSString *)userID
                       apiKey:(NSString *)apiKey
-                   promocode:(NSString *)promocode;
+                   promocode:(NSString *)promocode
+                     balance:(NSString *)balance
 {
     self = [super init];
     if (self) {
@@ -86,6 +79,7 @@
         self.userID = userID;
         self.apiToken = apiKey;
         self.promoCode = promocode;
+        self.balance = balance;
     }
     return self;
 }
@@ -93,29 +87,27 @@
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [[ZPPUser alloc] init];
     if (self) {
-        
         self.firstName = [coder decodeObjectForKey:ZPPFirstName];
         self.lastName = [coder decodeObjectForKey:ZPPLastName];
         self.email = [coder decodeObjectForKey:ZPPUserEmail];
         self.apiToken = [coder decodeObjectForKey:ZPPAPIToken];
         self.phoneNumber = [coder decodeObjectForKey:ZPPPhoneNumber];
         self.userID = [coder decodeObjectForKey:ZPPUserID];
+        self.promoCode = [coder decodeObjectForKey:ZPPUserPromocode];
+        
         
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    
     [coder encodeObject:self.firstName forKey:ZPPFirstName];
     [coder encodeObject:self.lastName forKey:ZPPLastName];
     [coder encodeObject:self.email forKey:ZPPUserEmail];
     [coder encodeObject:self.apiToken forKey:ZPPAPIToken];
     [coder encodeObject:self.phoneNumber forKey:ZPPPhoneNumber];
     [coder encodeObject:self.userID forKey:ZPPUserID];
+    [coder encodeObject:self.promoCode forKey:ZPPUserPromocode];
 }
-
-
-
 
 @end

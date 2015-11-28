@@ -17,8 +17,8 @@
 
 NSString *const ZPPServerBaseUrl = @"http://zpapp.binaryblitz.ru";
 
-NSString *const ZPPNoInternetConnectionMessage = @"Проверьте интернет "
-                                                 @"соединение";
+NSString *const ZPPNoInternetConnectionMessage = @"Проверьте интернет " @"соедине"
+                                                                                         @"ние";
 
 @interface ZPPServerManager ()
 
@@ -67,7 +67,7 @@ NSString *const ZPPNoInternetConnectionMessage = @"Проверьте интер
 + (void)failureWithBlock:(failureBlock)block
                    error:(NSError *)error
                operation:(AFHTTPRequestOperation *)operation {
-    DDLogError(@"err %@", error);
+    DDLogError(@"err %@ \nerr resp %@", error, operation.responseObject);
     if (block) {
         block(error, operation.response.statusCode);
     }

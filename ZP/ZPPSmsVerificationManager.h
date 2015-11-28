@@ -18,10 +18,10 @@ extern const NSInteger ZPPMaxCount;
 
 + (instancetype)shared;
 
-- (void)POSTCode:(NSString *)code
-        toNumber:(NSString *)number
-       onSuccess:(void (^)())success
-       onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+//- (void)POSTCode:(NSString *)code
+//        toNumber:(NSString *)number
+//       onSuccess:(void (^)())success
+//       onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
 - (void)startTimer;
 - (void)invalidateTimer;

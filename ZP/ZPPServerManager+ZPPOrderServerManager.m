@@ -20,6 +20,8 @@
     [self.requestOperationManager GET:@"orders.json"
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+            
+            NSLog (@"old dicts %@", responseObject);
 
             NSArray *orders = [ZPPOrderHelper parseOrdersFromDicts:responseObject];
 
@@ -34,9 +36,28 @@
         }];
 }
 
+- (void)POSTOrder:(ZPPOrder *)order
+        onSuccess:(void (^)(ZPPOrder *order))success
+        onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    NSDictionary *orderDict = [ZPPOrderHelper orderDictFromDict:order];
 
-- (void)POSTOrder:(ZPPOrder *)order {
-    
+    NSDictionary *params =
+        @{ @"order" : orderDict,
+           @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
+
+    [self.requestOperationManager POST:@"orders.json"
+        parameters:params
+        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+            NSLog(@"post order %@", responseObject);
+
+            if (success) {
+                success(order);
+            }
+        }
+        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+
+            [[self class] failureWithBlock:failure error:error operation:operation];
+        }];
 }
 
 @end
