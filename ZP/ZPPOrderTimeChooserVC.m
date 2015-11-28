@@ -129,54 +129,102 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 #pragma mark - payment
 
 - (void)startPayment {
-    self.order.identifier = [NSString stringWithFormat:@"zpp_%u", arc4random() & 1000];
+    // self.order.identifier = [NSString stringWithFormat:@"zpp_%u", arc4random() & 1000];
 
-    [self.makeOrderButton startIndicating];
-    [[ZPPServerManager sharedManager] POSTOrder:self.order onSuccess:^(ZPPOrder *order) {
-        [self.makeOrderButton stopIndication];
-    } onFailure:^(NSError *error, NSInteger statusCode) {
-        [self.makeOrderButton stopIndication];
-    }];
-//    [[ZPPPaymentManager sharedManager] registrateOrder:self.order
-//        onSuccess:^(NSURL *url, NSString *orderIDAlfa) {
-//            [self.makeOrderButton stopIndication];
-//
-//            self.order.alfaNumber = orderIDAlfa;
-//            [self showWebViewWithURl:url];
-//
-//        }
-//        onFailure:^(NSError *error, NSInteger statusCode) {
-//            [self.makeOrderButton stopIndication];
-//
-//            [self showWarningWithText:ZPPNoInternetConnectionMessage];
-//        }];
+    [self.makeOrderButton startIndicatingWithType:UIActivityIndicatorViewStyleGray];
+    [[ZPPServerManager sharedManager] POSTOrder:self.order
+        onSuccess:^(ZPPOrder *ord) {
+            //  [self.makeOrderButton stopIndication];
+            self.order = ord;
+
+            [[ZPPServerManager sharedManager] POSTPaymentWithOrderID:ord.identifier
+                onSuccess:^(NSString *paymnetURL) {
+                    [self.makeOrderButton stopIndication];
+
+                    NSURL *url = [NSURL URLWithString:paymnetURL];
+                    [self showWebViewWithURl:url];
+                }
+                onFailure:^(NSError *error, NSInteger statusCode) {
+                    [self.makeOrderButton stopIndication];
+                }];
+
+        }
+        onFailure:^(NSError *error, NSInteger statusCode) {
+            [self.makeOrderButton stopIndication];
+        }];
+    //    [[ZPPPaymentManager sharedManager] registrateOrder:self.order
+    //        onSuccess:^(NSURL *url, NSString *orderIDAlfa) {
+    //            [self.makeOrderButton stopIndication];
+    //
+    //            self.order.alfaNumber = orderIDAlfa;
+    //            [self showWebViewWithURl:url];
+    //
+    //        }
+    //        onFailure:^(NSError *error, NSInteger statusCode) {
+    //            [self.makeOrderButton stopIndication];
+    //
+    //            [self showWarningWithText:ZPPNoInternetConnectionMessage];
+    //        }];
 }
 
 - (void)didShowPageWithUrl:(NSURL *)url sender:(UIViewController *)vc {
     // https://test.paymentgate.ru/testpayment/merchants/zdorovoepitanie/finish.html?orderId=5cc56c99-4550-46be-a2fa-422a10f96040
 
-//    NSString *destString = [NSString
-//        stringWithFormat:@"%@/%@/%@?orderId=%@", [ZPPPaymentManager sharedManager].baseURL,
-//                         ZPPCentralURL, ZPPPaymentFinishURL, self.order.alfaNumber];
-//
-//    NSLog(@"\n%@\n%@", url.absoluteString, destString);
-//    if ([url.absoluteString isEqualToString:destString]) {
-//        [vc dismissViewControllerAnimated:YES
-//                               completion:^{
-//
-//                               }];
-//
-//        UIViewController *vc =
-//            [self.storyboard instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
-//
-//        [self presentViewController:vc
-//                           animated:YES
-//                         completion:^{
-//                             // [self dismissViewControllerAnimated:YES completion:nil];
-//                         }];
-//
-//        //  [self ]
-//    }
+    //    NSString *destString = [NSString
+    //        stringWithFormat:@"%@/%@/%@?orderId=%@", [ZPPPaymentManager sharedManager].baseURL,
+    //                         ZPPCentralURL, ZPPPaymentFinishURL, self.order.alfaNumber];
+    //
+    //    NSLog(@"\n%@\n%@", url.absoluteString, destString);
+    //    if ([url.absoluteString isEqualToString:destString]) {
+    //        [vc dismissViewControllerAnimated:YES
+    //                               completion:^{
+    //
+    //                               }];
+    //
+    //        UIViewController *vc =
+    //            [self.storyboard
+    //            instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
+    //
+    //        [self presentViewController:vc
+    //                           animated:YES
+    //                         completion:^{
+    //                             // [self dismissViewControllerAnimated:YES completion:nil];
+    //                         }];
+    //
+    //        //  [self ]
+    //    }
+
+    NSString *urlString = url.absoluteString;
+    if ([urlString containsString:@"finish"]) {
+        [[ZPPServerManager sharedManager] checkPaymentWithID:self.order.identifier
+            onSuccess:^(NSString *sta) {
+
+                if ([sta isEqualToString:@"Успешно"]) {
+                    [vc dismissViewControllerAnimated:YES
+                                           completion:^{
+
+                                           }];
+
+                    UIViewController *vc = [self.storyboard
+                        instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
+
+                    [self presentViewController:vc
+                                       animated:YES
+                                     completion:^{
+                                         // [self dismissViewControllerAnimated:YES completion:nil];
+                                     }];
+                }
+
+            }
+            onFailure:^(NSError *error, NSInteger statusCode){
+
+            }];
+
+        //        [vc dismissViewControllerAnimated:YES
+        //                                        completion:^{
+        //
+        //                                        }];
+    }
 }
 
 - (void)showWebViewWithURl:(NSURL *)url {
@@ -196,96 +244,6 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 }
 
 #pragma mark - time shooser
-
-- (void)showTimePicker {
-    RMAction *selectAction = [RMAction
-        actionWithTitle:@"Выбрать"
-                  style:RMActionStyleDone
-             andHandler:^(RMActionController *controller) {
-
-                 NSDate *d = ((UIDatePicker *)controller.contentView).date;
-                 NSLog(@"Successfully selected date: %@",
-                       ((UIDatePicker *)controller.contentView).date);
-                 NSString *dateStr = [NSString
-                     stringWithFormat:
-                         @"%@.%@ в ", @([d month]),
-                         @([d day])];  //[d formattedDateWithStyle:NSDateFormatterShortStyle];
-
-                 NSString *resString = [d timeStringfromDate];
-                 resString = [dateStr stringByAppendingString:resString];
-                 [self.atTimeButton setTitle:resString forState:UIControlStateNormal];
-                 [self addCheckmarkToButton:self.atTimeButton];
-             }];
-
-    // Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:@"Отменить"
-                                                 style:RMActionStyleCancel
-                                            andHandler:^(RMActionController *controller) {
-                                                NSLog(@"Date selection was canceled");
-
-                                            }];
-
-    // Create date selection view controller
-    RMDateSelectionViewController *dateSelectionController =
-        [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite
-                                                    selectAction:selectAction
-                                                 andCancelAction:cancelAction];
-
-    dateSelectionController.datePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:30 * 60];
-    dateSelectionController.datePicker.maximumDate =
-        [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24 * 2];
-
-    dateSelectionController.title = @"Выбор времени доставки";
-    dateSelectionController.message = @"Когда вы хотите получить заказ?";
-
-    RMAction *in90MinAction = [RMAction
-        actionWithTitle:@"90 минут"
-                  style:RMActionStyleAdditional
-             andHandler:^(RMActionController *controller) {
-                 ((UIDatePicker *)controller.contentView).date =
-                     [NSDate dateWithTimeIntervalSinceNow:90 * 60];
-                 NSLog(@"90 Min button tapped");
-
-                 [self.atTimeButton setTitle:@"Через 90 минут" forState:UIControlStateNormal];
-                 [self addCheckmarkToButton:self.atTimeButton];
-             }];
-    in90MinAction.dismissesActionController = YES;
-
-    RMAction *in45MinAction = [RMAction
-        actionWithTitle:@"45 минут"
-                  style:RMActionStyleAdditional
-             andHandler:^(RMActionController *controller) {
-                 ((UIDatePicker *)controller.contentView).date =
-                     [NSDate dateWithTimeIntervalSinceNow:45 * 60];
-                 NSLog(@"45 Min button tapped");
-
-                 [self.atTimeButton setTitle:@"Через 45 минут" forState:UIControlStateNormal];
-                 [self addCheckmarkToButton:self.atTimeButton];
-
-             }];
-    in45MinAction.dismissesActionController = YES;
-
-    RMAction *in60MinAction = [RMAction
-        actionWithTitle:@"60 минут"
-                  style:RMActionStyleAdditional
-             andHandler:^(RMActionController *controller) {
-                 ((UIDatePicker *)controller.contentView).date =
-                     [NSDate dateWithTimeIntervalSinceNow:60 * 60];
-                 NSLog(@"60 Min button tapped");
-                 [self.atTimeButton setTitle:@"Через 60 минут" forState:UIControlStateNormal];
-                 [self addCheckmarkToButton:self.atTimeButton];
-
-             }];
-    in60MinAction.dismissesActionController = YES;
-
-    RMGroupedAction *groupedAction =
-        [RMGroupedAction actionWithStyle:RMActionStyleAdditional
-                              andActions:@[ in45MinAction, in60MinAction, in90MinAction ]];
-
-    [dateSelectionController addAction:groupedAction];
-
-    [self presentViewController:dateSelectionController animated:YES completion:nil];
-}
 
 - (void)addTimePicker:(UIButton *)sender {
     NSMutableArray *arr = [NSMutableArray array];

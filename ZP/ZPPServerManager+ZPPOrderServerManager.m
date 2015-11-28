@@ -20,8 +20,8 @@
     [self.requestOperationManager GET:@"orders.json"
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-            
-            NSLog (@"old dicts %@", responseObject);
+
+            NSLog(@"old dicts %@", responseObject);
 
             NSArray *orders = [ZPPOrderHelper parseOrdersFromDicts:responseObject];
 
@@ -50,11 +50,65 @@
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
             NSLog(@"post order %@", responseObject);
 
+            ZPPOrder *o = [ZPPOrderHelper parseOrderFromDict:responseObject];
             if (success) {
-                success(order);
+                success(o);
             }
         }
         failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+
+            [[self class] failureWithBlock:failure error:error operation:operation];
+        }];
+}
+
+- (void)POSTPaymentWithOrderID:(NSString *)orderID
+                     onSuccess:(void (^)(NSString *paymnetURL))success
+                     onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    NSDictionary *params = @{
+        @"api_token" : [ZPPUserManager sharedInstance].user.apiToken,
+        @"payment" : @{@"use_binding" : @"false"}
+    };
+
+    NSString *urlString = [NSString stringWithFormat:@"orders/%@/payment.json", orderID];
+    [self.requestOperationManager POST:urlString
+        parameters:params
+        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+
+            NSLog(@"payment resp %@", responseObject);
+            NSString *url = responseObject[@"url"];
+            if (success) {
+                success(url);
+            }
+
+        }
+        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+
+            if (failure) {
+                [[self class] failureWithBlock:failure error:error operation:operation];
+            }
+        }];
+}
+
+- (void)checkPaymentWithID:(NSString *)orderID
+                 onSuccess:(void (^)(NSString *sta))success
+                 onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    NSDictionary *params = @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
+
+    NSString *urlString = [NSString stringWithFormat:@"orders/%@/payment_status.json", orderID];
+
+    [self.requestOperationManager GET:urlString
+        parameters:params
+        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+            
+            NSLog(@"payment status response %@", responseObject);
+            
+            NSString *s = responseObject[@"status"];
+            if(success) {
+                success(s);
+            }
+
+        }
+        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error){
 
             [[self class] failureWithBlock:failure error:error operation:operation];
         }];
