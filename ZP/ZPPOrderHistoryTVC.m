@@ -33,6 +33,9 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
 
 @property (strong, nonatomic) NSArray *orders;
 
+@property (strong, nonatomic) NSArray *doneOrders;
+@property (strong, nonatomic) NSArray *onTheWayOrders;
+
 @end
 
 @implementation ZPPOrderHistoryTVC
@@ -62,36 +65,37 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
 
     self.tableView.backgroundView.layer.zPosition -= 1;
 
-    //   [self.tableView bringSubviewToFront:self.refreshControl];
-
     [self setCustomNavigationBackButtonWithTransition];
     
     [self loadOrders];
 }
 
 - (void)configureWithOrder:(ZPPOrder *)order {
-    //    ZPPOrder *secondOrder = [order copy];
-    //    ZPPOrder *thirdOrder = [secondOrder copy];
 
-    //    self.orders = [self testOrders];  //@[ order, order, order ];
-    //    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+ 
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    //#warning Incomplete implementation, return the number of sections
-    return 1;
+
+    
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //#warning Incomplete implementation, return the number of rows
 
+    if(section == 0) {
+        return  self.onTheWayOrders.count;
+    } else {
+        return self.doneOrders.count;
+    }
+    
     return self.orders.count;
 }
 
@@ -101,12 +105,27 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
         [tableView dequeueReusableCellWithIdentifier:ZPPOrderHistoryCellIdentifier
                                         forIndexPath:indexPath];
 
-    // Configure the cell...
 
-    ZPPOrder *order = self.orders[indexPath.row];
+
+    ZPPOrder *order;
+    
+    if(indexPath.section == 0) {
+        order = self.onTheWayOrders[indexPath.row];
+    } else {
+        order = self.doneOrders[indexPath.row];
+    }
+    
     [cell configureWithOrder:order];
 
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if(section==0) {
+        return @"Заказы в пути";
+    } else {
+        return @"Доставленные заказы";
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -114,17 +133,19 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZPPOrder *order = self.orders[indexPath.row];
+    ZPPOrder *order;
+    if (indexPath.section == 0) {
+        order = self.onTheWayOrders[indexPath.row];
+    } else {
+        order = self.doneOrders[indexPath.row];
+    }
+
     [self showOrderScreenWithOrder:order];
 }
 
 #pragma mark - actions
 
 - (void)showOrderScreenWithOrder:(ZPPOrder *)order {
-    //   UIStoryboard *sb = [UIStoryboard storyboardWithName:@"order" bundle:[NSBundle mainBundle]];
-
-    // ZPPOrderTVC *orderTVC = [sb instantiateViewControllerWithIdentifier:ZPPOrderTVCIdentifier];
-
     ZPPOrderHistoryOrderTVC *orderTVC =
         [self.storyboard instantiateViewControllerWithIdentifier:ZPPOrderHistoryOrderTVCIdentifier];
 
@@ -144,8 +165,8 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
 
     [[ZPPServerManager sharedManager] GETOldOrdersOnSuccess:^(NSArray *orders) {
         [self.refreshControl endRefreshing];
-
-        self.orders = orders;
+        
+        [self parseOrders:orders];
 
         [self.tableView reloadData];
     } onFailure:^(NSError *error, NSInteger statusCode) {
@@ -157,65 +178,27 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
 
 #pragma mark - support
 
+- (void)parseOrders:(NSArray *)orders {
+    NSMutableArray *onTheWayOrders = [NSMutableArray array];
+    NSMutableArray *payedOrders = [NSMutableArray array];
+    
+    for(ZPPOrder *order in orders) {
+        if(order.orderStatus == ZPPOrderStatusOnTheWay) {
+            [onTheWayOrders addObject:order];
+        } else if (order.orderStatus == ZPPOrderStatusDelivered) {
+            [payedOrders addObject:order];
+        }
+    }
+    
+    self.onTheWayOrders = [NSArray arrayWithArray:onTheWayOrders];
+    self.doneOrders = [NSArray arrayWithArray:payedOrders];
+    [self.tableView reloadData];
+}
+
 - (void)registrateCells {
     [self registrateCellForClass:[ZPPOrderHistoryCell class]
                  reuseIdentifier:ZPPOrderHistoryCellIdentifier];
-    //
-    //    [self registrateCellForClass:[ZPPOrderTotalCell class]
-    //                 reuseIdentifier:ZPPOrderTotalCellIdentifier];
 }
 
-#pragma mark - tests
-
-//- (NSArray *)testOrders {
-//    ZPPOrder *order = [[ZPPOrder alloc] init];
-//    ZPPOrder *secondOrder = [[ZPPOrder alloc] init];
-//    ZPPOrder *thirdOrder = [[ZPPOrder alloc] init];
-//
-//    ZPPDish *d1 = [[ZPPDish alloc] initWithName:@"Super meal"
-//                                         dishID:nil
-//                                       subtitle:nil
-//                                dishDescription:nil
-//                                          price:@(499)
-//                                         imgURL:nil
-//                                    ingridients:nil];
-//    ZPPDish *d2 = [[ZPPDish alloc] initWithName:@"Diet meal"
-//                                         dishID:nil
-//                                       subtitle:nil
-//                                dishDescription:nil
-//                                          price:@(399)
-//                                         imgURL:nil
-//                                    ingridients:nil];
-//    ZPPDish *d3 = [[ZPPDish alloc] initWithName:@"Hamburger"
-//                                         dishID:nil
-//                                       subtitle:nil
-//                                dishDescription:nil
-//                                          price:@(200)
-//                                         imgURL:nil
-//                                    ingridients:nil];
-//    ZPPDish *d4 = [[ZPPDish alloc] initWithName:@"Salad"
-//                                         dishID:nil
-//                                       subtitle:nil
-//                                dishDescription:nil
-//                                          price:@(200)
-//                                         imgURL:nil
-//                                    ingridients:nil];
-//
-//    [order addItem:d1];
-//    [order addItem:d1];
-//    [order addItem:d4];
-//    [order addItem:d2];
-//
-//    [secondOrder addItem:d4];
-//    [secondOrder addItem:d1];
-//    [secondOrder addItem:d3];
-//    [secondOrder addItem:d3];
-//
-//    [thirdOrder addItem:d3];
-//    [thirdOrder addItem:d2];
-//    [thirdOrder addItem:d2];
-//
-//    return @[ order, secondOrder, thirdOrder ];
-//}
 
 @end
