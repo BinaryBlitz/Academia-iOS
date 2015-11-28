@@ -21,17 +21,6 @@
                                    [order.date month], [order.date year]];
     self.orderName.text = dateString;
 
-    //    NSString *descrString = @"";
-    //    for (ZPPOrderItem *item in order.items) {
-    //        NSString *str = [item.item nameOfItem];
-    //        if (descrString.length != 0) {
-    //            str = [@", " stringByAppendingString:str];
-    //        } else {
-    //            str = [str capitalizedString];
-    //        }
-    //        descrString = [descrString stringByAppendingString:str];
-    //    }
-
     self.descrLabel.text = [order orderDescr];  // descrString;
 
     self.priceLabel.text = [NSString
