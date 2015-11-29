@@ -55,6 +55,9 @@ static float kZPPButtonOffset = 15.0f;
     if ([[ZPPUserManager sharedInstance] checkUser]) {
         [self.view addSubview:self.mainMenu];
         [self.view addSubview:self.buttonView];
+        self.mainMenu.balanceLabel.text =
+            [NSString stringWithFormat:@"Текущий баланс: %@ б.",
+                                       [ZPPUserManager sharedInstance].user.balance];
         [self updateBadge];
     } else {
         if ([self.view.subviews containsObject:self.mainMenu]) {
@@ -322,18 +325,18 @@ navigation
 #pragma mark - support
 
 - (void)showViewWithAnimation {
-    if(self.animationShoved){
+    if (self.animationShoved) {
         return;
     }
-    
+
     self.animationShoved = YES;
-    
+
     CGRect r = [UIScreen mainScreen].bounds;
     UIView *v = [[UIView alloc] initWithFrame:r];
     v.backgroundColor = [UIColor whiteColor];
-    
+
     CGFloat offset = 24;
-    CGFloat len = r.size.width - offset*2;
+    CGFloat len = r.size.width - offset * 2;
 
     CGRect ivr = CGRectMake(offset, (r.size.height - len) / 2.0, len, len);
 
@@ -354,19 +357,20 @@ navigation
     [self.view addSubview:v];
 
     [UIView animateWithDuration:1
-                     animations:^{
-                         CGRect nbtmr = bottomView.frame;
-                         nbtmr.origin.x = len;
-                         bottomView.frame = nbtmr;  // CGRectMake(<#CGFloat x#>, <#CGFloat y#>,
-                                                    // <#CGFloat width#>, <#CGFloat height#>)
+        animations:^{
+            CGRect nbtmr = bottomView.frame;
+            nbtmr.origin.x = len;
+            bottomView.frame = nbtmr;  // CGRectMake(<#CGFloat x#>, <#CGFloat y#>,
+                                       // <#CGFloat width#>, <#CGFloat height#>)
 
-                         CGRect nupr = upperrView.frame;
-                         nupr.origin.x = len;
-                         upperrView.frame = nupr;
+            CGRect nupr = upperrView.frame;
+            nupr.origin.x = len;
+            upperrView.frame = nupr;
 
-                     } completion:^(BOOL finished) {
-                         [v removeFromSuperview];
-                     }];
+        }
+        completion:^(BOOL finished) {
+            [v removeFromSuperview];
+        }];
 }
 
 #pragma mark - ordrer

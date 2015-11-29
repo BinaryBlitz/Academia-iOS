@@ -17,6 +17,7 @@
 @property (copy, nonatomic) NSString *password;//
 @property (copy, nonatomic) NSString *promoCode;
 @property (copy, nonatomic) NSString *balance;
+@property (assign, nonatomic) BOOL promoUsed;
 
 @property (copy, nonatomic, readonly) NSString *apiToken;//
 @property (copy, nonatomic, readonly) NSString *userID;//
@@ -31,6 +32,7 @@
                       userID:(NSString *)userID
                       apiKey:(NSString *)apiKey
                    promocode:(NSString *)promocode
-                     balance:(NSString *)balance;
+                     balance:(NSString *)balance
+                   promoUsed:(BOOL)promoUsed;
 
 @end

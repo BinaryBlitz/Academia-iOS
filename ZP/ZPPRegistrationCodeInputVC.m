@@ -10,8 +10,10 @@
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "UIViewController+ZPPValidationCategory.h"
 #import "ZPPRegistrationOtherInputVC.h"
-#import "ZPPUser.h"
+#import "ZPPUserManager.h"
+//#import "ZPPUser.h"
 #import "UIView+UIViewCategory.h"
+#import "UIButton+ZPPButtonCategory.h"
 #import "ZPPSmsVerificationManager.h"
 #import "ZPPServerManager+ZPPRegistration.h"
 
@@ -99,12 +101,43 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
         [self showWarningWithText:ZPPCodeWarningMessage];
     } else {
         [[ZPPSmsVerificationManager shared] invalidateTimer];
-        [self performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier sender:nil];
+
+        UIButton *b = (UIButton *)sender;
+        [b startIndicating];
+        [[ZPPServerManager sharedManager] verifyPhoneNumber:self.user.phoneNumber
+            code:self.code
+            token:nil
+            onSuccess:^(ZPPUser *user) {
+                [b stopIndication];
+
+                if (user.firstName) {
+                    [[ZPPUserManager sharedInstance] setUser:user];
+
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }
+
+            }
+            onFailure:^(NSError *error, NSInteger statusCode) {
+                [b stopIndication];
+
+                if (statusCode == 422) {
+                    [self performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier
+                                              sender:nil];
+                }
+
+            }];
+
+        //[self performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier
+        // sender:nil];
     }
 }
 
 - (BOOL)checkCode {
-    return [self.codeTextField.text isEqualToString:self.code];
+    NSLog(@"text field %@ code %@", self.codeTextField.text, self.code);
+
+    return [self.codeTextField.text isEqual:self.code];
+
+    //   return [self.codeTextField.text isEqualToString:self.code];
     // return YES;
 }
 
@@ -116,7 +149,7 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
     [[ZPPServerManager sharedManager] sendSmsToPhoneNumber:self.user.phoneNumber
-        onSuccess:^(NSString *tmpToken){
+        onSuccess:^(NSString *tmpToken) {
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             [self showSuccessWithText:@"Код отправлен"];
             [[ZPPSmsVerificationManager shared] startTimer];
@@ -126,7 +159,6 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             [self showWarningWithText:ZPPNoInternetConnectionMessage];
         }];
-
 }
 
 #pragma mark - navigation

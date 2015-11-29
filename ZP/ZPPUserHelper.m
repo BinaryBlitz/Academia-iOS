@@ -19,6 +19,8 @@ NSString const *ZPPUserPassword = @"password";
 NSString const *ZPPUserPromocode = @"promo_code";
 NSString const *ZPPUserBalance = @"balance";
 
+NSString const *ZPPPromoCodeUsed = @"promo_used";
+
 @implementation ZPPUserHelper
 
 + (NSDictionary *)convertUser:(ZPPUser *)user {
@@ -48,9 +50,9 @@ NSString const *ZPPUserBalance = @"balance";
         d[ZPPAPIToken] = user.apiToken;
     }
 
-    if (user.password) {
-        d[ZPPUserPassword] = user.password;
-    }
+    //    if (user.password) {
+    //        d[ZPPUserPassword] = user.password;
+    //    }
 
     return [NSDictionary dictionaryWithDictionary:d];
 }
@@ -63,6 +65,7 @@ NSString const *ZPPUserBalance = @"balance";
     NSString *userID;
     NSString *apiToken;
     NSString *promocode;
+    BOOL promocodeUsed;
     NSString *balance;
     if (dict[ZPPAPIToken]) {
         apiToken = dict[ZPPAPIToken];
@@ -92,6 +95,10 @@ NSString const *ZPPUserBalance = @"balance";
     if (dict[ZPPUserBalance]) {
         balance = dict[ZPPUserBalance];
     }
+
+    if (dict[ZPPPromoCodeUsed]) {
+        promocodeUsed = [dict[ZPPPromoCodeUsed] boolValue];
+    }
     ZPPUser *user = [[ZPPUser alloc] initWihtName:firstName
                                          lastName:lastName
                                             email:email
@@ -99,7 +106,8 @@ NSString const *ZPPUserBalance = @"balance";
                                            userID:userID
                                            apiKey:apiToken
                                         promocode:promocode
-                                          balance:balance];
+                                          balance:balance
+                                        promoUsed:promocodeUsed];
 
     return user;
 }

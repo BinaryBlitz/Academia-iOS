@@ -47,8 +47,8 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
     [arr addObject:self.nameTextField];
     [arr addObject:self.secondNameTextField];
     [arr addObject:self.emailTextFild];
-    [arr addObject:self.passwordTextField];
-    [arr addObject:self.againPasswordTextField];
+//    [arr addObject:self.passwordTextField];
+//    [arr addObject:self.againPasswordTextField];
     
     self.nameTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     self.secondNameTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
@@ -127,18 +127,18 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
         return NO;
     }
 
-    if (![self checkPasswordTextFied:self.passwordTextField]) {
-        [self accentTextField:self.passwordTextField];
-        [self showWarningWithText:ZPPPasswordErrMessage];
-        
-        return NO;
-    }
-
-    if (![self checkPasswordEqualty:self.passwordTextField second:self.againPasswordTextField]) {
-        [self accentTextField:self.againPasswordTextField];
-        [self showWarningWithText:ZPPPaswordEqualtyErrMessage];
-        return NO;
-    }
+//    if (![self checkPasswordTextFied:self.passwordTextField]) {
+//        [self accentTextField:self.passwordTextField];
+//        [self showWarningWithText:ZPPPasswordErrMessage];
+//        
+//        return NO;
+//    }
+//
+//    if (![self checkPasswordEqualty:self.passwordTextField second:self.againPasswordTextField]) {
+//        [self accentTextField:self.againPasswordTextField];
+//        [self showWarningWithText:ZPPPaswordEqualtyErrMessage];
+//        return NO;
+//    }
 
     return YES;
 }

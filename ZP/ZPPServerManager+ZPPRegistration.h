@@ -64,4 +64,10 @@ typedef NS_ENUM(NSInteger, ZPPUserStatus) {
                    onSuccess:(void (^)(NSString *tempToken))success
                    onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
+- (void)verifyPhoneNumber:(NSString *)phoneNumber
+                     code:(NSString *)code
+                    token:(NSString *)token
+                onSuccess:(void (^)(ZPPUser *user))success
+                onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
 @end

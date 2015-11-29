@@ -69,6 +69,7 @@
                       apiKey:(NSString *)apiKey
                    promocode:(NSString *)promocode
                      balance:(NSString *)balance
+                   promoUsed:(BOOL)promoUsed
 {
     self = [super init];
     if (self) {
@@ -80,6 +81,7 @@
         self.apiToken = apiKey;
         self.promoCode = promocode;
         self.balance = balance;
+        self.promoUsed = promoUsed;
     }
     return self;
 }
