@@ -96,40 +96,65 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
 #pragma mark - action
 
 - (IBAction)submitCodeAction:(id)sender {
-    if (![self checkCode]) {
-        [self accentTextField:self.codeTextField];
-        [self showWarningWithText:ZPPCodeWarningMessage];
-    } else {
-        [[ZPPSmsVerificationManager shared] invalidateTimer];
+    //    if (![self checkCode]) {
+    //        [self accentTextField:self.codeTextField];
+    //        [self showWarningWithText:ZPPCodeWarningMessage];
+    //    } else {
+    //      [[ZPPSmsVerificationManager shared] invalidateTimer];
 
-        UIButton *b = (UIButton *)sender;
-        [b startIndicating];
-        [[ZPPServerManager sharedManager] verifyPhoneNumber:self.user.phoneNumber
-            code:self.code
-            token:nil
-            onSuccess:^(ZPPUser *user) {
+    UIButton *b = (UIButton *)sender;
+    [b startIndicating];
+    [[ZPPServerManager sharedManager] verifyPhoneNumber:self.user.phoneNumber
+        code:self.codeTextField.text
+        token:self.code
+        onSuccess:^(NSString *token) {
+            if (token) {
+                [[ZPPServerManager sharedManager] getCurrentUserWithToken:token
+                    onSuccess:^(ZPPUser *user) {
+                        [b stopIndication];
+                        
+                        [[ZPPUserManager sharedInstance] setUser:user];
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                    }
+                    onFailure:^(NSError *error, NSInteger statusCode) {
+                        [b stopIndication];
+                        [self showWarningWithText:ZPPNoInternetConnectionMessage];
+
+                    }];
+            } else {
                 [b stopIndication];
-
-                if (user.firstName) {
-                    [[ZPPUserManager sharedInstance] setUser:user];
-
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                }
-
+                [self performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier
+                                          sender:nil];
             }
-            onFailure:^(NSError *error, NSInteger statusCode) {
-                [b stopIndication];
 
-                if (statusCode == 422) {
-                    [self performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier
-                                              sender:nil];
-                }
+            //[b stopIndication];
 
-            }];
+            //            if (user.firstName) {
+            //                [[ZPPUserManager sharedInstance] setUser:user];
+            //
+            //                [self dismissViewControllerAnimated:YES completion:nil];
+            //            }
 
-        //[self performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier
-        // sender:nil];
-    }
+        }
+        onFailure:^(NSError *error, NSInteger statusCode) {
+            [b stopIndication];
+
+            if (statusCode == 403) {
+                [self accentTextField:self.codeTextField];
+                [self showWarningWithText:ZPPCodeWarningMessage];
+            }
+
+            //                if (statusCode == 422) {
+            //                    [self
+            //                    performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier
+            //                                              sender:nil];
+            //                }
+            //
+        }];
+
+    //[self performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier
+    // sender:nil];
+    //    }
 }
 
 - (BOOL)checkCode {
