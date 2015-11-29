@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *againCodeButton;
 
 @property (strong, nonatomic) ZPPUser *user;
-@property (strong, nonatomic) NSString *code;
+@property (strong, nonatomic) NSString *token;
 
 ////- (void)setUser:(ZPPUser *)user;
 //- (void)setCode:(NSString *)code;

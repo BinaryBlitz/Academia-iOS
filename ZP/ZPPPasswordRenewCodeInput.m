@@ -32,7 +32,7 @@ static NSString *ZPPPasswordRenewPasswordInputIdentifier =
     ZPPPasswordRenewPasswordInput *vc = (ZPPPasswordRenewPasswordInput *)[self.storyboard
         instantiateViewControllerWithIdentifier:ZPPPasswordRenewPasswordInputIdentifier];
 
-    [vc configureWithUser:self.user code:self.code];
+    [vc configureWithUser:self.user code:self.token];
 
     [self.navigationController pushViewController:vc animated:YES];
 }
