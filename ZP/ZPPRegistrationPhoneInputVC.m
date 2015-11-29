@@ -35,7 +35,7 @@ static NSString *ZPPShowAuthenticationSegueIdentifier = @"ZPPShowAuthenticationS
 
 @interface ZPPRegistrationPhoneInputVC () <UITextFieldDelegate>
 
-//@property (strong, nonatomic) NSString *code;
+@property (strong, nonatomic) NSString *code;
 
 @end
 
@@ -114,6 +114,7 @@ navigation
         [[ZPPServerManager sharedManager] sendSmsToPhoneNumber:number
             onSuccess:^(NSString *tmpToken) {
                 [sender stopIndication];
+                self.code = tmpToken;
                 [self performSegueWithIdentifier:ZPPShowNumberEnterScreenSegueIdentifier
                                           sender:nil];
 
@@ -142,7 +143,7 @@ navigation
         ZPPUser *user = [self user];
 
         [destVC setUser:user];
-        //        [destVC setCode:self.code];
+        [destVC setCode:self.code];
         //        self.code = nil;
     }
 }

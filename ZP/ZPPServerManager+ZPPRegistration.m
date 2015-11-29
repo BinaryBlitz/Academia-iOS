@@ -192,7 +192,7 @@
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
 
             NSLog(@"%@",responseObject);
-            NSString *tempToken = @"";
+            NSString *tempToken = [responseObject[@"sms_verification_code"] stringValue];
             if (success) {
                 success(tempToken);
             }
@@ -208,16 +208,15 @@
                     token:(NSString *)token
                 onSuccess:(void (^)(ZPPUser *user))success
                 onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    phoneNumber = [@"7" stringByAppendingString:phoneNumber];
+    //phoneNumber = [@"7" stringByAppendingString:phoneNumber];
     NSDictionary *params = @{ @"phone_number" : phoneNumber, @"sms_verification_code" : code };
 
     [self.requestOperationManager GET:@"user/verify_phone_number.json"
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
             
-            
-//            if()
-            
+            NSLog(@"verify code resp %@", responseObject);
+                        
             ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
             
             if(success ) {

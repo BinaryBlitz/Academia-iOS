@@ -16,6 +16,8 @@
 #import "ZPPServerManager+ZPPRegistration.h"
 #import <MessageUI/MessageUI.h>
 
+#import "ZPPUserManager.h"
+
 #import "ZPPCustomLabel.h"
 
 #import "ZPPConsts.h"
@@ -45,11 +47,21 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
     [self.doneButton addTarget:self
                         action:@selector(confirmCode:)
               forControlEvents:UIControlEventTouchUpInside];
-    self.promocode = @"code123";
 
-    [self configureLabelWithCode:self.promocode];
-    [self configureButtons];
-    [self configureKeyboardClose];
+    self.promocode = [ZPPUserManager sharedInstance].user.promoCode;
+
+    if (!self.promocode || [self.promocode isEqual:[NSNull null]]) {
+        self.promocodeLabel.hidden = YES;
+        self.smsInviteButton.hidden = YES;
+        self.emailShare.hidden = YES;
+        self.socialMediaShare.hidden = YES;
+    } else {
+        //    self.promocode = @"code123";
+
+        [self configureLabelWithCode:self.promocode];
+        [self configureButtons];
+        [self configureKeyboardClose];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

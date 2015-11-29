@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *helpButton;
 @property (weak, nonatomic) IBOutlet UIButton *myCardsButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
 
 - (void)showCompletion:(void (^)())completion;
 - (void)dismissCompletion:(void (^)())completion;

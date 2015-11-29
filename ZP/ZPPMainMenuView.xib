@@ -90,6 +90,7 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="balanceLabel" destination="Fom-bZ-64J" id="3ju-3C-kJ6"/>
                 <outlet property="helpButton" destination="Xji-CM-F8r" id="xty-g3-yGu"/>
                 <outlet property="ordersButton" destination="xOa-L1-h4e" id="t1R-pc-Jwd"/>
                 <outlet property="profileButton" destination="wd1-kz-MP6" id="yVl-SA-jdo"/>
