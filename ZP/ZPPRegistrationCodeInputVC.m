@@ -160,7 +160,7 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
 - (BOOL)checkCode {
     NSLog(@"text field %@ code %@", self.codeTextField.text, self.token);
 
-    return [self.codeTextField.text isEqual:self.code];
+    return NO;//[self.codeTextField.text isEqual:self.code];
 
     //   return [self.codeTextField.text isEqualToString:self.code];
     // return YES;

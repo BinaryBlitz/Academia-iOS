@@ -15,6 +15,7 @@
 #import "ZPPGiftTVC.h"
 #import "ZPPOrderHistoryTVC.h"
 #import "ZPPNoInternetConnectionVC.h"
+#import "ZPPServerManager+ZPPRegistration.h"
 
 #import "UIViewController+ZPPViewControllerCategory.h"
 
@@ -50,9 +51,18 @@ static float kZPPButtonOffset = 15.0f;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    //  [self showViewWithAnimation];
 
     if ([[ZPPUserManager sharedInstance] checkUser]) {
+        [[ZPPServerManager sharedManager] getCurrentUserOnSuccess:^(ZPPUser *user) {
+            [ZPPUserManager sharedInstance].user.balance = user.balance;
+            self.mainMenu.balanceLabel.text =
+            [NSString stringWithFormat:@"Текущий баланс: %@ б.",
+             [ZPPUserManager sharedInstance].user.balance];
+        } onFailure:^(NSError *error, NSInteger statusCode) {
+            
+        }];
+        
+        
         [self.view addSubview:self.mainMenu];
         [self.view addSubview:self.buttonView];
         self.mainMenu.balanceLabel.text =

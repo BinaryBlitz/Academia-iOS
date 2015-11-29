@@ -93,7 +93,7 @@ NSString const *ZPPPromoCodeUsed = @"promo_used";
     }
 
     if (dict[ZPPUserBalance]) {
-        balance = dict[ZPPUserBalance];
+        balance = [dict[ZPPUserBalance] stringValue];
     }
 
     if (dict[ZPPPromoCodeUsed]) {
