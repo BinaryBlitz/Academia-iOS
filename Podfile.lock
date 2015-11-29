@@ -37,6 +37,7 @@ PODS:
     - Fabric/Base (= 1.5.5)
   - Fabric/Base (1.5.5)
   - GoogleMaps (1.10.5)
+  - HCSStarRatingView (1.4.3)
   - HexColors (2.2.1)
   - INTULocationManager (4.1.1)
   - JSBadgeView (1.4.1)
@@ -69,6 +70,7 @@ DEPENDENCIES:
   - Digits
   - Fabric
   - GoogleMaps
+  - HCSStarRatingView
   - INTULocationManager
   - JSBadgeView
   - LMGeocoder
@@ -93,6 +95,7 @@ SPEC CHECKSUMS:
   Digits: 1a372fab25b58d1459adc6b8d95e2e155ae5b212
   Fabric: 190bf1a6eb65f7500de1347d027d2e59a7e53db1
   GoogleMaps: da51c62c338c2d9c47cdad470a0d1e0e4b8544e4
+  HCSStarRatingView: bada6ae98258c3019531e0218030e2d5ad10765a
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
   INTULocationManager: 83c7373048d583cda57e25eefb9bb8a3675acf16
   JSBadgeView: 3861ddee41094284d9468e6d0af5107f703aaac5

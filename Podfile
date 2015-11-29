@@ -29,3 +29,4 @@ pod 'LMGeocoder'
 
 pod 'Digits'
 pod 'TwitterCore'
+pod 'HCSStarRatingView'

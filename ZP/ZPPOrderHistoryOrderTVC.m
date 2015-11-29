@@ -7,8 +7,18 @@
 //
 
 #import "ZPPOrderHistoryOrderTVC.h"
+#import "ZPPStarsCell.h"
+#import "ZPPCommentCell.h"
+#import "UITableViewController+ZPPTVCCategory.h"
+#import "ZPPOrder.h"
+#import <HCSStarRatingView.h>
+
+static NSString *ZPPStarsCellIdentifier = @"ZPPStarsCellIdentifier";
+static NSString *ZPPCommentCellIdentifier = @"ZPPCommentCellIdentifier";
 
 @interface ZPPOrderHistoryOrderTVC ()
+
+@property (assign, nonatomic) BOOL shouldShowComment;
 
 @end
 
@@ -17,6 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView reloadData];
+
+    [self registrateCellForClass:[ZPPStarsCell class] reuseIdentifier:ZPPStarsCellIdentifier];
+    [self registrateCellForClass:[ZPPCommentCell class] reuseIdentifier:ZPPCommentCellIdentifier];
     // Do any additional setup after loading the view.
 }
 
@@ -25,7 +38,11 @@
     // Dispose of any resources that can be recreated.
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    if (self.order.orderStatus == ZPPOrderStatusDelivered) {
+        return 3;
+    } else {
+        return 2;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -33,8 +50,14 @@
         NSInteger count = [super tableView:tableView numberOfRowsInSection:1];
         NSLog(@"%@", @(count));
         return count;  //[super tableView:tableView numberOfRowsInSection:2];
-    } else {
+    } else if (section == 1) {
         return 1;
+    } else {
+        if (self.shouldShowComment) {
+            return 2;
+        } else {
+            return 1;
+        }
     }
 }
 
@@ -47,9 +70,35 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.accessoryView = nil;
         return cell;
-    } else {
+    } else if (indexPath.section == 1) {
         NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:2];
         return [super tableView:tableView cellForRowAtIndexPath:nip];
+
+    } else {
+        if (indexPath.row == 0) {
+            ZPPStarsCell *cell =
+                [tableView dequeueReusableCellWithIdentifier:ZPPStarsCellIdentifier];
+
+            [cell.starView addTarget:self
+                              action:@selector(valueChanged:)
+                    forControlEvents:UIControlEventValueChanged];
+
+            [cell.actionButton addTarget:self
+                                  action:@selector(showCommentCell:)
+                        forControlEvents:UIControlEventTouchUpInside];
+
+            cell.starView.shouldBeginGestureRecognizerBlock = ^BOOL(UIGestureRecognizer *gr) {
+
+                return cell.starView.value == 0.0;
+            };
+
+            return cell;
+        } else {
+            ZPPCommentCell *cell =
+                [tableView dequeueReusableCellWithIdentifier:ZPPCommentCellIdentifier];
+
+            return cell;
+        }
     }
 }
 
@@ -65,6 +114,28 @@
         NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:2];
         return [super tableView:tableView heightForRowAtIndexPath:nip];
     }
+}
+
+- (void)valueChanged:(id)sender {
+    if ([sender isKindOfClass:[HCSStarRatingView class]]) {
+        HCSStarRatingView *stars = (HCSStarRatingView *)sender;
+
+        if (stars.value) {
+            stars.enabled = NO;
+        }
+    }
+}
+
+- (void)showCommentCell:(UIButton *)sender {
+    sender.hidden = YES;
+    self.shouldShowComment = YES;
+    [self.tableView beginUpdates];
+
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:1 inSection:2];
+
+    [self.tableView insertRowsAtIndexPaths:@[ ip ] withRowAnimation:UITableViewRowAnimationTop];
+
+    [self.tableView endUpdates];
 }
 /*
 #pragma mark - Navigation
