@@ -158,7 +158,42 @@
 
 - (void)getCurrentUserOnSuccess:(void (^)(ZPPUser *user))success
                       onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    NSDictionary *params = @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
+    // NSDictionary *params = @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
+
+    [self getCurrentUserWithToken:[ZPPUserManager sharedInstance].user.apiToken
+                        onSuccess:success
+                        onFailure:failure];
+
+    //    [self.requestOperationManager GET:@"user.json"
+    //        parameters:params
+    //        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+    //            NSLog(@"resp %@", responseObject);
+    //
+    //            ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
+    //
+    //            if (success) {
+    //                success(user);
+    //            }
+    //
+    //        }
+    //        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+    //            NSLog(@"err %@", error);
+    //            [[self class] failureWithBlock:failure error:error operation:operation];
+    //        }];
+}
+
+- (void)getCurrentUserWithToken:(NSString *)token
+                      onSuccess:(void (^)(ZPPUser *user))success
+                      onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    if (!token) {
+        if (failure) {
+            failure(nil, -1);
+        }
+
+        return;
+    }
+
+    NSDictionary *params = @{ @"api_token" : token };
 
     [self.requestOperationManager GET:@"user.json"
         parameters:params
@@ -183,16 +218,16 @@
 - (void)sendSmsToPhoneNumber:(NSString *)phoneNumber
                    onSuccess:(void (^)(NSString *tempToken))success
                    onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-   // phoneNumber = [@"7" stringByAppendingString:phoneNumber];
+    // phoneNumber = [@"7" stringByAppendingString:phoneNumber];
     NSLog(@"phone number %@", phoneNumber);
     NSDictionary *params = @{ @"phone_number" : phoneNumber };
 
-    [self.requestOperationManager POST:@"user/send_verification_code.json"
+    [self.requestOperationManager POST:@"verification_tokens.json"
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
 
-            NSLog(@"%@",responseObject);
-            NSString *tempToken = [responseObject[@"sms_verification_code"] stringValue];
+            NSLog(@"verf resp %@", responseObject);
+            NSString *tempToken = responseObject[@"token"];
             if (success) {
                 success(tempToken);
             }
@@ -206,21 +241,25 @@
 - (void)verifyPhoneNumber:(NSString *)phoneNumber
                      code:(NSString *)code
                     token:(NSString *)token
-                onSuccess:(void (^)(ZPPUser *user))success
+                onSuccess:(void (^)(NSString *token))success
                 onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    //phoneNumber = [@"7" stringByAppendingString:phoneNumber];
-    NSDictionary *params = @{ @"phone_number" : phoneNumber, @"sms_verification_code" : code };
+    // phoneNumber = [@"7" stringByAppendingString:phoneNumber];
+    NSDictionary *params = @{ @"code" : code };
 
-    [self.requestOperationManager GET:@"user/verify_phone_number.json"
+    NSString *urlString = [NSString stringWithFormat:@"verification_tokens/%@.json", token];
+
+    [self.requestOperationManager PATCH:urlString
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-            
+
             NSLog(@"verify code resp %@", responseObject);
-                        
-            ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
+
+            //ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
             
-            if(success ) {
-                success(user);
+            NSString *t = responseObject[@"api_token"];
+
+            if (success) {
+                success(t);
             }
         }
         failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
