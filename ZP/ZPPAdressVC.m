@@ -329,4 +329,21 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
                                                   forBarMetrics:UIBarMetricsDefault];
 }
 
+
+//- (void)addMapPoligon {
+//    
+//    GMSMutablePath *path = [GMSMutablePath path];
+//    [path addCoordinate:CLLocationCoordinate2DMake(37.36, -122.0)];
+//    [path addCoordinate:CLLocationCoordinate2DMake(37.45, -122.0)];
+//    [path addCoordinate:CLLocationCoordinate2DMake(37.45, -122.2)];
+//    [path addCoordinate:CLLocationCoordinate2DMake(37.36, -122.2)];
+//    [path addCoordinate:CLLocationCoordinate2DMake(37.36, -122.0)];
+//    
+//    GMSPolygon *poligon = [GMSPolygon polygonWithPath:path];
+//    poligon.fillColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.6 alpha:0.1];
+//    
+//    poligon.map = self.mapView_;
+//    
+//}
+
 @end
