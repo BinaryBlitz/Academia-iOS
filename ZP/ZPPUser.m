@@ -97,6 +97,8 @@
         self.userID = [coder decodeObjectForKey:ZPPUserID];
         self.promoCode = [coder decodeObjectForKey:ZPPUserPromocode];
         
+        self.balance = [coder decodeObjectForKey:ZPPUserBalance];
+        
         
     }
     return self;
@@ -110,6 +112,8 @@
     [coder encodeObject:self.phoneNumber forKey:ZPPPhoneNumber];
     [coder encodeObject:self.userID forKey:ZPPUserID];
     [coder encodeObject:self.promoCode forKey:ZPPUserPromocode];
+    
+    [coder encodeObject:self.balance forKey:ZPPUserBalance];
 }
 
 @end
