@@ -143,7 +143,7 @@ navigation
         ZPPUser *user = [self user];
 
         [destVC setUser:user];
-        [destVC setCode:self.code];
+        [destVC setToken:self.code];
         //        self.code = nil;
     }
 }

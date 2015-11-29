@@ -106,7 +106,7 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
     [b startIndicating];
     [[ZPPServerManager sharedManager] verifyPhoneNumber:self.user.phoneNumber
         code:self.codeTextField.text
-        token:self.code
+        token:self.token
         onSuccess:^(NSString *token) {
             if (token) {
                 [[ZPPServerManager sharedManager] getCurrentUserWithToken:token
@@ -158,7 +158,7 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
 }
 
 - (BOOL)checkCode {
-    NSLog(@"text field %@ code %@", self.codeTextField.text, self.code);
+    NSLog(@"text field %@ code %@", self.codeTextField.text, self.token);
 
     return [self.codeTextField.text isEqual:self.code];
 
