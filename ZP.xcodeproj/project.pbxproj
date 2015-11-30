@@ -86,6 +86,8 @@
 		1948C5471BEC38CA00084BC8 /* load.png in Resources */ = {isa = PBXBuildFile; fileRef = 1948C5461BEC38CA00084BC8 /* load.png */; };
 		1948C54B1BEC3A1800084BC8 /* ZPPLunchTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C54A1BEC3A1800084BC8 /* ZPPLunchTVC.m */; };
 		195457401BD7C57900A3BB46 /* back1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1954573F1BD7C57900A3BB46 /* back1.png */; };
+		1955F3981C0BCD270010EED3 /* ZPPContactCourierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1955F3961C0BCD270010EED3 /* ZPPContactCourierCell.m */; };
+		1955F3991C0BCD270010EED3 /* ZPPContactCourierCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1955F3971C0BCD270010EED3 /* ZPPContactCourierCell.xib */; };
 		1963EF211BD3E91100665916 /* ZPPRegistrationBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1963EF201BD3E91100665916 /* ZPPRegistrationBaseVC.m */; };
 		1984EE231BD110CC001D25D5 /* registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1984EE221BD110CC001D25D5 /* registration.storyboard */; };
 		1984EE271BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1984EE261BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.m */; };
@@ -315,6 +317,9 @@
 		1948C5491BEC3A1800084BC8 /* ZPPLunchTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPLunchTVC.h; sourceTree = "<group>"; };
 		1948C54A1BEC3A1800084BC8 /* ZPPLunchTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPLunchTVC.m; sourceTree = "<group>"; };
 		1954573F1BD7C57900A3BB46 /* back1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back1.png; sourceTree = "<group>"; };
+		1955F3951C0BCD270010EED3 /* ZPPContactCourierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPContactCourierCell.h; sourceTree = "<group>"; };
+		1955F3961C0BCD270010EED3 /* ZPPContactCourierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPContactCourierCell.m; sourceTree = "<group>"; };
+		1955F3971C0BCD270010EED3 /* ZPPContactCourierCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPContactCourierCell.xib; sourceTree = "<group>"; };
 		1963EF1F1BD3E91100665916 /* ZPPRegistrationBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPRegistrationBaseVC.h; sourceTree = "<group>"; };
 		1963EF201BD3E91100665916 /* ZPPRegistrationBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPRegistrationBaseVC.m; sourceTree = "<group>"; };
 		1984EE221BD110CC001D25D5 /* registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = registration.storyboard; sourceTree = "<group>"; };
@@ -1029,6 +1034,16 @@
 			name = resources;
 			sourceTree = "<group>";
 		};
+		1955F3931C0BCCFC0010EED3 /* contact */ = {
+			isa = PBXGroup;
+			children = (
+				1955F3951C0BCD270010EED3 /* ZPPContactCourierCell.h */,
+				1955F3961C0BCD270010EED3 /* ZPPContactCourierCell.m */,
+				1955F3971C0BCD270010EED3 /* ZPPContactCourierCell.xib */,
+			);
+			name = contact;
+			sourceTree = "<group>";
+		};
 		1963EF1E1BD3E8DD00665916 /* base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1326,6 +1341,7 @@
 			isa = PBXGroup;
 			children = (
 				19B3A9831C0A44220089F02A /* feedBack */,
+				1955F3931C0BCCFC0010EED3 /* contact */,
 				19D2426E1BEA31FD007A0FEB /* ZPPOrderHistoryCell.h */,
 				19D2426F1BEA31FD007A0FEB /* ZPPOrderHistoryCell.m */,
 				19D242711BEA3211007A0FEB /* ZPPOrderHistoryCell.xib */,
@@ -1642,6 +1658,7 @@
 				190E477A1BC0756500AC5379 /* ZPPProductAboutCell.xib in Resources */,
 				19B3A9821C07AC430089F02A /* ZPPIngridientAnotherCell.xib in Resources */,
 				1907C74B1BF0B5BE003BA62E /* barBackground.png in Resources */,
+				1955F3991C0BCD270010EED3 /* ZPPContactCourierCell.xib in Resources */,
 				195457401BD7C57900A3BB46 /* back1.png in Resources */,
 				19D242771BEA3B81007A0FEB /* orderHistory.storyboard in Resources */,
 				1948C5271BEBABFD00084BC8 /* promocode.storyboard in Resources */,
@@ -1865,6 +1882,7 @@
 				1948C5351BEBBC5E00084BC8 /* ZPPChangePasswordVC.m in Sources */,
 				1984EE401BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.m in Sources */,
 				19F379011BFE2489004827A0 /* DTCustomColoredAccessory.m in Sources */,
+				1955F3981C0BCD270010EED3 /* ZPPContactCourierCell.m in Sources */,
 				198A5C1B1BD5BE0B00710A36 /* ZPPServerManager+ZPPDishesSeverManager.m in Sources */,
 				191C985E1BC0447800E10D4F /* ZPPMainPageVC.m in Sources */,
 				1942354D1BE933E30014BD9A /* ZPPGift.m in Sources */,

@@ -120,12 +120,17 @@ navigation
     NSString *morningString = @"Доброе утро, ";
     NSString *nightString = @"Доброй ночи, ";
     NSString *userName = [ZPPUserManager sharedInstance].user.firstName;
+    NSDate *d = [NSDate new];
 
     switch (state) {
         case ZPPCurrentBeginStateOpen:
             break;
         case ZPPCurrentBeginStateClosed:
-            text = [NSString stringWithFormat:@"%@%@", morningString, userName];  // redo
+            if([d hour] < 6) {
+                text = [NSString stringWithFormat:@"%@%@", nightString, userName];
+            } else {
+                text = [NSString stringWithFormat:@"%@%@", morningString, userName];
+            }
             break;
         case ZPPCurrentBeginStateNotLoged:
             break;

@@ -51,4 +51,6 @@ typedef NS_ENUM(NSInteger, ZPPOrderStatus) {
 
 - (NSString *)orderDescr;
 
+- (void)clearOrder;
+
 @end

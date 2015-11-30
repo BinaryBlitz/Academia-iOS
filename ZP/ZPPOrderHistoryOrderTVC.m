@@ -9,12 +9,17 @@
 #import "ZPPOrderHistoryOrderTVC.h"
 #import "ZPPStarsCell.h"
 #import "ZPPCommentCell.h"
+#import "ZPPContactCourierCell.h"
 #import "UITableViewController+ZPPTVCCategory.h"
 #import "ZPPOrder.h"
 #import <HCSStarRatingView.h>
+#import "UIButton+ZPPButtonCategory.h"
+#import "UIViewController+ZPPViewControllerCategory.h"
+#import "ZPPServerManager+ZPPOrderServerManager.h"
 
 static NSString *ZPPStarsCellIdentifier = @"ZPPStarsCellIdentifier";
 static NSString *ZPPCommentCellIdentifier = @"ZPPCommentCellIdentifier";
+static NSString *ZPPContactCourierCellIdentifier = @"ZPPContactCourierCellIdentifier";
 
 @interface ZPPOrderHistoryOrderTVC ()
 
@@ -30,6 +35,8 @@ static NSString *ZPPCommentCellIdentifier = @"ZPPCommentCellIdentifier";
 
     [self registrateCellForClass:[ZPPStarsCell class] reuseIdentifier:ZPPStarsCellIdentifier];
     [self registrateCellForClass:[ZPPCommentCell class] reuseIdentifier:ZPPCommentCellIdentifier];
+    [self registrateCellForClass:[ZPPContactCourierCell class]
+                 reuseIdentifier:ZPPContactCourierCellIdentifier];
     // Do any additional setup after loading the view.
 }
 
@@ -38,7 +45,8 @@ static NSString *ZPPCommentCellIdentifier = @"ZPPCommentCellIdentifier";
     // Dispose of any resources that can be recreated.
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (self.order.orderStatus == ZPPOrderStatusDelivered) {
+    if (self.order.orderStatus == ZPPOrderStatusDelivered ||
+        self.order.orderStatus == ZPPOrderStatusOnTheWay) {
         return 3;
     } else {
         return 2;
@@ -76,33 +84,51 @@ static NSString *ZPPCommentCellIdentifier = @"ZPPCommentCellIdentifier";
 
     } else {
         if (indexPath.row == 0) {
-            ZPPStarsCell *cell =
-                [tableView dequeueReusableCellWithIdentifier:ZPPStarsCellIdentifier];
-
-            [cell.starView addTarget:self
-                              action:@selector(valueChanged:)
-                    forControlEvents:UIControlEventValueChanged];
-
-            [cell.actionButton addTarget:self
-                                  action:@selector(showCommentCell:)
-                        forControlEvents:UIControlEventTouchUpInside];
-
-            cell.starView.shouldBeginGestureRecognizerBlock = ^BOOL(UIGestureRecognizer *gr) {
-
-                return cell.starView.value == 0.0;
-            };
-
-            return cell;
+            if (self.order.orderStatus == ZPPOrderStatusDelivered) {
+                return [self starCell];
+            } else {
+                return [self contactCell];
+            }
         } else {
             ZPPCommentCell *cell =
                 [tableView dequeueReusableCellWithIdentifier:ZPPCommentCellIdentifier];
+
+            [cell.actionButton addTarget:self
+                                  action:@selector(sendComment:)
+                        forControlEvents:UIControlEventTouchUpInside];
 
             return cell;
         }
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (ZPPStarsCell *)starCell {
+    ZPPStarsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPStarsCellIdentifier];
+
+    [cell.starView addTarget:self
+                      action:@selector(valueChanged:)
+            forControlEvents:UIControlEventValueChanged];
+
+    [cell.actionButton addTarget:self
+                          action:@selector(showCommentCell:)
+                forControlEvents:UIControlEventTouchUpInside];
+
+    cell.starView.shouldBeginGestureRecognizerBlock = ^BOOL(UIGestureRecognizer *gr) {
+
+        return cell.starView.value == 0.0;
+    };
+
+    return cell;
+}
+
+- (ZPPContactCourierCell *)contactCell {
+
+    return [self.tableView dequeueReusableCellWithIdentifier:ZPPContactCourierCellIdentifier];
+}
+
+    -
+    (void)tableView:(UITableView *)tableView
+    didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     return;
 }
 
@@ -110,6 +136,8 @@ static NSString *ZPPCommentCellIdentifier = @"ZPPCommentCellIdentifier";
     if (indexPath.section == 0) {
         NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:1];
         return [super tableView:tableView heightForRowAtIndexPath:nip];
+    } else if (indexPath.section == 2 && indexPath.row == 1) {
+        return 120.f;
     } else {
         NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:2];
         return [super tableView:tableView heightForRowAtIndexPath:nip];
@@ -136,6 +164,40 @@ static NSString *ZPPCommentCellIdentifier = @"ZPPCommentCellIdentifier";
     [self.tableView insertRowsAtIndexPaths:@[ ip ] withRowAnimation:UITableViewRowAnimationTop];
 
     [self.tableView endUpdates];
+
+    ZPPCommentCell *cell = [self.tableView cellForRowAtIndexPath:ip];
+
+    if (cell) {
+        [cell.commentTV becomeFirstResponder];
+    }
+}
+
+- (void)sendComment:(UIButton *)sender {
+    [sender startIndicatingWithType:UIActivityIndicatorViewStyleGray];
+
+    UITableViewCell *c = [self parentCellForView:sender];
+
+    if (c && [c isKindOfClass:[ZPPCommentCell class]]) {
+        ZPPCommentCell *cell = (ZPPCommentCell *)c;
+
+        NSString *comment = cell.commentTV.text;
+        [sender startIndicating];
+        [[ZPPServerManager sharedManager] sendComment:comment
+            forOrderWithID:self.order.identifier
+            onSuccess:^{
+                [sender stopIndication];
+                [self showSuccessWithText:@"Комментарий отправлен!"];
+                sender.hidden = YES;
+                [cell.commentTV resignFirstResponder];
+                
+                // cell.commentTV.ena
+
+            }
+            onFailure:^(NSError *error, NSInteger statusCode) {
+                [sender stopIndication];
+
+            }];
+    }
 }
 /*
 #pragma mark - Navigation

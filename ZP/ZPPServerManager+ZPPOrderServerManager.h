@@ -14,7 +14,8 @@
 - (void)GETOldOrdersOnSuccess:(void (^)(NSArray *orders))success
                     onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
-- (void)POSTOrder:(ZPPOrder *)order onSuccess:(void (^)(ZPPOrder *order))success
+- (void)POSTOrder:(ZPPOrder *)order
+        onSuccess:(void (^)(ZPPOrder *order))success
         onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
 - (void)POSTPaymentWithOrderID:(NSString *)orderID
@@ -24,5 +25,10 @@
 - (void)checkPaymentWithID:(NSString *)orderID
                  onSuccess:(void (^)(NSString *sta))success
                  onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
+- (void)sendComment:(NSString *)comment
+     forOrderWithID:(NSString *)orderID
+          onSuccess:(void (^)())success
+          onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
 @end
