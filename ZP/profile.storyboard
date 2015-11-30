@@ -82,7 +82,7 @@
                                                         <constraint firstAttribute="width" constant="299" id="6LL-SA-ooa"/>
                                                         <constraint firstAttribute="height" constant="30" id="dL0-0y-Oyk"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                                 </textField>
                                             </subviews>
@@ -142,7 +142,7 @@
                                                         <constraint firstAttribute="width" constant="299" id="0sp-mk-OyB"/>
                                                         <constraint firstAttribute="height" constant="40" id="uxd-3Q-FeD"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
                                                     <state key="normal" title="СОХРАНИТЬ ПРОФИЛЬ">
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
@@ -184,7 +184,7 @@
                                                         <constraint firstAttribute="height" constant="40" id="bFt-H8-kE3"/>
                                                         <constraint firstAttribute="width" constant="299" id="d54-Vf-Om4"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
                                                     <state key="normal" title="ВЫЙТИ"/>
                                                     <connections>
                                                         <action selector="logOutAction:" destination="KyC-iC-gYW" eventType="touchUpInside" id="oRN-0i-iGk"/>
