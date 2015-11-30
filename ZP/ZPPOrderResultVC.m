@@ -9,15 +9,21 @@
 #import "ZPPOrderResultVC.h"
 #import "UIView+UIViewCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
+#import "ZPPConsts.h"
 
 @implementation ZPPOrderResultVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.callCourierButton makeBorderedWithColor:[UIColor whiteColor]];
+  //  [self.callCourierButton makeBorderedWithColor:[UIColor whiteColor]];
 
     [self.backToMenuButton makeBorderedWithColor:[UIColor whiteColor]];
+    
+    self.navigationItem.hidesBackButton = YES;
+    
+    
+    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
     [self.backToMenuButton addTarget:self
                               action:@selector(closeScreen)

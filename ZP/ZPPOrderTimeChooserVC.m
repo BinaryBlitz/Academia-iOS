@@ -30,16 +30,23 @@
 
 #import "ActionSheetPicker.h"
 
+#import "ZPPTimeManager.h"
+
 @import SafariServices;
 
 static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
 @interface ZPPOrderTimeChooserVC () <ZPPPaymentViewDelegate>
 @property (strong, nonatomic) ZPPOrder *order;
+
+@property (strong, nonatomic) ZPPOrder *paymentOrder;
+
 @property (strong, nonatomic) UIImageView *checkMark;
 
 @property (strong, nonatomic) NSString *alfaORderID;
 @property (strong, nonatomic) NSString *bindingID;
+
+@property (assign, nonatomic) BOOL once;
 
 @end
 
@@ -58,6 +65,21 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
     self.totalPriceLabel.text =
         [NSString stringWithFormat:@"ВАШ ЗАКАЗ НА: %@%@", @(self.order.totalPrice),
                                    ZPPRoubleSymbol];
+
+    //    if([ZPPTimeManager sharedManager].isOpen) {
+    //        [self addCheckmarkToButton:self.nowButton];
+    //    } else {
+    //        self.nowButton.hidden = YES;
+    //    }
+}
+
+- (void)viewDidLayoutSubviews {
+    //    static BOOL
+    //    [self addCheckmarkToButton:self.nowButton];
+    if (!self.once) {
+        self.once = YES;
+        [self addCheckmarkToButton:self.nowButton];
+    }
 }
 
 - (void)configureWithOrder:(ZPPOrder *)order {
@@ -129,14 +151,15 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 #pragma mark - payment
 
 - (void)startPayment {
-    // self.order.identifier = [NSString stringWithFormat:@"zpp_%u", arc4random() & 1000];
 
     [self.makeOrderButton startIndicatingWithType:UIActivityIndicatorViewStyleGray];
     [[ZPPServerManager sharedManager] POSTOrder:self.order
         onSuccess:^(ZPPOrder *ord) {
             //  [self.makeOrderButton stopIndication];
-            self.order = ord;
+           // self.order = ord;
 
+            self.paymentOrder = ord;
+            
             [[ZPPServerManager sharedManager] POSTPaymentWithOrderID:ord.identifier
                 onSuccess:^(NSString *paymnetURL) {
                     [self.makeOrderButton stopIndication];
@@ -147,56 +170,21 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
                 onFailure:^(NSError *error, NSInteger statusCode) {
                     [self.makeOrderButton stopIndication];
                 }];
-
         }
         onFailure:^(NSError *error, NSInteger statusCode) {
             [self.makeOrderButton stopIndication];
+            
+            [self showWarningWithText:@"Выберите другую область доставки"];
         }];
-    //    [[ZPPPaymentManager sharedManager] registrateOrder:self.order
-    //        onSuccess:^(NSURL *url, NSString *orderIDAlfa) {
-    //            [self.makeOrderButton stopIndication];
-    //
-    //            self.order.alfaNumber = orderIDAlfa;
-    //            [self showWebViewWithURl:url];
-    //
-    //        }
-    //        onFailure:^(NSError *error, NSInteger statusCode) {
-    //            [self.makeOrderButton stopIndication];
-    //
-    //            [self showWarningWithText:ZPPNoInternetConnectionMessage];
-    //        }];
+
 }
 
 - (void)didShowPageWithUrl:(NSURL *)url sender:(UIViewController *)vc {
-    // https://test.paymentgate.ru/testpayment/merchants/zdorovoepitanie/finish.html?orderId=5cc56c99-4550-46be-a2fa-422a10f96040
 
-    //    NSString *destString = [NSString
-    //        stringWithFormat:@"%@/%@/%@?orderId=%@", [ZPPPaymentManager sharedManager].baseURL,
-    //                         ZPPCentralURL, ZPPPaymentFinishURL, self.order.alfaNumber];
-    //
-    //    NSLog(@"\n%@\n%@", url.absoluteString, destString);
-    //    if ([url.absoluteString isEqualToString:destString]) {
-    //        [vc dismissViewControllerAnimated:YES
-    //                               completion:^{
-    //
-    //                               }];
-    //
-    //        UIViewController *vc =
-    //            [self.storyboard
-    //            instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
-    //
-    //        [self presentViewController:vc
-    //                           animated:YES
-    //                         completion:^{
-    //                             // [self dismissViewControllerAnimated:YES completion:nil];
-    //                         }];
-    //
-    //        //  [self ]
-    //    }
 
     NSString *urlString = url.absoluteString;
     if ([urlString containsString:@"finish"]) {
-        [[ZPPServerManager sharedManager] checkPaymentWithID:self.order.identifier
+        [[ZPPServerManager sharedManager] checkPaymentWithID:self.paymentOrder.identifier
             onSuccess:^(NSString *sta) {
 
                 if ([sta isEqualToString:@"Успешно"]) {
@@ -207,12 +195,11 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
                     UIViewController *vc = [self.storyboard
                         instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
+                    
+                    [self.navigationController pushViewController:vc animated:YES];
+                    
+                    [self.order clearOrder];
 
-                    [self presentViewController:vc
-                                       animated:YES
-                                     completion:^{
-                                         // [self dismissViewControllerAnimated:YES completion:nil];
-                                     }];
                 }
 
             }
@@ -250,7 +237,7 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
     NSInteger time = [[NSDate new] hour] > 11 ? [[NSDate new] hour] : 11;
 
-    for (int i = time; i < 24; i++) {
+    for (int i = time; i < 23; i++) {
         NSString *timeString = [NSString stringWithFormat:@"%@:00 - %@:00", @(i), @(i + 1)];
         [arr addObject:timeString];
     }

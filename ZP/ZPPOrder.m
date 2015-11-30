@@ -130,4 +130,11 @@
     return descrString;
 }
 
+
+- (void)clearOrder {
+    self.items = nil;
+    self.identifier = nil;
+    self.address = nil;
+}
+
 @end

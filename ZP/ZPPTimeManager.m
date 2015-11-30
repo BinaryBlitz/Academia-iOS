@@ -41,9 +41,9 @@
 - (void)configureWithDict:(NSDictionary *)dict {
     id isOpen = dict[@"is_open"];
 
-    if (isOpen && ![isOpen isEqual:[NSNull null]]) {
-        self.isOpen = [isOpen boolValue];
-    }
+//    if (isOpen && ![isOpen isEqual:[NSNull null]]) {
+//        self.isOpen = [isOpen boolValue];
+//    }
 
     NSString *openTimeString = dict[@"opens_at"];
     NSString *curentTimeString = dict[@"current_time"];
