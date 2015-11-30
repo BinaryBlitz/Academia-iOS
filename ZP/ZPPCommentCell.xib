@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tN3-WZ-RHa">
-                        <rect key="frame" x="8" y="8" width="304" height="101"/>
+                        <rect key="frame" x="24" y="8" width="272" height="101"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -26,7 +26,7 @@
                         </userDefinedRuntimeAttributes>
                     </textView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0dm-F5-S9R">
-                        <rect key="frame" x="8" y="117" width="304" height="35"/>
+                        <rect key="frame" x="24" y="117" width="272" height="35"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="BWe-tV-82x"/>
@@ -40,12 +40,12 @@
                 <animations/>
                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="tN3-WZ-RHa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="4hJ-Zg-RVu"/>
-                    <constraint firstItem="0dm-F5-S9R" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="8zP-wi-XXO"/>
+                    <constraint firstItem="tN3-WZ-RHa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="4hJ-Zg-RVu"/>
+                    <constraint firstItem="0dm-F5-S9R" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-16" id="8zP-wi-XXO"/>
                     <constraint firstAttribute="bottomMargin" secondItem="0dm-F5-S9R" secondAttribute="bottom" constant="0.5" id="ARC-ab-3Tv"/>
                     <constraint firstItem="0dm-F5-S9R" firstAttribute="top" secondItem="tN3-WZ-RHa" secondAttribute="bottom" constant="8" id="M1q-Tt-oFA"/>
-                    <constraint firstItem="0dm-F5-S9R" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="U2m-Uj-DKa"/>
-                    <constraint firstItem="tN3-WZ-RHa" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="X9V-8p-tGr"/>
+                    <constraint firstItem="0dm-F5-S9R" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="U2m-Uj-DKa"/>
+                    <constraint firstItem="tN3-WZ-RHa" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-16" id="X9V-8p-tGr"/>
                     <constraint firstItem="tN3-WZ-RHa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="iKx-KE-Y6k"/>
                 </constraints>
             </tableViewCellContentView>

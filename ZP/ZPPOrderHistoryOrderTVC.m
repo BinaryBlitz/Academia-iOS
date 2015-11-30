@@ -21,9 +21,12 @@ static NSString *ZPPStarsCellIdentifier = @"ZPPStarsCellIdentifier";
 static NSString *ZPPCommentCellIdentifier = @"ZPPCommentCellIdentifier";
 static NSString *ZPPContactCourierCellIdentifier = @"ZPPContactCourierCellIdentifier";
 
-@interface ZPPOrderHistoryOrderTVC ()
+static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понравилось?";
+
+@interface ZPPOrderHistoryOrderTVC () <UITextViewDelegate>
 
 @property (assign, nonatomic) BOOL shouldShowComment;
+@property (strong, nonatomic) NSString *comment;
 
 @end
 
@@ -61,7 +64,7 @@ static NSString *ZPPContactCourierCellIdentifier = @"ZPPContactCourierCellIdenti
     } else if (section == 1) {
         return 1;
     } else {
-        if (self.shouldShowComment) {
+        if (self.order.orderStatus == ZPPOrderStatusDelivered) {
             return 2;
         } else {
             return 1;
@@ -96,6 +99,14 @@ static NSString *ZPPContactCourierCellIdentifier = @"ZPPContactCourierCellIdenti
             [cell.actionButton addTarget:self
                                   action:@selector(sendComment:)
                         forControlEvents:UIControlEventTouchUpInside];
+            
+            cell.commentTV.delegate = self;
+            if(!self.comment){
+                self.comment = @"";
+                cell.commentTV.text = ZPPCommentPlaceHoldeText;
+                cell.commentTV.textColor = [UIColor lightGrayColor];
+            }
+         //   cell.commentTV.textColor = [UIColor lightGrayColor];
 
             return cell;
         }
@@ -109,9 +120,9 @@ static NSString *ZPPContactCourierCellIdentifier = @"ZPPContactCourierCellIdenti
                       action:@selector(valueChanged:)
             forControlEvents:UIControlEventValueChanged];
 
-    [cell.actionButton addTarget:self
-                          action:@selector(showCommentCell:)
-                forControlEvents:UIControlEventTouchUpInside];
+    //    [cell.actionButton addTarget:self
+    //                          action:@selector(showCommentCell:)
+    //                forControlEvents:UIControlEventTouchUpInside];
 
     cell.starView.shouldBeginGestureRecognizerBlock = ^BOOL(UIGestureRecognizer *gr) {
 
@@ -122,13 +133,10 @@ static NSString *ZPPContactCourierCellIdentifier = @"ZPPContactCourierCellIdenti
 }
 
 - (ZPPContactCourierCell *)contactCell {
-
     return [self.tableView dequeueReusableCellWithIdentifier:ZPPContactCourierCellIdentifier];
 }
 
-    -
-    (void)tableView:(UITableView *)tableView
-    didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     return;
 }
 
@@ -189,7 +197,8 @@ static NSString *ZPPContactCourierCellIdentifier = @"ZPPContactCourierCellIdenti
                 [self showSuccessWithText:@"Комментарий отправлен!"];
                 sender.hidden = YES;
                 [cell.commentTV resignFirstResponder];
-                
+                cell.commentTV.editable = NO;
+
                 // cell.commentTV.ena
 
             }
@@ -198,6 +207,24 @@ static NSString *ZPPContactCourierCellIdentifier = @"ZPPContactCourierCellIdenti
 
             }];
     }
+}
+
+#pragma mark - textview delegate
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([textView.text isEqualToString:ZPPCommentPlaceHoldeText]) {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor];  // optional
+    }
+    [textView becomeFirstResponder];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = ZPPCommentPlaceHoldeText;
+        textView.textColor = [UIColor lightGrayColor];  // optional
+    }
+    [textView resignFirstResponder];
 }
 /*
 #pragma mark - Navigation

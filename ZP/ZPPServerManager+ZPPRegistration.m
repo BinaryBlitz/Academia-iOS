@@ -257,6 +257,10 @@
             //ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
             
             NSString *t = responseObject[@"api_token"];
+            
+            if([t isEqual:[NSNull null]]) {
+                t = nil;
+            }
 
             if (success) {
                 success(t);

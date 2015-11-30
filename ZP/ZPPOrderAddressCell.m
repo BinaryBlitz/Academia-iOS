@@ -20,7 +20,7 @@
     NSDictionary *underlineAttribute =
         @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) };
     NSAttributedString *attrStr =
-        [[NSAttributedString alloc] initWithString:@"Выбрать другой адерс"
+        [[NSAttributedString alloc] initWithString:@"Выбрать другой адрес"
                                         attributes:underlineAttribute];
 
     [self.chooseAnotherButton setAttributedTitle:attrStr forState:UIControlStateNormal];

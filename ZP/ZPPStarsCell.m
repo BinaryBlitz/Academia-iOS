@@ -18,15 +18,15 @@
     self.starView.allowsHalfStars = NO;
     self.starView.continuous = NO;
     
-    self.starView.tintColor = [UIColor colorWithRed:1 green:215.0/255.0 blue:0 alpha:1.0];
+    self.starView.tintColor = [UIColor blackColor]; //[UIColor colorWithRed:1 green:215.0/255.0 blue:0 alpha:1.0];
     
-    NSDictionary *underlineAttribute =
-    @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) };
-    NSAttributedString *attrStr =
-    [[NSAttributedString alloc] initWithString:self.actionButton.titleLabel.text
-                                    attributes:underlineAttribute];
-    
-    [self.actionButton setAttributedTitle:attrStr forState:UIControlStateNormal];
+//    NSDictionary *underlineAttribute =
+//    @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) };
+//    NSAttributedString *attrStr =
+//    [[NSAttributedString alloc] initWithString:self.actionButton.titleLabel.text
+//                                    attributes:underlineAttribute];
+//    
+//    [self.actionButton setAttributedTitle:attrStr forState:UIControlStateNormal];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
