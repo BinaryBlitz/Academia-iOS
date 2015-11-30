@@ -47,6 +47,8 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
     [arr addObject:self.nameTextField];
     [arr addObject:self.secondNameTextField];
     [arr addObject:self.emailTextFild];
+    
+    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 //    [arr addObject:self.passwordTextField];
 //    [arr addObject:self.againPasswordTextField];
     

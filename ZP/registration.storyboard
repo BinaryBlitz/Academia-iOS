@@ -31,7 +31,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20.5" id="I4K-Ih-Rin"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -41,7 +41,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="k0o-SE-avX"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -52,6 +52,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="dGJ-a1-ebq"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <state key="normal" title="ДАЛЕЕ">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -66,16 +67,16 @@
                                                 <rect key="frame" x="37" y="0.0" width="201" height="30"/>
                                                 <animations/>
                                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" keyboardAppearance="light" returnKeyType="next"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" +7" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A57-SN-q7p">
-                                                <rect key="frame" x="0.0" y="5" width="32" height="21"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="32" height="30"/>
                                                 <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="32" id="88W-Bz-Sf3"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -89,12 +90,12 @@
                                             <constraint firstItem="ffq-m7-Gj9" firstAttribute="top" secondItem="mxT-A6-VdX" secondAttribute="top" id="Cqs-jr-heS"/>
                                             <constraint firstAttribute="width" constant="238" id="JDD-ae-zbt"/>
                                             <constraint firstItem="ffq-m7-Gj9" firstAttribute="leading" secondItem="A57-SN-q7p" secondAttribute="trailing" constant="5" id="MQN-Qh-Le0"/>
-                                            <constraint firstAttribute="bottom" secondItem="A57-SN-q7p" secondAttribute="bottom" constant="4" id="Xcv-cX-l0l"/>
-                                            <constraint firstItem="A57-SN-q7p" firstAttribute="top" secondItem="mxT-A6-VdX" secondAttribute="top" constant="5" id="eln-LF-s3L"/>
+                                            <constraint firstAttribute="bottom" secondItem="A57-SN-q7p" secondAttribute="bottom" id="Xcv-cX-l0l"/>
+                                            <constraint firstItem="A57-SN-q7p" firstAttribute="top" secondItem="mxT-A6-VdX" secondAttribute="top" id="eln-LF-s3L"/>
                                             <constraint firstAttribute="height" constant="30" id="k5i-ra-cQ0"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKf-Zc-bzI">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKf-Zc-bzI">
                                         <rect key="frame" x="178" y="562" width="244" height="30"/>
                                         <animations/>
                                         <constraints>
@@ -180,7 +181,7 @@
                                             <constraint firstAttribute="width" constant="184" id="Ct1-AQ-GTa"/>
                                             <constraint firstAttribute="height" constant="30" id="QuB-ak-Kic"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" returnKeyType="next"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iat-Kn-0YD">
@@ -190,6 +191,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="U51-Fk-TK2"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <state key="normal" title="ДАЛЕЕ"/>
                                         <connections>
                                             <action selector="submitCodeAction:" destination="P7F-p0-b0q" eventType="touchUpInside" id="r1N-xG-8bl"/>
@@ -198,7 +200,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите код" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZS-7n-8aJ">
                                         <rect key="frame" x="208" y="256" width="184" height="20.5"/>
                                         <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -208,7 +210,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="uii-xI-Coh"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <state key="normal" title="Button">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -332,7 +334,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="yx5-Hd-Ne5"/>
                                                         <constraint firstAttribute="width" constant="299" id="zVC-KV-C6X"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                                 </textField>
                                             </subviews>
@@ -418,7 +420,7 @@
                                                         <constraint firstAttribute="width" constant="299" id="nV5-LB-EHX"/>
                                                         <constraint firstAttribute="height" constant="40" id="quC-fd-RJz"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                     <state key="normal" title="СОХРАНИТЬ ПРОФИЛЬ"/>
                                                     <connections>
                                                         <action selector="saveProfileAction:" destination="WuL-FN-fQ6" eventType="touchUpInside" id="Gci-hq-Yee"/>
@@ -483,7 +485,7 @@
                                             <constraint firstAttribute="height" constant="35" id="dj9-4B-xQw"/>
                                             <constraint firstAttribute="width" constant="233" id="hhv-C9-8RC"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                         <state key="normal" title="СДЕЛАТЬ ЗАКАЗ">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -497,7 +499,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="63" id="vQP-MK-VMx"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
