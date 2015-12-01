@@ -11,6 +11,7 @@
 @class ZPPOrder;
 @interface ZPPOrderTotalCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *deliveryLabel;
 
 - (void)configureWithOrder:(ZPPOrder *)order;
 

@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *atTimeButton;
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *makeOrderButton;
+@property (weak, nonatomic) IBOutlet UILabel *deliveryLabel;
 
 - (void)configureWithOrder:(ZPPOrder *)order;
 
