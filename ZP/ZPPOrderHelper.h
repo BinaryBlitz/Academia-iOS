@@ -12,7 +12,7 @@
 @interface ZPPOrderHelper : NSObject
 
 + (NSArray *)parseOrdersFromDicts:(NSArray *)dicts;
-+ (NSDictionary *)orderDictFromDict:(ZPPOrder *)order;
++ (NSDictionary *)orderDictFromOrder:(ZPPOrder *)order;
 
 + (ZPPOrder *)parseOrderFromDict:(NSDictionary *)dict;
 

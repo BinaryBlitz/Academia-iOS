@@ -73,12 +73,19 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
     //    }
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    self.order.date = nil;
+}
+
 - (void)viewDidLayoutSubviews {
     //    static BOOL
     //    [self addCheckmarkToButton:self.nowButton];
     if (!self.once) {
         self.once = YES;
         [self addCheckmarkToButton:self.nowButton];
+        self.order.date = [NSDate new];
     }
 }
 
@@ -92,6 +99,7 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
 - (void)orderNowAction:(UIButton *)sender {
     [self addCheckmarkToButton:sender];
+    self.order.date = [NSDate new];
     [self.atTimeButton setTitle:@"ВЫБРАТЬ ВРЕМЯ" forState:UIControlStateNormal];
 }
 
@@ -173,8 +181,7 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
         onFailure:^(NSError *error, NSInteger statusCode) {
             [self.makeOrderButton stopIndication];
 
-            [self showWarningWithText:@"Выберите другую область "
-                                      @"доставки"];
+            [self showWarningWithText:@"Выберите другую область " @"доста" @"в" @"к" @"и"];
         }];
 }
 
@@ -230,21 +237,33 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
 - (void)addTimePicker:(UIButton *)sender {
     NSMutableArray *arr = [NSMutableArray array];
-    
-    NSInteger currentHour = [[NSDate new] hour];
+    NSMutableArray *timeArr = [NSMutableArray array];
+
+    NSDate *datee = [NSDate new];//[NSDate dateWithYear:2015 month:12 day:1 hour:10 minute:59 second:13];
+    NSInteger currentHour = [datee hour] + 1;  //[[NSDate new] hour] + 1 ;
     NSInteger closeHour = 23;
+    NSInteger openHour = 11;
+    
 
-    NSInteger time =
-        currentHour > 11 && currentHour < closeHour ? currentHour : 11;
+    NSInteger time = currentHour > openHour && currentHour < closeHour ? currentHour : openHour;
 
-    for (int i = time; i < closeHour; i++) {
+    for (int i = (int)time; i < closeHour; i++) {
         NSString *timeString = [NSString stringWithFormat:@"%@:00 - %@:00", @(i), @(i + 1)];
+        [timeArr addObject:@(i)];
         [arr addObject:timeString];
     }
 
     // NSArray *colors = [NSArray arrayWithObjects:@"Red", @"Green", @"Blue", @"Orange", nil];
+    BOOL tomorrow = currentHour >= closeHour;
 
-    [ActionSheetStringPicker showPickerWithTitle:@"Выберите время"
+    NSString *descrString;
+    if (tomorrow) {
+        descrString = @"Завтра в";
+    } else {
+        descrString = @"Сегодня в";
+    }
+
+    [ActionSheetStringPicker showPickerWithTitle:descrString
         rows:[NSArray arrayWithArray:arr]
         initialSelection:0
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
@@ -253,7 +272,21 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
             [sender setTitle:selectedValue forState:UIControlStateNormal];
             [self addCheckmarkToButton:self.atTimeButton];
 
-          
+            NSDate *d = datee;
+
+            d = [d dateBySubtractingMinutes:[d minute]];
+            NSInteger selectedHour = [timeArr[selectedIndex] integerValue];
+            
+            if (tomorrow) {
+                d = [d dateByAddingHours:(24 - closeHour +selectedHour + 1)];
+            } else {
+                d = [d dateByAddingHours:(selectedHour - currentHour + 1)];
+            }
+           // NSString *str = [d serverFormattedString];
+
+          //  NSLog(@"date string %@", str);
+            
+            self.order.date = d;
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {
             NSLog(@"Block Picker Canceled");

@@ -33,7 +33,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        _isOpen = YES;
+        _isOpen = NO;
     }
     return self;
 }

@@ -52,7 +52,7 @@ static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdenti
 
 static NSString *ZPPNoAddresMessage = @"Выберите адрес доставки!";
 
-@interface ZPPOrderTVC () <ZPPAdressDelegate, ZPPCardDelegate>
+@interface ZPPOrderTVC () <ZPPAdressDelegate>
 
 @property (strong, nonatomic) ZPPOrder *order;
 

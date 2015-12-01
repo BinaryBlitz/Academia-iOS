@@ -697,8 +697,6 @@
 				191C98601BC044A700E10D4F /* ZPPProductTVC.m */,
 				19EC24A61BC6601000C333F6 /* ZPPAnotherProductsTVC.h */,
 				19EC24A71BC6601000C333F6 /* ZPPAnotherProductsTVC.m */,
-				1984EE3A1BD13E63001D25D5 /* ZPPBeginScreenTVC.h */,
-				1984EE3B1BD13E63001D25D5 /* ZPPBeginScreenTVC.m */,
 				1948C5491BEC3A1800084BC8 /* ZPPLunchTVC.h */,
 				1948C54A1BEC3A1800084BC8 /* ZPPLunchTVC.m */,
 			);
@@ -824,6 +822,7 @@
 		191C98561BC0439100E10D4F /* main */ = {
 			isa = PBXGroup;
 			children = (
+				19BF471C1C0DEE530060B2F0 /* begin */,
 				190F9C701BE283200032E14D /* products */,
 				19E6D4171BC66F1C00DF6EF9 /* base */,
 				191C985C1BC0447800E10D4F /* ZPPMainPageVC.h */,
@@ -1317,6 +1316,15 @@
 				19DBC3CC1C0A4F50009EC8EF /* ZPPCommentCell.m */,
 			);
 			name = comment;
+			sourceTree = "<group>";
+		};
+		19BF471C1C0DEE530060B2F0 /* begin */ = {
+			isa = PBXGroup;
+			children = (
+				1984EE3A1BD13E63001D25D5 /* ZPPBeginScreenTVC.h */,
+				1984EE3B1BD13E63001D25D5 /* ZPPBeginScreenTVC.m */,
+			);
+			name = begin;
 			sourceTree = "<group>";
 		};
 		19C5018B1BEE4DB700575F78 /* maps */ = {
