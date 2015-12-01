@@ -67,16 +67,16 @@ static float kZPPButtonOffset = 15.0f;
 
         // test
 
-//        ZPPDish *d = [[ZPPDish alloc] initWithName:@"dish"
-//                                            dishID:@"1"
-//                                          subtitle:@"no"
-//                                   dishDescription:@"descr"
-//                                             price:@(100)
-//                                            imgURL:nil
-//                                       ingridients:nil
-//                                            badges:nil];
-//
-//        [self.order addItem:d];
+        ZPPDish *d = [[ZPPDish alloc] initWithName:@"dish"
+                                            dishID:@"1"
+                                          subtitle:@"no"
+                                   dishDescription:@"descr"
+                                             price:@(100)
+                                            imgURL:nil
+                                       ingridients:nil
+                                            badges:nil];
+
+        [self.order addItem:d];
 
         [self setOrderCount];
 

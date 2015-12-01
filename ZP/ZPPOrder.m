@@ -9,6 +9,8 @@
 #import "ZPPOrder.h"
 #import "ZPPOrderItem.h"
 
+static NSInteger ZPPDeliveryPrice = 200;
+
 @interface ZPPOrder ()
 
 @property (strong, nonatomic) NSMutableArray *items;
@@ -17,13 +19,13 @@
 
 @implementation ZPPOrder
 
-//- (instancetype)init {
-//    self = [super init];
-//    if (self) {
-//
-//    }
-//    return self;
-//}
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.orderStatus = ZPPOrderStatusNotSended;
+    }
+    return self;
+}
 
 - (instancetype)initWithIdentifier:(NSString *)identifier
                              items:(NSMutableArray *)items
@@ -105,7 +107,23 @@
     for (ZPPOrderItem *oi in self.items) {
         res += oi.count * [oi.item priceOfItem];
     }
+    //    if (res < 1000) {
+    //        res += ZPPDeliveryPrice;  // delivery price
+    //    }
     return res;
+}
+
+- (NSInteger)totalPriceWithDelivery {
+    NSInteger price = [self totalPrice];
+    if (price < 1000) {
+        price += 200;
+    }
+    return price;
+}
+
+
+- (BOOL)deliveryIncluded {
+    return [self totalPrice] != [self totalPriceWithDelivery];
 }
 
 - (NSMutableArray *)items {
@@ -130,12 +148,12 @@
     return descrString;
 }
 
-
 - (void)clearOrder {
     self.items = nil;
     self.identifier = nil;
     self.address = nil;
     self.date = nil;
+    self.orderStatus = ZPPOrderStatusNotSended;
 }
 
 @end

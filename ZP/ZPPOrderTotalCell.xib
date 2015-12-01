@@ -33,21 +33,32 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fsk-jO-E31">
+                        <rect key="frame" x="8" y="52" width="330" height="20.5"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <animations/>
                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="hvd-NF-TZp" secondAttribute="trailing" constant="50" id="15V-Ll-TI1"/>
+                    <constraint firstItem="Fsk-jO-E31" firstAttribute="trailing" secondItem="bPK-HI-o6E" secondAttribute="trailingMargin" id="7uQ-JU-dvy"/>
                     <constraint firstItem="hvd-NF-TZp" firstAttribute="top" secondItem="bPK-HI-o6E" secondAttribute="topMargin" id="8jf-4M-ovp"/>
                     <constraint firstAttribute="trailingMargin" secondItem="4AC-gD-fI0" secondAttribute="trailing" constant="50" id="NfK-ng-vlc"/>
                     <constraint firstItem="hvd-NF-TZp" firstAttribute="leading" secondItem="bPK-HI-o6E" secondAttribute="leadingMargin" constant="50" id="fcJ-B3-7lc"/>
+                    <constraint firstItem="Fsk-jO-E31" firstAttribute="leading" secondItem="bPK-HI-o6E" secondAttribute="leadingMargin" id="fp9-nn-XqZ"/>
                     <constraint firstItem="4AC-gD-fI0" firstAttribute="top" secondItem="hvd-NF-TZp" secondAttribute="bottom" constant="16" id="iTa-nz-G1x"/>
+                    <constraint firstItem="Fsk-jO-E31" firstAttribute="top" secondItem="4AC-gD-fI0" secondAttribute="bottom" constant="4" id="piV-Te-xgU"/>
                     <constraint firstItem="4AC-gD-fI0" firstAttribute="leading" secondItem="bPK-HI-o6E" secondAttribute="leadingMargin" constant="50" id="rIw-Do-hCy"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
             <connections>
+                <outlet property="deliveryLabel" destination="Fsk-jO-E31" id="ZPm-x4-Fgm"/>
                 <outlet property="priceLabel" destination="4AC-gD-fI0" id="JH5-Zx-ZOs"/>
             </connections>
             <point key="canvasLocation" x="211" y="234.5"/>

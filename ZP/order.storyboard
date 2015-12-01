@@ -417,7 +417,7 @@
                                 </state>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yFP-He-Sb0">
-                                <rect key="frame" x="35" y="477" width="530" height="3"/>
+                                <rect key="frame" x="35" y="465" width="530" height="3"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -425,7 +425,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ВАШ ЗАКАЗ НА:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDl-9Z-NAy">
-                                <rect key="frame" x="35" y="496" width="530" height="21"/>
+                                <rect key="frame" x="35" y="484" width="530" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Tx7-uB-iUW"/>
@@ -435,12 +435,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtO-Bv-deI">
-                                <rect key="frame" x="35" y="525" width="530" height="12"/>
+                                <rect key="frame" x="35" y="513" width="530" height="24"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="12" id="smn-gU-vft"/>
+                                    <constraint firstAttribute="height" constant="24" id="smn-gU-vft"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -512,6 +512,7 @@
                     </view>
                     <connections>
                         <outlet property="atTimeButton" destination="RGc-TG-NFr" id="QHx-dG-Rqj"/>
+                        <outlet property="deliveryLabel" destination="DtO-Bv-deI" id="Wuz-Vj-KJT"/>
                         <outlet property="makeOrderButton" destination="rHJ-13-fY8" id="vv6-9m-lp9"/>
                         <outlet property="nowButton" destination="6La-up-uWH" id="2MD-Md-1JV"/>
                         <outlet property="totalPriceLabel" destination="oDl-9Z-NAy" id="Lw9-oV-jzt"/>

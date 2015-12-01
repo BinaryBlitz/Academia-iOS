@@ -13,7 +13,8 @@ typedef NS_ENUM(NSInteger, ZPPOrderStatus) {
     ZPPOrderStatusNew,
     ZPPOrderStatusOnTheWay,
     ZPPOrderStatusRejected,
-    ZPPOrderStatusDelivered
+    ZPPOrderStatusDelivered,
+    ZPPOrderStatusNotSended
 };
 
 
@@ -51,6 +52,10 @@ typedef NS_ENUM(NSInteger, ZPPOrderStatus) {
 - (NSInteger)totalCount;
 
 - (NSInteger)totalPrice;
+
+- (NSInteger)totalPriceWithDelivery;
+
+- (BOOL)deliveryIncluded;
 
 - (NSString *)orderDescr;
 

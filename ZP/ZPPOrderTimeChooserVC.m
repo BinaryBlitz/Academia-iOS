@@ -65,6 +65,12 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
     self.totalPriceLabel.text =
         [NSString stringWithFormat:@"ВАШ ЗАКАЗ НА: %@%@", @(self.order.totalPrice),
                                    ZPPRoubleSymbol];
+    
+    if(self.order.totalPrice < 1000){
+        self.deliveryLabel.text = [NSString stringWithFormat:@"+доставка 200%@",ZPPRoubleSymbol];
+    } else {
+        self.deliveryLabel.text = @"";
+    }
 
     //    if([ZPPTimeManager sharedManager].isOpen) {
     //        [self addCheckmarkToButton:self.nowButton];
