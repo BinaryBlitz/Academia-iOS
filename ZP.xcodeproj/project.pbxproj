@@ -89,6 +89,7 @@
 		1955F3981C0BCD270010EED3 /* ZPPContactCourierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1955F3961C0BCD270010EED3 /* ZPPContactCourierCell.m */; };
 		1955F3991C0BCD270010EED3 /* ZPPContactCourierCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1955F3971C0BCD270010EED3 /* ZPPContactCourierCell.xib */; };
 		1963EF211BD3E91100665916 /* ZPPRegistrationBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1963EF201BD3E91100665916 /* ZPPRegistrationBaseVC.m */; };
+		19792D351C0C735700707D07 /* ZPPOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19792D341C0C735700707D07 /* ZPPOrderManager.m */; };
 		1984EE231BD110CC001D25D5 /* registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1984EE221BD110CC001D25D5 /* registration.storyboard */; };
 		1984EE271BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1984EE261BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.m */; };
 		1984EE2D1BD123A8001D25D5 /* ZPPRegistrationCodeInputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1984EE2C1BD123A8001D25D5 /* ZPPRegistrationCodeInputVC.m */; };
@@ -322,6 +323,8 @@
 		1955F3971C0BCD270010EED3 /* ZPPContactCourierCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPContactCourierCell.xib; sourceTree = "<group>"; };
 		1963EF1F1BD3E91100665916 /* ZPPRegistrationBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPRegistrationBaseVC.h; sourceTree = "<group>"; };
 		1963EF201BD3E91100665916 /* ZPPRegistrationBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPRegistrationBaseVC.m; sourceTree = "<group>"; };
+		19792D331C0C735700707D07 /* ZPPOrderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPOrderManager.h; sourceTree = "<group>"; };
+		19792D341C0C735700707D07 /* ZPPOrderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPOrderManager.m; sourceTree = "<group>"; };
 		1984EE221BD110CC001D25D5 /* registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = registration.storyboard; sourceTree = "<group>"; };
 		1984EE251BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPRegistrationPhoneInputVC.h; sourceTree = "<group>"; };
 		1984EE261BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPRegistrationPhoneInputVC.m; sourceTree = "<group>"; };
@@ -1053,6 +1056,15 @@
 			name = base;
 			sourceTree = "<group>";
 		};
+		19792D321C0C733100707D07 /* orderManager */ = {
+			isa = PBXGroup;
+			children = (
+				19792D331C0C735700707D07 /* ZPPOrderManager.h */,
+				19792D341C0C735700707D07 /* ZPPOrderManager.m */,
+			);
+			name = orderManager;
+			sourceTree = "<group>";
+		};
 		1984EE211BD110B0001D25D5 /* storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -1142,6 +1154,7 @@
 		1986356A1BDFD0260070E3F7 /* order */ = {
 			isa = PBXGroup;
 			children = (
+				19792D321C0C733100707D07 /* orderManager */,
 				1910D9F71C05F1D200F2536F /* time manager */,
 				19F378F41BFA9E7C004827A0 /* deliveryItem */,
 				19DADF641BF762CA007D9DF2 /* helper */,
@@ -1618,7 +1631,6 @@
 				TargetAttributes = {
 					19014A441BC034CF001E0D77 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 4WGG8V34K4;
 					};
 					19014A601BC034CF001E0D77 = {
 						CreatedOnToolsVersion = 7.0;
@@ -1893,6 +1905,7 @@
 				19F378F71BFA9EA0004827A0 /* ZPPDelivery.m in Sources */,
 				19D242701BEA31FD007A0FEB /* ZPPOrderHistoryCell.m in Sources */,
 				19B3A9861C0A445D0089F02A /* ZPPStarsCell.m in Sources */,
+				19792D351C0C735700707D07 /* ZPPOrderManager.m in Sources */,
 				191C98681BC047C500E10D4F /* ZPPProductsIngridientsCell.m in Sources */,
 				191C986C1BC050C000E10D4F /* ZPPProductMainCell.m in Sources */,
 			);
@@ -2043,6 +2056,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.binaryblitz.ZP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b8afa512-cfc4-455f-a72c-86cdedcba7a4";
 			};
 			name = Debug;
 		};
@@ -2058,6 +2072,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.binaryblitz.ZP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b8afa512-cfc4-455f-a72c-86cdedcba7a4";
 			};
 			name = Release;
 		};

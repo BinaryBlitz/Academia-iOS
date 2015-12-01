@@ -177,6 +177,9 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
 #pragma mark - support
 
 - (void)parseOrders:(NSArray *)orders {
+//    if(self.onTheWayOrders) {
+//        return;
+//    }
     NSMutableArray *onTheWayOrders = [NSMutableArray array];
     NSMutableArray *payedOrders = [NSMutableArray array];
     

@@ -18,6 +18,7 @@
 #import "ZPPServerManager+ZPPRegistration.h"
 
 #import "UIViewController+ZPPViewControllerCategory.h"
+#import "ZPPOrderManager.h"
 
 // libs
 #import <VBFPopFlatButton.h>
@@ -33,6 +34,7 @@ static float kZPPButtonOffset = 15.0f;
 @property (strong, nonatomic) UIView *buttonView;
 @property (strong, nonatomic) UIView *orderView;
 @property (strong, nonatomic) JSBadgeView *badgeView;
+@property (strong, nonatomic) JSBadgeView *orderCountBadgeView;
 
 @property (assign, nonatomic) BOOL menuShowed;
 
@@ -51,18 +53,18 @@ static float kZPPButtonOffset = 15.0f;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-
     if ([[ZPPUserManager sharedInstance] checkUser]) {
         [[ZPPServerManager sharedManager] getCurrentUserOnSuccess:^(ZPPUser *user) {
             [ZPPUserManager sharedInstance].user.balance = user.balance;
             self.mainMenu.balanceLabel.text =
-            [NSString stringWithFormat:@"Текущий баланс: %@ б.",
-             [ZPPUserManager sharedInstance].user.balance];
-        } onFailure:^(NSError *error, NSInteger statusCode) {
-            
+                [NSString stringWithFormat:@"Текущий баланс: %@ б.",
+                                           [ZPPUserManager sharedInstance].user.balance];
+        } onFailure:^(NSError *error, NSInteger statusCode){
+
         }];
-        
-        
+
+        [self setOrderCount];
+
         [self.view addSubview:self.mainMenu];
         [self.view addSubview:self.buttonView];
         self.mainMenu.balanceLabel.text =
@@ -406,6 +408,27 @@ navigation
     }
 }
 
+- (void)setOrderCount {
+    NSInteger c = [ZPPOrderManager sharedManager].onTheWayOrders.count;
+    [self setOrderCount:c];
+    [[ZPPOrderManager sharedManager] updateOrdersCompletion:^(NSInteger count) {
+        [self setOrderCount:count];
+    }];
+}
+
+- (void)setOrderCount:(NSInteger)count {
+    if (count > 0) {
+        self.orderCountBadgeView.badgeText = [NSString stringWithFormat:@"%ld", count];
+        
+        NSString *destString = [NSString stringWithFormat:@"ЗАКАЗЫ (%ld)", count];
+        [self.mainMenu.ordersButton setTitle:destString forState:UIControlStateNormal];
+    } else {
+        self.orderCountBadgeView.badgeText = nil;
+        NSString *destString = [NSString stringWithFormat:@"ЗАКАЗЫ"];
+        [self.mainMenu.ordersButton setTitle:destString forState:UIControlStateNormal];
+    }
+}
+
 #pragma mark - no internet connection delegate
 
 - (void)tryAgainSender:(id)sender {
@@ -453,11 +476,20 @@ navigation
         CGRect r = CGRectMake(15, 15, kZPPButtonDiametr, kZPPButtonDiametr);
         _buttonView = [[UIView alloc] initWithFrame:r];
         _buttonView.backgroundColor = [UIColor blackColor];
-        _buttonView.layer.borderWidth = self.button.lineThickness;
-        _buttonView.layer.borderColor = [UIColor whiteColor].CGColor;
+        //_buttonView.layer.borderWidth = self.button.lineThickness;
+        // _buttonView.layer.borderColor = [UIColor whiteColor].CGColor;
         _buttonView.layer.cornerRadius = _buttonView.frame.size.height / 2.0;
 
-        [_buttonView addSubview:self.button];
+        CAShapeLayer *_border = [CAShapeLayer layer];
+        _border.lineWidth = self.button.lineThickness;
+        _border.strokeColor = [UIColor whiteColor].CGColor;
+        _border.fillColor = nil;
+        [_buttonView.layer addSublayer:_border];
+        _border.path = [UIBezierPath bezierPathWithRoundedRect:_buttonView.bounds
+                                                  cornerRadius:_buttonView.frame.size.height / 2.0]
+                           .CGPath;
+
+        // [_buttonView addSubview:self.button];
 
         CGSize buttonSize = self.button.frame.size;
         self.button.frame = CGRectMake((r.size.width - buttonSize.width) / 2.0,
@@ -471,6 +503,11 @@ navigation
         [_buttonView addGestureRecognizer:gr];
 
         [_buttonView addSubview:self.button];
+
+        self.orderCountBadgeView =
+            [[JSBadgeView alloc] initWithParentView:self.button
+                                          alignment:JSBadgeViewAlignmentTopRight];
+        self.orderCountBadgeView.badgePositionAdjustment = CGPointMake(4, -4);
     }
     return _buttonView;
 }
@@ -503,8 +540,7 @@ navigation
         _orderView = [[UIView alloc] initWithFrame:r];
 
         _orderView.layer.cornerRadius = _orderView.frame.size.height / 2.0;
-        //  _orderView.layer.borderWidth = self.button.lineThickness;
-        //  _orderView.layer.borderColor = [UIColor whiteColor].CGColor;
+
         _orderView.backgroundColor = [UIColor blackColor];
 
         CAShapeLayer *_border = [CAShapeLayer layer];
