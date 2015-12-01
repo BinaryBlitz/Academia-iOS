@@ -14,7 +14,7 @@ static NSString *ZPPGiftDescription = @"Подарочная карта";
 @implementation ZPPGiftHelper
 
 + (NSArray *)testGifts {
-    NSString *descr = ZPPGiftDescription;
+  //  NSString *descr = ZPPGiftDescription;
     ZPPGift *firstGift = [[ZPPGift alloc] initWith:ZPPGiftDescription
                                        description:nil
                                              price:@(3000)

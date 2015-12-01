@@ -41,17 +41,21 @@
 - (void)configureWithDict:(NSDictionary *)dict {
     id isOpen = dict[@"is_open"];
 
-//    if (isOpen && ![isOpen isEqual:[NSNull null]]) {
-//        self.isOpen = [isOpen boolValue];
-//    }
+    //    if (isOpen && ![isOpen isEqual:[NSNull null]]) {
+    //        self.isOpen = [isOpen boolValue];
+    //    }
 
     NSString *openTimeString = dict[@"opens_at"];
     NSString *curentTimeString = dict[@"current_time"];
 
     //    2015-11-28T12:00:00.000+03:00
 
-    self.openTime = [NSDate customDateFromString:openTimeString];
-    self.currentTime = [NSDate customDateFromString:curentTimeString];
+    if (![openTimeString isEqual:[NSNull null]]) {
+        self.openTime = [NSDate customDateFromString:openTimeString];
+    }
+    if (![curentTimeString isEqual:[NSNull null]]) {
+        self.currentTime = [NSDate customDateFromString:curentTimeString];
+    }
 }
 
 - (void)resetTimeManager {

@@ -151,15 +151,14 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 #pragma mark - payment
 
 - (void)startPayment {
-
     [self.makeOrderButton startIndicatingWithType:UIActivityIndicatorViewStyleGray];
     [[ZPPServerManager sharedManager] POSTOrder:self.order
         onSuccess:^(ZPPOrder *ord) {
             //  [self.makeOrderButton stopIndication];
-           // self.order = ord;
+            // self.order = ord;
 
             self.paymentOrder = ord;
-            
+
             [[ZPPServerManager sharedManager] POSTPaymentWithOrderID:ord.identifier
                 onSuccess:^(NSString *paymnetURL) {
                     [self.makeOrderButton stopIndication];
@@ -173,15 +172,13 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
         }
         onFailure:^(NSError *error, NSInteger statusCode) {
             [self.makeOrderButton stopIndication];
-            
-            [self showWarningWithText:@"Выберите другую область доставки"];
-        }];
 
+            [self showWarningWithText:@"Выберите другую область "
+                                      @"доставки"];
+        }];
 }
 
 - (void)didShowPageWithUrl:(NSURL *)url sender:(UIViewController *)vc {
-
-
     NSString *urlString = url.absoluteString;
     if ([urlString containsString:@"finish"]) {
         [[ZPPServerManager sharedManager] checkPaymentWithID:self.paymentOrder.identifier
@@ -195,11 +192,10 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
                     UIViewController *vc = [self.storyboard
                         instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
-                    
-                    [self.navigationController pushViewController:vc animated:YES];
-                    
-                    [self.order clearOrder];
 
+                    [self.navigationController pushViewController:vc animated:YES];
+
+                    [self.order clearOrder];
                 }
 
             }
@@ -234,17 +230,21 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
 - (void)addTimePicker:(UIButton *)sender {
     NSMutableArray *arr = [NSMutableArray array];
+    
+    NSInteger currentHour = [[NSDate new] hour];
+    NSInteger closeHour = 23;
 
-    NSInteger time = [[NSDate new] hour] > 11 ? [[NSDate new] hour] : 11;
+    NSInteger time =
+        currentHour > 11 && currentHour < closeHour ? currentHour : 11;
 
-    for (int i = time; i < 23; i++) {
+    for (int i = time; i < closeHour; i++) {
         NSString *timeString = [NSString stringWithFormat:@"%@:00 - %@:00", @(i), @(i + 1)];
         [arr addObject:timeString];
     }
 
     // NSArray *colors = [NSArray arrayWithObjects:@"Red", @"Green", @"Blue", @"Orange", nil];
 
-    [ActionSheetStringPicker showPickerWithTitle:@"Select a Color"
+    [ActionSheetStringPicker showPickerWithTitle:@"Выберите время"
         rows:[NSArray arrayWithArray:arr]
         initialSelection:0
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
@@ -252,6 +252,8 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
             [sender setTitle:selectedValue forState:UIControlStateNormal];
             [self addCheckmarkToButton:self.atTimeButton];
+
+          
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {
             NSLog(@"Block Picker Canceled");

@@ -101,10 +101,14 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
                         forControlEvents:UIControlEventTouchUpInside];
             
             cell.commentTV.delegate = self;
-            if(!self.comment){
+            if(!self.order.commentString){
                 self.comment = @"";
                 cell.commentTV.text = ZPPCommentPlaceHoldeText;
                 cell.commentTV.textColor = [UIColor lightGrayColor];
+            } else {
+                cell.commentTV.text = self.order.commentString;
+                cell.actionButton.hidden = YES;
+                cell.commentTV.editable = NO;
             }
          //   cell.commentTV.textColor = [UIColor lightGrayColor];
 
@@ -123,6 +127,11 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
     //    [cell.actionButton addTarget:self
     //                          action:@selector(showCommentCell:)
     //                forControlEvents:UIControlEventTouchUpInside];
+    
+  //  if (self.order.starValue != 0) {
+        cell.starView.value = self.order.starValue;
+  //      cell.starView.enabled = NO;
+  //  }
 
     cell.starView.shouldBeginGestureRecognizerBlock = ^BOOL(UIGestureRecognizer *gr) {
 
@@ -154,11 +163,14 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
 
 - (void)valueChanged:(id)sender {
     if ([sender isKindOfClass:[HCSStarRatingView class]]) {
-        HCSStarRatingView *stars = (HCSStarRatingView *)sender;
+        
+        HCSStarRatingView *ratingView = (HCSStarRatingView *)sender;
+        self.order.starValue = ratingView.value;
+  //      HCSStarRatingView *stars = (HCSStarRatingView *)sender;
 
-        if (stars.value) {
-            stars.enabled = NO;
-        }
+//        if (stars.value) {
+//            stars.enabled = NO;
+//        }
     }
 }
 
@@ -198,9 +210,12 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
                 sender.hidden = YES;
                 [cell.commentTV resignFirstResponder];
                 cell.commentTV.editable = NO;
+                
+                self.order.commentString = comment;
+                
 
-                // cell.commentTV.ena
-
+                
+            
             }
             onFailure:^(NSError *error, NSInteger statusCode) {
                 [sender stopIndication];

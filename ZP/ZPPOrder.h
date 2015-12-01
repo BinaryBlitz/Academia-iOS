@@ -26,6 +26,9 @@ typedef NS_ENUM(NSInteger, ZPPOrderStatus) {
 @property (strong, nonatomic) NSDate *date;
 @property (strong, nonatomic) ZPPAddress *address;
 
+@property (assign, nonatomic) double starValue;
+@property (strong, nonatomic) NSString *commentString;
+
 @property (strong, nonatomic) NSString *identifier;
 @property (strong, nonatomic) NSString *alfaNumber;
 @property (assign, nonatomic) ZPPOrderStatus orderStatus;

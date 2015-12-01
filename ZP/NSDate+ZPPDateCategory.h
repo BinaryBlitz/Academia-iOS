@@ -14,4 +14,6 @@
 - (NSString *)dateStringFromDate;
 + (NSDate *)customDateFromString:(NSString *)dateAsString;
 
+- (NSString *)serverFormattedString;
+
 @end

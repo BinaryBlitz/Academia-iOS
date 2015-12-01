@@ -56,7 +56,17 @@
     
     return [df dateFromString:dateString];
     
+}
+
+- (NSString *)serverFormattedString {
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
     
+    df.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    
+    [df setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    df.locale = [NSLocale systemLocale];
+    
+    return [df stringFromDate:self];
 }
 
 @end
