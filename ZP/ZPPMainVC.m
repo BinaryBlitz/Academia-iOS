@@ -24,6 +24,8 @@
 #import <VBFPopFlatButton.h>
 #import <JSBadgeView.h>
 
+#import "ZPPDish.h"
+
 static float kZPPButtonDiametr = 40.0f;
 static float kZPPButtonOffset = 15.0f;
 
@@ -62,6 +64,19 @@ static float kZPPButtonOffset = 15.0f;
         } onFailure:^(NSError *error, NSInteger statusCode){
 
         }];
+
+        // test
+
+//        ZPPDish *d = [[ZPPDish alloc] initWithName:@"dish"
+//                                            dishID:@"1"
+//                                          subtitle:@"no"
+//                                   dishDescription:@"descr"
+//                                             price:@(100)
+//                                            imgURL:nil
+//                                       ingridients:nil
+//                                            badges:nil];
+//
+//        [self.order addItem:d];
 
         [self setOrderCount];
 
@@ -419,7 +434,7 @@ navigation
 - (void)setOrderCount:(NSInteger)count {
     if (count > 0) {
         self.orderCountBadgeView.badgeText = [NSString stringWithFormat:@"%ld", count];
-        
+
         NSString *destString = [NSString stringWithFormat:@"ЗАКАЗЫ (%ld)", count];
         [self.mainMenu.ordersButton setTitle:destString forState:UIControlStateNormal];
     } else {

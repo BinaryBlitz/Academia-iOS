@@ -135,6 +135,7 @@
     self.items = nil;
     self.identifier = nil;
     self.address = nil;
+    self.date = nil;
 }
 
 @end

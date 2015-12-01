@@ -39,7 +39,7 @@
 - (void)POSTOrder:(ZPPOrder *)order
         onSuccess:(void (^)(ZPPOrder *order))success
         onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    NSDictionary *orderDict = [ZPPOrderHelper orderDictFromDict:order];
+    NSDictionary *orderDict = [ZPPOrderHelper orderDictFromOrder:order];
 
     NSDictionary *params =
         @{ @"order" : orderDict,

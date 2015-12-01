@@ -19,7 +19,7 @@
 
 @implementation ZPPOrderHelper
 
-+ (NSDictionary *)orderDictFromDict:(ZPPOrder *)order {
++ (NSDictionary *)orderDictFromOrder:(ZPPOrder *)order {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 
     dict[@"address"] = [order.address formatedDescr];
@@ -31,6 +31,10 @@
     dict[@"line_items_attributes"] = [NSArray arrayWithArray:tmpArr];
     dict[@"latitude"] = @(order.address.coordinate.latitude);
     dict[@"longitude"] = @(order.address.coordinate.longitude);
+    
+    if(order.date) {
+        dict[@"scheduled_for"] = [order.date serverFormattedString];
+    }
 
     NSLog(@"order dict %@", dict);
 
