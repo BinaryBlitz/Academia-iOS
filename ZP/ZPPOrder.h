@@ -17,7 +17,6 @@ typedef NS_ENUM(NSInteger, ZPPOrderStatus) {
     ZPPOrderStatusNotSended
 };
 
-
 @class ZPPAddress;
 //@class ZPPCreditCard;
 @class ZPPOrderItem;
@@ -34,12 +33,13 @@ typedef NS_ENUM(NSInteger, ZPPOrderStatus) {
 @property (strong, nonatomic) NSString *alfaNumber;
 @property (assign, nonatomic) ZPPOrderStatus orderStatus;
 
-
 - (instancetype)initWithIdentifier:(NSString *)identifier
                              items:(NSMutableArray *)items
                            address:(ZPPAddress *)address
                        orderStatus:(ZPPOrderStatus)status
-                              date:(NSDate *)date;
+                              date:(NSDate *)date
+                            review:(NSString *)review
+                            rating:(float)rating;
 
 - (void)addItem:(id<ZPPItemProtocol>)item;
 

@@ -20,6 +20,8 @@
     
     self.starView.tintColor = [UIColor blackColor]; //[UIColor colorWithRed:1 green:215.0/255.0 blue:0 alpha:1.0];
     
+    self.starView.minimumValue = -1.f;
+    
 //    NSDictionary *underlineAttribute =
 //    @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) };
 //    NSAttributedString *attrStr =

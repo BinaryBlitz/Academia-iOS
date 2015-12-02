@@ -31,8 +31,8 @@
     dict[@"line_items_attributes"] = [NSArray arrayWithArray:tmpArr];
     dict[@"latitude"] = @(order.address.coordinate.latitude);
     dict[@"longitude"] = @(order.address.coordinate.longitude);
-    
-    if(order.date) {
+
+    if (order.date) {
         dict[@"scheduled_for"] = [order.date serverFormattedString];
     }
 
@@ -41,22 +41,29 @@
     return [NSDictionary dictionaryWithDictionary:dict];
 }
 
-
 //- (NSArray *)ordersArrFromDicts:(NSArray *)arr {
 //    NSMutableArray *tmp = [NSMutableArray array];
 //    for (NSDictionary *d in arr) {
-//        
+//
 //        ZPPOrder *ord = [[self class] parseOrderFromDict:d];
-//        
+//
 //        [tmp addObject:ord];
-//        
+//
 //    }
-//    
+//
 //    return [NSArray arrayWithArray:tmp];
 //}
 
 + (ZPPOrder *)parseOrderFromDict:(NSDictionary *)dict {
     NSString *identifier = dict[@"id"];
+
+    NSString *review = dict[@"review"];
+
+    float rating = 0;
+    if (dict[@"rating"] && ![dict[@"rating"] isEqual:[NSNull null]]) {
+        rating = [dict[@"rating"] floatValue];
+    }
+
     NSArray *lineAttributes = dict[@"line_items"];
 
     NSMutableArray *tmp = [NSMutableArray array];
@@ -64,11 +71,11 @@
         ZPPOrderItem *oi = [[self class] orderItemFromDict:d];
         [tmp addObject:oi];
     }
-    
+
     NSString *dateString = dict[@"created_at"];
-    
+
     NSDate *date = [NSDate customDateFromString:dateString];
-    
+
     ZPPAddress *address = [ZPPAddressHelper addressFromDict:dict];
     ZPPOrderStatus status = [[self class] statusForString:dict[@"status"]];
 
@@ -76,7 +83,9 @@
                                                      items:tmp
                                                    address:address
                                                orderStatus:status
-                                                      date:date];
+                                                      date:date
+                                                    review:review
+                                                    rating:rating];
 
     return order;
 }
@@ -145,13 +154,11 @@
 + (NSArray *)parseOrdersFromDicts:(NSArray *)dicts {
     NSMutableArray *tmp = [NSMutableArray array];
     for (NSDictionary *d in dicts) {
-        
         ZPPOrder *ord = [[self class] parseOrderFromDict:d[@"order"]];
-        
+
         [tmp addObject:ord];
-        
     }
-    
+
     return [NSArray arrayWithArray:tmp];
 }
 

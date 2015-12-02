@@ -18,9 +18,11 @@
 #import "ZPPConsts.h"
 
 #import <DateTools.h>
-#import "RMDateSelectionViewController.h"
+//#import "RMDateSelectionViewController.h"
 
 #import "NSDate+ZPPDateCategory.h"
+
+#import "ZPPNoInternetConnectionVC.h"
 
 //#import "ZPPPaymentManager.h"
 #import "ZPPServerManager+ZPPOrderServerManager.h"
@@ -36,7 +38,9 @@
 
 static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
-@interface ZPPOrderTimeChooserVC () <ZPPPaymentViewDelegate>
+static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnectionVCIdentifier";
+
+@interface ZPPOrderTimeChooserVC () <ZPPPaymentViewDelegate, ZPPNoInternetDelegate>
 @property (strong, nonatomic) ZPPOrder *order;
 
 @property (strong, nonatomic) ZPPOrder *paymentOrder;
@@ -47,6 +51,8 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 @property (strong, nonatomic) NSString *bindingID;
 
 @property (assign, nonatomic) BOOL once;
+
+@property (strong, nonatomic) UIViewController *viewControllerToHide;
 
 @end
 
@@ -65,9 +71,9 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
     self.totalPriceLabel.text =
         [NSString stringWithFormat:@"ВАШ ЗАКАЗ НА: %@%@", @(self.order.totalPrice),
                                    ZPPRoubleSymbol];
-    
-    if(self.order.totalPrice < 1000){
-        self.deliveryLabel.text = [NSString stringWithFormat:@"+доставка 200%@",ZPPRoubleSymbol];
+
+    if (self.order.totalPrice < 1000) {
+        self.deliveryLabel.text = [NSString stringWithFormat:@"+доставка 200%@", ZPPRoubleSymbol];
     } else {
         self.deliveryLabel.text = @"";
     }
@@ -81,7 +87,7 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
+
     self.order.date = nil;
 }
 
@@ -168,9 +174,6 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
     [self.makeOrderButton startIndicatingWithType:UIActivityIndicatorViewStyleGray];
     [[ZPPServerManager sharedManager] POSTOrder:self.order
         onSuccess:^(ZPPOrder *ord) {
-            //  [self.makeOrderButton stopIndication];
-            // self.order = ord;
-
             self.paymentOrder = ord;
 
             [[ZPPServerManager sharedManager] POSTPaymentWithOrderID:ord.identifier
@@ -194,33 +197,41 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 - (void)didShowPageWithUrl:(NSURL *)url sender:(UIViewController *)vc {
     NSString *urlString = url.absoluteString;
     if ([urlString containsString:@"finish"]) {
-        [[ZPPServerManager sharedManager] checkPaymentWithID:self.paymentOrder.identifier
-            onSuccess:^(NSString *sta) {
-
-                if ([sta isEqualToString:@"Успешно"]) {
-                    [vc dismissViewControllerAnimated:YES
-                                           completion:^{
-
-                                           }];
-
-                    UIViewController *vc = [self.storyboard
-                        instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
-
-                    [self.navigationController pushViewController:vc animated:YES];
-
-                    [self.order clearOrder];
-                }
-
-            }
-            onFailure:^(NSError *error, NSInteger statusCode){
-
-            }];
-
-        //        [vc dismissViewControllerAnimated:YES
-        //                                        completion:^{
-        //
-        //                                        }];
+        [self checkOrderSender:vc];
     }
+}
+
+- (void)checkOrderSender:(UIViewController *)vc {
+    [[ZPPServerManager sharedManager] checkPaymentWithID:self.paymentOrder.identifier
+        onSuccess:^(NSString *sta) {
+
+            if ([sta isEqualToString:@"Успешно"]) {
+                [vc dismissViewControllerAnimated:YES
+                                       completion:^{
+
+                                       }];
+
+                UIViewController *vc = [self.storyboard
+                    instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
+
+                [self.navigationController pushViewController:vc animated:YES];
+                self.paymentOrder = nil;
+
+                [self.order clearOrder];
+            }
+
+        }
+        onFailure:^(NSError *error, NSInteger statusCode) {
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            ZPPNoInternetConnectionVC *noInternetConnection =
+                [sb instantiateViewControllerWithIdentifier:ZPPNoInternetConnectionVCIdentifier];
+            noInternetConnection.noInternetDelegate = self;
+            [vc presentViewController:noInternetConnection animated:YES completion:nil];
+            self.viewControllerToHide = vc;
+
+            //  [vc showNoInternetVC];
+
+        }];
 }
 
 - (void)showWebViewWithURl:(NSURL *)url {
@@ -230,13 +241,13 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
     UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:wc];
 
-    //    [navC addCustomCloseButton];
     navC.navigationBar.barTintColor = [UIColor blackColor];
 
     [self presentViewController:navC animated:YES completion:nil];
 }
 
-- (void)checkOrderStatus {
+- (void)tryAgainSender:(id)sender {
+    [self checkOrderSender:self.viewControllerToHide];
 }
 
 #pragma mark - time shooser
@@ -245,11 +256,11 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
     NSMutableArray *arr = [NSMutableArray array];
     NSMutableArray *timeArr = [NSMutableArray array];
 
-    NSDate *datee = [NSDate new];//[NSDate dateWithYear:2015 month:12 day:1 hour:10 minute:59 second:13];
+    NSDate *datee =
+        [NSDate new];  //[NSDate dateWithYear:2015 month:12 day:1 hour:10 minute:59 second:13];
     NSInteger currentHour = [datee hour] + 1;  //[[NSDate new] hour] + 1 ;
     NSInteger closeHour = 23;
     NSInteger openHour = 11;
-    
 
     NSInteger time = currentHour > openHour && currentHour < closeHour ? currentHour : openHour;
 
@@ -259,7 +270,6 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
         [arr addObject:timeString];
     }
 
-    // NSArray *colors = [NSArray arrayWithObjects:@"Red", @"Green", @"Blue", @"Orange", nil];
     BOOL tomorrow = currentHour >= closeHour;
 
     NSString *descrString;
@@ -282,16 +292,16 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
             d = [d dateBySubtractingMinutes:[d minute]];
             NSInteger selectedHour = [timeArr[selectedIndex] integerValue];
-            
+
             if (tomorrow) {
-                d = [d dateByAddingHours:(24 - closeHour +selectedHour + 1)];
+                d = [d dateByAddingHours:(24 - closeHour + selectedHour + 1)];
             } else {
                 d = [d dateByAddingHours:(selectedHour - currentHour + 1)];
             }
-           // NSString *str = [d serverFormattedString];
+            NSString *str = [d serverFormattedString];
 
-          //  NSLog(@"date string %@", str);
-            
+            NSLog(@"date string %@", str);
+
             self.order.date = d;
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {

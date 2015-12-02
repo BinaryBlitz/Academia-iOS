@@ -96,34 +96,100 @@
 
     NSString *urlString = [NSString stringWithFormat:@"orders/%@/payment_status.json", orderID];
 
+    //    static NSInteger count = 0;
+    //
+    //    count++;
+    //
+    //    NSLog(@"%ld", count);
+    //
+    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)),
+    //                   dispatch_get_main_queue(), ^{
+    //                       if (count < 2) {
+    //                           if (failure) {
+    //                               failure(nil, 500);
+    //                           }
+    //                       } else {
+    //                           if (success) {
+    //                               success(@"Успешно");
+    //                           }
+    //                       }
+    //                   });
+
     [self.requestOperationManager GET:urlString
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-            
+
             NSLog(@"payment status response %@", responseObject);
-            
+
             NSString *s = responseObject[@"status"];
-            if(success) {
+            if (success) {
                 success(s);
             }
 
         }
-        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error){
+        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
 
             [[self class] failureWithBlock:failure error:error operation:operation];
         }];
 }
 
+#pragma mark - review
 
-- (void)sendComment:(NSString *)comment forOrderWithID:(NSString *)orderID onSuccess:(void (^)())success
+- (void)sendComment:(NSString *)comment
+     forOrderWithID:(NSString *)orderID
+          onSuccess:(void (^)())success
           onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if(success) {
-            success();
+    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)),
+    //                   dispatch_get_main_queue(), ^{
+    //                       if (success) {
+    //                           success();
+    //                       }
+    //                   });
+
+    NSDictionary *params = @{
+        @"api_token" : [ZPPUserManager sharedInstance].user.apiToken,
+        @"order" : @{@"review" : comment}
+    };
+
+    NSString *urlString = [NSString stringWithFormat:@"orders/%@", orderID];
+
+    [self.requestOperationManager PATCH:urlString
+        parameters:params
+        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+
+            if (success) {
+                success();
+            }
         }
-    });
-    
+        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+
+            [[self class] failureWithBlock:failure error:error operation:operation];
+        }];
+}
+
+- (void)patchStarsWithValue:(NSNumber *)starValue
+             forOrderWithID:(NSString *)orderID
+                  onSuccess:(void (^)())success
+                  onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    NSDictionary *params = @{
+        @"api_token" : [ZPPUserManager sharedInstance].user.apiToken,
+        @"order" : @{@"rating" : starValue}
+    };
+
+    NSString *urlString = [NSString stringWithFormat:@"orders/%@", orderID];
+
+    [self.requestOperationManager PATCH:urlString
+        parameters:params
+        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+
+            if (success) {
+                success();
+            }
+        }
+        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+
+            [[self class] failureWithBlock:failure error:error operation:operation];
+        }];
 }
 
 @end

@@ -37,9 +37,9 @@
     
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     
-    df.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    df.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZ";
     
-    [df setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+//    [df setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
     df.locale = [NSLocale systemLocale];
     
     return [df dateFromString:dateAsString];
@@ -49,21 +49,34 @@
 
 + (NSDate *)customDateFromstringWithRegion:(NSString *)dateString {
     
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ";
-   // [df setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-    df.locale = [NSLocale systemLocale];
+//    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+//    df.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ";
+//    [df setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+//    df.locale = [NSLocale systemLocale];
+//    
+//    return [df dateFromString:dateString];
     
-    return [df dateFromString:dateString];
+//    NSString *dateString = @"2013-04-18T08:49:58.157+0000";
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    // Always use this locale when parsing fixed format date strings
+    NSLocale *posix = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [formatter setLocale:posix];
+    NSDate *date = [formatter dateFromString:dateString];
+    NSLog(@"date = %@", date);
+    
+    return date;
+    
+    
     
 }
 
 - (NSString *)serverFormattedString {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     
-    df.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    df.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZ";
     
-    [df setTimeZone:[NSTimeZone localTimeZone]];
+    [df setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
     df.locale = [NSLocale systemLocale];
     
     return [df stringFromDate:self];

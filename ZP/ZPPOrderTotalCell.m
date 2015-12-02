@@ -29,32 +29,39 @@
                                    @([order totalPriceWithDelivery]), ZPPRoubleSymbol];
 
     if ([order deliveryIncluded] && order.orderStatus == ZPPOrderStatusNotSended) {
-        NSString *upperstr = [NSString stringWithFormat:@"Включая доставку 200%@", ZPPRoubleSymbol];
-        // NSInteger upperStrLength = str.length;
-
-        // NSAttributedString *atrStr =
-        // if (order.orderStatus == ZPPOrderStatusNotSended) {
-        NSInteger toFreeDelivery = 1000 - order.totalPrice;
-        NSString *toFreeDeliveryString = [NSString
-            stringWithFormat:@"\n до бесплатной доставки %ld%@", toFreeDelivery, ZPPRoubleSymbol];
-        NSString *resString = [upperstr stringByAppendingString:toFreeDeliveryString];
-        //    }
-
-        NSMutableAttributedString *attrStr =
-            [[NSMutableAttributedString alloc] initWithString:resString];
-
-        UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
-
-        [attrStr addAttribute:NSFontAttributeName
-                        value:font
-                        range:NSMakeRange(upperstr.length , toFreeDeliveryString.length)];
-
-        self.deliveryLabel.attributedText = attrStr;
+        
+        
+//        NSString *upperstr = [NSString stringWithFormat:@"+ доставка 200%@", ZPPRoubleSymbol];
+        
+        
+        self.deliveryPriceLabel.text = @"+ доставка 200₽";
+        self.deliveryLabel.text = @"Бесплатная доставка от 1000₽";
+//        // NSInteger upperStrLength = str.length;
+//
+//        // NSAttributedString *atrStr =
+//        // if (order.orderStatus == ZPPOrderStatusNotSended) {
+//    //    NSInteger toFreeDelivery = 1000 - order.totalPrice;
+//        NSString *toFreeDeliveryString = [NSString
+//            stringWithFormat:@"\n Бесплатная доставка от 1000%@", ZPPRoubleSymbol];
+//        NSString *resString = [upperstr stringByAppendingString:toFreeDeliveryString];
+//        //    }
+//
+//        NSMutableAttributedString *attrStr =
+//            [[NSMutableAttributedString alloc] initWithString:resString];
+//
+//        UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+//
+//        [attrStr addAttribute:NSFontAttributeName
+//                        value:font
+//                        range:NSMakeRange(upperstr.length , toFreeDeliveryString.length)];
+//
+//        self.deliveryLabel.attributedText = attrStr;
 
         //        self.deliveryLabel.text =
         //            str;  //[NSString stringWithFormat:@"+доставка 200%@",ZPPRoubleSymbol];
     } else {
         self.deliveryLabel.text = @"";
+        self.deliveryPriceLabel.text = @"";
     }
 }
 

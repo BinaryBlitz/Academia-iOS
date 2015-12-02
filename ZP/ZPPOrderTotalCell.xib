@@ -24,7 +24,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ВАШ ЗАКАЗ НА:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AC-gD-fI0">
-                        <rect key="frame" x="58" y="27" width="230" height="21"/>
+                        <rect key="frame" x="58" y="43" width="230" height="21"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Ov4-0m-6fq"/>
@@ -34,9 +34,16 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fsk-jO-E31">
-                        <rect key="frame" x="8" y="52" width="330" height="20.5"/>
+                        <rect key="frame" x="8" y="72" width="330" height="17"/>
                         <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGV-YY-2p4">
+                        <rect key="frame" x="152" y="19" width="42" height="20"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -47,11 +54,13 @@
                     <constraint firstAttribute="trailingMargin" secondItem="hvd-NF-TZp" secondAttribute="trailing" constant="50" id="15V-Ll-TI1"/>
                     <constraint firstItem="Fsk-jO-E31" firstAttribute="trailing" secondItem="bPK-HI-o6E" secondAttribute="trailingMargin" id="7uQ-JU-dvy"/>
                     <constraint firstItem="hvd-NF-TZp" firstAttribute="top" secondItem="bPK-HI-o6E" secondAttribute="topMargin" id="8jf-4M-ovp"/>
+                    <constraint firstItem="HGV-YY-2p4" firstAttribute="top" secondItem="hvd-NF-TZp" secondAttribute="bottom" constant="8" id="EKA-hv-wK3"/>
                     <constraint firstAttribute="trailingMargin" secondItem="4AC-gD-fI0" secondAttribute="trailing" constant="50" id="NfK-ng-vlc"/>
+                    <constraint firstItem="HGV-YY-2p4" firstAttribute="centerX" secondItem="bPK-HI-o6E" secondAttribute="centerX" id="WwQ-9l-tR1"/>
+                    <constraint firstItem="4AC-gD-fI0" firstAttribute="top" secondItem="HGV-YY-2p4" secondAttribute="bottom" constant="4" id="bqA-dB-fwT"/>
                     <constraint firstItem="hvd-NF-TZp" firstAttribute="leading" secondItem="bPK-HI-o6E" secondAttribute="leadingMargin" constant="50" id="fcJ-B3-7lc"/>
                     <constraint firstItem="Fsk-jO-E31" firstAttribute="leading" secondItem="bPK-HI-o6E" secondAttribute="leadingMargin" id="fp9-nn-XqZ"/>
-                    <constraint firstItem="4AC-gD-fI0" firstAttribute="top" secondItem="hvd-NF-TZp" secondAttribute="bottom" constant="16" id="iTa-nz-G1x"/>
-                    <constraint firstItem="Fsk-jO-E31" firstAttribute="top" secondItem="4AC-gD-fI0" secondAttribute="bottom" constant="4" id="piV-Te-xgU"/>
+                    <constraint firstItem="Fsk-jO-E31" firstAttribute="top" secondItem="4AC-gD-fI0" secondAttribute="bottom" constant="8" id="piV-Te-xgU"/>
                     <constraint firstItem="4AC-gD-fI0" firstAttribute="leading" secondItem="bPK-HI-o6E" secondAttribute="leadingMargin" constant="50" id="rIw-Do-hCy"/>
                 </constraints>
             </tableViewCellContentView>
@@ -59,6 +68,7 @@
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="deliveryLabel" destination="Fsk-jO-E31" id="ZPm-x4-Fgm"/>
+                <outlet property="deliveryPriceLabel" destination="HGV-YY-2p4" id="gfB-27-ibb"/>
                 <outlet property="priceLabel" destination="4AC-gD-fI0" id="JH5-Zx-ZOs"/>
             </connections>
             <point key="canvasLocation" x="211" y="234.5"/>

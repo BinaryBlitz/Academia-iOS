@@ -99,9 +99,9 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
             [cell.actionButton addTarget:self
                                   action:@selector(sendComment:)
                         forControlEvents:UIControlEventTouchUpInside];
-            
+
             cell.commentTV.delegate = self;
-            if(!self.order.commentString){
+            if (!self.order.commentString) {
                 self.comment = @"";
                 cell.commentTV.text = ZPPCommentPlaceHoldeText;
                 cell.commentTV.textColor = [UIColor lightGrayColor];
@@ -110,7 +110,7 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
                 cell.actionButton.hidden = YES;
                 cell.commentTV.editable = NO;
             }
-         //   cell.commentTV.textColor = [UIColor lightGrayColor];
+            //   cell.commentTV.textColor = [UIColor lightGrayColor];
 
             return cell;
         }
@@ -124,19 +124,7 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
                       action:@selector(valueChanged:)
             forControlEvents:UIControlEventValueChanged];
 
-    //    [cell.actionButton addTarget:self
-    //                          action:@selector(showCommentCell:)
-    //                forControlEvents:UIControlEventTouchUpInside];
-    
-  //  if (self.order.starValue != 0) {
-        cell.starView.value = self.order.starValue;
-  //      cell.starView.enabled = NO;
-  //  }
-
-    cell.starView.shouldBeginGestureRecognizerBlock = ^BOOL(UIGestureRecognizer *gr) {
-
-        return cell.starView.value == 0.0;
-    };
+    cell.starView.value = self.order.starValue;
 
     return cell;
 }
@@ -163,14 +151,15 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
 
 - (void)valueChanged:(id)sender {
     if ([sender isKindOfClass:[HCSStarRatingView class]]) {
-        
         HCSStarRatingView *ratingView = (HCSStarRatingView *)sender;
-        self.order.starValue = ratingView.value;
-  //      HCSStarRatingView *stars = (HCSStarRatingView *)sender;
+        // self.order.starValue = ratingView.value;
 
-//        if (stars.value) {
-//            stars.enabled = NO;
-//        }
+        [self sendStars:ratingView.value sender:ratingView];
+        //      HCSStarRatingView *stars = (HCSStarRatingView *)sender;
+
+        //        if (stars.value) {
+        //            stars.enabled = NO;
+        //        }
     }
 }
 
@@ -192,6 +181,28 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
     }
 }
 
+- (void)sendStars:(float)starValue sender:(HCSStarRatingView *)starView {
+    [[ZPPServerManager sharedManager] patchStarsWithValue:@(starValue)
+        forOrderWithID:self.order.identifier
+        onSuccess:^{
+            self.order.starValue = starValue;
+        }
+        onFailure:^(NSError *error, NSInteger statusCode) {
+            [self showWarningWithText:ZPPNoInternetConnectionMessage];
+            [self.tableView reloadData];
+
+//            starView.value = self.order.starValue;
+//
+//            NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:2];
+//            ZPPStarsCell *cell = [self.tableView cellForRowAtIndexPath:ip];
+//
+//            if (cell) {
+//                
+//                cell.starView.value = 0.f;
+//            }
+        }];
+}
+
 - (void)sendComment:(UIButton *)sender {
     [sender startIndicatingWithType:UIActivityIndicatorViewStyleGray];
 
@@ -210,12 +221,9 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
                 sender.hidden = YES;
                 [cell.commentTV resignFirstResponder];
                 cell.commentTV.editable = NO;
-                
-                self.order.commentString = comment;
-                
 
-                
-            
+                self.order.commentString = comment;
+
             }
             onFailure:^(NSError *error, NSInteger statusCode) {
                 [sender stopIndication];

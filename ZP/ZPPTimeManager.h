@@ -17,7 +17,7 @@
 + (ZPPTimeManager *)sharedManager;
 
 - (void)configureWithDict:(NSDictionary *)dict;
-- (void)resetTimeManager;
+//- (void)resetTimeManager;
 
 
 

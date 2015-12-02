@@ -97,11 +97,11 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
             [self showSuccessWithText:@"Код добавлен"];
 
             self.codeTextField.text = @"";
-            
+
             [[ZPPServerManager sharedManager] getCurrentUserOnSuccess:^(ZPPUser *user) {
                 [ZPPUserManager sharedInstance].user.balance = user.balance;
-            } onFailure:^(NSError *error, NSInteger statusCode) {
-                
+            } onFailure:^(NSError *error, NSInteger statusCode){
+
             }];
         }
         onFailure:^(NSError *error, NSInteger statusCode) {
@@ -300,7 +300,11 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
 }
 
 - (NSString *)promocodeInviteText {
-    return [NSString stringWithFormat:@"Промокод %@ ага", self.promocode];  // redo
+    return [NSString
+        stringWithFormat:
+            @"Используй мой промокод, %@, и получи 200%@ в приложении "
+            @"Zdorovoe " @"Pitanie!",
+            self.promocode, ZPPRoubleSymbol];  // redo
 }
 
 @end
