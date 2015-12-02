@@ -31,7 +31,9 @@ static NSInteger ZPPDeliveryPrice = 200;
                              items:(NSMutableArray *)items
                            address:(ZPPAddress *)address
                        orderStatus:(ZPPOrderStatus)status
-                              date:(NSDate *)date {
+                              date:(NSDate *)date
+                            review:(NSString *)review
+                            rating:(float)rating {
     self = [super init];
     if (self) {
         self.identifier = identifier;
@@ -39,6 +41,8 @@ static NSInteger ZPPDeliveryPrice = 200;
         self.address = address;
         self.orderStatus = status;
         self.date = date;
+        self.starValue = rating;
+        self.commentString = review;
     }
     return self;
 }
@@ -120,7 +124,6 @@ static NSInteger ZPPDeliveryPrice = 200;
     }
     return price;
 }
-
 
 - (BOOL)deliveryIncluded {
     return [self totalPrice] != [self totalPriceWithDelivery];

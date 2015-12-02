@@ -26,9 +26,17 @@
                  onSuccess:(void (^)(NSString *sta))success
                  onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
+
+#pragma mark - review
+
 - (void)sendComment:(NSString *)comment
      forOrderWithID:(NSString *)orderID
           onSuccess:(void (^)())success
           onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
+- (void)patchStarsWithValue:(NSNumber *)starValue
+             forOrderWithID:(NSString *)orderID
+                  onSuccess:(void (^)())success
+                  onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
 @end

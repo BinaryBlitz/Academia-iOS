@@ -52,16 +52,22 @@
     [self.view addSubview:webView];
 
     self.webView = webView;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    
     NSURLRequest *nsrequest = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:nsrequest];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+//    NSURLRequest *nsrequest = [NSURLRequest requestWithURL:self.url];
+//    [self.webView loadRequest:nsrequest];
+}
+
 - (void)configureWithURL:(NSURL *)url {
     self.url = url;
+    
+    NSURLRequest *nsrequest = [NSURLRequest requestWithURL:self.url];
+    [self.webView loadRequest:nsrequest];
 
     //    NSURLRequest *nsrequest = [NSURLRequest requestWithURL:url];
     //    [self.webView loadRequest:nsrequest];

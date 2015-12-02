@@ -32,7 +32,11 @@ NSString *const ZPPDishBadges = @"badges";
     NSString *subtitle = dict[ZPPDishSubtitle];
     NSNumber *dishPrice = dict[ZPPDishPrice];
     NSString *imgUrlAppend = dict[ZPPDishImgURL];
-    NSString *dishImgURL = [ZPPServerBaseUrl stringByAppendingString:imgUrlAppend];
+    NSString *dishImgURL;
+    if(imgUrlAppend && ![imgUrlAppend isEqual:[NSNull null]]) {
+        dishImgURL = [ZPPServerBaseUrl stringByAppendingString:imgUrlAppend];
+    }
+   // NSString *dishImgURL = [ZPPServerBaseUrl stringByAppendingString:imgUrlAppend];
     NSArray *ingsTmp = dict[ZPPDishIngridients];
     NSArray *ingridients = [ZPPIngridientHelper parseIngridients:ingsTmp];
     NSArray *badgesDicts = dict[ZPPDishBadges];
