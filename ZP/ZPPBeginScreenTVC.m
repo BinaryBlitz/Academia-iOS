@@ -75,7 +75,7 @@ navigation
     cell.contentView.backgroundColor = [UIColor blackColor];
 
     cell.backImageView.image = [UIImage imageNamed:@"back3"];
-    if ([ZPPTimeManager sharedManager].dishesForToday) {
+    if ([ZPPTimeManager sharedManager].dishesForToday || [self currentState] == ZPPCurrentBeginStateNotLoged) {
         [cell.beginButton setTitle:[self buttonText] forState:UIControlStateNormal];
     } else {
         cell.beginButton.hidden = YES;
