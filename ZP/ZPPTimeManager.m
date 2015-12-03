@@ -8,12 +8,14 @@
 
 #import "ZPPTimeManager.h"
 #import "NSDate+ZPPDateCategory.h"
+#
 
 @interface ZPPTimeManager ()
 
 @property (assign, nonatomic) BOOL isOpen;
 @property (strong, nonatomic) NSDate *openTime;
 @property (strong, nonatomic) NSDate *currentTime;
+@property (assign, nonatomic) BOOL dishesForToday;
 
 @end
 
@@ -55,6 +57,17 @@
     }
     if (![curentTimeString isEqual:[NSNull null]]) {
         self.currentTime = [NSDate customDateFromString:curentTimeString];
+    }
+
+    NSArray *lunches = dict[@"lunches"];
+    NSArray *dishes = dict[@"dishes"];
+
+    if (![lunches isEqual:[NSNull null]] && lunches.count > 0 ) {
+        self.dishesForToday = YES;
+    }
+    
+    if(![dishes isEqual:[NSNull null]] && dishes.count > 0) {
+        self.dishesForToday = YES;
     }
 }
 

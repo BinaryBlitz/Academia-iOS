@@ -13,6 +13,7 @@
 @property (assign, nonatomic, readonly) BOOL isOpen;
 @property (strong, nonatomic, readonly) NSDate *openTime;
 @property (strong, nonatomic, readonly) NSDate *currentTime;
+@property (assign, nonatomic, readonly) BOOL dishesForToday;
 
 + (ZPPTimeManager *)sharedManager;
 
