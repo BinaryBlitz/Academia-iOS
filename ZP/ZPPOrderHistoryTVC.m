@@ -180,6 +180,7 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
 //    if(self.onTheWayOrders) {
 //        return;
 //    }
+    
     NSMutableArray *onTheWayOrders = [NSMutableArray array];
     NSMutableArray *payedOrders = [NSMutableArray array];
     

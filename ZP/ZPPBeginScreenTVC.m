@@ -75,7 +75,11 @@ navigation
     cell.contentView.backgroundColor = [UIColor blackColor];
 
     cell.backImageView.image = [UIImage imageNamed:@"back3"];
-    [cell.beginButton setTitle:[self buttonText] forState:UIControlStateNormal];
+    if ([ZPPTimeManager sharedManager].dishesForToday) {
+        [cell.beginButton setTitle:[self buttonText] forState:UIControlStateNormal];
+    } else {
+        cell.beginButton.hidden = YES;
+    }
     cell.descrLabel.text = [self descrBottomText];
     cell.upperDescrLabel.text = [self descrUpperText];
 
@@ -119,6 +123,8 @@ navigation
 
     NSString *morningString = @"Доброе утро, ";
     NSString *nightString = @"Доброй ночи, ";
+    NSString *dayString = @"Добрый день, ";
+    NSString *eveningString = @"Добрый вечер, ";
     NSString *userName = [ZPPUserManager sharedInstance].user.firstName;
     NSDate *d = [NSDate new];
 
@@ -126,10 +132,14 @@ navigation
         case ZPPCurrentBeginStateOpen:
             break;
         case ZPPCurrentBeginStateClosed:
-            if([d hour] < 6) {
+            if ([d hour] < 6) {
                 text = [NSString stringWithFormat:@"%@%@", nightString, userName];
-            } else {
+            } else if ([d hour] < 11) {
                 text = [NSString stringWithFormat:@"%@%@", morningString, userName];
+            } else if ([d hour] < 19) {
+                text = [NSString stringWithFormat:@"%@%@", dayString, userName];
+            } else {
+                text = [NSString stringWithFormat:@"%@%@", eveningString, userName];
             }
             break;
         case ZPPCurrentBeginStateNotLoged:
@@ -150,9 +160,20 @@ navigation
         now = [ZPPTimeManager sharedManager].openTime;
     }
 
-    NSString *makePreorder = [NSString
-        stringWithFormat:@"Мы открываемся %@ в %@", [now dateStringFromDate],
-                         [now timeStringfromDate]];  //@"Мы открываемся в 11:00";
+    NSString *dateString = [now dateStringFromDate];
+    if ([now isTomorrow]) {
+        dateString = @"завтра";
+    } else if ([now isToday]) {
+        dateString = @"сегодня";
+    }
+
+    NSString *makePreorder =
+        [NSString stringWithFormat:@"Мы открываемся %@ в %@", dateString,
+                                   [now timeStringfromDate]];  //@"Мы открываемся в 11:00";
+    
+    if(!dateString || [dateString isEqual:[NSNull null]]) {
+        makePreorder = @"";
+    }
 
     switch (state) {
         case ZPPCurrentBeginStateOpen:
@@ -173,8 +194,6 @@ navigation
 
     ZPPCurrentBeginState state = [self currentState];
 
-    //   NSString *makePreorder = @"СДЕЛАТЬ ПРЕДЗАКАЗ";
-
     switch (state) {
         case ZPPCurrentBeginStateOpen:
             text = @"ПОСМОТРЕТЬ МЕНЮ";
@@ -193,8 +212,8 @@ navigation
 - (ZPPCurrentBeginState)currentState {
     // return ZPPCurrentBeginStateNotLoged;
 
-//    NSDate *now = [ZPPTimeManager sharedManager].currentTime;  //[NSDate new];
-//    NSDate *openTime = [ZPPTimeManager sharedManager].openTime;
+    //    NSDate *now = [ZPPTimeManager sharedManager].currentTime;  //[NSDate new];
+    //    NSDate *openTime = [ZPPTimeManager sharedManager].openTime;
 
     if (![[ZPPUserManager sharedInstance] checkUser]) {
         return ZPPCurrentBeginStateNotLoged;
