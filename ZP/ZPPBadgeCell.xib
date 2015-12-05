@@ -24,11 +24,8 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ird-aK-3VH">
-                        <rect key="frame" x="8" y="134" width="161" height="33"/>
+                        <rect key="frame" x="32" y="134" width="150.5" height="17"/>
                         <animations/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="33" id="wVF-oj-p5z"/>
-                        </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -41,7 +38,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vtu-7S-crG">
-                        <rect key="frame" x="177" y="134" width="161" height="33"/>
+                        <rect key="frame" x="186.5" y="134" width="150" height="17"/>
                         <animations/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -55,7 +52,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bf4-G5-PyF">
-                        <rect key="frame" x="346" y="134" width="161" height="33"/>
+                        <rect key="frame" x="340.5" y="134" width="150.5" height="17"/>
                         <animations/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -64,38 +61,36 @@
                 </subviews>
                 <animations/>
                 <constraints>
+                    <constraint firstItem="vtu-7S-crG" firstAttribute="top" secondItem="Efb-h2-ALC" secondAttribute="bottom" constant="7.5" id="2bM-et-h5Q"/>
+                    <constraint firstItem="vtu-7S-crG" firstAttribute="trailing" secondItem="Efb-h2-ALC" secondAttribute="trailing" constant="16" id="3Wv-im-mg9"/>
                     <constraint firstItem="jSn-CK-J1E" firstAttribute="width" secondItem="K7v-59-9C8" secondAttribute="width" id="3yT-Y1-Jmc"/>
                     <constraint firstItem="jSn-CK-J1E" firstAttribute="height" secondItem="K7v-59-9C8" secondAttribute="height" id="BDL-Dz-n51"/>
-                    <constraint firstItem="vtu-7S-crG" firstAttribute="leading" secondItem="Ird-aK-3VH" secondAttribute="trailing" constant="8" id="DDE-Pr-DM1"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="bf4-G5-PyF" secondAttribute="trailing" constant="8" id="Eta-ZS-2sF"/>
-                    <constraint firstItem="Ird-aK-3VH" firstAttribute="leading" secondItem="aoK-P8-91b" secondAttribute="leadingMargin" id="HOl-39-72h"/>
+                    <constraint firstItem="bf4-G5-PyF" firstAttribute="top" secondItem="jSn-CK-J1E" secondAttribute="bottom" constant="7.5" id="FRZ-65-tki"/>
+                    <constraint firstItem="Ird-aK-3VH" firstAttribute="leading" secondItem="K7v-59-9C8" secondAttribute="leading" constant="-16" id="Gan-xT-O4U"/>
                     <constraint firstItem="K7v-59-9C8" firstAttribute="leading" secondItem="aoK-P8-91b" secondAttribute="leadingMargin" constant="40" id="HhR-v6-olU"/>
                     <constraint firstItem="jSn-CK-J1E" firstAttribute="leading" secondItem="Efb-h2-ALC" secondAttribute="trailing" constant="36" id="Hov-ao-lsl"/>
-                    <constraint firstItem="vtu-7S-crG" firstAttribute="width" secondItem="Ird-aK-3VH" secondAttribute="width" id="JfE-sF-lp2"/>
                     <constraint firstItem="Efb-h2-ALC" firstAttribute="top" secondItem="aoK-P8-91b" secondAttribute="topMargin" id="Ljl-o3-lRg"/>
                     <constraint firstItem="jSn-CK-J1E" firstAttribute="top" secondItem="aoK-P8-91b" secondAttribute="topMargin" id="Lqa-wI-eYQ"/>
-                    <constraint firstItem="bf4-G5-PyF" firstAttribute="top" secondItem="Ird-aK-3VH" secondAttribute="top" id="MuP-Bc-Eut"/>
-                    <constraint firstItem="vtu-7S-crG" firstAttribute="top" secondItem="Ird-aK-3VH" secondAttribute="top" id="ODR-Jn-zW0"/>
-                    <constraint firstItem="Ird-aK-3VH" firstAttribute="top" secondItem="K7v-59-9C8" secondAttribute="bottom" constant="7.5" id="PWK-5U-M1n"/>
+                    <constraint firstItem="bf4-G5-PyF" firstAttribute="leading" secondItem="jSn-CK-J1E" secondAttribute="leading" constant="-16" id="NCw-4m-WiP"/>
                     <constraint firstItem="Efb-h2-ALC" firstAttribute="width" secondItem="K7v-59-9C8" secondAttribute="width" id="Pmw-NZ-hzq"/>
-                    <constraint firstItem="vtu-7S-crG" firstAttribute="bottom" secondItem="Ird-aK-3VH" secondAttribute="bottom" id="QZs-0y-REc"/>
-                    <constraint firstItem="bf4-G5-PyF" firstAttribute="width" secondItem="Ird-aK-3VH" secondAttribute="width" id="Qmg-yD-m6g"/>
                     <constraint firstItem="K7v-59-9C8" firstAttribute="top" secondItem="aoK-P8-91b" secondAttribute="topMargin" id="X0Z-aC-i94"/>
-                    <constraint firstItem="bf4-G5-PyF" firstAttribute="leading" secondItem="vtu-7S-crG" secondAttribute="trailing" constant="8" id="dkF-VT-Stw"/>
                     <constraint firstItem="Efb-h2-ALC" firstAttribute="leading" secondItem="K7v-59-9C8" secondAttribute="trailing" constant="36" id="hcw-JC-orx"/>
                     <constraint firstItem="Efb-h2-ALC" firstAttribute="height" secondItem="K7v-59-9C8" secondAttribute="height" id="igu-3v-ZWz"/>
-                    <constraint firstItem="bf4-G5-PyF" firstAttribute="bottom" secondItem="Ird-aK-3VH" secondAttribute="bottom" id="mG0-jM-WLP"/>
+                    <constraint firstItem="Ird-aK-3VH" firstAttribute="top" secondItem="K7v-59-9C8" secondAttribute="bottom" constant="7.5" id="mCx-5I-OOm"/>
+                    <constraint firstItem="vtu-7S-crG" firstAttribute="leading" secondItem="Efb-h2-ALC" secondAttribute="leading" constant="-16" id="nI3-Yh-CNp"/>
+                    <constraint firstItem="Ird-aK-3VH" firstAttribute="trailing" secondItem="K7v-59-9C8" secondAttribute="trailing" constant="16" id="rP5-db-xrB"/>
+                    <constraint firstItem="bf4-G5-PyF" firstAttribute="trailing" secondItem="jSn-CK-J1E" secondAttribute="trailing" constant="16" id="wtk-su-k0V"/>
                     <constraint firstAttribute="trailingMargin" secondItem="jSn-CK-J1E" secondAttribute="trailing" constant="40" id="xq7-98-Gon"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>
             <connections>
-                <outletCollection property="badgesImageViews" destination="K7v-59-9C8" id="2Pw-Kw-Akh"/>
-                <outletCollection property="badgesImageViews" destination="Efb-h2-ALC" id="P51-ug-aaO"/>
-                <outletCollection property="badgesImageViews" destination="jSn-CK-J1E" id="Fj2-iC-sW2"/>
-                <outletCollection property="badgesLabels" destination="Ird-aK-3VH" id="wPD-ga-gLe"/>
-                <outletCollection property="badgesLabels" destination="vtu-7S-crG" id="PWZ-Rb-EKS"/>
-                <outletCollection property="badgesLabels" destination="bf4-G5-PyF" id="tkp-MF-eRJ"/>
+                <outletCollection property="badgesImageViews" destination="Efb-h2-ALC" id="h6g-bk-cEk"/>
+                <outletCollection property="badgesImageViews" destination="K7v-59-9C8" id="VKp-4g-i7P"/>
+                <outletCollection property="badgesImageViews" destination="jSn-CK-J1E" id="2Wr-zf-3Ff"/>
+                <outletCollection property="badgesLabels" destination="vtu-7S-crG" id="aPb-Ms-iem"/>
+                <outletCollection property="badgesLabels" destination="Ird-aK-3VH" id="kwt-vN-DpQ"/>
+                <outletCollection property="badgesLabels" destination="bf4-G5-PyF" id="bvI-92-T38"/>
             </connections>
             <point key="canvasLocation" x="388.5" y="393"/>
         </tableViewCell>

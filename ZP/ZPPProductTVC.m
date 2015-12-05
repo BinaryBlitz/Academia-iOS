@@ -205,22 +205,44 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 }
 
 - (ZPPBadgeCell *)badgeCellForIndexPath:(NSIndexPath *)ip {
+    NSInteger beg = ip.row;
+    NSInteger ind = beg * 3;
     
-     NSInteger beg = ip.row;
-    NSInteger index = beg * 3;
-    
-    ZPPBadgeForTwoCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPBadgeForTwoCellID];
-    
-    if (self.dish.badges.count >= 2) {
-        for(int i = 0; i < 2;i++) {
-             UIImageView *iv = cell.badgesImageViews[i];
-             UILabel *label = cell.badgesLabels[i];
-             ZPPBadge *badge = self.dish.badges[i];
-             [iv setImageWithURL:badge.imgURL];
-             label.text = badge.name;
+    if (self.dish.badges.count - ind == 2) {
+        ZPPBadgeForTwoCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPBadgeForTwoCellID];
+        
+        if (self.dish.badges.count >= 2) {
+            for(int i = 0; i < 2;i++) {
+                UIImageView *iv = cell.badgesImageViews[i];
+                UILabel *label = cell.badgesLabels[i];
+                ZPPBadge *badge = self.dish.badges[i + ind];
+                [iv setImageWithURL:badge.imgURL];
+                label.text = badge.name;
+            }
         }
+        return cell;
+    } else {
+        ZPPBadgeCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPBadgeCellIdentifier];
+        
+        
+        
+          //  NSInteger beg = ip.row;
+        
+            for (int i = 0; i < 3; i++) {
+                NSInteger index = beg * 3 + i;
+                if (index >= self.dish.badges.count) {
+                    break;
+                }
+        
+                UIImageView *iv = cell.badgesImageViews[i];
+                UILabel *label = cell.badgesLabels[i];
+                ZPPBadge *badge = self.dish.badges[index];
+                // NSURL *url = [NSURL URLWithString:badge.urlAsString];
+                [iv setImageWithURL:badge.imgURL];
+                label.text = badge.name;
+            }
+            return cell;
     }
-    return cell;
     
     
 //    ZPPBadgeCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPBadgeCellIdentifier];
