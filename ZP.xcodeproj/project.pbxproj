@@ -155,6 +155,9 @@
 		19E6D4161BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E6D4151BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m */; };
 		19EC24A51BC65E3D00C333F6 /* ZPPProductAnotherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19EC24A41BC65E3D00C333F6 /* ZPPProductAnotherCell.m */; };
 		19EC24A81BC6601000C333F6 /* ZPPAnotherProductsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19EC24A71BC6601000C333F6 /* ZPPAnotherProductsTVC.m */; };
+		19EC6CB21C12042500FC0BD4 /* ZPPBadgeForTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19EC6CB11C12042500FC0BD4 /* ZPPBadgeForTwoCell.m */; };
+		19EC6CB41C12046F00FC0BD4 /* ZPPBadgeForTwoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC6CB31C12046F00FC0BD4 /* ZPPBadgeForTwoCell.xib */; };
+		19EC6CB61C120B1800FC0BD4 /* ZPPProductIngredietntsJustCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC6CB51C120B1800FC0BD4 /* ZPPProductIngredietntsJustCell.xib */; };
 		19F378ED1BFA7C2D004827A0 /* iconBigColorNoWords.png in Resources */ = {isa = PBXBuildFile; fileRef = 19F378EC1BFA7C2D004827A0 /* iconBigColorNoWords.png */; };
 		19F378F01BFA85AD004827A0 /* ZPPPasswordRenewPhoneInputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378EF1BFA85AD004827A0 /* ZPPPasswordRenewPhoneInputVC.m */; };
 		19F378F31BFA93BC004827A0 /* ZPPPasswordRenewCodeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378F21BFA93BC004827A0 /* ZPPPasswordRenewCodeInput.m */; };
@@ -440,6 +443,10 @@
 		19EC24A41BC65E3D00C333F6 /* ZPPProductAnotherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPProductAnotherCell.m; sourceTree = "<group>"; };
 		19EC24A61BC6601000C333F6 /* ZPPAnotherProductsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPAnotherProductsTVC.h; sourceTree = "<group>"; };
 		19EC24A71BC6601000C333F6 /* ZPPAnotherProductsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPAnotherProductsTVC.m; sourceTree = "<group>"; };
+		19EC6CB01C12042500FC0BD4 /* ZPPBadgeForTwoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPBadgeForTwoCell.h; sourceTree = "<group>"; };
+		19EC6CB11C12042500FC0BD4 /* ZPPBadgeForTwoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPBadgeForTwoCell.m; sourceTree = "<group>"; };
+		19EC6CB31C12046F00FC0BD4 /* ZPPBadgeForTwoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPBadgeForTwoCell.xib; sourceTree = "<group>"; };
+		19EC6CB51C120B1800FC0BD4 /* ZPPProductIngredietntsJustCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPProductIngredietntsJustCell.xib; sourceTree = "<group>"; };
 		19F378EC1BFA7C2D004827A0 /* iconBigColorNoWords.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBigColorNoWords.png; sourceTree = "<group>"; };
 		19F378EE1BFA85AD004827A0 /* ZPPPasswordRenewPhoneInputVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPPasswordRenewPhoneInputVC.h; sourceTree = "<group>"; };
 		19F378EF1BFA85AD004827A0 /* ZPPPasswordRenewPhoneInputVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPPasswordRenewPhoneInputVC.m; sourceTree = "<group>"; };
@@ -1223,6 +1230,7 @@
 			isa = PBXGroup;
 			children = (
 				190E47771BC073EE00AC5379 /* ZPPProductMenuCell.xib */,
+				19EC6CB51C120B1800FC0BD4 /* ZPPProductIngredietntsJustCell.xib */,
 			);
 			name = product;
 			sourceTree = "<group>";
@@ -1272,6 +1280,7 @@
 		19B3A9741C073D170089F02A /* badge */ = {
 			isa = PBXGroup;
 			children = (
+				19EC6CAF1C1203FF00FC0BD4 /* badgeforTwo */,
 				19B3A9711C073CFD0089F02A /* ZPPBadgeCell.h */,
 				19B3A9721C073CFD0089F02A /* ZPPBadgeCell.m */,
 				19B3A97B1C079EC20089F02A /* ZPPBadgeCell.xib */,
@@ -1524,6 +1533,16 @@
 			name = anotherProducts;
 			sourceTree = "<group>";
 		};
+		19EC6CAF1C1203FF00FC0BD4 /* badgeforTwo */ = {
+			isa = PBXGroup;
+			children = (
+				19EC6CB01C12042500FC0BD4 /* ZPPBadgeForTwoCell.h */,
+				19EC6CB11C12042500FC0BD4 /* ZPPBadgeForTwoCell.m */,
+				19EC6CB31C12046F00FC0BD4 /* ZPPBadgeForTwoCell.xib */,
+			);
+			name = badgeforTwo;
+			sourceTree = "<group>";
+		};
 		19F378F41BFA9E7C004827A0 /* deliveryItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -1679,6 +1698,7 @@
 				19B3A9821C07AC430089F02A /* ZPPIngridientAnotherCell.xib in Resources */,
 				1907C74B1BF0B5BE003BA62E /* barBackground.png in Resources */,
 				1955F3991C0BCD270010EED3 /* ZPPContactCourierCell.xib in Resources */,
+				19EC6CB61C120B1800FC0BD4 /* ZPPProductIngredietntsJustCell.xib in Resources */,
 				195457401BD7C57900A3BB46 /* back1.png in Resources */,
 				19D242771BEA3B81007A0FEB /* orderHistory.storyboard in Resources */,
 				1948C5271BEBABFD00084BC8 /* promocode.storyboard in Resources */,
@@ -1703,6 +1723,7 @@
 				1907C7651BF0E597003BA62E /* ZPPCreditCardInfoCell.xib in Resources */,
 				190C6BC91BFA638800533509 /* iconBigColor.png in Resources */,
 				198FA5371BC17204008BC11B /* ZPPProductAnotherCell.xib in Resources */,
+				19EC6CB41C12046F00FC0BD4 /* ZPPBadgeForTwoCell.xib in Resources */,
 				190F9C811BE3C1810032E14D /* ZPPOrderItemCell.xib in Resources */,
 				1907C7601BF0D34C003BA62E /* ZPPCardDateCodeCell.xib in Resources */,
 				1902BD4E1BD7E714003E90A5 /* mainIcon.png in Resources */,
@@ -1898,6 +1919,7 @@
 				19D2427A1BEA4CEC007A0FEB /* ZPPOrderHistoryOrderTVC.m in Sources */,
 				194235431BE930210014BD9A /* ZPPGiftTVC.m in Sources */,
 				1942353F1BE8F6C20014BD9A /* ZPPOrderItemVC.m in Sources */,
+				19EC6CB21C12042500FC0BD4 /* ZPPBadgeForTwoCell.m in Sources */,
 				1907C76B1BF14E57003BA62E /* ZPPCardInOrderCell.m in Sources */,
 				1948C5351BEBBC5E00084BC8 /* ZPPChangePasswordVC.m in Sources */,
 				1984EE401BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.m in Sources */,

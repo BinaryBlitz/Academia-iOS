@@ -11,22 +11,16 @@
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIView+UIViewCategory.h"
-
 #import <INTULocationManager/INTULocationManager.h>
-
 #import "ZPPAddress.h"
 #import "ZPPAddressHelper.h"
-
 #import "ZPPSearchResultController.h"
-
 #import "ZPPCustomTextField.h"
-
 #import "ZPPConsts.h"
-
 #import "LMGeocoder.h"
+#import "ZPPServerManager+ZPPOrderServerManager.h"
 
 static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier";
-
 static NSString *ZPPSearchResultControllerIdentifier = @"ZPPSearchResultControllerIdentifier";
 
 static NSString *ZPPButtonTitle = @"Да, я здесь";
@@ -37,24 +31,15 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 @interface ZPPAdressVC () <GMSMapViewDelegate, ZPPAdressDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) GMSMapView *mapView_;
-
 @property (strong, nonatomic) UITextField *addresTextField;
-
 @property (strong, nonatomic) UIView *centralView;
-
 @property (strong, nonatomic) UIButton *actionButton;
-
-//@property (strong, nonatomic) UISearchController *searchController;
-
-//@property (strong, nonatomic) UISearchBar *addressSearchBar;
-
 @property (strong, nonatomic) NSArray *results;
-
 @property (strong, nonatomic) UIButton *searchButton;
-
 @property (strong, nonatomic) ZPPAddress *selectedAddress;
-
 @property (assign, nonatomic) BOOL needUpdate;
+
+@property (strong, nonatomic) GMSPolygon *poligon;
 
 @end
 
@@ -68,8 +53,6 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
     self.needUpdate = YES;
 
     [self showCurrentLocation];
-
-    //    +55.75674918,+37.60394961
     GMSCameraPosition *camera =
         [GMSCameraPosition cameraWithLatitude:55.75674918 longitude:37.60394961 zoom:10];
 
@@ -83,44 +66,26 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
     self.mapView_.settings.rotateGestures = NO;
 
     [self.view addSubview:self.addresTextField];
-    //[self.view addSubview:self.addressSearchBar];
     [self.view addSubview:self.centralView];
     [self.view addSubview:self.actionButton];
-    // [self.view addSubview:self.searchButton];
-    //[self.view bringSubviewToFront:self.addressSearchBar];
     [self.view bringSubviewToFront:self.actionButton];
     [self.view bringSubviewToFront:self.addresTextField];
 
-    // UIImage imageNamed:@"currentLocation"
     UIButton *b = [self addRightButtonWithName:@"currentLocation"];
 
     [b addTarget:self
                   action:@selector(showCurrentLocation)
         forControlEvents:UIControlEventTouchUpInside];
-    //[self addGradient];
+
+    [self setPoints];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self addGradient];
-    // [self addGradient];
-}
-
-//- (void)viewDidLayoutSubviews {
-//    [super viewDidLayoutSubviews];
-//
-//    // [self.addressSearchBar sizeToFit];
-//}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    //  [self addGradient];
-    //  [self.navigationController hideTransparentNavigationBar];
 }
 
 - (void)mapView:(GMSMapView *)mapView idleAtCameraPosition:(GMSCameraPosition *)position {
-    // [self.addresTextField resignFirstResponder];
-
     if (self.needUpdate) {
         [[LMGeocoder sharedInstance] reverseGeocodeCoordinate:position.target
                                                       service:kLMGeocoderGoogleService
@@ -147,6 +112,15 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 #pragma mark - actions
 
 - (void)chooseLocation:(UIButton *)sender {
+    if (self.poligon) {
+        if (!GMSGeometryContainsLocation(self.mapView_.camera.target, self.poligon.path, YES)) {
+//            NSLog(@"YES: you are in this polygon.");
+
+            [self showWarningWithText:@"Выберите точку в зоне доставки"];
+            return;
+        }
+    }
+
     if (self.addressDelegate) {
         if (self.selectedAddress) {
             [self.addressDelegate configureWithAddress:self.selectedAddress sender:self];
@@ -223,17 +197,11 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
     if (!_addresTextField) {
         CGSize size = [UIScreen mainScreen].bounds.size;
         CGRect r = self.navigationController.navigationBar.frame;
-
         _addresTextField = [[ZPPCustomTextField alloc]
             initWithFrame:CGRectMake(20, r.size.height + 20, size.width - 40, 40)];
         _addresTextField.backgroundColor = [UIColor whiteColor];
         _addresTextField.layer.cornerRadius = 5.0;
-
         _addresTextField.delegate = self;
-
-        //        [_addresTextField addTarget:self
-        //                             action:@selector(showAddressChooser)
-        //                   forControlEvents:UIControlEventTouchUpInside];
     }
 
     return _addresTextField;
@@ -257,7 +225,6 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 
         _actionButton.frame = CGRectMake(30, r.size.height - 100, r.size.width - 60, 45);
         [_actionButton makeBordered];
-
         [_actionButton addTarget:self
                           action:@selector(chooseLocation:)
                 forControlEvents:UIControlEventTouchUpInside];
@@ -276,13 +243,11 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 
         _searchButton.frame = CGRectMake(30, r.size.height - 160, r.size.width - 60, 45);
         [_searchButton makeBordered];
-
         [_searchButton addTarget:self
                           action:@selector(showAddressChooser)
                 forControlEvents:UIControlEventTouchUpInside];
         [_searchButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }
-
     return _searchButton;
 }
 
@@ -292,10 +257,6 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
     [self moveCameraToCoordinate:address.coordinate];
 
     self.needUpdate = NO;
-
-    // GMSCameraUpdate *targ = [GMSCameraUpdate setTarget:address.coordinate];
-
-    //[self.mapView_ moveCamera:targ];
 
     self.addresTextField.text = [address formatedDescr];
 
@@ -311,7 +272,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
     fr.origin.y = 0;
     fr.size.height = fr.size.height + 20;
 
-    gradientLayer.frame = fr;  // self.navigationController.navigationBar.bounds;
+    gradientLayer.frame = fr;
 
     gradientLayer.colors = @[
         (__bridge id)[UIColor colorWithWhite:0.2 alpha:0.5]
@@ -329,21 +290,26 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
                                                   forBarMetrics:UIBarMetricsDefault];
 }
 
+- (void)setPoints {
+    [[ZPPServerManager sharedManager] getPoligonPointsOnSuccess:^(NSArray *points) {
+        [self addMapPoligonWithPoints:points];
+    } onFailure:^(NSError *error, NSInteger statusCode){
 
-//- (void)addMapPoligon {
-//    
-//    GMSMutablePath *path = [GMSMutablePath path];
-//    [path addCoordinate:CLLocationCoordinate2DMake(37.36, -122.0)];
-//    [path addCoordinate:CLLocationCoordinate2DMake(37.45, -122.0)];
-//    [path addCoordinate:CLLocationCoordinate2DMake(37.45, -122.2)];
-//    [path addCoordinate:CLLocationCoordinate2DMake(37.36, -122.2)];
-//    [path addCoordinate:CLLocationCoordinate2DMake(37.36, -122.0)];
-//    
-//    GMSPolygon *poligon = [GMSPolygon polygonWithPath:path];
-//    poligon.fillColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.6 alpha:0.1];
-//    
-//    poligon.map = self.mapView_;
-//    
-//}
+    }];
+}
+
+- (void)addMapPoligonWithPoints:(NSArray *)arr {
+    GMSMutablePath *path = [GMSMutablePath path];
+
+    for (ZPPAddress *a in arr) {
+        [path addCoordinate:a.coordinate];
+    }
+    GMSPolygon *poligon = [GMSPolygon polygonWithPath:path];
+    poligon.fillColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.6 alpha:0.1];
+
+    self.poligon = poligon;
+
+    poligon.map = self.mapView_;
+}
 
 @end

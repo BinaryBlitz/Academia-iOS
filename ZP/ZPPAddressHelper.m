@@ -117,4 +117,23 @@
     return a;
 }
 
++ (NSArray *)parsePoints:(NSArray *)points {
+    NSMutableArray *tmp = [NSMutableArray array];
+    for (NSDictionary *d in points) {
+        NSNumber *lat = d[@"latitude"];
+        NSNumber *lon = d[@"longitude"];
+
+        if ([lat isEqual:[NSNull null]] || [lon isEqual:[NSNull null]]) {
+            continue;
+        }
+        CLLocationCoordinate2D c = CLLocationCoordinate2DMake([lat doubleValue], [lon doubleValue]);
+
+        ZPPAddress *adr =
+            [[ZPPAddress alloc] initWithCoordinate:c Country:nil city:nil address:nil];
+
+        [tmp addObject:adr];
+    }
+    return [NSArray arrayWithArray:tmp];
+}
+
 @end

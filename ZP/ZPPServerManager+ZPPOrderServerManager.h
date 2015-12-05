@@ -39,4 +39,9 @@
                   onSuccess:(void (^)())success
                   onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
+#pragma mark - geo
+
+- (void)getPoligonPointsOnSuccess:(void (^)(NSArray *points))success
+                        onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
 @end

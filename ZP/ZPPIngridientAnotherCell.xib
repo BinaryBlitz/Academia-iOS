@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DsF-d6-Duy">
-                        <rect key="frame" x="224" y="11" width="78" height="21"/>
+                        <rect key="frame" x="204" y="11" width="78" height="21"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="78" id="kzw-ta-xX4"/>
@@ -26,7 +26,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icc-Hl-AZ7">
-                        <rect key="frame" x="18" y="11" width="198" height="21"/>
+                        <rect key="frame" x="38" y="11" width="158" height="21"/>
                         <animations/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -35,13 +35,13 @@
                 </subviews>
                 <animations/>
                 <constraints>
-                    <constraint firstItem="icc-Hl-AZ7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="Jjq-vO-R5a"/>
+                    <constraint firstItem="icc-Hl-AZ7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="30" id="Jjq-vO-R5a"/>
                     <constraint firstItem="DsF-d6-Duy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="L74-9E-CCg"/>
                     <constraint firstItem="icc-Hl-AZ7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="WDT-hR-aQC"/>
                     <constraint firstAttribute="bottomMargin" secondItem="DsF-d6-Duy" secondAttribute="bottom" constant="3.5" id="cCk-Es-jim"/>
                     <constraint firstItem="DsF-d6-Duy" firstAttribute="leading" secondItem="icc-Hl-AZ7" secondAttribute="trailing" constant="8" id="fUw-Uv-Mrh"/>
                     <constraint firstAttribute="bottomMargin" secondItem="icc-Hl-AZ7" secondAttribute="bottom" constant="3.5" id="p67-sF-WsV"/>
-                    <constraint firstItem="DsF-d6-Duy" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-10" id="rQ6-AC-eJb"/>
+                    <constraint firstItem="DsF-d6-Duy" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-30" id="rQ6-AC-eJb"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>
