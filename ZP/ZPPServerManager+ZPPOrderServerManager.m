@@ -11,6 +11,7 @@
 #import "ZPPUserManager.h"
 #import "ZPPOrder.h"
 #import "ZPPOrderHelper.h"
+#import "ZPPAddressHelper.h"
 
 @implementation ZPPServerManager (ZPPOrderServerManager)
 
@@ -175,8 +176,6 @@
         @"api_token" : [ZPPUserManager sharedInstance].user.apiToken,
         @"order" : @{@"rating" : starValue}
     };
-    
-    
 
     NSString *urlString = [NSString stringWithFormat:@"orders/%@", orderID];
 
@@ -189,6 +188,31 @@
             }
         }
         failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+
+            [[self class] failureWithBlock:failure error:error operation:operation];
+        }];
+}
+
+#pragma mark - geo
+
+- (void)getPoligonPointsOnSuccess:(void (^)(NSArray *points))success
+                        onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    NSDictionary *params = @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
+
+    [self.requestOperationManager GET:@"edge_points.json"
+        parameters:params
+        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+
+            NSLog(@"points %@",responseObject);
+            
+            NSArray *points = [ZPPAddressHelper parsePoints:responseObject];
+            
+            if (success) {
+                success(points);
+            }
+            
+        }
+        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error){
 
             [[self class] failureWithBlock:failure error:error operation:operation];
         }];

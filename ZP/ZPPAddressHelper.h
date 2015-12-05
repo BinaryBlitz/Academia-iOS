@@ -19,6 +19,7 @@
 + (NSArray *)addressesFromFoursquareDict:(id)responseObject;
 + (NSArray *)addressesFromDaDataDicts:(NSArray *)dicts;
 
++ (NSArray *)parsePoints:(NSArray *)points;
 
 
 @end

@@ -12,6 +12,7 @@
 #import "ZPPProductAboutCell.h"
 #import "ZPPBadgeCell.h"
 #import "ZPPIngridientAnotherCell.h"
+#import "ZPPBadgeForTwoCell.h"
 #import "ZPPIngridient.h"
 
 #import "UITableViewController+ZPPTVCCategory.h"
@@ -38,6 +39,8 @@ static NSString *ZPPProductMenuCellIdentifier = @"ZPPProductMenuCellIdentifier";
 static NSString *ZPPProductAboutCellIdentifier = @"ZPPProductAboutCellIdentifier";
 static NSString *ZPPBadgeCellIdentifier = @"ZPPBadgeCellIdentifier";
 static NSString *ZPPIngridientAnotherCellIdentifier = @"ZPPIngridientAnotherCellIdentifier";
+static NSString *ZPPProductIngredietntsJustCellID = @"ZPPProductIngredietntsJustCellID";
+static NSString *ZPPBadgeForTwoCellID = @"ZPPBadgeForTwoCellID";
 
 static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 
@@ -202,29 +205,54 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 }
 
 - (ZPPBadgeCell *)badgeCellForIndexPath:(NSIndexPath *)ip {
-    ZPPBadgeCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPBadgeCellIdentifier];
-
-    NSInteger beg = ip.row;
-
-    for (int i = 0; i < 3; i++) {
-        NSInteger index = beg * 3 + i;
-        if (index >= self.dish.badges.count) {
-            break;
+    
+     NSInteger beg = ip.row;
+    NSInteger index = beg * 3;
+    
+    ZPPBadgeForTwoCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPBadgeForTwoCellID];
+    
+    if (self.dish.badges.count >= 2) {
+        for(int i = 0; i < 2;i++) {
+             UIImageView *iv = cell.badgesImageViews[i];
+             UILabel *label = cell.badgesLabels[i];
+             ZPPBadge *badge = self.dish.badges[i];
+             [iv setImageWithURL:badge.imgURL];
+             label.text = badge.name;
         }
-
-        UIImageView *iv = cell.badgesImageViews[i];
-        UILabel *label = cell.badgesLabels[i];
-        ZPPBadge *badge = self.dish.badges[index];
-        // NSURL *url = [NSURL URLWithString:badge.urlAsString];
-        [iv setImageWithURL:badge.imgURL];
-        label.text = badge.name;
     }
     return cell;
+    
+    
+//    ZPPBadgeCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPBadgeCellIdentifier];
+    
+    
+
+//    NSInteger beg = ip.row;
+//
+//    for (int i = 0; i < 3; i++) {
+//        NSInteger index = beg * 3 + i;
+//        if (index >= self.dish.badges.count) {
+//            break;
+//        }
+//
+//        UIImageView *iv = cell.badgesImageViews[i];
+//        UILabel *label = cell.badgesLabels[i];
+//        ZPPBadge *badge = self.dish.badges[index];
+//        // NSURL *url = [NSURL URLWithString:badge.urlAsString];
+//        [iv setImageWithURL:badge.imgURL];
+//        label.text = badge.name;
+//    }
+//    return cell;
 }
 
 - (UITableViewCell *)menuCell {
-    UITableViewCell *cell =
-        [self.tableView dequeueReusableCellWithIdentifier:ZPPProductMenuCellIdentifier];
+    UITableViewCell *cell;
+
+    if (self.isLunch) {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPProductMenuCellIdentifier];
+    } else {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPProductIngredietntsJustCellID];
+    }
     return cell;
 }
 
@@ -254,7 +282,7 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
             }
         }
     } else {
-        return 280.0;
+        return [UIScreen mainScreen].bounds.size.width / 3.0 + 20;
     }
 }
 
@@ -272,6 +300,13 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     [self registrateCellForClass:[ZPPBadgeCell class] reuseIdentifier:ZPPBadgeCellIdentifier];
     [self registrateCellForClass:[ZPPIngridientAnotherCell class]
                  reuseIdentifier:ZPPIngridientAnotherCellIdentifier];
+
+    [self registrateCellForClass:[ZPPBadgeForTwoCell class] reuseIdentifier:ZPPBadgeForTwoCellID];
+    //    [self registrateCellForClass:[UITableViewCell class]
+    //                 reuseIdentifier:ZPPProductIngredietntsJustCellID];
+    UINib *ingtCellJust = [UINib nibWithNibName:@"ZPPProductIngredietntsJustCell" bundle:nil];
+    [[self tableView] registerNib:ingtCellJust
+           forCellReuseIdentifier:ZPPProductIngredietntsJustCellID];
 }
 
 - (NSInteger)numberOfRows {
