@@ -90,6 +90,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
         [[LMGeocoder sharedInstance] reverseGeocodeCoordinate:position.target
                                                       service:kLMGeocoderGoogleService
                                             completionHandler:^(NSArray *results, NSError *error) {
+                                               // NSLog(@"err %@ res %@",error,results);
                                                 if (results.count && !error) {
                                                     LMAddress *address = [results firstObject];
                                                     ZPPAddress *adr =
