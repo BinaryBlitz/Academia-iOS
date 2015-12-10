@@ -23,8 +23,9 @@
 
     self.descrLabel.text = [order orderDescr];  // descrString;
 
+//    [order totalPriceWithDelivery]
     self.priceLabel.text = [NSString
-        stringWithFormat:@"На сумму: %@%@", @([order totalPrice]), ZPPRoubleSymbol];
+        stringWithFormat:@"На сумму: %@%@", @([order totalPriceWithDelivery]), ZPPRoubleSymbol];
 }
 
 @end

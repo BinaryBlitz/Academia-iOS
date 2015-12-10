@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ZPPProductAboutCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UITextView *aboutTextView;
+@property (weak, nonatomic) IBOutlet UILabel *aboutLabel;
 
 @end

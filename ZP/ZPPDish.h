@@ -10,6 +10,8 @@
 #import "ZPPItemProtocol.h"
 #import "ZPPWithImageURL.h"
 
+@class ZPPEnergy;
+
 @interface ZPPDish : NSObject <ZPPItemProtocol,ZPPWithImageURL>
 
 @property (copy, nonatomic, readonly) NSString *name;
@@ -21,6 +23,8 @@
 @property (strong, nonatomic, readonly) NSArray *ingridients;
 @property (strong, nonatomic, readonly) NSArray *badges;
 
+@property (strong, nonatomic, readonly) ZPPEnergy *energy;
+
 - (instancetype)initWithName:(NSString *)name
                       dishID:(NSString *)dishID
                     subtitle:(NSString *)subtitle
@@ -28,7 +32,8 @@
                        price:(NSNumber *)price
                       imgURL:(NSString *)urlAsString
                  ingridients:(NSArray *)ingridients
-                      badges:(NSArray *)badges;
+                      badges:(NSArray *)badges
+                      energy:(ZPPEnergy *)energy;
 
 - (NSInteger)priceOfItem;
 - (NSString *)nameOfItem;

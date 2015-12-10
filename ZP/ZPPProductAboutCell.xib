@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="О блюде" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pia-1c-p4M">
-                        <rect key="frame" x="8" y="38" width="498" height="32"/>
+                        <rect key="frame" x="8" y="8" width="498" height="32"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="NOx-cM-Beu"/>
@@ -26,40 +26,38 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="47g-Hy-b6K">
-                        <rect key="frame" x="39" y="70" width="436" height="4"/>
+                        <rect key="frame" x="39" y="40" width="436" height="4"/>
                         <animations/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="4" id="sa5-vF-CNM"/>
                         </constraints>
                     </view>
-                    <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TeF-EE-jpm">
-                        <rect key="frame" x="39" y="82" width="436" height="128"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTt-Nt-pjq">
+                        <rect key="frame" x="39" y="48" width="436" height="179.5"/>
                         <animations/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="128" id="wnf-k7-ohT"/>
-                        </constraints>
-                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textView>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <animations/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="47g-Hy-b6K" secondAttribute="trailing" constant="31" id="7gQ-Ow-rUh"/>
                     <constraint firstItem="47g-Hy-b6K" firstAttribute="top" secondItem="pia-1c-p4M" secondAttribute="bottom" id="7rt-lN-qkX"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="TeF-EE-jpm" secondAttribute="trailing" constant="31" id="ILR-Eu-dDn"/>
-                    <constraint firstItem="TeF-EE-jpm" firstAttribute="leading" secondItem="Hrq-pk-AuF" secondAttribute="leadingMargin" constant="31" id="PIZ-pk-VU8"/>
+                    <constraint firstItem="MTt-Nt-pjq" firstAttribute="bottom" secondItem="Hrq-pk-AuF" secondAttribute="bottomMargin" constant="-50" id="Uci-q4-8hQ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="MTt-Nt-pjq" secondAttribute="trailing" constant="31" id="VPk-8h-7Sl"/>
                     <constraint firstItem="pia-1c-p4M" firstAttribute="trailing" secondItem="Hrq-pk-AuF" secondAttribute="trailingMargin" id="XG9-sQ-ib1"/>
-                    <constraint firstItem="TeF-EE-jpm" firstAttribute="top" secondItem="47g-Hy-b6K" secondAttribute="bottom" constant="8" id="ckN-mv-MC1"/>
-                    <constraint firstItem="pia-1c-p4M" firstAttribute="top" secondItem="Hrq-pk-AuF" secondAttribute="topMargin" constant="30" id="hkT-Kh-SmC"/>
+                    <constraint firstItem="MTt-Nt-pjq" firstAttribute="top" secondItem="47g-Hy-b6K" secondAttribute="bottom" constant="4" id="bG5-bl-BXd"/>
+                    <constraint firstItem="pia-1c-p4M" firstAttribute="top" secondItem="Hrq-pk-AuF" secondAttribute="topMargin" id="hkT-Kh-SmC"/>
                     <constraint firstItem="47g-Hy-b6K" firstAttribute="leading" secondItem="Hrq-pk-AuF" secondAttribute="leadingMargin" constant="31" id="jra-bK-8GZ"/>
                     <constraint firstItem="pia-1c-p4M" firstAttribute="leading" secondItem="Hrq-pk-AuF" secondAttribute="leadingMargin" id="s7h-j1-YaR"/>
+                    <constraint firstItem="MTt-Nt-pjq" firstAttribute="leading" secondItem="Hrq-pk-AuF" secondAttribute="leadingMargin" constant="31" id="zE8-RN-4Gl"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>
             <connections>
-                <outlet property="aboutTextView" destination="TeF-EE-jpm" id="tlb-fU-r0T"/>
+                <outlet property="aboutLabel" destination="MTt-Nt-pjq" id="cPC-rv-hjp"/>
             </connections>
             <point key="canvasLocation" x="437" y="384"/>
         </tableViewCell>

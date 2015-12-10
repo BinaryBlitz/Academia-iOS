@@ -7,6 +7,7 @@
 //
 
 #import "ZPPDish.h"
+#import "ZPPEnergy.h"
 
 @interface ZPPDish ()
 
@@ -18,6 +19,8 @@
 @property (strong, nonatomic) NSArray *ingridients;
 @property (copy, nonatomic) NSString *subtitle;
 @property (strong, nonatomic) NSArray *badges;
+
+@property (strong, nonatomic) ZPPEnergy *energy;
 
 @end
 
@@ -36,7 +39,8 @@
                        price:(NSNumber *)price
                       imgURL:(NSString *)urlAsString
                  ingridients:(NSArray *)ingridients
-                      badges:(NSArray *)badges {
+                      badges:(NSArray *)badges
+                      energy:(ZPPEnergy *)energy {
     self = [super init];
     if (self) {
         self.name = name;
@@ -50,7 +54,9 @@
         self.price = price;
         self.urlAsString = urlAsString;
         self.ingridients = ingridients;
-        
+
+        self.energy = energy;
+
         self.badges = badges;
     }
     return self;

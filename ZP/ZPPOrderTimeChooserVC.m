@@ -69,14 +69,22 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 
 - (void)viewWillAppear:(BOOL)animated {
     self.totalPriceLabel.text =
-        [NSString stringWithFormat:@"ВАШ ЗАКАЗ НА: %@%@", @(self.order.totalPrice),
+        [NSString stringWithFormat:@"ВАШ ЗАКАЗ НА: %@%@", @([self.order totalPriceWithDelivery]),
                                    ZPPRoubleSymbol];
-
-    if (self.order.totalPrice < 1000) {
-        self.deliveryLabel.text = [NSString stringWithFormat:@"+доставка 200%@", ZPPRoubleSymbol];
+    
+    if([self.order deliveryIncluded]) {
+         self.deliveryLabel.text = [NSString stringWithFormat:@"+доставка 200%@", ZPPRoubleSymbol];
     } else {
         self.deliveryLabel.text = @"";
     }
+    
+    
+
+//    if (self.order.totalPrice < 1000) {
+//        self.deliveryLabel.text = [NSString stringWithFormat:@"+доставка 200%@", ZPPRoubleSymbol];
+//    } else {
+//        self.deliveryLabel.text = @"";
+//    }
 
     //    if([ZPPTimeManager sharedManager].isOpen) {
     //        [self addCheckmarkToButton:self.nowButton];

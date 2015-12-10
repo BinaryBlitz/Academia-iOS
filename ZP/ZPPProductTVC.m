@@ -13,6 +13,8 @@
 #import "ZPPBadgeCell.h"
 #import "ZPPIngridientAnotherCell.h"
 #import "ZPPBadgeForTwoCell.h"
+#import "ZPPProductEnergyCell.h"
+
 #import "ZPPIngridient.h"
 
 #import "UITableViewController+ZPPTVCCategory.h"
@@ -61,6 +63,8 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.estimatedRowHeight = 100.f;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -87,22 +91,25 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
     if (self.dish.badges.count) {
-        return 2;
+        return 3;
     } else {
-        return 1;
+        return 2;
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return self.numberOfRows;
-    } else {
+    } else if (section == 2) {
         NSInteger incr = 0;
         if (self.dish.badges.count % 3 > 0) {
             incr = 1;
         }
         return self.dish.badges.count / 3 + incr;
+    } else {
+        return 1;
     }
 }
 
@@ -118,7 +125,9 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
         } else {
             return [self commonIngridientCellForIndexPath:indexPath];
         }
-    } else {
+    } else if(indexPath.section == 1){
+        return [self energyCell];
+    }else {
         return [self badgeCellForIndexPath:indexPath];
     }
 }
@@ -190,12 +199,14 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 
     for (int i = 0; i < 3; i++) {
         NSInteger index = beg * 3 + i;
-        if (index >= self.dish.ingridients.count) {
-            break;
-        }
-
         UIImageView *iv = cell.ingredientsImageViews[i];
         UILabel *label = cell.ingredientsLabels[i];
+        if (index >= self.dish.ingridients.count) {
+            iv.image = nil;
+            label.text = @"";
+            continue;
+        }
+
         ZPPIngridient *ingr = self.dish.ingridients[index];
         NSURL *url = [NSURL URLWithString:ingr.urlAsString];
         [iv setImageWithURL:url];
@@ -207,12 +218,13 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 - (ZPPBadgeCell *)badgeCellForIndexPath:(NSIndexPath *)ip {
     NSInteger beg = ip.row;
     NSInteger ind = beg * 3;
-    
+
     if (self.dish.badges.count - ind == 2) {
-        ZPPBadgeForTwoCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPBadgeForTwoCellID];
-        
+        ZPPBadgeForTwoCell *cell =
+            [self.tableView dequeueReusableCellWithIdentifier:ZPPBadgeForTwoCellID];
+
         if (self.dish.badges.count >= 2) {
-            for(int i = 0; i < 2;i++) {
+            for (int i = 0; i < 2; i++) {
                 UIImageView *iv = cell.badgesImageViews[i];
                 UILabel *label = cell.badgesLabels[i];
                 ZPPBadge *badge = self.dish.badges[i + ind];
@@ -222,49 +234,44 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
         }
         return cell;
     } else {
-        ZPPBadgeCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPBadgeCellIdentifier];
-        
-        
-        
-          //  NSInteger beg = ip.row;
-        
-            for (int i = 0; i < 3; i++) {
-                NSInteger index = beg * 3 + i;
-                if (index >= self.dish.badges.count) {
-                    break;
-                }
-        
-                UIImageView *iv = cell.badgesImageViews[i];
-                UILabel *label = cell.badgesLabels[i];
-                ZPPBadge *badge = self.dish.badges[index];
-                // NSURL *url = [NSURL URLWithString:badge.urlAsString];
-                [iv setImageWithURL:badge.imgURL];
-                label.text = badge.name;
-            }
-            return cell;
-    }
-    
-    
-//    ZPPBadgeCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPBadgeCellIdentifier];
-    
-    
+        ZPPBadgeCell *cell =
+            [self.tableView dequeueReusableCellWithIdentifier:ZPPBadgeCellIdentifier];
 
-//    NSInteger beg = ip.row;
-//
-//    for (int i = 0; i < 3; i++) {
-//        NSInteger index = beg * 3 + i;
-//        if (index >= self.dish.badges.count) {
-//            break;
-//        }
-//
-//        UIImageView *iv = cell.badgesImageViews[i];
-//        UILabel *label = cell.badgesLabels[i];
-//        ZPPBadge *badge = self.dish.badges[index];
-//        // NSURL *url = [NSURL URLWithString:badge.urlAsString];
-//        [iv setImageWithURL:badge.imgURL];
-//        label.text = badge.name;
-//    }
-//    return cell;
+        for (int i = 0; i < 3; i++) {
+            NSInteger index = beg * 3 + i;
+            UIImageView *iv = cell.badgesImageViews[i];
+            UILabel *label = cell.badgesLabels[i];
+            if (index >= self.dish.badges.count) {
+                iv.image = nil;
+                label.text = @"";
+                continue;
+            }
+            ZPPBadge *badge = self.dish.badges[index];
+            [iv setImageWithURL:badge.imgURL];
+            label.text = badge.name;
+        }
+        return cell;
+    }
+
+    //    ZPPBadgeCell *cell = [self.tableView
+    //    dequeueReusableCellWithIdentifier:ZPPBadgeCellIdentifier];
+
+    //    NSInteger beg = ip.row;
+    //
+    //    for (int i = 0; i < 3; i++) {
+    //        NSInteger index = beg * 3 + i;
+    //        if (index >= self.dish.badges.count) {
+    //            break;
+    //        }
+    //
+    //        UIImageView *iv = cell.badgesImageViews[i];
+    //        UILabel *label = cell.badgesLabels[i];
+    //        ZPPBadge *badge = self.dish.badges[index];
+    //        // NSURL *url = [NSURL URLWithString:badge.urlAsString];
+    //        [iv setImageWithURL:badge.imgURL];
+    //        label.text = badge.name;
+    //    }
+    //    return cell;
 }
 
 - (UITableViewCell *)menuCell {
@@ -282,9 +289,18 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     ZPPProductAboutCell *cell =
         [self.tableView dequeueReusableCellWithIdentifier:ZPPProductAboutCellIdentifier];
 
-    cell.aboutTextView.text = self.dish.dishDescription;  //[LoremIpsum sentencesWithNumber:3];
-    cell.aboutTextView.textAlignment = NSTextAlignmentCenter;
-    cell.aboutTextView.font = [UIFont boldFontOfSize:15];
+    cell.aboutLabel.text = self.dish.dishDescription;  //[LoremIpsum sentencesWithNumber:3];
+    // cell.aboutTextView.textAlignment = NSTextAlignmentCenter;
+    cell.aboutLabel.font = [UIFont boldFontOfSize:15];
+    return cell;
+}
+
+- (ZPPProductEnergyCell *)energyCell {
+    ZPPProductEnergyCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPProductEnergyCellIdentifier];
+    
+    [cell configureWithDish:self.dish];
+    
+    
     return cell;
 }
 
@@ -295,14 +311,16 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
         } else if (indexPath.row == 1) {
             return 67.0;
         } else if (indexPath.row == self.numberOfRows - 1) {
-            return 280.0;
+            return UITableViewAutomaticDimension;
         } else {
             if (!self.isLunch) {
-                return [UIScreen mainScreen].bounds.size.width / 3.0 + 20;
+                return [UIScreen mainScreen].bounds.size.width / 3.0 + 10;
             } else {
                 return 50.f;
             }
         }
+    } else if(indexPath.section == 1) {
+        return 142.0;
     } else {
         return [UIScreen mainScreen].bounds.size.width / 3.0 + 20;
     }
@@ -329,6 +347,9 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     UINib *ingtCellJust = [UINib nibWithNibName:@"ZPPProductIngredietntsJustCell" bundle:nil];
     [[self tableView] registerNib:ingtCellJust
            forCellReuseIdentifier:ZPPProductIngredietntsJustCellID];
+
+    [self registrateCellForClass:[ZPPProductEnergyCell class]
+                 reuseIdentifier:ZPPProductEnergyCellIdentifier];
 }
 
 - (NSInteger)numberOfRows {

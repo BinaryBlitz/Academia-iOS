@@ -38,7 +38,6 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
 }
 
 - (void)configureWithOrder:(ZPPOrder *)order {
@@ -93,23 +92,21 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
 
     ZPPStuff *stuff = self.anotherProducts[indexPath.row];
 
-
     ZPPOrderItem *orderItem = [self.order orderItemForItem:stuff];
-    
+
     if (orderItem) {
         [cell setBadgeCount:orderItem.count];
     }
-    
+
     [cell configureWithStuff:stuff];
-    
 
     [cell.addProductButton addTarget:self
                               action:@selector(addToCard:)
                     forControlEvents:UIControlEventTouchUpInside];
-    
-//    self.
-//    
-//    cell setBadgeCount:<#(NSInteger)#>
+
+    //    self.
+    //
+    //    cell setBadgeCount:<#(NSInteger)#>
 
     return cell;
 }
@@ -124,14 +121,13 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
     [cell.addToBasketButton addTarget:self
                                action:@selector(showAnotherCells)
                      forControlEvents:UIControlEventTouchUpInside];
-    [cell.addToBasketButton setTitle:@"ВНИЗ" forState:UIControlStateNormal];
+    //    [cell.addToBasketButton setTitle:@"ВНИЗ" forState:UIControlStateNormal];
+    [cell.addToBasketButton setTitle:@"" forState:UIControlStateNormal];
+    cell.addToBasketButton.tintColor = [UIColor whiteColor];
+    [cell.addToBasketButton setImage:[UIImage imageNamed:@"arrowDown"]
+                            forState:UIControlStateNormal];
 
     cell.productImageView.image = [UIImage imageNamed:@"back4"];
-
-    CGSize size = cell.addToBasketButton.bounds.size;
-    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, 3)];
-    v.backgroundColor = [UIColor whiteColor];
-    [cell.addToBasketButton addSubview:v];
 
     return cell;
 }
@@ -147,7 +143,7 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
 
 #pragma mark - actions
 
-- (void)showAnotherCells {//redo
+- (void)showAnotherCells {  // redo
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]
                           atScrollPosition:UITableViewScrollPositionTop
                                   animated:YES];
@@ -164,7 +160,7 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
             [self.productDelegate addItemIntoOrder:stuff];
         }
     }
-    
+
     [self.tableView reloadData];
 }
 @end

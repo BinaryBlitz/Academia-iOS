@@ -16,18 +16,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-  //  [self.callCourierButton makeBorderedWithColor:[UIColor whiteColor]];
+    //  [self.callCourierButton makeBorderedWithColor:[UIColor whiteColor]];
 
     [self.backToMenuButton makeBorderedWithColor:[UIColor whiteColor]];
-    
+
     self.navigationItem.hidesBackButton = YES;
-    
-    
+
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
     [self.backToMenuButton addTarget:self
                               action:@selector(closeScreen)
                     forControlEvents:UIControlEventTouchUpInside];
+
+    NSDictionary *underlineAttribute = @{
+        NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle),
+        NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Medium" size:18.f]
+    };
+    NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:self.phoneTextView.text
+                                                                  attributes:underlineAttribute];
+
+    self.phoneTextView.attributedText = attrStr;
+    self.phoneTextView.textAlignment = NSTextAlignmentCenter;
 }
 
 - (void)closeScreen {

@@ -10,8 +10,11 @@
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "UIView+UIViewCategory.h"
+#import "ZPPConsts.h"
 
 #import <MessageUI/MessageUI.h>
+
+@import CoreText;
 
 @interface ZPPHelpVC () <MFMailComposeViewControllerDelegate>
 
@@ -22,8 +25,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
+    
+    NSDictionary *underlineAttribute =
+    @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) ,NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Medium" size:18.f]};
+    NSAttributedString *attrStr =
+    [[NSAttributedString alloc] initWithString:self.phoneTextView.text
+                                    attributes:underlineAttribute];
+
+    self.phoneTextView.attributedText = attrStr;
+    self.phoneTextView.textAlignment = NSTextAlignmentCenter;
 
 //    self.emailButton.layer.borderColor = [UIColor blackColor].CGColor;
 //    self.emailButton.layer.borderWidth = 2.0f;
