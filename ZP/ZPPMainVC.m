@@ -29,6 +29,8 @@
 static float kZPPButtonDiametr = 40.0f;
 static float kZPPButtonOffset = 15.0f;
 
+static NSString *ZPPBalanceString = @"Текущий баланс: %@ б.";
+
 @interface ZPPMainVC () <ZPPNoInternetDelegate>
 @property (strong, nonatomic) VBFPopFlatButton *menuButton;
 @property (strong, nonatomic) ZPPMainMenuView *mainMenu;
@@ -58,9 +60,12 @@ static float kZPPButtonOffset = 15.0f;
     if ([[ZPPUserManager sharedInstance] checkUser]) {
         [[ZPPServerManager sharedManager] getCurrentUserOnSuccess:^(ZPPUser *user) {
             [ZPPUserManager sharedInstance].user.balance = user.balance;
-            self.mainMenu.balanceLabel.text =
-                [NSString stringWithFormat:@"Текущий баланс: %@ б.",
-                                           [ZPPUserManager sharedInstance].user.balance];
+            
+            [self setUserBalance];
+            
+//            self.mainMenu.balanceLabel.text =
+//                [NSString stringWithFormat:ZPPBalanceString,
+//                                           [ZPPUserManager sharedInstance].user.balance];
         } onFailure:^(NSError *error, NSInteger statusCode){
 
         }];
@@ -69,9 +74,11 @@ static float kZPPButtonOffset = 15.0f;
 
         [self.view addSubview:self.mainMenu];
         [self.view addSubview:self.buttonView];
-        self.mainMenu.balanceLabel.text =
-            [NSString stringWithFormat:@"Текущий баланс: %@ б.",
-                                       [ZPPUserManager sharedInstance].user.balance];
+//        self.mainMenu.balanceLabel.text =
+//            [NSString stringWithFormat:ZPPBalanceString,
+//                                       [ZPPUserManager sharedInstance].user.balance];
+        
+        [self setUserBalance];
         [self updateBadge];
     } else {
         if ([self.view.subviews containsObject:self.mainMenu]) {
@@ -385,6 +392,21 @@ navigation
         completion:^(BOOL finished) {
             [v removeFromSuperview];
         }];
+}
+
+
+- (void)setUserBalance{
+    
+    if([ZPPUserManager sharedInstance].user.balance.integerValue > 0) {
+    
+    self.mainMenu.balanceLabel.text =
+    [NSString stringWithFormat:ZPPBalanceString,
+     [ZPPUserManager sharedInstance].user.balance];
+    } else {
+        self.mainMenu.balanceLabel.text = @"";
+    }
+
+    
 }
 
 #pragma mark - ordrer

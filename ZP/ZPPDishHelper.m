@@ -11,6 +11,8 @@
 #import "ZPPServerManager.h"
 #import "ZPPIngridientHelper.h"
 #import "ZPPBadgeHelper.h"
+#import "ZPPEnergyHelper.h"
+#import "ZPPEnergy.h"
 
 #import "ZPPImageWorker.h"
 
@@ -33,14 +35,16 @@ NSString *const ZPPDishBadges = @"badges";
     NSNumber *dishPrice = dict[ZPPDishPrice];
     NSString *imgUrlAppend = dict[ZPPDishImgURL];
     NSString *dishImgURL;
-    if(imgUrlAppend && ![imgUrlAppend isEqual:[NSNull null]]) {
+    if (imgUrlAppend && ![imgUrlAppend isEqual:[NSNull null]]) {
         dishImgURL = [ZPPServerBaseUrl stringByAppendingString:imgUrlAppend];
     }
-   // NSString *dishImgURL = [ZPPServerBaseUrl stringByAppendingString:imgUrlAppend];
+    // NSString *dishImgURL = [ZPPServerBaseUrl stringByAppendingString:imgUrlAppend];
     NSArray *ingsTmp = dict[ZPPDishIngridients];
     NSArray *ingridients = [ZPPIngridientHelper parseIngridients:ingsTmp];
     NSArray *badgesDicts = dict[ZPPDishBadges];
     NSArray *badges = [ZPPBadgeHelper parseBadgeArray:badgesDicts];
+
+    ZPPEnergy *energy = [ZPPEnergyHelper parseEnergyDict:dict];
 
     ZPPDish *dish = [[ZPPDish alloc] initWithName:name
                                            dishID:dishID
@@ -49,7 +53,8 @@ NSString *const ZPPDishBadges = @"badges";
                                             price:dishPrice
                                            imgURL:dishImgURL
                                       ingridients:ingridients
-                                           badges:badges];
+                                           badges:badges
+                                           energy:energy];
 
     return dish;
 }

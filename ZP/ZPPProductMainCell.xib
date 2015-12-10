@@ -63,11 +63,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w25-Hb-Dq7">
-                        <rect key="frame" x="165" y="331" width="270" height="50"/>
+                        <rect key="frame" x="39" y="331" width="522" height="50"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="7lw-9x-Fta"/>
-                            <constraint firstAttribute="width" constant="270" id="LdQ-kJ-lpy"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="22"/>
                         <state key="normal" title="ЗАКАЗАТЬ">
@@ -97,8 +96,10 @@
                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="8lI-ej-aIb" firstAttribute="centerX" secondItem="sxr-tf-WQB" secondAttribute="centerX" id="0bu-TA-QHh"/>
+                    <constraint firstItem="w25-Hb-Dq7" firstAttribute="trailing" secondItem="l92-u8-FlX" secondAttribute="trailing" id="2rK-iF-Jos"/>
                     <constraint firstItem="1dS-XP-FfK" firstAttribute="top" secondItem="sxr-tf-WQB" secondAttribute="topMargin" constant="-8" id="45L-0b-XA6"/>
                     <constraint firstAttribute="bottomMargin" secondItem="1dS-XP-FfK" secondAttribute="bottom" constant="-8" id="5ge-kW-FjZ"/>
+                    <constraint firstItem="w25-Hb-Dq7" firstAttribute="leading" secondItem="l92-u8-FlX" secondAttribute="leading" id="9K8-4R-swW"/>
                     <constraint firstAttribute="trailingMargin" secondItem="nyy-lI-dBa" secondAttribute="trailing" constant="31" id="CFu-fR-0A4"/>
                     <constraint firstItem="nyy-lI-dBa" firstAttribute="leading" secondItem="sxr-tf-WQB" secondAttribute="leadingMargin" constant="31" id="CVI-yQ-af7"/>
                     <constraint firstItem="8lI-ej-aIb" firstAttribute="top" secondItem="sxr-tf-WQB" secondAttribute="topMargin" id="EQb-e3-zBb"/>
