@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *smsInviteButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailShare;
 @property (weak, nonatomic) IBOutlet UIButton *socialMediaShare;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *additionalViewBottomConstraint;
 
 @end

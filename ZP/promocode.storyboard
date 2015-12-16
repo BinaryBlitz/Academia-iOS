@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -120,7 +119,6 @@
                                     <constraint firstAttribute="bottom" secondItem="0TC-WH-5aG" secondAttribute="bottom" constant="8" id="E83-lh-vOI"/>
                                     <constraint firstItem="qWS-uC-ZVE" firstAttribute="top" secondItem="ciR-e8-YwJ" secondAttribute="bottom" constant="17" id="FyP-fj-xmE"/>
                                     <constraint firstAttribute="trailing" secondItem="lYn-zj-nzC" secondAttribute="trailing" constant="35" id="PZp-e6-cyu"/>
-                                    <constraint firstAttribute="width" secondItem="Xzk-E6-kwm" secondAttribute="height" multiplier="584:237" id="QrM-xd-p2R"/>
                                     <constraint firstAttribute="trailing" secondItem="0TC-WH-5aG" secondAttribute="trailing" constant="16" id="RFp-Oq-B84"/>
                                     <constraint firstAttribute="trailing" secondItem="mhL-3J-Hqt" secondAttribute="trailing" constant="16" id="XAh-y7-GMb"/>
                                     <constraint firstItem="Eng-WI-5FC" firstAttribute="top" secondItem="lYn-zj-nzC" secondAttribute="bottom" constant="6" id="Z42-sg-pzY"/>
@@ -132,13 +130,7 @@
                                     <constraint firstItem="ciR-e8-YwJ" firstAttribute="leading" secondItem="Xzk-E6-kwm" secondAttribute="leading" constant="16" id="pia-52-g78"/>
                                     <constraint firstItem="0TC-WH-5aG" firstAttribute="leading" secondItem="Xzk-E6-kwm" secondAttribute="leading" constant="16" id="w9E-Am-c4g"/>
                                     <constraint firstItem="Eng-WI-5FC" firstAttribute="leading" secondItem="Xzk-E6-kwm" secondAttribute="leading" constant="16" id="xAj-Bd-1xl"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="237" id="zp2-GU-w6T"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="QrM-xd-p2R"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLG-ZO-VX4" customClass="ZPPCustomTouchTransperentView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -202,6 +194,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="H34-xx-IzY"/>
                     <connections>
+                        <outlet property="additionalViewBottomConstraint" destination="9IB-o8-F34" id="r4m-u1-fUZ"/>
                         <outlet property="bottomConstr" destination="bQC-mh-809" id="EFJ-Il-DBP"/>
                         <outlet property="codeTextField" destination="54a-5u-s1w" id="I1b-i3-eNP"/>
                         <outlet property="doneButton" destination="HIJ-9M-KeT" id="OHj-tg-WfW"/>
