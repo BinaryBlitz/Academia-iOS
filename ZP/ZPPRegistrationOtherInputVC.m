@@ -155,6 +155,10 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
     self.user.lastName = self.secondNameTextField.text;
     self.user.password = self.passwordTextField.text;
     self.user.email = self.emailTextFild.text;
+    NSString *pushToken = [ZPPUserManager sharedInstance].pushToken;
+    if(pushToken && ![pushToken isEqual:[NSNull null]]) {
+        self.user.pushToken = pushToken;
+    }
 }
 
 //-(BOOL)textFieldShouldReturn:(UITextField *)textField {

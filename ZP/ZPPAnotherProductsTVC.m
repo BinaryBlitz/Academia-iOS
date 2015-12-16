@@ -122,13 +122,22 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
                                action:@selector(showAnotherCells)
                      forControlEvents:UIControlEventTouchUpInside];
     //    [cell.addToBasketButton setTitle:@"ВНИЗ" forState:UIControlStateNormal];
-    [cell.addToBasketButton setTitle:@"" forState:UIControlStateNormal];
-    cell.addToBasketButton.tintColor = [UIColor whiteColor];
-    [cell.addToBasketButton setImage:[UIImage imageNamed:@"arrowDown"]
-                            forState:UIControlStateNormal];
+    [cell.addToBasketButton setTitle:@"ПОСМОТРЕТЬ" forState:UIControlStateNormal];
+    
+    cell.topButtonView.hidden = NO;
+//    cell.addToBasketButton.tintColor = [UIColor whiteColor];
+//    [cell.addToBasketButton setImage:[UIImage imageNamed:@"arrowDown"]
+//                            forState:UIControlStateNormal];
 
-    cell.productImageView.image = [UIImage imageNamed:@"back4"];
 
+
+//    CGSize size = cell.addToBasketButton.bounds.size;
+//    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, 3)];
+//    v.backgroundColor = [UIColor whiteColor];
+//    [cell.addToBasketButton addSubview:v];
+    
+     cell.productImageView.image = [UIImage imageNamed:@"back4"];
+    
     return cell;
 }
 

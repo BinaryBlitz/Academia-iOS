@@ -28,6 +28,7 @@
 
 #import "ZPPDish.h"
 #import "ZPPBadge.h"
+#import "ZPPEnergy.h"
 
 #import "ZPPOrder.h"
 #import "ZPPOrderItem.h"
@@ -65,6 +66,16 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     [super viewDidLoad];
     self.tableView.estimatedRowHeight = 100.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    //
+    //    UIView *v = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    //    v.backgroundColor = [UIColor whiteColor];
+    //
+    //    self.tableView.tableFooterView = v;
+    //
+    //    UIEdgeInsets insets = self.tableView.contentInset;
+    //    self.tableView.contentInset =
+    //    UIEdgeInsetsMake(insets.top, insets.left, insets.bottom - self.screenHeight,
+    //    insets.right);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -91,7 +102,6 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     if (self.dish.badges.count) {
         return 3;
     } else {
@@ -125,9 +135,9 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
         } else {
             return [self commonIngridientCellForIndexPath:indexPath];
         }
-    } else if(indexPath.section == 1){
+    } else if (indexPath.section == 1) {
         return [self energyCell];
-    }else {
+    } else {
         return [self badgeCellForIndexPath:indexPath];
     }
 }
@@ -296,11 +306,15 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 }
 
 - (ZPPProductEnergyCell *)energyCell {
-    ZPPProductEnergyCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPProductEnergyCellIdentifier];
-    
-    [cell configureWithDish:self.dish];
-    
-    
+    ZPPProductEnergyCell *cell =
+        [self.tableView dequeueReusableCellWithIdentifier:ZPPProductEnergyCellIdentifier];
+
+    if (self.dish.energy) {
+        [cell configureWithDish:self.dish];
+    } else {
+        cell.contentView.hidden = YES;
+    }
+
     return cell;
 }
 
@@ -319,8 +333,12 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
                 return 50.f;
             }
         }
-    } else if(indexPath.section == 1) {
-        return 142.0;
+    } else if (indexPath.section == 1) {
+        if (self.dish.energy) {
+            return 142.0;
+        } else {
+            return 0;
+        }
     } else {
         return [UIScreen mainScreen].bounds.size.width / 3.0 + 20;
     }

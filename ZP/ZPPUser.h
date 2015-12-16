@@ -19,8 +19,13 @@
 @property (copy, nonatomic) NSString *balance;
 @property (assign, nonatomic) BOOL promoUsed;
 
+@property (strong, nonatomic) NSString *pushToken;
+
 @property (copy, nonatomic, readonly) NSString *apiToken;//
 @property (copy, nonatomic, readonly) NSString *userID;//
+@property (copy, nonatomic, readonly) NSString *platform;
+
+
 
 
 //- (instancetype)initWithDict:(NSDictionary *)dict;

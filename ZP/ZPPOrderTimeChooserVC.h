@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *makeOrderButton;
 @property (weak, nonatomic) IBOutlet UILabel *deliveryLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nowButtonHeight;
 
 - (void)configureWithOrder:(ZPPOrder *)order;
 

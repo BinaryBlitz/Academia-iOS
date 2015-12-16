@@ -11,6 +11,7 @@
 #import "ZPPUserHelper.h"
 #import "ZPPUserManager.h"
 
+
 //#import <CocoaLumberjack.h>
 
 // static const int ddLogLevel = DDLogLevelDebug;
@@ -113,6 +114,47 @@
             [[self class] failureWithBlock:failure error:error operation:operation];
 
         }];
+}
+
+
+- (void)updateToken:(NSString *)token onSuccess:(void (^)())success
+          onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    
+    
+    if(!token) {
+        token = [NSNull null];
+    }
+    
+//    api_token и platform
+//    NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
+    
+    
+    NSDictionary *userDict = @{@"api_token":token,@"platform":@"ios"};
+    
+    NSDictionary *params =
+    @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken,
+       @"user" : userDict };
+    
+    
+    
+    [self.requestOperationManager PATCH:@"user.json"
+                             parameters:params
+                                success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+                                    
+                                    DDLogInfo(@"update succes");
+                                    if (success) {
+                                        success();
+                                    }
+                                }
+                                failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+                                    
+                                    [[self class] failureWithBlock:failure error:error operation:operation];
+                                    
+                                }];
+
+    
+    
+    
 }
 
 - (void)PATChPasswordOldPassword:(NSString *)oldPassword
