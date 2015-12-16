@@ -6,15 +6,15 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import "ZPPPromoVC.h"
-#import "UIViewController+ZPPViewControllerCategory.h"
-#import "UINavigationController+ZPPNavigationControllerCategory.h"
-#import "UIViewController+ZPPValidationCategory.h"
+#import <MessageUI/MessageUI.h>
 #import "UIButton+ZPPButtonCategory.h"
+#import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIView+UIViewCategory.h"
+#import "UIViewController+ZPPValidationCategory.h"
+#import "UIViewController+ZPPViewControllerCategory.h"
+#import "ZPPPromoVC.h"
 #import "ZPPServerManager+ZPPPromoCodeManager.h"
 #import "ZPPServerManager+ZPPRegistration.h"
-#import <MessageUI/MessageUI.h>
 
 #import "ZPPUserManager.h"
 
@@ -39,8 +39,8 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 
-    self.bottomConstraint = self.bottomConstr;
-    self.mainTF = self.codeTextField;
+    //    self.bottomConstraint = self.bottomConstr;
+    //    self.mainTF = self.codeTextField;
 
     [self.codeTextField makeBordered];
 
@@ -100,9 +100,10 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
 
             [[ZPPServerManager sharedManager] getCurrentUserOnSuccess:^(ZPPUser *user) {
                 [ZPPUserManager sharedInstance].user.balance = user.balance;
-            } onFailure:^(NSError *error, NSInteger statusCode){
+            }
+                onFailure:^(NSError *error, NSInteger statusCode){
 
-            }];
+                }];
         }
         onFailure:^(NSError *error, NSInteger statusCode) {
             [sender stopIndication];
@@ -142,7 +143,12 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
         //        otherButtonTitles:nil];
         //        [warningAlert show];
         [self showWarningWithText:@"Устройство не поддерживает "
-              @"отпра" @"в" @"к" @"у" @" " @"смс"];
+                                  @"отпра"
+                                  @"в"
+                                  @"к"
+                                  @"у"
+                                  @" "
+                                  @"смс"];
         return;
     }
 
@@ -198,7 +204,11 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
         [self presentViewController:mail animated:YES completion:NULL];
     } else {
         [self showWarningWithText:@"Устройство не поддерживает "
-              @"отправ" @"к" @"у" @" " @"e-mail"];
+                                  @"отправ"
+                                  @"к"
+                                  @"у"
+                                  @" "
+                                  @"e-mail"];
     }
 }
 #pragma mark - social
@@ -300,11 +310,13 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
 }
 
 - (NSString *)promocodeInviteText {
-    return [NSString
-        stringWithFormat:
-            @"Используй мой промокод, %@, и получи 200%@ в приложении "
-            @"Zdorovoe " @"Pitanie!",
-            self.promocode, ZPPRoubleSymbol];  // redo
+    return
+        [NSString stringWithFormat:
+                      @"Используй мой промокод, %@, и получи 200%@ в "
+                      @"приложении "
+                      @"Zdorovoe "
+                      @"Pitanie!",
+                      self.promocode, ZPPRoubleSymbol];  // redo
 }
 
 @end

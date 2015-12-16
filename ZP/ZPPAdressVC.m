@@ -8,16 +8,16 @@
 
 #import "ZPPAdressVC.h"
 
-#import "UIViewController+ZPPViewControllerCategory.h"
+#import <INTULocationManager/INTULocationManager.h>
+#import "LMGeocoder.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIView+UIViewCategory.h"
-#import <INTULocationManager/INTULocationManager.h>
+#import "UIViewController+ZPPViewControllerCategory.h"
 #import "ZPPAddress.h"
 #import "ZPPAddressHelper.h"
-#import "ZPPSearchResultController.h"
-#import "ZPPCustomTextField.h"
 #import "ZPPConsts.h"
-#import "LMGeocoder.h"
+#import "ZPPCustomTextField.h"
+#import "ZPPSearchResultController.h"
 #import "ZPPServerManager+ZPPOrderServerManager.h"
 
 static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier";
@@ -90,7 +90,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
         [[LMGeocoder sharedInstance] reverseGeocodeCoordinate:position.target
                                                       service:kLMGeocoderGoogleService
                                             completionHandler:^(NSArray *results, NSError *error) {
-                                               // NSLog(@"err %@ res %@",error,results);
+                                                // NSLog(@"err %@ res %@",error,results);
                                                 if (results.count && !error) {
                                                     LMAddress *address = [results firstObject];
                                                     ZPPAddress *adr =
@@ -115,7 +115,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 - (void)chooseLocation:(UIButton *)sender {
     if (self.poligon) {
         if (!GMSGeometryContainsLocation(self.mapView_.camera.target, self.poligon.path, YES)) {
-//            NSLog(@"YES: you are in this polygon.");
+            //            NSLog(@"YES: you are in this polygon.");
 
             [self showWarningWithText:@"Выберите точку в зоне доставки"];
             return;
@@ -166,23 +166,24 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 
 - (void)showCurrentLocation {
     INTULocationManager *locMgr = [INTULocationManager sharedInstance];
-    [locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
-                                       timeout:10.0
-                          delayUntilAuthorized:YES
-                                         block:^(CLLocation *currentLocation,
-                                                 INTULocationAccuracy achievedAccuracy,
-                                                 INTULocationStatus status) {
+    [locMgr
+        requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
+                                   timeout:10.0
+                      delayUntilAuthorized:YES
+                                     block:^(CLLocation *currentLocation,
+                                             INTULocationAccuracy achievedAccuracy,
+                                             INTULocationStatus status) {
 
-                                             if (status == INTULocationStatusSuccess) {
-                                                 [self moveCameraToCoordinate:currentLocation
-                                                                                  .coordinate];
+                                         if (status == INTULocationStatusSuccess) {
+                                             [self
+                                                 moveCameraToCoordinate:currentLocation.coordinate];
 
-                                             } else if (status == INTULocationStatusTimedOut) {
-                                             } else {
-                                                 // An error occurred, more info is available by
-                                                 // looking at the specific status returned.
-                                             }
-                                         }];
+                                         } else if (status == INTULocationStatusTimedOut) {
+                                         } else {
+                                             // An error occurred, more info is available by
+                                             // looking at the specific status returned.
+                                         }
+                                     }];
 }
 
 #pragma mark - UITextFielDelegate
@@ -294,9 +295,10 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 - (void)setPoints {
     [[ZPPServerManager sharedManager] getPoligonPointsOnSuccess:^(NSArray *points) {
         [self addMapPoligonWithPoints:points];
-    } onFailure:^(NSError *error, NSInteger statusCode){
+    }
+        onFailure:^(NSError *error, NSInteger statusCode){
 
-    }];
+        }];
 }
 
 - (void)addMapPoligonWithPoints:(NSArray *)arr {
@@ -306,7 +308,10 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
         [path addCoordinate:a.coordinate];
     }
     GMSPolygon *poligon = [GMSPolygon polygonWithPath:path];
-    poligon.fillColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.6 alpha:0.1];
+    poligon.fillColor =
+        [UIColor colorWithRed:46.0 / 255.0 green:232.0 / 255.0 blue:91.0 / 255.0 alpha:0.1];
+    poligon.strokeWidth = 2.0;
+    poligon.strokeColor = [UIColor colorWithRed:46.0 / 255.0 green:232.0 / 255.0 blue:91.0 / 255.0 alpha:0.5];
 
     self.poligon = poligon;
 

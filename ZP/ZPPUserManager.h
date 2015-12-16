@@ -16,7 +16,7 @@
 @property (strong, nonatomic, readonly) NSData *pushTokenData;
 
 + (instancetype)sharedInstance;
-
+- (void)setAPNsToken:(NSData *)pushTokenData;
 - (void)setUser:(ZPPUser *)user;
 - (BOOL)checkUser;
 - (void)userLogOut;

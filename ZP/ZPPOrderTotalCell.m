@@ -26,7 +26,7 @@
 - (void)configureWithOrder:(ZPPOrder *)order {
     self.priceLabel.text =
         [NSString stringWithFormat:@"ВАШ ЗАКАЗ НА: %@%@",
-                                   @([order totalPriceWithDelivery]), ZPPRoubleSymbol];
+                                   @([order totalPrice]), ZPPRoubleSymbol];
 
     if (order.orderStatus == ZPPOrderStatusNotSended) {
         if ([order deliveryIncluded]) {

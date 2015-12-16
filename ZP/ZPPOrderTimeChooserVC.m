@@ -79,6 +79,9 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
     }
     
     
+ 
+    
+    
 
 //    if (self.order.totalPrice < 1000) {
 //        self.deliveryLabel.text = [NSString stringWithFormat:@"+доставка 200%@", ZPPRoubleSymbol];
@@ -103,9 +106,17 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
     //    static BOOL
     //    [self addCheckmarkToButton:self.nowButton];
     if (!self.once) {
+        if([ZPPTimeManager sharedManager].isOpen) {
         self.once = YES;
         [self addCheckmarkToButton:self.nowButton];
         self.order.date = [NSDate new];
+        } else {
+            self.once = YES;
+            self.nowButton.hidden = YES;
+            self.order.date = nil;
+            
+            self.nowButtonHeight.constant = 0;
+        }
     }
 }
 
@@ -114,7 +125,13 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 }
 
 - (void)makeOrderAction:(UIButton *)sender {
-    [self startPayment];
+    
+    if (!self.order.date) {
+        [self.atTimeButton shakeView];
+        [self showWarningWithText:@"Выберите время доставки"];
+    } else {
+        [self startPayment];
+    }
 }
 
 - (void)orderNowAction:(UIButton *)sender {

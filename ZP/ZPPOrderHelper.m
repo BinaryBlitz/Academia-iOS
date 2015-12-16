@@ -57,7 +57,14 @@
 + (ZPPOrder *)parseOrderFromDict:(NSDictionary *)dict {
     NSString *identifier = dict[@"id"];
 
-    NSString *review = dict[@"review"];
+    
+    NSString *review;
+    
+    if(dict[@"review"] && ![dict[@"review"] isEqual:[NSNull null]]) {
+        review = dict[@"review"];
+    }
+    
+    
 
     float rating = 0;
     if (dict[@"rating"] && ![dict[@"rating"] isEqual:[NSNull null]]) {

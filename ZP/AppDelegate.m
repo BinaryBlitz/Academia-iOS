@@ -13,7 +13,11 @@
 #import <DigitsKit/DigitsKit.h>
 #import <CocoaLumberjack.h>
 
+#import "ZPPUserManager.h"
+
 //#import <INTULocationManager/INTULocationManager.h>
+
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
 @import GoogleMaps;
 
@@ -45,6 +49,19 @@
 //                // well (unless canceled).
 //            }];
 //    }
+    
+    
+    if (IS_OS_8_OR_LATER) {
+        [application
+         registerUserNotificationSettings:[UIUserNotificationSettings
+                                           settingsForTypes:(UIUserNotificationTypeSound |
+                                                             UIUserNotificationTypeAlert |
+                                                             UIUserNotificationTypeBadge)
+                                           categories:nil]];
+        
+        [application registerForRemoteNotifications];
+        
+    }
 
     return YES;
 }
@@ -175,6 +192,15 @@
             abort();
         }
     }
+}
+
+#pragma mark - push
+
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+        
+    [[ZPPUserManager sharedInstance] setAPNsToken:deviceToken];
 }
 
 @end

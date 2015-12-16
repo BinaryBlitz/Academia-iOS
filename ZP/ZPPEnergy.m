@@ -25,6 +25,7 @@
     self = [super init];
     if (self) {
         
+        
         self.fats = fats;
         self.kilocalories = kilocalories;
         self.carbohydrates = carbohydrates;

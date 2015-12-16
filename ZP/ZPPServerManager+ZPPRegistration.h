@@ -74,4 +74,10 @@ typedef NS_ENUM(NSInteger, ZPPUserStatus) {
                 onSuccess:(void (^)(NSString *token))success
                 onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
+
+#pragma mark - push
+
+- (void)updateToken:(NSString *)token onSuccess:(void (^)())success
+          onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
 @end

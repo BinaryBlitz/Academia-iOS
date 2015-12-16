@@ -20,6 +20,8 @@ NSString const *ZPPUserPromocode = @"promo_code";
 NSString const *ZPPUserBalance = @"balance";
 
 NSString const *ZPPPromoCodeUsed = @"promo_used";
+NSString const *ZPPPlatform = @"platform";
+NSString const *ZPPAPNSToken = @"device_token";
 
 @implementation ZPPUserHelper
 
@@ -49,10 +51,14 @@ NSString const *ZPPPromoCodeUsed = @"promo_used";
     if (user.apiToken) {
         d[ZPPAPIToken] = user.apiToken;
     }
-
-    //    if (user.password) {
-    //        d[ZPPUserPassword] = user.password;
-    //    }
+    
+    if (user.pushToken) {
+        d[ZPPAPNSToken] = user.pushToken;
+    }
+    
+    if(user.platform) {
+        d[ZPPPlatform] = user.platform;
+    }
 
     return [NSDictionary dictionaryWithDictionary:d];
 }

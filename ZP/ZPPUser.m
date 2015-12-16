@@ -61,6 +61,10 @@
 //    return self;
 //}
 
+- (NSString *)platform {
+    return @"ios";
+}
+
 - (instancetype)initWihtName:(NSString *)name
                     lastName:(NSString *)lastName
                        email:(NSString *)email
