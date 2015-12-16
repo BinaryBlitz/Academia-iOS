@@ -42,6 +42,9 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
     //    self.bottomConstraint = self.bottomConstr;
     //    self.mainTF = self.codeTextField;
 
+    self.bottomConstraint = self.additionalViewBottomConstraint;
+    self.mainTF = self.smsInviteButton.superview;
+
     [self.codeTextField makeBordered];
 
     [self.doneButton addTarget:self
@@ -312,11 +315,35 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
 - (NSString *)promocodeInviteText {
     return
         [NSString stringWithFormat:
-                      @"Используй мой промокод, %@, и получи 200%@ в "
+                      @"Используй мой промокод, %@, и получи 300%@ в "
                       @"приложении "
                       @"Zdorovoe "
                       @"Pitanie!",
                       self.promocode, ZPPRoubleSymbol];  // redo
+}
+
+#pragma mark - keyboard
+
+- (void)keyboardWillShow:(NSNotification *)aNotification {
+    NSDictionary *info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+
+    [self.view layoutIfNeeded];
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         self.bottomConstraint.constant = -kbSize.height;
+                         [self.mainTF.superview layoutIfNeeded];
+                         [self.view layoutIfNeeded];
+                     }];
+}
+
+- (void)keyboardWillHide:(NSNotification *)aNotification {
+    [self.view layoutIfNeeded];
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         self.bottomConstraint.constant = 0;
+                         [self.view layoutIfNeeded];
+                     }];
 }
 
 @end
