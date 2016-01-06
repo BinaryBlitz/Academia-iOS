@@ -6,30 +6,30 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import "ZPPMainVC.h"
 #import "ZPPMainMenuView.h"
+#import "ZPPMainVC.h"
 #import "ZPPUserManager.h"
 
-#import "ZPPOrder.h"
-#import "ZPPOrderTVC.h"
 #import "ZPPGiftTVC.h"
-#import "ZPPOrderHistoryTVC.h"
 #import "ZPPNoInternetConnectionVC.h"
+#import "ZPPOrder.h"
+#import "ZPPOrderHistoryTVC.h"
+#import "ZPPOrderTVC.h"
 #import "ZPPServerManager+ZPPRegistration.h"
 
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "ZPPOrderManager.h"
 
 // libs
-#import <VBFPopFlatButton.h>
 #import <JSBadgeView.h>
+#import <VBFPopFlatButton.h>
 
 #import "ZPPDish.h"
 
 static float kZPPButtonDiametr = 40.0f;
 static float kZPPButtonOffset = 15.0f;
 
-static NSString *ZPPBalanceString = @"Текущий баланс: %@ б.";
+static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонусов";
 
 @interface ZPPMainVC () <ZPPNoInternetDelegate>
 @property (strong, nonatomic) VBFPopFlatButton *menuButton;
@@ -60,39 +60,35 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ б.";
     if ([[ZPPUserManager sharedInstance] checkUser]) {
         [[ZPPServerManager sharedManager] getCurrentUserOnSuccess:^(ZPPUser *user) {
             [ZPPUserManager sharedInstance].user.balance = user.balance;
-            
-            [self setUserBalance];
-            
-//            self.mainMenu.balanceLabel.text =
-//                [NSString stringWithFormat:ZPPBalanceString,
-//                                           [ZPPUserManager sharedInstance].user.balance];
-        } onFailure:^(NSError *error, NSInteger statusCode){
 
-        }];
+            [self setUserBalance];
+
+        }
+            onFailure:^(NSError *error, NSInteger statusCode){
+
+            }];
 
         [self setOrderCount];
 
         [self.view addSubview:self.mainMenu];
         [self.view addSubview:self.buttonView];
-//        self.mainMenu.balanceLabel.text =
-//            [NSString stringWithFormat:ZPPBalanceString,
-//                                       [ZPPUserManager sharedInstance].user.balance];
-        
+
         [self setUserBalance];
         [self updateBadge];
     } else {
-        if ([self.view.subviews containsObject:self.mainMenu]) {
-            [self.mainMenu removeFromSuperview];
-        }
-        if ([self.view.subviews containsObject:self.buttonView]) {
-            [self.buttonView removeFromSuperview];
-        }
-        if ([self.view.subviews containsObject:self.orderView]) {
-            [self.orderView removeFromSuperview];
-            _order = nil;
-        }
+        [self removeAllAfterLogOut];
     }
     [self showViewWithAnimation];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didreceiveNotification:)
+                                                 name:ZPPUserLogoutNotificationName
+                                               object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -107,47 +103,11 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ б.";
     return YES;
 }
 
-//#pragma mark - ZPPBeginDelegate
-//
-//-(void)didPressBeginButton {
-////    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"secondStoryBoard"
-/// bundle:nil];
-////
-////    // Load the initial view controller from the storyboard.
-////    // Set this by selecting 'Is Initial View Controller' on the appropriate view controller in
-/// the storyboard.
-////    UIViewController *theInitialViewController = [secondStoryBoard
-/// instantiateInitialViewController];
-////    //
-////    // **OR**
-////    //
-////    // Load the view controller with the identifier string myTabBar
-////    // Change UIViewController to the appropriate class
-////    UIViewController *theTabBar = (UIViewController *)[secondStoryBoard
-/// instantiateViewControllerWithIdentifier:@"myTabBar"];
-////
-////    // Then push the new view controller in the usual way:
-////    [self.navigationController pushViewController:theTabBar animated:YES];
-//}
-
 - (void)showRegistration {
     UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"registration" bundle:nil];
 
-    // Load the initial view controller from the storyboard.
-    // Set this by selecting 'Is Initial View Controller' on the appropriate view controller in the
-    // storyboard.
     UIViewController *theInitialViewController =
         [secondStoryBoard instantiateInitialViewController];
-    //
-    // **OR**
-    //
-    // Load the view controller with the identifier string myTabBar
-    // Change UIViewController to the appropriate class
-    // UIViewController *theTabBar = (UIViewController *)[secondStoryBoard
-    // instantiateViewControllerWithIdentifier:@"myTabBar"];
-
-    // Then push the new view controller in the usual way:
-    //[self.navigationController pushViewController:theTabBar animated:YES];
 
     [self presentViewController:theInitialViewController
                        animated:YES
@@ -155,17 +115,6 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ б.";
 
                      }];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before
-navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - action
 
@@ -257,11 +206,7 @@ navigation
 - (void)showGifts {
     [self dissmisMenu];
 
-    //    UINavigationController *nvc =
-    //        (UINavigationController *)[self initialVCForStoryboardWithName:@"gifts"];
-
-    ZPPGiftTVC *gtvc = (ZPPGiftTVC *)
-        [self firstRealVCFormStoryBoardWithName:@"gifts"];  //[nvc.viewControllers firstObject];
+    ZPPGiftTVC *gtvc = (ZPPGiftTVC *)[self firstRealVCFormStoryBoardWithName:@"gifts"];
 
     [gtvc configureWithOrder:self.order];
 
@@ -277,8 +222,6 @@ navigation
     [ohtvc configureWithOrder:self.order];
 
     [self presentViewController:ohtvc.navigationController animated:YES completion:nil];
-
-    // UINavigationController *nvc =
 }
 
 - (void)showPromoCodeInput {
@@ -288,12 +231,7 @@ navigation
 }
 
 - (void)showOrder {
-    //[self showVCFromStoryboardWithName:@"order"];
-    //    UINavigationController *initial =
-    //        (UINavigationController *)[self initialVCForStoryboardWithName:@"order"];
-
-    ZPPOrderTVC *orderTVC = (ZPPOrderTVC *)
-        [self firstRealVCFormStoryBoardWithName:@"order"];  //[initial.viewControllers firstObject];
+    ZPPOrderTVC *orderTVC = (ZPPOrderTVC *)[self firstRealVCFormStoryBoardWithName:@"order"];
 
     [orderTVC configureWithOrder:self.order];
 
@@ -325,10 +263,7 @@ navigation
 }
 
 - (void)showVCFromStoryboardWithName:(NSString *)storyboardName {
-    // UIStoryboard *sb = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
-
-    UIViewController *vc = [self
-        initialVCForStoryboardWithName:storyboardName];  //[sb instantiateInitialViewController];
+    UIViewController *vc = [self initialVCForStoryboardWithName:storyboardName];
 
     [self presentViewController:vc
                        animated:YES
@@ -341,6 +276,14 @@ navigation
     UIStoryboard *sb = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
     UIViewController *vc = [sb instantiateInitialViewController];
     return vc;
+}
+
+#pragma mark - notifications
+
+- (void)didreceiveNotification:(NSNotification *)note {
+    if ([note.name isEqualToString:ZPPUserLogoutNotificationName]) {
+        [self removeAllAfterLogOut];
+    }
 }
 
 #pragma mark - support
@@ -381,9 +324,7 @@ navigation
         animations:^{
             CGRect nbtmr = bottomView.frame;
             nbtmr.origin.x = len;
-            bottomView.frame = nbtmr;  // CGRectMake(<#CGFloat x#>, <#CGFloat y#>,
-                                       // <#CGFloat width#>, <#CGFloat height#>)
-
+            bottomView.frame = nbtmr;
             CGRect nupr = upperrView.frame;
             nupr.origin.x = len;
             upperrView.frame = nupr;
@@ -394,28 +335,33 @@ navigation
         }];
 }
 
-
-- (void)setUserBalance{
-    
-    if([ZPPUserManager sharedInstance].user.balance.integerValue > 0) {
-    
-    self.mainMenu.balanceLabel.text =
-    [NSString stringWithFormat:ZPPBalanceString,
-     [ZPPUserManager sharedInstance].user.balance];
+- (void)setUserBalance {
+    if ([ZPPUserManager sharedInstance].user.balance.integerValue > 0) {
+        self.mainMenu.balanceLabel.text = [NSString
+            stringWithFormat:ZPPBalanceString, [ZPPUserManager sharedInstance].user.balance];
     } else {
         self.mainMenu.balanceLabel.text = @"";
     }
+}
 
-    
+- (void)removeAllAfterLogOut {
+    if ([self.view.subviews containsObject:self.mainMenu]) {
+        [self.mainMenu removeFromSuperview];
+    }
+    if ([self.view.subviews containsObject:self.buttonView]) {
+        [self.buttonView removeFromSuperview];
+    }
+    if ([self.view.subviews containsObject:self.orderView]) {
+        [self.orderView removeFromSuperview];
+        _order = nil;
+    }
 }
 
 #pragma mark - ordrer
 
 - (void)addItemIntoOrder:(id<ZPPItemProtocol>)item {
     [self.order addItem:item];
-
     [self showOrderButton];
-
     [self updateBadge];
 }
 

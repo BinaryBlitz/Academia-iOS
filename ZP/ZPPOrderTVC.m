@@ -21,6 +21,8 @@
 //#import "ZPPCreditCardInfoCell.h"
 //#import "ZPPCardInOrderCell.h"
 
+#import <Crashlytics/Crashlytics.h>
+
 #import "ZPPCardViewController.h"
 #import "ZPPOrderItemVC.h"
 #import "ZPPOrderResultVC.h"
@@ -71,6 +73,11 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tintColor = [UIColor blackColor];
+    
+    
+    [Answers logCustomEventWithName:@"ORDER_OPEN"
+                   customAttributes:@{}];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -20,5 +20,6 @@
 
 - (ZPPUser *)user;
 
+@property (weak, nonatomic) IBOutlet UIButton *rulesButton;
 
 @end

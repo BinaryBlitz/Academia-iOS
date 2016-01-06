@@ -6,13 +6,13 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import "ZPPMainPageVC.h"
-#import "ZPPProductTVC.h"
 #import "ZPPAnotherProductsTVC.h"
 #import "ZPPBeginScreenTVC.h"
-#import "ZPPMainVC.h"
-#import "ZPPUserManager.h"
 #import "ZPPDish.h"
+#import "ZPPMainPageVC.h"
+#import "ZPPMainVC.h"
+#import "ZPPProductTVC.h"
+#import "ZPPUserManager.h"
 
 #import "ZPPServerManager+ZPPDishesSeverManager.h"
 
@@ -197,34 +197,44 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
 - (void)loadDishes {
     __weak typeof(self) weakSelf = self;
-    [[ZPPServerManager sharedManager] getDayMenuOnSuccess:^(NSArray *meals, NSArray *dishes,
-                                                            NSArray *stuff,
-                                                            ZPPTimeManager *timeManager) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        if (strongSelf) {
-            // if (!timeManager) {
-            NSArray *dishControllers = [strongSelf dishControllersFromArr:dishes];
-            NSArray *mealControllers = [strongSelf lunchControllersFromArr:meals];
+    [[ZPPServerManager sharedManager]
+        getDayMenuOnSuccess:^(NSArray *meals, NSArray *dishes, NSArray *stuff,
+                              ZPPTimeManager *timeManager) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            if (strongSelf) {
+                // if (!timeManager) {
+                NSArray *dishControllers = [strongSelf dishControllersFromArr:dishes];
+                NSArray *mealControllers = [strongSelf lunchControllersFromArr:meals];
 
-            NSArray *arr =
-                [@[ [strongSelf startScreen] ] arrayByAddingObjectsFromArray:mealControllers];
-            arr = [arr arrayByAddingObjectsFromArray:dishControllers];
+                NSArray *arr =
+                    [@[ [strongSelf startScreen] ] arrayByAddingObjectsFromArray:mealControllers];
+                arr = [arr arrayByAddingObjectsFromArray:dishControllers];
 
-            if (stuff.count) {
-                ZPPAnotherProductsTVC *stuffTVC = [strongSelf generateAnotherProductsVC:stuff];
-                stuffTVC.productDelegate = strongSelf;
-                arr = [arr arrayByAddingObject:stuffTVC];
+                if (stuff.count) {
+                    ZPPAnotherProductsTVC *stuffTVC = [strongSelf generateAnotherProductsVC:stuff];
+                    stuffTVC.productDelegate = strongSelf;
+                    arr = [arr arrayByAddingObject:stuffTVC];
+                }
+
+                [strongSelf configureScreensWithArr:arr];
+                //  } else {
+                // [strongSelf configureScreensWithArr:@[ [strongSelf startScreen] ]];
+                //   }
             }
-
-            [strongSelf configureScreensWithArr:arr];
-            //  } else {
-            // [strongSelf configureScreensWithArr:@[ [strongSelf startScreen] ]];
-            //   }
         }
-    } onFailure:^(NSError *error, NSInteger statusCode) {
+        onFailure:^(NSError *error, NSInteger statusCode) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            if (strongSelf) {
+                if (statusCode == 401) {
+                    [[ZPPUserManager sharedInstance] userLogOut];
+                    [strongSelf configureScreensWithArr:@[ [strongSelf startScreen] ]];
+                    
 
-        [[self mainVC] showNoInternetScreen];
-    }];
+                } else {
+                    [[strongSelf mainVC] showNoInternetScreen];
+                }
+            }
+        }];
 }
 
 - (NSArray *)dishControllersFromArr:(NSArray *)dishes {

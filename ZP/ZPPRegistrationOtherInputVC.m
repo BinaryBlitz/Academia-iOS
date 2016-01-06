@@ -8,18 +8,20 @@
 
 #import "ZPPRegistrationOtherInputVC.h"
 //#import "ZPPRegistrationServerManager.h"
+#import "ZPPRegistrationSuccesVC.h"
 #import "ZPPServerManager+ZPPRegistration.h"
 #import "ZPPUser.h"
 #import "ZPPUserManager.h"
-#import "ZPPRegistrationSuccesVC.h"
 
+#import "UIButton+ZPPButtonCategory.h"
+#import "UITableViewController+ZPPTVCCategory.h"
+#import "UIView+UIViewCategory.h"
 #import "UIViewController+ZPPValidationCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
-#import "UIButton+ZPPButtonCategory.h"
-#import "UIView+UIViewCategory.h"
-#import "UITableViewController+ZPPTVCCategory.h"
 
 #import "ZPPConsts.h"
+
+#import <Crashlytics/Crashlytics.h>
 
 static NSString *ZPPShowRegistrationResultSegueIdentifier =
     @"ZPPShowRegistrationResultSegueIdentifier";
@@ -27,8 +29,6 @@ static NSString *ZPPShowRegistrationResultSegueIdentifier =
 static NSString *ZPPNameErrMessage = @"Введите имя";
 static NSString *ZPPSurnameErrMaessage = @"Введите фамилию";
 static NSString *ZPPEmailErrMessage = @"Введите e-mail";
-//static NSString *ZPPPasswordErrMessage = @"Введите пароль длинне 5 символов";
-//static NSString *ZPPPaswordEqualtyErrMessage = @"Пароли должны совпадать";
 
 @interface ZPPRegistrationOtherInputVC () <UITextFieldDelegate>
 
@@ -47,11 +47,11 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
     [arr addObject:self.nameTextField];
     [arr addObject:self.secondNameTextField];
     [arr addObject:self.emailTextFild];
-    
+
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
-//    [arr addObject:self.passwordTextField];
-//    [arr addObject:self.againPasswordTextField];
-    
+    //    [arr addObject:self.passwordTextField];
+    //    [arr addObject:self.againPasswordTextField];
+
     self.nameTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     self.secondNameTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
 
@@ -100,6 +100,8 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
 
             self.user = user;
 
+            [Answers logSignUpWithMethod:@"PHONE" success:@YES customAttributes:@{}];
+
             [self performSegueWithIdentifier:ZPPShowRegistrationResultSegueIdentifier sender:nil];
         }
         onFailure:^(NSError *error, NSInteger statusCode) {
@@ -110,37 +112,70 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
 }
 
 - (BOOL)chekAll {
+    //    if (![self checkNameTextField:self.nameTextField]) {
+    //        [self accentTextField:self.nameTextField];
+    //        [self showWarningWithText:ZPPNameErrMessage];
+    //        return NO;
+    //    }
+    //
+    //    if (![self checkNameTextField:self.secondNameTextField]) {
+    //        [self accentTextField:self.secondNameTextField];
+    //        [self showWarningWithText:ZPPSurnameErrMaessage];
+    //
+    //        return NO;
+    //    }
+    //
+    //    if (![self checkEmailTextField:self.emailTextFild]) {
+    //        [self accentTextField:self.emailTextFild];
+    //        [self showWarningWithText:ZPPEmailErrMessage];
+    //        return NO;
+    //    }
+    //
+    ////    if (![self checkPasswordTextFied:self.passwordTextField]) {
+    ////        [self accentTextField:self.passwordTextField];
+    ////        [self showWarningWithText:ZPPPasswordErrMessage];
+    ////
+    ////        return NO;
+    ////    }
+    ////
+    ////    if (![self checkPasswordEqualty:self.passwordTextField
+    ///second:self.againPasswordTextField]) {
+    ////        [self accentTextField:self.againPasswordTextField];
+    ////        [self showWarningWithText:ZPPPaswordEqualtyErrMessage];
+    ////        return NO;
+    ////    }
+    //
+    //    return YES;
+
+    return [self checkCurrentNameTextField] && [self checkCurrentSecondNameTextField] &&
+           [self checkCurrentEmailTextField];
+}
+
+- (BOOL)checkCurrentNameTextField {
     if (![self checkNameTextField:self.nameTextField]) {
         [self accentTextField:self.nameTextField];
         [self showWarningWithText:ZPPNameErrMessage];
         return NO;
     }
+    return YES;
+}
 
+- (BOOL)checkCurrentSecondNameTextField {
     if (![self checkNameTextField:self.secondNameTextField]) {
         [self accentTextField:self.secondNameTextField];
         [self showWarningWithText:ZPPSurnameErrMaessage];
-        
+
         return NO;
     }
+    return YES;
+}
 
+- (BOOL)checkCurrentEmailTextField {
     if (![self checkEmailTextField:self.emailTextFild]) {
         [self accentTextField:self.emailTextFild];
         [self showWarningWithText:ZPPEmailErrMessage];
         return NO;
     }
-
-//    if (![self checkPasswordTextFied:self.passwordTextField]) {
-//        [self accentTextField:self.passwordTextField];
-//        [self showWarningWithText:ZPPPasswordErrMessage];
-//        
-//        return NO;
-//    }
-//
-//    if (![self checkPasswordEqualty:self.passwordTextField second:self.againPasswordTextField]) {
-//        [self accentTextField:self.againPasswordTextField];
-//        [self showWarningWithText:ZPPPaswordEqualtyErrMessage];
-//        return NO;
-//    }
 
     return YES;
 }
@@ -156,7 +191,7 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
     self.user.password = self.passwordTextField.text;
     self.user.email = self.emailTextFild.text;
     NSString *pushToken = [ZPPUserManager sharedInstance].pushToken;
-    if(pushToken && ![pushToken isEqual:[NSNull null]]) {
+    if (pushToken && ![pushToken isEqual:[NSNull null]]) {
         self.user.pushToken = pushToken;
     }
 }
@@ -164,6 +199,34 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
 //-(BOOL)textFieldShouldReturn:(UITextField *)textField {
 //
 //}
+
+#pragma mark - text field delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if ([textField isEqual:self.nameTextField]) {
+        
+        if([self checkCurrentNameTextField]) {
+            [self.secondNameTextField becomeFirstResponder];
+        } else {
+            return NO;
+        }
+    } else if ([textField isEqual:self.secondNameTextField]) {
+        
+        if([self checkCurrentSecondNameTextField]) {
+            [self.emailTextFild becomeFirstResponder];
+        } else {
+            return NO;
+        }
+    } else if([textField isEqual:self.emailTextFild]) {
+        if([self checkCurrentEmailTextField]) {
+            [self saveAction:self.saveButton];
+        } else {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
 
 #pragma mark - Navigation
 
@@ -180,6 +243,5 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
         [destVC setUser:self.user];
     }
 }
-
 
 @end

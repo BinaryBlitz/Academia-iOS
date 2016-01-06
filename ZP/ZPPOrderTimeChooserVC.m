@@ -8,10 +8,10 @@
 
 #import "ZPPOrderTimeChooserVC.h"
 
+#import "UIButton+ZPPButtonCategory.h"
+#import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIView+UIViewCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
-#import "UINavigationController+ZPPNavigationControllerCategory.h"
-#import "UIButton+ZPPButtonCategory.h"
 
 #import "ZPPOrder.h"
 
@@ -33,6 +33,8 @@
 #import "ActionSheetPicker.h"
 
 #import "ZPPTimeManager.h"
+
+#import <Crashlytics/Crashlytics.h>
 
 @import SafariServices;
 
@@ -65,29 +67,27 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 
     [self addCustomCloseButton];
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+
+    [Answers logCustomEventWithName:@"ORDER_TIME_CHOOSER_OPEN" customAttributes:@{}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     self.totalPriceLabel.text =
-        [NSString stringWithFormat:@"ВАШ ЗАКАЗ НА: %@%@", @([self.order totalPriceWithDelivery]),
-                                   ZPPRoubleSymbol];
-    
-    if([self.order deliveryIncluded]) {
-         self.deliveryLabel.text = [NSString stringWithFormat:@"+доставка 200%@", ZPPRoubleSymbol];
+        [NSString stringWithFormat:@"ВАШ ЗАКАЗ НА: %@%@",
+                                   @([self.order totalPriceWithDelivery]), ZPPRoubleSymbol];
+
+    if ([self.order deliveryIncluded]) {
+        self.deliveryLabel.text = [NSString stringWithFormat:@"+доставка 200%@", ZPPRoubleSymbol];
     } else {
         self.deliveryLabel.text = @"";
     }
-    
-    
- 
-    
-    
 
-//    if (self.order.totalPrice < 1000) {
-//        self.deliveryLabel.text = [NSString stringWithFormat:@"+доставка 200%@", ZPPRoubleSymbol];
-//    } else {
-//        self.deliveryLabel.text = @"";
-//    }
+    //    if (self.order.totalPrice < 1000) {
+    //        self.deliveryLabel.text = [NSString stringWithFormat:@"+доставка 200%@",
+    //        ZPPRoubleSymbol];
+    //    } else {
+    //        self.deliveryLabel.text = @"";
+    //    }
 
     //    if([ZPPTimeManager sharedManager].isOpen) {
     //        [self addCheckmarkToButton:self.nowButton];
@@ -106,15 +106,15 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
     //    static BOOL
     //    [self addCheckmarkToButton:self.nowButton];
     if (!self.once) {
-        if([ZPPTimeManager sharedManager].isOpen) {
-        self.once = YES;
-        [self addCheckmarkToButton:self.nowButton];
-        self.order.date = [NSDate new];
+        if ([ZPPTimeManager sharedManager].isOpen) {
+            self.once = YES;
+            [self addCheckmarkToButton:self.nowButton];
+            self.order.date = [[self class] nowByAppendingThirtyMinutes];
         } else {
             self.once = YES;
             self.nowButton.hidden = YES;
             self.order.date = nil;
-            
+
             self.nowButtonHeight.constant = 0;
         }
     }
@@ -125,7 +125,6 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 }
 
 - (void)makeOrderAction:(UIButton *)sender {
-    
     if (!self.order.date) {
         [self.atTimeButton shakeView];
         [self showWarningWithText:@"Выберите время доставки"];
@@ -136,7 +135,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 
 - (void)orderNowAction:(UIButton *)sender {
     [self addCheckmarkToButton:sender];
-    self.order.date = [NSDate new];
+    self.order.date = [[self class] nowByAppendingThirtyMinutes];
     [self.atTimeButton setTitle:@"ВЫБРАТЬ ВРЕМЯ" forState:UIControlStateNormal];
 }
 
@@ -215,7 +214,11 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
         onFailure:^(NSError *error, NSInteger statusCode) {
             [self.makeOrderButton stopIndication];
 
-            [self showWarningWithText:@"Выберите другую область " @"доста" @"в" @"к" @"и"];
+            [self showWarningWithText:@"Выберите другую область "
+                                      @"доста"
+                                      @"в"
+                                      @"к"
+                                      @"и"];
         }];
 }
 
@@ -282,7 +285,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
     NSMutableArray *timeArr = [NSMutableArray array];
 
     NSDate *datee =
-        [NSDate new];  //[NSDate dateWithYear:2015 month:12 day:1 hour:10 minute:59 second:13];
+        [[self class] nowByAppendingThirtyMinutes];  //[NSDate dateWithYear:2015 month:12 day:1 hour:10 minute:59 second:13];
     NSInteger currentHour = [datee hour] + 1;  //[[NSDate new] hour] + 1 ;
     NSInteger closeHour = 23;
     NSInteger openHour = 11;
@@ -333,6 +336,12 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
             NSLog(@"Block Picker Canceled");
         }
         origin:sender];
+}
+
+#pragma mark - date
+
++ (NSDate *)nowByAppendingThirtyMinutes {
+    return [[NSDate new] dateByAddingMinutes:30];
 }
 
 @end
