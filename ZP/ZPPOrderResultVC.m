@@ -6,15 +6,18 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import "ZPPOrderResultVC.h"
+#import <Crashlytics/Crashlytics.h>
 #import "UIView+UIViewCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "ZPPConsts.h"
+#import "ZPPOrderResultVC.h"
 
 @implementation ZPPOrderResultVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [Answers logCustomEventWithName:@"ORDER_MADE" customAttributes:@{}];
 
     //  [self.callCourierButton makeBorderedWithColor:[UIColor whiteColor]];
 

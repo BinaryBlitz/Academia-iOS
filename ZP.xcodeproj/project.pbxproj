@@ -62,6 +62,7 @@
 		191D7DEA1BD53DD100DBAFC4 /* ZPPUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 191D7DE91BD53DD100DBAFC4 /* ZPPUserManager.m */; };
 		191D7DF61BD56C2600DBAFC4 /* ZPPUserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 191D7DF51BD56C2600DBAFC4 /* ZPPUserHelper.m */; };
 		191D7DFB1BD5768900DBAFC4 /* UIButton+ZPPButtonCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 191D7DFA1BD5768900DBAFC4 /* UIButton+ZPPButtonCategory.m */; };
+		192515EB1C3DB31200687740 /* ZPPRulesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 192515EA1C3DB31200687740 /* ZPPRulesVC.m */; };
 		1942353F1BE8F6C20014BD9A /* ZPPOrderItemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1942353E1BE8F6C20014BD9A /* ZPPOrderItemVC.m */; };
 		194235431BE930210014BD9A /* ZPPGiftTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 194235421BE930210014BD9A /* ZPPGiftTVC.m */; };
 		194235471BE931C80014BD9A /* ZPPGiftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 194235461BE931C80014BD9A /* ZPPGiftCell.m */; };
@@ -285,6 +286,8 @@
 		191D7DF51BD56C2600DBAFC4 /* ZPPUserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPUserHelper.m; sourceTree = "<group>"; };
 		191D7DF91BD5768900DBAFC4 /* UIButton+ZPPButtonCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ZPPButtonCategory.h"; sourceTree = "<group>"; };
 		191D7DFA1BD5768900DBAFC4 /* UIButton+ZPPButtonCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ZPPButtonCategory.m"; sourceTree = "<group>"; };
+		192515E91C3DB31200687740 /* ZPPRulesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPRulesVC.h; sourceTree = "<group>"; };
+		192515EA1C3DB31200687740 /* ZPPRulesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPRulesVC.m; sourceTree = "<group>"; };
 		1942353D1BE8F6C20014BD9A /* ZPPOrderItemVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPOrderItemVC.h; sourceTree = "<group>"; };
 		1942353E1BE8F6C20014BD9A /* ZPPOrderItemVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPOrderItemVC.m; sourceTree = "<group>"; };
 		194235411BE930210014BD9A /* ZPPGiftTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPGiftTVC.h; sourceTree = "<group>"; };
@@ -732,6 +735,8 @@
 				1984EE2F1BD12CD9001D25D5 /* ZPPRegistrationOtherInputVC.m */,
 				194617F51BD3DBFC001D13A3 /* ZPPRegistrationSuccesVC.h */,
 				194617F61BD3DBFC001D13A3 /* ZPPRegistrationSuccesVC.m */,
+				192515E91C3DB31200687740 /* ZPPRulesVC.h */,
+				192515EA1C3DB31200687740 /* ZPPRulesVC.m */,
 			);
 			name = registration;
 			sourceTree = "<group>";
@@ -1917,6 +1922,7 @@
 				1986356D1BDFD04B0070E3F7 /* ZPPOrder.m in Sources */,
 				198A5C101BD5B60700710A36 /* ZPPDish.m in Sources */,
 				198635701BDFD1950070E3F7 /* ZPPOrderItem.m in Sources */,
+				192515EB1C3DB31200687740 /* ZPPRulesVC.m in Sources */,
 				19B386191C19F1CC0050BE02 /* ZPPEnergyHelper.m in Sources */,
 				19C5018E1BEE4EBB00575F78 /* ZPPAdressVC.m in Sources */,
 				19DADF5A1BF658DD007D9DF2 /* ZPPSmsVerificationManager.m in Sources */,

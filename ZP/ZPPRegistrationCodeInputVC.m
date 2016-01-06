@@ -17,6 +17,8 @@
 #import "ZPPSmsVerificationManager.h"
 #import "ZPPServerManager+ZPPRegistration.h"
 
+#import <Crashlytics/Crashlytics.h>
+
 #import "ZPPConsts.h"
 
 static NSString *ZPPShowRegistrationOtherScreenSegueIdentifier =
@@ -112,6 +114,9 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
                 [[ZPPServerManager sharedManager] getCurrentUserWithToken:token
                     onSuccess:^(ZPPUser *user) {
                         [b stopIndication];
+                        [Answers logLoginWithMethod:@"PHONE"
+                                            success:@YES
+                                   customAttributes:@{}];
                         
                         [[ZPPUserManager sharedInstance] setUser:user];
                         [self dismissViewControllerAnimated:YES completion:nil];

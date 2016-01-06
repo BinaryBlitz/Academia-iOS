@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -16,8 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="О блюде" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pia-1c-p4M">
-                        <rect key="frame" x="8" y="8" width="498" height="32"/>
-                        <animations/>
+                        <rect key="frame" x="8" y="18" width="498" height="32"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="NOx-cM-Beu"/>
                         </constraints>
@@ -26,36 +25,32 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="47g-Hy-b6K">
-                        <rect key="frame" x="39" y="40" width="436" height="4"/>
-                        <animations/>
+                        <rect key="frame" x="39" y="50" width="436" height="4"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="4" id="sa5-vF-CNM"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTt-Nt-pjq">
-                        <rect key="frame" x="39" y="48" width="436" height="179.5"/>
-                        <animations/>
+                        <rect key="frame" x="39" y="58" width="436" height="222.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="47g-Hy-b6K" secondAttribute="trailing" constant="31" id="7gQ-Ow-rUh"/>
                     <constraint firstItem="47g-Hy-b6K" firstAttribute="top" secondItem="pia-1c-p4M" secondAttribute="bottom" id="7rt-lN-qkX"/>
-                    <constraint firstItem="MTt-Nt-pjq" firstAttribute="bottom" secondItem="Hrq-pk-AuF" secondAttribute="bottomMargin" constant="-50" id="Uci-q4-8hQ"/>
+                    <constraint firstItem="MTt-Nt-pjq" firstAttribute="bottom" secondItem="Hrq-pk-AuF" secondAttribute="bottomMargin" constant="3" id="Uci-q4-8hQ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="MTt-Nt-pjq" secondAttribute="trailing" constant="31" id="VPk-8h-7Sl"/>
                     <constraint firstItem="pia-1c-p4M" firstAttribute="trailing" secondItem="Hrq-pk-AuF" secondAttribute="trailingMargin" id="XG9-sQ-ib1"/>
                     <constraint firstItem="MTt-Nt-pjq" firstAttribute="top" secondItem="47g-Hy-b6K" secondAttribute="bottom" constant="4" id="bG5-bl-BXd"/>
-                    <constraint firstItem="pia-1c-p4M" firstAttribute="top" secondItem="Hrq-pk-AuF" secondAttribute="topMargin" id="hkT-Kh-SmC"/>
+                    <constraint firstItem="pia-1c-p4M" firstAttribute="top" secondItem="Hrq-pk-AuF" secondAttribute="topMargin" constant="10" id="hkT-Kh-SmC"/>
                     <constraint firstItem="47g-Hy-b6K" firstAttribute="leading" secondItem="Hrq-pk-AuF" secondAttribute="leadingMargin" constant="31" id="jra-bK-8GZ"/>
                     <constraint firstItem="pia-1c-p4M" firstAttribute="leading" secondItem="Hrq-pk-AuF" secondAttribute="leadingMargin" id="s7h-j1-YaR"/>
                     <constraint firstItem="MTt-Nt-pjq" firstAttribute="leading" secondItem="Hrq-pk-AuF" secondAttribute="leadingMargin" constant="31" id="zE8-RN-4Gl"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <connections>
                 <outlet property="aboutLabel" destination="MTt-Nt-pjq" id="cPC-rv-hjp"/>
             </connections>

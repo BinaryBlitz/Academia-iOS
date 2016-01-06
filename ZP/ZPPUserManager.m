@@ -6,12 +6,14 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import "ZPPUserManager.h"
-#import <Crashlytics/Crashlytics.h>
 #import <CocoaLumberjack.h>
+#import <Crashlytics/Crashlytics.h>
 #import "ZPPServerManager+ZPPRegistration.h"
+#import "ZPPUserManager.h"
 
-//static const int ddLogLevel = DDLogLevelDebug;
+// static const int ddLogLevel = DDLogLevelDebug;
+
+NSString *const ZPPUserLogoutNotificationName = @"ZPPUserLogoutNotificationName";
 
 @interface ZPPUserManager ()
 @property (strong, nonatomic) ZPPUser *user;
@@ -58,20 +60,12 @@
         }
 
         if (self.pushToken) {
-            //            [[QZBServerManager sharedManager] POSTAPNsToken:self.pushToken
-            //                                                  onSuccess:^{
-            //
-            //                                                  }
-            //                                                  onFailure:^(NSError *error,
-            //                                                  NSInteger statusCode){
-            //
-            //                                                  }];
         }
     }
 }
 
 - (void)setAPNsToken:(NSData *)pushTokenData {
-//    self.pushTokenData = pushTokenData;
+    //    self.pushTokenData = pushTokenData;
     NSString *pushToken = [pushTokenData description];
     pushToken = [pushToken
         stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
@@ -88,11 +82,8 @@
             }];
 
     } else {
-        
         return;
     }
-
-
 
     [[NSUserDefaults standardUserDefaults] setObject:pushToken forKey:@"APNStoken"];
     // [[NSUserDefaults standardUserDefaults] setObject:pushTokenData forKey:@"APNStokenData"];
@@ -102,36 +93,22 @@
 }
 
 - (void)userLogOut {
-    // self.user.api_key = nil;
-
-    //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"APNStoken"];
-
     if (self.pushToken) {
-        
-        [[ZPPServerManager sharedManager] updateToken:[NSNull null] onSuccess:^{
-            self.pushToken = nil;
-        } onFailure:^(NSError *error, NSInteger statusCode) {
-            
-        }];
-        
-        //        [[QZBServerManager sharedManager] DELETEAPNsToken:self.pushToken
-        //                                                onSuccess:^{ }
-        //                                                onFailure:^(NSError *error, NSInteger
-        //                                                statusCode){ }];
+        [[ZPPServerManager sharedManager] updateToken:[NSNull null]
+            onSuccess:^{
+                self.pushToken = nil;
+            }
+            onFailure:^(NSError *error, NSInteger statusCode){
+
+            }];
     }
 
-    // [[QZBLayerMessagerManager sharedInstance] logOut];
-
-    //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"APNStoken"];
-    // self.pushToken = nil;
     self.user = nil;
 
-    //[[NSUserDefaults standardUserDefaults] setBool:NO forKey:QZBNeedStartMessager];
-    //  [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"currentUser"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:ZPPUserLogoutNotificationName
+                                                        object:nil];
 }
-
-
 
 - (BOOL)checkUser {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"currentUser"]) {

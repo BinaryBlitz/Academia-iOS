@@ -6,14 +6,15 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import "ZPPRegistrationPhoneInputVC.h"
-#import <VBFPopFlatButton/VBFPopFlatButton.h>
 #import <DigitsKit/DigitsKit.h>
+#import <REFormattedNumberField.h>
+#import <VBFPopFlatButton/VBFPopFlatButton.h>
+#import "UIButton+ZPPButtonCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
-#import "UIButton+ZPPButtonCategory.h"
-#import <REFormattedNumberField.h>
 #import "ZPPRegistrationCodeInputVC.h"
+#import "ZPPRegistrationPhoneInputVC.h"
+#import "ZPPRulesVC.h"
 #import "ZPPUser.h"
 
 //#import "ZPPSmsVerificationManager.h"
@@ -23,8 +24,8 @@
 #import "ZPPConsts.h"
 
 #import "UIView+UIViewCategory.h"
-#import "UIViewController+ZPPViewControllerCategory.h"
 #import "UIViewController+ZPPValidationCategory.h"
+#import "UIViewController+ZPPViewControllerCategory.h"
 
 static NSString *ZPPShowNumberEnterScreenSegueIdentifier =
     @"ZPPShowNumberEnterScreenSegueIdentifier";
@@ -69,6 +70,22 @@ static NSString *ZPPShowAuthenticationSegueIdentifier = @"ZPPShowAuthenticationS
     gr.numberOfTouchesRequired = 1;
 
     [self.phoneNumberTextFiled.superview addGestureRecognizer:gr];
+
+    [self.rulesButton addTarget:self
+                         action:@selector(showRules)
+               forControlEvents:UIControlEventTouchUpInside];
+    NSDictionary *underlineAttribute =
+        @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) };
+    NSAttributedString *atrstr = [[NSAttributedString alloc]
+        initWithString:
+            @"Нажимая кнопку \"ДАЛЕЕ\" вы принимаете правила"
+            attributes:underlineAttribute];
+    
+    self.rulesButton.titleLabel.minimumScaleFactor = 0.5;
+    self.rulesButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    
+
+    [self.rulesButton setAttributedTitle:atrstr forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -105,6 +122,8 @@ navigation
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - actions
 - (IBAction)acceptAction:(UIButton *)sender {
     if ([self checkPhoneTextField:self.phoneNumberTextFiled]) {
         NSString *number = self.user.phoneNumber;  // self.phoneNumberTextFiled.text;
@@ -129,8 +148,13 @@ navigation
         [self showWarningWithText:ZPPPhoneWarningMessage];
     }
 }
-- (IBAction)showAuthentication:(UIButton *)sender {
-    [self performSegueWithIdentifier:ZPPShowAuthenticationSegueIdentifier sender:nil];
+
+- (void)showRules {
+    ZPPRulesVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:ZPPRulesVCID];
+    //    UINavigationController *nav = vc.navigationController;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark - Navigation

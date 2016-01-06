@@ -6,14 +6,14 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
+#import "ZPPBadgeCell.h"
+#import "ZPPBadgeForTwoCell.h"
+#import "ZPPIngridientAnotherCell.h"
+#import "ZPPProductAboutCell.h"
+#import "ZPPProductEnergyCell.h"
+#import "ZPPProductMainCell.h"
 #import "ZPPProductTVC.h"
 #import "ZPPProductsIngridientsCell.h"
-#import "ZPPProductMainCell.h"
-#import "ZPPProductAboutCell.h"
-#import "ZPPBadgeCell.h"
-#import "ZPPIngridientAnotherCell.h"
-#import "ZPPBadgeForTwoCell.h"
-#import "ZPPProductEnergyCell.h"
 
 #import "ZPPIngridient.h"
 
@@ -26,8 +26,8 @@
 // categories
 #import "UIFont+ZPPFontCategory.h"
 
-#import "ZPPDish.h"
 #import "ZPPBadge.h"
+#import "ZPPDish.h"
 #import "ZPPEnergy.h"
 
 #import "ZPPOrder.h"
@@ -330,7 +330,7 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
             if (!self.isLunch) {
                 return [UIScreen mainScreen].bounds.size.width / 3.0 + 10;
             } else {
-                return 50.f;
+                return UITableViewAutomaticDimension;
             }
         }
     } else if (indexPath.section == 1) {
@@ -386,6 +386,11 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 
 - (void)addToBasketAction:(UIButton *)sender {
     [self.productDelegate addItemIntoOrder:self.dish];
+
+    //    [self.tableView beginUpdates];
+//        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
+//                              withRowAnimation:UITableViewRowAnimationNone];
+//        [self.tableView endUpdates];
     [self.tableView reloadData];
 }
 
