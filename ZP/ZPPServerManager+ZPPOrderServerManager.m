@@ -122,7 +122,8 @@
 
             NSLog(@"payment status response %@", responseObject);
 
-            NSString *s = responseObject[@"status"];
+            //order status 2 is good
+            NSString *s = responseObject[@"error_message"];
             if (success) {
                 success(s);
             }

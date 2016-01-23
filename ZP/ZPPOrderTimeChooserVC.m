@@ -212,7 +212,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
                 }];
         }
         onFailure:^(NSError *error, NSInteger statusCode) {
-            [self.makeOrderButton stopIndication];
+            [self.makeOrderButton stopIndication];//redo
 
             [self showWarningWithText:@"Выберите другую область "
                                       @"доста"
