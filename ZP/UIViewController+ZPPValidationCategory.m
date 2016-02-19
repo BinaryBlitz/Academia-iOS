@@ -7,8 +7,10 @@
 //
 
 #import "UIViewController+ZPPValidationCategory.h"
-#import <REFormattedNumberField.h>
+//#import <REFormattedNumberField.h>
 #import "UIView+UIViewCategory.h"
+
+@import REFormattedNumberField;
 
 // static NSString *ZPPNameErrMessage = @"Введите имя";
 // static NSString *ZPPSurnameErrMaessage = @"Введите фамилию";

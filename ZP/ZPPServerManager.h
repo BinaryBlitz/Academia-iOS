@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CocoaLumberjack.h>
+#import "CocoaLumberjack.h"
 
 static const int ddLogLevel = DDLogLevelDebug;
 

@@ -12,10 +12,12 @@
 #import "ZPPContactCourierCell.h"
 #import "UITableViewController+ZPPTVCCategory.h"
 #import "ZPPOrder.h"
-#import <HCSStarRatingView.h>
+//#import <HCSStarRatingView.h>
 #import "UIButton+ZPPButtonCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "ZPPServerManager+ZPPOrderServerManager.h"
+
+@import HCSStarRatingView;
 
 static NSString *ZPPStarsCellIdentifier = @"ZPPStarsCellIdentifier";
 static NSString *ZPPCommentCellIdentifier = @"ZPPCommentCellIdentifier";

@@ -7,10 +7,14 @@
 //
 
 #import "UIViewController+ZPPViewControllerCategory.h"
-#import <TSMessage.h>
-#import <VBFPopFlatButton.h>
-#import <MBProgressHUD.h>
+//#import <TSMessage.h>
+//#import <VBFPopFlatButton.h>
+//#import <MBProgressHUD.h>
 #import "ZPPNoInternetConnectionVC.h"
+
+@import TSMessages;
+@import VBFPopFlatButton;
+@import MBProgressHUD;
 
 @implementation UIViewController (ZPPViewControllerCategory)
 

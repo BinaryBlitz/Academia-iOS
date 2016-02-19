@@ -21,8 +21,10 @@
 
 #import "ZPPConsts.h"
 
-#import <BKCardNumberField.h>
-#import "BKCardExpiryField.h"
+//#import <BKCardNumberField.h>
+//#import "BKCardExpiryField.h"
+
+@import BKMoneyKit;
 
 static NSString *ZPPCardNumberInputCellIdentifier = @"ZPPCardNumberInputCellIdentifier";
 static NSString *ZPPCardDateCodeCellIdentifier = @"ZPPCardDateCodeCellIdentifier";

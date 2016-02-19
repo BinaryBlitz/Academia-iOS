@@ -11,7 +11,7 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <DigitsKit/DigitsKit.h>
-#import <CocoaLumberjack.h>
+#import "CocoaLumberjack.h"
 
 #import "ZPPUserManager.h"
 

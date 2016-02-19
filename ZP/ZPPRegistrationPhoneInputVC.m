@@ -7,7 +7,7 @@
 //
 
 #import <DigitsKit/DigitsKit.h>
-#import <REFormattedNumberField.h>
+//#import <REFormattedNumberField.h>
 #import <VBFPopFlatButton/VBFPopFlatButton.h>
 #import "UIButton+ZPPButtonCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
@@ -26,6 +26,8 @@
 #import "UIView+UIViewCategory.h"
 #import "UIViewController+ZPPValidationCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
+
+@import REFormattedNumberField;
 
 static NSString *ZPPShowNumberEnterScreenSegueIdentifier =
     @"ZPPShowNumberEnterScreenSegueIdentifier";

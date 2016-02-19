@@ -1,10 +1,10 @@
 platform :ios, "8.0"
-
+use_frameworks!
 
 pod "AFNetworking"
 pod 'CocoaLumberjack'
 pod "TSMessages"
-pod "MagicalRecord"
+#pod "MagicalRecord"
 pod 'JSBadgeView'
 pod 'SCLAlertView-Objective-C'
 pod 'SDWebImage'
@@ -28,3 +28,6 @@ pod 'LMGeocoder'
 pod 'Digits'
 pod 'TwitterCore'
 pod 'HCSStarRatingView'
+
+pod 'EZSwipeController'
+pod 'PureLayout'

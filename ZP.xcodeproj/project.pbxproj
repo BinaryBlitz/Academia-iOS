@@ -89,6 +89,16 @@
 		195457401BD7C57900A3BB46 /* back1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1954573F1BD7C57900A3BB46 /* back1.png */; };
 		1955F3981C0BCD270010EED3 /* ZPPContactCourierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1955F3961C0BCD270010EED3 /* ZPPContactCourierCell.m */; };
 		1955F3991C0BCD270010EED3 /* ZPPContactCourierCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1955F3971C0BCD270010EED3 /* ZPPContactCourierCell.xib */; };
+		195BBF781C7681E2004D00A5 /* back-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 195BBF731C7681E2004D00A5 /* back-1.jpg */; };
+		195BBF791C7681E2004D00A5 /* back-2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 195BBF741C7681E2004D00A5 /* back-2.jpg */; };
+		195BBF7A1C7681E2004D00A5 /* back-3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 195BBF751C7681E2004D00A5 /* back-3.jpg */; };
+		195BBF7B1C7681E2004D00A5 /* back-4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 195BBF761C7681E2004D00A5 /* back-4.jpg */; };
+		195BBF7C1C7681E2004D00A5 /* back-5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 195BBF771C7681E2004D00A5 /* back-5.jpg */; };
+		195BBF8C1C7686C0004D00A5 /* Phone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 195BBF871C7686C0004D00A5 /* Phone5.png */; };
+		195BBF8D1C7686C0004D00A5 /* Phone4.png in Resources */ = {isa = PBXBuildFile; fileRef = 195BBF881C7686C0004D00A5 /* Phone4.png */; };
+		195BBF8E1C7686C0004D00A5 /* Phone3.png in Resources */ = {isa = PBXBuildFile; fileRef = 195BBF891C7686C0004D00A5 /* Phone3.png */; };
+		195BBF8F1C7686C0004D00A5 /* Phone2.png in Resources */ = {isa = PBXBuildFile; fileRef = 195BBF8A1C7686C0004D00A5 /* Phone2.png */; };
+		195BBF901C7686C0004D00A5 /* Phone1.png in Resources */ = {isa = PBXBuildFile; fileRef = 195BBF8B1C7686C0004D00A5 /* Phone1.png */; };
 		1963EF211BD3E91100665916 /* ZPPRegistrationBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1963EF201BD3E91100665916 /* ZPPRegistrationBaseVC.m */; };
 		19792D351C0C735700707D07 /* ZPPOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19792D341C0C735700707D07 /* ZPPOrderManager.m */; };
 		1984EE231BD110CC001D25D5 /* registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1984EE221BD110CC001D25D5 /* registration.storyboard */; };
@@ -118,6 +128,9 @@
 		198FD9811BE7B7BC00A30B4D /* ZPPCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198FD9801BE7B7BC00A30B4D /* ZPPCardViewController.m */; };
 		198FD9861BE7B84C00A30B4D /* ZPPAddNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 198FD9851BE7B84C00A30B4D /* ZPPAddNewCell.m */; };
 		198FD9881BE7B91E00A30B4D /* ZPPAddNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198FD9871BE7B91E00A30B4D /* ZPPAddNewCell.xib */; };
+		19A0984F1C7652DB0020A9BA /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19A0984E1C7652DB0020A9BA /* Onboarding.storyboard */; };
+		19A098551C7654B00020A9BA /* ZPPOnboardingTopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A098541C7654B00020A9BA /* ZPPOnboardingTopController.swift */; };
+		19A098581C765A190020A9BA /* ZPPOnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A098571C765A190020A9BA /* ZPPOnboardingVC.swift */; };
 		19B386121C19EA2E0050BE02 /* ZPPProductEnergyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B386101C19EA2E0050BE02 /* ZPPProductEnergyCell.m */; };
 		19B386131C19EA2E0050BE02 /* ZPPProductEnergyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19B386111C19EA2E0050BE02 /* ZPPProductEnergyCell.xib */; };
 		19B386161C19F0BA0050BE02 /* ZPPEnergy.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B386151C19F0BA0050BE02 /* ZPPEnergy.m */; };
@@ -173,7 +186,7 @@
 		19F379061BFE862F004827A0 /* ZPPImageWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F379051BFE862F004827A0 /* ZPPImageWorker.m */; };
 		19F3790A1BFE9132004827A0 /* ZPPCustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F379091BFE9132004827A0 /* ZPPCustomLabel.m */; };
 		19F3790D1BFEA6C9004827A0 /* ZPPCustomTouchTransperentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F3790C1BFEA6C9004827A0 /* ZPPCustomTouchTransperentView.m */; };
-		FB37B27DD0451E1AB7410CE8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B80D287D1FAB7ABCC6A7E759 /* libPods.a */; };
+		B161B4D19B5A9CDAE14026AD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A340E98E08E039F101A2881 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -331,6 +344,16 @@
 		1955F3951C0BCD270010EED3 /* ZPPContactCourierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPContactCourierCell.h; sourceTree = "<group>"; };
 		1955F3961C0BCD270010EED3 /* ZPPContactCourierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPContactCourierCell.m; sourceTree = "<group>"; };
 		1955F3971C0BCD270010EED3 /* ZPPContactCourierCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPContactCourierCell.xib; sourceTree = "<group>"; };
+		195BBF731C7681E2004D00A5 /* back-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "back-1.jpg"; sourceTree = "<group>"; };
+		195BBF741C7681E2004D00A5 /* back-2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "back-2.jpg"; sourceTree = "<group>"; };
+		195BBF751C7681E2004D00A5 /* back-3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "back-3.jpg"; sourceTree = "<group>"; };
+		195BBF761C7681E2004D00A5 /* back-4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "back-4.jpg"; sourceTree = "<group>"; };
+		195BBF771C7681E2004D00A5 /* back-5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "back-5.jpg"; sourceTree = "<group>"; };
+		195BBF871C7686C0004D00A5 /* Phone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Phone5.png; sourceTree = "<group>"; };
+		195BBF881C7686C0004D00A5 /* Phone4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Phone4.png; sourceTree = "<group>"; };
+		195BBF891C7686C0004D00A5 /* Phone3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Phone3.png; sourceTree = "<group>"; };
+		195BBF8A1C7686C0004D00A5 /* Phone2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Phone2.png; sourceTree = "<group>"; };
+		195BBF8B1C7686C0004D00A5 /* Phone1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Phone1.png; sourceTree = "<group>"; };
 		1963EF1F1BD3E91100665916 /* ZPPRegistrationBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPRegistrationBaseVC.h; sourceTree = "<group>"; };
 		1963EF201BD3E91100665916 /* ZPPRegistrationBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPRegistrationBaseVC.m; sourceTree = "<group>"; };
 		19792D331C0C735700707D07 /* ZPPOrderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPOrderManager.h; sourceTree = "<group>"; };
@@ -383,6 +406,10 @@
 		198FD9841BE7B84C00A30B4D /* ZPPAddNewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPAddNewCell.h; sourceTree = "<group>"; };
 		198FD9851BE7B84C00A30B4D /* ZPPAddNewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPAddNewCell.m; sourceTree = "<group>"; };
 		198FD9871BE7B91E00A30B4D /* ZPPAddNewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPAddNewCell.xib; sourceTree = "<group>"; };
+		19A0984E1C7652DB0020A9BA /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		19A098531C7654B00020A9BA /* ZP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZP-Bridging-Header.h"; sourceTree = "<group>"; };
+		19A098541C7654B00020A9BA /* ZPPOnboardingTopController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZPPOnboardingTopController.swift; sourceTree = "<group>"; };
+		19A098571C765A190020A9BA /* ZPPOnboardingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZPPOnboardingVC.swift; sourceTree = "<group>"; };
 		19B3860F1C19EA2E0050BE02 /* ZPPProductEnergyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProductEnergyCell.h; sourceTree = "<group>"; };
 		19B386101C19EA2E0050BE02 /* ZPPProductEnergyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPProductEnergyCell.m; sourceTree = "<group>"; };
 		19B386111C19EA2E0050BE02 /* ZPPProductEnergyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPProductEnergyCell.xib; sourceTree = "<group>"; };
@@ -482,7 +509,7 @@
 		19F379091BFE9132004827A0 /* ZPPCustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPCustomLabel.m; sourceTree = "<group>"; };
 		19F3790B1BFEA6C9004827A0 /* ZPPCustomTouchTransperentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPCustomTouchTransperentView.h; sourceTree = "<group>"; };
 		19F3790C1BFEA6C9004827A0 /* ZPPCustomTouchTransperentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPCustomTouchTransperentView.m; sourceTree = "<group>"; };
-		B80D287D1FAB7ABCC6A7E759 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A340E98E08E039F101A2881 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6092FFC7B589467189F0B0B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FBF21C48AB60C310F6FAB5FC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -492,7 +519,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB37B27DD0451E1AB7410CE8 /* libPods.a in Frameworks */,
+				B161B4D19B5A9CDAE14026AD /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,12 +571,9 @@
 				191C98511BC0432400E10D4F /* view */,
 				191C98501BC0431F00E10D4F /* model */,
 				1984EE211BD110B0001D25D5 /* storyboards */,
-				19014A4B1BC034CF001E0D77 /* AppDelegate.h */,
-				19014A4C1BC034CF001E0D77 /* AppDelegate.m */,
+				19A098561C7654C00020A9BA /* application */,
 				19014A571BC034CF001E0D77 /* Assets.xcassets */,
 				19014A591BC034CF001E0D77 /* LaunchScreen.storyboard */,
-				19014A5C1BC034CF001E0D77 /* Info.plist */,
-				19014A541BC034CF001E0D77 /* ZP.xcdatamodeld */,
 				19014A481BC034CF001E0D77 /* Supporting Files */,
 			);
 			path = ZP;
@@ -827,6 +851,7 @@
 		191C98521BC0433400E10D4F /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				19A0984C1C7651F80020A9BA /* onboarding */,
 				19DADF461BF616F6007D9DF2 /* noInternet */,
 				19C5018B1BEE4DB700575F78 /* maps */,
 				1948C5281BEBAC7A00084BC8 /* promocode */,
@@ -1044,6 +1069,7 @@
 		1954573E1BD7C54E00A3BB46 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				19A098591C76793D0020A9BA /* onboarding */,
 				190C6BC21BFA43D700533509 /* spinner.png */,
 				1907C74A1BF0B5BE003BA62E /* barBackground.png */,
 				1948C5461BEC38CA00084BC8 /* load.png */,
@@ -1068,6 +1094,18 @@
 				1955F3971C0BCD270010EED3 /* ZPPContactCourierCell.xib */,
 			);
 			name = contact;
+			sourceTree = "<group>";
+		};
+		195BBF721C7680B1004D00A5 /* backs */ = {
+			isa = PBXGroup;
+			children = (
+				195BBF731C7681E2004D00A5 /* back-1.jpg */,
+				195BBF741C7681E2004D00A5 /* back-2.jpg */,
+				195BBF751C7681E2004D00A5 /* back-3.jpg */,
+				195BBF761C7681E2004D00A5 /* back-4.jpg */,
+				195BBF771C7681E2004D00A5 /* back-5.jpg */,
+			);
+			name = backs;
 			sourceTree = "<group>";
 		};
 		1963EF1E1BD3E8DD00665916 /* base */ = {
@@ -1099,6 +1137,7 @@
 				19D242601BEA1728007A0FEB /* gifts.storyboard */,
 				19D242761BEA3B81007A0FEB /* orderHistory.storyboard */,
 				1948C5261BEBABFD00084BC8 /* promocode.storyboard */,
+				19A0984E1C7652DB0020A9BA /* Onboarding.storyboard */,
 			);
 			name = storyboards;
 			sourceTree = "<group>";
@@ -1285,6 +1324,48 @@
 				1907C7501BF0C441003BA62E /* add_new */,
 			);
 			name = credit_card;
+			sourceTree = "<group>";
+		};
+		19A0984C1C7651F80020A9BA /* onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				19A098541C7654B00020A9BA /* ZPPOnboardingTopController.swift */,
+				19A098571C765A190020A9BA /* ZPPOnboardingVC.swift */,
+			);
+			name = onboarding;
+			sourceTree = "<group>";
+		};
+		19A098561C7654C00020A9BA /* application */ = {
+			isa = PBXGroup;
+			children = (
+				19A098531C7654B00020A9BA /* ZP-Bridging-Header.h */,
+				19014A4B1BC034CF001E0D77 /* AppDelegate.h */,
+				19014A4C1BC034CF001E0D77 /* AppDelegate.m */,
+				19014A5C1BC034CF001E0D77 /* Info.plist */,
+				19014A541BC034CF001E0D77 /* ZP.xcdatamodeld */,
+			);
+			name = application;
+			sourceTree = "<group>";
+		};
+		19A098591C76793D0020A9BA /* onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				195BBF721C7680B1004D00A5 /* backs */,
+				19A0985A1C7679780020A9BA /* iphones */,
+			);
+			name = onboarding;
+			sourceTree = "<group>";
+		};
+		19A0985A1C7679780020A9BA /* iphones */ = {
+			isa = PBXGroup;
+			children = (
+				195BBF871C7686C0004D00A5 /* Phone5.png */,
+				195BBF881C7686C0004D00A5 /* Phone4.png */,
+				195BBF891C7686C0004D00A5 /* Phone3.png */,
+				195BBF8A1C7686C0004D00A5 /* Phone2.png */,
+				195BBF8B1C7686C0004D00A5 /* Phone1.png */,
+			);
+			name = iphones;
 			sourceTree = "<group>";
 		};
 		19B3860E1C19E9DE0050BE02 /* productEnergy */ = {
@@ -1613,7 +1694,7 @@
 		B9AAD5556FA2D274BB8C3D21 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B80D287D1FAB7ABCC6A7E759 /* libPods.a */,
+				1A340E98E08E039F101A2881 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1684,6 +1765,7 @@
 		19014A3D1BC034CF001E0D77 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = BinaryBlitz;
 				TargetAttributes = {
@@ -1730,15 +1812,18 @@
 				19B3A9821C07AC430089F02A /* ZPPIngridientAnotherCell.xib in Resources */,
 				1907C74B1BF0B5BE003BA62E /* barBackground.png in Resources */,
 				1955F3991C0BCD270010EED3 /* ZPPContactCourierCell.xib in Resources */,
+				195BBF7C1C7681E2004D00A5 /* back-5.jpg in Resources */,
 				19EC6CB61C120B1800FC0BD4 /* ZPPProductIngredietntsJustCell.xib in Resources */,
 				195457401BD7C57900A3BB46 /* back1.png in Resources */,
 				19D242771BEA3B81007A0FEB /* orderHistory.storyboard in Resources */,
 				1948C5271BEBABFD00084BC8 /* promocode.storyboard in Resources */,
+				195BBF781C7681E2004D00A5 /* back-1.jpg in Resources */,
 				1907C7461BF0951D003BA62E /* ZPPOrderAddressCell.xib in Resources */,
 				191C986E1BC050F300E10D4F /* ZPPProductMainCell.xib in Resources */,
 				1984EE231BD110CC001D25D5 /* registration.storyboard in Resources */,
 				19B3A97C1C079EC20089F02A /* ZPPBadgeCell.xib in Resources */,
 				1907C75A1BF0C820003BA62E /* ZPPCardNumberInputCell.xib in Resources */,
+				195BBF7A1C7681E2004D00A5 /* back-3.jpg in Resources */,
 				190F9C781BE3A9860032E14D /* order.storyboard in Resources */,
 				1907C76C1BF14E57003BA62E /* ZPPCardInOrderCell.xib in Resources */,
 				19DADF451BF616B9007D9DF2 /* back2.png in Resources */,
@@ -1747,9 +1832,12 @@
 				19B3A9881C0A456A0089F02A /* ZPPStarsCell.xib in Resources */,
 				19014A5B1BC034CF001E0D77 /* LaunchScreen.storyboard in Resources */,
 				19D242721BEA3211007A0FEB /* ZPPOrderHistoryCell.xib in Resources */,
+				195BBF901C7686C0004D00A5 /* Phone1.png in Resources */,
 				194235491BE931DE0014BD9A /* ZPPGiftCell.xib in Resources */,
 				191C98641BC044E900E10D4F /* ZPPProductsIngridientsCell.xib in Resources */,
 				19B3A98F1C0A4BB30089F02A /* ZPPCommentCell.xib in Resources */,
+				195BBF791C7681E2004D00A5 /* back-2.jpg in Resources */,
+				195BBF7B1C7681E2004D00A5 /* back-4.jpg in Resources */,
 				19014A581BC034CF001E0D77 /* Assets.xcassets in Resources */,
 				190C6BC31BFA43D700533509 /* spinner.png in Resources */,
 				1907C7651BF0E597003BA62E /* ZPPCreditCardInfoCell.xib in Resources */,
@@ -1757,6 +1845,7 @@
 				198FA5371BC17204008BC11B /* ZPPProductAnotherCell.xib in Resources */,
 				19EC6CB41C12046F00FC0BD4 /* ZPPBadgeForTwoCell.xib in Resources */,
 				190F9C811BE3C1810032E14D /* ZPPOrderItemCell.xib in Resources */,
+				195BBF8C1C7686C0004D00A5 /* Phone5.png in Resources */,
 				1907C7601BF0D34C003BA62E /* ZPPCardDateCodeCell.xib in Resources */,
 				1902BD4E1BD7E714003E90A5 /* mainIcon.png in Resources */,
 				1948C5431BEC2B2400084BC8 /* back4.png in Resources */,
@@ -1767,9 +1856,13 @@
 				19D242611BEA1728007A0FEB /* gifts.storyboard in Resources */,
 				198FD9881BE7B91E00A30B4D /* ZPPAddNewCell.xib in Resources */,
 				19014A531BC034CF001E0D77 /* Main.storyboard in Resources */,
+				195BBF8F1C7686C0004D00A5 /* Phone2.png in Resources */,
+				19A0984F1C7652DB0020A9BA /* Onboarding.storyboard in Resources */,
+				195BBF8E1C7686C0004D00A5 /* Phone3.png in Resources */,
 				1948C51E1BEB5CE900084BC8 /* ZPPOrderTotalCell.xib in Resources */,
 				1902BD4C1BD7E4DB003E90A5 /* back3.png in Resources */,
 				19062D901BD69DAF003AC242 /* profile.storyboard in Resources */,
+				195BBF8D1C7686C0004D00A5 /* Phone4.png in Resources */,
 				1948C5451BEC326000084BC8 /* big_logo.png in Resources */,
 				19F378ED1BFA7C2D004827A0 /* iconBigColorNoWords.png in Resources */,
 				1948C5251BEB83EC00084BC8 /* ZPPActivateCardCell.xib in Resources */,
@@ -1926,6 +2019,7 @@
 				19B386191C19F1CC0050BE02 /* ZPPEnergyHelper.m in Sources */,
 				19C5018E1BEE4EBB00575F78 /* ZPPAdressVC.m in Sources */,
 				19DADF5A1BF658DD007D9DF2 /* ZPPSmsVerificationManager.m in Sources */,
+				19A098581C765A190020A9BA /* ZPPOnboardingVC.swift in Sources */,
 				191D7DE01BD5363300DBAFC4 /* UIViewController+ZPPValidationCategory.m in Sources */,
 				191C98551BC0438C00E10D4F /* ZPPMainVC.m in Sources */,
 				1948C53E1BEC19B800084BC8 /* ZPPStuff.m in Sources */,
@@ -1942,6 +2036,7 @@
 				1948C52E1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.m in Sources */,
 				19DADF631BF760ED007D9DF2 /* ZPPServerManager+ZPPOrderServerManager.m in Sources */,
 				1984EE301BD12CD9001D25D5 /* ZPPRegistrationOtherInputVC.m in Sources */,
+				19A098551C7654B00020A9BA /* ZPPOnboardingTopController.swift in Sources */,
 				19EC24A81BC6601000C333F6 /* ZPPAnotherProductsTVC.m in Sources */,
 				19D242651BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.m in Sources */,
 				1984EE271BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.m in Sources */,
@@ -2116,6 +2211,7 @@
 			baseConfigurationReference = E6092FFC7B589467189F0B0B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -2125,6 +2221,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.binaryblitz.ZP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ZP/ZP-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -2133,6 +2231,7 @@
 			baseConfigurationReference = FBF21C48AB60C310F6FAB5FC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -2142,6 +2241,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.binaryblitz.ZP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ZP/ZP-Bridging-Header.h";
 			};
 			name = Release;
 		};

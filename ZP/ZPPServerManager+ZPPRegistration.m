@@ -7,11 +7,11 @@
 //
 
 #import "ZPPServerManager+ZPPRegistration.h"
-#import <AFNetworking.h>
+//#import <AFNetworking.h>
 #import "ZPPUserHelper.h"
 #import "ZPPUserManager.h"
 
-
+@import AFNetworking;
 //#import <CocoaLumberjack.h>
 
 // static const int ddLogLevel = DDLogLevelDebug;
@@ -32,7 +32,6 @@
             if (success) {
                 success(user);
             }
-
         }
         failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
             [[self class] failureWithBlock:failure error:error operation:operation];

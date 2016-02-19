@@ -9,10 +9,13 @@
 #import "ZPPProductAnotherCell.h"
 #import "ZPPStuff.h"
 
-#import <UIImageView+AFNetworking.h>
-
-#import <JSBadgeView.h>
+//#import <UIImageView+AFNetworking.h>
+//
+//#import <JSBadgeView.h>
 #import "ZPPConsts.h"
+
+@import JSBadgeView;
+@import AFNetworking;
 
 @interface ZPPProductAnotherCell ()
 

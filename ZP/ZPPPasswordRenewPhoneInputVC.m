@@ -20,7 +20,9 @@
 
 #import "UIView+UIViewCategory.h"
 
-#import <REFormattedNumberField.h>
+//#import <REFormattedNumberField.h>
+
+@import REFormattedNumberField;
 
 static NSString
     *ZPPUserNotExistMessage = @"Пользователь с таким номером не "

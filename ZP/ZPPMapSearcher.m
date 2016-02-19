@@ -7,7 +7,8 @@
 //
 
 #import "ZPPMapSearcher.h"
-#import <AFNetworking.h>
+//#import "AFNetworking.h"
+@import AFNetworking;
 
 #import "ZPPAddressHelper.h"
 

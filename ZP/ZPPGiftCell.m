@@ -9,9 +9,11 @@
 #import "ZPPGiftCell.h"
 #import "ZPPGift.h"
 
-#import <JSBadgeView.h>
+//#import <JSBadgeView.h>
 
 #import "ZPPConsts.h"
+
+@import JSBadgeView;
 
 @interface ZPPGiftCell ()
 

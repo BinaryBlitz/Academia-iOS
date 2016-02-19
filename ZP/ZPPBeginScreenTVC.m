@@ -15,7 +15,8 @@
 
 #import "ZPPTimeManager.h"
 
-#import <DateTools.h>
+//#import <DateTools.h>
+@import DateTools;
 
 typedef NS_ENUM(NSInteger, ZPPCurrentBeginState) {
     ZPPCurrentBeginStateClosed,
