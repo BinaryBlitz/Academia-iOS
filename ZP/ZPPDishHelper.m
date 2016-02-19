@@ -6,13 +6,13 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import "ZPPDishHelper.h"
-#import "ZPPDish.h"
-#import "ZPPServerManager.h"
-#import "ZPPIngridientHelper.h"
 #import "ZPPBadgeHelper.h"
-#import "ZPPEnergyHelper.h"
+#import "ZPPDish.h"
+#import "ZPPDishHelper.h"
 #import "ZPPEnergy.h"
+#import "ZPPEnergyHelper.h"
+#import "ZPPIngridientHelper.h"
+#import "ZPPServerManager.h"
 
 #import "ZPPImageWorker.h"
 
@@ -54,6 +54,7 @@ NSString *const ZPPDishBadges = @"badges";
                                            imgURL:dishImgURL
                                       ingridients:ingridients
                                            badges:badges
+                                          noItems:YES
                                            energy:energy];
 
     return dish;

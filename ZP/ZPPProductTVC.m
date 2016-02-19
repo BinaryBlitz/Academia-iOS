@@ -146,19 +146,14 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     ZPPProductMainCell *cell =
         [self.tableView dequeueReusableCellWithIdentifier:ZPPProductMainCellIdentifier];
 
-    //    [LoremIpsum asyncPlaceholderImageWithSize:CGSizeMake(640, self.screenHeight)
-    //                                   completion:^(UIImage *image) {
-    //                                       cell.productImageView.image = image;
-    //                                   }];
     NSURL *imgURL = [NSURL URLWithString:self.dish.urlAsString];
     [cell.productImageView setImageWithURL:imgURL];
 
-    cell.nameLabel.text = self.dish.name;                        //[LoremIpsum word];
-    cell.ingridientsDescriptionLabel.text = self.dish.subtitle;  //[LoremIpsum wordsWithNumber:3];
+    cell.nameLabel.text = self.dish.name;
+    cell.ingridientsDescriptionLabel.text = self.dish.subtitle;
     cell.priceLabel.text =
-        [NSString stringWithFormat:@"%@ ₽", self.dish.price];  //[self.dish.price stringValue];
-                                                                 ////[NSString
-
+        [NSString stringWithFormat:@"%@ ₽", self.dish.price];
+    
     [cell.addToBasketButton makeBorderedWithColor:[UIColor whiteColor]];
     cell.contentView.backgroundColor = [UIColor blackColor];
 
@@ -167,15 +162,27 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
                      forControlEvents:UIControlEventTouchUpInside];
 
     ZPPOrderItem *orderItem = [self.order orderItemForItem:self.dish];
-
-    if (orderItem) {
-        [cell.addToBasketButton setTitle:@"ЗАКАЗАТЬ ЕЩЕ" forState:UIControlStateNormal];
-
-        //[cell setBadgeCount:orderItem.count];
+    NSString *buttonText = cell.addToBasketButton.titleLabel.text;
+    
+    if (self.dish.isNoItems) {
+        buttonText = @"Блюдо закончилось";
+        cell.addToBasketButton.enabled = NO;
+        [cell.addToBasketButton makeBorderedWithColor:[UIColor clearColor]];
+        cell.addToBasketButton.backgroundColor = [UIColor colorWithWhite:2/2.5 alpha:1];
+        cell.addToBasketButton.titleLabel.font = [UIFont boldFontOfSize:16];
+//        [cell.addToBasketButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    } else if (orderItem) {
+        buttonText = @"ЗАКАЗАТЬ ЕЩЕ";
+        cell.addToBasketButton.enabled = YES;
+    } else {
+        cell.addToBasketButton.enabled = YES;
     }
-
+    [cell.addToBasketButton setTitle:buttonText.uppercaseString forState:UIControlStateNormal];
+    
     return cell;
 }
+
+
 
 - (UITableViewCell *)commonIngridientCellForIndexPath:(NSIndexPath *)ip {
     if (self.isLunch) {
@@ -262,26 +269,6 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
         }
         return cell;
     }
-
-    //    ZPPBadgeCell *cell = [self.tableView
-    //    dequeueReusableCellWithIdentifier:ZPPBadgeCellIdentifier];
-
-    //    NSInteger beg = ip.row;
-    //
-    //    for (int i = 0; i < 3; i++) {
-    //        NSInteger index = beg * 3 + i;
-    //        if (index >= self.dish.badges.count) {
-    //            break;
-    //        }
-    //
-    //        UIImageView *iv = cell.badgesImageViews[i];
-    //        UILabel *label = cell.badgesLabels[i];
-    //        ZPPBadge *badge = self.dish.badges[index];
-    //        // NSURL *url = [NSURL URLWithString:badge.urlAsString];
-    //        [iv setImageWithURL:badge.imgURL];
-    //        label.text = badge.name;
-    //    }
-    //    return cell;
 }
 
 - (UITableViewCell *)menuCell {
@@ -299,8 +286,7 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     ZPPProductAboutCell *cell =
         [self.tableView dequeueReusableCellWithIdentifier:ZPPProductAboutCellIdentifier];
 
-    cell.aboutLabel.text = self.dish.dishDescription;  //[LoremIpsum sentencesWithNumber:3];
-    // cell.aboutTextView.textAlignment = NSTextAlignmentCenter;
+    cell.aboutLabel.text = self.dish.dishDescription;
     cell.aboutLabel.font = [UIFont boldFontOfSize:15];
     return cell;
 }
@@ -360,8 +346,6 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
                  reuseIdentifier:ZPPIngridientAnotherCellIdentifier];
 
     [self registrateCellForClass:[ZPPBadgeForTwoCell class] reuseIdentifier:ZPPBadgeForTwoCellID];
-    //    [self registrateCellForClass:[UITableViewCell class]
-    //                 reuseIdentifier:ZPPProductIngredietntsJustCellID];
     UINib *ingtCellJust = [UINib nibWithNibName:@"ZPPProductIngredietntsJustCell" bundle:nil];
     [[self tableView] registerNib:ingtCellJust
            forCellReuseIdentifier:ZPPProductIngredietntsJustCellID];
@@ -386,11 +370,6 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 
 - (void)addToBasketAction:(UIButton *)sender {
     [self.productDelegate addItemIntoOrder:self.dish];
-
-    //    [self.tableView beginUpdates];
-//        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
-//                              withRowAnimation:UITableViewRowAnimationNone];
-//        [self.tableView endUpdates];
     [self.tableView reloadData];
 }
 
@@ -420,21 +399,6 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     }
 }
 
-//-(VBFPopFlatButton *)menuButton {
-//    if(!_menuButton) {
-//        _menuButton = [VBFPopFlatButton bu]
-//    }
-//}
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before
-navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

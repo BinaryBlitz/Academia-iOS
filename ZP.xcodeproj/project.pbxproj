@@ -15,7 +15,6 @@
 		19014A5B1BC034CF001E0D77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19014A591BC034CF001E0D77 /* LaunchScreen.storyboard */; };
 		19014A661BC034CF001E0D77 /* ZPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19014A651BC034CF001E0D77 /* ZPTests.m */; };
 		19014A711BC034CF001E0D77 /* ZPUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19014A701BC034CF001E0D77 /* ZPUITests.m */; };
-		1902BD4C1BD7E4DB003E90A5 /* back3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1902BD4B1BD7E4DB003E90A5 /* back3.png */; };
 		1902BD4E1BD7E714003E90A5 /* mainIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1902BD4D1BD7E713003E90A5 /* mainIcon.png */; };
 		19062D8E1BD69ACB003AC242 /* ZPPProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19062D8D1BD69ACB003AC242 /* ZPPProfileVC.m */; };
 		19062D901BD69DAF003AC242 /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19062D8F1BD69DAF003AC242 /* profile.storyboard */; };
@@ -82,11 +81,9 @@
 		1948C53B1BEC17E600084BC8 /* ZPPLunchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C53A1BEC17E600084BC8 /* ZPPLunchHelper.m */; };
 		1948C53E1BEC19B800084BC8 /* ZPPStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C53D1BEC19B800084BC8 /* ZPPStuff.m */; };
 		1948C5411BEC204500084BC8 /* ZPPStuffHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C5401BEC204500084BC8 /* ZPPStuffHelper.m */; };
-		1948C5431BEC2B2400084BC8 /* back4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1948C5421BEC2B2400084BC8 /* back4.png */; };
 		1948C5451BEC326000084BC8 /* big_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1948C5441BEC326000084BC8 /* big_logo.png */; };
 		1948C5471BEC38CA00084BC8 /* load.png in Resources */ = {isa = PBXBuildFile; fileRef = 1948C5461BEC38CA00084BC8 /* load.png */; };
 		1948C54B1BEC3A1800084BC8 /* ZPPLunchTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C54A1BEC3A1800084BC8 /* ZPPLunchTVC.m */; };
-		195457401BD7C57900A3BB46 /* back1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1954573F1BD7C57900A3BB46 /* back1.png */; };
 		1955F3981C0BCD270010EED3 /* ZPPContactCourierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1955F3961C0BCD270010EED3 /* ZPPContactCourierCell.m */; };
 		1955F3991C0BCD270010EED3 /* ZPPContactCourierCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1955F3971C0BCD270010EED3 /* ZPPContactCourierCell.xib */; };
 		195BBF781C7681E2004D00A5 /* back-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 195BBF731C7681E2004D00A5 /* back-1.jpg */; };
@@ -114,6 +111,10 @@
 		198635691BDFB6A00070E3F7 /* ZPPHelpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 198635681BDFB6A00070E3F7 /* ZPPHelpVC.m */; };
 		1986356D1BDFD04B0070E3F7 /* ZPPOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1986356C1BDFD04B0070E3F7 /* ZPPOrder.m */; };
 		198635701BDFD1950070E3F7 /* ZPPOrderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1986356F1BDFD1950070E3F7 /* ZPPOrderItem.m */; };
+		1989993C1C7756D600701FF9 /* back4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1989993B1C7756D600701FF9 /* back4.jpg */; };
+		198999421C7766CD00701FF9 /* back3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 198999411C7766CD00701FF9 /* back3.jpg */; };
+		198999461C77695900701FF9 /* back1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 198999451C77695900701FF9 /* back1.jpg */; };
+		198999481C776B2F00701FF9 /* back2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 198999471C776B2F00701FF9 /* back2.jpg */; };
 		198A5C021BD5875B00710A36 /* ZPPServerManager+ZPPRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 198A5C011BD5875B00710A36 /* ZPPServerManager+ZPPRegistration.m */; };
 		198A5C051BD59F0000710A36 /* ZPPMainMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198A5C041BD59F0000710A36 /* ZPPMainMenuView.xib */; };
 		198A5C081BD5A90B00710A36 /* ZPPMainMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 198A5C071BD5A90B00710A36 /* ZPPMainMenuView.m */; };
@@ -157,7 +158,6 @@
 		19DA03E11BC12ADE00DC0636 /* UIFont+ZPPFontCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DA03E01BC12ADE00DC0636 /* UIFont+ZPPFontCategory.m */; };
 		19DADF401BF36CE8007D9DF2 /* ZPPSearchResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF3F1BF36CE8007D9DF2 /* ZPPSearchResultController.m */; };
 		19DADF431BF5CB03007D9DF2 /* ZPPMapSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF421BF5CB03007D9DF2 /* ZPPMapSearcher.m */; };
-		19DADF451BF616B9007D9DF2 /* back2.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DADF441BF616B9007D9DF2 /* back2.png */; };
 		19DADF491BF61715007D9DF2 /* ZPPNoInternetConnectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF481BF61715007D9DF2 /* ZPPNoInternetConnectionVC.m */; };
 		19DADF4C1BF62086007D9DF2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF4B1BF62086007D9DF2 /* Reachability.m */; };
 		19DADF501BF62D1E007D9DF2 /* ZPPCardNumberTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF4F1BF62D1E007D9DF2 /* ZPPCardNumberTextField.m */; };
@@ -222,7 +222,6 @@
 		19014A6C1BC034CF001E0D77 /* ZPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19014A701BC034CF001E0D77 /* ZPUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZPUITests.m; sourceTree = "<group>"; };
 		19014A721BC034CF001E0D77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1902BD4B1BD7E4DB003E90A5 /* back3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back3.png; sourceTree = "<group>"; };
 		1902BD4D1BD7E713003E90A5 /* mainIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainIcon.png; sourceTree = "<group>"; };
 		19062D8C1BD69ACB003AC242 /* ZPPProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProfileVC.h; sourceTree = "<group>"; };
 		19062D8D1BD69ACB003AC242 /* ZPPProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPProfileVC.m; sourceTree = "<group>"; };
@@ -335,12 +334,10 @@
 		1948C53D1BEC19B800084BC8 /* ZPPStuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPStuff.m; sourceTree = "<group>"; };
 		1948C53F1BEC204500084BC8 /* ZPPStuffHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPStuffHelper.h; sourceTree = "<group>"; };
 		1948C5401BEC204500084BC8 /* ZPPStuffHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPStuffHelper.m; sourceTree = "<group>"; };
-		1948C5421BEC2B2400084BC8 /* back4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back4.png; sourceTree = "<group>"; };
 		1948C5441BEC326000084BC8 /* big_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big_logo.png; sourceTree = "<group>"; };
 		1948C5461BEC38CA00084BC8 /* load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load.png; sourceTree = "<group>"; };
 		1948C5491BEC3A1800084BC8 /* ZPPLunchTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPLunchTVC.h; sourceTree = "<group>"; };
 		1948C54A1BEC3A1800084BC8 /* ZPPLunchTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPLunchTVC.m; sourceTree = "<group>"; };
-		1954573F1BD7C57900A3BB46 /* back1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back1.png; sourceTree = "<group>"; };
 		1955F3951C0BCD270010EED3 /* ZPPContactCourierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPContactCourierCell.h; sourceTree = "<group>"; };
 		1955F3961C0BCD270010EED3 /* ZPPContactCourierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPContactCourierCell.m; sourceTree = "<group>"; };
 		1955F3971C0BCD270010EED3 /* ZPPContactCourierCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPContactCourierCell.xib; sourceTree = "<group>"; };
@@ -382,6 +379,10 @@
 		1986356E1BDFD1950070E3F7 /* ZPPOrderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPOrderItem.h; sourceTree = "<group>"; };
 		1986356F1BDFD1950070E3F7 /* ZPPOrderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPOrderItem.m; sourceTree = "<group>"; };
 		198635711BDFD2320070E3F7 /* ZPPItemProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPItemProtocol.h; sourceTree = "<group>"; };
+		1989993B1C7756D600701FF9 /* back4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back4.jpg; sourceTree = "<group>"; };
+		198999411C7766CD00701FF9 /* back3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back3.jpg; sourceTree = "<group>"; };
+		198999451C77695900701FF9 /* back1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back1.jpg; sourceTree = "<group>"; };
+		198999471C776B2F00701FF9 /* back2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back2.jpg; sourceTree = "<group>"; };
 		198A5C001BD5875B00710A36 /* ZPPServerManager+ZPPRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZPPServerManager+ZPPRegistration.h"; sourceTree = "<group>"; };
 		198A5C011BD5875B00710A36 /* ZPPServerManager+ZPPRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZPPServerManager+ZPPRegistration.m"; sourceTree = "<group>"; };
 		198A5C041BD59F0000710A36 /* ZPPMainMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPMainMenuView.xib; sourceTree = "<group>"; };
@@ -453,7 +454,6 @@
 		19DADF3F1BF36CE8007D9DF2 /* ZPPSearchResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPSearchResultController.m; sourceTree = "<group>"; };
 		19DADF411BF5CB03007D9DF2 /* ZPPMapSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPMapSearcher.h; sourceTree = "<group>"; };
 		19DADF421BF5CB03007D9DF2 /* ZPPMapSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPMapSearcher.m; sourceTree = "<group>"; };
-		19DADF441BF616B9007D9DF2 /* back2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back2.png; sourceTree = "<group>"; };
 		19DADF471BF61715007D9DF2 /* ZPPNoInternetConnectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPNoInternetConnectionVC.h; sourceTree = "<group>"; };
 		19DADF481BF61715007D9DF2 /* ZPPNoInternetConnectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPNoInternetConnectionVC.m; sourceTree = "<group>"; };
 		19DADF4A1BF62086007D9DF2 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -1074,11 +1074,11 @@
 				1907C74A1BF0B5BE003BA62E /* barBackground.png */,
 				1948C5461BEC38CA00084BC8 /* load.png */,
 				19D2426A1BEA2705007A0FEB /* giftCard.png */,
-				1954573F1BD7C57900A3BB46 /* back1.png */,
-				1902BD4B1BD7E4DB003E90A5 /* back3.png */,
 				1902BD4D1BD7E713003E90A5 /* mainIcon.png */,
-				19DADF441BF616B9007D9DF2 /* back2.png */,
-				1948C5421BEC2B2400084BC8 /* back4.png */,
+				198999451C77695900701FF9 /* back1.jpg */,
+				198999471C776B2F00701FF9 /* back2.jpg */,
+				1989993B1C7756D600701FF9 /* back4.jpg */,
+				198999411C7766CD00701FF9 /* back3.jpg */,
 				1948C5441BEC326000084BC8 /* big_logo.png */,
 				190C6BC81BFA638800533509 /* iconBigColor.png */,
 				19F378EC1BFA7C2D004827A0 /* iconBigColorNoWords.png */,
@@ -1814,11 +1814,13 @@
 				1955F3991C0BCD270010EED3 /* ZPPContactCourierCell.xib in Resources */,
 				195BBF7C1C7681E2004D00A5 /* back-5.jpg in Resources */,
 				19EC6CB61C120B1800FC0BD4 /* ZPPProductIngredietntsJustCell.xib in Resources */,
-				195457401BD7C57900A3BB46 /* back1.png in Resources */,
+				198999461C77695900701FF9 /* back1.jpg in Resources */,
+				1989993C1C7756D600701FF9 /* back4.jpg in Resources */,
 				19D242771BEA3B81007A0FEB /* orderHistory.storyboard in Resources */,
 				1948C5271BEBABFD00084BC8 /* promocode.storyboard in Resources */,
 				195BBF781C7681E2004D00A5 /* back-1.jpg in Resources */,
 				1907C7461BF0951D003BA62E /* ZPPOrderAddressCell.xib in Resources */,
+				198999421C7766CD00701FF9 /* back3.jpg in Resources */,
 				191C986E1BC050F300E10D4F /* ZPPProductMainCell.xib in Resources */,
 				1984EE231BD110CC001D25D5 /* registration.storyboard in Resources */,
 				19B3A97C1C079EC20089F02A /* ZPPBadgeCell.xib in Resources */,
@@ -1826,7 +1828,6 @@
 				195BBF7A1C7681E2004D00A5 /* back-3.jpg in Resources */,
 				190F9C781BE3A9860032E14D /* order.storyboard in Resources */,
 				1907C76C1BF14E57003BA62E /* ZPPCardInOrderCell.xib in Resources */,
-				19DADF451BF616B9007D9DF2 /* back2.png in Resources */,
 				198FD97D1BE7A9F800A30B4D /* ZPPNoCreditCardCell.xib in Resources */,
 				190E47781BC073EE00AC5379 /* ZPPProductMenuCell.xib in Resources */,
 				19B3A9881C0A456A0089F02A /* ZPPStarsCell.xib in Resources */,
@@ -1846,9 +1847,9 @@
 				19EC6CB41C12046F00FC0BD4 /* ZPPBadgeForTwoCell.xib in Resources */,
 				190F9C811BE3C1810032E14D /* ZPPOrderItemCell.xib in Resources */,
 				195BBF8C1C7686C0004D00A5 /* Phone5.png in Resources */,
+				198999481C776B2F00701FF9 /* back2.jpg in Resources */,
 				1907C7601BF0D34C003BA62E /* ZPPCardDateCodeCell.xib in Resources */,
 				1902BD4E1BD7E714003E90A5 /* mainIcon.png in Resources */,
-				1948C5431BEC2B2400084BC8 /* back4.png in Resources */,
 				1948C5471BEC38CA00084BC8 /* load.png in Resources */,
 				19D2426B1BEA2705007A0FEB /* giftCard.png in Resources */,
 				1984EE351BD13698001D25D5 /* ZPPBeginScreenCell.xib in Resources */,
@@ -1860,7 +1861,6 @@
 				19A0984F1C7652DB0020A9BA /* Onboarding.storyboard in Resources */,
 				195BBF8E1C7686C0004D00A5 /* Phone3.png in Resources */,
 				1948C51E1BEB5CE900084BC8 /* ZPPOrderTotalCell.xib in Resources */,
-				1902BD4C1BD7E4DB003E90A5 /* back3.png in Resources */,
 				19062D901BD69DAF003AC242 /* profile.storyboard in Resources */,
 				195BBF8D1C7686C0004D00A5 /* Phone4.png in Resources */,
 				1948C5451BEC326000084BC8 /* big_logo.png in Resources */,
