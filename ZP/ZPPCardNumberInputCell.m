@@ -7,7 +7,8 @@
 //
 
 #import "ZPPCardNumberInputCell.h"
-#import <BKCardNumberField.h>
+//#import <BKCardNumberField.h>
+@import BKMoneyKit;
 #import "UIView+UIViewCategory.h"
 
 @implementation ZPPCardNumberInputCell

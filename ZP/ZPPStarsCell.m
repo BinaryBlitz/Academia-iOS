@@ -7,7 +7,9 @@
 //
 
 #import "ZPPStarsCell.h"
-#import <HCSStarRatingView.h>
+//#import <HCSStarRatingView.h>
+
+@import HCSStarRatingView;
 
 @implementation ZPPStarsCell
 

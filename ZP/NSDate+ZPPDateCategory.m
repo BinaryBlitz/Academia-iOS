@@ -7,7 +7,8 @@
 //
 
 #import "NSDate+ZPPDateCategory.h"
-#import <DateTools.h>
+//#import <DateTools.h>
+@import DateTools;
 
 @implementation NSDate (ZPPDateCategory)
 

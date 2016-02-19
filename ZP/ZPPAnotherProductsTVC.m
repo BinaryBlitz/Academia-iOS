@@ -13,13 +13,15 @@
 
 #import "UIViewController+ZPPViewControllerCategory.h"
 
-#import <UIImageView+AFNetworking.h>
+//#import <UIImageView+AFNetworking.h>
 
 #import "ZPPConsts.h"
 #import "ZPPOrder.h"
 
 #import "ZPPOrderItem.h"
 //#import <LoremIpsum.h>
+
+@import AFNetworking;
 
 static NSString *ZPPProductAnotherCellIdentifier = @"ZPPProductAnotherCellIdentifier";
 static NSString *ZPPProductMainCellIdentifier = @"ZPPProductsMainCellIdentifier";

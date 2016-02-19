@@ -13,8 +13,11 @@
 
 #import "UIViewController+ZPPViewControllerCategory.h"
 
-#import <MBProgressHUD.h>
-#import <VBFPopFlatButton.h>
+//#import <MBProgressHUD.h>
+//#import <VBFPopFlatButton.h>
+
+@import VBFPopFlatButton;
+@import MBProgressHUD;
 
 #import "ZPPConsts.h"
 

@@ -6,7 +6,7 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import <CocoaLumberjack.h>
+#import "CocoaLumberjack.h"
 #import <Crashlytics/Crashlytics.h>
 #import "ZPPServerManager+ZPPRegistration.h"
 #import "ZPPUserManager.h"

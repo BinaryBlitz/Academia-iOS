@@ -7,7 +7,8 @@
 //
 
 #import "ZPPSmsVerificationManager.h"
-#import <AFNetworking.h>
+//#import <AFNetworking.h>
+@import AFNetworking;
 
 #import "ZPPConsts.h"
 

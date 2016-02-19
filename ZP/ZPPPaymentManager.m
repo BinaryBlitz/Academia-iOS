@@ -7,11 +7,13 @@
 //
 
 #import "ZPPPaymentManager.h"
-#import <AFNetworking.h>
+//#import <AFNetworking.h>
 #import "ZPPUserManager.h"
 #import "ZPPCreditCard.h"
 
 #import "ZPPOrder.h"
+
+@import AFNetworking;
 
 NSString *const ZPPPaymnetBaseURL = @"https://test.paymentgate.ru";
 NSString *const ZPPPaymentFinishURL = @"finish.html";

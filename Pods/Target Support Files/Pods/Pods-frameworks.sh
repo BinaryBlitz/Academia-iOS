@@ -82,3 +82,48 @@ strip_invalid_archs() {
   fi
 }
 
+
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods/AFNetworking.framework"
+  install_framework "Pods/ActionSheetPicker_3_0.framework"
+  install_framework "Pods/BKMoneyKit.framework"
+  install_framework "Pods/CocoaLumberjack.framework"
+  install_framework "Pods/DateTools.framework"
+  install_framework "Pods/EZSwipeController.framework"
+  install_framework "Pods/HCSStarRatingView.framework"
+  install_framework "Pods/HexColors.framework"
+  install_framework "Pods/INTULocationManager.framework"
+  install_framework "Pods/JSBadgeView.framework"
+  install_framework "Pods/LMGeocoder.framework"
+  install_framework "Pods/LoremIpsum.framework"
+  install_framework "Pods/MBProgressHUD.framework"
+  install_framework "Pods/PureLayout.framework"
+  install_framework "Pods/REFormattedNumberField.framework"
+  install_framework "Pods/SCLAlertView_Objective_C.framework"
+  install_framework "Pods/SDWebImage.framework"
+  install_framework "Pods/TSMessages.framework"
+  install_framework "Pods/VBFPopFlatButton.framework"
+  install_framework "Pods/pop.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods/AFNetworking.framework"
+  install_framework "Pods/ActionSheetPicker_3_0.framework"
+  install_framework "Pods/BKMoneyKit.framework"
+  install_framework "Pods/CocoaLumberjack.framework"
+  install_framework "Pods/DateTools.framework"
+  install_framework "Pods/EZSwipeController.framework"
+  install_framework "Pods/HCSStarRatingView.framework"
+  install_framework "Pods/HexColors.framework"
+  install_framework "Pods/INTULocationManager.framework"
+  install_framework "Pods/JSBadgeView.framework"
+  install_framework "Pods/LMGeocoder.framework"
+  install_framework "Pods/LoremIpsum.framework"
+  install_framework "Pods/MBProgressHUD.framework"
+  install_framework "Pods/PureLayout.framework"
+  install_framework "Pods/REFormattedNumberField.framework"
+  install_framework "Pods/SCLAlertView_Objective_C.framework"
+  install_framework "Pods/SDWebImage.framework"
+  install_framework "Pods/TSMessages.framework"
+  install_framework "Pods/VBFPopFlatButton.framework"
+  install_framework "Pods/pop.framework"
+fi

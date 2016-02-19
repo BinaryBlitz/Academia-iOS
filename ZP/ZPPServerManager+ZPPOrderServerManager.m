@@ -7,11 +7,13 @@
 //
 
 #import "ZPPServerManager+ZPPOrderServerManager.h"
-#import <AFNetworking.h>
+//#import <AFNetworking.h>
 #import "ZPPUserManager.h"
 #import "ZPPOrder.h"
 #import "ZPPOrderHelper.h"
 #import "ZPPAddressHelper.h"
+
+@import AFNetworking;
 
 @implementation ZPPServerManager (ZPPOrderServerManager)
 

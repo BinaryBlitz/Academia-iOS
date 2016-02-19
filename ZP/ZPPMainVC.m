@@ -21,10 +21,13 @@
 #import "ZPPOrderManager.h"
 
 // libs
-#import <JSBadgeView.h>
-#import <VBFPopFlatButton.h>
+//#import <JSBadgeView.h>
+//#import <VBFPopFlatButton.h>
 
 #import "ZPPDish.h"
+
+@import JSBadgeView;
+@import VBFPopFlatButton;
 
 static float kZPPButtonDiametr = 40.0f;
 static float kZPPButtonOffset = 15.0f;
@@ -89,6 +92,12 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    [self showOnboarding];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -240,6 +249,18 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
                      completion:^{
 
                      }];
+}
+
+- (void)showOnboarding {
+    //    UIViewController *vc = [self firstRealVCFormStoryBoardWithName:@"Onboarding"];
+    //
+    //    [self presentViewController:vc animated:YES completion:nil];
+
+    static NSString *isShovedKey = @"onboardingShoved";
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:isShovedKey]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:isShovedKey];
+        [self showVCFromStoryboardWithName:@"Onboarding"];
+    }
 }
 
 - (void)showMyCards {
