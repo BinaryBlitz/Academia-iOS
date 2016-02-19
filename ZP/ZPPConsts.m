@@ -8,7 +8,7 @@
 
 #import "ZPPConsts.h"
 
-NSString *const ZPPBackgroundImageName = @"back1";
+NSString *const ZPPBackgroundImageName = @"back1.jpg";
 NSString *const ZPPRoubleSymbol = @"₽";
 NSString *const ZPPLogoImageName = @"zpIcon";
 

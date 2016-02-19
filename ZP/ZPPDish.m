@@ -20,6 +20,8 @@
 @property (copy, nonatomic) NSString *subtitle;
 @property (strong, nonatomic) NSArray *badges;
 
+@property (assign, nonatomic) BOOL isNoItems;
+
 @property (strong, nonatomic) ZPPEnergy *energy;
 
 @end
@@ -40,6 +42,7 @@
                       imgURL:(NSString *)urlAsString
                  ingridients:(NSArray *)ingridients
                       badges:(NSArray *)badges
+                     noItems:(BOOL)noItems
                       energy:(ZPPEnergy *)energy {
     self = [super init];
     if (self) {
@@ -58,6 +61,8 @@
         self.energy = energy;
 
         self.badges = badges;
+        
+        self.isNoItems = noItems;
     }
     return self;
 }

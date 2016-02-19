@@ -17,7 +17,7 @@
     UIImageView *iv = [[UIImageView alloc] initWithFrame:r];
 
     iv.image = [UIImage imageNamed:imgName];
-
+    iv.contentMode = UIViewContentModeScaleAspectFill;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.backgroundView = iv;
 }

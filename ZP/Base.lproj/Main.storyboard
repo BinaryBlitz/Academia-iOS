@@ -76,7 +76,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back2.png" translatesAutoresizingMaskIntoConstraints="NO" id="gAf-ou-155">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="gAf-ou-155">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2Y-D9-lwQ">
@@ -186,7 +186,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="back2.png" width="750" height="1334"/>
+        <image name="back2.jpg" width="813" height="1334"/>
         <image name="big_logo.png" width="404" height="305"/>
     </resources>
 </document>

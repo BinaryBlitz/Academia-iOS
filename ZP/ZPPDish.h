@@ -22,6 +22,7 @@
 @property (copy, nonatomic, readonly) NSString *urlAsString;
 @property (strong, nonatomic, readonly) NSArray *ingridients;
 @property (strong, nonatomic, readonly) NSArray *badges;
+@property (assign, nonatomic, readonly) BOOL isNoItems;
 
 @property (strong, nonatomic, readonly) ZPPEnergy *energy;
 
@@ -33,6 +34,7 @@
                       imgURL:(NSString *)urlAsString
                  ingridients:(NSArray *)ingridients
                       badges:(NSArray *)badges
+                     noItems:(BOOL)noItems
                       energy:(ZPPEnergy *)energy;
 
 - (NSInteger)priceOfItem;

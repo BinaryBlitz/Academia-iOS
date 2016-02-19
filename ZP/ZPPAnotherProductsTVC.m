@@ -138,7 +138,7 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
 //    v.backgroundColor = [UIColor whiteColor];
 //    [cell.addToBasketButton addSubview:v];
     
-     cell.productImageView.image = [UIImage imageNamed:@"back4"];
+    cell.productImageView.image = [UIImage imageNamed:@"back4.jpg"];
     
     return cell;
 }
