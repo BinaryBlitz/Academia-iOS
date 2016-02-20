@@ -24,6 +24,7 @@ NSString *const ZPPDishImgURL = @"image_url";
 NSString *const ZPPDishIngridients = @"ingredients";
 NSString *const ZPPDishSubtitle = @"subtitle";
 NSString *const ZPPDishBadges = @"badges";
+NSString *const ZPPOutOfStock = @"out_of_stock";
 
 @implementation ZPPDishHelper
 
@@ -34,6 +35,14 @@ NSString *const ZPPDishBadges = @"badges";
     NSString *subtitle = dict[ZPPDishSubtitle];
     NSNumber *dishPrice = dict[ZPPDishPrice];
     NSString *imgUrlAppend = dict[ZPPDishImgURL];
+    NSNumber *outOfStockNum = dict[ZPPOutOfStock];
+    
+    BOOL outOfStock = NO;
+    
+    if (outOfStockNum && [outOfStockNum isKindOfClass:[NSNumber class]]) {
+        outOfStock = outOfStockNum.boolValue;
+    }
+    
     NSString *dishImgURL;
     if (imgUrlAppend && ![imgUrlAppend isEqual:[NSNull null]]) {
         dishImgURL = [ZPPServerBaseUrl stringByAppendingString:imgUrlAppend];
@@ -54,7 +63,7 @@ NSString *const ZPPDishBadges = @"badges";
                                            imgURL:dishImgURL
                                       ingridients:ingridients
                                            badges:badges
-                                          noItems:YES
+                                          noItems:outOfStock
                                            energy:energy];
 
     return dish;

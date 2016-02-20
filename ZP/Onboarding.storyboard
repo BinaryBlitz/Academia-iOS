@@ -5,11 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Roboto-Bold.ttf">
-            <string>Roboto-Bold</string>
+        <mutableArray key="Roboto-Black.ttf">
+            <string>Roboto-Black</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -47,16 +46,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="560"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Msp-XX-OxL">
-                                <rect key="frame" x="90" y="28" width="420" height="139"/>
+                                <rect key="frame" x="169.5" y="28" width="260" height="139"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="139" id="Ngi-aT-ggr"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="23"/>
+                                <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3kI-6U-Wa0">
-                                <rect key="frame" x="170.5" y="186" width="258" height="374"/>
+                                <rect key="frame" x="169.5" y="183" width="260" height="377"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3kI-6U-Wa0" secondAttribute="height" multiplier="95:138" id="cQb-jI-IWu"/>
                                 </constraints>
@@ -71,16 +70,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Msp-XX-OxL" firstAttribute="width" secondItem="P85-q8-Z87" secondAttribute="width" multiplier="0.7" id="1Gd-AX-0bx"/>
                             <constraint firstItem="Msp-XX-OxL" firstAttribute="centerX" secondItem="P85-q8-Z87" secondAttribute="centerX" id="54o-WF-0Gi"/>
                             <constraint firstItem="ijO-0o-3ZC" firstAttribute="top" secondItem="pfU-Hm-KKt" secondAttribute="bottom" id="72Y-tX-kh9"/>
                             <constraint firstItem="ijO-0o-3ZC" firstAttribute="top" secondItem="3kI-6U-Wa0" secondAttribute="bottom" id="9Fo-Sa-W2n"/>
-                            <constraint firstItem="3kI-6U-Wa0" firstAttribute="top" secondItem="Msp-XX-OxL" secondAttribute="bottom" constant="19" id="9Sb-DD-hUp"/>
+                            <constraint firstItem="3kI-6U-Wa0" firstAttribute="top" secondItem="Msp-XX-OxL" secondAttribute="bottom" constant="16" id="9Sb-DD-hUp"/>
+                            <constraint firstItem="3kI-6U-Wa0" firstAttribute="trailing" secondItem="Msp-XX-OxL" secondAttribute="trailing" id="IL1-R3-w6O"/>
                             <constraint firstItem="Msp-XX-OxL" firstAttribute="top" secondItem="SCI-A7-iYC" secondAttribute="bottom" constant="8" id="Seo-8c-d0O"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="3kI-6U-Wa0" secondAttribute="trailing" id="TN5-mu-bBZ"/>
                             <constraint firstItem="ijO-0o-3ZC" firstAttribute="leading" secondItem="P85-q8-Z87" secondAttribute="leadingMargin" constant="-20" id="WXf-OO-1xf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ijO-0o-3ZC" secondAttribute="trailing" constant="-20" id="aWM-Dc-DYX"/>
                             <constraint firstItem="gBK-Xd-0UI" firstAttribute="top" secondItem="ijO-0o-3ZC" secondAttribute="bottom" id="ing-kv-hkf"/>
+                            <constraint firstItem="3kI-6U-Wa0" firstAttribute="leading" secondItem="Msp-XX-OxL" secondAttribute="leading" id="kJS-N9-SDB"/>
                             <constraint firstItem="3kI-6U-Wa0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="P85-q8-Z87" secondAttribute="leadingMargin" id="lHw-sf-MMH"/>
                             <constraint firstItem="pfU-Hm-KKt" firstAttribute="leading" secondItem="P85-q8-Z87" secondAttribute="leadingMargin" constant="-20" id="nhe-7V-kJp"/>
                             <constraint firstItem="3kI-6U-Wa0" firstAttribute="centerX" secondItem="P85-q8-Z87" secondAttribute="centerX" id="td1-XV-gRy"/>

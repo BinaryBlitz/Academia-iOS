@@ -215,11 +215,8 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
         onFailure:^(NSError *error, NSInteger statusCode) {
             [self.makeOrderButton stopIndication];//redo
 
-            [self showWarningWithText:@"Выберите другую область "
-                                      @"доста"
-                                      @"в"
-                                      @"к"
-                                      @"и"];
+            
+            [self showWarningWithText:@"Что-то пошло не так"];
         }];
 }
 
@@ -267,7 +264,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
     ZPPPaymentWebController *wc = [[ZPPPaymentWebController alloc] init];
     [wc configureWithURL:url];
     wc.paymentDelegate = self;
-
+    wc.title = @"Оплата";
     UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:wc];
 
     navC.navigationBar.barTintColor = [UIColor blackColor];

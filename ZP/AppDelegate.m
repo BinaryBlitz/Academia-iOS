@@ -20,6 +20,7 @@
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
 @import GoogleMaps;
+@import AFNetworking;
 
 @interface AppDelegate ()
 
@@ -34,6 +35,8 @@
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
     [Fabric with:@[ [Crashlytics class], [Digits class] ]];
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+
 
     [GMSServices provideAPIKey:@"AIzaSyC6__0DvrUgzEChAHV-_LRq6AwfDNOMJVM"];
 

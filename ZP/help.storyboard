@@ -28,7 +28,7 @@
                                     <constraint firstAttribute="height" constant="30" id="zzh-oi-P7i"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
-                                <state key="normal" title="help@zp.ru">
+                                <state key="normal" title="help@zpdelivery.ru">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
@@ -41,7 +41,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="+79151110311" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Usm-g7-b3e">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="8-800-100-14-26" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Usm-g7-b3e">
                                 <rect key="frame" x="194" y="323" width="213" height="38"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -52,14 +52,34 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ArR-1X-Z0J">
+                                <rect key="frame" x="20" y="562" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9N-4C-rNb">
+                                <rect key="frame" x="20" y="524" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YvG-LJ-lgk" firstAttribute="leading" secondItem="drw-Yy-uXO" secondAttribute="leading" id="1N1-rq-Pj0"/>
+                            <constraint firstItem="W9N-4C-rNb" firstAttribute="trailing" secondItem="1cp-DY-w9M" secondAttribute="trailingMargin" id="3ii-Fg-08k"/>
+                            <constraint firstItem="W9N-4C-rNb" firstAttribute="leading" secondItem="1cp-DY-w9M" secondAttribute="leadingMargin" id="66c-f2-1HL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Fhv-3Y-mXd" secondAttribute="trailing" constant="-20" id="7BB-p5-gKw"/>
+                            <constraint firstItem="ArR-1X-Z0J" firstAttribute="leading" secondItem="1cp-DY-w9M" secondAttribute="leadingMargin" id="Chd-wC-tdd"/>
+                            <constraint firstItem="ArR-1X-Z0J" firstAttribute="trailing" secondItem="1cp-DY-w9M" secondAttribute="trailingMargin" id="GKN-Zy-p8I"/>
+                            <constraint firstItem="Aht-Ty-lqa" firstAttribute="top" secondItem="ArR-1X-Z0J" secondAttribute="bottom" constant="8" id="Gvh-P8-yYn"/>
                             <constraint firstItem="Usm-g7-b3e" firstAttribute="trailing" secondItem="YvG-LJ-lgk" secondAttribute="trailing" id="UNQ-xo-Wlg"/>
                             <constraint firstItem="Usm-g7-b3e" firstAttribute="leading" secondItem="YvG-LJ-lgk" secondAttribute="leading" id="Ve7-gw-xvv"/>
                             <constraint firstItem="Fhv-3Y-mXd" firstAttribute="leading" secondItem="1cp-DY-w9M" secondAttribute="leadingMargin" constant="-20" id="WzS-rc-Sip"/>
+                            <constraint firstItem="ArR-1X-Z0J" firstAttribute="top" secondItem="W9N-4C-rNb" secondAttribute="bottom" constant="8" id="Yg0-af-ZV8"/>
                             <constraint firstItem="Fhv-3Y-mXd" firstAttribute="top" secondItem="1cp-DY-w9M" secondAttribute="topMargin" id="aPS-wG-CkC"/>
                             <constraint firstItem="Usm-g7-b3e" firstAttribute="top" secondItem="YvG-LJ-lgk" secondAttribute="bottom" constant="8" id="mdD-34-14m"/>
                             <constraint firstItem="YvG-LJ-lgk" firstAttribute="trailing" secondItem="drw-Yy-uXO" secondAttribute="trailing" id="qSW-fy-Xvi"/>
@@ -72,7 +92,9 @@
                     <navigationItem key="navigationItem" id="YkP-dM-F8Z"/>
                     <connections>
                         <outlet property="emailButton" destination="YvG-LJ-lgk" id="KW7-8W-FBS"/>
+                        <outlet property="legalButon" destination="W9N-4C-rNb" id="qml-GR-nyU"/>
                         <outlet property="phoneTextView" destination="Usm-g7-b3e" id="Njh-e9-Gxm"/>
+                        <outlet property="rulesButton" destination="ArR-1X-Z0J" id="Qyl-bz-LBL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HXx-cY-1zw" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -15,3 +15,5 @@ extern NSString *const ZPPLogoImageName;
 extern NSString *const ZPPSMSAppID;
 
 extern NSString *const ZPPOnboardingVCID;
+
+extern NSString *const ZPPRulesURL;

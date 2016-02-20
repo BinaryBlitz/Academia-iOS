@@ -18,4 +18,6 @@ NSString *const ZPPSupportNumber = @"";
 
 NSString *const ZPPOnboardingVCID = @"ZPPOnboardingVCID";
 
+NSString *const ZPPRulesURL = @"http://vk.com/";
+
 
