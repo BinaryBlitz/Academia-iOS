@@ -33,6 +33,7 @@
 #import "ZPPOrder.h"
 #import "ZPPOrderItem.h"
 
+@import SDWebImage;
 // libs
 //#import <LoremIpsum.h>
 
@@ -127,7 +128,7 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            return [self productMainCell];
+            return [self productMainCellForIp:indexPath];
         } else if (indexPath.row == 1) {
             return [self menuCell];
         } else if (indexPath.row == [self.tableView numberOfRowsInSection:0] - 1) {
@@ -142,18 +143,32 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     }
 }
 
-- (ZPPProductMainCell *)productMainCell {
+- (ZPPProductMainCell *)productMainCellForIp:(NSIndexPath *)ip {
     ZPPProductMainCell *cell =
         [self.tableView dequeueReusableCellWithIdentifier:ZPPProductMainCellIdentifier];
 
     NSURL *imgURL = [NSURL URLWithString:self.dish.urlAsString];
-    [cell.productImageView setImageWithURL:imgURL];
+//    [cell.productImageView setImageWithURL:imgURL];
+//
+//    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+//
+//    [manager downloadImageWithURL:imgURL
+//                          options:0
+//                         progress:0
+//                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType,
+//                                    BOOL finished, NSURL *imageURL) {
+//                            if (!image) {
+//                                return;
+//                            }
+//                            cell.productImageView.image = image;
+//                        }];
+
+    [self loadImageView:cell.productImageView indexPath:ip url:imgURL];
 
     cell.nameLabel.text = self.dish.name;
     cell.ingridientsDescriptionLabel.text = self.dish.subtitle;
-    cell.priceLabel.text =
-        [NSString stringWithFormat:@"%@ ₽", self.dish.price];
-    
+    cell.priceLabel.text = [NSString stringWithFormat:@"%@ ₽", self.dish.price];
+
     [cell.addToBasketButton makeBorderedWithColor:[UIColor whiteColor]];
     cell.contentView.backgroundColor = [UIColor blackColor];
 
@@ -163,14 +178,15 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 
     ZPPOrderItem *orderItem = [self.order orderItemForItem:self.dish];
     NSString *buttonText = cell.addToBasketButton.titleLabel.text;
-    
+
     if (self.dish.isNoItems) {
         buttonText = @"Блюдо закончилось";
         cell.addToBasketButton.enabled = NO;
         [cell.addToBasketButton makeBorderedWithColor:[UIColor clearColor]];
-        cell.addToBasketButton.backgroundColor = [UIColor colorWithWhite:2/2.5 alpha:1];
+        cell.addToBasketButton.backgroundColor = [UIColor colorWithWhite:2 / 2.5 alpha:1];
         cell.addToBasketButton.titleLabel.font = [UIFont boldFontOfSize:16];
-//        [cell.addToBasketButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        //        [cell.addToBasketButton setTitleColor:[UIColor blackColor]
+        //        forState:UIControlStateNormal];
     } else if (orderItem) {
         buttonText = @"ЗАКАЗАТЬ ЕЩЕ";
         cell.addToBasketButton.enabled = YES;
@@ -178,11 +194,9 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
         cell.addToBasketButton.enabled = YES;
     }
     [cell.addToBasketButton setTitle:buttonText.uppercaseString forState:UIControlStateNormal];
-    
+
     return cell;
 }
-
-
 
 - (UITableViewCell *)commonIngridientCellForIndexPath:(NSIndexPath *)ip {
     if (self.isLunch) {
@@ -245,7 +259,9 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
                 UIImageView *iv = cell.badgesImageViews[i];
                 UILabel *label = cell.badgesLabels[i];
                 ZPPBadge *badge = self.dish.badges[i + ind];
-                [iv setImageWithURL:badge.imgURL];
+                //[iv setImageWithURL:badge.imgURL];
+                
+                [iv sd_setImageWithURL:badge.imgURL];
                 label.text = badge.name;
             }
         }
@@ -264,7 +280,7 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
                 continue;
             }
             ZPPBadge *badge = self.dish.badges[index];
-            [iv setImageWithURL:badge.imgURL];
+            [iv sd_setImageWithURL:badge.imgURL];
             label.text = badge.name;
         }
         return cell;
@@ -398,7 +414,23 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
                        });
     }
 }
+#pragma mark - img load
 
-
+- (void)loadImageView:(UIImageView *)imgView indexPath:(NSIndexPath *)ip url:(NSURL *)url {
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    [manager downloadImageWithURL:url
+                          options:0
+                         progress:nil
+                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType,
+                                    BOOL finished, NSURL *imageURL) {
+                            if (!image) {
+                                return;
+                            }
+//                            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:ip];
+//                            if (cell) {
+                                imgView.image = image;
+//                            }
+                        }];
+}
 
 @end

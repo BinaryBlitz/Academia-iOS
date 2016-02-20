@@ -18,6 +18,6 @@ NSString *const ZPPSupportNumber = @"";
 
 NSString *const ZPPOnboardingVCID = @"ZPPOnboardingVCID";
 
-NSString *const ZPPRulesURL = @"http://vk.com/";
+NSString *const ZPPRulesURL = @"http://zpdelivery.ru/privacy/";
 
 
