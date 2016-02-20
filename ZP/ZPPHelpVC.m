@@ -6,11 +6,13 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import "ZPPHelpVC.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
-#import "UIViewController+ZPPViewControllerCategory.h"
 #import "UIView+UIViewCategory.h"
+#import "UIViewController+ZPPViewControllerCategory.h"
 #import "ZPPConsts.h"
+#import "ZPPHelpVC.h"
+#import "ZPPPaymentWebController.h"
+#import "ZPPRulesVC.h"
 
 #import <MessageUI/MessageUI.h>
 
@@ -25,26 +27,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    
-    
-    NSDictionary *underlineAttribute =
-    @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) ,NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Medium" size:18.f]};
-    NSAttributedString *attrStr =
-    [[NSAttributedString alloc] initWithString:self.phoneTextView.text
-                                    attributes:underlineAttribute];
+
+    NSDictionary *underlineAttribute = @{
+        NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle),
+        NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Medium" size:18.f]
+    };
+    NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:self.phoneTextView.text
+                                                                  attributes:underlineAttribute];
 
     self.phoneTextView.attributedText = attrStr;
     self.phoneTextView.textAlignment = NSTextAlignmentCenter;
 
-//    self.emailButton.layer.borderColor = [UIColor blackColor].CGColor;
-//    self.emailButton.layer.borderWidth = 2.0f;
-//    self.phoneButton.layer.borderColor = [UIColor blackColor].CGColor;
-//    self.phoneButton.layer.borderWidth = 2.0f;
-    
     [self.emailButton makeBordered];
     [self.phoneTextView makeBordered];
 
@@ -52,9 +49,30 @@
                          action:@selector(sendEmail)
                forControlEvents:UIControlEventTouchUpInside];
 
-//    [self.phoneButton addTarget:self
-//                         action:@selector(makeCall)
-//               forControlEvents:UIControlEventTouchUpInside];
+    [self.rulesButton addTarget:self
+                         action:@selector(showRules)
+               forControlEvents:UIControlEventTouchUpInside];
+    [self.legalButon addTarget:self
+                        action:@selector(showLegal)
+              forControlEvents:UIControlEventTouchUpInside];
+
+    NSDictionary *undatr = @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) };
+    NSAttributedString *atrstr =
+        [[NSAttributedString alloc] initWithString:@"Правила использования"
+                                        attributes:undatr];
+
+    NSAttributedString *legalText =
+        [[NSAttributedString alloc] initWithString:@"Реквизиты" attributes:undatr];
+
+    self.rulesButton.titleLabel.minimumScaleFactor = 0.5;
+    self.rulesButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+
+    [self.rulesButton setAttributedTitle:atrstr forState:UIControlStateNormal];
+
+    self.legalButon.titleLabel.minimumScaleFactor = 0.5;
+    self.legalButon.titleLabel.adjustsFontSizeToFitWidth = YES;
+
+    [self.legalButon setAttributedTitle:legalText forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -114,6 +132,38 @@
     } else {
         NSLog(@"This device cannot send email");
     }
+}
+
+#pragma mark - rules
+
+- (void)showRules {
+    ZPPPaymentWebController *wc = [[ZPPPaymentWebController alloc] init];
+
+    NSURL *url = [NSURL URLWithString:ZPPRulesURL];
+
+    wc.title = @"Правила";
+    [wc configureWithURL:url];
+    //    wc.paymentDelegate = self;
+
+    UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:wc];
+
+    navC.navigationBar.barTintColor = [UIColor blackColor];
+
+    [self presentViewController:navC animated:YES completion:nil];
+    //    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"registration" bundle:nil];
+    //    ZPPRulesVC *vc = [sb instantiateViewControllerWithIdentifier:ZPPRulesVCID];
+    //    //    UINavigationController *nav = vc.navigationController;
+    //    UINavigationController *nav = [[UINavigationController alloc]
+    //    initWithRootViewController:vc];
+    //
+    //    [self presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)showLegal {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"registration" bundle:nil];
+    ZPPRulesVC *vc = [sb instantiateViewControllerWithIdentifier:ZPPRulesVCID];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 //- (void)makeCall {

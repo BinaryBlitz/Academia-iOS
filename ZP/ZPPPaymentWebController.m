@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = @"ОПЛАТА";
+//    self.title = @"ОПЛАТА";
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
     [self.navigationController.navigationBar setTitleTextAttributes:

@@ -27,4 +27,11 @@ NSString *const ZPPRulesVCID = @"ZPPRulesVCID";
      @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.textView.scrollEnabled = NO;
+    self.textView.scrollEnabled = YES;
+}
+
 @end

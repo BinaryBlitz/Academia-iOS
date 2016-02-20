@@ -7,7 +7,6 @@
 //
 
 #import <DigitsKit/DigitsKit.h>
-//#import <REFormattedNumberField.h>
 #import <VBFPopFlatButton/VBFPopFlatButton.h>
 #import "UIButton+ZPPButtonCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
@@ -17,8 +16,6 @@
 #import "ZPPRulesVC.h"
 #import "ZPPUser.h"
 
-//#import "ZPPSmsVerificationManager.h"
-//#import "ZPPServerManager.h"
 #import "ZPPServerManager+ZPPRegistration.h"
 
 #import "ZPPConsts.h"
@@ -26,6 +23,8 @@
 #import "UIView+UIViewCategory.h"
 #import "UIViewController+ZPPValidationCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
+
+#import "ZPPPaymentWebController.h"
 
 @import REFormattedNumberField;
 
@@ -152,11 +151,19 @@ navigation
 }
 
 - (void)showRules {
-    ZPPRulesVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:ZPPRulesVCID];
-    //    UINavigationController *nav = vc.navigationController;
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-
-    [self presentViewController:nav animated:YES completion:nil];
+    ZPPPaymentWebController *wc = [[ZPPPaymentWebController alloc] init];
+    
+    NSURL *url = [NSURL URLWithString:ZPPRulesURL];
+    
+    wc.title = @"Правила";
+    [wc configureWithURL:url];
+    //    wc.paymentDelegate = self;
+    
+    UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:wc];
+    
+    navC.navigationBar.barTintColor = [UIColor blackColor];
+    
+    [self presentViewController:navC animated:YES completion:nil];
 }
 
 #pragma mark - Navigation
