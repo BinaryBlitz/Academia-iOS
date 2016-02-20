@@ -16,6 +16,7 @@
 
 @import JSBadgeView;
 @import AFNetworking;
+@import SDWebImage;
 
 @interface ZPPProductAnotherCell ()
 
@@ -50,7 +51,9 @@
     self.productDescriptionLabel.text = stuff.stuffDescr;
     self.priceLabel.text = [NSString stringWithFormat:@"%@%@", stuff.price, ZPPRoubleSymbol];
     
-    [self.pictureImageView setImageWithURL:stuff.imgURl];
+//    [self.pictureImageView setImageWithURL:stuff.imgURl];
+    
+    [self.pictureImageView sd_setImageWithURL:stuff.imgURl];
 }
 
 

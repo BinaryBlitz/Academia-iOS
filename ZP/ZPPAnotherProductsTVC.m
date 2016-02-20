@@ -22,6 +22,7 @@
 //#import <LoremIpsum.h>
 
 @import AFNetworking;
+@import SDWebImage;
 
 static NSString *ZPPProductAnotherCellIdentifier = @"ZPPProductAnotherCellIdentifier";
 static NSString *ZPPProductMainCellIdentifier = @"ZPPProductsMainCellIdentifier";
