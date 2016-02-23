@@ -3,8 +3,7 @@ use_frameworks!
 
 pod "AFNetworking"
 pod 'CocoaLumberjack'
-pod "TSMessages"
-#pod "MagicalRecord"
+#pod "TSMessages"
 pod 'JSBadgeView'
 pod 'SCLAlertView-Objective-C'
 pod 'SDWebImage'
@@ -25,9 +24,11 @@ pod 'Crashlytics'
 pod 'GoogleMaps'
 pod 'LMGeocoder'
 
-pod 'Digits'
-pod 'TwitterCore'
+#pod 'Digits'
+#pod 'TwitterCore'
 pod 'HCSStarRatingView'
 
 pod 'EZSwipeController'
 pod 'PureLayout'
+
+pod 'CWStatusBarNotification', '~> 2.3.4'

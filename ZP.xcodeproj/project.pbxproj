@@ -37,7 +37,6 @@
 		190C6BC11BFA2E9F00533509 /* NSDate+ZPPDateCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 190C6BC01BFA2E9F00533509 /* NSDate+ZPPDateCategory.m */; };
 		190C6BC31BFA43D700533509 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 190C6BC21BFA43D700533509 /* spinner.png */; };
 		190C6BC71BFA5F3400533509 /* ZPPPaymentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 190C6BC61BFA5F3400533509 /* ZPPPaymentManager.m */; };
-		190C6BC91BFA638800533509 /* iconBigColor.png in Resources */ = {isa = PBXBuildFile; fileRef = 190C6BC81BFA638800533509 /* iconBigColor.png */; };
 		190E47781BC073EE00AC5379 /* ZPPProductMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 190E47771BC073EE00AC5379 /* ZPPProductMenuCell.xib */; };
 		190E477A1BC0756500AC5379 /* ZPPProductAboutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 190E47791BC0756500AC5379 /* ZPPProductAboutCell.xib */; };
 		190E477D1BC076D500AC5379 /* ZPPProductAboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E477C1BC076D500AC5379 /* ZPPProductAboutCell.m */; };
@@ -98,6 +97,8 @@
 		195BBF901C7686C0004D00A5 /* Phone1.png in Resources */ = {isa = PBXBuildFile; fileRef = 195BBF8B1C7686C0004D00A5 /* Phone1.png */; };
 		1963EF211BD3E91100665916 /* ZPPRegistrationBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1963EF201BD3E91100665916 /* ZPPRegistrationBaseVC.m */; };
 		19792D351C0C735700707D07 /* ZPPOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19792D341C0C735700707D07 /* ZPPOrderManager.m */; };
+		197FFBA71C7CBF25006D06A9 /* iconBigColorNoWords.png in Resources */ = {isa = PBXBuildFile; fileRef = 197FFBA61C7CBF25006D06A9 /* iconBigColorNoWords.png */; };
+		197FFBA91C7CBFA2006D06A9 /* iconBigColor.png in Resources */ = {isa = PBXBuildFile; fileRef = 197FFBA81C7CBFA2006D06A9 /* iconBigColor.png */; };
 		1984EE231BD110CC001D25D5 /* registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1984EE221BD110CC001D25D5 /* registration.storyboard */; };
 		1984EE271BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1984EE261BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.m */; };
 		1984EE2D1BD123A8001D25D5 /* ZPPRegistrationCodeInputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1984EE2C1BD123A8001D25D5 /* ZPPRegistrationCodeInputVC.m */; };
@@ -149,7 +150,6 @@
 		19D242611BEA1728007A0FEB /* gifts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19D242601BEA1728007A0FEB /* gifts.storyboard */; };
 		19D242651BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D242641BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.m */; };
 		19D242691BEA1C67007A0FEB /* ZPPConsts.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D242681BEA1C67007A0FEB /* ZPPConsts.m */; };
-		19D2426B1BEA2705007A0FEB /* giftCard.png in Resources */ = {isa = PBXBuildFile; fileRef = 19D2426A1BEA2705007A0FEB /* giftCard.png */; };
 		19D242701BEA31FD007A0FEB /* ZPPOrderHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D2426F1BEA31FD007A0FEB /* ZPPOrderHistoryCell.m */; };
 		19D242721BEA3211007A0FEB /* ZPPOrderHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D242711BEA3211007A0FEB /* ZPPOrderHistoryCell.xib */; };
 		19D242751BEA389B007A0FEB /* ZPPOrderHistoryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D242741BEA389B007A0FEB /* ZPPOrderHistoryTVC.m */; };
@@ -176,7 +176,6 @@
 		19EC6CB21C12042500FC0BD4 /* ZPPBadgeForTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19EC6CB11C12042500FC0BD4 /* ZPPBadgeForTwoCell.m */; };
 		19EC6CB41C12046F00FC0BD4 /* ZPPBadgeForTwoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC6CB31C12046F00FC0BD4 /* ZPPBadgeForTwoCell.xib */; };
 		19EC6CB61C120B1800FC0BD4 /* ZPPProductIngredietntsJustCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC6CB51C120B1800FC0BD4 /* ZPPProductIngredietntsJustCell.xib */; };
-		19F378ED1BFA7C2D004827A0 /* iconBigColorNoWords.png in Resources */ = {isa = PBXBuildFile; fileRef = 19F378EC1BFA7C2D004827A0 /* iconBigColorNoWords.png */; };
 		19F378F01BFA85AD004827A0 /* ZPPPasswordRenewPhoneInputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378EF1BFA85AD004827A0 /* ZPPPasswordRenewPhoneInputVC.m */; };
 		19F378F31BFA93BC004827A0 /* ZPPPasswordRenewCodeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378F21BFA93BC004827A0 /* ZPPPasswordRenewCodeInput.m */; };
 		19F378F71BFA9EA0004827A0 /* ZPPDelivery.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378F61BFA9EA0004827A0 /* ZPPDelivery.m */; };
@@ -257,7 +256,6 @@
 		190C6BC21BFA43D700533509 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
 		190C6BC51BFA5F3400533509 /* ZPPPaymentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPPaymentManager.h; sourceTree = "<group>"; };
 		190C6BC61BFA5F3400533509 /* ZPPPaymentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPPaymentManager.m; sourceTree = "<group>"; };
-		190C6BC81BFA638800533509 /* iconBigColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBigColor.png; sourceTree = "<group>"; };
 		190E47771BC073EE00AC5379 /* ZPPProductMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPProductMenuCell.xib; sourceTree = "<group>"; };
 		190E47791BC0756500AC5379 /* ZPPProductAboutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPProductAboutCell.xib; sourceTree = "<group>"; };
 		190E477B1BC076D500AC5379 /* ZPPProductAboutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProductAboutCell.h; sourceTree = "<group>"; };
@@ -355,6 +353,8 @@
 		1963EF201BD3E91100665916 /* ZPPRegistrationBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPRegistrationBaseVC.m; sourceTree = "<group>"; };
 		19792D331C0C735700707D07 /* ZPPOrderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPOrderManager.h; sourceTree = "<group>"; };
 		19792D341C0C735700707D07 /* ZPPOrderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPOrderManager.m; sourceTree = "<group>"; };
+		197FFBA61C7CBF25006D06A9 /* iconBigColorNoWords.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBigColorNoWords.png; sourceTree = "<group>"; };
+		197FFBA81C7CBFA2006D06A9 /* iconBigColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBigColor.png; sourceTree = "<group>"; };
 		1984EE221BD110CC001D25D5 /* registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = registration.storyboard; sourceTree = "<group>"; };
 		1984EE251BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPRegistrationPhoneInputVC.h; sourceTree = "<group>"; };
 		1984EE261BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPRegistrationPhoneInputVC.m; sourceTree = "<group>"; };
@@ -439,7 +439,6 @@
 		19D242641BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+ZPPTVCCategory.m"; sourceTree = "<group>"; };
 		19D242671BEA1C67007A0FEB /* ZPPConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPConsts.h; sourceTree = "<group>"; };
 		19D242681BEA1C67007A0FEB /* ZPPConsts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPConsts.m; sourceTree = "<group>"; };
-		19D2426A1BEA2705007A0FEB /* giftCard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = giftCard.png; sourceTree = "<group>"; };
 		19D2426E1BEA31FD007A0FEB /* ZPPOrderHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPOrderHistoryCell.h; sourceTree = "<group>"; };
 		19D2426F1BEA31FD007A0FEB /* ZPPOrderHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPOrderHistoryCell.m; sourceTree = "<group>"; };
 		19D242711BEA3211007A0FEB /* ZPPOrderHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPOrderHistoryCell.xib; sourceTree = "<group>"; };
@@ -488,7 +487,6 @@
 		19EC6CB11C12042500FC0BD4 /* ZPPBadgeForTwoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPBadgeForTwoCell.m; sourceTree = "<group>"; };
 		19EC6CB31C12046F00FC0BD4 /* ZPPBadgeForTwoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPBadgeForTwoCell.xib; sourceTree = "<group>"; };
 		19EC6CB51C120B1800FC0BD4 /* ZPPProductIngredietntsJustCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPProductIngredietntsJustCell.xib; sourceTree = "<group>"; };
-		19F378EC1BFA7C2D004827A0 /* iconBigColorNoWords.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBigColorNoWords.png; sourceTree = "<group>"; };
 		19F378EE1BFA85AD004827A0 /* ZPPPasswordRenewPhoneInputVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPPasswordRenewPhoneInputVC.h; sourceTree = "<group>"; };
 		19F378EF1BFA85AD004827A0 /* ZPPPasswordRenewPhoneInputVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPPasswordRenewPhoneInputVC.m; sourceTree = "<group>"; };
 		19F378F11BFA93BC004827A0 /* ZPPPasswordRenewCodeInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPPasswordRenewCodeInput.h; sourceTree = "<group>"; };
@@ -1073,15 +1071,14 @@
 				190C6BC21BFA43D700533509 /* spinner.png */,
 				1907C74A1BF0B5BE003BA62E /* barBackground.png */,
 				1948C5461BEC38CA00084BC8 /* load.png */,
-				19D2426A1BEA2705007A0FEB /* giftCard.png */,
 				1902BD4D1BD7E713003E90A5 /* mainIcon.png */,
 				198999451C77695900701FF9 /* back1.jpg */,
 				198999471C776B2F00701FF9 /* back2.jpg */,
 				1989993B1C7756D600701FF9 /* back4.jpg */,
 				198999411C7766CD00701FF9 /* back3.jpg */,
 				1948C5441BEC326000084BC8 /* big_logo.png */,
-				190C6BC81BFA638800533509 /* iconBigColor.png */,
-				19F378EC1BFA7C2D004827A0 /* iconBigColorNoWords.png */,
+				197FFBA81C7CBFA2006D06A9 /* iconBigColor.png */,
+				197FFBA61C7CBF25006D06A9 /* iconBigColorNoWords.png */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -1822,6 +1819,7 @@
 				1907C7461BF0951D003BA62E /* ZPPOrderAddressCell.xib in Resources */,
 				198999421C7766CD00701FF9 /* back3.jpg in Resources */,
 				191C986E1BC050F300E10D4F /* ZPPProductMainCell.xib in Resources */,
+				197FFBA71C7CBF25006D06A9 /* iconBigColorNoWords.png in Resources */,
 				1984EE231BD110CC001D25D5 /* registration.storyboard in Resources */,
 				19B3A97C1C079EC20089F02A /* ZPPBadgeCell.xib in Resources */,
 				1907C75A1BF0C820003BA62E /* ZPPCardNumberInputCell.xib in Resources */,
@@ -1842,16 +1840,15 @@
 				19014A581BC034CF001E0D77 /* Assets.xcassets in Resources */,
 				190C6BC31BFA43D700533509 /* spinner.png in Resources */,
 				1907C7651BF0E597003BA62E /* ZPPCreditCardInfoCell.xib in Resources */,
-				190C6BC91BFA638800533509 /* iconBigColor.png in Resources */,
 				198FA5371BC17204008BC11B /* ZPPProductAnotherCell.xib in Resources */,
 				19EC6CB41C12046F00FC0BD4 /* ZPPBadgeForTwoCell.xib in Resources */,
+				197FFBA91C7CBFA2006D06A9 /* iconBigColor.png in Resources */,
 				190F9C811BE3C1810032E14D /* ZPPOrderItemCell.xib in Resources */,
 				195BBF8C1C7686C0004D00A5 /* Phone5.png in Resources */,
 				198999481C776B2F00701FF9 /* back2.jpg in Resources */,
 				1907C7601BF0D34C003BA62E /* ZPPCardDateCodeCell.xib in Resources */,
 				1902BD4E1BD7E714003E90A5 /* mainIcon.png in Resources */,
 				1948C5471BEC38CA00084BC8 /* load.png in Resources */,
-				19D2426B1BEA2705007A0FEB /* giftCard.png in Resources */,
 				1984EE351BD13698001D25D5 /* ZPPBeginScreenCell.xib in Resources */,
 				198A5C051BD59F0000710A36 /* ZPPMainMenuView.xib in Resources */,
 				19D242611BEA1728007A0FEB /* gifts.storyboard in Resources */,
@@ -1864,7 +1861,6 @@
 				19062D901BD69DAF003AC242 /* profile.storyboard in Resources */,
 				195BBF8D1C7686C0004D00A5 /* Phone4.png in Resources */,
 				1948C5451BEC326000084BC8 /* big_logo.png in Resources */,
-				19F378ED1BFA7C2D004827A0 /* iconBigColorNoWords.png in Resources */,
 				1948C5251BEB83EC00084BC8 /* ZPPActivateCardCell.xib in Resources */,
 				19B386131C19EA2E0050BE02 /* ZPPProductEnergyCell.xib in Resources */,
 				198635661BDFB58E0070E3F7 /* help.storyboard in Resources */,

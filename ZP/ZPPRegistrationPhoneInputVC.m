@@ -6,7 +6,7 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import <DigitsKit/DigitsKit.h>
+//#import <DigitsKit/DigitsKit.h>
 #import <VBFPopFlatButton/VBFPopFlatButton.h>
 #import "UIButton+ZPPButtonCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
@@ -46,9 +46,6 @@ static NSString *ZPPShowAuthenticationSegueIdentifier = @"ZPPShowAuthenticationS
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // self.phoneNumberTextFiled.delegate = self;
-    // self.phoneNumberTextFiled.tag = 102;
-
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -81,10 +78,9 @@ static NSString *ZPPShowAuthenticationSegueIdentifier = @"ZPPShowAuthenticationS
         initWithString:
             @"Нажимая кнопку \"ДАЛЕЕ\" вы принимаете правила"
             attributes:underlineAttribute];
-    
+
     self.rulesButton.titleLabel.minimumScaleFactor = 0.5;
     self.rulesButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-    
 
     [self.rulesButton setAttributedTitle:atrstr forState:UIControlStateNormal];
 }
@@ -99,7 +95,7 @@ static NSString *ZPPShowAuthenticationSegueIdentifier = @"ZPPShowAuthenticationS
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.phoneNumberTextFiled becomeFirstResponder];
+    //    [self.phoneNumberTextFiled becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -152,17 +148,18 @@ navigation
 
 - (void)showRules {
     ZPPPaymentWebController *wc = [[ZPPPaymentWebController alloc] init];
-    
-    NSURL *url = [NSURL URLWithString:ZPPRulesURL];
-    
+    NSString *urlString =
+        [ZPPRulesURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:urlString];
+
     wc.title = @"Правила";
     [wc configureWithURL:url];
     //    wc.paymentDelegate = self;
-    
+
     UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:wc];
-    
+
     navC.navigationBar.barTintColor = [UIColor blackColor];
-    
+
     [self presentViewController:navC animated:YES completion:nil];
 }
 

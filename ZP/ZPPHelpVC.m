@@ -139,7 +139,9 @@
 - (void)showRules {
     ZPPPaymentWebController *wc = [[ZPPPaymentWebController alloc] init];
 
-    NSURL *url = [NSURL URLWithString:ZPPRulesURL];
+//    encodedSelectedWord = [selectedWord stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlString = [ZPPRulesURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//[ZPPRulesURL stringByAddingPercentEncodingWithAllowedCharacters:URLQueryAllowedCharacterSet];
+    NSURL *url = [NSURL URLWithString:urlString];
 
     wc.title = @"Правила";
     [wc configureWithURL:url];
@@ -162,6 +164,7 @@
 - (void)showLegal {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"registration" bundle:nil];
     ZPPRulesVC *vc = [sb instantiateViewControllerWithIdentifier:ZPPRulesVCID];
+    vc.title = @"Реквизиты";
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:nil];
 }
