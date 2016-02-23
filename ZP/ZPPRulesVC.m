@@ -17,7 +17,7 @@ NSString *const ZPPRulesVCID = @"ZPPRulesVCID";
     [super viewDidLoad];
     [self addCustomCloseButton];
 
-    self.title = @"Правила";
+//    self.title = @"Правила";
     
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.barTintColor = [UIColor blackColor];

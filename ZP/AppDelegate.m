@@ -10,7 +10,7 @@
 
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-#import <DigitsKit/DigitsKit.h>
+//#import <DigitsKit/DigitsKit.h>
 #import "CocoaLumberjack.h"
 
 #import "ZPPUserManager.h"
@@ -34,7 +34,7 @@
     [DDLog addLogger:[DDASLLogger sharedInstance]];
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
-    [Fabric with:@[ [Crashlytics class], [Digits class] ]];
+    [Fabric with:@[ [Crashlytics class]]];
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 
 

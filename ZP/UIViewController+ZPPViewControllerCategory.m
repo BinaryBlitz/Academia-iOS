@@ -11,8 +11,9 @@
 //#import <VBFPopFlatButton.h>
 //#import <MBProgressHUD.h>
 #import "ZPPNoInternetConnectionVC.h"
+#import "CWStatusBarNotification.h"
 
-@import TSMessages;
+//@import TSMessages;
 @import VBFPopFlatButton;
 @import MBProgressHUD;
 
@@ -126,18 +127,26 @@
     //    [TSMessage showNotificationWithTitle:@"Ошибка"
     //                                subtitle:message
     //                                    type:TSMessageNotificationTypeWarning];
-
-    [TSMessage showNotificationInViewController:self.navigationController
-                                          title:@"Ошибка"
-                                       subtitle:message
-                                          image:nil
-                                           type:TSMessageNotificationTypeWarning
-                                       duration:TSMessageNotificationDurationAutomatic
-                                       callback:nil
-                                    buttonTitle:nil
-                                 buttonCallback:nil
-                                     atPosition:TSMessageNotificationPositionNavBarOverlay
-                           canBeDismissedByUser:YES];
+//
+//    [TSMessage showNotificationInViewController:self.navigationController
+//                                          title:@"Ошибка"
+//                                       subtitle:message
+//                                          image:nil
+//                                           type:TSMessageNotificationTypeWarning
+//                                       duration:TSMessageNotificationDurationAutomatic
+//                                       callback:nil
+//                                    buttonTitle:nil
+//                                 buttonCallback:nil
+//                                     atPosition:TSMessageNotificationPositionNavBarOverlay
+//                           canBeDismissedByUser:YES];
+    
+    
+    CWStatusBarNotification *notification = [CWStatusBarNotification new];
+    
+    
+    
+    [notification displayNotificationWithMessage:message
+                                          forDuration:2.0f];
 }
 
 - (void)showSuccessWithText:(NSString *)text {
