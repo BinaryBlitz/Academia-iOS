@@ -226,6 +226,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 
 - (void)didShowPageWithUrl:(NSURL *)url sender:(UIViewController *)vc {
     NSString *urlString = url.absoluteString;
+//    NSLog(@"URL %@", urlString);
     if ([urlString containsString:@"finish"]) {
         [self checkOrderSender:vc];
     }
