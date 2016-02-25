@@ -126,21 +126,23 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
                      forControlEvents:UIControlEventTouchUpInside];
     //    [cell.addToBasketButton setTitle:@"ВНИЗ" forState:UIControlStateNormal];
     [cell.addToBasketButton setTitle:@"ПОСМОТРЕТЬ" forState:UIControlStateNormal];
-    
+
     cell.topButtonView.hidden = NO;
-//    cell.addToBasketButton.tintColor = [UIColor whiteColor];
-//    [cell.addToBasketButton setImage:[UIImage imageNamed:@"arrowDown"]
-//                            forState:UIControlStateNormal];
 
+    cell.ingridientsDescriptionLabel.numberOfLines = 1;
+    cell.ingridientsDescriptionLabel.minimumScaleFactor = 0.5;
+    cell.ingridientsDescriptionLabel.adjustsFontSizeToFitWidth = YES;
+    //    cell.addToBasketButton.tintColor = [UIColor whiteColor];
+    //    [cell.addToBasketButton setImage:[UIImage imageNamed:@"arrowDown"]
+    //                            forState:UIControlStateNormal];
 
+    //    CGSize size = cell.addToBasketButton.bounds.size;
+    //    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, 3)];
+    //    v.backgroundColor = [UIColor whiteColor];
+    //    [cell.addToBasketButton addSubview:v];
 
-//    CGSize size = cell.addToBasketButton.bounds.size;
-//    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, 3)];
-//    v.backgroundColor = [UIColor whiteColor];
-//    [cell.addToBasketButton addSubview:v];
-    
     cell.productImageView.image = [UIImage imageNamed:@"back4.jpg"];
-    
+
     return cell;
 }
 
@@ -156,7 +158,18 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
 #pragma mark - actions
 
 - (void)showAnotherCells {  // redo
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:1];
+
+    if (self.anotherProducts.count < 1) {
+        return;
+    }
+    //
+    //    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:ip];
+    //
+    //    if (!cell)
+    //        return;
+
+    [self.tableView scrollToRowAtIndexPath:ip
                           atScrollPosition:UITableViewScrollPositionTop
                                   animated:YES];
 }
