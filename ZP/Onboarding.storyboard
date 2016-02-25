@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Yg6-8h-tU3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Yg6-8h-tU3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -45,17 +45,17 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pfU-Hm-KKt">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="560"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Msp-XX-OxL">
-                                <rect key="frame" x="169.5" y="28" width="260" height="139"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Msp-XX-OxL">
+                                <rect key="frame" x="270.5" y="28" width="59" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="139" id="Ngi-aT-ggr"/>
+                                    <constraint firstAttribute="height" constant="100" id="Ngi-aT-ggr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3kI-6U-Wa0">
-                                <rect key="frame" x="169.5" y="183" width="260" height="377"/>
+                                <rect key="frame" x="156.5" y="144" width="286" height="416"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3kI-6U-Wa0" secondAttribute="height" multiplier="95:138" id="cQb-jI-IWu"/>
                                 </constraints>
@@ -74,13 +74,13 @@
                             <constraint firstItem="ijO-0o-3ZC" firstAttribute="top" secondItem="pfU-Hm-KKt" secondAttribute="bottom" id="72Y-tX-kh9"/>
                             <constraint firstItem="ijO-0o-3ZC" firstAttribute="top" secondItem="3kI-6U-Wa0" secondAttribute="bottom" id="9Fo-Sa-W2n"/>
                             <constraint firstItem="3kI-6U-Wa0" firstAttribute="top" secondItem="Msp-XX-OxL" secondAttribute="bottom" constant="16" id="9Sb-DD-hUp"/>
-                            <constraint firstItem="3kI-6U-Wa0" firstAttribute="trailing" secondItem="Msp-XX-OxL" secondAttribute="trailing" id="IL1-R3-w6O"/>
                             <constraint firstItem="Msp-XX-OxL" firstAttribute="top" secondItem="SCI-A7-iYC" secondAttribute="bottom" constant="8" id="Seo-8c-d0O"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="3kI-6U-Wa0" secondAttribute="trailing" id="TN5-mu-bBZ"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Msp-XX-OxL" secondAttribute="trailing" constant="8" id="Uyh-f5-gCl"/>
                             <constraint firstItem="ijO-0o-3ZC" firstAttribute="leading" secondItem="P85-q8-Z87" secondAttribute="leadingMargin" constant="-20" id="WXf-OO-1xf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ijO-0o-3ZC" secondAttribute="trailing" constant="-20" id="aWM-Dc-DYX"/>
+                            <constraint firstItem="Msp-XX-OxL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="P85-q8-Z87" secondAttribute="leadingMargin" constant="8" id="gZv-JE-x5d"/>
                             <constraint firstItem="gBK-Xd-0UI" firstAttribute="top" secondItem="ijO-0o-3ZC" secondAttribute="bottom" id="ing-kv-hkf"/>
-                            <constraint firstItem="3kI-6U-Wa0" firstAttribute="leading" secondItem="Msp-XX-OxL" secondAttribute="leading" id="kJS-N9-SDB"/>
                             <constraint firstItem="3kI-6U-Wa0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="P85-q8-Z87" secondAttribute="leadingMargin" id="lHw-sf-MMH"/>
                             <constraint firstItem="pfU-Hm-KKt" firstAttribute="leading" secondItem="P85-q8-Z87" secondAttribute="leadingMargin" constant="-20" id="nhe-7V-kJp"/>
                             <constraint firstItem="3kI-6U-Wa0" firstAttribute="centerX" secondItem="P85-q8-Z87" secondAttribute="centerX" id="td1-XV-gRy"/>

@@ -41,6 +41,10 @@ class ZPPOnboardingVC: UIViewController {
         }
 
 
+        let s = UIScreen.mainScreen().bounds.size;
+        if s.height/s.width < 16/9.0 {
+            textLabel.font = textLabel.font.fontWithSize(22)
+        }
         // Do any additional setup after loading the view.
     }
 

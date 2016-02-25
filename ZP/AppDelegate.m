@@ -8,8 +8,8 @@
 
 #import "AppDelegate.h"
 
-#import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import <Fabric/Fabric.h>
 //#import <DigitsKit/DigitsKit.h>
 #import "CocoaLumberjack.h"
 
@@ -21,6 +21,8 @@
 
 @import GoogleMaps;
 @import AFNetworking;
+
+NSString *const ZPPGMSApiKey = @"AIzaSyC97Zw13dQfFz3vI_k3fkSr7pYbyDqhohk";//AIzaSyC6__0DvrUgzEChAHV-_LRq6AwfDNOMJVM
 
 @interface AppDelegate ()
 
@@ -34,36 +36,36 @@
     [DDLog addLogger:[DDASLLogger sharedInstance]];
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
-    [Fabric with:@[ [Crashlytics class]]];
+    [Fabric with:@[ [Crashlytics class] ]];
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 
+    [GMSServices provideAPIKey:ZPPGMSApiKey];
 
-    [GMSServices provideAPIKey:@"AIzaSyC6__0DvrUgzEChAHV-_LRq6AwfDNOMJVM"];
+    //    if ([launchOptions objectForKey:UIApplicationLaunchOptionsLocationKey]) {
+    //        INTULocationManager *locMgr = [INTULocationManager sharedInstance];
+    //        [locMgr
+    //            subscribeToSignificantLocationChangesWithBlock:^(CLLocation *currentLocation,
+    //                                                             INTULocationAccuracy
+    //                                                             achievedAccuracy,
+    //                                                             INTULocationStatus status){
+    //                // This block will be executed with the details of the significant location
+    //                change
+    //                // that triggered the background app launch,
+    //                // and will continue to execute for any future significant location change
+    //                events as
+    //                // well (unless canceled).
+    //            }];
+    //    }
 
-//    if ([launchOptions objectForKey:UIApplicationLaunchOptionsLocationKey]) {
-//        INTULocationManager *locMgr = [INTULocationManager sharedInstance];
-//        [locMgr
-//            subscribeToSignificantLocationChangesWithBlock:^(CLLocation *currentLocation,
-//                                                             INTULocationAccuracy achievedAccuracy,
-//                                                             INTULocationStatus status){
-//                // This block will be executed with the details of the significant location change
-//                // that triggered the background app launch,
-//                // and will continue to execute for any future significant location change events as
-//                // well (unless canceled).
-//            }];
-//    }
-    
-    
     if (IS_OS_8_OR_LATER) {
         [application
-         registerUserNotificationSettings:[UIUserNotificationSettings
-                                           settingsForTypes:(UIUserNotificationTypeSound |
-                                                             UIUserNotificationTypeAlert |
-                                                             UIUserNotificationTypeBadge)
-                                           categories:nil]];
-        
+            registerUserNotificationSettings:[UIUserNotificationSettings
+                                                 settingsForTypes:(UIUserNotificationTypeSound |
+                                                                   UIUserNotificationTypeAlert |
+                                                                   UIUserNotificationTypeBadge)
+                                                       categories:nil]];
+
         [application registerForRemoteNotifications];
-        
     }
 
     return YES;
@@ -199,10 +201,8 @@
 
 #pragma mark - push
 
-
 - (void)application:(UIApplication *)application
-didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-        
+    didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [[ZPPUserManager sharedInstance] setAPNsToken:deviceToken];
 }
 
