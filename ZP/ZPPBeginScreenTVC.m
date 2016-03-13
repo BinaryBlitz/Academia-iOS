@@ -191,7 +191,7 @@ navigation
 }
 
 - (NSString *)buttonText {
-    NSString *text = @"НАЧАТЬ";
+    NSString *text = @"ВОЙТИ";
 
     ZPPCurrentBeginState state = [self currentState];
 

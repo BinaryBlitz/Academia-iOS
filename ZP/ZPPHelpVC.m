@@ -94,19 +94,19 @@
                         error:(nullable NSError *)error {
     switch (result) {
         case MFMailComposeResultSent:
-            NSLog(@"You sent the email.");
+//            NSLog(@"You sent the email.");
             break;
         case MFMailComposeResultSaved:
-            NSLog(@"You saved a draft of this email");
+//            NSLog(@"You saved a draft of this email");
             break;
         case MFMailComposeResultCancelled:
-            NSLog(@"You cancelled sending this email.");
+           // NSLog(@"You cancelled sending this email.");
             break;
         case MFMailComposeResultFailed:
-            NSLog(@"Mail failed:  An error occurred when trying to compose this email");
+//            NSLog(@"Mail failed:  An error occurred when trying to compose this email");
             break;
         default:
-            NSLog(@"An error occurred when trying to compose this email");
+//            NSLog(@"An error occurred when trying to compose this email");
             break;
     }
 

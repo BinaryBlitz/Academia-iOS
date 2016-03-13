@@ -72,7 +72,7 @@ static NSString *ZPPDaDataID = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
 
-            NSLog(@"%@", responseObject);
+//            NSLog(@"%@", responseObject);
 
             //            NSDictionary *respDict = responseObject[@"response"];
             //
@@ -88,7 +88,7 @@ static NSString *ZPPDaDataID = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
         }
         failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
 
-            NSLog(@"failure %@", error);
+//            NSLog(@"failure %@", error);
 
             if (failure) {
                 failure(error, operation.response.statusCode);
@@ -100,45 +100,6 @@ static NSString *ZPPDaDataID = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
                          count:(NSNumber *)count
                      onSuccess:(void (^)(NSArray *addresses))success
                      onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    //    AFHTTPRequestOperationManager *manager =
-    //        self.manager;  //[AFHTTPRequestOperationManager manager];
-    //    NSString *string = [NSString
-    //    stringWithFormat:@"https://dadata.ru/api/v2/suggest/address"];
-    //
-    //    NSDictionary *params = @{ @"query" : addresString};
-    //
-    //    // AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    //
-    //    //  [manager.requestSerializer setValue:@"SomeValue" forHTTPHeaderField:@"Content-Type"]
-    //
-    //    NSString *tokenString = [NSString stringWithFormat:@"Token %@", ZPPDaDataID];
-    //    [manager.requestSerializer setValue:tokenString forHTTPHeaderField:@"Authorization"];
-    //    [manager.requestSerializer setValue:@"application/json"
-    //    forHTTPHeaderField:@"Content-Type"];
-    //    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    //
-    //        [manager POST:string parameters:params
-    //        constructingBodyWithBlock:^(id<AFMultipartFormData>
-    //        _Nonnull formData) {
-    //
-    ////            NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:params];
-    ////            [formData appendPartWithHeaders:nil body:myData];
-    //
-    //        } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject)
-    //        {
-    //             NSLog(@"%@", responseObject);
-    //        } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-    //            NSLog(@"%@", error);
-    //        }];
-
-    //    [manager POST:string
-    //        parameters:params
-    //        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-    //            NSLog(@"%@", responseObject);
-    //        }
-    //        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
-    //            NSLog(@"%@", error);
-    //        }];
 
     NSString *string = [NSString stringWithFormat:@"https://dadata.ru/api/v2/suggest/address"];
     NSURL *URL = [NSURL URLWithString:string];

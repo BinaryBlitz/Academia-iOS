@@ -336,7 +336,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
             self.order.date = d;
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {
-            NSLog(@"Block Picker Canceled");
+//            NSLog(@"Block Picker Canceled");
         }
         origin:sender];
 }

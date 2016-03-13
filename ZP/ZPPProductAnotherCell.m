@@ -9,6 +9,9 @@
 #import "ZPPProductAnotherCell.h"
 #import "ZPPStuff.h"
 
+#import "ZPPUserManager.h"
+#import "ZPPUser.h"
+
 //#import <UIImageView+AFNetworking.h>
 //
 //#import <JSBadgeView.h>
@@ -54,6 +57,12 @@
 //    [self.pictureImageView setImageWithURL:stuff.imgURl];
     
     [self.pictureImageView sd_setImageWithURL:stuff.imgURl];
+    
+    if([ZPPUserManager sharedInstance].user.apiToken) {
+        self.addProductButton.hidden = NO;
+    } else {
+        self.addProductButton.hidden = YES;
+    }
 }
 
 

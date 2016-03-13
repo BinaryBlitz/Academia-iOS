@@ -50,13 +50,18 @@
 - (void)getDayMenuOnSuccess:(void (^)(NSArray *meals, NSArray *dishes, NSArray *stuff, ZPPTimeManager *timeManager))success
                   onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
     ZPPUser *user = [ZPPUserManager sharedInstance].user;
-    if (!user.apiToken) {
-        if (failure) {
-            failure(nil, 422);
-        }
-        return;
+//    if (!user.apiToken) {
+//        if (failure) {
+//            failure(nil, 422);
+//        }
+//        return;
+//    }
+    
+    NSString *token = user.apiToken;
+    NSDictionary *params;
+    if(token) {
+        params = @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
     }
-    NSDictionary *params = @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
 
     [self.requestOperationManager GET:@"day.json"
         parameters:params

@@ -74,7 +74,7 @@
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    NSLog(@"%@", webView.URL.absoluteString);
+//    NSLog(@"%@", webView.URL.absoluteString);
 
     if (self.paymentDelegate) {
         [self.paymentDelegate didShowPageWithUrl:webView.URL sender:self];
