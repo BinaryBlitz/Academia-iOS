@@ -182,7 +182,7 @@ NSString *const ZPPCentralURL = @"merchants/zdorovoepitanie";
     [self.requestOperationManager GET:@"rest/getOrderStatus.do"
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-            NSLog(@"ord resp %@", responseObject);
+//            NSLog(@"ord resp %@", responseObject);
             NSString *bindID = responseObject[@"bindingId"];
             if (success) {
                 success(bindID);

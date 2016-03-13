@@ -36,7 +36,7 @@
         dict[@"scheduled_for"] = [order.date serverFormattedString];
     }
 
-    NSLog(@"order dict %@", dict);
+//    NSLog(@"order dict %@", dict);
 
     return [NSDictionary dictionaryWithDictionary:dict];
 }

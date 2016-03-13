@@ -15,6 +15,9 @@
 #import "ZPPProductTVC.h"
 #import "ZPPProductsIngridientsCell.h"
 
+#import "ZPPUser.h"
+#import "ZPPUserManager.h"
+
 #import "ZPPIngridient.h"
 
 #import "UITableViewController+ZPPTVCCategory.h"
@@ -148,20 +151,6 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
         [self.tableView dequeueReusableCellWithIdentifier:ZPPProductMainCellIdentifier];
 
     NSURL *imgURL = [NSURL URLWithString:self.dish.urlAsString];
-//    [cell.productImageView setImageWithURL:imgURL];
-//
-//    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-//
-//    [manager downloadImageWithURL:imgURL
-//                          options:0
-//                         progress:0
-//                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType,
-//                                    BOOL finished, NSURL *imageURL) {
-//                            if (!image) {
-//                                return;
-//                            }
-//                            cell.productImageView.image = image;
-//                        }];
 
     [self loadImageView:cell.productImageView indexPath:ip url:imgURL];
 
@@ -179,21 +168,26 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     ZPPOrderItem *orderItem = [self.order orderItemForItem:self.dish];
     NSString *buttonText = cell.addToBasketButton.titleLabel.text;
 
-    if (self.dish.isNoItems) {
-        buttonText = @"Блюдо закончилось";
-        cell.addToBasketButton.enabled = NO;
-        [cell.addToBasketButton makeBorderedWithColor:[UIColor clearColor]];
-        cell.addToBasketButton.backgroundColor = [UIColor colorWithWhite:2 / 2.5 alpha:1];
-        cell.addToBasketButton.titleLabel.font = [UIFont boldFontOfSize:16];
-        //        [cell.addToBasketButton setTitleColor:[UIColor blackColor]
-        //        forState:UIControlStateNormal];
-    } else if (orderItem) {
-        buttonText = @"ЗАКАЗАТЬ ЕЩЕ";
-        cell.addToBasketButton.enabled = YES;
+    if (![ZPPUserManager sharedInstance].user.apiToken) {
+        cell.addToBasketButton.hidden = YES;
     } else {
-        cell.addToBasketButton.enabled = YES;
+        cell.addToBasketButton.hidden = NO;
+        if (self.dish.isNoItems) {
+            buttonText = @"Блюдо закончилось";
+            cell.addToBasketButton.enabled = NO;
+            [cell.addToBasketButton makeBorderedWithColor:[UIColor clearColor]];
+            cell.addToBasketButton.backgroundColor = [UIColor colorWithWhite:2 / 2.5 alpha:1];
+            cell.addToBasketButton.titleLabel.font = [UIFont boldFontOfSize:16];
+            //        [cell.addToBasketButton setTitleColor:[UIColor blackColor]
+            //        forState:UIControlStateNormal];
+        } else if (orderItem) {
+            buttonText = @"ЗАКАЗАТЬ ЕЩЕ";
+            cell.addToBasketButton.enabled = YES;
+        } else {
+            cell.addToBasketButton.enabled = YES;
+        }
+        [cell.addToBasketButton setTitle:buttonText.uppercaseString forState:UIControlStateNormal];
     }
-    [cell.addToBasketButton setTitle:buttonText.uppercaseString forState:UIControlStateNormal];
 
     return cell;
 }
@@ -260,7 +254,7 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
                 UILabel *label = cell.badgesLabels[i];
                 ZPPBadge *badge = self.dish.badges[i + ind];
                 //[iv setImageWithURL:badge.imgURL];
-                
+
                 [iv sd_setImageWithURL:badge.imgURL];
                 label.text = badge.name;
             }
@@ -426,10 +420,11 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
                             if (!image) {
                                 return;
                             }
-//                            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:ip];
-//                            if (cell) {
-                                imgView.image = image;
-//                            }
+                            //                            UITableViewCell *cell = [self.tableView
+                            //                            cellForRowAtIndexPath:ip];
+                            //                            if (cell) {
+                            imgView.image = image;
+                            //                            }
                         }];
 }
 

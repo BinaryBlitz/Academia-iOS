@@ -65,19 +65,17 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    if ([[ZPPUserManager sharedInstance] checkUser]) {
-        [self loadDishes];
-    } else {
-        //        self.productViewControllers = [self startScreen];
-        //        self.delegate = nil;
-        //        self.delegate = self;
-
-        [self configureScreensWithArr:@[ [self startScreen] ]];
-        [self setViewControllers:@[ self.productViewControllers[0] ]
-                       direction:UIPageViewControllerNavigationDirectionForward
-                        animated:NO
-                      completion:nil];
-    }
+//    if ([[ZPPUserManager sharedInstance] checkUser]) {
+//        [self loadDishes];
+//    } else {
+//        [self loadDishes];
+//        [self configureScreensWithArr:@[ [self startScreen] ]];
+//        [self setViewControllers:@[ self.productViewControllers[0] ]
+//                       direction:UIPageViewControllerNavigationDirectionForward
+//                        animated:NO
+//                      completion:nil];
+//    }
+    [self loadDishes];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -186,7 +184,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 #pragma mark - ZPPProductScreenTVCDelegate
 
 - (void)addItemIntoOrder:(id<ZPPItemProtocol>)item {
-    NSLog(@"item %@", [item nameOfItem]);
+//    NSLog(@"item %@", [item nameOfItem]);
 
     ZPPMainVC *mainVC = (ZPPMainVC *)self.parentViewController;
 
@@ -228,8 +226,6 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
                 if (statusCode == 401) {
                     [[ZPPUserManager sharedInstance] userLogOut];
                     [strongSelf configureScreensWithArr:@[ [strongSelf startScreen] ]];
-                    
-
                 } else {
                     [[strongSelf mainVC] showNoInternetScreen];
                 }
