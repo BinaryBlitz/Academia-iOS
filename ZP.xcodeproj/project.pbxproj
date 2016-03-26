@@ -563,16 +563,15 @@
 		19014A471BC034CF001E0D77 /* ZP */ = {
 			isa = PBXGroup;
 			children = (
-				1954573E1BD7C54E00A3BB46 /* resources */,
-				19DA03DE1BC12AAF00DC0636 /* categories */,
-				191C98521BC0433400E10D4F /* controller */,
-				191C98511BC0432400E10D4F /* view */,
-				191C98501BC0431F00E10D4F /* model */,
-				1984EE211BD110B0001D25D5 /* storyboards */,
-				19A098561C7654C00020A9BA /* application */,
-				19014A571BC034CF001E0D77 /* Assets.xcassets */,
-				19014A591BC034CF001E0D77 /* LaunchScreen.storyboard */,
+				1954573E1BD7C54E00A3BB46 /* Resources */,
+				19DA03DE1BC12AAF00DC0636 /* Categories */,
+				191C98521BC0433400E10D4F /* Controllers */,
+				191C98511BC0432400E10D4F /* Views */,
+				191C98501BC0431F00E10D4F /* Models */,
+				1984EE211BD110B0001D25D5 /* Storyboards */,
+				19A098561C7654C00020A9BA /* Application config */,
 				19014A481BC034CF001E0D77 /* Supporting Files */,
+				19014A571BC034CF001E0D77 /* Assets.xcassets */,
 			);
 			path = ZP;
 			sourceTree = "<group>";
@@ -605,7 +604,7 @@
 			path = ZPUITests;
 			sourceTree = "<group>";
 		};
-		19062D8B1BD695C1003AC242 /* userProfile */ = {
+		19062D8B1BD695C1003AC242 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				19062D8C1BD69ACB003AC242 /* ZPPProfileVC.h */,
@@ -613,10 +612,10 @@
 				1948C5331BEBBC5E00084BC8 /* ZPPChangePasswordVC.h */,
 				1948C5341BEBBC5E00084BC8 /* ZPPChangePasswordVC.m */,
 			);
-			name = userProfile;
+			name = Profile;
 			sourceTree = "<group>";
 		};
-		1907C73D1BF08ADB003BA62E /* map */ = {
+		1907C73D1BF08ADB003BA62E /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				1907C73E1BF08B03003BA62E /* ZPPAddress.h */,
@@ -624,7 +623,7 @@
 				1907C7471BF0A7AA003BA62E /* ZPPAddressHelper.h */,
 				1907C7481BF0A7AA003BA62E /* ZPPAddressHelper.m */,
 			);
-			name = map;
+			name = Map;
 			sourceTree = "<group>";
 		};
 		1907C7411BF09451003BA62E /* address */ = {
@@ -637,13 +636,13 @@
 			name = address;
 			sourceTree = "<group>";
 		};
-		1907C74C1BF0C296003BA62E /* card */ = {
+		1907C74C1BF0C296003BA62E /* Card */ = {
 			isa = PBXGroup;
 			children = (
 				1907C74D1BF0C2AC003BA62E /* ZPPCreditCard.h */,
 				1907C74E1BF0C2AC003BA62E /* ZPPCreditCard.m */,
 			);
-			name = card;
+			name = Card;
 			sourceTree = "<group>";
 		};
 		1907C7501BF0C441003BA62E /* add_new */ = {
@@ -715,13 +714,13 @@
 			name = "order time";
 			sourceTree = "<group>";
 		};
-		190C6BBE1BFA2E4F00533509 /* date */ = {
+		190C6BBE1BFA2E4F00533509 /* Date */ = {
 			isa = PBXGroup;
 			children = (
 				190C6BBF1BFA2E9F00533509 /* NSDate+ZPPDateCategory.h */,
 				190C6BC01BFA2E9F00533509 /* NSDate+ZPPDateCategory.m */,
 			);
-			name = date;
+			name = Date;
 			sourceTree = "<group>";
 		};
 		190C6BC41BFA5EB600533509 /* payment */ = {
@@ -772,7 +771,7 @@
 			name = authentication;
 			sourceTree = "<group>";
 		};
-		190F9C7A1BE3C0F20032E14D /* order */ = {
+		190F9C7A1BE3C0F20032E14D /* Order */ = {
 			isa = PBXGroup;
 			children = (
 				19F378FB1BFBBDD5004827A0 /* payment */,
@@ -783,7 +782,7 @@
 				1942353D1BE8F6C20014BD9A /* ZPPOrderItemVC.h */,
 				1942353E1BE8F6C20014BD9A /* ZPPOrderItemVC.m */,
 			);
-			name = order;
+			name = Order;
 			sourceTree = "<group>";
 		};
 		190F9C7E1BE3C13B0032E14D /* order */ = {
@@ -807,65 +806,64 @@
 			name = orderItemCell;
 			sourceTree = "<group>";
 		};
-		1910D9F71C05F1D200F2536F /* time manager */ = {
+		1910D9F71C05F1D200F2536F /* TimeManager */ = {
 			isa = PBXGroup;
 			children = (
 				1910D9F81C05F20800F2536F /* ZPPTimeManager.h */,
 				1910D9F91C05F20800F2536F /* ZPPTimeManager.m */,
 			);
-			name = "time manager";
+			name = TimeManager;
 			sourceTree = "<group>";
 		};
-		191C98501BC0431F00E10D4F /* model */ = {
+		191C98501BC0431F00E10D4F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1907C74C1BF0C296003BA62E /* card */,
-				1907C73D1BF08ADB003BA62E /* map */,
-				19D242661BEA1C53007A0FEB /* consts */,
-				1986356A1BDFD0260070E3F7 /* order */,
-				198A5C091BD5B59F00710A36 /* product */,
+				1907C74C1BF0C296003BA62E /* Card */,
+				1907C73D1BF08ADB003BA62E /* Map */,
+				19D242661BEA1C53007A0FEB /* Constants */,
+				1986356A1BDFD0260070E3F7 /* Order */,
+				198A5C091BD5B59F00710A36 /* Product */,
 				191D7DEE1BD5695200DBAFC4 /* API */,
-				191D7DE41BD53DAB00DBAFC4 /* user */,
+				191D7DE41BD53DAB00DBAFC4 /* User */,
 				19F379041BFE862F004827A0 /* ZPPImageWorker.h */,
 				19F379051BFE862F004827A0 /* ZPPImageWorker.m */,
 			);
-			name = model;
+			name = Models;
 			sourceTree = "<group>";
 		};
-		191C98511BC0432400E10D4F /* view */ = {
+		191C98511BC0432400E10D4F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				19F379071BFE911F004827A0 /* label */,
-				1948C52F1BEBB39400084BC8 /* textfield */,
-				198A5C031BD59EE100710A36 /* menu */,
-				191D7DF81BD5766C00DBAFC4 /* buttons */,
-				1984EE411BD1504F001D25D5 /* view */,
-				191C98651BC047A200E10D4F /* cells */,
-				191C98621BC044D300E10D4F /* xib */,
+				19F379071BFE911F004827A0 /* Label */,
+				1948C52F1BEBB39400084BC8 /* TextField */,
+				198A5C031BD59EE100710A36 /* Menu */,
+				191D7DF81BD5766C00DBAFC4 /* Buttons */,
+				1984EE411BD1504F001D25D5 /* View */,
+				191C98651BC047A200E10D4F /* Cells */,
 			);
-			name = view;
+			name = Views;
 			sourceTree = "<group>";
 		};
-		191C98521BC0433400E10D4F /* controller */ = {
+		191C98521BC0433400E10D4F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				19A0984C1C7651F80020A9BA /* onboarding */,
-				19DADF461BF616F6007D9DF2 /* noInternet */,
-				19C5018B1BEE4DB700575F78 /* maps */,
-				1948C5281BEBAC7A00084BC8 /* promocode */,
-				19D2426C1BEA2C6B007A0FEB /* orderHistory */,
-				194235401BE92D650014BD9A /* gift */,
-				198FD97E1BE7B60E00A30B4D /* cards */,
-				190F9C7A1BE3C0F20032E14D /* order */,
-				198635641BDFB5000070E3F7 /* help */,
-				19062D8B1BD695C1003AC242 /* userProfile */,
-				1984EE241BD121E1001D25D5 /* registration */,
-				191C98561BC0439100E10D4F /* main */,
+				19A0984C1C7651F80020A9BA /* Onboarding */,
+				19DADF461BF616F6007D9DF2 /* NoInternetConnection */,
+				19C5018B1BEE4DB700575F78 /* Maps */,
+				1948C5281BEBAC7A00084BC8 /* Promocode */,
+				19D2426C1BEA2C6B007A0FEB /* OrderHistory */,
+				194235401BE92D650014BD9A /* Gift */,
+				198FD97E1BE7B60E00A30B4D /* Cards */,
+				190F9C7A1BE3C0F20032E14D /* Order */,
+				198635641BDFB5000070E3F7 /* Help */,
+				19062D8B1BD695C1003AC242 /* Profile */,
+				1984EE241BD121E1001D25D5 /* Registration */,
+				191C98561BC0439100E10D4F /* Main */,
 			);
-			name = controller;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
-		191C98561BC0439100E10D4F /* main */ = {
+		191C98561BC0439100E10D4F /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				19BF471C1C0DEE530060B2F0 /* begin */,
@@ -877,20 +875,14 @@
 				191C98541BC0438C00E10D4F /* ZPPMainVC.m */,
 				19F379021BFE2AED004827A0 /* ZPPConfigureWithOrder.h */,
 			);
-			name = main;
+			name = Main;
 			sourceTree = "<group>";
 		};
-		191C98621BC044D300E10D4F /* xib */ = {
+		191C98651BC047A200E10D4F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				19DA03E21BC12BF000DC0636 /* main */,
-			);
-			name = xib;
-			sourceTree = "<group>";
-		};
-		191C98651BC047A200E10D4F /* cells */ = {
-			isa = PBXGroup;
-			children = (
+				190E47771BC073EE00AC5379 /* ZPPProductMenuCell.xib */,
+				19EC6CB51C120B1800FC0BD4 /* ZPPProductIngredietntsJustCell.xib */,
 				19D2426D1BEA31D2007A0FEB /* order history */,
 				194235441BE931AC0014BD9A /* gift */,
 				198FD9831BE7B82200A30B4D /* credit_card */,
@@ -898,7 +890,7 @@
 				19EC24A21BC65E1600C333F6 /* anotherProducts */,
 				191C98691BC0506E00E10D4F /* mainCells */,
 			);
-			name = cells;
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		191C98691BC0506E00E10D4F /* mainCells */ = {
@@ -915,16 +907,16 @@
 			name = mainCells;
 			sourceTree = "<group>";
 		};
-		191D7DD11BD531C600DBAFC4 /* registration category */ = {
+		191D7DD11BD531C600DBAFC4 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
 				191D7DDE1BD5363300DBAFC4 /* UIViewController+ZPPValidationCategory.h */,
 				191D7DDF1BD5363300DBAFC4 /* UIViewController+ZPPValidationCategory.m */,
 			);
-			name = "registration category";
+			name = Registration;
 			sourceTree = "<group>";
 		};
-		191D7DE41BD53DAB00DBAFC4 /* user */ = {
+		191D7DE41BD53DAB00DBAFC4 /* User */ = {
 			isa = PBXGroup;
 			children = (
 				191D7DF71BD56C2B00DBAFC4 /* helpers */,
@@ -933,7 +925,7 @@
 				191D7DE81BD53DD100DBAFC4 /* ZPPUserManager.h */,
 				191D7DE91BD53DD100DBAFC4 /* ZPPUserManager.m */,
 			);
-			name = user;
+			name = User;
 			sourceTree = "<group>";
 		};
 		191D7DEE1BD5695200DBAFC4 /* API */ = {
@@ -980,20 +972,20 @@
 			name = helpers;
 			sourceTree = "<group>";
 		};
-		191D7DF81BD5766C00DBAFC4 /* buttons */ = {
+		191D7DF81BD5766C00DBAFC4 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = buttons;
+			name = Buttons;
 			sourceTree = "<group>";
 		};
-		194235401BE92D650014BD9A /* gift */ = {
+		194235401BE92D650014BD9A /* Gift */ = {
 			isa = PBXGroup;
 			children = (
 				194235411BE930210014BD9A /* ZPPGiftTVC.h */,
 				194235421BE930210014BD9A /* ZPPGiftTVC.m */,
 			);
-			name = gift;
+			name = Gift;
 			sourceTree = "<group>";
 		};
 		194235441BE931AC0014BD9A /* gift */ = {
@@ -1045,42 +1037,32 @@
 			name = activate_card;
 			sourceTree = "<group>";
 		};
-		1948C5281BEBAC7A00084BC8 /* promocode */ = {
+		1948C5281BEBAC7A00084BC8 /* Promocode */ = {
 			isa = PBXGroup;
 			children = (
 				1948C5291BEBACA500084BC8 /* ZPPPromoVC.h */,
 				1948C52A1BEBACA500084BC8 /* ZPPPromoVC.m */,
 			);
-			name = promocode;
+			name = Promocode;
 			sourceTree = "<group>";
 		};
-		1948C52F1BEBB39400084BC8 /* textfield */ = {
+		1948C52F1BEBB39400084BC8 /* TextField */ = {
 			isa = PBXGroup;
 			children = (
 				19DADF4D1BF62D06007D9DF2 /* moneykit */,
 				1948C5301BEBB3B500084BC8 /* ZPPCustomTextField.h */,
 				1948C5311BEBB3B500084BC8 /* ZPPCustomTextField.m */,
 			);
-			name = textfield;
+			name = TextField;
 			sourceTree = "<group>";
 		};
-		1954573E1BD7C54E00A3BB46 /* resources */ = {
+		1954573E1BD7C54E00A3BB46 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				19A098591C76793D0020A9BA /* onboarding */,
-				190C6BC21BFA43D700533509 /* spinner.png */,
-				1907C74A1BF0B5BE003BA62E /* barBackground.png */,
-				1948C5461BEC38CA00084BC8 /* load.png */,
-				1902BD4D1BD7E713003E90A5 /* mainIcon.png */,
-				198999451C77695900701FF9 /* back1.jpg */,
-				198999471C776B2F00701FF9 /* back2.jpg */,
-				1989993B1C7756D600701FF9 /* back4.jpg */,
-				198999411C7766CD00701FF9 /* back3.jpg */,
-				1948C5441BEC326000084BC8 /* big_logo.png */,
-				197FFBA81C7CBFA2006D06A9 /* iconBigColor.png */,
-				197FFBA61C7CBF25006D06A9 /* iconBigColorNoWords.png */,
+				19A098591C76793D0020A9BA /* Onboarding */,
+				379C64141CA69C6600A32C90 /* Images */,
 			);
-			name = resources;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		1955F3931C0BCCFC0010EED3 /* contact */ = {
@@ -1093,7 +1075,7 @@
 			name = contact;
 			sourceTree = "<group>";
 		};
-		195BBF721C7680B1004D00A5 /* backs */ = {
+		195BBF721C7680B1004D00A5 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
 				195BBF731C7681E2004D00A5 /* back-1.jpg */,
@@ -1102,7 +1084,7 @@
 				195BBF761C7681E2004D00A5 /* back-4.jpg */,
 				195BBF771C7681E2004D00A5 /* back-5.jpg */,
 			);
-			name = backs;
+			name = Backgrounds;
 			sourceTree = "<group>";
 		};
 		1963EF1E1BD3E8DD00665916 /* base */ = {
@@ -1114,16 +1096,16 @@
 			name = base;
 			sourceTree = "<group>";
 		};
-		19792D321C0C733100707D07 /* orderManager */ = {
+		19792D321C0C733100707D07 /* OrderManager */ = {
 			isa = PBXGroup;
 			children = (
 				19792D331C0C735700707D07 /* ZPPOrderManager.h */,
 				19792D341C0C735700707D07 /* ZPPOrderManager.m */,
 			);
-			name = orderManager;
+			name = OrderManager;
 			sourceTree = "<group>";
 		};
-		1984EE211BD110B0001D25D5 /* storyboards */ = {
+		1984EE211BD110B0001D25D5 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				19014A511BC034CF001E0D77 /* Main.storyboard */,
@@ -1135,11 +1117,12 @@
 				19D242761BEA3B81007A0FEB /* orderHistory.storyboard */,
 				1948C5261BEBABFD00084BC8 /* promocode.storyboard */,
 				19A0984E1C7652DB0020A9BA /* Onboarding.storyboard */,
+				19014A591BC034CF001E0D77 /* LaunchScreen.storyboard */,
 			);
-			name = storyboards;
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
-		1984EE241BD121E1001D25D5 /* registration */ = {
+		1984EE241BD121E1001D25D5 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
 				19DADF5B1BF75C31007D9DF2 /* password renew */,
@@ -1147,7 +1130,7 @@
 				190F9C711BE286410032E14D /* registration */,
 				1963EF1E1BD3E8DD00665916 /* base */,
 			);
-			name = registration;
+			name = Registration;
 			sourceTree = "<group>";
 		};
 		1984EE361BD136B0001D25D5 /* beginCell */ = {
@@ -1190,7 +1173,7 @@
 			name = "product about";
 			sourceTree = "<group>";
 		};
-		1984EE411BD1504F001D25D5 /* view */ = {
+		1984EE411BD1504F001D25D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				19F378FF1BFE2489004827A0 /* DTCustomColoredAccessory.h */,
@@ -1198,44 +1181,44 @@
 				19F3790B1BFEA6C9004827A0 /* ZPPCustomTouchTransperentView.h */,
 				19F3790C1BFEA6C9004827A0 /* ZPPCustomTouchTransperentView.m */,
 			);
-			name = view;
+			name = View;
 			sourceTree = "<group>";
 		};
-		198635641BDFB5000070E3F7 /* help */ = {
+		198635641BDFB5000070E3F7 /* Help */ = {
 			isa = PBXGroup;
 			children = (
 				198635671BDFB6A00070E3F7 /* ZPPHelpVC.h */,
 				198635681BDFB6A00070E3F7 /* ZPPHelpVC.m */,
 			);
-			name = help;
+			name = Help;
 			sourceTree = "<group>";
 		};
-		1986356A1BDFD0260070E3F7 /* order */ = {
+		1986356A1BDFD0260070E3F7 /* Order */ = {
 			isa = PBXGroup;
 			children = (
-				19792D321C0C733100707D07 /* orderManager */,
-				1910D9F71C05F1D200F2536F /* time manager */,
-				19F378F41BFA9E7C004827A0 /* deliveryItem */,
-				19DADF641BF762CA007D9DF2 /* helper */,
+				19792D321C0C733100707D07 /* OrderManager */,
+				1910D9F71C05F1D200F2536F /* TimeManager */,
+				19F378F41BFA9E7C004827A0 /* DeliveryItem */,
+				19DADF641BF762CA007D9DF2 /* Helper */,
 				1986356B1BDFD04B0070E3F7 /* ZPPOrder.h */,
 				1986356C1BDFD04B0070E3F7 /* ZPPOrder.m */,
 				1986356E1BDFD1950070E3F7 /* ZPPOrderItem.h */,
 				1986356F1BDFD1950070E3F7 /* ZPPOrderItem.m */,
 			);
-			name = order;
+			name = Order;
 			sourceTree = "<group>";
 		};
-		198A5C031BD59EE100710A36 /* menu */ = {
+		198A5C031BD59EE100710A36 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
 				198A5C041BD59F0000710A36 /* ZPPMainMenuView.xib */,
 				198A5C061BD5A90B00710A36 /* ZPPMainMenuView.h */,
 				198A5C071BD5A90B00710A36 /* ZPPMainMenuView.m */,
 			);
-			name = menu;
+			name = Menu;
 			sourceTree = "<group>";
 		};
-		198A5C091BD5B59F00710A36 /* product */ = {
+		198A5C091BD5B59F00710A36 /* Product */ = {
 			isa = PBXGroup;
 			children = (
 				19B3A9701C073CE70089F02A /* badge */,
@@ -1254,7 +1237,7 @@
 				19B386141C19F0BA0050BE02 /* ZPPEnergy.h */,
 				19B386151C19F0BA0050BE02 /* ZPPEnergy.m */,
 			);
-			name = product;
+			name = Product;
 			sourceTree = "<group>";
 		};
 		198A5C111BD5B6BE00710A36 /* helpers */ = {
@@ -1283,15 +1266,6 @@
 			name = dishes;
 			sourceTree = "<group>";
 		};
-		198FA5341BC171C6008BC11B /* product */ = {
-			isa = PBXGroup;
-			children = (
-				190E47771BC073EE00AC5379 /* ZPPProductMenuCell.xib */,
-				19EC6CB51C120B1800FC0BD4 /* ZPPProductIngredietntsJustCell.xib */,
-			);
-			name = product;
-			sourceTree = "<group>";
-		};
 		198FD9781BE7A9CA00A30B4D /* cardCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1301,7 +1275,7 @@
 			name = cardCells;
 			sourceTree = "<group>";
 		};
-		198FD97E1BE7B60E00A30B4D /* cards */ = {
+		198FD97E1BE7B60E00A30B4D /* Cards */ = {
 			isa = PBXGroup;
 			children = (
 				198FD97F1BE7B7BC00A30B4D /* ZPPCardViewController.h */,
@@ -1309,7 +1283,7 @@
 				1907C7531BF0C4B0003BA62E /* ZPPCardInputTVC.h */,
 				1907C7541BF0C4B0003BA62E /* ZPPCardInputTVC.m */,
 			);
-			name = cards;
+			name = Cards;
 			sourceTree = "<group>";
 		};
 		198FD9831BE7B82200A30B4D /* credit_card */ = {
@@ -1323,16 +1297,16 @@
 			name = credit_card;
 			sourceTree = "<group>";
 		};
-		19A0984C1C7651F80020A9BA /* onboarding */ = {
+		19A0984C1C7651F80020A9BA /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
 				19A098541C7654B00020A9BA /* ZPPOnboardingTopController.swift */,
 				19A098571C765A190020A9BA /* ZPPOnboardingVC.swift */,
 			);
-			name = onboarding;
+			name = Onboarding;
 			sourceTree = "<group>";
 		};
-		19A098561C7654C00020A9BA /* application */ = {
+		19A098561C7654C00020A9BA /* Application config */ = {
 			isa = PBXGroup;
 			children = (
 				19A098531C7654B00020A9BA /* ZP-Bridging-Header.h */,
@@ -1341,19 +1315,19 @@
 				19014A5C1BC034CF001E0D77 /* Info.plist */,
 				19014A541BC034CF001E0D77 /* ZP.xcdatamodeld */,
 			);
-			name = application;
+			name = "Application config";
 			sourceTree = "<group>";
 		};
-		19A098591C76793D0020A9BA /* onboarding */ = {
+		19A098591C76793D0020A9BA /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				195BBF721C7680B1004D00A5 /* backs */,
-				19A0985A1C7679780020A9BA /* iphones */,
+				195BBF721C7680B1004D00A5 /* Backgrounds */,
+				19A0985A1C7679780020A9BA /* iPhones */,
 			);
-			name = onboarding;
+			name = Onboarding;
 			sourceTree = "<group>";
 		};
-		19A0985A1C7679780020A9BA /* iphones */ = {
+		19A0985A1C7679780020A9BA /* iPhones */ = {
 			isa = PBXGroup;
 			children = (
 				195BBF871C7686C0004D00A5 /* Phone5.png */,
@@ -1362,7 +1336,7 @@
 				195BBF8A1C7686C0004D00A5 /* Phone2.png */,
 				195BBF8B1C7686C0004D00A5 /* Phone1.png */,
 			);
-			name = iphones;
+			name = iPhones;
 			sourceTree = "<group>";
 		};
 		19B3860E1C19E9DE0050BE02 /* productEnergy */ = {
@@ -1445,7 +1419,7 @@
 			name = begin;
 			sourceTree = "<group>";
 		};
-		19C5018B1BEE4DB700575F78 /* maps */ = {
+		19C5018B1BEE4DB700575F78 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
 				19C5018C1BEE4EBB00575F78 /* ZPPAdressVC.h */,
@@ -1453,19 +1427,19 @@
 				19DADF3E1BF36CE8007D9DF2 /* ZPPSearchResultController.h */,
 				19DADF3F1BF36CE8007D9DF2 /* ZPPSearchResultController.m */,
 			);
-			name = maps;
+			name = Maps;
 			sourceTree = "<group>";
 		};
-		19D242661BEA1C53007A0FEB /* consts */ = {
+		19D242661BEA1C53007A0FEB /* Constants */ = {
 			isa = PBXGroup;
 			children = (
 				19D242671BEA1C67007A0FEB /* ZPPConsts.h */,
 				19D242681BEA1C67007A0FEB /* ZPPConsts.m */,
 			);
-			name = consts;
+			name = Constants;
 			sourceTree = "<group>";
 		};
-		19D2426C1BEA2C6B007A0FEB /* orderHistory */ = {
+		19D2426C1BEA2C6B007A0FEB /* OrderHistory */ = {
 			isa = PBXGroup;
 			children = (
 				19D242731BEA389B007A0FEB /* ZPPOrderHistoryTVC.h */,
@@ -1473,7 +1447,7 @@
 				19D242781BEA4CEC007A0FEB /* ZPPOrderHistoryOrderTVC.h */,
 				19D242791BEA4CEC007A0FEB /* ZPPOrderHistoryOrderTVC.m */,
 			);
-			name = orderHistory;
+			name = OrderHistory;
 			sourceTree = "<group>";
 		};
 		19D2426D1BEA31D2007A0FEB /* order history */ = {
@@ -1488,34 +1462,20 @@
 			name = "order history";
 			sourceTree = "<group>";
 		};
-		19DA03DE1BC12AAF00DC0636 /* categories */ = {
+		19DA03DE1BC12AAF00DC0636 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				19E762811C036F160008821A /* button */,
-				190C6BBE1BFA2E4F00533509 /* date */,
-				191D7DD11BD531C600DBAFC4 /* registration category */,
-				19DA03DF1BC12ADE00DC0636 /* UIFont+ZPPFontCategory.h */,
-				19DA03E01BC12ADE00DC0636 /* UIFont+ZPPFontCategory.m */,
-				191D7DDB1BD5359700DBAFC4 /* UIView+UIViewCategory.h */,
-				191D7DDC1BD5359700DBAFC4 /* UIView+UIViewCategory.m */,
-				1984EE3E1BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.h */,
-				1984EE3F1BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.m */,
-				1984EE431BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.h */,
-				1984EE441BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.m */,
-				19D242631BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.h */,
-				19D242641BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.m */,
-				1948C52C1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.h */,
-				1948C52D1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.m */,
+				19E762811C036F160008821A /* Button */,
+				190C6BBE1BFA2E4F00533509 /* Date */,
+				191D7DD11BD531C600DBAFC4 /* Registration */,
+				379C64161CA69CB200A32C90 /* Font */,
+				379C64171CA69CBA00A32C90 /* View */,
+				379C64181CA69CC100A32C90 /* ViewController */,
+				379C64191CA69CC800A32C90 /* NavigationController */,
+				379C641A1CA69CD200A32C90 /* TableViewController */,
+				379C641B1CA69CD900A32C90 /* TextField */,
 			);
-			name = categories;
-			sourceTree = "<group>";
-		};
-		19DA03E21BC12BF000DC0636 /* main */ = {
-			isa = PBXGroup;
-			children = (
-				198FA5341BC171C6008BC11B /* product */,
-			);
-			name = main;
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		19DADF3D1BF368AE007D9DF2 /* map */ = {
@@ -1527,13 +1487,13 @@
 			name = map;
 			sourceTree = "<group>";
 		};
-		19DADF461BF616F6007D9DF2 /* noInternet */ = {
+		19DADF461BF616F6007D9DF2 /* NoInternetConnection */ = {
 			isa = PBXGroup;
 			children = (
 				19DADF471BF61715007D9DF2 /* ZPPNoInternetConnectionVC.h */,
 				19DADF481BF61715007D9DF2 /* ZPPNoInternetConnectionVC.m */,
 			);
-			name = noInternet;
+			name = NoInternetConnection;
 			sourceTree = "<group>";
 		};
 		19DADF4D1BF62D06007D9DF2 /* moneykit */ = {
@@ -1587,13 +1547,13 @@
 			name = order;
 			sourceTree = "<group>";
 		};
-		19DADF641BF762CA007D9DF2 /* helper */ = {
+		19DADF641BF762CA007D9DF2 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
 				19DADF651BF762F8007D9DF2 /* ZPPOrderHelper.h */,
 				19DADF661BF762F8007D9DF2 /* ZPPOrderHelper.m */,
 			);
-			name = helper;
+			name = Helper;
 			sourceTree = "<group>";
 		};
 		19DADF681BF7678C007D9DF2 /* helper */ = {
@@ -1623,13 +1583,13 @@
 			name = base;
 			sourceTree = "<group>";
 		};
-		19E762811C036F160008821A /* button */ = {
+		19E762811C036F160008821A /* Button */ = {
 			isa = PBXGroup;
 			children = (
 				191D7DF91BD5768900DBAFC4 /* UIButton+ZPPButtonCategory.h */,
 				191D7DFA1BD5768900DBAFC4 /* UIButton+ZPPButtonCategory.m */,
 			);
-			name = button;
+			name = Button;
 			sourceTree = "<group>";
 		};
 		19EC24A21BC65E1600C333F6 /* anotherProducts */ = {
@@ -1652,13 +1612,13 @@
 			name = badgeforTwo;
 			sourceTree = "<group>";
 		};
-		19F378F41BFA9E7C004827A0 /* deliveryItem */ = {
+		19F378F41BFA9E7C004827A0 /* DeliveryItem */ = {
 			isa = PBXGroup;
 			children = (
 				19F378F51BFA9EA0004827A0 /* ZPPDelivery.h */,
 				19F378F61BFA9EA0004827A0 /* ZPPDelivery.m */,
 			);
-			name = deliveryItem;
+			name = DeliveryItem;
 			sourceTree = "<group>";
 		};
 		19F378FB1BFBBDD5004827A0 /* payment */ = {
@@ -1670,13 +1630,85 @@
 			name = payment;
 			sourceTree = "<group>";
 		};
-		19F379071BFE911F004827A0 /* label */ = {
+		19F379071BFE911F004827A0 /* Label */ = {
 			isa = PBXGroup;
 			children = (
 				19F379081BFE9132004827A0 /* ZPPCustomLabel.h */,
 				19F379091BFE9132004827A0 /* ZPPCustomLabel.m */,
 			);
-			name = label;
+			name = Label;
+			sourceTree = "<group>";
+		};
+		379C64141CA69C6600A32C90 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				190C6BC21BFA43D700533509 /* spinner.png */,
+				1907C74A1BF0B5BE003BA62E /* barBackground.png */,
+				1948C5461BEC38CA00084BC8 /* load.png */,
+				1902BD4D1BD7E713003E90A5 /* mainIcon.png */,
+				198999451C77695900701FF9 /* back1.jpg */,
+				198999471C776B2F00701FF9 /* back2.jpg */,
+				1989993B1C7756D600701FF9 /* back4.jpg */,
+				198999411C7766CD00701FF9 /* back3.jpg */,
+				1948C5441BEC326000084BC8 /* big_logo.png */,
+				197FFBA81C7CBFA2006D06A9 /* iconBigColor.png */,
+				197FFBA61C7CBF25006D06A9 /* iconBigColorNoWords.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		379C64161CA69CB200A32C90 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				19DA03DF1BC12ADE00DC0636 /* UIFont+ZPPFontCategory.h */,
+				19DA03E01BC12ADE00DC0636 /* UIFont+ZPPFontCategory.m */,
+			);
+			name = Font;
+			sourceTree = "<group>";
+		};
+		379C64171CA69CBA00A32C90 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				191D7DDB1BD5359700DBAFC4 /* UIView+UIViewCategory.h */,
+				191D7DDC1BD5359700DBAFC4 /* UIView+UIViewCategory.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		379C64181CA69CC100A32C90 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1984EE3E1BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.h */,
+				1984EE3F1BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		379C64191CA69CC800A32C90 /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				1984EE431BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.h */,
+				1984EE441BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.m */,
+			);
+			name = NavigationController;
+			sourceTree = "<group>";
+		};
+		379C641A1CA69CD200A32C90 /* TableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				19D242631BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.h */,
+				19D242641BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.m */,
+			);
+			name = TableViewController;
+			sourceTree = "<group>";
+		};
+		379C641B1CA69CD900A32C90 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				1948C52C1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.h */,
+				1948C52D1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.m */,
+			);
+			name = TextField;
 			sourceTree = "<group>";
 		};
 		B0B07DA9F3702D7E9A2CECBF /* Pods */ = {
