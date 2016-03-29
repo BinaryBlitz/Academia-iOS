@@ -28,7 +28,7 @@ pod 'LMGeocoder'
 #pod 'TwitterCore'
 pod 'HCSStarRatingView'
 
-pod 'EZSwipeController'
+pod 'EZSwipeController', :git => 'https://github.com/DanShevlyuk/EZSwipeController.git'
 pod 'PureLayout'
 
 pod 'CWStatusBarNotification', '~> 2.3.4'

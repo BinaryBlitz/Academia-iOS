@@ -62,7 +62,7 @@ DEPENDENCIES:
   - Crashlytics
   - CWStatusBarNotification (~> 2.3.4)
   - DateTools
-  - EZSwipeController
+  - EZSwipeController (from `https://github.com/DanShevlyuk/EZSwipeController.git`)
   - Fabric
   - GoogleMaps
   - HCSStarRatingView
@@ -76,6 +76,15 @@ DEPENDENCIES:
   - SCLAlertView-Objective-C
   - SDWebImage
   - VBFPopFlatButton
+
+EXTERNAL SOURCES:
+  EZSwipeController:
+    :git: https://github.com/DanShevlyuk/EZSwipeController.git
+
+CHECKOUT OPTIONS:
+  EZSwipeController:
+    :commit: 5df148096c5cccfb8a62156608a195b2e54b68b9
+    :git: https://github.com/DanShevlyuk/EZSwipeController.git
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 11f2053085d3088dc1ef9d38a9f11c18b528dd9e

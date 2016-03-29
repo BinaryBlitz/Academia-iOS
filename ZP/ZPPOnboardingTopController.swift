@@ -88,7 +88,7 @@ class ZPPOnboardingTopController: EZSwipeController {
             return
         }
         
-        self.clickedRightButton()
+        rightButtonAction()
     }
     
     func skip() {
