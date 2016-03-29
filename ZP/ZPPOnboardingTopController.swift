@@ -6,47 +6,44 @@
 //  Copyright © 2016 BinaryBlitz. All rights reserved.
 //
 
-//import UIKit
+import UIKit
 import EZSwipeController
-
 import PureLayout
 
 class ZPPOnboardingTopController: EZSwipeController {
 
-    var bottomView:UIView?
+    var bottomView: UIView?
     
-    let btnHeight:CGFloat = 40
+    let btnHeight: CGFloat = 40
+    private let descriptionLabels = [
+        "Вкусная и полезная еда\nКаждый день новое меню",
+        "Выбирай из набора ланчей: Diet Meal, Super Meal и Veggie meal",
+        "Натуральные и свежие ингредиенты",
+        "Все легко и быстро\nОплата картой в приложении",
+        "Доставка за 30 минут"
+    ]
     
     override func setupView() {
         datasource = self
         navigationBarShouldBeOnBottom = true
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.blackColor()
-        self.setNeedsStatusBarAppearanceUpdate()
+        setNeedsStatusBarAppearanceUpdate()
         
-        self.addButton()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        addButton()
     }
     
     func addButton() {
         
         let screenS = UIScreen.mainScreen().bounds.size
-        let r = CGRect(x:0 , y: screenS.height - btnHeight, width: screenS.width, height: btnHeight)
+        let r = CGRect(x: 0 , y: screenS.height - btnHeight, width: screenS.width, height: btnHeight)
         let v = UIView(frame:r)
         
         v.backgroundColor = UIColor.blackColor()
-        
         
         view.addSubview(v)
         
@@ -66,7 +63,7 @@ class ZPPOnboardingTopController: EZSwipeController {
         btn.autoPinEdgeToSuperviewEdge(.Bottom)
         btn.autoSetDimension(.Width, toSize: 100)
         
-        btn.addTarget(self, action: "skip", forControlEvents: .TouchUpInside)
+        btn.addTarget(self, action: #selector(skip), forControlEvents: .TouchUpInside)
         
         
         let rbtn = UIButton(type: .Custom)
@@ -75,21 +72,17 @@ class ZPPOnboardingTopController: EZSwipeController {
         rbtn.setImage(img, forState: .Normal)
         rbtn.contentHorizontalAlignment = .Right
         
-        
         v.addSubview(rbtn)
         rbtn.autoPinEdgeToSuperviewEdge(.Right, withInset: 10)
         rbtn.autoPinEdgeToSuperviewEdge(.Top)
         rbtn.autoPinEdgeToSuperviewEdge(.Bottom)
         rbtn.autoSetDimension(.Width, toSize: 30)
         
-        rbtn.addTarget(self, action: "moveForvard", forControlEvents: .TouchUpInside)
-        
-        
+        rbtn.addTarget(self, action: #selector(moveForward), forControlEvents: .TouchUpInside)
     }
     
     
-    func moveForvard() {
-//        let currentPage = currentVCIndex
+    func moveForward() {
         if currentStackVC == stackPageVC.last {
             skip()
             return
@@ -103,52 +96,21 @@ class ZPPOnboardingTopController: EZSwipeController {
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent;
+        return .LightContent;
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension ZPPOnboardingTopController: EZSwipeControllerDataSource {
+    
     func viewControllerData() -> [UIViewController] {
+        let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
         
-        let sb = UIStoryboard(name: "Onboarding", bundle: nil)
-        let first = sb.instantiateViewControllerWithIdentifier(ZPPOnboardingVCID) as! ZPPOnboardingVC
-        let second = sb.instantiateViewControllerWithIdentifier(ZPPOnboardingVCID) as! ZPPOnboardingVC
-        let third = sb.instantiateViewControllerWithIdentifier(ZPPOnboardingVCID) as! ZPPOnboardingVC
-        let fourth = sb.instantiateViewControllerWithIdentifier(ZPPOnboardingVCID) as! ZPPOnboardingVC
-        let fifth = sb.instantiateViewControllerWithIdentifier(ZPPOnboardingVCID) as! ZPPOnboardingVC
-        let vcs = [first, second, third, fourth, fifth]
-        
-        let texts = ["Вкусная и полезная еда\nКаждый день новое меню",
-                     "Выбирай из набора ланчей: Diet Meal, Super Meal и Veggie meal",
-                     "Натуральные и свежие ингредиенты",
-                     "Все легко и быстро\nОплата картой в приложении",
-                     "Доставка за 30 минут"]
-        
-        for (i, item) in vcs.enumerate() {
-            let str = "Phone\(i+1).png"
-            let backStr = "back-\(i+1).jpg"
-            let text = texts[i]
-            item.configure(backStr, iphoneName: str, text: text)
-            
+        return descriptionLabels.enumerate().map { (index, label) -> ZPPOnboardingVC in
+            let item = onboardingStoryboard.instantiateViewControllerWithIdentifier(ZPPOnboardingVCID) as! ZPPOnboardingVC
+            let str = "Phone\(index + 1).png"
+            let backStr = "back-\(index + 1).jpg"
+            item.configure(backStr, iphoneName: str, text: label)
+            return item
         }
-        
-//        first.configure("", iphoneName: "", text: "")
-        
-        
-      
-        
-        return vcs
     }
 }
