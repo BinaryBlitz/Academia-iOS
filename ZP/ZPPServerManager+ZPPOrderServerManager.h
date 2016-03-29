@@ -23,7 +23,7 @@
                      onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
 - (void)checkPaymentWithID:(NSString *)orderID
-                 onSuccess:(void (^)(NSString *sta))success
+                 onSuccess:(void (^)(NSInteger sta))success
                  onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
 

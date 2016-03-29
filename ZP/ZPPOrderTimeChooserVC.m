@@ -226,26 +226,26 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 
 - (void)didShowPageWithUrl:(NSURL *)url sender:(UIViewController *)vc {
     NSString *urlString = url.absoluteString;
-//    NSLog(@"URL %@", urlString);
+    NSLog(@"URL %@", urlString);
     if ([urlString containsString:@"finish"]) {
+        [self checkOrderSender:vc];
+    } else if ([urlString containsString:@"status"]) {
+        NSLog(@"(╯°□°）╯︵ ┻━┻ ");
         [self checkOrderSender:vc];
     }
 }
 
-- (void)checkOrderSender:(UIViewController *)vc {
+- (void)checkOrderSender:(UIViewController *)viewController {
     [[ZPPServerManager sharedManager] checkPaymentWithID:self.paymentOrder.identifier
-        onSuccess:^(NSString *sta) {
+        onSuccess:^(NSInteger sta) {
+            
+            if (sta == 2) {
+                [viewController dismissViewControllerAnimated: YES completion:nil];
 
-            if ([sta isEqualToString:@"Успешно"]) {
-                [vc dismissViewControllerAnimated:YES
-                                       completion:^{
-
-                                       }];
-
-                UIViewController *vc = [self.storyboard
+                UIViewController *orderResultViewContorller = [self.storyboard
                     instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
 
-                [self.navigationController pushViewController:vc animated:YES];
+                [self.navigationController pushViewController:orderResultViewContorller animated:YES];
                 self.paymentOrder = nil;
 
                 [self.order clearOrder];
@@ -257,24 +257,21 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
             ZPPNoInternetConnectionVC *noInternetConnection =
                 [sb instantiateViewControllerWithIdentifier:ZPPNoInternetConnectionVCIdentifier];
             noInternetConnection.noInternetDelegate = self;
-            [vc presentViewController:noInternetConnection animated:YES completion:nil];
-            self.viewControllerToHide = vc;
-
-            //  [vc showNoInternetVC];
-
+            [viewController presentViewController:noInternetConnection animated:YES completion:nil];
+            self.viewControllerToHide = viewController;
         }];
 }
 
 - (void)showWebViewWithURl:(NSURL *)url {
-    ZPPPaymentWebController *wc = [[ZPPPaymentWebController alloc] init];
-    [wc configureWithURL:url];
-    wc.paymentDelegate = self;
-    wc.title = @"Оплата";
-    UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:wc];
+    ZPPPaymentWebController *webViewController = [ZPPPaymentWebController new];
+    [webViewController configureWithURL:url];
+    webViewController.paymentDelegate = self;
+    webViewController.title = @"Оплата";
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
 
-    navC.navigationBar.barTintColor = [UIColor blackColor];
+    navigationController.navigationBar.barTintColor = [UIColor blackColor];
 
-    [self presentViewController:navC animated:YES completion:nil];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (void)tryAgainSender:(id)sender {
