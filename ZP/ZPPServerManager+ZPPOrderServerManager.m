@@ -93,30 +93,11 @@
 }
 
 - (void)checkPaymentWithID:(NSString *)orderID
-                 onSuccess:(void (^)(NSString *sta))success
+                 onSuccess:(void (^)(NSInteger sta))success
                  onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
     NSDictionary *params = @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
 
     NSString *urlString = [NSString stringWithFormat:@"orders/%@/payment_status.json", orderID];
-
-    //    static NSInteger count = 0;
-    //
-    //    count++;
-    //
-    //    NSLog(@"%ld", count);
-    //
-    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)),
-    //                   dispatch_get_main_queue(), ^{
-    //                       if (count < 2) {
-    //                           if (failure) {
-    //                               failure(nil, 500);
-    //                           }
-    //                       } else {
-    //                           if (success) {
-    //                               success(@"Успешно");
-    //                           }
-    //                       }
-    //                   });
 
     [self.requestOperationManager GET:urlString
         parameters:params
@@ -125,14 +106,20 @@
             NSLog(@"payment status response %@", responseObject);
 
             //order status 2 is good
-            NSString *s = responseObject[@"error_message"];
+            NSNumber *orederStatus = responseObject[@"order_status"];
+            
             if (success) {
-                success(s);
+                NSInteger status = [orederStatus integerValue];
+                if (status) {
+                    success([orederStatus integerValue]);
+                } else {
+                    failure(nil, 418);
+                }
             }
 
         }
         failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
-
+            
             [[self class] failureWithBlock:failure error:error operation:operation];
         }];
 }
