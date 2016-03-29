@@ -13,8 +13,6 @@
 		19014A561BC034CF001E0D77 /* ZP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 19014A541BC034CF001E0D77 /* ZP.xcdatamodeld */; };
 		19014A581BC034CF001E0D77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19014A571BC034CF001E0D77 /* Assets.xcassets */; };
 		19014A5B1BC034CF001E0D77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19014A591BC034CF001E0D77 /* LaunchScreen.storyboard */; };
-		19014A661BC034CF001E0D77 /* ZPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19014A651BC034CF001E0D77 /* ZPTests.m */; };
-		19014A711BC034CF001E0D77 /* ZPUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19014A701BC034CF001E0D77 /* ZPUITests.m */; };
 		1902BD4E1BD7E714003E90A5 /* mainIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1902BD4D1BD7E713003E90A5 /* mainIcon.png */; };
 		19062D8E1BD69ACB003AC242 /* ZPPProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19062D8D1BD69ACB003AC242 /* ZPPProfileVC.m */; };
 		19062D901BD69DAF003AC242 /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19062D8F1BD69DAF003AC242 /* profile.storyboard */; };
@@ -216,11 +214,7 @@
 		19014A5A1BC034CF001E0D77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19014A5C1BC034CF001E0D77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19014A611BC034CF001E0D77 /* ZPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		19014A651BC034CF001E0D77 /* ZPTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZPTests.m; sourceTree = "<group>"; };
-		19014A671BC034CF001E0D77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19014A6C1BC034CF001E0D77 /* ZPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		19014A701BC034CF001E0D77 /* ZPUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZPUITests.m; sourceTree = "<group>"; };
-		19014A721BC034CF001E0D77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1902BD4D1BD7E713003E90A5 /* mainIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainIcon.png; sourceTree = "<group>"; };
 		19062D8C1BD69ACB003AC242 /* ZPPProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProfileVC.h; sourceTree = "<group>"; };
 		19062D8D1BD69ACB003AC242 /* ZPPProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPProfileVC.m; sourceTree = "<group>"; };
@@ -542,8 +536,6 @@
 			isa = PBXGroup;
 			children = (
 				19014A471BC034CF001E0D77 /* ZP */,
-				19014A641BC034CF001E0D77 /* ZPTests */,
-				19014A6F1BC034CF001E0D77 /* ZPUITests */,
 				19014A461BC034CF001E0D77 /* Products */,
 				B0B07DA9F3702D7E9A2CECBF /* Pods */,
 				B9AAD5556FA2D274BB8C3D21 /* Frameworks */,
@@ -584,24 +576,6 @@
 				19014A491BC034CF001E0D77 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		19014A641BC034CF001E0D77 /* ZPTests */ = {
-			isa = PBXGroup;
-			children = (
-				19014A651BC034CF001E0D77 /* ZPTests.m */,
-				19014A671BC034CF001E0D77 /* Info.plist */,
-			);
-			path = ZPTests;
-			sourceTree = "<group>";
-		};
-		19014A6F1BC034CF001E0D77 /* ZPUITests */ = {
-			isa = PBXGroup;
-			children = (
-				19014A701BC034CF001E0D77 /* ZPUITests.m */,
-				19014A721BC034CF001E0D77 /* Info.plist */,
-			);
-			path = ZPUITests;
 			sourceTree = "<group>";
 		};
 		19062D8B1BD695C1003AC242 /* Profile */ = {
@@ -2105,7 +2079,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19014A661BC034CF001E0D77 /* ZPTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2113,7 +2086,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19014A711BC034CF001E0D77 /* ZPUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
