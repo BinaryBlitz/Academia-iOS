@@ -43,7 +43,6 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
 static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnectionVCIdentifier";
 
-static NSInteger openHour = 11;
 static NSInteger closeHour = 23;
 
 @interface ZPPOrderTimeChooserVC () <ZPPPaymentViewDelegate, ZPPNoInternetDelegate>
@@ -283,6 +282,14 @@ static NSInteger closeHour = 23;
 #pragma mark - time shooser
 
 - (void)addTimePicker:(UIButton *)sender {
+    
+    NSInteger openHour;
+    if ([ZPPTimeManager sharedManager].openTime) {
+        openHour = [[ZPPTimeManager sharedManager].openTime hour];
+    } else {
+        openHour = 11; //FIXME: set default open hour
+    }
+    
     NSArray *arr;
     NSDate *currentDate = [NSDate new];
     
