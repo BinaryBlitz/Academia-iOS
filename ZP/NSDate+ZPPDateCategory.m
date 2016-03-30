@@ -77,7 +77,7 @@
     
     df.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZ";
     
-    [df setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+//    [df setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
     df.locale = [NSLocale systemLocale];
     
     return [df stringFromDate:self];

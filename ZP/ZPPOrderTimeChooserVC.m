@@ -43,6 +43,9 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
 static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnectionVCIdentifier";
 
+static NSInteger openHour = 11;
+static NSInteger closeHour = 23;
+
 @interface ZPPOrderTimeChooserVC () <ZPPPaymentViewDelegate, ZPPNoInternetDelegate>
 @property (strong, nonatomic) ZPPOrder *order;
 
@@ -96,12 +99,6 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
     //        self.nowButton.hidden = YES;
     //    }
 }
-
-//- (void)viewWillDisappear:(BOOL)animated {
-//    [super viewWillDisappear:animated];
-//
-////    self.order.date = nil;
-//}
 
 - (void)dealloc {
     self.order.date = nil;
@@ -281,24 +278,21 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 #pragma mark - time shooser
 
 - (void)addTimePicker:(UIButton *)sender {
-    NSMutableArray *arr = [NSMutableArray array];
-    NSMutableArray *timeArr = [NSMutableArray array];
+    NSArray *arr;
+//    NSMutableArray *timeArr = [NSMutableArray array];
 
-    NSDate *datee =
-        [[self class] nowByAppendingThirtyMinutes];  //[NSDate dateWithYear:2015 month:12 day:1 hour:10 minute:59 second:13];
-    NSInteger currentHour = [datee hour] + 1;  //[[NSDate new] hour] + 1 ;
-    NSInteger closeHour = 23;
-    NSInteger openHour = 11;
-
-    NSInteger time = currentHour > openHour && currentHour < closeHour ? currentHour : openHour;
-
-    for (int i = (int)time; i < closeHour; i++) {
-        NSString *timeString = [NSString stringWithFormat:@"%@:00 - %@:00", @(i), @(i + 1)];
-        [timeArr addObject:@(i)];
-        [arr addObject:timeString];
+//    NSDate *currentDate = [NSDate dateWithYear:2015 month:12 day:1 hour:13 minute:40 second:13];
+    NSDate *currentDate = [NSDate new];
+//    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    if (currentDate.hour > closeHour || currentDate.hour < openHour) {
+        arr = [self createPickerDateRowsStartedFromHour:openHour - 1 andMinute:30];
+    } else {
+        NSDate *deliveryDate = [currentDate dateByAddingMinutes:30];
+        arr = [self createPickerDateRowsStartedFromHour:deliveryDate.hour andMinute:deliveryDate.minute];
     }
 
-    BOOL tomorrow = currentHour >= closeHour;
+    BOOL tomorrow = currentDate.hour >= closeHour;
 
     NSString *descrString;
     if (tomorrow) {
@@ -308,7 +302,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
     }
 
     [ActionSheetStringPicker showPickerWithTitle:descrString
-        rows:[NSArray arrayWithArray:arr]
+        rows: arr
         initialSelection:0
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
             // NSLog(@"Picker: %@, Index: %ld, value: %@", picker, selectedIndex, selectedValue);
@@ -316,18 +310,25 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
             [sender setTitle:selectedValue forState:UIControlStateNormal];
             [self addCheckmarkToButton:self.atTimeButton];
 
-            NSDate *d = datee;
-
-            d = [d dateBySubtractingMinutes:[d minute]];
-            NSInteger selectedHour = [timeArr[selectedIndex] integerValue];
-
+            NSDate *d = [[self class] nowByAppendingThirtyMinutes];
+            d = [d dateBySubtractingMinutes:30];
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            dateFormatter.dateFormat = @"hh:mm";
+            NSString *selectedString = [(NSString *)selectedValue substringToIndex:5];
+            NSDate *selectedDate = [dateFormatter dateFromString: selectedString];
+            
             if (tomorrow) {
-                d = [d dateByAddingHours:(24 - closeHour + selectedHour + 1)];
+                d = [d dateByAddingHours: (24 - closeHour + selectedDate.hour)];
+                d = [d dateByAddingMinutes: selectedDate.minute];
             } else {
-                d = [d dateByAddingHours:(selectedHour - currentHour + 1)];
+                d = [d dateBySubtractingHours: d.hour];
+                d = [d dateBySubtractingMinutes: d.minute];
+                d = [d dateByAddingHours: selectedDate.hour];
+                d = [d dateByAddingMinutes: selectedDate.minute];
             }
+            
+            NSLog(@"%@", d);
             NSString *str = [d serverFormattedString];
-
             NSLog(@"date string %@", str);
 
             self.order.date = d;
@@ -336,6 +337,33 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 //            NSLog(@"Block Picker Canceled");
         }
         origin:sender];
+}
+
+- (NSArray *)createPickerDateRowsStartedFromHour: (NSInteger) hour andMinute: (NSInteger) minute {
+    NSMutableArray *rows = [NSMutableArray array];
+    
+    int initialIndex;
+    if (minute < 30) {
+        initialIndex = (int)hour * 2 + 1;
+    } else {
+        hour += 1;
+        initialIndex = (int)hour * 2;
+    }
+    
+    for (int i = initialIndex; i < closeHour * 2 - 1; i++) {
+        NSString *timeString;
+        if (i % 2 == 0) {
+            int currentHour = i / 2;
+            timeString = [NSString stringWithFormat:@"%@:00 - %@:30", @(currentHour), @(currentHour)];
+        } else {
+            int currentHour = (i - 1) / 2;
+            timeString = [NSString stringWithFormat:@"%@:30 - %@:00", @(currentHour), @(currentHour + 1)];
+        }
+        
+        [rows addObject:timeString];
+    }
+    
+    return [NSArray arrayWithArray:rows];
 }
 
 #pragma mark - date
