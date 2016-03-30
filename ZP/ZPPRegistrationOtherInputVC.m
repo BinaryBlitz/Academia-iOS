@@ -68,11 +68,6 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
         setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] init]]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.nameTextField becomeFirstResponder];
@@ -107,46 +102,9 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
         onFailure:^(NSError *error, NSInteger statusCode) {
             [sender stopIndication];
         }];
-
-    //  [ZPPRegistrationServerManager sharedManager] post
 }
 
 - (BOOL)chekAll {
-    //    if (![self checkNameTextField:self.nameTextField]) {
-    //        [self accentTextField:self.nameTextField];
-    //        [self showWarningWithText:ZPPNameErrMessage];
-    //        return NO;
-    //    }
-    //
-    //    if (![self checkNameTextField:self.secondNameTextField]) {
-    //        [self accentTextField:self.secondNameTextField];
-    //        [self showWarningWithText:ZPPSurnameErrMaessage];
-    //
-    //        return NO;
-    //    }
-    //
-    //    if (![self checkEmailTextField:self.emailTextFild]) {
-    //        [self accentTextField:self.emailTextFild];
-    //        [self showWarningWithText:ZPPEmailErrMessage];
-    //        return NO;
-    //    }
-    //
-    ////    if (![self checkPasswordTextFied:self.passwordTextField]) {
-    ////        [self accentTextField:self.passwordTextField];
-    ////        [self showWarningWithText:ZPPPasswordErrMessage];
-    ////
-    ////        return NO;
-    ////    }
-    ////
-    ////    if (![self checkPasswordEqualty:self.passwordTextField
-    ///second:self.againPasswordTextField]) {
-    ////        [self accentTextField:self.againPasswordTextField];
-    ////        [self showWarningWithText:ZPPPaswordEqualtyErrMessage];
-    ////        return NO;
-    ////    }
-    //
-    //    return YES;
-
     return [self checkCurrentNameTextField] && [self checkCurrentSecondNameTextField] &&
            [self checkCurrentEmailTextField];
 }

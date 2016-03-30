@@ -32,7 +32,7 @@ NSString *const ZPPPhoneWarningMessage = @"Формат номера непра�
 
 - (BOOL)checkNameTextField:(UITextField *)textField {
     NSString *candidate = textField.text;
-    NSString *nameRegex = @"[A-Za-zА-Яа-я]{1,20}";  //([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})
+    NSString *nameRegex = @"[A-Za-zА-Яа-я\\s-]{1,20}";  //([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})
     NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
     return [nameTest evaluateWithObject:candidate];
 
