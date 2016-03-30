@@ -28,7 +28,7 @@
 
 
 @property (assign, nonatomic, readonly) CGFloat screenHeight;
-- (void)registreCells;
+- (void)registerCells;
 
 
 

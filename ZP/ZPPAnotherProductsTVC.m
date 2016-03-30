@@ -146,7 +146,7 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
     return cell;
 }
 
-- (void)registreCells {
+- (void)registerCells {
     UINib *anotherCell = [UINib nibWithNibName:@"ZPPProductAnotherCell" bundle:nil];
     [[self tableView] registerNib:anotherCell
            forCellReuseIdentifier:ZPPProductAnotherCellIdentifier];

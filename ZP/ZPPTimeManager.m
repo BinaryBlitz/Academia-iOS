@@ -41,6 +41,7 @@
 }
 
 - (void)configureWithDict:(NSDictionary *)dict {
+    NSLog(@"time dict", dict);
     id isOpen = dict[@"is_open"];
 
     if (isOpen && ![isOpen isEqual:[NSNull null]]) {

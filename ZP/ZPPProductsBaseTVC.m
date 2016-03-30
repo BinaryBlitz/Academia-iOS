@@ -23,7 +23,7 @@
     self.screenHeight = [UIScreen mainScreen].bounds.size.height;
     self.tableView.backgroundColor = [UIColor blackColor];
 
-    [self registreCells];
+    [self registerCells];
     
     
     
@@ -45,7 +45,7 @@
                                   animated:NO];
 }
 
-- (void)registreCells {
+- (void)registerCells {
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

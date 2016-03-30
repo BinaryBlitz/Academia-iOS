@@ -340,7 +340,7 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     }
 }
 
-- (void)registreCells {
+- (void)registerCells {
     UINib *ingridientsCell = [UINib nibWithNibName:@"ZPPProductsIngridientsCell" bundle:nil];
     [[self tableView] registerNib:ingridientsCell
            forCellReuseIdentifier:ZPPProductIngridientsCellIdentifier];
