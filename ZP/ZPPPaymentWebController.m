@@ -10,13 +10,8 @@
 
 #import "UIViewController+ZPPViewControllerCategory.h"
 
-//#import "UIViewController+ZPPValidationCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "DDLog.h"
-
-//@import WebKit;
-
-// static DDLogLevel
 
 @interface ZPPPaymentWebController ()
 
@@ -30,7 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-//    self.title = @"ОПЛАТА";
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
     [self.navigationController.navigationBar setTitleTextAttributes:
@@ -38,17 +32,20 @@
 
     [self addCustomCloseButton];
     self.navigationController.navigationBar.translucent = YES;
-    // self.navigationController.navigationBar.backgroundColor = [UIColor blackColor];
 
-    // self add
-
-    WKWebViewConfiguration *theConfiguration = [[WKWebViewConfiguration alloc] init];
+    // JS magic
+    NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+    
+    WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+    WKUserContentController *wkUController = [[WKUserContentController alloc] init];
+    [wkUController addUserScript:wkUScript];
+    
+    WKWebViewConfiguration *wkWebConfig = [[WKWebViewConfiguration alloc] init];
+    wkWebConfig.userContentController = wkUController;
     WKWebView *webView =
-        [[WKWebView alloc] initWithFrame:self.view.frame configuration:theConfiguration];
+        [[WKWebView alloc] initWithFrame:self.view.frame configuration:wkWebConfig];
     webView.navigationDelegate = self;
-    // NSURL *nsurl=[NSURL URLWithString:@"http://www.apple.com"];
-    //   NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
-    //    [webView loadRequest:nsrequest];
+    
     [self.view addSubview:webView];
 
     self.webView = webView;
@@ -57,30 +54,17 @@
     [self.webView loadRequest:nsrequest];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-//    NSURLRequest *nsrequest = [NSURLRequest requestWithURL:self.url];
-//    [self.webView loadRequest:nsrequest];
-}
-
 - (void)configureWithURL:(NSURL *)url {
     self.url = url;
     
     NSURLRequest *nsrequest = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:nsrequest];
-
-    //    NSURLRequest *nsrequest = [NSURLRequest requestWithURL:url];
-    //    [self.webView loadRequest:nsrequest];
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-//    NSLog(@"%@", webView.URL.absoluteString);
-
     if (self.paymentDelegate) {
         [self.paymentDelegate didShowPageWithUrl:webView.URL sender:self];
     }
-
-    // DDLogInfo(@"adr %@", webView.URL.absoluteString);
 }
 
 @end
