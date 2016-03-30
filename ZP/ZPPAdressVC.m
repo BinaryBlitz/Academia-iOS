@@ -117,7 +117,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
         if (!GMSGeometryContainsLocation(self.mapView_.camera.target, self.poligon.path, YES)) {
             //            NSLog(@"YES: you are in this polygon.");
 
-            [self showWarningWithText:@"Выберите точку в зоне доставки"];
+            [self showWarningWithText:@"Мы доставляем только внутри Садового Кольца"];
             return;
         }
     }

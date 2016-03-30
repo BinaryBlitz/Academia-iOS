@@ -269,7 +269,7 @@
 		191C985C1BC0447800E10D4F /* ZPPMainPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPMainPageVC.h; sourceTree = "<group>"; };
 		191C985D1BC0447800E10D4F /* ZPPMainPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPMainPageVC.m; sourceTree = "<group>"; };
 		191C985F1BC044A700E10D4F /* ZPPProductTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProductTVC.h; sourceTree = "<group>"; };
-		191C98601BC044A700E10D4F /* ZPPProductTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPProductTVC.m; sourceTree = "<group>"; };
+		191C98601BC044A700E10D4F /* ZPPProductTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ZPPProductTVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		191C98631BC044E900E10D4F /* ZPPProductsIngridientsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPProductsIngridientsCell.xib; sourceTree = "<group>"; };
 		191C98661BC047C500E10D4F /* ZPPProductsIngridientsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProductsIngridientsCell.h; sourceTree = "<group>"; };
 		191C98671BC047C500E10D4F /* ZPPProductsIngridientsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPProductsIngridientsCell.m; sourceTree = "<group>"; };
@@ -360,7 +360,7 @@
 		1984EE321BD13664001D25D5 /* ZPPBeginScreenCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPBeginScreenCell.m; sourceTree = "<group>"; };
 		1984EE341BD13698001D25D5 /* ZPPBeginScreenCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPBeginScreenCell.xib; sourceTree = "<group>"; };
 		1984EE3A1BD13E63001D25D5 /* ZPPBeginScreenTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPBeginScreenTVC.h; sourceTree = "<group>"; };
-		1984EE3B1BD13E63001D25D5 /* ZPPBeginScreenTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPBeginScreenTVC.m; sourceTree = "<group>"; };
+		1984EE3B1BD13E63001D25D5 /* ZPPBeginScreenTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ZPPBeginScreenTVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1984EE3E1BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZPPViewControllerCategory.h"; sourceTree = "<group>"; };
 		1984EE3F1BD14FE0001D25D5 /* UIViewController+ZPPViewControllerCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZPPViewControllerCategory.m"; sourceTree = "<group>"; };
 		1984EE431BD152B0001D25D5 /* UINavigationController+ZPPNavigationControllerCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+ZPPNavigationControllerCategory.h"; sourceTree = "<group>"; };
@@ -471,12 +471,12 @@
 		19DADF6E1BF768BC007D9DF2 /* ZPPServerManager+ZPPGiftServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZPPServerManager+ZPPGiftServerManager.m"; sourceTree = "<group>"; };
 		19DBC3CB1C0A4F50009EC8EF /* ZPPCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPCommentCell.h; sourceTree = "<group>"; };
 		19DBC3CC1C0A4F50009EC8EF /* ZPPCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPCommentCell.m; sourceTree = "<group>"; };
-		19E6D4141BC66E5200DF6EF9 /* ZPPProductsBaseTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProductsBaseTVC.h; sourceTree = "<group>"; };
-		19E6D4151BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPProductsBaseTVC.m; sourceTree = "<group>"; };
+		19E6D4141BC66E5200DF6EF9 /* ZPPProductsBaseTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ZPPProductsBaseTVC.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		19E6D4151BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ZPPProductsBaseTVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		19EC24A31BC65E3D00C333F6 /* ZPPProductAnotherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProductAnotherCell.h; sourceTree = "<group>"; };
 		19EC24A41BC65E3D00C333F6 /* ZPPProductAnotherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPProductAnotherCell.m; sourceTree = "<group>"; };
 		19EC24A61BC6601000C333F6 /* ZPPAnotherProductsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPAnotherProductsTVC.h; sourceTree = "<group>"; };
-		19EC24A71BC6601000C333F6 /* ZPPAnotherProductsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPAnotherProductsTVC.m; sourceTree = "<group>"; };
+		19EC24A71BC6601000C333F6 /* ZPPAnotherProductsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ZPPAnotherProductsTVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		19EC6CB01C12042500FC0BD4 /* ZPPBadgeForTwoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPBadgeForTwoCell.h; sourceTree = "<group>"; };
 		19EC6CB11C12042500FC0BD4 /* ZPPBadgeForTwoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPBadgeForTwoCell.m; sourceTree = "<group>"; };
 		19EC6CB31C12046F00FC0BD4 /* ZPPBadgeForTwoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPBadgeForTwoCell.xib; sourceTree = "<group>"; };

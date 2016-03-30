@@ -15,7 +15,6 @@
 
 #import "ZPPTimeManager.h"
 
-//#import <DateTools.h>
 @import DateTools;
 
 typedef NS_ENUM(NSInteger, ZPPCurrentBeginState) {
@@ -40,25 +39,8 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.tableView.alwaysBounceVertical = NO;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before
-navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
@@ -69,8 +51,6 @@ navigation
     ZPPBeginScreenCell *cell =
         [tableView dequeueReusableCellWithIdentifier:ZPPBeginScreenCellIdentifier];
 
-    //    cell.beginButton.layer.borderWidth = 2.0;
-    //    cell.beginButton.layer.borderColor = [UIColor whiteColor].CGColor;
     [cell.beginButton makeBorderedWithColor:[UIColor whiteColor]];
 
     cell.contentView.backgroundColor = [UIColor blackColor];
@@ -105,9 +85,9 @@ navigation
     return self.screenHeight;
 }
 
-- (void)registreCells {
-    UINib *anotherCell = [UINib nibWithNibName:@"ZPPBeginScreenCell" bundle:nil];
-    [[self tableView] registerNib:anotherCell forCellReuseIdentifier:ZPPBeginScreenCellIdentifier];
+- (void)registerCells {
+    UINib *infoCell = [UINib nibWithNibName:@"ZPPBeginScreenCell" bundle:nil];
+    [[self tableView] registerNib:infoCell forCellReuseIdentifier:ZPPBeginScreenCellIdentifier];
 }
 
 - (void)beginButtonAction:(UIButton *)sender {
@@ -156,26 +136,27 @@ navigation
 
     ZPPCurrentBeginState state = [self currentState];
 
-    NSDate *now;
-    if ([ZPPTimeManager sharedManager].openTime) {
-        now = [ZPPTimeManager sharedManager].openTime;
-    }
-
-    NSString *dateString = [now dateStringFromDate];
-    if ([now isTomorrow]) {
-        dateString = @"завтра";
-    } else if ([now isToday]) {
-        dateString = @"сегодня";
-    }
-
-    NSString *makePreorder =
-        [NSString stringWithFormat:@"Мы открываемся %@ в %@", dateString,
-                                   [now timeStringfromDate]];  //@"Мы открываемся в 11:00";
+    NSDate *openDate = [ZPPTimeManager sharedManager].openTime;
     
-    if(!dateString || [dateString isEqual:[NSNull null]]) {
-        makePreorder = @"";
+    NSString *makePreorder = @"";
+    if ([ZPPTimeManager sharedManager].openTime) {
+        NSLog(@"open time: %@", [ZPPTimeManager sharedManager].openTime);
+        NSString *dateString = @"";
+        if ([openDate isTomorrow]) {
+            dateString = @"завтра";
+        } else if ([openDate isToday]) {
+            dateString = @"сегодня";
+        } else {
+            NSArray *weekdays = @[@"в воскресенье", @"в понедельник", @"во вторник", @"в среду", @"в четверг", @"в пятницу", @"в субботу"];
+            NSInteger weekday = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:openDate];
+            if (weekday > 0) {
+                dateString = weekdays[weekday - 1];
+            }
+        }
+        
+         makePreorder = [NSString stringWithFormat:@"Сейчас мы закрыты. Мы открываемся %@ в %@", dateString, [openDate timeStringfromDate]];
     }
-
+    
     switch (state) {
         case ZPPCurrentBeginStateOpen:
             break;
