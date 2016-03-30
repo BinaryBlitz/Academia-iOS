@@ -85,19 +85,6 @@ static NSInteger closeHour = 23;
     } else {
         self.deliveryLabel.text = @"";
     }
-
-    //    if (self.order.totalPrice < 1000) {
-    //        self.deliveryLabel.text = [NSString stringWithFormat:@"+доставка 200%@",
-    //        ZPPRoubleSymbol];
-    //    } else {
-    //        self.deliveryLabel.text = @"";
-    //    }
-
-    //    if([ZPPTimeManager sharedManager].isOpen) {
-    //        [self addCheckmarkToButton:self.nowButton];
-    //    } else {
-    //        self.nowButton.hidden = YES;
-    //    }
 }
 
 - (void)dealloc {
@@ -105,8 +92,6 @@ static NSInteger closeHour = 23;
 }
 
 - (void)viewDidLayoutSubviews {
-    //    static BOOL
-    //    [self addCheckmarkToButton:self.nowButton];
     if (!self.once) {
         if ([ZPPTimeManager sharedManager].isOpen) {
             self.once = YES;
@@ -142,8 +127,6 @@ static NSInteger closeHour = 23;
 }
 
 - (void)orderAtTimeAction:(UIButton *)sender {
-    //  [self showTimePicker];
-
     [self addTimePicker:sender];
 }
 
@@ -167,12 +150,12 @@ static NSInteger closeHour = 23;
 
 #pragma mark - support
 
-- (void)addCheckmarkToButton:(UIButton *)b {
-    if ([b.subviews containsObject:self.checkMark]) {
+- (void)addCheckmarkToButton:(UIButton *)button {
+    if ([button.subviews containsObject:self.checkMark]) {
         return;
     } else {
         [self.checkMark removeFromSuperview];
-        [b addSubview:self.checkMark];
+        [button addSubview:self.checkMark];
     }
 }
 
@@ -215,9 +198,31 @@ static NSInteger closeHour = 23;
         }
         onFailure:^(NSError *error, NSInteger statusCode) {
             [self.makeOrderButton stopIndication];//redo
-
             
-            [self showWarningWithText:@"Что-то пошло не так"];
+            if (statusCode == 422) {
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Ошибка"
+                                                                                         message:@"Неверное вермя доставки. Проверьте настроки даты и времени"
+                                                                                  preferredStyle:UIAlertControllerStyleAlert];
+                
+                [alertController addAction:[UIAlertAction actionWithTitle:@"Настройки"
+                                     style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction * _Nonnull action) {
+                                       NSURL *settingsURL = [[NSURL alloc] initWithString:@"prefs:root=General&path=DATE_AND_TIME"];
+                                       if (settingsURL) {
+                                           [[UIApplication sharedApplication] openURL:settingsURL];
+                                       }
+                }]];
+                
+                [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                                    style:UIAlertActionStyleDefault
+                                                                  handler:nil]];
+                
+                [self presentViewController:alertController animated:YES completion:nil];
+            } else if (statusCode == 0) {
+                [self showWarningWithText:@"Проверьте соединение с интернетом"];
+            } else {
+                [self showWarningWithText:@"Что-то пошло не так. Попробуйте позже."];
+            }
         }];
 }
 

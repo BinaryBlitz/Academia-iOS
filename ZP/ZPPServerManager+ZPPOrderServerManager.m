@@ -59,7 +59,6 @@
             }
         }
         failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
-
             [[self class] failureWithBlock:failure error:error operation:operation];
         }];
 }
