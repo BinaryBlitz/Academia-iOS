@@ -68,10 +68,11 @@
                      onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
     NSDictionary *params = @{
         @"api_token" : [ZPPUserManager sharedInstance].user.apiToken,
-        @"payment" : @{@"use_binding" : @"false"}
+        @"payment" : @{@"use_binding" : @NO}
     };
-
+    
     NSString *urlString = [NSString stringWithFormat:@"orders/%@/payment.json", orderID];
+    
     [self.requestOperationManager POST:urlString
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {

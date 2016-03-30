@@ -1,7 +1,7 @@
 platform :ios, "8.0"
 use_frameworks!
 
-pod "AFNetworking"
+pod "AFNetworking", '~>2.6.3'
 pod 'CocoaLumberjack'
 #pod "TSMessages"
 pod 'JSBadgeView'
