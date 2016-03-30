@@ -284,14 +284,10 @@ static NSInteger closeHour = 23;
 
 - (void)addTimePicker:(UIButton *)sender {
     NSArray *arr;
-//    NSMutableArray *timeArr = [NSMutableArray array];
-
-//    NSDate *currentDate = [NSDate dateWithYear:2015 month:12 day:1 hour:13 minute:40 second:13];
     NSDate *currentDate = [NSDate new];
-//    NSCalendar *calendar = [NSCalendar currentCalendar];
     
-    if (currentDate.hour > closeHour || currentDate.hour < openHour) {
-        arr = [self createPickerDateRowsStartedFromHour:openHour - 1 andMinute:30];
+    if (currentDate.hour >= closeHour || currentDate.hour < openHour) {
+        arr = [self createPickerDateRowsStartedFromHour:openHour andMinute:0];
     } else {
         NSDate *deliveryDate = [currentDate dateByAddingMinutes:30];
         arr = [self createPickerDateRowsStartedFromHour:deliveryDate.hour andMinute:deliveryDate.minute];
