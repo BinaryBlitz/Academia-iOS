@@ -256,13 +256,17 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 #pragma mark - addresSearchDelegate
 
 - (void)configureWithAddress:(ZPPAddress *)address sender:(id)sender {
-    [self moveCameraToCoordinate:address.coordinate];
+    if (!address) {
+        [self showCurrentLocation];
+    } else {
+        [self moveCameraToCoordinate:address.coordinate];
 
-    self.needUpdate = NO;
+        self.needUpdate = NO;
 
-    self.addresTextField.text = [address formatedDescr];
+        self.addresTextField.text = [address formatedDescr];
 
-    self.selectedAddress = address;
+        self.selectedAddress = address;
+    }
 }
 
 #pragma mark - ui
