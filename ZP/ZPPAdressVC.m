@@ -259,7 +259,11 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
     if (!address) {
         [self showCurrentLocation];
     } else {
-        [self moveCameraToCoordinate:address.coordinate];
+        if (address.coordinate.latitude != 0 || address.coordinate.longitude != 0) {
+            [self moveCameraToCoordinate:address.coordinate];
+        } else {
+            [self showCurrentLocation];
+        }
 
         self.needUpdate = NO;
 
