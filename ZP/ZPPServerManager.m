@@ -15,8 +15,8 @@
 
 // static const int ddLogLevel = DDLogLevelInfo;
 
-//NSString *const ZPPServerBaseUrl = @"http://128.199.51.211/";
-NSString *const ZPPServerBaseUrl = @"http://zpapp.binaryblitz.ru/";
+NSString *const ZPPServerBaseUrl = @"http://128.199.51.211/";
+//NSString *const ZPPServerBaseUrl = @"http://zpapp.binaryblitz.ru/";
 
 NSString *const ZPPNoInternetConnectionMessage = @"Проверьте интернет " @"соедине"
                                                                                          @"ние";
