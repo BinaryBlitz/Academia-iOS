@@ -21,3 +21,8 @@ Pods/
 
 # Vim
 *.swp
+
+# keys
+*.pem
+*.pkey
+*.p12
