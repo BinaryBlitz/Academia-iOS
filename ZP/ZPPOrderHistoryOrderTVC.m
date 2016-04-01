@@ -16,6 +16,8 @@
 #import "UIButton+ZPPButtonCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "ZPPServerManager+ZPPOrderServerManager.h"
+#import "ZPPOrderTotalCell.h"
+#import "ZPPAddress.h"
 
 @import HCSStarRatingView;
 
@@ -85,8 +87,10 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
         return cell;
     } else if (indexPath.section == 1) {
         NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:2];
-        return [super tableView:tableView cellForRowAtIndexPath:nip];
-
+        ZPPOrderTotalCell *orderInfoCell = (ZPPOrderTotalCell *)[super tableView:tableView cellForRowAtIndexPath:nip];
+        orderInfoCell.deliveryLabel.text = [self.order.address formatedDescr];
+        orderInfoCell.deliveryLabel.font = [UIFont systemFontOfSize:17];
+        return orderInfoCell;
     } else {
         if (indexPath.row == 0) {
             if (self.order.orderStatus == ZPPOrderStatusDelivered) {
