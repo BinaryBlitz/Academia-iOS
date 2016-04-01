@@ -96,6 +96,7 @@ static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier
     self.searchBar.text = address.addres;
     
     if (self.addressSearchDelegate) {
+        NSLog(@"address: %@", address.addres);
         
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         [[ZPPMapSearcher shared] searcDaDataWithAddress:address.addres
