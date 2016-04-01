@@ -3,7 +3,6 @@ use_frameworks!
 
 pod "AFNetworking", '~>2.6.3'
 pod 'CocoaLumberjack'
-#pod "TSMessages"
 pod 'JSBadgeView'
 pod 'SCLAlertView-Objective-C'
 pod 'SDWebImage'
@@ -13,22 +12,22 @@ pod 'VBFPopFlatButton'
 pod 'REFormattedNumberField'
 pod 'MBProgressHUD'
 pod 'ActionSheetPicker-3.0'
-
 pod 'INTULocationManager'
-
 pod 'BKMoneyKit'
+pod 'HCSStarRatingView'
+pod 'EZSwipeController', :git => 'https://github.com/DanShevlyuk/EZSwipeController.git'
+pod 'PureLayout'
+pod 'CWStatusBarNotification', '~> 2.3.4'
 
+# Fabric
 pod 'Fabric'
 pod 'Crashlytics'
 
+# Maps
 pod 'GoogleMaps'
 pod 'LMGeocoder'
 
-#pod 'Digits'
-#pod 'TwitterCore'
-pod 'HCSStarRatingView'
-
-pod 'EZSwipeController', :git => 'https://github.com/DanShevlyuk/EZSwipeController.git'
-pod 'PureLayout'
-
-pod 'CWStatusBarNotification', '~> 2.3.4'
+# Facebook SDK
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
+pod 'FBSDKShareKit'
