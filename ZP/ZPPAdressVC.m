@@ -20,6 +20,8 @@
 #import "ZPPSearchResultController.h"
 #import "ZPPServerManager+ZPPOrderServerManager.h"
 
+@import CoreLocation;
+
 static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier";
 static NSString *ZPPSearchResultControllerIdentifier = @"ZPPSearchResultControllerIdentifier";
 
@@ -259,17 +261,15 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
     if (!address) {
         [self showCurrentLocation];
     } else {
-        if (address.coordinate.latitude != 0 || address.coordinate.longitude != 0) {
+        if (address.coordinate.latitude != (double)0 || address.coordinate.longitude != (double)0) {
             [self moveCameraToCoordinate:address.coordinate];
+            self.needUpdate = NO;
+            self.addresTextField.text = [address formatedDescr];
+            self.selectedAddress = address;
         } else {
             [self showCurrentLocation];
+            self.needUpdate = NO;
         }
-
-        self.needUpdate = NO;
-
-        self.addresTextField.text = [address formatedDescr];
-
-        self.selectedAddress = address;
     }
 }
 
