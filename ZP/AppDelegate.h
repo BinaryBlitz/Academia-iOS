@@ -6,8 +6,8 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
+@import UIKit;
+@import CoreData;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
