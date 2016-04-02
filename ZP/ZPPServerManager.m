@@ -9,17 +9,10 @@
 #import "ZPPServerManager.h"
 #import "AFNetworking.h"
 
-#import "CocoaLumberjack.h"
-
-// typedef void (^failureBlock)(NSError *error, NSInteger statusCode);
-
-// static const int ddLogLevel = DDLogLevelInfo;
-
 NSString *const ZPPServerBaseUrl = @"http://128.199.51.211/";
 //NSString *const ZPPServerBaseUrl = @"http://zpapp.binaryblitz.ru/";
 
-NSString *const ZPPNoInternetConnectionMessage = @"Проверьте интернет " @"соедине"
-                                                                                         @"ние";
+NSString *const ZPPNoInternetConnectionMessage = @"Проверьте интернет соединение";
 
 @interface ZPPServerManager ()
 
@@ -44,24 +37,14 @@ NSString *const ZPPNoInternetConnectionMessage = @"Проверьте интер
 - (id)init {
     self = [super init];
     if (self) {
-        NSString *apiPath = [NSString stringWithFormat:@"%@", ZPPServerBaseUrl];  //, @"api"];
+        NSString *apiPath = [NSString stringWithFormat:@"%@", ZPPServerBaseUrl];
         self.baseURL = apiPath;
-        //[NSString stringWithFormat:@"http://%@:%@/", @"192.168.1.39", @"3000"];
         NSURL *url = [NSURL URLWithString:apiPath];
-        // url.port = @3000;
 
         self.requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
     }
     return self;
 }
-
-//#pragma mark - categories and topics
-
-//- (void)GETCategoriesOnSuccess:(void (^)(NSArray *topics))successAF
-// onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-//
-//
-//}
 
 #pragma mark - support
 

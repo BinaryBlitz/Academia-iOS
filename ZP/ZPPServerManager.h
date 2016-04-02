@@ -6,8 +6,8 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "CocoaLumberjack.h"
+@import Foundation;
+@import CocoaLumberjack;
 
 static const int ddLogLevel = DDLogLevelDebug;
 
