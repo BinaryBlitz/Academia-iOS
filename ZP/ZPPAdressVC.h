@@ -6,7 +6,8 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+
 @class ZPPAddress;
 @protocol ZPPAdressDelegate <NSObject>
 
@@ -16,9 +17,6 @@
 
 
 @interface ZPPAdressVC : UIViewController
-
-//@property (strong, nonatomic) IBOutlet UISearchDisplayController *searchController;
-//@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @property (weak, nonatomic) id<ZPPAdressDelegate> addressDelegate;
 
