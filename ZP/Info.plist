@@ -26,9 +26,21 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>prefs</string>
+                <string>fb1589858481338379</string>
 			</array>
 		</dict>
 	</array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbapi</string>
+        <string>fb-messenger-api</string>
+        <string>fbauth2</string>
+        <string>fbshareextension</string>
+    </array>
+    <key>FacebookAppID</key>
+    <string>1589858481338379</string>
+    <key>FacebookDisplayName</key>
+    <string>ZP - Здоровое питание</string>
 	<key>CFBundleVersion</key>
 	<string>47</string>
 	<key>Fabric</key>
