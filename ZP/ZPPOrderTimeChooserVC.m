@@ -200,7 +200,7 @@ static NSInteger closeHour = 23;
             
             if (statusCode == 422) {
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Ошибка"
-                                                                                         message:@"Неверное вермя доставки. Проверьте настроки даты и времени"
+                                                                                         message:@"Неверное время  доставки. Проверьте настроки даты и времени"
                                                                                   preferredStyle:UIAlertControllerStyleAlert];
                 
                 [alertController addAction:[UIAlertAction actionWithTitle:@"Настройки"
