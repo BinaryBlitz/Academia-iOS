@@ -92,7 +92,6 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
         [[LMGeocoder sharedInstance] reverseGeocodeCoordinate:position.target
                                                       service:kLMGeocoderGoogleService
                                             completionHandler:^(NSArray *results, NSError *error) {
-                                                // NSLog(@"err %@ res %@",error,results);
                                                 if (results.count && !error) {
                                                     LMAddress *address = [results firstObject];
                                                     ZPPAddress *adr =
@@ -117,9 +116,12 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 - (void)chooseLocation:(UIButton *)sender {
     if (self.poligon) {
         if (!GMSGeometryContainsLocation(self.mapView_.camera.target, self.poligon.path, YES)) {
-            //            NSLog(@"YES: you are in this polygon.");
-
-            [self showWarningWithText:@"Мы доставляем только внутри Садового Кольца"];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                           message:@"Мы доставляем только внутри Садового Кольца"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction: [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+            [self presentViewController:alert animated:YES completion:nil];
+            
             return;
         }
     }
