@@ -8,36 +8,26 @@
 
 #import "ZPPOrderTimeChooserVC.h"
 
+@import ActionSheetPicker_3_0;
+@import Crashlytics;
+@import SafariServices;
+@import DateTools;
+
 #import "UIButton+ZPPButtonCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIView+UIViewCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 
 #import "ZPPOrder.h"
-
 #import "ZPPConsts.h"
-
-//#import <DateTools.h>
-//#import "RMDateSelectionViewController.h"
-
 #import "NSDate+ZPPDateCategory.h"
-
 #import "ZPPNoInternetConnectionVC.h"
-
-//#import "ZPPPaymentManager.h"
 #import "ZPPServerManager+ZPPOrderServerManager.h"
-
 #import "ZPPPaymentWebController.h"
 #import "ZPPServerManager.h"
-
-#import "ActionSheetPicker.h"
-
 #import "ZPPTimeManager.h"
 
-#import <Crashlytics/Crashlytics.h>
-
-@import SafariServices;
-@import DateTools;
+//#import "ActionSheetPicker.h"
 
 static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
@@ -241,15 +231,15 @@ static NSInteger closeHour = 23;
         onSuccess:^(NSInteger sta) {
             
             if (sta == 2) {
-                [viewController dismissViewControllerAnimated: YES completion:nil];
-
                 UIViewController *orderResultViewContorller = [self.storyboard
                     instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
 
-                [self.navigationController pushViewController:orderResultViewContorller animated:YES];
+                [self.navigationController pushViewController:orderResultViewContorller animated:NO];
                 self.paymentOrder = nil;
 
                 [self.order clearOrder];
+                [viewController dismissViewControllerAnimated: YES completion:nil];
+
             }
 
         }
@@ -313,7 +303,6 @@ static NSInteger closeHour = 23;
         rows: arr
         initialSelection:0
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-            // NSLog(@"Picker: %@, Index: %ld, value: %@", picker, selectedIndex, selectedValue);
 
             [sender setTitle:selectedValue forState:UIControlStateNormal];
             [self addCheckmarkToButton:self.atTimeButton];
@@ -342,7 +331,6 @@ static NSInteger closeHour = 23;
             self.order.date = d;
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {
-//            NSLog(@"Block Picker Canceled");
         }
         origin:sender];
 }
