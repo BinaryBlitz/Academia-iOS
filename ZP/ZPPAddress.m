@@ -13,7 +13,7 @@
 @property (assign, nonatomic) CLLocationCoordinate2D coordinate;
 @property (strong, nonatomic) NSString *country;
 @property (strong, nonatomic) NSString *city;
-@property (strong, nonatomic) NSString *addres;
+@property (strong, nonatomic) NSString *address;
 
 @end
 
@@ -28,13 +28,13 @@
         self.coordinate = coordinate;
         self.city = city;
         self.country = country;
-        self.addres = address;
+        self.address = address;
     }
     return self;
 }
 
 - (NSString *)formatedDescr {
-    return [NSString  stringWithFormat:@"%@", self.addres];
+    return [NSString  stringWithFormat:@"%@", self.address];
 }
 
 @end

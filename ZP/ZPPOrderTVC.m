@@ -32,6 +32,7 @@
 #import "ZPPOrderTimeChooserVC.h"
 
 #import "ZPPAdressVC.h"
+#import "ZPPAddressDelegate.h"
 
 #import "ZPPConsts.h"
 
@@ -54,7 +55,7 @@ static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdenti
 
 static NSString *ZPPNoAddresMessage = @"Выберите адрес доставки!";
 
-@interface ZPPOrderTVC () <ZPPAdressDelegate>
+@interface ZPPOrderTVC () <ZPPAddressDelegate>
 
 @property (strong, nonatomic) ZPPOrder *order;
 
