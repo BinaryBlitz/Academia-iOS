@@ -8,22 +8,21 @@
 
 #import "ZPPSearchResultController.h"
 
+@import LMGeocoder;
+
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "UITableViewController+ZPPTVCCategory.h"
-
 #import "ZPPAddress.h"
-#import "ZPPMapSearcher.h"
-
+#import "ZPPAddressHelper.h"
 #import "ZPPConsts.h"
-
-#import "LoremIpsum.h"
 
 static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier";
 
 @interface ZPPSearchResultController () <UISearchBarDelegate>
 
 @property (strong, nonatomic) NSArray *results;
+@property (strong, nonatomic) NSString *initialAddressString;
 
 @end
 
@@ -32,16 +31,16 @@ static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    UIEdgeInsets insets = self.tableView.contentInset;
+    self.tableView.contentInset =
+        UIEdgeInsetsMake(insets.top + 20, insets.left, insets.bottom, insets.right);
+    
     [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
     [self setCustomNavigationBackButtonWithTransition];
 
-    UIEdgeInsets insets = self.tableView.contentInset;
-    self.tableView.contentInset =
-        UIEdgeInsetsMake(insets.top + 20, insets.left, insets.bottom, insets.right);
 
     self.searchBar.delegate = self;
-
     self.searchBar.tintColor = [UIColor blackColor];
     
     [self.tableView setRowHeight:UITableViewAutomaticDimension];
@@ -52,6 +51,11 @@ static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier
     [super viewWillAppear:animated];
 
     [self.searchBar becomeFirstResponder];
+    [self.searchBar setText:self.initialAddressString];
+}
+
+- (void)configureWithAddress:(ZPPAddress *)address {
+    self.initialAddressString = [address formatedDescr];
 }
 
 #pragma mark - Table view data source
@@ -64,10 +68,8 @@ static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier
     return self.results.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell =
-        [tableView dequeueReusableCellWithIdentifier:ZPPSearchResultCellIdentifier];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ZPPSearchResultCellIdentifier];
 
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
@@ -78,9 +80,9 @@ static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier
     cell.contentView.backgroundColor = [UIColor clearColor];
     cell.backgroundColor = [UIColor clearColor];
 
-    ZPPAddress *adr = self.results[indexPath.row];
+    ZPPAddress *address = self.results[indexPath.row];
 
-    cell.textLabel.text = adr.addres;
+    cell.textLabel.text = [address formatedDescr];
     cell.textLabel.numberOfLines = 0;
 
     return cell;
@@ -89,35 +91,15 @@ static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ZPPAddress *address = self.results[indexPath.row];
 
-    if (![address isKindOfClass:[ZPPAddress class]]) {
-        return;
-    }
-
-    self.searchBar.text = address.addres;
-    
-    if (self.addressSearchDelegate) {
-        NSLog(@"address: %@", address.addres);
-        
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        [[ZPPMapSearcher shared] searcDaDataWithAddress:address.addres
-            count:@(1)
-            onSuccess:^(NSArray *addresses) {
-
-                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                ZPPAddress *adr = [addresses lastObject];
-
-                [self.addressSearchDelegate configureWithAddress:adr sender:self];
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }
-            onFailure:^(NSError *error, NSInteger statusCode){
-                
-                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
-            }];
+    if ([self.searchBar.text isEqualToString: address.address]) {
+        [self searchBarSearchButtonClicked:self.searchBar];
+    } else {
+        self.searchBar.text = address.address;
+        [self searchWithText:address.address];
     }
 }
 
-#pragma mark - search delegate
+#pragma mark - Search delegate
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -128,27 +110,44 @@ static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [self.view endEditing:YES];
+    ZPPAddress *address = self.results.lastObject;
+
+    if (self.addressSearchDelegate && address) {
+        [self.addressSearchDelegate configureWithAddress:address sender:self];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
-#pragma mark - server
+#pragma mark - Address searching
 
 - (void)searchWithText:(NSString *)text {
     if (!text || text.length < 3) {
         return;
     }
+    
+    NSString *searchText = [NSString stringWithFormat: @"Москва %@", text];
+    
+    [[LMGeocoder sharedInstance] geocodeAddressString:searchText
+                                              service:kLMGeocoderGoogleService
+                                    completionHandler:^(NSArray *results, NSError *error) {
+                                        self.results = [self convertResultsToAddresses:results];
+                                        [self.tableView reloadData];
+                                    }];
+}
 
-    [[ZPPMapSearcher shared] searcDaDataWithAddress:text
-        count:@(10)
-        onSuccess:^(NSArray *addresses) {
-
-            self.results = addresses;
-            [self.tableView reloadData];
-
+- (NSArray *)convertResultsToAddresses:(NSArray *)results {
+    NSMutableArray *addresses = [NSMutableArray array];
+    if (results) {
+        for (int i = 0; i < results.count; i++) {
+            LMAddress *address = results[i];
+            ZPPAddress *zpAddress = [ZPPAddressHelper addresFromAddres:address];
+            if (zpAddress) {
+                [addresses addObject:zpAddress];
+            }
         }
-        onFailure:^(NSError *error, NSInteger statusCode){
-
-        }];
+    }
+    
+    return [NSArray arrayWithArray:addresses];
 }
 
 @end

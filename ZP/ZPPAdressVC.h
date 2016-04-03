@@ -8,17 +8,11 @@
 
 @import UIKit;
 
-@class ZPPAddress;
-@protocol ZPPAdressDelegate <NSObject>
-
-- (void)configureWithAddress:(ZPPAddress *)address sender:(id)sender;
-
-@end
-
+#import "ZPPAddressDelegate.h"
 
 @interface ZPPAdressVC : UIViewController
 
-@property (weak, nonatomic) id<ZPPAdressDelegate> addressDelegate;
+@property (weak, nonatomic) id<ZPPAddressDelegate> addressDelegate;
 
 
 @end

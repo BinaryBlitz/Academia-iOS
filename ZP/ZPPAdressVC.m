@@ -8,8 +8,9 @@
 
 #import "ZPPAdressVC.h"
 
-#import <INTULocationManager/INTULocationManager.h>
-#import "LMGeocoder.h"
+@import INTULocationManager;
+@import LMGeocoder;
+
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIView+UIViewCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
@@ -30,7 +31,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 
 @import GoogleMaps;
 
-@interface ZPPAdressVC () <GMSMapViewDelegate, ZPPAdressDelegate, UITextFieldDelegate>
+@interface ZPPAdressVC () <GMSMapViewDelegate, ZPPAddressDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) GMSMapView *mapView_;
 @property (strong, nonatomic) UITextField *addresTextField;
@@ -154,6 +155,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
     ZPPSearchResultController *src = [self.storyboard
         instantiateViewControllerWithIdentifier:ZPPSearchResultControllerIdentifier];
     src.addressSearchDelegate = self;
+    [src configureWithAddress:self.selectedAddress];
 
     [self presentViewController:src animated:YES completion:nil];
 }

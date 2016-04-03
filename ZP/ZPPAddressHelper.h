@@ -6,7 +6,7 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @class ZPPAddress;
 @class LMAddress;
@@ -14,10 +14,6 @@
 
 + (ZPPAddress *)addresFromAddres:(LMAddress *)addr;
 + (ZPPAddress *)addressFromDict:(NSDictionary *)dict;
-
-
-+ (NSArray *)addressesFromFoursquareDict:(id)responseObject;
-+ (NSArray *)addressesFromDaDataDicts:(NSArray *)dicts;
 
 + (NSArray *)parsePoints:(NSArray *)points;
 
