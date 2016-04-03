@@ -9,6 +9,7 @@
 #import "ZPPSearchResultController.h"
 
 @import LMGeocoder;
+@import IDDaDataSuggestions;
 
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
@@ -18,6 +19,8 @@
 #import "ZPPConsts.h"
 
 static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier";
+
+static NSString *ZPPDaDataAPIKey = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
 
 @interface ZPPSearchResultController () <UISearchBarDelegate>
 
@@ -39,12 +42,14 @@ static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
     [self setCustomNavigationBackButtonWithTransition];
 
-
     self.searchBar.delegate = self;
     self.searchBar.tintColor = [UIColor blackColor];
     
     [self.tableView setRowHeight:UITableViewAutomaticDimension];
     self.tableView.estimatedRowHeight = 60;
+    
+    [[IDDaDataSuggestions sharedInstance] setBaseURL:@"https://dadata.ru/api/v2/" apiKey:ZPPDaDataAPIKey];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -113,9 +118,28 @@ static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier
     ZPPAddress *address = self.results.lastObject;
 
     if (self.addressSearchDelegate && address) {
-        [self.addressSearchDelegate configureWithAddress:address sender:self];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [[LMGeocoder sharedInstance] geocodeAddressString:address.address
+                                                  service:kLMGeocoderGoogleService
+                                        completionHandler:^(NSArray *results, NSError *error) {
+                                            ZPPAddress *bestResult = [ZPPAddressHelper addresFromAddres:results.lastObject];
+                                            if (bestResult) {
+                                                [self.addressSearchDelegate configureWithAddress:bestResult sender:self];
+                                                [self dismissViewControllerAnimated:YES completion:nil];
+                                            } else {
+                                                [self presentAlertWithMessage:@"Адрес введен неверо. Попробуйте ещё раз"];
+                                                [searchBar setText:nil];
+                                                [searchBar becomeFirstResponder];
+                                            }
+                                        }];
     }
+}
+
+- (void)presentAlertWithMessage:(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Address searching
@@ -125,29 +149,17 @@ static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier
         return;
     }
     
-    NSString *searchText = [NSString stringWithFormat: @"Москва %@", text];
-    
-    [[LMGeocoder sharedInstance] geocodeAddressString:searchText
-                                              service:kLMGeocoderGoogleService
-                                    completionHandler:^(NSArray *results, NSError *error) {
-                                        self.results = [self convertResultsToAddresses:results];
-                                        [self.tableView reloadData];
-                                    }];
-}
-
-- (NSArray *)convertResultsToAddresses:(NSArray *)results {
-    NSMutableArray *addresses = [NSMutableArray array];
-    if (results) {
-        for (int i = 0; i < results.count; i++) {
-            LMAddress *address = results[i];
-            ZPPAddress *zpAddress = [ZPPAddressHelper addresFromAddres:address];
-            if (zpAddress) {
-                [addresses addObject:zpAddress];
-            }
-        }
-    }
-    
-    return [NSArray arrayWithArray:addresses];
+    [[IDDaDataSuggestions sharedInstance] getAddressSuggestionsForString:text
+                                                            restrictions: @[@{@"region": @"москва"}]
+                                                 hideRestrictionInResult:NO
+                                                                 success:^(NSArray *suggestions) {
+                                                                     NSArray *addresses = [ZPPAddressHelper addressesFromDaDataDicts:suggestions];
+                                                                     self.results = addresses;
+                                                                     [self.tableView reloadData];
+                                                                 }
+                                                                 failure:^(NSError *error) {
+                                                                     
+                                                                 }];
 }
 
 @end
