@@ -18,6 +18,7 @@ pod 'HCSStarRatingView'
 pod 'EZSwipeController', :git => 'https://github.com/DanShevlyuk/EZSwipeController.git'
 pod 'PureLayout'
 pod 'CWStatusBarNotification', '~> 2.3.4'
+pod "IDDaDataSuggestions", :git => 'https://github.com/DanShevlyuk/IDDaDataSuggestions.git'
 
 # Fabric
 pod 'Fabric'
@@ -31,3 +32,4 @@ pod 'LMGeocoder'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
+

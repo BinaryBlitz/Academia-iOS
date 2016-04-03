@@ -50,6 +50,8 @@ PODS:
     - FBSDKCoreKit
   - GoogleMaps (1.13.0)
   - HCSStarRatingView (1.4.3)
+  - IDDaDataSuggestions (0.1.0):
+    - AFNetworking (~> 2.0)
   - INTULocationManager (4.2.0)
   - JSBadgeView (1.4.1)
   - LMGeocoder (1.0.4)
@@ -80,6 +82,7 @@ DEPENDENCIES:
   - FBSDKShareKit
   - GoogleMaps
   - HCSStarRatingView
+  - IDDaDataSuggestions (from `https://github.com/DanShevlyuk/IDDaDataSuggestions.git`)
   - INTULocationManager
   - JSBadgeView
   - LMGeocoder
@@ -94,11 +97,16 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   EZSwipeController:
     :git: https://github.com/DanShevlyuk/EZSwipeController.git
+  IDDaDataSuggestions:
+    :git: https://github.com/DanShevlyuk/IDDaDataSuggestions.git
 
 CHECKOUT OPTIONS:
   EZSwipeController:
     :commit: 5df148096c5cccfb8a62156608a195b2e54b68b9
     :git: https://github.com/DanShevlyuk/EZSwipeController.git
+  IDDaDataSuggestions:
+    :commit: 13ef9e491ad360c0d3865a94cea877186fdaa173
+    :git: https://github.com/DanShevlyuk/IDDaDataSuggestions.git
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 8312778b6815578e6a86d630fbcf31dc94c534e7
@@ -116,6 +124,7 @@ SPEC CHECKSUMS:
   FBSDKShareKit: 2fd887cce0056bdda91f99b2021d724a4fed8e88
   GoogleMaps: 7a6caeb8336d7cb42982e969fc9b1b20a889fe79
   HCSStarRatingView: bada6ae98258c3019531e0218030e2d5ad10765a
+  IDDaDataSuggestions: 41989bd9e09def789326e7f126606548f201fb47
   INTULocationManager: 73f8254b3d05c897c56bb13c190e5b7c648c0998
   JSBadgeView: 3861ddee41094284d9468e6d0af5107f703aaac5
   LMGeocoder: a0f635f948b0ca420d8d338e54886744cdcb215d

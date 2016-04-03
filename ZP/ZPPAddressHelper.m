@@ -80,4 +80,32 @@
     return [NSArray arrayWithArray:tmp];
 }
 
++ (NSArray *)addressesFromDaDataDicts:(NSArray *)dicts {
+    NSMutableArray *tmp = [NSMutableArray array];
+    for (NSDictionary *d in dicts) {
+         ZPPAddress *a = [[self class] addresFromDaDataDict:d];
+
+         [tmp addObject:a];
+     }
+
+    return [NSArray arrayWithArray:tmp];
+}
+
++ (ZPPAddress *)addresFromDaDataDict:(NSDictionary *)dict {
+    NSDictionary *locationDict = dict[@"data"];
+    NSString *unrestricted_value = dict[@"unrestricted_value"];
+
+    CLLocationCoordinate2D c = CLLocationCoordinate2DMake(0, 0);
+    if (locationDict[@"geo_lat"] && ![locationDict[@"geo_lat"] isEqual:[NSNull null]]) {
+        double lat = [locationDict[@"geo_lat"] doubleValue];
+        double lon = [locationDict[@"geo_lon"] doubleValue];
+        c = CLLocationCoordinate2DMake(lat, lon);
+    }
+
+    ZPPAddress *a =
+        [[ZPPAddress alloc] initWithCoordinate:c Country:nil city:nil address:unrestricted_value];		
+		
+    return a;		
+}
+
 @end
