@@ -6,38 +6,33 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
-@interface ZPPUser : NSObject
+@interface ZPPUser: NSObject
 
-@property (copy, nonatomic) NSString *firstName;//
-@property (copy, nonatomic) NSString *lastName;//
-@property (copy, nonatomic) NSString *email;//
-@property (copy, nonatomic) NSString *phoneNumber;//
-@property (copy, nonatomic) NSString *password;//
-@property (copy, nonatomic) NSString *promoCode;
-@property (copy, nonatomic) NSString *balance;
+@property (copy, nonatomic, nullable) NSString * firstName;
+@property (copy, nonatomic, nullable) NSString *lastName;
+@property (copy, nonatomic, nullable) NSString *email;
+@property (copy, nonatomic, nullable) NSString *phoneNumber;
+@property (copy, nonatomic, nullable) NSString *password;
+@property (copy, nonatomic, nullable) NSString *promoCode;
+@property (copy, nonatomic, nullable) NSString *balance;
 @property (assign, nonatomic) BOOL promoUsed;
 
-@property (strong, nonatomic) NSString *pushToken;
+@property (strong, nonatomic, nullable) NSString *pushToken;
 
-@property (copy, nonatomic, readonly) NSString *apiToken;//
-@property (copy, nonatomic, readonly) NSString *userID;//
-@property (copy, nonatomic, readonly) NSString *platform;
+@property (copy, nonatomic, readonly, nullable) NSString *apiToken;
+@property (copy, nonatomic, readonly, nullable) NSString *userID;
+@property (copy, nonatomic, readonly, nullable) NSString *platform;
 
-
-
-
-//- (instancetype)initWithDict:(NSDictionary *)dict;
-
-- (instancetype)initWihtName:(NSString *)name
-                    lastName:(NSString *)lastName
-                       email:(NSString *)email
-                 phoneNumber:(NSString *)phoneNumber
-                      userID:(NSString *)userID
-                      apiKey:(NSString *)apiKey
-                   promocode:(NSString *)promocode
-                     balance:(NSString *)balance
+- (nonnull instancetype)initWihtName:(nullable NSString *)name
+                    lastName:(nullable NSString *)lastName
+                       email:(nullable NSString *)email
+                 phoneNumber:(nullable NSString *)phoneNumber
+                      userID:(nullable NSString *)userID
+                      apiKey:(nullable NSString *)apiKey
+                   promocode:(nullable NSString *)promocode
+                     balance:(nullable NSString *)balance
                    promoUsed:(BOOL)promoUsed;
 
 @end

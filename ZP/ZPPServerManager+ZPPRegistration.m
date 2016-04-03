@@ -7,14 +7,10 @@
 //
 
 #import "ZPPServerManager+ZPPRegistration.h"
-//#import <AFNetworking.h>
-#import "ZPPUserHelper.h"
-#import "ZPPUserManager.h"
 
 @import AFNetworking;
-//#import <CocoaLumberjack.h>
-
-// static const int ddLogLevel = DDLogLevelDebug;
+#import "ZPPUserHelper.h"
+#import "ZPPUserManager.h"
 
 @implementation ZPPServerManager (ZPPRegistration)
 
@@ -27,7 +23,6 @@
     [self.requestOperationManager POST:@"user.json"
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-            DDLogInfo(@"user registration response %@", responseObject);
             ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
             if (success) {
                 success(user);
@@ -49,8 +44,6 @@
         return;
     }
 
-    //    "email": "foo@bar.com",
-    //    "password": "foobar"
     NSDictionary *params = @{ @"email" : email, @"password" : password };
 
     [self.requestOperationManager POST:@"user/authenticate.json"
@@ -102,8 +95,6 @@
     [self.requestOperationManager PATCH:@"user.json"
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-
-            DDLogInfo(@"update succes");
             if (success) {
                 success();
             }
@@ -116,31 +107,19 @@
 }
 
 
-- (void)updateToken:(NSString *)token onSuccess:(void (^)())success
+- (void)updateToken:(nullable NSString *)token onSuccess:(void (^)())success
           onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
     
-    
-    if(!token) {
-        token = [NSNull null];
-    }
-    
-//    api_token и platform
-//    NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
-    
-    
-    NSDictionary *userDict = @{@"api_token":token,@"platform":@"ios"};
+    NSDictionary *userDict = @{@"api_token": !token ? [NSNull null] : token,
+                               @"platform":@"ios"};
     
     NSDictionary *params =
     @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken,
        @"user" : userDict };
     
-    
-    
     [self.requestOperationManager PATCH:@"user.json"
                              parameters:params
                                 success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-                                    
-                                    DDLogInfo(@"update succes");
                                     if (success) {
                                         success();
                                     }
@@ -150,10 +129,6 @@
                                     [[self class] failureWithBlock:failure error:error operation:operation];
                                     
                                 }];
-
-    
-    
-    
 }
 
 - (void)PATChPasswordOldPassword:(NSString *)oldPassword
@@ -161,8 +136,7 @@
                       completion:(void (^)(ZPPPasswordChangeStatus status,
                                            NSError *err,
                                            NSInteger stausCode))completion {
-    // NSDictionary *params = @{ @"old_password" : oldPassword, @"new_password" : userNewPassword };
-
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)),
                    dispatch_get_main_queue(), ^{
                        NSInteger st = arc4random() % 4;
@@ -199,28 +173,10 @@
 
 - (void)getCurrentUserOnSuccess:(void (^)(ZPPUser *user))success
                       onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    // NSDictionary *params = @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
 
     [self getCurrentUserWithToken:[ZPPUserManager sharedInstance].user.apiToken
                         onSuccess:success
                         onFailure:failure];
-
-    //    [self.requestOperationManager GET:@"user.json"
-    //        parameters:params
-    //        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-    //            NSLog(@"resp %@", responseObject);
-    //
-    //            ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
-    //
-    //            if (success) {
-    //                success(user);
-    //            }
-    //
-    //        }
-    //        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
-    //            NSLog(@"err %@", error);
-    //            [[self class] failureWithBlock:failure error:error operation:operation];
-    //        }];
 }
 
 - (void)getCurrentUserWithToken:(NSString *)token
@@ -259,7 +215,6 @@
 - (void)sendSmsToPhoneNumber:(NSString *)phoneNumber
                    onSuccess:(void (^)(NSString *tempToken))success
                    onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    // phoneNumber = [@"7" stringByAppendingString:phoneNumber];
     NSLog(@"phone number %@", phoneNumber);
     NSDictionary *params = @{ @"phone_number" : phoneNumber };
 
@@ -284,7 +239,6 @@
                     token:(NSString *)token
                 onSuccess:(void (^)(NSString *token))success
                 onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    // phoneNumber = [@"7" stringByAppendingString:phoneNumber];
     NSDictionary *params = @{ @"code" : code };
 
     NSString *urlString = [NSString stringWithFormat:@"verification_tokens/%@.json", token];
@@ -292,11 +246,6 @@
     [self.requestOperationManager PATCH:urlString
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-
-            NSLog(@"verify code resp %@", responseObject);
-
-            //ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
-            
             NSString *t = responseObject[@"api_token"];
             
             if([t isEqual:[NSNull null]]) {

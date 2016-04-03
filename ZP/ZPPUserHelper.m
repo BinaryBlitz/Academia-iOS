@@ -9,20 +9,20 @@
 #import "ZPPUserHelper.h"
 #import "ZPPUser.h"
 
-NSString const *ZPPFirstName = @"first_name";
-NSString const *ZPPLastName = @"last_name";
-NSString const *ZPPUserEmail = @"email";
-NSString const *ZPPPhoneNumber = @"phone_number";
-NSString const *ZPPAPIToken = @"api_token";
-NSString const *ZPPUserID = @"id";
-NSString const *ZPPUserPassword = @"password";
-NSString const *ZPPUserPromocode = @"promo_code";
-NSString const *ZPPUserBalance = @"balance";
-
-NSString const *ZPPPromoCodeUsed = @"promo_used";
-NSString const *ZPPPlatform = @"platform";
-NSString const *ZPPAPNSToken = @"device_token";
-
+NSString * const ZPPFirstName = @"first_name";
+NSString * const ZPPLastName = @"last_name";
+NSString * const ZPPUserEmail = @"email";
+NSString * const ZPPPhoneNumber = @"phone_number";
+NSString * const ZPPAPIToken = @"api_token";
+NSString * const ZPPUserID = @"id";
+NSString * const ZPPUserPassword = @"password";
+NSString * const ZPPUserPromocode = @"promo_code";
+NSString * const ZPPUserBalance = @"balance";
+         
+NSString * const ZPPPromoCodeUsed = @"promo_used";
+NSString * const ZPPPlatform = @"platform";
+NSString * const ZPPAPNSToken = @"device_token";
+         
 @implementation ZPPUserHelper
 
 + (NSDictionary *)convertUser:(ZPPUser *)user {

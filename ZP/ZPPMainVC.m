@@ -6,9 +6,12 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import "ZPPMainMenuView.h"
 #import "ZPPMainVC.h"
+
+@import JSBadgeView;
+@import VBFPopFlatButton;
 #import "ZPPUserManager.h"
+#import "ZPPMainMenuView.h"
 
 #import "ZPPGiftTVC.h"
 #import "ZPPNoInternetConnectionVC.h"
@@ -16,18 +19,10 @@
 #import "ZPPOrderHistoryTVC.h"
 #import "ZPPOrderTVC.h"
 #import "ZPPServerManager+ZPPRegistration.h"
-
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "ZPPOrderManager.h"
-
-// libs
-//#import <JSBadgeView.h>
-//#import <VBFPopFlatButton.h>
-
 #import "ZPPDish.h"
 
-@import JSBadgeView;
-@import VBFPopFlatButton;
 
 static float kZPPButtonDiametr = 40.0f;
 static float kZPPButtonOffset = 15.0f;
