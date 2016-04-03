@@ -20,7 +20,7 @@
 @import GoogleMaps;
 @import AFNetworking;
 
-NSString *const ZPPGMSApiKey = @"AIzaSyC97Zw13dQfFz3vI_k3fkSr7pYbyDqhohk";
+NSString *const ZPPGMSApiKey = @"AIzaSyCGZ0KYWFXJ8iqtaPkcut6ToWzF9zlWSd0";
 
 @interface AppDelegate ()
 
