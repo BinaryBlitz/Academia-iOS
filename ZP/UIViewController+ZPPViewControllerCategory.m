@@ -168,13 +168,10 @@
     if (![self respondsToSelector:@selector(tryAgainSender:)]) {
         return;
     }
-    //   id<ZPPNoInternetDelegate> respToDel =
-
+    
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ZPPNoInternetConnectionVC *vc =
         [sb instantiateViewControllerWithIdentifier:@"ZPPNoInternetConnectionVCIdentifier"];
-
-    // id<ZPPNoInternetDelegate> respToDel = self;
 
     vc.noInternetDelegate = self;
 

@@ -8,9 +8,6 @@
 
 #import "ZPPOrder.h"
 #import "ZPPOrderItem.h"
-//#import <Crashlytics/Crashlytics.h>
-
-static NSInteger ZPPDeliveryPrice = 200;
 
 @interface ZPPOrder ()
 
@@ -71,8 +68,6 @@ static NSInteger ZPPDeliveryPrice = 200;
 }
 
 - (void)checkAllAndRemoveEmpty {
-    //   NSMutableArray *tmpArr = [NSMutableArray array];
-
     for (int i = 0; i < self.items.count; i++) {
         ZPPOrderItem *orderItem = self.items[i];
         if (orderItem.count == 0) {
@@ -80,15 +75,6 @@ static NSInteger ZPPDeliveryPrice = 200;
             i--;
         }
     }
-
-    //    for(ZPPOrderItem *orderItem in self.items) {
-    //        if(orderItem.count == 0) {
-    //            [tmpArr addObject:orderItem];
-    //        }
-    //    }
-    //    for(ZPPOrderItem *oredrItem in tmpArr) {
-    //        [self.items removeObject:oredrItem];
-    //    }
 }
 
 - (ZPPOrderItem *)orderItemForItem:(id<ZPPItemProtocol>)item {
@@ -113,9 +99,6 @@ static NSInteger ZPPDeliveryPrice = 200;
     for (ZPPOrderItem *oi in self.items) {
         res += oi.count * [oi.item priceOfItem];
     }
-    //    if (res < 1000) {
-    //        res += ZPPDeliveryPrice;  // delivery price
-    //    }
     return res;
 }
 

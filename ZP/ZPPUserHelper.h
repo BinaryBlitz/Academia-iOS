@@ -6,17 +6,17 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
-extern NSString const *ZPPFirstName;    // = @"first_name";
-extern NSString const *ZPPLastName;     //= @"last_name";
-extern NSString const *ZPPUserEmail;    // = @"email";
-extern NSString const *ZPPPhoneNumber;  // = @"phone_number";
-extern NSString const *ZPPAPIToken;     // = @"api_token";
-extern NSString const *ZPPUserID;       // = @"id";
-extern NSString const *ZPPUserPassword;
-extern NSString const *ZPPUserPromocode;
-extern NSString const *ZPPUserBalance;
+extern NSString * const ZPPFirstName;
+extern NSString * const ZPPLastName;
+extern NSString * const ZPPUserEmail;
+extern NSString * const ZPPPhoneNumber;
+extern NSString * const ZPPAPIToken;
+extern NSString * const ZPPUserID;
+extern NSString * const ZPPUserPassword;
+extern NSString * const ZPPUserPromocode;
+extern NSString * const ZPPUserBalance;
 
 @class ZPPUser;
 

@@ -104,7 +104,7 @@ NSString *const ZPPUserLogoutNotificationName = @"ZPPUserLogoutNotificationName"
 
 - (void)userLogOut {
     if (self.pushToken) {
-        [[ZPPServerManager sharedManager] updateToken:[NSNull null]
+        [[ZPPServerManager sharedManager] updateToken:nil
             onSuccess:^{
                 self.pushToken = nil;
             }
