@@ -23,6 +23,7 @@
 #import "NSDate+ZPPDateCategory.h"
 #import "ZPPNoInternetConnectionVC.h"
 #import "ZPPServerManager+ZPPOrderServerManager.h"
+#import "ZPPServerManager+ZPPDishesSeverManager.h"
 #import "ZPPPaymentWebController.h"
 #import "ZPPServerManager.h"
 #import "ZPPTimeManager.h"
@@ -30,8 +31,6 @@
 static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
 static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnectionVCIdentifier";
-
-static NSInteger closeHour = 23;
 
 @interface ZPPOrderTimeChooserVC () <ZPPPaymentViewDelegate, ZPPNoInternetDelegate>
 @property (strong, nonatomic) ZPPOrder *order;
@@ -83,7 +82,7 @@ static NSInteger closeHour = 23;
         if ([ZPPTimeManager sharedManager].isOpen) {
             self.once = YES;
             [self addCheckmarkToButton:self.nowButton];
-            self.order.date = [[self class] nowByAppendingThirtyMinutes];
+            self.order.date = [[ZPPTimeManager sharedManager].currentTime dateByAddingMinutes:50];
         } else {
             self.once = YES;
             self.nowButton.hidden = YES;
@@ -109,7 +108,7 @@ static NSInteger closeHour = 23;
 
 - (void)orderNowAction:(UIButton *)sender {
     [self addCheckmarkToButton:sender];
-    self.order.date = [[self class] nowByAppendingThirtyMinutes];
+    self.order.date = [[ZPPTimeManager sharedManager].currentTime dateByAddingMinutes:50];
     [self.atTimeButton setTitle:@"ВЫБРАТЬ ВРЕМЯ" forState:UIControlStateNormal];
 }
 
@@ -271,21 +270,38 @@ static NSInteger closeHour = 23;
 
 - (void)addTimePicker:(UIButton *)sender {
     
-    NSInteger openHour;
-    if ([ZPPTimeManager sharedManager].openTime) {
-        openHour = [[ZPPTimeManager sharedManager].openTime hour];
-    } else {
-        openHour = 11; //FIXME: set default open hour
+    NSInteger openHour = [[ZPPTimeManager sharedManager].openTime hour];
+    if (!openHour) {
+        return;
     }
     
+    //TODO: replace with specific API method
+    [[ZPPServerManager sharedManager]
+        getDayMenuOnSuccess:^(NSArray *meals, NSArray *dishes, NSArray *stuff, ZPPTimeManager *timeManager) {
+            [self showTimePickerWithTimeManager:timeManager forSender:sender];
+        } onFailure:^(NSError *error, NSInteger statusCode) {
+            UIAlertController *alert =
+                    [UIAlertController alertControllerWithTitle:@"Ошибка"
+                                                        message:@"Не удалось обновить доступное вермя доставки. Проверьте интернет соединение."
+                                                 preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                      style:UIAlertActionStyleDefault handler:nil]];
+            [self presentViewController:alert animated:YES completion:nil];
+        }];
+}
+
+- (void)showTimePickerWithTimeManager:(ZPPTimeManager *)timeManager forSender:(UIButton *)sender {
     NSArray *arr;
-    NSDate *currentDate = [NSDate new];
+    
+    NSDate *currentDate = timeManager.currentTime;
+    NSInteger openHour = [timeManager.openTime hour];
+    NSInteger closeHour = [@23 integerValue];
     
     if (currentDate.hour >= closeHour || currentDate.hour < openHour) {
-        arr = [self createPickerDateRowsStartedFromHour:openHour andMinute:0];
+        arr = [self createPickerDateRowsStartedFromHour:openHour andMinute:0 usingTimeManager:timeManager];
     } else {
-        NSDate *deliveryDate = [currentDate dateByAddingMinutes:30];
-        arr = [self createPickerDateRowsStartedFromHour:deliveryDate.hour andMinute:deliveryDate.minute];
+        NSDate *deliveryDate = [currentDate dateByAddingMinutes:50];
+        arr = [self createPickerDateRowsStartedFromHour:deliveryDate.hour andMinute:deliveryDate.minute usingTimeManager:timeManager];
     }
 
     BOOL tomorrow = currentDate.hour >= closeHour;
@@ -305,8 +321,7 @@ static NSInteger closeHour = 23;
             [sender setTitle:selectedValue forState:UIControlStateNormal];
             [self addCheckmarkToButton:self.atTimeButton];
 
-            NSDate *d = [[self class] nowByAppendingThirtyMinutes];
-            d = [d dateBySubtractingMinutes:30];
+            NSDate *d = timeManager.currentTime;
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             dateFormatter.dateFormat = @"hh:mm";
             NSString *selectedString = [(NSString *)selectedValue substringToIndex:5];
@@ -314,6 +329,7 @@ static NSInteger closeHour = 23;
             
             if (tomorrow) {
                 d = [d dateByAddingHours: (24 - closeHour + selectedDate.hour)];
+                d = [d dateBySubtractingMinutes: d.minute];
                 d = [d dateByAddingMinutes: selectedDate.minute];
             } else {
                 d = [d dateBySubtractingHours: d.hour];
@@ -321,11 +337,6 @@ static NSInteger closeHour = 23;
                 d = [d dateByAddingHours: selectedDate.hour];
                 d = [d dateByAddingMinutes: selectedDate.minute];
             }
-            
-            NSLog(@"%@", d);
-            NSString *str = [d serverFormattedString];
-            NSLog(@"date string %@", str);
-
             self.order.date = d;
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {
@@ -333,9 +344,9 @@ static NSInteger closeHour = 23;
         origin:sender];
 }
 
-- (NSArray *)createPickerDateRowsStartedFromHour: (NSInteger) hour andMinute: (NSInteger) minute {
+- (NSArray *)createPickerDateRowsStartedFromHour: (NSInteger)hour
+                                       andMinute: (NSInteger)minute usingTimeManager:(ZPPTimeManager *)timeManger {
     NSMutableArray *rows = [NSMutableArray array];
-    
     int initialIndex;
     if (minute < 30) {
         initialIndex = (int)hour * 2 + 1;
@@ -343,6 +354,9 @@ static NSInteger closeHour = 23;
         hour += 1;
         initialIndex = (int)hour * 2;
     }
+    
+//    NSInteger closeHour = [timeManger.closeTime hour];
+    NSInteger closeHour = [@23 integerValue];
     
     for (int i = initialIndex; i < closeHour * 2 - 1; i++) {
         NSString *timeString;
@@ -358,12 +372,6 @@ static NSInteger closeHour = 23;
     }
     
     return [NSArray arrayWithArray:rows];
-}
-
-#pragma mark - date
-
-+ (NSDate *)nowByAppendingThirtyMinutes {
-    return [[NSDate new] dateByAddingMinutes:30];
 }
 
 @end
