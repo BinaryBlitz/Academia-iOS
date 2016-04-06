@@ -23,7 +23,6 @@
 #import "NSDate+ZPPDateCategory.h"
 #import "ZPPNoInternetConnectionVC.h"
 #import "ZPPServerManager+ZPPOrderServerManager.h"
-#import "ZPPServerManager+ZPPDishesSeverManager.h"
 #import "ZPPPaymentWebController.h"
 #import "ZPPServerManager.h"
 #import "ZPPTimeManager.h"
@@ -187,17 +186,8 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
             
             if (statusCode == 422) {
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Ошибка"
-                                                                                         message:@"Неверное время  доставки. Проверьте настроки даты и времени"
+                                                                                         message:@"Недопустимое время доставки. Попробуйте ещё раз"
                                                                                   preferredStyle:UIAlertControllerStyleAlert];
-                
-                [alertController addAction:[UIAlertAction actionWithTitle:@"Настройки"
-                                     style:UIAlertActionStyleCancel
-                                   handler:^(UIAlertAction * _Nonnull action) {
-                                       NSURL *settingsURL = [[NSURL alloc] initWithString:@"prefs:root=General&path=DATE_AND_TIME"];
-                                       if (settingsURL) {
-                                           [[UIApplication sharedApplication] openURL:settingsURL];
-                                       }
-                }]];
                 
                 [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
                                                                     style:UIAlertActionStyleDefault
@@ -269,109 +259,101 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 #pragma mark - time shooser
 
 - (void)addTimePicker:(UIButton *)sender {
-    
-    NSInteger openHour = [[ZPPTimeManager sharedManager].openTime hour];
-    if (!openHour) {
-        return;
-    }
-    
-    //TODO: replace with specific API method
     [[ZPPServerManager sharedManager]
-        getDayMenuOnSuccess:^(NSArray *meals, NSArray *dishes, NSArray *stuff, ZPPTimeManager *timeManager) {
-            [self showTimePickerWithTimeManager:timeManager forSender:sender];
-        } onFailure:^(NSError *error, NSInteger statusCode) {
-            UIAlertController *alert =
-                    [UIAlertController alertControllerWithTitle:@"Ошибка"
-                                                        message:@"Не удалось обновить доступное вермя доставки. Проверьте интернет соединение."
-                                                 preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"OK"
-                                                      style:UIAlertActionStyleDefault handler:nil]];
-            [self presentViewController:alert animated:YES completion:nil];
-        }];
+            getWorkingHours:^(ZPPTimeManager *timeManager) {
+                [self showTimePickerWithTimeManager:timeManager forSender:sender];
+            } onFailure:^(NSError *error, NSInteger statusCode) {
+                UIAlertController *alert =
+                        [UIAlertController alertControllerWithTitle:@"Ошибка"
+                                                            message:@"Не удалось обновить доступное вермя доставки. Проверьте интернет соединение."
+                                                     preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                          style:UIAlertActionStyleDefault handler:nil]];
+                [self presentViewController:alert animated:YES completion:nil];
+            }];
 }
 
 - (void)showTimePickerWithTimeManager:(ZPPTimeManager *)timeManager forSender:(UIButton *)sender {
-    NSArray *arr;
     
-    NSDate *currentDate = timeManager.currentTime;
-    NSInteger openHour = [timeManager.openTime hour];
-    NSInteger closeHour = [@23 integerValue];
-    
-    if (currentDate.hour >= closeHour || currentDate.hour < openHour) {
-        arr = [self createPickerDateRowsStartedFromHour:openHour andMinute:0 usingTimeManager:timeManager];
-    } else {
-        NSDate *deliveryDate = [currentDate dateByAddingMinutes:50];
-        arr = [self createPickerDateRowsStartedFromHour:deliveryDate.hour andMinute:deliveryDate.minute usingTimeManager:timeManager];
-    }
-
-    BOOL tomorrow = currentDate.hour >= closeHour;
-
+    NSArray *deliveryDates = [self deliveryDatesForTimeManager:timeManager];
+    DTTimePeriod *lastTimePeriod = timeManager.openTimePeriodChain.lastObject;
+    NSDate *closeDate = [lastTimePeriod.EndDate dateBySubtractingMinutes:30];
     NSString *descrString;
-    if (tomorrow) {
-        descrString = @"Завтра в";
-    } else {
+    if ([timeManager.currentTime isEarlierThan:closeDate]) {
         descrString = @"Сегодня в";
+    } else {
+        descrString = @"Завтра в";
+    }
+    NSMutableArray *keys = [NSMutableArray array];
+    for (DTTimePeriod *tp in deliveryDates) {
+        NSDateFormatter *formatter = [NSDateFormatter new];
+        formatter.dateFormat = @"HH:mm";
+        NSString *key = [NSString stringWithFormat:@"%@ - %@",
+                         [formatter stringFromDate:tp.StartDate],
+                         [formatter stringFromDate:tp.EndDate] ];
+        [keys addObject:key];
     }
 
     [ActionSheetStringPicker showPickerWithTitle:descrString
-        rows: arr
+        rows:keys
         initialSelection:0
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
 
             [sender setTitle:selectedValue forState:UIControlStateNormal];
             [self addCheckmarkToButton:self.atTimeButton];
-
-            NSDate *d = timeManager.currentTime;
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            dateFormatter.dateFormat = @"hh:mm";
-            NSString *selectedString = [(NSString *)selectedValue substringToIndex:5];
-            NSDate *selectedDate = [dateFormatter dateFromString: selectedString];
             
-            if (tomorrow) {
-                d = [d dateByAddingHours: (24 - closeHour + selectedDate.hour)];
-                d = [d dateBySubtractingMinutes: d.minute];
-                d = [d dateByAddingMinutes: selectedDate.minute];
+            NSDate *selectedDate = ((DTTimePeriod *)[deliveryDates objectAtIndex:selectedIndex]).StartDate;
+            if ([timeManager.currentTime isEarlierThan:closeDate]) {
+                self.order.date = selectedDate;
             } else {
-                d = [d dateBySubtractingHours: d.hour];
-                d = [d dateBySubtractingMinutes: d.minute];
-                d = [d dateByAddingHours: selectedDate.hour];
-                d = [d dateByAddingMinutes: selectedDate.minute];
+                self.order.date = [selectedDate dateByAddingDays:1];
             }
-            self.order.date = d;
+            NSLog(@"selected date: %@", self.order.date);
         }
-        cancelBlock:^(ActionSheetStringPicker *picker) {
-        }
+        cancelBlock:nil
         origin:sender];
 }
 
-- (NSArray *)createPickerDateRowsStartedFromHour: (NSInteger)hour
-                                       andMinute: (NSInteger)minute usingTimeManager:(ZPPTimeManager *)timeManger {
-    NSMutableArray *rows = [NSMutableArray array];
-    int initialIndex;
-    if (minute < 30) {
-        initialIndex = (int)hour * 2 + 1;
-    } else {
-        hour += 1;
-        initialIndex = (int)hour * 2;
+- (NSArray *)deliveryDatesForTimeManager:(ZPPTimeManager *)timeManager {
+    NSMutableArray *deliveryDates = [NSMutableArray array];
+    
+    NSDate *initialDate = [timeManager.currentTime dateByAddingMinutes:50];
+    DTTimePeriod *lastTimePeriod = timeManager.openTimePeriodChain.lastObject;
+    NSDate *closeDate = [lastTimePeriod.EndDate dateBySubtractingMinutes:30];
+    
+    if ([initialDate isLaterThan:closeDate]) {
+        DTTimePeriod *firstTimePeriod = timeManager.openTimePeriodChain.firstObject;
+        initialDate = [[firstTimePeriod StartDate] dateByAddingMinutes:50];
     }
     
-//    NSInteger closeHour = [timeManger.closeTime hour];
-    NSInteger closeHour = [@23 integerValue];
+    if ([initialDate minute] < 30) {
+        NSInteger minute = [initialDate minute];
+        initialDate = [initialDate dateByAddingMinutes:30 - minute];
+    } else if ([initialDate minute] > 30) {
+        NSInteger minute = [initialDate minute];
+        initialDate = [initialDate dateByAddingMinutes:60 - minute];
+    }
     
-    for (int i = initialIndex; i < closeHour * 2 - 1; i++) {
-        NSString *timeString;
-        if (i % 2 == 0) {
-            int currentHour = i / 2;
-            timeString = [NSString stringWithFormat:@"%@:00 - %@:30", @(currentHour), @(currentHour)];
-        } else {
-            int currentHour = (i - 1) / 2;
-            timeString = [NSString stringWithFormat:@"%@:30 - %@:00", @(currentHour), @(currentHour + 1)];
+    while ([initialDate isEarlierThan: closeDate]) {
+        BOOL validDevliveryDate = false;
+        DTTimePeriod *deliveryPeriod = [DTTimePeriod timePeriodWithStartDate:initialDate
+                                                                     endDate:[initialDate dateByAddingMinutes:30]];
+        
+        for (DTTimePeriod *timePeriod in timeManager.openTimePeriodChain) {
+            if ([deliveryPeriod isInside:timePeriod]) {
+                validDevliveryDate = true;
+                break;
+            }
         }
         
-        [rows addObject:timeString];
+        if (validDevliveryDate) {
+            [deliveryDates addObject:deliveryPeriod];
+        }
+        
+        initialDate = deliveryPeriod.EndDate;
     }
     
-    return [NSArray arrayWithArray:rows];
+    return [NSArray arrayWithArray:deliveryDates];
 }
 
 @end

@@ -117,12 +117,16 @@ static NSString *ZPPDaDataAPIKey = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     ZPPAddress *address = self.results.lastObject;
 
+    NSLog(@"coordinate: %g, %g", address.coordinate.latitude, address.coordinate.longitude);
     if (self.addressSearchDelegate && address) {
         [[LMGeocoder sharedInstance] geocodeAddressString:address.address
                                                   service:kLMGeocoderGoogleService
                                         completionHandler:^(NSArray *results, NSError *error) {
-                                            ZPPAddress *bestResult = [ZPPAddressHelper addresFromAddres:results.lastObject];
-                                            if (bestResult) {
+                                            for (int i = 0; i < results.count; i++) {
+                                                NSLog(@"result : %@", ((LMAddress *)results[i]).formattedAddress);
+                                            }
+                                            if (results.count != 0) {
+                                                ZPPAddress *bestResult = [ZPPAddressHelper addresFromAddres:results[0]];
                                                 [self.addressSearchDelegate configureWithAddress:bestResult sender:self];
                                                 [self dismissViewControllerAnimated:YES completion:nil];
                                             } else {

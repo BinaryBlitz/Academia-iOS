@@ -30,81 +30,45 @@
     [self.requestOperationManager GET:@"dishes.json"
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-
-         //   DDLogInfo(@"dishes %@", responseObject);
-            
             
             NSArray *dishes = [ZPPDishHelper parseDishes:responseObject];
-          //  NSArray *lunches = [ZPPLunchHelper parseLunches:<#(NSArray *)#>]
-
+            
             if (success) {
                 success(dishes);
             }
         }
         failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
-
             [[self class] failureWithBlock:failure error:error operation:operation];
         }];
 }
 
 - (void)getDayMenuOnSuccess:(void (^)(NSArray *meals, NSArray *dishes, NSArray *stuff, ZPPTimeManager *timeManager))success
                   onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    ZPPUser *user = [ZPPUserManager sharedInstance].user;
-//    if (!user.apiToken) {
-//        if (failure) {
-//            failure(nil, 422);
-//        }
-//        return;
-//    }
     
+    ZPPUser *user = [ZPPUserManager sharedInstance].user;
     NSString *token = user.apiToken;
     NSDictionary *params;
-    if(token) {
-        params = @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
+    if (token) {
+        params = @{ @"api_token": [ZPPUserManager sharedInstance].user.apiToken };
     }
 
     [self.requestOperationManager GET:@"day.json"
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-
             NSLog(@"%@",responseObject);
+            [[ZPPTimeManager sharedManager] configureWithDict:responseObject];
             
-            
-            NSArray *lunchs; //= [ZPPDishHelper parseDishes:responseObject[@"lunches"]];//[ZPPLunchHelper parseLunches:responseObject[@"lunches"]];
-            NSArray *dishes ;//= [ZPPDishHelper parseDishes:responseObject[@"dishes"]];
-            NSArray *stuffs ;//= [ZPPStuffHelper parseStuff:responseObject[@"stuff"]];
-            ZPPTimeManager *timeManager;
-            
-         //   if(responseObject[@"current_time"] && ![responseObject[@"current_time"] isEqual:[NSNull null]]) {
-                
-                [[ZPPTimeManager sharedManager] configureWithDict:responseObject];
-                timeManager = [ZPPTimeManager sharedManager];
-//            } else {
-            //    [[ZPPTimeManager sharedManager] resetTimeManager];
-               lunchs = [ZPPDishHelper parseDishes:responseObject[@"lunches"]];//[ZPPLunchHelper parseLunches:responseObject[@"lunches"]];
-                dishes = [ZPPDishHelper parseDishes:responseObject[@"dishes"]];
-                stuffs = [ZPPStuffHelper parseStuff:responseObject[@"stuff"]];
-           // }
-            
-            
-//            NSArray *stuff = responseObject[@"dishes"];
-//            NSMutableArray *lunchTMP = [NSMutableArray array];
-//            NSMutableArray *dishesTMP = [NSMutableArray array];
-//            NSMutableArray *stuffTMP = [NSMutableArray array];
+            ZPPTimeManager *timeManager = [ZPPTimeManager sharedManager];
+            NSArray *lunchs = [ZPPDishHelper parseDishes:responseObject[@"lunches"]];
+            NSArray *dishes = [ZPPDishHelper parseDishes:responseObject[@"dishes"]];
+            NSArray *stuff = [ZPPStuffHelper parseStuff:responseObject[@"stuff"]];
             
             if(success) {
-                success(lunchs,dishes, stuffs, timeManager);
+                success(lunchs, dishes, stuff, timeManager);
             }
-            
-            
-        }
-        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+        } failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
             [[self class] failureWithBlock:failure error:error operation:operation];
-
         }];
 }
-
-
-
 
 @end
