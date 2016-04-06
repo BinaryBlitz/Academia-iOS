@@ -7,8 +7,10 @@
 //
 
 #import "ZPPTimeManager.h"
+
+@import DateTools;
 #import "NSDate+ZPPDateCategory.h"
-#
+
 
 @interface ZPPTimeManager ()
 
@@ -32,6 +34,32 @@
     return manager;
 }
 
++ (ZPPTimeManager *)timeManagerWith:(NSArray *)managerData {
+    ZPPTimeManager *timeManager = [ZPPTimeManager new];
+    
+    NSMutableArray *openHoursGroup = [NSMutableArray array];
+    for (NSDictionary *dict in managerData) {
+        NSString *currentDateString = dict[@"current_time"];
+        timeManager.currentTime = [NSDate customDateFromString:currentDateString];
+        NSDate *currentTime = [NSDate dateWithTimeIntervalSince1970:timeManager.currentTime.timeIntervalSince1970];
+        NSDate *tmpDate = [NSDate dateWithYear:[currentTime year] month:[currentTime month]
+                                           day:[currentTime day] hour: 0 minute: 0 second: 0];
+        NSNumber *startHour = dict[@"start_hour"];
+        NSNumber *startMinute = dict[@"start_min"];
+        NSNumber *endHour = dict[@"end_hour"];
+        NSNumber *endMinute = dict[@"end_min"];
+        NSDate *startDate = [[tmpDate dateByAddingHours:[startHour integerValue]] dateByAddingMinutes:[startMinute integerValue]];
+        NSDate *endDate = [[tmpDate dateByAddingHours:[endHour integerValue]] dateByAddingMinutes:[endMinute integerValue]];
+        
+        DTTimePeriod *timePeriod = [DTTimePeriod timePeriodWithStartDate:startDate endDate:endDate];
+        [openHoursGroup addObject:timePeriod];
+    }
+    
+    timeManager.openTimePeriodChain = [NSArray arrayWithArray:openHoursGroup];
+    
+    return timeManager;
+}
+
 - (id)init {
     self = [super init];
     if (self) {
@@ -49,8 +77,6 @@
 
     NSString *openTimeString = dict[@"opens_at"];
     NSString *curentTimeString = dict[@"current_time"];
-
-    //    2015-11-28T12:00:00.000+03:00
 
     if (![openTimeString isEqual:[NSNull null]]) {
         self.openTime = [NSDate customDateFromString:openTimeString];
@@ -70,11 +96,5 @@
         self.dishesForToday = YES;
     }
 }
-
-//- (void)resetTimeManager {
-//    self.isOpen = YES;
-//    self.openTime = nil;
-//    self.currentTime = nil;
-//}
 
 @end

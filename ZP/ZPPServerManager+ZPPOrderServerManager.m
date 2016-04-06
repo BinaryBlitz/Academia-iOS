@@ -7,13 +7,13 @@
 //
 
 #import "ZPPServerManager+ZPPOrderServerManager.h"
-//#import <AFNetworking.h>
+
+@import AFNetworking;
 #import "ZPPUserManager.h"
 #import "ZPPOrder.h"
 #import "ZPPOrderHelper.h"
 #import "ZPPAddressHelper.h"
-
-@import AFNetworking;
+#import "ZPPTimeManager.h"
 
 @implementation ZPPServerManager (ZPPOrderServerManager)
 
@@ -116,12 +116,27 @@
                     failure(nil, 418);
                 }
             }
-
         }
         failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
-            
             [[self class] failureWithBlock:failure error:error operation:operation];
         }];
+}
+
+- (void)getWorkingHours:(void (^)(ZPPTimeManager *timeManager))success
+              onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    NSDictionary *parameters = @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
+    NSString *urlString = @"working_hours";
+    
+    [self.requestOperationManager GET:urlString
+                           parameters:parameters
+                              success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+                                    ZPPTimeManager *timeManager = [ZPPTimeManager timeManagerWith:responseObject];
+                                    if (success) {
+                                        success(timeManager);
+                                    }
+                            } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+                                [[self class] failureWithBlock:failure error:error operation:operation];
+                            }];
 }
 
 #pragma mark - review
@@ -130,12 +145,6 @@
      forOrderWithID:(NSString *)orderID
           onSuccess:(void (^)())success
           onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)),
-    //                   dispatch_get_main_queue(), ^{
-    //                       if (success) {
-    //                           success();
-    //                       }
-    //                   });
 
     NSDictionary *params = @{
         @"api_token" : [ZPPUserManager sharedInstance].user.apiToken,

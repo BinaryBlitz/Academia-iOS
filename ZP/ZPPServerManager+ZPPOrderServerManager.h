@@ -9,6 +9,8 @@
 #import "ZPPServerManager.h"
 
 @class ZPPOrder;
+@class ZPPTimeManager;
+
 @interface ZPPServerManager (ZPPOrderServerManager)
 
 - (void)GETOldOrdersOnSuccess:(void (^)(NSArray *orders))success
@@ -25,6 +27,9 @@
 - (void)checkPaymentWithID:(NSString *)orderID
                  onSuccess:(void (^)(NSInteger sta))success
                  onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
+- (void)getWorkingHours:(void (^)(ZPPTimeManager *timeManager))success
+              onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
 
 #pragma mark - review
