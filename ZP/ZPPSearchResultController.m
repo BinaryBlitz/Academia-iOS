@@ -116,25 +116,11 @@ static NSString *ZPPDaDataAPIKey = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     ZPPAddress *address = self.results.lastObject;
-
-    NSLog(@"coordinate: %g, %g", address.coordinate.latitude, address.coordinate.longitude);
+    NSLog(@"results: %@", self.results);
+    
     if (self.addressSearchDelegate && address) {
-        [[LMGeocoder sharedInstance] geocodeAddressString:address.address
-                                                  service:kLMGeocoderGoogleService
-                                        completionHandler:^(NSArray *results, NSError *error) {
-                                            for (int i = 0; i < results.count; i++) {
-                                                NSLog(@"result : %@", ((LMAddress *)results[i]).formattedAddress);
-                                            }
-                                            if (results.count != 0) {
-                                                ZPPAddress *bestResult = [ZPPAddressHelper addresFromAddres:results[0]];
-                                                [self.addressSearchDelegate configureWithAddress:bestResult sender:self];
-                                                [self dismissViewControllerAnimated:YES completion:nil];
-                                            } else {
-                                                [self presentAlertWithMessage:@"Адрес введен неверо. Попробуйте ещё раз"];
-                                                [searchBar setText:nil];
-                                                [searchBar becomeFirstResponder];
-                                            }
-                                        }];
+        [self.addressSearchDelegate configureWithAddress:address sender:self];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -153,17 +139,21 @@ static NSString *ZPPDaDataAPIKey = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
         return;
     }
     
-    [[IDDaDataSuggestions sharedInstance] getAddressSuggestionsForString:text
-                                                            restrictions: @[@{@"region": @"москва"}]
-                                                 hideRestrictionInResult:NO
-                                                                 success:^(NSArray *suggestions) {
-                                                                     NSArray *addresses = [ZPPAddressHelper addressesFromDaDataDicts:suggestions];
-                                                                     self.results = addresses;
-                                                                     [self.tableView reloadData];
-                                                                 }
-                                                                 failure:^(NSError *error) {
-                                                                     
-                                                                 }];
+    text = [NSString stringWithFormat:@"Москва, %@", text];
+    
+    [[LMGeocoder sharedInstance] geocodeAddressString:text
+                                              service:kLMGeocoderGoogleService
+                                    completionHandler:^(NSArray *results, NSError *error) {
+                                        NSMutableArray *suggestions = [NSMutableArray array];
+                                        for (LMAddress *address in results) {
+                                            ZPPAddress *zpAddress = [ZPPAddressHelper addresFromAddres:address];
+                                            if (zpAddress) {
+                                                [suggestions addObject:zpAddress];
+                                            }
+                                        }
+                                        self.results = [suggestions copy];
+                                        [self.tableView reloadData];
+                                    }];
 }
 
 @end
