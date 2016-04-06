@@ -82,8 +82,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2Y-D9-lwQ">
                                 <rect key="frame" x="20" y="60" width="560" height="438"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ПОТЕРЯНА СВЯЗЬ С ИНТЕРНЕТОМ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mmc-vj-dJv">
-                                        <rect key="frame" x="110" y="8" width="340" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ПОТЕРЯНА СВЯЗЬ С ИНТЕРНЕТОМ" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mmc-vj-dJv">
+                                        <rect key="frame" x="20" y="8" width="520" height="24"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -104,6 +104,8 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.089150898318042807" green="0.13125955657492355" blue="0.18345040137614679" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Mmc-vj-dJv" secondAttribute="trailing" constant="20" id="4EY-0c-ZED"/>
+                                    <constraint firstItem="Mmc-vj-dJv" firstAttribute="leading" relation="lessThanOrEqual" secondItem="h2Y-D9-lwQ" secondAttribute="leading" constant="20" id="5YF-PD-GpF"/>
                                     <constraint firstItem="Ldo-9L-8fY" firstAttribute="centerX" secondItem="h2Y-D9-lwQ" secondAttribute="centerX" id="7Am-vK-WwS"/>
                                     <constraint firstItem="Qra-35-b2u" firstAttribute="centerY" secondItem="h2Y-D9-lwQ" secondAttribute="centerY" id="JcJ-Is-L8c"/>
                                     <constraint firstItem="Qra-35-b2u" firstAttribute="centerX" secondItem="h2Y-D9-lwQ" secondAttribute="centerX" id="Sn0-Y6-ZVX"/>
