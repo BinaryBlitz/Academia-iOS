@@ -7,13 +7,9 @@
 //
 
 #import "UIViewController+ZPPViewControllerCategory.h"
-//#import <TSMessage.h>
-//#import <VBFPopFlatButton.h>
-//#import <MBProgressHUD.h>
 #import "ZPPNoInternetConnectionVC.h"
 #import "CWStatusBarNotification.h"
 
-//@import TSMessages;
 @import VBFPopFlatButton;
 @import MBProgressHUD;
 
@@ -29,29 +25,8 @@
 }
 
 - (void)setCustomNavigationBackButtonWithTransition {
-    //    UIImage *backBtn = [UIImage imageNamed:@"arrowBack"];
-    //    backBtn = [backBtn imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    //    self.navigationItem.backBarButtonItem.title = @"";
-    //    self.navigationController.navigationBar.backIndicatorImage = backBtn;
-    //    self.navigationController.navigationBar.backIndicatorTransitionMaskImage = backBtn;
-    //    self.navigationItem.backBarButtonItem =
-    //        [[UIBarButtonItem alloc] initWithTitle:@""
-    //                                         style:UIBarButtonItemStyleBordered
-    //                                        target:nil
-    //                                        action:nil];
-    //
-    //    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    //    self.navigationController.navigationBar.backIndicatorImage = [[UIImage
-    //    imageNamed:@"arrowBack"]
-    //        imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    //    self.navigationController.navigationBar.backIndicatorTransitionMaskImage =
-    //        [UIImage imageNamed:@"arrowBack"];
-
     UIBarButtonItem *backButtonItem =
-        [[UIBarButtonItem alloc] initWithTitle:@""
-                                         style:UIBarButtonItemStylePlain
-                                        target:nil
-                                        action:nil];
+        [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
 
     [self.navigationController.navigationBar
@@ -80,9 +55,6 @@
 
 - (UIButton *)addRightButtonWithName:(NSString *)name {
     UIButton *closeButton = [self buttonWithImageName:name];
-    //    [closeButton addTarget:self
-    //                    action:@selector(dismisVC)
-    //          forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *closeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
     self.navigationItem.rightBarButtonItem = closeButtonItem;
 
@@ -90,10 +62,7 @@
 }
 
 - (void)dismisVC {
-    [self dismissViewControllerAnimated:YES
-                             completion:^{
-
-                             }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (UIButton *)buttonWithImageName:(NSString *)imgName {
@@ -120,33 +89,8 @@
 }
 
 - (void)showWarningWithText:(NSString *)message {
-    //    [TSMessage showNotificationInViewController:self.navigationController
-    //                                          title:@"Ошибка"
-    //                                       subtitle:message
-    //                  type:TSMessageNotificationTypeWarning];
-    //    [TSMessage showNotificationWithTitle:@"Ошибка"
-    //                                subtitle:message
-    //                                    type:TSMessageNotificationTypeWarning];
-//
-//    [TSMessage showNotificationInViewController:self.navigationController
-//                                          title:@"Ошибка"
-//                                       subtitle:message
-//                                          image:nil
-//                                           type:TSMessageNotificationTypeWarning
-//                                       duration:TSMessageNotificationDurationAutomatic
-//                                       callback:nil
-//                                    buttonTitle:nil
-//                                 buttonCallback:nil
-//                                     atPosition:TSMessageNotificationPositionNavBarOverlay
-//                           canBeDismissedByUser:YES];
-    
-    
     CWStatusBarNotification *notification = [CWStatusBarNotification new];
-    
-    
-    
-    [notification displayNotificationWithMessage:message
-                                          forDuration:2.0f];
+    [notification displayNotificationWithMessage:message forDuration:2.0f];
 }
 
 - (void)showSuccessWithText:(NSString *)text {
