@@ -30,6 +30,7 @@ static float kZPPButtonOffset = 15.0f;
 static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонусов";
 
 @interface ZPPMainVC () <ZPPNoInternetDelegate>
+
 @property (strong, nonatomic) VBFPopFlatButton *menuButton;
 @property (strong, nonatomic) ZPPMainMenuView *mainMenu;
 @property (strong, nonatomic) VBFPopFlatButton *button;
@@ -39,10 +40,8 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
 @property (strong, nonatomic) JSBadgeView *orderCountBadgeView;
 
 @property (assign, nonatomic) BOOL menuShowed;
-
-//@property (strong, nonatomic) ZPPOrder *order;
-
 @property (assign, nonatomic) BOOL animationShoved;
+
 @end
 
 @implementation ZPPMainVC
@@ -98,7 +97,6 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - ui
@@ -136,7 +134,6 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
     [self.mainMenu showCompletion:^{
 
     }];
-    // [self.menuButton animateToType:buttonCloseType];
 }
 
 - (void)dissmisMenu {
@@ -247,10 +244,6 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
 }
 
 - (void)showOnboarding {
-    //    UIViewController *vc = [self firstRealVCFormStoryBoardWithName:@"Onboarding"];
-    //
-    //    [self presentViewController:vc animated:YES completion:nil];
-
     static NSString *isShovedKey = @"onboardingShoved";
     if (![[NSUserDefaults standardUserDefaults] boolForKey:isShovedKey]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:isShovedKey];
@@ -462,8 +455,6 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
         CGRect r = CGRectMake(15, 15, kZPPButtonDiametr, kZPPButtonDiametr);
         _buttonView = [[UIView alloc] initWithFrame:r];
         _buttonView.backgroundColor = [UIColor blackColor];
-        //_buttonView.layer.borderWidth = self.button.lineThickness;
-        // _buttonView.layer.borderColor = [UIColor whiteColor].CGColor;
         _buttonView.layer.cornerRadius = _buttonView.frame.size.height / 2.0;
 
         CAShapeLayer *_border = [CAShapeLayer layer];
@@ -472,15 +463,11 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
         _border.fillColor = nil;
         [_buttonView.layer addSublayer:_border];
         _border.path = [UIBezierPath bezierPathWithRoundedRect:_buttonView.bounds
-                                                  cornerRadius:_buttonView.frame.size.height / 2.0]
-                           .CGPath;
-
-        // [_buttonView addSubview:self.button];
-
+                                                  cornerRadius:_buttonView.frame.size.height / 2.0].CGPath;
         CGSize buttonSize = self.button.frame.size;
         self.button.frame = CGRectMake((r.size.width - buttonSize.width) / 2.0,
                                        (r.size.height - buttonSize.height) / 2.0, buttonSize.width,
-                                       buttonSize.width);  // = _buttonView.center;
+                                       buttonSize.width);
 
         UITapGestureRecognizer *gr =
             [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonWork)];
@@ -510,8 +497,6 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
                       action:@selector(buttonWork)
             forControlEvents:UIControlEventTouchUpInside];
         _button.exclusiveTouch = YES;
-
-        // _button.center = self.buttonView.center;
     }
 
     return _button;

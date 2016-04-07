@@ -7,22 +7,16 @@
 //
 
 #import "ZPPAnotherProductsTVC.h"
-#import "ZPPProductAnotherCell.h"
-#import "ZPPProductMainCell.h"
-#import "ZPPStuff.h"
-
-#import "UIViewController+ZPPViewControllerCategory.h"
-
-//#import <UIImageView+AFNetworking.h>
-
-#import "ZPPConsts.h"
-#import "ZPPOrder.h"
-
-#import "ZPPOrderItem.h"
-//#import <LoremIpsum.h>
 
 @import AFNetworking;
 @import SDWebImage;
+#import "ZPPProductAnotherCell.h"
+#import "ZPPProductMainCell.h"
+#import "ZPPStuff.h"
+#import "UIViewController+ZPPViewControllerCategory.h"
+#import "ZPPConsts.h"
+#import "ZPPOrder.h"
+#import "ZPPOrderItem.h"
 
 static NSString *ZPPProductAnotherCellIdentifier = @"ZPPProductAnotherCellIdentifier";
 static NSString *ZPPProductMainCellIdentifier = @"ZPPProductsMainCellIdentifier";
@@ -50,11 +44,6 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
     self.anotherProducts = stuffs;
     [self.tableView reloadData];
 }
-
-//- (void)configureWithStuffs:(NSArray *)stuffs order:(ZPPOrder *)order {
-//    self.order = order;
-//    [self configureWithStuffs:stuffs];
-//}
 
 #pragma mark - UITableViewDataSource
 
@@ -102,15 +91,8 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
     }
 
     [cell configureWithStuff:stuff];
-
-    [cell.addProductButton addTarget:self
-                              action:@selector(addToCard:)
-                    forControlEvents:UIControlEventTouchUpInside];
-
-    //    self.
-    //
-    //    cell setBadgeCount:<#(NSInteger)#>
-
+    [cell.addProductButton addTarget:self action:@selector(addToCard:) forControlEvents:UIControlEventTouchUpInside];
+    
     return cell;
 }
 
@@ -124,7 +106,6 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
     [cell.addToBasketButton addTarget:self
                                action:@selector(showAnotherCells)
                      forControlEvents:UIControlEventTouchUpInside];
-    //    [cell.addToBasketButton setTitle:@"ВНИЗ" forState:UIControlStateNormal];
     [cell.addToBasketButton setTitle:@"ПОСМОТРЕТЬ" forState:UIControlStateNormal];
 
     cell.topButtonView.hidden = NO;
@@ -132,15 +113,6 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
     cell.ingridientsDescriptionLabel.numberOfLines = 1;
     cell.ingridientsDescriptionLabel.minimumScaleFactor = 0.5;
     cell.ingridientsDescriptionLabel.adjustsFontSizeToFitWidth = YES;
-    //    cell.addToBasketButton.tintColor = [UIColor whiteColor];
-    //    [cell.addToBasketButton setImage:[UIImage imageNamed:@"arrowDown"]
-    //                            forState:UIControlStateNormal];
-
-    //    CGSize size = cell.addToBasketButton.bounds.size;
-    //    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, 3)];
-    //    v.backgroundColor = [UIColor whiteColor];
-    //    [cell.addToBasketButton addSubview:v];
-
     cell.productImageView.image = [UIImage imageNamed:@"back4.jpg"];
 
     return cell;
@@ -163,15 +135,8 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / Д�
     if (self.anotherProducts.count < 1) {
         return;
     }
-    //
-    //    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:ip];
-    //
-    //    if (!cell)
-    //        return;
 
-    [self.tableView scrollToRowAtIndexPath:ip
-                          atScrollPosition:UITableViewScrollPositionTop
-                                  animated:YES];
+    [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 - (void)addToCard:(UIButton *)sender {
