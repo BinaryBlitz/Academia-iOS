@@ -182,6 +182,7 @@
 		19F379061BFE862F004827A0 /* ZPPImageWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F379051BFE862F004827A0 /* ZPPImageWorker.m */; };
 		19F3790A1BFE9132004827A0 /* ZPPCustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F379091BFE9132004827A0 /* ZPPCustomLabel.m */; };
 		19F3790D1BFEA6C9004827A0 /* ZPPCustomTouchTransperentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F3790C1BFEA6C9004827A0 /* ZPPCustomTouchTransperentView.m */; };
+		37204FE71CB64E150010448E /* WelcomeScreenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37204FE61CB64E150010448E /* WelcomeScreenProvider.swift */; };
 		B161B4D19B5A9CDAE14026AD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A340E98E08E039F101A2881 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -499,6 +500,7 @@
 		19F3790B1BFEA6C9004827A0 /* ZPPCustomTouchTransperentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPCustomTouchTransperentView.h; sourceTree = "<group>"; };
 		19F3790C1BFEA6C9004827A0 /* ZPPCustomTouchTransperentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPCustomTouchTransperentView.m; sourceTree = "<group>"; };
 		1A340E98E08E039F101A2881 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37204FE61CB64E150010448E /* WelcomeScreenProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenProvider.swift; sourceTree = "<group>"; };
 		37F681D61CB19B9800B2E115 /* ZPPAddressDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZPPAddressDelegate.h; sourceTree = "<group>"; };
 		E6092FFC7B589467189F0B0B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FBF21C48AB60C310F6FAB5FC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -1207,6 +1209,7 @@
 				19F379031BFE84A2004827A0 /* ZPPWithImageURL.h */,
 				19B386141C19F0BA0050BE02 /* ZPPEnergy.h */,
 				19B386151C19F0BA0050BE02 /* ZPPEnergy.m */,
+				37204FE61CB64E150010448E /* WelcomeScreenProvider.swift */,
 			);
 			name = Product;
 			sourceTree = "<group>";
@@ -2024,6 +2027,7 @@
 				1907C7551BF0C4B0003BA62E /* ZPPCardInputTVC.m in Sources */,
 				19F378FE1BFBBDF3004827A0 /* ZPPPaymentWebController.m in Sources */,
 				1907C75F1BF0D34C003BA62E /* ZPPCardDateCodeCell.m in Sources */,
+				37204FE71CB64E150010448E /* WelcomeScreenProvider.swift in Sources */,
 				1907C7401BF08B03003BA62E /* ZPPAddress.m in Sources */,
 				1907C74F1BF0C2AC003BA62E /* ZPPCreditCard.m in Sources */,
 				198A5C171BD5B8B900710A36 /* ZPPDishHelper.m in Sources */,
