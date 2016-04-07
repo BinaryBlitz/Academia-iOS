@@ -13,6 +13,7 @@
 #import "ZPPLunchHelper.h"
 #import "ZPPStuffHelper.h"
 #import "ZPPTimeManager.h"
+#import "ZP-Swift.h"
 
 @implementation ZPPServerManager (ZPPDishesSeverManager)
 
@@ -57,6 +58,13 @@
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
             NSLog(@"%@",responseObject);
             [[ZPPTimeManager sharedManager] configureWithDict:responseObject];
+            
+            NSString *welcomeScreenImageURL = responseObject[@"welcome_screen_image_url"];
+            if (![welcomeScreenImageURL isEqual: [NSNull null]]) {
+                [[WelcomeScreenProvider sharedProvider] setImageURLString:welcomeScreenImageURL];
+            } else {
+                [[WelcomeScreenProvider sharedProvider] setImageURLString:nil];
+            }
             
             ZPPTimeManager *timeManager = [ZPPTimeManager sharedManager];
             NSArray *lunchs = [ZPPDishHelper parseDishes:responseObject[@"lunches"]];

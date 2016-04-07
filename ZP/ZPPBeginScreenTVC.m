@@ -7,15 +7,17 @@
 //
 
 #import "ZPPBeginScreenTVC.h"
+
+@import SDWebImage;
+@import DateTools;
+@import PureLayout;
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "ZPPBeginScreenCell.h"
 #import "UIView+UIViewCategory.h"
 #import "NSDate+ZPPDateCategory.h"
-
 #import "ZPPUserManager.h"
-
 #import "ZPPTimeManager.h"
-
-@import DateTools;
+#import "ZP-Swift.h"
 
 typedef NS_ENUM(NSInteger, ZPPCurrentBeginState) {
     ZPPCurrentBeginStateClosed,
@@ -55,7 +57,13 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 
     cell.contentView.backgroundColor = [UIColor blackColor];
 
-    cell.backImageView.image = [UIImage imageNamed:@"back3.jpg"];
+    
+    if ([WelcomeScreenProvider sharedProvider].imageURL) {
+        [self loadImageView:cell.backImageView url:[WelcomeScreenProvider sharedProvider].imageURL];
+    } else {
+        cell.backImageView.image = [UIImage imageNamed:@"back3.jpg"];
+    }
+    
     if ([ZPPTimeManager sharedManager].dishesForToday || [self currentState] == ZPPCurrentBeginStateNotLoged) {
         [cell.beginButton setTitle:[self buttonText] forState:UIControlStateNormal];
     } else {
@@ -77,8 +85,28 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
         cell.logoImageView.hidden = NO;
         cell.smallImageView.hidden = YES;
     }
+    
+    if ([WelcomeScreenProvider sharedProvider].imageURL) {
+        cell.logoImageView.hidden = YES;
+        cell.smallImageView.hidden = YES;
+    }
 
     return cell;
+}
+
+#pragma mark - img load
+
+- (void)loadImageView:(UIImageView *)imgView url:(NSURL *)url {
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    [manager downloadImageWithURL:url
+                          options:0
+                         progress:nil
+                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType,
+                                    BOOL finished, NSURL *imageURL) {
+                            if (image) {
+                                imgView.image = image;
+                            }
+                        }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -111,8 +139,14 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 
     switch (state) {
         case ZPPCurrentBeginStateOpen:
+            if ([WelcomeScreenProvider sharedProvider].imageURL) {
+                return nil;
+            }
             break;
         case ZPPCurrentBeginStateClosed:
+            if ([WelcomeScreenProvider sharedProvider].imageURL) {
+                return nil;
+            }
             if ([d hour] < 6) {
                 text = [NSString stringWithFormat:@"%@%@", nightString, userName];
             } else if ([d hour] < 11) {
@@ -159,9 +193,16 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
     
     switch (state) {
         case ZPPCurrentBeginStateOpen:
+            if ([WelcomeScreenProvider sharedProvider].imageURL) {
+                return nil;
+            }
             break;
         case ZPPCurrentBeginStateClosed:
-            text = makePreorder.copy;  //[makePreorder stringByAppendingString:@"11"];
+            if ([WelcomeScreenProvider sharedProvider].imageURL) {
+                return nil;
+            }
+            
+            text = makePreorder.copy;
             break;
         case ZPPCurrentBeginStateNotLoged:
             break;

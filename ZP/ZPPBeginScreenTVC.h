@@ -8,17 +8,13 @@
 
 #import "ZPPProductsBaseTVC.h"
 
+@protocol ZPPBeginScreenTVCDelegate <NSObject>
+- (void) didPressBeginButton;
+@end
 
-@protocol ZPPBeginScreenTVCDelegate <NSObject>   //define delegate protocol
-- (void) didPressBeginButton;  //define delegate method to be implemented within another class
-@end //end protocol
 
-
-@interface ZPPBeginScreenTVC : ZPPProductsBaseTVC
+@interface ZPPBeginScreenTVC: ZPPProductsBaseTVC
 
 @property (nonatomic, weak) id <ZPPBeginScreenTVCDelegate> beginDelegate;
-
-
-
 
 @end
