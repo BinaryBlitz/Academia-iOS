@@ -38,9 +38,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
     ZPPBeginScreenTVC *beginScreen = [self startScreen];
 
     [self configureScreensWithArr:@[ beginScreen ]];
-    //  beginScreen.beginDelegate = self;
-
-    //  self.productViewControllers = @[ beginScreen ];
+    
     for (ZPPProductsBaseTVC *vc in self.productViewControllers) {
         vc.delegate = self;
     }
@@ -57,41 +55,22 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
     [self addPageControl];
     [[ZPPUserManager sharedInstance] checkUser];
-    // [self findScrollView];
-
-    // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-//    if ([[ZPPUserManager sharedInstance] checkUser]) {
-//        [self loadDishes];
-//    } else {
-//        [self loadDishes];
-//        [self configureScreensWithArr:@[ [self startScreen] ]];
-//        [self setViewControllers:@[ self.productViewControllers[0] ]
-//                       direction:UIPageViewControllerNavigationDirectionForward
-//                        animated:NO
-//                      completion:nil];
-//    }
     [self loadDishes];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 #pragma mark - page vc delegate
 
 - (UIViewController *)viewControllerAtIndex:(NSUInteger)index {
-    // return self.productViewControllers[0];//redo
     if (([self.productViewControllers count] == 0) ||
         (index >= [self.productViewControllers count])) {
         return nil;
     }
 
-    return self.productViewControllers[index];  //
+    return self.productViewControllers[index];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
@@ -130,13 +109,10 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
         self.pageControl.currentPage = index;
     }
 }
+
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
     return 0;
 }
-
-#pragma mark - UIScrollViewDelegate
-
-//-(void)scrollviewdi
 
 #pragma mark - support
 
@@ -184,8 +160,6 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 #pragma mark - ZPPProductScreenTVCDelegate
 
 - (void)addItemIntoOrder:(id<ZPPItemProtocol>)item {
-//    NSLog(@"item %@", [item nameOfItem]);
-
     ZPPMainVC *mainVC = (ZPPMainVC *)self.parentViewController;
 
     [mainVC addItemIntoOrder:item];
@@ -200,7 +174,6 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
                               ZPPTimeManager *timeManager) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
             if (strongSelf) {
-                // if (!timeManager) {
                 NSArray *dishControllers = [strongSelf dishControllersFromArr:dishes];
                 NSArray *mealControllers = [strongSelf lunchControllersFromArr:meals];
 
@@ -215,9 +188,6 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
                 }
 
                 [strongSelf configureScreensWithArr:arr];
-                //  } else {
-                // [strongSelf configureScreensWithArr:@[ [strongSelf startScreen] ]];
-                //   }
             }
         }
         onFailure:^(NSError *error, NSInteger statusCode) {
@@ -301,7 +271,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
     ZPPProductsBaseTVC *viewController = [self.viewControllers lastObject];
     NSInteger currentIndex = [self.productViewControllers indexOfObject:viewController];
 
-    self.productViewControllers = screens;  //[self dishControllersFromArr:dishes];
+    self.productViewControllers = screens;
     self.dataSource = nil;
     self.dataSource = self;
 
@@ -313,7 +283,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
     ZPPProductsBaseTVC *destVC;
     if (currentIndex < self.productViewControllers.count) {
-        destVC = self.productViewControllers[currentIndex];  //[self.viewControllers lastObject];
+        destVC = self.productViewControllers[currentIndex];
     }
 
     if (!destVC) {
