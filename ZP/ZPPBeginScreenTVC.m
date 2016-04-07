@@ -98,11 +98,8 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 
 - (void)loadImageView:(UIImageView *)imgView url:(NSURL *)url {
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    [manager downloadImageWithURL:url
-                          options:0
-                         progress:nil
-                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType,
-                                    BOOL finished, NSURL *imageURL) {
+    [manager downloadImageWithURL:url options:0 progress:nil
+                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                             if (image) {
                                 imgView.image = image;
                             }
@@ -127,7 +124,6 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 
 - (NSString *)descrUpperText {
     NSString *text = @"";
-
     ZPPCurrentBeginState state = [self currentState];
 
     NSString *morningString = @"Доброе утро, ";
@@ -201,7 +197,6 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
             if ([WelcomeScreenProvider sharedProvider].imageURL) {
                 return nil;
             }
-            
             text = makePreorder.copy;
             break;
         case ZPPCurrentBeginStateNotLoged:
@@ -214,7 +209,6 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 
 - (NSString *)buttonText {
     NSString *text = @"ВОЙТИ";
-
     ZPPCurrentBeginState state = [self currentState];
 
     switch (state) {
@@ -225,19 +219,15 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
             text = @"СДЕЛАТЬ ПРЕДЗАКАЗ";
             break;
         case ZPPCurrentBeginStateNotLoged:
-
+            break;
         default:
             break;
     }
+    
     return text;
 }
 
 - (ZPPCurrentBeginState)currentState {
-    // return ZPPCurrentBeginStateNotLoged;
-
-    //    NSDate *now = [ZPPTimeManager sharedManager].currentTime;  //[NSDate new];
-    //    NSDate *openTime = [ZPPTimeManager sharedManager].openTime;
-
     if (![[ZPPUserManager sharedInstance] checkUser]) {
         return ZPPCurrentBeginStateNotLoged;
     } else if (![ZPPTimeManager sharedManager].isOpen) {
