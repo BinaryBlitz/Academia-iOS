@@ -58,7 +58,7 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
     cell.contentView.backgroundColor = [UIColor blackColor];
 
     
-    if ([WelcomeScreenProvider sharedProvider].imageURL) {
+    if ([[WelcomeScreenProvider sharedProvider] hasAvailableScreen]) {
         [self loadImageView:cell.backImageView url:[WelcomeScreenProvider sharedProvider].imageURL];
     } else {
         cell.backImageView.image = [UIImage imageNamed:@"back3.jpg"];
@@ -86,7 +86,7 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
         cell.smallImageView.hidden = YES;
     }
     
-    if ([WelcomeScreenProvider sharedProvider].imageURL) {
+    if ([[WelcomeScreenProvider sharedProvider] hasAvailableScreen]) {
         cell.logoImageView.hidden = YES;
         cell.smallImageView.hidden = YES;
     }
@@ -135,12 +135,12 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 
     switch (state) {
         case ZPPCurrentBeginStateOpen:
-            if ([WelcomeScreenProvider sharedProvider].imageURL) {
+            if ([[WelcomeScreenProvider sharedProvider] hasAvailableScreen]) {
                 return nil;
             }
             break;
         case ZPPCurrentBeginStateClosed:
-            if ([WelcomeScreenProvider sharedProvider].imageURL) {
+            if ([[WelcomeScreenProvider sharedProvider] hasAvailableScreen]) {
                 return nil;
             }
             if ([d hour] < 6) {
@@ -189,12 +189,12 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
     
     switch (state) {
         case ZPPCurrentBeginStateOpen:
-            if ([WelcomeScreenProvider sharedProvider].imageURL) {
+            if ([[WelcomeScreenProvider sharedProvider] hasAvailableScreen]) {
                 return nil;
             }
             break;
         case ZPPCurrentBeginStateClosed:
-            if ([WelcomeScreenProvider sharedProvider].imageURL) {
+            if ([[WelcomeScreenProvider sharedProvider] hasAvailableScreen]) {
                 return nil;
             }
             text = makePreorder.copy;
