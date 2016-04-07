@@ -6,12 +6,8 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
-
-@interface ZPPMainPageVC : UIPageViewController <UIPageViewControllerDelegate,
-UIPageViewControllerDataSource, UIScrollViewDelegate>
-
-
+@interface ZPPMainPageVC : UIPageViewController <UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIScrollViewDelegate>
 
 @end
