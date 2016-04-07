@@ -37,8 +37,6 @@
 #import "ZPPOrderItem.h"
 
 @import SDWebImage;
-// libs
-//#import <LoremIpsum.h>
 
 static NSString *ZPPProductMainCellIdentifier = @"ZPPProductsMainCellIdentifier";
 static NSString *ZPPProductIngridientsCellIdentifier = @"ZPPProductCellIdentifier";
@@ -70,16 +68,6 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     [super viewDidLoad];
     self.tableView.estimatedRowHeight = 100.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    //
-    //    UIView *v = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    //    v.backgroundColor = [UIColor whiteColor];
-    //
-    //    self.tableView.tableFooterView = v;
-    //
-    //    UIEdgeInsets insets = self.tableView.contentInset;
-    //    self.tableView.contentInset =
-    //    UIEdgeInsetsMake(insets.top, insets.left, insets.bottom - self.screenHeight,
-    //    insets.right);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -87,13 +75,10 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     [self showBottomCells];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (void)configureWithOrder:(ZPPOrder *)order {
     self.order = order;
 }
+
 - (void)configureWithDish:(ZPPDish *)dish {
     self.dish = dish;
     [self.tableView reloadData];
@@ -178,8 +163,6 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
             [cell.addToBasketButton makeBorderedWithColor:[UIColor clearColor]];
             cell.addToBasketButton.backgroundColor = [UIColor colorWithWhite:2 / 2.5 alpha:1];
             cell.addToBasketButton.titleLabel.font = [UIFont boldFontOfSize:16];
-            //        [cell.addToBasketButton setTitleColor:[UIColor blackColor]
-            //        forState:UIControlStateNormal];
         } else if (orderItem) {
             buttonText = @"ЗАКАЗАТЬ ЕЩЕ";
             cell.addToBasketButton.enabled = YES;
@@ -417,14 +400,9 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
                          progress:nil
                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType,
                                     BOOL finished, NSURL *imageURL) {
-                            if (!image) {
-                                return;
+                            if (image) {
+                                imgView.image = image;
                             }
-                            //                            UITableViewCell *cell = [self.tableView
-                            //                            cellForRowAtIndexPath:ip];
-                            //                            if (cell) {
-                            imgView.image = image;
-                            //                            }
                         }];
 }
 
