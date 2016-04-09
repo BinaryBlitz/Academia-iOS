@@ -107,7 +107,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 
 - (void)orderNowAction:(UIButton *)sender {
     [self addCheckmarkToButton:sender];
-    self.order.date = [[ZPPTimeManager sharedManager].currentTime dateByAddingMinutes:50];
+    self.order.deliverNow = YES;
     [self.atTimeButton setTitle:@"ВЫБРАТЬ ВРЕМЯ" forState:UIControlStateNormal];
 }
 
@@ -298,7 +298,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
         rows:keys
         initialSelection:0
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-
+            self.order.deliverNow = NO;
             [sender setTitle:selectedValue forState:UIControlStateNormal];
             [self addCheckmarkToButton:self.atTimeButton];
             
