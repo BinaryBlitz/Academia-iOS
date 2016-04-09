@@ -21,6 +21,7 @@
     self = [super init];
     if (self) {
         self.orderStatus = ZPPOrderStatusNotSended;
+        self.deliverNow = YES;
     }
     return self;
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "ZPPItemProtocol.h"
 
 typedef NS_ENUM(NSInteger, ZPPOrderStatus) {
@@ -18,15 +18,15 @@ typedef NS_ENUM(NSInteger, ZPPOrderStatus) {
 };
 
 @class ZPPAddress;
-//@class ZPPCreditCard;
 @class ZPPOrderItem;
-@interface ZPPOrder : NSObject
+@interface ZPPOrder: NSObject
 
 @property (strong, nonatomic, readonly) NSMutableArray *items;
 @property (strong, nonatomic) NSDate *date;
 @property (strong, nonatomic) ZPPAddress *address;
 
 @property (assign, nonatomic) double starValue;
+@property (nonatomic) BOOL deliverNow;
 @property (strong, nonatomic) NSString *commentString;
 
 @property (strong, nonatomic) NSString *identifier;
@@ -42,23 +42,14 @@ typedef NS_ENUM(NSInteger, ZPPOrderStatus) {
                             rating:(float)rating;
 
 - (void)addItem:(id<ZPPItemProtocol>)item;
-
 - (void)removeItem:(id<ZPPItemProtocol>)item;
-
 - (ZPPOrderItem *)orderItemForItem:(id<ZPPItemProtocol>)item;
-
 - (void)checkAllAndRemoveEmpty;
-
 - (NSInteger)totalCount;
-
 - (NSInteger)totalPrice;
-
 - (NSInteger)totalPriceWithDelivery;
-
 - (BOOL)deliveryIncluded;
-
 - (NSString *)orderDescr;
-
 - (void)clearOrder;
 
 @end

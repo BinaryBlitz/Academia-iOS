@@ -32,27 +32,12 @@
     dict[@"latitude"] = @(order.address.coordinate.latitude);
     dict[@"longitude"] = @(order.address.coordinate.longitude);
 
-    if (order.date) {
+    if (!order.deliverNow) {
         dict[@"scheduled_for"] = [order.date serverFormattedString];
     }
 
-//    NSLog(@"order dict %@", dict);
-
     return [NSDictionary dictionaryWithDictionary:dict];
 }
-
-//- (NSArray *)ordersArrFromDicts:(NSArray *)arr {
-//    NSMutableArray *tmp = [NSMutableArray array];
-//    for (NSDictionary *d in arr) {
-//
-//        ZPPOrder *ord = [[self class] parseOrderFromDict:d];
-//
-//        [tmp addObject:ord];
-//
-//    }
-//
-//    return [NSArray arrayWithArray:tmp];
-//}
 
 + (ZPPOrder *)parseOrderFromDict:(NSDictionary *)dict {
     NSString *identifier = dict[@"id"];
