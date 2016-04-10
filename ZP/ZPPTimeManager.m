@@ -54,6 +54,11 @@
         DTTimePeriod *timePeriod = [DTTimePeriod timePeriodWithStartDate:startDate endDate:endDate];
         [openHoursGroup addObject:timePeriod];
     }
+    [openHoursGroup sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        DTTimePeriod *first = (DTTimePeriod *)obj1;
+        DTTimePeriod *second = (DTTimePeriod *)obj2;
+        return [first.StartDate isEarlierThan:second.StartDate] ? NSOrderedAscending : NSOrderedDescending;
+    }];
     
     timeManager.openTimePeriodChain = [NSArray arrayWithArray:openHoursGroup];
     
