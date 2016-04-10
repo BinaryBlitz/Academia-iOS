@@ -279,7 +279,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
     DTTimePeriod *lastTimePeriod = timeManager.openTimePeriodChain.lastObject;
     NSDate *closeDate = [lastTimePeriod.EndDate dateBySubtractingMinutes:30];
     NSString *descrString;
-    if ([timeManager.currentTime isEarlierThan:closeDate]) {
+    if ([[timeManager.currentTime dateByAddingMinutes:50] isEarlierThan:closeDate]) {
         descrString = @"Сегодня в";
     } else {
         descrString = @"Завтра в";
