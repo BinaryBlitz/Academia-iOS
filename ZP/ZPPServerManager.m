@@ -9,8 +9,8 @@
 #import "ZPPServerManager.h"
 #import "AFNetworking.h"
 
-//NSString *const ZPPServerBaseUrl = @"http://128.199.51.211/";
-NSString *const ZPPServerBaseUrl = @"http://zpapp.binaryblitz.ru/";
+NSString *const ZPPServerBaseUrl = @"http://128.199.51.211/";
+//NSString *const ZPPServerBaseUrl = @"http://zpapp.binaryblitz.ru/";
 
 NSString *const ZPPNoInternetConnectionMessage = @"Проверьте интернет соединение";
 
