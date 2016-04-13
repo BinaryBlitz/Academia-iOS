@@ -26,3 +26,6 @@ Pods/
 *.pem
 *.pkey
 *.p12
+
+# OS X
+.DS_Store
