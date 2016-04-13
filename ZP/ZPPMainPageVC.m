@@ -157,6 +157,17 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
     }
 }
 
+- (void) showMenuPreview {
+    // kek
+    if (self.productViewControllers.count > 1) {  // REDO костыль
+        [self setViewControllers:@[ self.productViewControllers[1] ]
+                       direction:UIPageViewControllerNavigationDirectionForward
+                        animated:YES
+                      completion:nil];  // redo
+        self.pageControl.currentPage = 1;
+    }
+}
+
 #pragma mark - ZPPProductScreenTVCDelegate
 
 - (void)addItemIntoOrder:(id<ZPPItemProtocol>)item {

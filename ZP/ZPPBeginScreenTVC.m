@@ -90,6 +90,17 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
         cell.logoImageView.hidden = YES;
         cell.smallImageView.hidden = YES;
     }
+    
+    if (state == ZPPCurrentBeginStateNotLoged) {
+        cell.showMenuPreviewButton.hidden = false;
+        [cell.showMenuPreviewButton makeBorderedWithColor:[UIColor whiteColor]];
+
+        [cell.showMenuPreviewButton addTarget:self
+                                       action:@selector(previewButtonAction:)
+                             forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        cell.showMenuPreviewButton.hidden = true;
+    }
 
     return cell;
 }
@@ -119,6 +130,13 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
     if (self.beginDelegate &&
         [self.beginDelegate conformsToProtocol:@protocol(ZPPBeginScreenTVCDelegate)]) {
         [self.beginDelegate didPressBeginButton];
+    }
+}
+
+- (void)previewButtonAction:(UIButton *)sender {
+    if (self.beginDelegate &&
+        [self.beginDelegate conformsToProtocol:@protocol(ZPPBeginScreenTVCDelegate)]) {
+        [self.beginDelegate showMenuPreview];
     }
 }
 

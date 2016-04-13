@@ -58,12 +58,28 @@
                             <constraint firstAttribute="height" constant="55" id="uqm-wz-beO"/>
                         </constraints>
                     </imageView>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQz-rW-DhN">
+                        <rect key="frame" x="28" y="313" width="264" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="270" id="amR-Pr-kn7"/>
+                            <constraint firstAttribute="height" constant="50" id="upq-OS-Cdg"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="22"/>
+                        <state key="normal" title="ПОСМОТРЕТЬ МЕНЮ"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="amR-Pr-kn7"/>
+                            </mask>
+                        </variation>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="MwZ-NN-nSR" firstAttribute="leading" secondItem="hOk-Db-sRu" secondAttribute="leadingMargin" id="00e-Ds-eZZ"/>
+                    <constraint firstItem="wQz-rW-DhN" firstAttribute="height" secondItem="6zS-xG-LWg" secondAttribute="height" id="0Cc-7h-Myu"/>
                     <constraint firstItem="6zS-xG-LWg" firstAttribute="leading" secondItem="hOk-Db-sRu" secondAttribute="leadingMargin" constant="20" id="1wv-BX-vT9"/>
                     <constraint firstItem="VDn-qe-5x7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hOk-Db-sRu" secondAttribute="leadingMargin" constant="18" id="41z-a7-CYI"/>
                     <constraint firstAttribute="trailingMargin" secondItem="6zS-xG-LWg" secondAttribute="trailing" constant="17" id="8cp-j7-tDV"/>
+                    <constraint firstItem="6zS-xG-LWg" firstAttribute="top" secondItem="wQz-rW-DhN" secondAttribute="bottom" constant="15" id="9h8-JZ-6rQ"/>
                     <constraint firstItem="VM1-80-t2A" firstAttribute="top" secondItem="hOk-Db-sRu" secondAttribute="topMargin" constant="-8" id="AA9-cI-umz"/>
                     <constraint firstItem="Rk2-cm-Fxl" firstAttribute="centerX" secondItem="hOk-Db-sRu" secondAttribute="centerX" id="Czn-vf-Vof"/>
                     <constraint firstItem="MwZ-NN-nSR" firstAttribute="top" secondItem="Rk2-cm-Fxl" secondAttribute="bottom" constant="24" id="N4Q-vb-ZGi"/>
@@ -71,6 +87,7 @@
                     <constraint firstItem="Rk2-cm-Fxl" firstAttribute="top" secondItem="hOk-Db-sRu" secondAttribute="topMargin" id="Rn5-bV-f79"/>
                     <constraint firstItem="2GH-UC-6z4" firstAttribute="centerX" secondItem="hOk-Db-sRu" secondAttribute="centerX" id="TRB-Ih-462"/>
                     <constraint firstItem="VM1-80-t2A" firstAttribute="leading" secondItem="hOk-Db-sRu" secondAttribute="leadingMargin" constant="-8" id="UL1-kK-3HB"/>
+                    <constraint firstItem="wQz-rW-DhN" firstAttribute="centerX" secondItem="6zS-xG-LWg" secondAttribute="centerX" id="WSl-y2-y6h"/>
                     <constraint firstAttribute="trailingMargin" secondItem="VM1-80-t2A" secondAttribute="trailing" constant="-8" id="Xtn-TB-Ga2"/>
                     <constraint firstItem="MwZ-NN-nSR" firstAttribute="trailing" secondItem="hOk-Db-sRu" secondAttribute="trailingMargin" id="YLC-uJ-03W"/>
                     <constraint firstItem="VDn-qe-5x7" firstAttribute="centerX" secondItem="hOk-Db-sRu" secondAttribute="centerX" id="ZDc-hg-CBN"/>
@@ -80,6 +97,7 @@
                     <constraint firstItem="6zS-xG-LWg" firstAttribute="centerX" secondItem="hOk-Db-sRu" secondAttribute="centerX" id="lIh-t6-Ykk"/>
                     <constraint firstItem="2GH-UC-6z4" firstAttribute="top" secondItem="hOk-Db-sRu" secondAttribute="topMargin" constant="60" id="wo6-n8-vb7"/>
                     <constraint firstItem="6zS-xG-LWg" firstAttribute="top" secondItem="VDn-qe-5x7" secondAttribute="bottom" constant="24" id="yh2-Xr-SeL"/>
+                    <constraint firstItem="wQz-rW-DhN" firstAttribute="width" secondItem="6zS-xG-LWg" secondAttribute="width" id="z6y-Qb-Izi"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
@@ -92,6 +110,7 @@
                 <outlet property="beginButton" destination="6zS-xG-LWg" id="bOp-Oi-i3Y"/>
                 <outlet property="descrLabel" destination="VDn-qe-5x7" id="PM3-8A-lTA"/>
                 <outlet property="logoImageView" destination="2GH-UC-6z4" id="xSL-UN-kqc"/>
+                <outlet property="showMenuPreviewButton" destination="wQz-rW-DhN" id="wNy-Uy-uOA"/>
                 <outlet property="smallImageView" destination="Rk2-cm-Fxl" id="WYN-Pe-VE0"/>
                 <outlet property="upperDescrLabel" destination="MwZ-NN-nSR" id="l6k-Db-Oj2"/>
             </connections>
