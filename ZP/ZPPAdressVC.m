@@ -10,6 +10,8 @@
 
 @import INTULocationManager;
 @import LMGeocoder;
+@import GoogleMaps;
+@import CoreLocation;
 
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIView+UIViewCategory.h"
@@ -21,15 +23,11 @@
 #import "ZPPSearchResultController.h"
 #import "ZPPServerManager+ZPPOrderServerManager.h"
 
-@import CoreLocation;
-
 static NSString *ZPPSearchResultCellIdentifier = @"ZPPSearchResultCellIdentifier";
 static NSString *ZPPSearchResultControllerIdentifier = @"ZPPSearchResultControllerIdentifier";
 
 static NSString *ZPPButtonTitle = @"Да, я здесь";
 static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
-
-@import GoogleMaps;
 
 @interface ZPPAdressVC () <GMSMapViewDelegate, ZPPAddressDelegate, UITextFieldDelegate>
 
