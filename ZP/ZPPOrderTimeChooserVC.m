@@ -265,7 +265,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
             } onFailure:^(NSError *error, NSInteger statusCode) {
                 UIAlertController *alert =
                         [UIAlertController alertControllerWithTitle:@"Ошибка"
-                                                            message:@"Не удалось обновить доступное вермя доставки. Проверьте интернет соединение."
+                                                            message:@"Не удалось обновить доступное время доставки. Проверьте интернет соединение."
                                                      preferredStyle:UIAlertControllerStyleAlert];
                 [alert addAction:[UIAlertAction actionWithTitle:@"OK"
                                                           style:UIAlertActionStyleDefault handler:nil]];
