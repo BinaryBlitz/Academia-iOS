@@ -8,7 +8,7 @@
 
 #import "ZPPCreditCard.h"
 
-@interface ZPPCreditCard ()
+@interface ZPPCreditCard()
 
 @property (strong, nonatomic) NSString *cardNumber;
 @property (assign, nonatomic) NSInteger month;

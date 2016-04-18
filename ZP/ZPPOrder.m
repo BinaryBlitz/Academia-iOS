@@ -8,6 +8,7 @@
 
 #import "ZPPOrder.h"
 #import "ZPPOrderItem.h"
+#import "ZPPCreditCard.h"
 
 @interface ZPPOrder ()
 

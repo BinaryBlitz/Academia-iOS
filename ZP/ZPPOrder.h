@@ -19,11 +19,14 @@ typedef NS_ENUM(NSInteger, ZPPOrderStatus) {
 
 @class ZPPAddress;
 @class ZPPOrderItem;
+@class ZPPCreditCard;
+
 @interface ZPPOrder: NSObject
 
 @property (strong, nonatomic, readonly) NSMutableArray *items;
 @property (strong, nonatomic) NSDate *date;
 @property (strong, nonatomic) ZPPAddress *address;
+@property (strong, nonatomic) ZPPCreditCard *card;
 
 @property (assign, nonatomic) double starValue;
 @property (nonatomic) BOOL deliverNow;
