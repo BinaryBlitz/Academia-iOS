@@ -7,7 +7,11 @@
 //
 
 #import "ZPPOrderTVC.h"
-#import "ZPPOrder.h"
+
+@import Crashlytics;
+@import SafariServices;
+#import "DTCustomColoredAccessory.h"
+
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "UIView+UIViewCategory.h"
 #import "UIButton+ZPPButtonCategory.h"
@@ -18,27 +22,19 @@
 #import "ZPPNoCreditCardCell.h"
 #import "ZPPOrderTotalCell.h"
 #import "ZPPOrderAddressCell.h"
-//#import "ZPPCreditCardInfoCell.h"
-//#import "ZPPCardInOrderCell.h"
-
-#import <Crashlytics/Crashlytics.h>
+#import "ZPPCreditCardInfoCell.h"
+#import "ZPPCardInOrderCell.h"
 
 #import "ZPPCardViewController.h"
 #import "ZPPOrderItemVC.h"
 #import "ZPPOrderResultVC.h"
-
-#import "DTCustomColoredAccessory.h"
-
 #import "ZPPOrderTimeChooserVC.h"
-
 #import "ZPPAdressVC.h"
+
 #import "ZPPAddressDelegate.h"
-
 #import "ZPPConsts.h"
-
+#import "ZPPOrder.h"
 #import "ZPPPaymentManager.h"
-
-@import SafariServices;
 
 static NSString *ZPPOrderItemCellReuseIdentifier = @"ZPPOrderItemCellReuseIdentifier";
 static NSString *ZPPNoCreditCardCellIdentifier = @"ZPPNoCreditCardCellIdentifier";
@@ -67,8 +63,6 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
     [super viewDidLoad];
     [self registrateCells];
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
-    // self.title = @"ЗАКАЗ";
-    //   [self setCustomNavigationBackButtonWithTransition];
     [self setNeedsStatusBarAppearanceUpdate];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 
@@ -76,9 +70,7 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
     self.tableView.tintColor = [UIColor blackColor];
     
     
-    [Answers logCustomEventWithName:@"ORDER_OPEN"
-                   customAttributes:@{}];
-    
+    [Answers logCustomEventWithName:@"ORDER_OPEN" customAttributes:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -120,28 +112,28 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == -1) {
-        //        if (!self.order.card) {
-        //            ZPPNoCreditCardCell *cell =
-        //                [tableView
-        //                dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
-        //            [cell.actionButton setTitle:@"Выберите карту" forState:UIControlStateNormal];
-        //
-        //            [cell.actionButton addTarget:self
-        //                                  action:@selector(buttonsAction:)
-        //                        forControlEvents:UIControlEventTouchUpInside];
-        //            return cell;
-        //        } else {
-        //            ZPPCardInOrderCell *cell =
-        //                [tableView
-        //                dequeueReusableCellWithIdentifier:ZPPCreditCardInfoCellIdentifier];
-        //            [cell configureWithCard:self.order.card];
-        //
-        //            [cell.chooseAnotherButton addTarget:self
-        //                                         action:@selector(buttonsAction:)
-        //                               forControlEvents:UIControlEventTouchUpInside];
-        //            return cell;
-        //        }
-        return nil;
+//                if (!self.order.card) {
+//                    ZPPNoCreditCardCell *cell =
+//                        [tableView
+//                        dequeueReusableCellWithIdentifier:ZPPNoCreditCardCellIdentifier];
+//                    [cell.actionButton setTitle:@"Выберите карту" forState:UIControlStateNormal];
+//        
+//                    [cell.actionButton addTarget:self
+//                                          action:@selector(buttonsAction:)
+//                                forControlEvents:UIControlEventTouchUpInside];
+//                    return cell;
+//                } else {
+//                    ZPPCardInOrderCell *cell =
+//                        [tableView
+//                        dequeueReusableCellWithIdentifier:ZPPCreditCardInfoCellIdentifier];
+//                    [cell configureWithCard:self.order.card];
+//        
+//                    [cell.chooseAnotherButton addTarget:self
+//                                                 action:@selector(buttonsAction:)
+//                                       forControlEvents:UIControlEventTouchUpInside];
+//                    return cell;
+//                }
+//        return nil;
     } else if (indexPath.section == 0) {
         if (!self.order.address) {
             ZPPNoCreditCardCell *cell =
@@ -250,27 +242,21 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
 }
 
 - (void)showMap {
-    ZPPAdressVC *adressVC =
-        [self.storyboard instantiateViewControllerWithIdentifier:ZPPAdressVCIdentifier];
+    ZPPAdressVC *adressVC = [self.storyboard instantiateViewControllerWithIdentifier:ZPPAdressVCIdentifier];
     adressVC.addressDelegate = self;
 
     [self.navigationController pushViewController:adressVC animated:YES];
 }
 
 - (void)showItemModifier:(ZPPOrderItem *)orderItem {
-    ZPPOrderItemVC *orderVC =
-        [self.storyboard instantiateViewControllerWithIdentifier:ZPPOrderItemVCIdentifier];
-
+    ZPPOrderItemVC *orderVC = [self.storyboard instantiateViewControllerWithIdentifier:ZPPOrderItemVCIdentifier];
     [orderVC configureWithOrder:self.order item:orderItem];
-
     [self.navigationController pushViewController:orderVC animated:YES];
 }
 
 - (void)hideIsNeeded {
     if (self.order.items.count <= 0) {
-        [self dismissViewControllerAnimated:YES
-                                 completion:^{
-                                 }];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -288,28 +274,9 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
         return;
     }
     
-    
     ZPPOrderTimeChooserVC *orvc = [self resultScreen];
     [orvc configureWithOrder:self.order];
-    //    [self presentViewController:orvc animated:YES completion:nil];
     [self.navigationController pushViewController:orvc animated:YES];
-
-    //    [[ZPPPaymentManager sharedManager] registrateWithOrderNum:@"num3" onSuccess:^{
-    //
-    //    } onFailure:^(NSError *error, NSInteger statusCode) {
-    //
-    //    }];
-
-    //
-    //    [[ZPPPaymentManager sharedManager] registrateWithOrderNum:@"num3" onSuccess:^(NSURL *url,
-    //    NSString *orderIDAlfa) {
-    //        SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:url
-    //        entersReaderIfAvailable:NO];
-    //        [self presentViewController:svc animated:YES completion:nil];
-    //
-    //    } onFailure:^(NSError *error, NSInteger statusCode) {
-    //
-    //    }];
 }
 
 #pragma mark - ZPPAddressDelegate
@@ -319,14 +286,7 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
     [self.tableView reloadData];
 }
 
-#pragma mark - card delegate
-
-//- (void)configureWithCard:(ZPPCreditCard *)card sender:(id)sender {
-//    self.order.card = card;
-//    [self.tableView reloadData];
-//}
-
-#pragma mark - support
+#pragma mark - Support
 
 - (void)registrateCells {
     [self registrateCellForClass:[ZPPOrderItemCell class]
@@ -337,10 +297,10 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
                  reuseIdentifier:ZPPOrderTotalCellIdentifier];
     [self registrateCellForClass:[ZPPOrderAddressCell class]
                  reuseIdentifier:ZPPOrderAddressCellIdentifier];
-    //    [self registrateCellForClass:[ZPPCreditCardInfoCell class]
-    //                 reuseIdentifier:ZPPCreditCardInfoCellIdentifier];
-    //    [self registrateCellForClass:[ZPPCardInOrderCell class]
-    //                 reuseIdentifier:ZPPCreditCardInfoCellIdentifier];
+        [self registrateCellForClass:[ZPPCreditCardInfoCell class]
+                     reuseIdentifier:ZPPCreditCardInfoCellIdentifier];
+        [self registrateCellForClass:[ZPPCardInOrderCell class]
+                     reuseIdentifier:ZPPCreditCardInfoCellIdentifier];
 }
 
 - (ZPPOrderTimeChooserVC *)resultScreen {
