@@ -22,7 +22,6 @@
 		1907C7491BF0A7AA003BA62E /* ZPPAddressHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1907C7481BF0A7AA003BA62E /* ZPPAddressHelper.m */; };
 		1907C74B1BF0B5BE003BA62E /* barBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1907C74A1BF0B5BE003BA62E /* barBackground.png */; };
 		1907C74F1BF0C2AC003BA62E /* ZPPCreditCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 1907C74E1BF0C2AC003BA62E /* ZPPCreditCard.m */; };
-		1907C7551BF0C4B0003BA62E /* ZPPCardInputTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1907C7541BF0C4B0003BA62E /* ZPPCardInputTVC.m */; };
 		1907C7581BF0C80D003BA62E /* ZPPCardNumberInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1907C7571BF0C80D003BA62E /* ZPPCardNumberInputCell.m */; };
 		1907C75A1BF0C820003BA62E /* ZPPCardNumberInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1907C7591BF0C820003BA62E /* ZPPCardNumberInputCell.xib */; };
 		1907C75F1BF0D34C003BA62E /* ZPPCardDateCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1907C75D1BF0D34C003BA62E /* ZPPCardDateCodeCell.m */; };
@@ -125,7 +124,6 @@
 		198FA5371BC17204008BC11B /* ZPPProductAnotherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198FA5361BC17204008BC11B /* ZPPProductAnotherCell.xib */; };
 		198FD97C1BE7A9F800A30B4D /* ZPPNoCreditCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 198FD97A1BE7A9F800A30B4D /* ZPPNoCreditCardCell.m */; };
 		198FD97D1BE7A9F800A30B4D /* ZPPNoCreditCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198FD97B1BE7A9F800A30B4D /* ZPPNoCreditCardCell.xib */; };
-		198FD9811BE7B7BC00A30B4D /* ZPPCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198FD9801BE7B7BC00A30B4D /* ZPPCardViewController.m */; };
 		198FD9861BE7B84C00A30B4D /* ZPPAddNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 198FD9851BE7B84C00A30B4D /* ZPPAddNewCell.m */; };
 		198FD9881BE7B91E00A30B4D /* ZPPAddNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198FD9871BE7B91E00A30B4D /* ZPPAddNewCell.xib */; };
 		19A0984F1C7652DB0020A9BA /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19A0984E1C7652DB0020A9BA /* Onboarding.storyboard */; };
@@ -229,8 +227,6 @@
 		1907C74A1BF0B5BE003BA62E /* barBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barBackground.png; sourceTree = "<group>"; };
 		1907C74D1BF0C2AC003BA62E /* ZPPCreditCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPCreditCard.h; sourceTree = "<group>"; };
 		1907C74E1BF0C2AC003BA62E /* ZPPCreditCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPCreditCard.m; sourceTree = "<group>"; };
-		1907C7531BF0C4B0003BA62E /* ZPPCardInputTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPCardInputTVC.h; sourceTree = "<group>"; };
-		1907C7541BF0C4B0003BA62E /* ZPPCardInputTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPCardInputTVC.m; sourceTree = "<group>"; };
 		1907C7561BF0C80D003BA62E /* ZPPCardNumberInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPCardNumberInputCell.h; sourceTree = "<group>"; };
 		1907C7571BF0C80D003BA62E /* ZPPCardNumberInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPCardNumberInputCell.m; sourceTree = "<group>"; };
 		1907C7591BF0C820003BA62E /* ZPPCardNumberInputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPCardNumberInputCell.xib; sourceTree = "<group>"; };
@@ -396,8 +392,6 @@
 		198FD9791BE7A9F800A30B4D /* ZPPNoCreditCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPNoCreditCardCell.h; sourceTree = "<group>"; };
 		198FD97A1BE7A9F800A30B4D /* ZPPNoCreditCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPNoCreditCardCell.m; sourceTree = "<group>"; };
 		198FD97B1BE7A9F800A30B4D /* ZPPNoCreditCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPNoCreditCardCell.xib; sourceTree = "<group>"; };
-		198FD97F1BE7B7BC00A30B4D /* ZPPCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPCardViewController.h; sourceTree = "<group>"; };
-		198FD9801BE7B7BC00A30B4D /* ZPPCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPCardViewController.m; sourceTree = "<group>"; };
 		198FD9841BE7B84C00A30B4D /* ZPPAddNewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPAddNewCell.h; sourceTree = "<group>"; };
 		198FD9851BE7B84C00A30B4D /* ZPPAddNewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPAddNewCell.m; sourceTree = "<group>"; };
 		198FD9871BE7B91E00A30B4D /* ZPPAddNewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPAddNewCell.xib; sourceTree = "<group>"; };
@@ -827,7 +821,6 @@
 				1948C5281BEBAC7A00084BC8 /* Promocode */,
 				19D2426C1BEA2C6B007A0FEB /* OrderHistory */,
 				194235401BE92D650014BD9A /* Gift */,
-				198FD97E1BE7B60E00A30B4D /* Cards */,
 				190F9C7A1BE3C0F20032E14D /* Order */,
 				198635641BDFB5000070E3F7 /* Help */,
 				19062D8B1BD695C1003AC242 /* Profile */,
@@ -1247,17 +1240,6 @@
 				1907C7661BF149FF003BA62E /* nocard */,
 			);
 			name = cardCells;
-			sourceTree = "<group>";
-		};
-		198FD97E1BE7B60E00A30B4D /* Cards */ = {
-			isa = PBXGroup;
-			children = (
-				198FD97F1BE7B7BC00A30B4D /* ZPPCardViewController.h */,
-				198FD9801BE7B7BC00A30B4D /* ZPPCardViewController.m */,
-				1907C7531BF0C4B0003BA62E /* ZPPCardInputTVC.h */,
-				1907C7541BF0C4B0003BA62E /* ZPPCardInputTVC.m */,
-			);
-			name = Cards;
 			sourceTree = "<group>";
 		};
 		198FD9831BE7B82200A30B4D /* credit_card */ = {
@@ -1990,7 +1972,6 @@
 				19DADF501BF62D1E007D9DF2 /* ZPPCardNumberTextField.m in Sources */,
 				19B3A97A1C073DE00089F02A /* ZPPBadgeHelper.m in Sources */,
 				19DADF491BF61715007D9DF2 /* ZPPNoInternetConnectionVC.m in Sources */,
-				198FD9811BE7B7BC00A30B4D /* ZPPCardViewController.m in Sources */,
 				19E6D4161BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m in Sources */,
 				19DA03E11BC12ADE00DC0636 /* UIFont+ZPPFontCategory.m in Sources */,
 				190F9C841BE3C19A0032E14D /* ZPPOrderItemCell.m in Sources */,
@@ -2024,7 +2005,6 @@
 				1948C53E1BEC19B800084BC8 /* ZPPStuff.m in Sources */,
 				1907C7581BF0C80D003BA62E /* ZPPCardNumberInputCell.m in Sources */,
 				19014A4A1BC034CF001E0D77 /* main.m in Sources */,
-				1907C7551BF0C4B0003BA62E /* ZPPCardInputTVC.m in Sources */,
 				19F378FE1BFBBDF3004827A0 /* ZPPPaymentWebController.m in Sources */,
 				1907C75F1BF0D34C003BA62E /* ZPPCardDateCodeCell.m in Sources */,
 				37204FE71CB64E150010448E /* WelcomeScreenProvider.swift in Sources */,
