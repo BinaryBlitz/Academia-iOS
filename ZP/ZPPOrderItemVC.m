@@ -7,21 +7,18 @@
 //
 
 #import "ZPPOrderItemVC.h"
-#import "ZPPOrder.h"
-#import "ZPPOrderItem.h"
-#import "UIView+UIViewCategory.h"
-
-#import "UIViewController+ZPPViewControllerCategory.h"
-
-//#import <MBProgressHUD.h>
-//#import <VBFPopFlatButton.h>
 
 @import VBFPopFlatButton;
 @import MBProgressHUD;
+#import "ZPPOrder.h"
+#import "ZPPOrderItem.h"
+#import "UIView+UIViewCategory.h"
+#import "UIViewController+ZPPViewControllerCategory.h"
 
 #import "ZPPConsts.h"
 
 @interface ZPPOrderItemVC ()
+
 @property (strong, nonatomic) ZPPOrder *order;
 @property (strong, nonatomic) ZPPOrderItem *orderItem;
 
@@ -33,7 +30,6 @@
     [super viewDidLoad];
     
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
-    // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -57,9 +53,6 @@
     [self.doneButton setExclusiveTouch:YES];
     [self.deleteButton setExclusiveTouch:YES];
 
-    //    self.plusButton.layer.borderColor = [UIColor blackColor].CGColor;
-    //    self.minusButton.layer.borderColor = [UIColor]
-
     [self.plusButton makeBordered];
     [self.minusButton makeBordered];
     self.plusButton.layer.cornerRadius = 35.0;
@@ -72,11 +65,6 @@
     [super viewWillDisappear:animated];
 
     [self.order checkAllAndRemoveEmpty];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)configureWithOrder:(ZPPOrder *)order item:(ZPPOrderItem *)orderItem {
@@ -117,15 +105,6 @@
     [self.order.items removeObject:self.orderItem];
 
     [self popBackWithText:@"Удалено"];
-
-    //    [self showSuccessWithText:@"Удалено"];
-    //
-    //    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)),
-    //                   dispatch_get_main_queue(), ^{
-    //                       [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-    //                       [self.navigationController popViewControllerAnimated:YES];
-    //                   });
 }
 
 - (void)popBackWithText:(NSString *)text {
@@ -153,16 +132,5 @@
     [hud show:YES];
     [hud hide:YES afterDelay:2];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before
-navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
