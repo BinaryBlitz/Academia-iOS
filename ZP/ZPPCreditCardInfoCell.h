@@ -6,16 +6,13 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
-@class BKCardNumberLabel;
 @class ZPPCreditCard;
 
-@interface ZPPCreditCardInfoCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet BKCardNumberLabel *cardNumberLabel;
-@property (weak, nonatomic) IBOutlet UILabel *expirationLabel;
+@interface ZPPCreditCardInfoCell: UITableViewCell
 
-
-- (void)configureWithCard:(ZPPCreditCard *)card;
+@property (weak, nonatomic) IBOutlet UIImageView *checkmarkImageView;
+@property (weak, nonatomic) IBOutlet UILabel *cardNumberLabel;
 
 @end
