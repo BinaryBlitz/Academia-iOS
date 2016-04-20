@@ -10,54 +10,32 @@
 
 @interface ZPPCreditCard()
 
-@property (strong, nonatomic) NSString *cardNumber;
-@property (assign, nonatomic) NSInteger month;
-@property (assign, nonatomic) NSInteger year;
-@property (assign, nonatomic) NSInteger cvc;
-@property (strong, nonatomic) NSString *bindID;
+@property (assign, nonatomic) NSInteger serverId;
+@property (strong, nonatomic) NSString *number;
+@property (strong, nonatomic) NSString *bindingId;
 
 @end
 
 @implementation ZPPCreditCard
 
-- (instancetype)initWithCardNumber:(NSString *)cardNumber
-                             month:(NSInteger)month
-                              year:(NSInteger)year
-                               cvc:(NSInteger)cvc {
-    self = [super init];
-    if (self) {
-        self.cardNumber = cardNumber;
-        self.month = month;
-        self.year = year;
-        self.cvc = cvc;
-    }
-    return self;
++ (ZPPCreditCard *)initWithDictionary: (NSDictionary *)dict {
+    NSNumber *serverId = dict[@"id"];
+    NSString *cardNumber = dict[@"number"];
+    NSString *bindingId = dict[@"binding_id"];
+    
+    ZPPCreditCard *card = [[ZPPCreditCard alloc] initWithCardNumber:cardNumber serverId:serverId.integerValue bindingId:bindingId];
+    return card;
 }
 
-- (instancetype)initWithCardNumber:(NSString *)cardNumber
-                             month:(NSInteger)month
-                              year:(NSInteger)year
-                            bindID:(NSString *)bindID {
+- (instancetype)initWithCardNumber:(NSString *)cardNumber serverId:(NSInteger)serverId bindingId:(NSString *) bindingId {
     self = [super init];
     if (self) {
-        self.cardNumber = cardNumber;
-        self.month = month;
-        self.year = year;
-        self.bindID = bindID;
+        self.serverId = serverId;
+        self.number = cardNumber;
+        self.bindingId = bindingId;
     }
+    
     return self;
-}
-
-- (NSString *)formattedDate {
-    NSString *prev = self.month < 10 ? @" " : @"";
-
-    NSString *monthString = [NSString stringWithFormat:@"%@%@", prev, @(self.month)];
-
-    NSString *yearString = [NSString stringWithFormat:@"%@", @(self.year % 2000)];
-
-    return [NSString stringWithFormat:@"%@/%@", monthString, yearString];
-
-    //  NSString *monthString = [NSString string
 }
 
 @end
