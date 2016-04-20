@@ -208,7 +208,7 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
     if (indexPath.section == 0) {
         return self.order.address ? 110.0 : 60.f;
     } else if (indexPath.section == 1) {
-        return 29.f;
+        return 46.f;
     } else if (indexPath.section == 3) {
         return 100.f;
     } else {
