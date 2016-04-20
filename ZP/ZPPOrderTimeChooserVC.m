@@ -26,6 +26,7 @@
 #import "ZPPPaymentWebController.h"
 #import "ZPPServerManager.h"
 #import "ZPPTimeManager.h"
+#import "ZPPCreditCard.h"
 
 static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
@@ -167,19 +168,32 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 - (void)startPayment {
     [self.makeOrderButton startIndicatingWithType:UIActivityIndicatorViewStyleGray];
     [[ZPPServerManager sharedManager] POSTOrder:self.order
-        onSuccess:^(ZPPOrder *ord) {
-            self.paymentOrder = ord;
+        onSuccess:^(ZPPOrder *order) {
+            self.paymentOrder = order;
+            
+            if (self.order.card) {
+                NSLog(@"binding id: %@", self.order.card.bindingId);
+                NSLog(@"order id: %@", order.identifier);
+                [[ZPPServerManager sharedManager] createNewPaymentWithOrderId:order.identifier
+                    andBindingId:self.order.card.bindingId
+                    onSuccess:^(NSString *paymentURLString) {
+                        [self.makeOrderButton stopIndication];
 
-            [[ZPPServerManager sharedManager] POSTPaymentWithOrderID:ord.identifier
-                onSuccess:^(NSString *paymnetURL) {
+                        NSURL *url = [NSURL URLWithString:paymentURLString];
+                        [self showWebViewWithURl:url];
+                    } onFailure:^(NSError *error, NSInteger statusCode) {
+                        [self.makeOrderButton stopIndication];
+                    }];
+            } else {
+                [[ZPPServerManager sharedManager] registerNewCreditCardOnSuccess:^(NSString *registrationURLString) {
                     [self.makeOrderButton stopIndication];
 
-                    NSURL *url = [NSURL URLWithString:paymnetURL];
+                    NSURL *url = [NSURL URLWithString:registrationURLString];
                     [self showWebViewWithURl:url];
-                }
-                onFailure:^(NSError *error, NSInteger statusCode) {
+                } onFailure:^(NSError *error, NSInteger statusCode) {
                     [self.makeOrderButton stopIndication];
                 }];
+            }
         }
         onFailure:^(NSError *error, NSInteger statusCode) {
             [self.makeOrderButton stopIndication];//redo
@@ -205,16 +219,17 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 - (void)didShowPageWithUrl:(NSURL *)url sender:(UIViewController *)vc {
     NSString *urlString = url.absoluteString;
     NSLog(@"URL %@", urlString);
-    if ([urlString containsString:@"finish"]) {
-        [self checkOrderSender:vc];
-    } else if ([urlString containsString:@"status"]) {
-        NSLog(@"(╯°□°）╯︵ ┻━┻ ");
-        [self checkOrderSender:vc];
-    }
+    UIViewController *orderResultViewContorller = [self.storyboard
+        instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
+
+    [self.navigationController pushViewController:orderResultViewContorller animated:NO];
+    self.paymentOrder = nil;
+    [self.order clearOrder];
+    [self dismissViewControllerAnimated: YES completion:nil];
 }
 
 - (void)checkOrderSender:(UIViewController *)viewController {
-    [[ZPPServerManager sharedManager] checkPaymentWithID:self.paymentOrder.identifier
+    [[ZPPServerManager sharedManager] checkPaymentWithID:self.order.identifier
         onSuccess:^(NSInteger sta) {
             
             if (sta == 2) {
@@ -277,7 +292,8 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
     
     NSArray *deliveryDates = [self deliveryDatesForTimeManager:timeManager];
     DTTimePeriod *lastTimePeriod = timeManager.openTimePeriodChain.lastObject;
-    NSDate *closeDate = [lastTimePeriod.EndDate dateBySubtractingMinutes:30];
+//    NSDate *closeDate = [lastTimePeriod.EndDate dateBySubtractingMinutes:30];
+    NSDate *closeDate = lastTimePeriod.EndDate;
     NSString *descrString;
     if ([[timeManager.currentTime dateByAddingMinutes:50] isEarlierThan:closeDate]) {
         descrString = @"Сегодня в";
@@ -319,7 +335,8 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
     
     NSDate *initialDate = [timeManager.currentTime dateByAddingMinutes:50];
     DTTimePeriod *lastTimePeriod = timeManager.openTimePeriodChain.lastObject;
-    NSDate *closeDate = [lastTimePeriod.EndDate dateBySubtractingMinutes:30];
+//    NSDate *closeDate = [lastTimePeriod.EndDate dateBySubtractingMinutes:30];
+    NSDate *closeDate = lastTimePeriod.EndDate;
     
     if ([initialDate isLaterThan:closeDate]) {
         DTTimePeriod *firstTimePeriod = timeManager.openTimePeriodChain.firstObject;

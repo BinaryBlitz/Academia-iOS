@@ -33,7 +33,7 @@
 #import "ZPPAddressDelegate.h"
 #import "ZPPConsts.h"
 #import "ZPPOrder.h"
-#import "ZPPPaymentManager.h"
+#import "ZPPCreditCard.h"
 #import "ZPPServerManager+ZPPOrderServerManager.h"
 
 static NSString *ZPPOrderItemCellReuseIdentifier = @"ZPPOrderItemCellReuseIdentifier";
@@ -156,7 +156,8 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
         if (indexPath.row == _creditCards.count) {
             [cell.cardNumberLabel setText:@"Новая карта"];
         } else {
-            [cell.cardNumberLabel setText:_creditCards[indexPath.row]];
+            ZPPCreditCard *card = _creditCards[indexPath.row];
+            [cell.cardNumberLabel setText:card.number];
         }
         
         if (indexPath.row == _selectedCardIndex) {
@@ -300,6 +301,12 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
         }
         
         return;
+    }
+    
+    if (_creditCards.count != 0 && _selectedCardIndex < _creditCards.count) {
+        self.order.card = _creditCards[_selectedCardIndex];
+    } else {
+        self.order.card = nil;
     }
     
     ZPPOrderTimeChooserVC *orvc = [self resultScreen];
