@@ -14,6 +14,7 @@
 #import "ZPPOrderHelper.h"
 #import "ZPPAddressHelper.h"
 #import "ZPPTimeManager.h"
+#import "ZPPCreditCard.h"
 
 @implementation ZPPServerManager (ZPPOrderServerManager)
 
@@ -65,7 +66,8 @@
 
 - (void)POSTPaymentWithOrderID:(NSString *)orderID
                      onSuccess:(void (^)(NSString *paymnetURL))success
-                     onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+                     onFailure:(void (^)(NSError *error, NSInteger statusCode))failure
+                     __attribute__((deprecated("use createNewPaymentWithOrderId instead"))) {
     NSDictionary *params = @{
         @"api_token" : [ZPPUserManager sharedInstance].user.apiToken,
         @"payment" : @{@"use_binding" : @NO}
@@ -97,7 +99,7 @@
                  onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
     NSDictionary *params = @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
 
-    NSString *urlString = [NSString stringWithFormat:@"orders/%@/payment_status.json", orderID];
+    NSString *urlString = [NSString stringWithFormat:@"orders/%@/payment_status", orderID];
 
     [self.requestOperationManager GET:urlString
         parameters:params
@@ -122,24 +124,106 @@
         }];
 }
 
+#pragma mark - Credit cards
+
+- (void)createNewPaymentWithOrderId: (NSString *)orderId andBindingId: (NSString *)bindingId
+                 onSuccess:(void (^)(NSString *paymentURLString))success
+                            onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    NSDictionary *parameters = @{
+        @"api_token" : [ZPPUserManager sharedInstance].user.apiToken,
+        @"payment" : @{@"binding_id" : bindingId }
+    };
+    
+    NSString *urlString = [NSString stringWithFormat:@"orders/%@/payment", orderId];
+    
+    [self.requestOperationManager POST:urlString
+        parameters:parameters
+        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+
+            NSLog(@"payment response: %@", responseObject);
+            NSString *url = responseObject[@"redirect"];
+            if (success) {
+                success(url);
+            }
+
+        }
+        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+
+            if (failure) {
+                [[self class] failureWithBlock:failure error:error operation:operation];
+            }
+        }];
+}
+
+- (void)listPaymentCardsWithSuccess: (void (^)(NSArray *cards))success
+                          onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    NSDictionary *parameters = @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
+    
+    [self.requestOperationManager GET:@"payment_cards"
+        parameters:parameters
+        success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+              
+            if (responseObject) {
+                NSMutableArray *cards = [NSMutableArray array];
+                for (NSDictionary *cardData in responseObject) {
+                    ZPPCreditCard *card = [ZPPCreditCard initWithDictionary:cardData];
+                    if (card) {
+                        [cards addObject:card];
+                    }
+                }
+              
+                success([NSArray arrayWithArray:cards]);
+            }
+         } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+             [[self class] failureWithBlock:failure error:error operation:operation];
+         }];
+}
+
+- (void)registerNewCreditCardOnSuccess:(void (^)(NSString *registrationURLString))success
+                             onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    NSDictionary *parameters = @{
+        @"api_token" : [ZPPUserManager sharedInstance].user.apiToken
+    };
+    
+    [self.requestOperationManager POST:@"payment_cards"
+        parameters:parameters
+        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+            NSLog(@"register new card response: %@", responseObject);
+            NSString *url = responseObject[@"url"];
+            if (success) {
+                success(url);
+            }
+
+        }
+        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+
+            if (failure) {
+                [[self class] failureWithBlock:failure error:error operation:operation];
+            }
+        }];
+}
+
+#pragma mark - Time stuff
+
 - (void)getWorkingHours:(void (^)(ZPPTimeManager *timeManager))success
               onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
     NSDictionary *parameters = @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
     NSString *urlString = @"working_hours";
     
     [self.requestOperationManager GET:urlString
-                           parameters:parameters
-                              success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-                                    ZPPTimeManager *timeManager = [ZPPTimeManager timeManagerWith:responseObject];
-                                    if (success) {
-                                        success(timeManager);
-                                    }
-                            } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-                                [[self class] failureWithBlock:failure error:error operation:operation];
-                            }];
+       parameters:parameters
+       success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+            ZPPTimeManager *timeManager = [ZPPTimeManager timeManagerWith:responseObject];
+            if (success) {
+                success(timeManager);
+            }
+       } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+            [[self class] failureWithBlock:failure error:error operation:operation];
+       }];
 }
 
-#pragma mark - review
+
+#pragma mark - Review
 
 - (void)sendComment:(NSString *)comment
      forOrderWithID:(NSString *)orderID
@@ -192,7 +276,7 @@
         }];
 }
 
-#pragma mark - geo
+#pragma mark - Geo
 
 - (void)getPoligonPointsOnSuccess:(void (^)(NSArray *points))success
                         onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
