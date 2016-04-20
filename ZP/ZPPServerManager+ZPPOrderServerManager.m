@@ -134,13 +134,13 @@
         @"payment" : @{@"binding_id" : bindingId }
     };
     
-    NSString *urlString = [NSString stringWithFormat:@"orders/%@/payment", orderId];
+    NSString *urlString = [NSString stringWithFormat:@"orders/%@/payments", orderId];
     
     [self.requestOperationManager POST:urlString
         parameters:parameters
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
 
-            NSLog(@"payment response: %@", responseObject);
+            NSLog(@"payment response: %@", (NSDictionary *)responseObject);
             NSString *url = responseObject[@"redirect"];
             if (success) {
                 success(url);
@@ -164,6 +164,7 @@
         success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
               
             if (responseObject) {
+                NSLog(@"cards: %@", responseObject);
                 NSMutableArray *cards = [NSMutableArray array];
                 for (NSDictionary *cardData in responseObject) {
                     ZPPCreditCard *card = [ZPPCreditCard initWithDictionary:cardData];
@@ -188,7 +189,13 @@
     [self.requestOperationManager POST:@"payment_cards"
         parameters:parameters
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-            NSLog(@"register new card response: %@", responseObject);
+            NSLog(@"register new card response: %@", (NSDictionary *)responseObject);
+            NSString *error = responseObject[@"error"];
+            if (error) {
+                NSLog(@"Error: %@", error);
+                [[self class] failureWithBlock:failure error:error operation:operation];
+            }
+            
             NSString *url = responseObject[@"url"];
             if (success) {
                 success(url);

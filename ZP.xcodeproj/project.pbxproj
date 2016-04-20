@@ -27,7 +27,6 @@
 		190C6BBD1BFA1BC800533509 /* ZPPOrderTimeChooserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 190C6BBC1BFA1BC800533509 /* ZPPOrderTimeChooserVC.m */; };
 		190C6BC11BFA2E9F00533509 /* NSDate+ZPPDateCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 190C6BC01BFA2E9F00533509 /* NSDate+ZPPDateCategory.m */; };
 		190C6BC31BFA43D700533509 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 190C6BC21BFA43D700533509 /* spinner.png */; };
-		190C6BC71BFA5F3400533509 /* ZPPPaymentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 190C6BC61BFA5F3400533509 /* ZPPPaymentManager.m */; };
 		190E47781BC073EE00AC5379 /* ZPPProductMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 190E47771BC073EE00AC5379 /* ZPPProductMenuCell.xib */; };
 		190E477A1BC0756500AC5379 /* ZPPProductAboutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 190E47791BC0756500AC5379 /* ZPPProductAboutCell.xib */; };
 		190E477D1BC076D500AC5379 /* ZPPProductAboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E477C1BC076D500AC5379 /* ZPPProductAboutCell.m */; };
@@ -227,8 +226,6 @@
 		190C6BBF1BFA2E9F00533509 /* NSDate+ZPPDateCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ZPPDateCategory.h"; sourceTree = "<group>"; };
 		190C6BC01BFA2E9F00533509 /* NSDate+ZPPDateCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ZPPDateCategory.m"; sourceTree = "<group>"; };
 		190C6BC21BFA43D700533509 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
-		190C6BC51BFA5F3400533509 /* ZPPPaymentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPPaymentManager.h; sourceTree = "<group>"; };
-		190C6BC61BFA5F3400533509 /* ZPPPaymentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPPaymentManager.m; sourceTree = "<group>"; };
 		190E47771BC073EE00AC5379 /* ZPPProductMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPProductMenuCell.xib; sourceTree = "<group>"; };
 		190E47791BC0756500AC5379 /* ZPPProductAboutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPProductAboutCell.xib; sourceTree = "<group>"; };
 		190E477B1BC076D500AC5379 /* ZPPProductAboutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProductAboutCell.h; sourceTree = "<group>"; };
@@ -611,15 +608,6 @@
 			name = Date;
 			sourceTree = "<group>";
 		};
-		190C6BC41BFA5EB600533509 /* payment */ = {
-			isa = PBXGroup;
-			children = (
-				190C6BC51BFA5F3400533509 /* ZPPPaymentManager.h */,
-				190C6BC61BFA5F3400533509 /* ZPPPaymentManager.m */,
-			);
-			name = payment;
-			sourceTree = "<group>";
-		};
 		190F9C701BE283200032E14D /* products */ = {
 			isa = PBXGroup;
 			children = (
@@ -817,7 +805,6 @@
 		191D7DEE1BD5695200DBAFC4 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				190C6BC41BFA5EB600533509 /* payment */,
 				19DADF6C1BF76898007D9DF2 /* gifts */,
 				19DADF601BF760D5007D9DF2 /* order */,
 				19DADF5C1BF75E16007D9DF2 /* promocode */,
@@ -1889,7 +1876,6 @@
 				1963EF211BD3E91100665916 /* ZPPRegistrationBaseVC.m in Sources */,
 				190C6BC11BFA2E9F00533509 /* NSDate+ZPPDateCategory.m in Sources */,
 				377198C21CC79080005EC204 /* ZPPNoCreditCardCell.m in Sources */,
-				190C6BC71BFA5F3400533509 /* ZPPPaymentManager.m in Sources */,
 				19F3790A1BFE9132004827A0 /* ZPPCustomLabel.m in Sources */,
 				19DBC3CD1C0A4F50009EC8EF /* ZPPCommentCell.m in Sources */,
 				191D7DDD1BD5359700DBAFC4 /* UIView+UIViewCategory.m in Sources */,
