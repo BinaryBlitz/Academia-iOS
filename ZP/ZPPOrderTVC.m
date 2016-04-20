@@ -34,6 +34,7 @@
 #import "ZPPConsts.h"
 #import "ZPPOrder.h"
 #import "ZPPPaymentManager.h"
+#import "ZPPServerManager+ZPPOrderServerManager.h"
 
 static NSString *ZPPOrderItemCellReuseIdentifier = @"ZPPOrderItemCellReuseIdentifier";
 static NSString *ZPPNoCreditCardCellIdentifier = @"ZPPNoCreditCardCellIdentifier";
@@ -72,8 +73,15 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
     self.tableView.tintColor = [UIColor blackColor];
     self.tableView.sectionFooterHeight = 0.01;
     
-    _creditCards = @[@"1231 123* **** 4444", @"1231 123* **** 4444", @"1231 123* **** 4444", @"1231 123* **** 4444"];
+    _creditCards = @[];
     _selectedCardIndex = 0;
+    
+    [[ZPPServerManager sharedManager] listPaymentCardsWithSuccess:^(NSArray *cards) {
+        _creditCards = cards;
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+    } onFailure:^(NSError *error, NSInteger statusCode) {
+        [self showWarningWithText:@"Не удалось загрузить привязанные карты ;("];
+    }];
     
     [Answers logCustomEventWithName:@"ORDER_OPEN" customAttributes:nil];
 }
