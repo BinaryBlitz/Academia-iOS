@@ -22,7 +22,8 @@
 
 - (void)POSTPaymentWithOrderID:(NSString *)orderID
                      onSuccess:(void (^)(NSString *paymnetURL))success
-                     onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+                     onFailure:(void (^)(NSError *error, NSInteger statusCode))failure
+                     __attribute__((deprecated("use createNewPaymentWithOrderId instead")));
 
 - (void)checkPaymentWithID:(NSString *)orderID
                  onSuccess:(void (^)(NSInteger sta))success
@@ -31,8 +32,19 @@
 - (void)getWorkingHours:(void (^)(ZPPTimeManager *timeManager))success
               onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
+#pragma mark - Credit cards
 
-#pragma mark - review
+- (void)listPaymentCardsWithSuccess: (void (^)(NSArray *cards))success
+                          onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
+- (void)createNewPaymentWithOrderId: (NSString *)orderId andBindingId: (NSString *)bindingId
+                          onSuccess:(void (^)(NSString *paymentURLString))success
+                          onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
+- (void)registerNewCreditCardOnSuccess:(void (^)(NSString *registrationURLString))success
+                          onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
+#pragma mark - Review
 
 - (void)sendComment:(NSString *)comment
      forOrderWithID:(NSString *)orderID
@@ -44,7 +56,7 @@
                   onSuccess:(void (^)())success
                   onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
-#pragma mark - geo
+#pragma mark - Geo
 
 - (void)getPoligonPointsOnSuccess:(void (^)(NSArray *points))success
                         onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
