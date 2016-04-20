@@ -6,9 +6,9 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-@class ZPPOrder;
+@import UIKit;
 
+@class ZPPOrder;
 
 @interface ZPPOrderTVC : UITableViewController
 @property (strong, nonatomic, readonly) ZPPOrder *order;
