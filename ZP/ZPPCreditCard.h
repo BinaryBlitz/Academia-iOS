@@ -6,30 +6,16 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
-@interface ZPPCreditCard : NSObject
+@interface ZPPCreditCard: NSObject
 
-@property (strong, nonatomic, readonly) NSString *cardNumber;
-@property (assign, nonatomic, readonly) NSInteger month;
-@property (assign, nonatomic, readonly) NSInteger year;
-@property (strong, nonatomic, readonly) NSString *bindID;
+@property (assign, nonatomic, readonly) NSInteger serverId;
+@property (strong, nonatomic, readonly) NSString *number;
+@property (strong, nonatomic, readonly) NSString *bindingId;
 
-- (instancetype)initWithCardNumber:(NSString *)cardNumber
-                             month:(NSInteger)month
-                              year:(NSInteger)year
-                               cvc:(NSInteger)cvc;
++ (ZPPCreditCard *)initWithDictionary: (NSDictionary *)dict;
 
-- (instancetype)initWithCardNumber:(NSString *)cardNumber
-                             month:(NSInteger)month
-                              year:(NSInteger)year
-                            bindID:(NSString *)bindID;
-
-
-
-- (NSString *)formattedDate;
-
-
-
+- (instancetype)initWithCardNumber:(NSString *)cardNumber serverId:(NSInteger)serverId bindingId:(NSString *) bindingId;
 
 @end
