@@ -48,7 +48,9 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 
 @end
 
-@implementation ZPPOrderTimeChooserVC
+@implementation ZPPOrderTimeChooserVC {
+    ZPPPaymentWebController *_webViewController;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -219,6 +221,42 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 - (void)didShowPageWithUrl:(NSURL *)url sender:(UIViewController *)vc {
     NSString *urlString = url.absoluteString;
     NSLog(@"URL %@", urlString);
+    
+    if ([urlString containsString:@"sakses"]) {
+        if (self.order.card == nil) {
+            NSLog(@"new card");
+            [self payWithNewCard];
+        } else {
+            [self presentSuccessOrderController];
+        }
+    } else if ([urlString containsString:@"feylur"]) {
+        //smth
+    }
+}
+
+- (void)payWithNewCard {
+    [[ZPPServerManager sharedManager] listPaymentCardsWithSuccess:^(NSArray *cards) {
+        ZPPCreditCard *card = cards.lastObject;
+        if (card) {
+            self.order.card = card;
+            [[ZPPServerManager sharedManager] createNewPaymentWithOrderId:self.paymentOrder.identifier
+                andBindingId:card.bindingId
+                onSuccess:^(NSString *paymentURLString) {
+                    NSURL *paymentURL  = [[NSURL alloc] initWithString:paymentURLString];
+                    [_webViewController configureWithURL:paymentURL];
+                } onFailure:^(NSError *error, NSInteger statusCode) {
+                    NSLog(@"¯\\_(ツ)_/¯");
+                }];
+        }
+    } onFailure:^(NSError *error, NSInteger statusCode) {
+        NSLog(@"(╯°□°）╯︵ ┻━┻ ");
+        if (statusCode == 0) {
+            [self payWithNewCard];
+        }
+    }];
+}
+
+- (void)presentSuccessOrderController {
     UIViewController *orderResultViewContorller = [self.storyboard
         instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
 
@@ -256,11 +294,11 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 }
 
 - (void)showWebViewWithURl:(NSURL *)url {
-    ZPPPaymentWebController *webViewController = [ZPPPaymentWebController new];
-    [webViewController configureWithURL:url];
-    webViewController.paymentDelegate = self;
-    webViewController.title = @"Оплата";
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
+    _webViewController = [ZPPPaymentWebController new];
+    [_webViewController configureWithURL:url];
+    _webViewController.paymentDelegate = self;
+    _webViewController.title = @"Оплата";
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:_webViewController];
 
     navigationController.navigationBar.barTintColor = [UIColor blackColor];
 
