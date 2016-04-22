@@ -7,19 +7,28 @@
 //
 
 #import "ZPPOrderHistoryOrderTVC.h"
+
+@import HCSStarRatingView;
+#import "DTCustomColoredAccessory.h"
+
 #import "ZPPStarsCell.h"
 #import "ZPPCommentCell.h"
 #import "ZPPContactCourierCell.h"
+#import "ZPPOrderTotalCell.h"
+#import "ZPPOrderItemCell.h"
+#import "ZPPNoCreditCardCell.h"
+#import "ZPPOrderTotalCell.h"
+#import "ZPPOrderAddressCell.h"
+
 #import "UITableViewController+ZPPTVCCategory.h"
-#import "ZPPOrder.h"
-//#import <HCSStarRatingView.h>
 #import "UIButton+ZPPButtonCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "ZPPServerManager+ZPPOrderServerManager.h"
-#import "ZPPOrderTotalCell.h"
-#import "ZPPAddress.h"
+#import "UINavigationController+ZPPNavigationControllerCategory.h"
 
-@import HCSStarRatingView;
+#import "ZPPOrder.h"
+#import "ZPPAddress.h"
+#import "ZPPConsts.h"
 
 static NSString *ZPPStarsCellIdentifier = @"ZPPStarsCellIdentifier";
 static NSString *ZPPCommentCellIdentifier = @"ZPPCommentCellIdentifier";
@@ -27,10 +36,16 @@ static NSString *ZPPContactCourierCellIdentifier = @"ZPPContactCourierCellIdenti
 
 static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понравилось?";
 
+static NSString *ZPPOrderItemCellReuseIdentifier = @"ZPPOrderItemCellReuseIdentifier";
+static NSString *ZPPNoCreditCardCellIdentifier = @"ZPPNoCreditCardCellIdentifier";
+static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
+static NSString *ZPPOrderAddressCellIdentifier = @"ZPPOrderAddressCellIdentifier";
+
 @interface ZPPOrderHistoryOrderTVC () <UITextViewDelegate>
 
 @property (assign, nonatomic) BOOL shouldShowComment;
 @property (strong, nonatomic) NSString *comment;
+@property (strong, nonatomic) ZPPOrder *order;
 
 @end
 
@@ -38,19 +53,44 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView reloadData];
+    [self registerTableViewCells];
+    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+    [self setNeedsStatusBarAppearanceUpdate];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.tintColor = [UIColor blackColor];
+    self.tableView.sectionFooterHeight = 0.01;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    [self setCustomNavigationBackButtonWithTransition];
+    [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
+    [self.navigationController presentTransparentNavigationBar];
+
+    [self addCustomCloseButton];
+
+    [self.tableView reloadData];
+}
+
+- (void)registerTableViewCells {
     [self registrateCellForClass:[ZPPStarsCell class] reuseIdentifier:ZPPStarsCellIdentifier];
     [self registrateCellForClass:[ZPPCommentCell class] reuseIdentifier:ZPPCommentCellIdentifier];
-    [self registrateCellForClass:[ZPPContactCourierCell class]
-                 reuseIdentifier:ZPPContactCourierCellIdentifier];
-    // Do any additional setup after loading the view.
+    [self registrateCellForClass:[ZPPContactCourierCell class] reuseIdentifier:ZPPContactCourierCellIdentifier];
+    
+    [self registrateCellForClass:[ZPPOrderItemCell class] reuseIdentifier:ZPPOrderItemCellReuseIdentifier];
+    [self registrateCellForClass:[ZPPNoCreditCardCell class] reuseIdentifier:ZPPNoCreditCardCellIdentifier];
+    [self registrateCellForClass:[ZPPOrderTotalCell class] reuseIdentifier:ZPPOrderTotalCellIdentifier];
+    [self registrateCellForClass:[ZPPOrderAddressCell class] reuseIdentifier:ZPPOrderAddressCellIdentifier];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)configureWithOrder:(ZPPOrder *)order {
+    self.order = order;
+    [self.tableView reloadData];
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (self.order.orderStatus == ZPPOrderStatusDelivered ||
         self.order.orderStatus == ZPPOrderStatusOnTheWay) {
@@ -62,9 +102,7 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        NSInteger count = [super tableView:tableView numberOfRowsInSection:1];
-        NSLog(@"%@", @(count));
-        return count;  //[super tableView:tableView numberOfRowsInSection:2];
+        return self.order.items.count;
     } else if (section == 1) {
         return 1;
     } else {
@@ -79,18 +117,20 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:1];
+        ZPPOrderItem *orderItem = self.order.items[indexPath.row];
 
-        UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:nip];
+        ZPPOrderItemCell *cell = [tableView dequeueReusableCellWithIdentifier:ZPPOrderItemCellReuseIdentifier];
+        [cell configureWithOrderItem:orderItem];
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.accessoryView = nil;
+
         return cell;
     } else if (indexPath.section == 1) {
-        NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:2];
-        ZPPOrderTotalCell *orderInfoCell = (ZPPOrderTotalCell *)[super tableView:tableView cellForRowAtIndexPath:nip];
-        orderInfoCell.deliveryLabel.text = [self.order.address formatedDescr];
-        orderInfoCell.deliveryLabel.font = [UIFont systemFontOfSize:17];
-        return orderInfoCell;
+        ZPPOrderTotalCell *cell = [tableView dequeueReusableCellWithIdentifier:ZPPOrderTotalCellIdentifier];
+        [cell configureWithOrder:self.order];
+        cell.deliveryLabel.text = [self.order.address formatedDescr];
+        cell.deliveryLabel.font = [UIFont systemFontOfSize:17];
+        return cell;
     } else {
         if (indexPath.row == 0) {
             if (self.order.orderStatus == ZPPOrderStatusDelivered) {
@@ -99,8 +139,7 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
                 return [self contactCell];
             }
         } else {
-            ZPPCommentCell *cell =
-                [tableView dequeueReusableCellWithIdentifier:ZPPCommentCellIdentifier];
+            ZPPCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:ZPPCommentCellIdentifier];
 
             [cell.actionButton addTarget:self
                                   action:@selector(sendComment:)
@@ -116,11 +155,11 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
                 cell.actionButton.hidden = YES;
                 cell.commentTV.editable = NO;
             }
-            //   cell.commentTV.textColor = [UIColor lightGrayColor];
 
             return cell;
         }
     }
+    return [UITableViewCell new];
 }
 
 - (ZPPStarsCell *)starCell {
@@ -145,27 +184,19 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:1];
-        return [super tableView:tableView heightForRowAtIndexPath:nip];
-    } else if (indexPath.section == 2 && indexPath.row == 1) {
+        return 46.f;
+    } else if (indexPath.section == 2) {
         return 120.f;
     } else {
-        NSIndexPath *nip = [NSIndexPath indexPathForRow:indexPath.row inSection:2];
-        return [super tableView:tableView heightForRowAtIndexPath:nip];
+        return 100.f;
     }
 }
 
 - (void)valueChanged:(id)sender {
     if ([sender isKindOfClass:[HCSStarRatingView class]]) {
         HCSStarRatingView *ratingView = (HCSStarRatingView *)sender;
-        // self.order.starValue = ratingView.value;
 
         [self sendStars:ratingView.value sender:ratingView];
-        //      HCSStarRatingView *stars = (HCSStarRatingView *)sender;
-
-        //        if (stars.value) {
-        //            stars.enabled = NO;
-        //        }
     }
 }
 
@@ -196,16 +227,6 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
         onFailure:^(NSError *error, NSInteger statusCode) {
             [self showWarningWithText:ZPPNoInternetConnectionMessage];
             [self.tableView reloadData];
-
-//            starView.value = self.order.starValue;
-//
-//            NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:2];
-//            ZPPStarsCell *cell = [self.tableView cellForRowAtIndexPath:ip];
-//
-//            if (cell) {
-//                
-//                cell.starView.value = 0.f;
-//            }
         }];
 }
 
@@ -243,7 +264,7 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     if ([textView.text isEqualToString:ZPPCommentPlaceHoldeText]) {
         textView.text = @"";
-        textView.textColor = [UIColor blackColor];  // optional
+        textView.textColor = [UIColor blackColor];
     }
     [textView becomeFirstResponder];
 }
@@ -251,19 +272,9 @@ static NSString *ZPPCommentPlaceHoldeText = @"Все ли вам понрави�
 - (void)textViewDidEndEditing:(UITextView *)textView {
     if ([textView.text isEqualToString:@""]) {
         textView.text = ZPPCommentPlaceHoldeText;
-        textView.textColor = [UIColor lightGrayColor];  // optional
+        textView.textColor = [UIColor lightGrayColor];
     }
     [textView resignFirstResponder];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before
-navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
