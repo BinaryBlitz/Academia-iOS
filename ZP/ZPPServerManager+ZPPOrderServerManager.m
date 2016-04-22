@@ -172,6 +172,12 @@
                         [cards addObject:card];
                     }
                 }
+                
+                [cards sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                    ZPPCreditCard *firstCard = (ZPPCreditCard *)obj1;
+                    ZPPCreditCard *secondCard = (ZPPCreditCard *)obj2;
+                    return [firstCard.createdAt compare:secondCard.createdAt];
+                }];
               
                 success([NSArray arrayWithArray:cards]);
             }
