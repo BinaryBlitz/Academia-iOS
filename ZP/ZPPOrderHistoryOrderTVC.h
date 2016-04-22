@@ -6,8 +6,14 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import "ZPPOrderTVC.h"
+@import UIKit;
 
-@interface ZPPOrderHistoryOrderTVC : ZPPOrderTVC
+@class ZPPOrder;
+
+@interface ZPPOrderHistoryOrderTVC: UITableViewController
+
+@property (strong, nonatomic, readonly) ZPPOrder *order;
+
+- (void)configureWithOrder:(ZPPOrder *)order;
 
 @end
