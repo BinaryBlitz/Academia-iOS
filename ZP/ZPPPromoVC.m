@@ -141,30 +141,17 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
 
 - (void)showSmsInput {
     if (![MFMessageComposeViewController canSendText]) {
-        //        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error"
-        //        message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK"
-        //        otherButtonTitles:nil];
-        //        [warningAlert show];
-        [self showWarningWithText:@"Устройство не поддерживает "
-                                  @"отпра"
-                                  @"в"
-                                  @"к"
-                                  @"у"
-                                  @" "
-                                  @"смс"];
+        [self showWarningWithText:@"Устройство не поддерживает отправку смс"];
         return;
     }
 
-    // NSArray *recipents = @[];
     NSString *message = [self promocodeInviteText];
 
     MFMessageComposeViewController *messageController =
         [[MFMessageComposeViewController alloc] init];
     messageController.messageComposeDelegate = self;
-    //   [messageController setRecipients:recipents];
     [messageController setBody:message];
 
-    // Present message view controller on screen
     [self presentViewController:messageController animated:YES completion:nil];
 }
 
@@ -175,20 +162,15 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
                         error:(nullable NSError *)error {
     switch (result) {
         case MFMailComposeResultSent:
-//            NSLog(@"You sent the email.");
             [self showSuccessWithText:@"Сообщение отправлено"];
             break;
         case MFMailComposeResultSaved:
-//            NSLog(@"You saved a draft of this email");
             break;
         case MFMailComposeResultCancelled:
-//            NSLog(@"You cancelled sending this email.");
             break;
         case MFMailComposeResultFailed:
-//            NSLog(@"Mail failed:  An error occurred when trying to compose this email");
             break;
         default:
-//            NSLog(@"An error occurred when trying to compose this email");
             break;
     }
 
@@ -206,24 +188,17 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
 
         [self presentViewController:mail animated:YES completion:NULL];
     } else {
-        [self showWarningWithText:@"Устройство не поддерживает "
-                                  @"отправ"
-                                  @"к"
-                                  @"у"
-                                  @" "
-                                  @"e-mail"];
+        [self showWarningWithText:@"Устройство не поддерживает отправку e-mail"];
     }
 }
 #pragma mark - social
 
 - (void)showSocialShare {
     NSString *string = [self promocodeInviteText];
-    //  NSURL *URL = ...;
 
     UIActivityViewController *activityViewController =
         [[UIActivityViewController alloc] initWithActivityItems:@[ string ]
                                           applicationActivities:nil];
-    //    activityViewController.
 
     activityViewController.excludedActivityTypes = @[
         UIActivityTypeMessage,
@@ -241,9 +216,7 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
 
     [self.navigationController presentViewController:activityViewController
                                             animated:YES
-                                          completion:^{
-                                              // ...
-                                          }];
+                                          completion:nil];
 }
 
 #pragma mark - copy
@@ -278,7 +251,6 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
 - (void)configureButtons {
     [self.smsInviteButton makeBordered];
     [self.emailShare makeBordered];
-    //  [self.socialMediaShare makeBordered];
 
     [self.smsInviteButton addTarget:self
                              action:@selector(showSmsInput)
@@ -315,10 +287,7 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
 - (NSString *)promocodeInviteText {
     return
         [NSString stringWithFormat:
-                      @"Используй мой промокод, %@, и получи 300%@ в "
-                      @"приложении "
-                      @"Zdorovoe "
-                      @"Pitanie!",
+                      @"Используй мой промокод, %@, и получи 300%@ в приложении Zdorovoe Pitanie! Скачай приложение по ссылке: http://onelink.to/2gfk9r",
                       self.promocode, ZPPRoubleSymbol];  // redo
 }
 
