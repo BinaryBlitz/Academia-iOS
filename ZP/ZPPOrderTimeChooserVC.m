@@ -277,9 +277,9 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
     
     NSArray *deliveryDates = [self deliveryDatesForTimeManager:timeManager];
     DTTimePeriod *lastTimePeriod = timeManager.openTimePeriodChain.lastObject;
-    NSDate *closeDate = [lastTimePeriod.EndDate dateBySubtractingMinutes:30];
+    NSDate *closeDate = lastTimePeriod.EndDate;
     NSString *descrString;
-    if ([[timeManager.currentTime dateByAddingMinutes:50] isEarlierThan:closeDate]) {
+    if ([[timeManager.currentTime dateByAddingMinutes:50 + 30] isEarlierThan:closeDate]) {
         descrString = @"Сегодня в";
     } else {
         descrString = @"Завтра в";
@@ -318,13 +318,20 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
     NSMutableArray *deliveryDates = [NSMutableArray array];
     
     NSDate *initialDate = [timeManager.currentTime dateByAddingMinutes:50];
+  
     DTTimePeriod *lastTimePeriod = timeManager.openTimePeriodChain.lastObject;
-    NSDate *closeDate = [lastTimePeriod.EndDate dateBySubtractingMinutes:30];
-    
+    NSDate *closeDate = lastTimePeriod.EndDate;
+  
     if ([initialDate isLaterThan:closeDate]) {
         DTTimePeriod *firstTimePeriod = timeManager.openTimePeriodChain.firstObject;
-        initialDate = [[firstTimePeriod StartDate] dateByAddingMinutes:50];
+        if ([firstTimePeriod.StartDate timeIntervalSinceDate:initialDate] > 50 * 60) {
+            initialDate = firstTimePeriod.StartDate;
+        } else {
+            initialDate = [[firstTimePeriod StartDate] dateByAddingMinutes:50];
+        }
     }
+    
+    initialDate = [initialDate dateBySubtractingSeconds:initialDate.second];
     
     if ([initialDate minute] < 30) {
         NSInteger minute = [initialDate minute];
@@ -339,7 +346,16 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
         DTTimePeriod *deliveryPeriod = [DTTimePeriod timePeriodWithStartDate:initialDate
                                                                      endDate:[initialDate dateByAddingMinutes:30]];
         
-        for (DTTimePeriod *timePeriod in timeManager.openTimePeriodChain) {
+        
+        for (int i = 0; i < [timeManager.openTimePeriodChain count]; i++) {
+            DTTimePeriod *timePeriod = ((DTTimePeriod *)timeManager.openTimePeriodChain[i]).copy;
+            if (i == 0) {
+                timePeriod.StartDate = [timePeriod.StartDate dateByAddingMinutes:30];
+            }
+            if (i == [timeManager.openTimePeriodChain count] - 1) {
+                timePeriod.EndDate = [timePeriod.EndDate dateByAddingMinutes:1];
+            }
+            
             if ([deliveryPeriod isInside:timePeriod]) {
                 validDevliveryDate = true;
                 break;
