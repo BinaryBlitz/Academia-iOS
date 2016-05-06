@@ -18,6 +18,7 @@ NSString * const ZPPUserID = @"id";
 NSString * const ZPPUserPassword = @"password";
 NSString * const ZPPUserPromocode = @"promo_code";
 NSString * const ZPPUserBalance = @"balance";
+NSString * const ZPPUserDiscount = @"discount";
          
 NSString * const ZPPPromoCodeUsed = @"promo_used";
 NSString * const ZPPPlatform = @"platform";
@@ -63,7 +64,7 @@ NSString * const ZPPAPNSToken = @"device_token";
     return [NSDictionary dictionaryWithDictionary:d];
 }
 
-+ (ZPPUser *)userFromDict:(NSDictionary *)dict {  // redo implementation
++ (ZPPUser *)userFromDict:(NSDictionary *)dict {  // redo implementation 😓
     NSString *firstName;
     NSString *lastName;
     NSString *email;
@@ -73,6 +74,8 @@ NSString * const ZPPAPNSToken = @"device_token";
     NSString *promocode;
     BOOL promocodeUsed;
     NSString *balance;
+    NSString *discount;
+  
     if (dict[ZPPAPIToken]) {
         apiToken = dict[ZPPAPIToken];
     }
@@ -105,6 +108,11 @@ NSString * const ZPPAPNSToken = @"device_token";
     if (dict[ZPPPromoCodeUsed]) {
         promocodeUsed = [dict[ZPPPromoCodeUsed] boolValue];
     }
+  
+    if (dict[ZPPUserDiscount]) {
+        discount = [dict[ZPPUserDiscount] stringValue];
+    }
+  
     ZPPUser *user = [[ZPPUser alloc] initWihtName:firstName
                                          lastName:lastName
                                             email:email
@@ -113,6 +121,7 @@ NSString * const ZPPAPNSToken = @"device_token";
                                            apiKey:apiToken
                                         promocode:promocode
                                           balance:balance
+                                         discount:discount
                                         promoUsed:promocodeUsed];
 
     return user;

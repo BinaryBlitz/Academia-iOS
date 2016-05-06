@@ -17,6 +17,7 @@
 @property (copy, nonatomic, nullable) NSString *password;
 @property (copy, nonatomic, nullable) NSString *promoCode;
 @property (copy, nonatomic, nullable) NSString *balance;
+@property (copy, nonatomic, nullable) NSString *discount;
 @property (assign, nonatomic) BOOL promoUsed;
 
 @property (strong, nonatomic, nullable) NSString *pushToken;
@@ -33,6 +34,7 @@
                       apiKey:(nullable NSString *)apiKey
                    promocode:(nullable NSString *)promocode
                      balance:(nullable NSString *)balance
+                     discount:(nullable NSString *)discount
                    promoUsed:(BOOL)promoUsed;
 
 @end
