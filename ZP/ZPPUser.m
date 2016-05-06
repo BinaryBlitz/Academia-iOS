@@ -30,6 +30,7 @@
                       apiKey:(NSString *)apiKey
                    promocode:(NSString *)promocode
                      balance:(NSString *)balance
+                    discount:(NSString *)discount
                    promoUsed:(BOOL)promoUsed
 {
     self = [super init];
@@ -42,6 +43,7 @@
         self.apiToken = apiKey;
         self.promoCode = promocode;
         self.balance = balance;
+        self.discount = discount;
         self.promoUsed = promoUsed;
     }
     return self;
@@ -57,10 +59,14 @@
         self.phoneNumber = [coder decodeObjectForKey:ZPPPhoneNumber];
         self.userID = [coder decodeObjectForKey:ZPPUserID];
         self.promoCode = [coder decodeObjectForKey:ZPPUserPromocode];
-        
+      
         self.balance = [coder decodeObjectForKey:ZPPUserBalance];
         
-        
+        if ([coder decodeObjectForKey:ZPPUserDiscount]) {
+            self.discount = [coder decodeObjectForKey:ZPPUserDiscount];
+        } else {
+            self.discount = @"0";
+        }
     }
     return self;
 }
@@ -75,6 +81,7 @@
     [coder encodeObject:self.promoCode forKey:ZPPUserPromocode];
     
     [coder encodeObject:self.balance forKey:ZPPUserBalance];
+    [coder encodeObject:self.discount forKey:ZPPUserDiscount];
 }
 
 @end

@@ -17,6 +17,7 @@ extern NSString * const ZPPUserID;
 extern NSString * const ZPPUserPassword;
 extern NSString * const ZPPUserPromocode;
 extern NSString * const ZPPUserBalance;
+extern NSString * const ZPPUserDiscount;
 
 @class ZPPUser;
 
