@@ -10,14 +10,6 @@
 
 @implementation ZPPMainMenuView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 - (void)showCompletion:(void (^)())completion {
     [UIView animateWithDuration:0.4 animations:^{
         self.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
@@ -43,12 +35,5 @@
         
     }];
 }
-//- (IBAction)dissmisAction:(id)sender {
-//    [self dismiss];
-//}
-
-//+(instancetype)instantiateView {
-//    [NSBundle mainBundle] loadNibNamed:<#(NSString *)#> owner:<#(id)#> options:<#(NSDictionary *)#>
-//}
 
 @end

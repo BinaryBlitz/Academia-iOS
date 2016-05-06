@@ -46,13 +46,7 @@ NSString *const ZPPUserLogoutNotificationName = @"ZPPUserLogoutNotificationName"
     
     _user = user;
     
-//    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:user];
-//    
-//    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"currentUser"];
-//    
     if (user) {
-
-        //[[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:user];
         
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"currentUser"];
