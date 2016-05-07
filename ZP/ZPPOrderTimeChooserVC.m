@@ -27,6 +27,7 @@
 #import "ZPPServerManager.h"
 #import "ZPPTimeManager.h"
 #import "ZPPCreditCard.h"
+#import "ZPPUserManager.h"
 
 static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 
@@ -64,15 +65,38 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+//    self.totalPriceLabel.text =
+//
+//    self.deliveryLabel.text = @"Цена с учетом бонусов и скидки";
+  
+    self.totalPriceWithDelivery.text =
+                [NSString stringWithFormat:@"Цена с доставкой: %ld%@", (long)[self.order totalPriceWithDelivery], ZPPRoubleSymbol];
+    
+    ZPPUser *user = [ZPPUserManager sharedInstance].user;
+    
+    double price = [self.order totalPriceWithDelivery];
+    if ([user.discount intValue] != 0) {
+        double discount = (double)price * ([user.discount doubleValue] / 100.0);
+        price -= discount;
+        self.discountLabel.text =
+                [NSString stringWithFormat:@"Скидка: %d%@", (int)discount, ZPPRoubleSymbol];
+    } else {
+        self.discountLabel.text =
+                [NSString stringWithFormat:@"Скидка 0%@", ZPPRoubleSymbol];
+    }
+    
+    NSInteger balance;
+    if ([user.balance intValue] > price) {
+        balance = price;
+    } else {
+        balance = [user.balance integerValue];
+    }
+    
+    self.balanceLabel.text =
+                [NSString stringWithFormat:@"Бонусы: %ld%@", balance, ZPPRoubleSymbol];
+    
     self.totalPriceLabel.text =
-        [NSString stringWithFormat:@"ВАШ ЗАКАЗ НА: %ld%@", (long)[self.order totalPriceWithAllTheThings], ZPPRoubleSymbol];
-
-    self.deliveryLabel.text = @"Цена с учетом бонусов и скидки";
-//    if ([self.order deliveryIncluded]) {
-//        self.deliveryLabel.text = [NSString stringWithFormat:@"+доставка 200%@", ZPPRoubleSymbol];
-//    } else {
-//        self.deliveryLabel.text = @"";
-//    }
+                [NSString stringWithFormat:@"Итого: %ld%@", (long)[self.order totalPriceWithAllTheThings], ZPPRoubleSymbol];
 }
 
 - (void)dealloc {
