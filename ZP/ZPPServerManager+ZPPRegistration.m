@@ -202,7 +202,7 @@
             if (success) {
                 success(user);
             }
-
+            [[ZPPUserManager sharedInstance] setUser:user];
         }
         failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
             NSLog(@"err %@", error);
