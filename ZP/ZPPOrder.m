@@ -130,7 +130,7 @@
     
     // Balance
     if ([user.balance intValue] > price) {
-        price -= [user.balance intValue];
+        price -= price;
     } else {
         price -= [user.balance intValue];
     }
