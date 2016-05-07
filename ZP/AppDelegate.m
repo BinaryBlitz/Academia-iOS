@@ -11,6 +11,7 @@
 @import Fabric;
 @import Crashlytics;
 @import CocoaLumberjack;
+@import LMGeocoder;
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #import "ZPPUserManager.h"
@@ -41,6 +42,7 @@ NSString *const ZPPGMSApiKey = @"AIzaSyCGZ0KYWFXJ8iqtaPkcut6ToWzF9zlWSd0";
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 
     [GMSServices provideAPIKey:ZPPGMSApiKey];
+    [LMGeocoder sharedInstance].googleAPIKey = ZPPGMSApiKey;
 
     if (IS_OS_8_OR_LATER) {
         [application
