@@ -65,14 +65,14 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 
 - (void)viewWillAppear:(BOOL)animated {
     self.totalPriceLabel.text =
-        [NSString stringWithFormat:@"ВАШ ЗАКАЗ НА: %@%@",
-                                   @([self.order totalPriceWithDelivery]), ZPPRoubleSymbol];
+        [NSString stringWithFormat:@"ВАШ ЗАКАЗ НА: %ld%@", (long)[self.order totalPriceWithAllTheThings], ZPPRoubleSymbol];
 
-    if ([self.order deliveryIncluded]) {
-        self.deliveryLabel.text = [NSString stringWithFormat:@"+доставка 200%@", ZPPRoubleSymbol];
-    } else {
-        self.deliveryLabel.text = @"";
-    }
+    self.deliveryLabel.text = @"Цена с учетом бонусов и скидки";
+//    if ([self.order deliveryIncluded]) {
+//        self.deliveryLabel.text = [NSString stringWithFormat:@"+доставка 200%@", ZPPRoubleSymbol];
+//    } else {
+//        self.deliveryLabel.text = @"";
+//    }
 }
 
 - (void)dealloc {
