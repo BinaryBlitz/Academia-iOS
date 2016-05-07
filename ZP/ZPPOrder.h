@@ -51,6 +51,7 @@ typedef NS_ENUM(NSInteger, ZPPOrderStatus) {
 - (NSInteger)totalCount;
 - (NSInteger)totalPrice;
 - (NSInteger)totalPriceWithDelivery;
+- (NSInteger)totalPriceWithAllTheThings;
 - (BOOL)deliveryIncluded;
 - (NSString *)orderDescr;
 - (void)clearOrder;

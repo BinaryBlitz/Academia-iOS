@@ -9,6 +9,8 @@
 #import "ZPPOrder.h"
 #import "ZPPOrderItem.h"
 #import "ZPPCreditCard.h"
+#import "ZPPUser.h"
+#import "ZPPUserManager.h"
 
 @interface ZPPOrder ()
 
@@ -97,18 +99,47 @@
 }
 
 - (NSInteger)totalPrice {
-    NSInteger res = 0;
-    for (ZPPOrderItem *oi in self.items) {
-        res += oi.count * [oi.item priceOfItem];
+    NSInteger price = 0;
+    for (ZPPOrderItem *orderItem in self.items) {
+        price += orderItem.count * [orderItem.item priceOfItem];
     }
-    return res;
+    
+    return price;
 }
 
 - (NSInteger)totalPriceWithDelivery {
     NSInteger price = [self totalPrice];
+    
     if (price < 1000) {
         price += 200;
     }
+    
+    return price;
+}
+
+- (NSInteger)totalPriceWithAllTheThings {
+    
+    NSInteger price = [self totalPriceWithDelivery];
+    ZPPUser *user = [ZPPUserManager sharedInstance].user;
+    
+    // Discount
+    if ([user.discount intValue] != 0) {
+        double discount = (double)price * ([user.discount doubleValue] / 100.0);
+        price -= discount;
+    }
+    
+    // Balance
+    if ([user.balance intValue] > price) {
+        price -= [user.balance intValue];
+    } else {
+        price -= [user.balance intValue];
+    }
+    
+    // No zero  payments
+    if (price <= 0) {
+        price = 1;
+    }
+    
     return price;
 }
 
