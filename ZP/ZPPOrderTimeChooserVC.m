@@ -104,7 +104,15 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
         [self.atTimeButton shakeView];
         [self showWarningWithText:@"Выберите время доставки"];
     } else {
-        [self startPayment];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Оплата заказа"
+                                                                       message:@"Вы уверены, что хотите оплатить заказ?"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction: [UIAlertAction actionWithTitle:@"Да" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self startPayment];
+        }]];
+        [alert addAction: [UIAlertAction actionWithTitle:@"Нет" style:UIAlertActionStyleCancel handler:nil]];
+        
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -174,8 +182,6 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
             self.paymentOrder = order;
             
             if (self.order.card) {
-                NSLog(@"binding id: %@", self.order.card.bindingId);
-                NSLog(@"order id: %@", order.identifier);
                 [[ZPPServerManager sharedManager] createNewPaymentWithOrderId:order.identifier
                     andBindingId:self.order.card.bindingId
                     onSuccess:^(NSString *paymentURLString) {
