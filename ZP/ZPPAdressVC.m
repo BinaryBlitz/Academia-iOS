@@ -165,29 +165,24 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
                                                             longitude:coordinate.longitude
                                                                  zoom:17];
 
-    self.mapView_.camera = camera;
+    [self.mapView_ animateToCameraPosition:camera];
 }
 
 - (void)showCurrentLocation {
     INTULocationManager *locMgr = [INTULocationManager sharedInstance];
-    [locMgr
-        requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
-                                   timeout:10.0
-                      delayUntilAuthorized:YES
-                                     block:^(CLLocation *currentLocation,
-                                             INTULocationAccuracy achievedAccuracy,
-                                             INTULocationStatus status) {
-
-                                         if (status == INTULocationStatusSuccess) {
-                                             [self
-                                                 moveCameraToCoordinate:currentLocation.coordinate];
-
-                                         } else if (status == INTULocationStatusTimedOut) {
-                                         } else {
-                                             // An error occurred, more info is available by
-                                             // looking at the specific status returned.
-                                         }
-                                     }];
+    [locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
+               timeout:10.0
+               delayUntilAuthorized:YES
+               block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
+                     if (status == INTULocationStatusSuccess) {
+                         [self moveCameraToCoordinate:currentLocation.coordinate];
+                     } else if (status == INTULocationStatusTimedOut) {
+                         [self showCurrentLocation];
+                     } else {
+                         // An error occurred, more info is available by
+                         // looking at the specific status returned.
+                     }
+                 }];
 }
 
 #pragma mark - UITextFielDelegate
