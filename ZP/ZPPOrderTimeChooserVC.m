@@ -12,6 +12,7 @@
 @import Crashlytics;
 @import SafariServices;
 @import DateTools;
+@import PureLayout;
 
 #import <OAStackView/OAStackView.h>
 #import "UIButton+ZPPButtonCategory.h"
@@ -72,10 +73,17 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    UIFont *font = [UIFont systemFontOfSize:17];
+    
+    CGFloat stackHeight = 0;
+    CGFloat stackSpacing = 5;
+    
     UILabel *totalPriceWithDeliveryLabel = [UILabel new];
+    totalPriceWithDeliveryLabel.font = font;
     totalPriceWithDeliveryLabel.textAlignment = NSTextAlignmentCenter;
     totalPriceWithDeliveryLabel.text =
             [NSString stringWithFormat:@"Цена с доставкой: %ld%@", (long)[self.order totalPriceWithDelivery], ZPPRoubleSymbol];
+    stackHeight += font.lineHeight + stackSpacing;
     [self.totalPriceDetailsStackView addArrangedSubview:totalPriceWithDeliveryLabel];
   
     ZPPUser *user = [ZPPUserManager sharedInstance].user;
@@ -86,9 +94,11 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
         price -= discount;
         
         UILabel *discountLabel = [UILabel new];
+        discountLabel.font = font;
         discountLabel.textAlignment = NSTextAlignmentCenter;
         discountLabel.text =
                 [NSString stringWithFormat:@"Скидка: %d%@", (int)round(discount), ZPPRoubleSymbol];
+        stackHeight += font.lineHeight + stackSpacing;
         [self.totalPriceDetailsStackView addArrangedSubview:discountLabel];
     }
     
@@ -101,11 +111,15 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
     
     if (balance > 0) {
         UILabel *balanceLabel = [UILabel new];
+        balanceLabel.font = font;
         balanceLabel.textAlignment = NSTextAlignmentCenter;
         balanceLabel.text =
                     [NSString stringWithFormat:@"Бонусы: %ld%@", balance, ZPPRoubleSymbol];
+        stackHeight += font.lineHeight + stackSpacing;
         [self.totalPriceDetailsStackView addArrangedSubview:balanceLabel];
     }
+    
+    [self.totalPriceDetailsStackView autoSetDimension:ALDimensionHeight toSize:stackHeight];
     
     self.totalPriceLabel.text =
                 [NSString stringWithFormat:@"Итого: %ld%@", (long)[self.order totalPriceWithAllTheThings], ZPPRoubleSymbol];
