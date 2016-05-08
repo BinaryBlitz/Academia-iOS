@@ -13,6 +13,7 @@
 @import SafariServices;
 @import DateTools;
 
+#import <OAStackView/OAStackView.h>
 #import "UIButton+ZPPButtonCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIView+UIViewCategory.h"
@@ -60,29 +61,35 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 
     [self addCustomCloseButton];
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+    
+    self.totalPriceDetailsStackView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.totalPriceDetailsStackView.axis = UILayoutConstraintAxisVertical;
+    self.totalPriceDetailsStackView.distribution = OAStackViewDistributionFillEqually;
+    self.totalPriceDetailsStackView.alignment = OAStackViewAlignmentCenter;
 
     [Answers logCustomEventWithName:@"ORDER_TIME_CHOOSER_OPEN" customAttributes:@{}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-//    self.totalPriceLabel.text =
-//
-//    self.deliveryLabel.text = @"Цена с учетом бонусов и скидки";
-  
-    self.totalPriceWithDelivery.text =
-                [NSString stringWithFormat:@"Цена с доставкой: %ld%@", (long)[self.order totalPriceWithDelivery], ZPPRoubleSymbol];
     
+    UILabel *totalPriceWithDeliveryLabel = [UILabel new];
+    totalPriceWithDeliveryLabel.textAlignment = NSTextAlignmentCenter;
+    totalPriceWithDeliveryLabel.text =
+            [NSString stringWithFormat:@"Цена с доставкой: %ld%@", (long)[self.order totalPriceWithDelivery], ZPPRoubleSymbol];
+    [self.totalPriceDetailsStackView addArrangedSubview:totalPriceWithDeliveryLabel];
+  
     ZPPUser *user = [ZPPUserManager sharedInstance].user;
     
     double price = [self.order totalPriceWithDelivery];
     if ([user.discount intValue] != 0) {
         double discount = (double)price * ([user.discount doubleValue] / 100.0);
         price -= discount;
-        self.discountLabel.text =
-                [NSString stringWithFormat:@"Скидка: %d%@", (int)discount, ZPPRoubleSymbol];
-    } else {
-        self.discountLabel.text =
-                [NSString stringWithFormat:@"Скидка 0%@", ZPPRoubleSymbol];
+        
+        UILabel *discountLabel = [UILabel new];
+        discountLabel.textAlignment = NSTextAlignmentCenter;
+        discountLabel.text =
+                [NSString stringWithFormat:@"Скидка: %d%@", (int)round(discount), ZPPRoubleSymbol];
+        [self.totalPriceDetailsStackView addArrangedSubview:discountLabel];
     }
     
     NSInteger balance;
@@ -92,8 +99,13 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
         balance = [user.balance integerValue];
     }
     
-    self.balanceLabel.text =
-                [NSString stringWithFormat:@"Бонусы: %ld%@", balance, ZPPRoubleSymbol];
+    if (balance > 0) {
+        UILabel *balanceLabel = [UILabel new];
+        balanceLabel.textAlignment = NSTextAlignmentCenter;
+        balanceLabel.text =
+                    [NSString stringWithFormat:@"Бонусы: %ld%@", balance, ZPPRoubleSymbol];
+        [self.totalPriceDetailsStackView addArrangedSubview:balanceLabel];
+    }
     
     self.totalPriceLabel.text =
                 [NSString stringWithFormat:@"Итого: %ld%@", (long)[self.order totalPriceWithAllTheThings], ZPPRoubleSymbol];

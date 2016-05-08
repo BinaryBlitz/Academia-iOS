@@ -119,12 +119,12 @@
 
 - (NSInteger)totalPriceWithAllTheThings {
     
-    NSInteger price = [self totalPriceWithDelivery];
+    double price = [self totalPriceWithDelivery];
     ZPPUser *user = [ZPPUserManager sharedInstance].user;
     
     // Discount
     if ([user.discount intValue] != 0) {
-        double discount = (double)price * ([user.discount doubleValue] / 100.0);
+        double discount = price * ([user.discount doubleValue] / 100.0);
         price -= discount;
     }
     
@@ -140,7 +140,7 @@
         price = 1;
     }
     
-    return price;
+    return round(price);
 }
 
 - (BOOL)deliveryIncluded {
