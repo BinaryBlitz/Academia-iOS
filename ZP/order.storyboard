@@ -413,71 +413,60 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Бонусы: 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCi-rt-Jt9">
-                                <rect key="frame" x="258" y="460" width="85" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Скидка: 100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tAN-Wu-WPF">
-                                <rect key="frame" x="253" y="487" width="95" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Итого: 100500 р" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANp-0h-KLf">
                                 <rect key="frame" x="223" y="514" width="154" height="23"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Цена с доставкой: 300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Pe-hu-b3I">
-                                <rect key="frame" x="210" y="431" width="181" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9LA-wo-ovr" customClass="OAStackView">
+                                <rect key="frame" x="35" y="426" width="530" height="83"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="83" id="TAd-cp-EOc"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="axisValue">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="0Pe-hu-b3I" firstAttribute="top" secondItem="yFP-He-Sb0" secondAttribute="bottom" constant="15" id="6wh-Ep-QXh"/>
-                            <constraint firstItem="ANp-0h-KLf" firstAttribute="centerX" secondItem="tAN-Wu-WPF" secondAttribute="centerX" id="8Eg-FC-ZgW"/>
-                            <constraint firstItem="cCi-rt-Jt9" firstAttribute="top" secondItem="0Pe-hu-b3I" secondAttribute="bottom" constant="6" id="9Ow-EL-WyX"/>
                             <constraint firstItem="yFP-He-Sb0" firstAttribute="leading" secondItem="whY-80-1ZM" secondAttribute="leadingMargin" constant="15" id="9kK-Ep-ptk"/>
                             <constraint firstItem="rHJ-13-fY8" firstAttribute="trailing" secondItem="RGc-TG-NFr" secondAttribute="trailing" id="BAv-l2-GKr"/>
                             <constraint firstItem="rHJ-13-fY8" firstAttribute="top" secondItem="ANp-0h-KLf" secondAttribute="bottom" constant="8" id="BdV-Up-IbG"/>
                             <constraint firstItem="RGc-TG-NFr" firstAttribute="trailing" secondItem="6La-up-uWH" secondAttribute="trailing" id="FF0-gn-jOb"/>
                             <constraint firstItem="iwn-SQ-ycE" firstAttribute="top" secondItem="rHJ-13-fY8" secondAttribute="bottom" constant="15" id="Gc5-VW-5Ey"/>
                             <constraint firstItem="RGc-TG-NFr" firstAttribute="top" secondItem="6La-up-uWH" secondAttribute="bottom" constant="8" id="GdX-hc-Sjn"/>
-                            <constraint firstItem="tAN-Wu-WPF" firstAttribute="centerX" secondItem="cCi-rt-Jt9" secondAttribute="centerX" id="Gv1-uz-m1T"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1zi-FC-caJ" secondAttribute="trailing" constant="-20" id="HjA-Ho-rTd"/>
                             <constraint firstItem="6La-up-uWH" firstAttribute="top" secondItem="Nd6-Pc-txl" secondAttribute="bottom" constant="8" id="Hmm-Q2-kaP"/>
+                            <constraint firstItem="9LA-wo-ovr" firstAttribute="top" secondItem="yFP-He-Sb0" secondAttribute="bottom" constant="8" id="J79-00-u3y"/>
                             <constraint firstItem="rHJ-13-fY8" firstAttribute="centerX" secondItem="ANp-0h-KLf" secondAttribute="centerX" id="JYd-dA-ZAN"/>
                             <constraint firstItem="iwn-SQ-ycE" firstAttribute="top" secondItem="1zi-FC-caJ" secondAttribute="bottom" id="LcC-fR-hK1"/>
                             <constraint firstItem="RGc-TG-NFr" firstAttribute="centerY" secondItem="whY-80-1ZM" secondAttribute="centerY" id="Lia-5e-6m5"/>
-                            <constraint firstItem="ANp-0h-KLf" firstAttribute="top" secondItem="tAN-Wu-WPF" secondAttribute="bottom" constant="6" id="MIx-GF-Qgf"/>
                             <constraint firstItem="Nd6-Pc-txl" firstAttribute="centerX" secondItem="whY-80-1ZM" secondAttribute="centerX" id="TWN-Ym-1cC"/>
-                            <constraint firstItem="0Pe-hu-b3I" firstAttribute="centerX" secondItem="yFP-He-Sb0" secondAttribute="centerX" id="e3r-WD-sYo"/>
+                            <constraint firstItem="ANp-0h-KLf" firstAttribute="top" secondItem="9LA-wo-ovr" secondAttribute="bottom" constant="5" id="WiG-i7-Nfp"/>
+                            <constraint firstItem="9LA-wo-ovr" firstAttribute="width" secondItem="yFP-He-Sb0" secondAttribute="width" id="cfh-Pn-v4F"/>
+                            <constraint firstItem="9LA-wo-ovr" firstAttribute="centerX" secondItem="yFP-He-Sb0" secondAttribute="centerX" id="dnw-GF-Dye"/>
                             <constraint firstItem="6La-up-uWH" firstAttribute="width" secondItem="1zi-FC-caJ" secondAttribute="width" multiplier="0.6" id="kug-10-rYv"/>
-                            <constraint firstItem="tAN-Wu-WPF" firstAttribute="top" secondItem="cCi-rt-Jt9" secondAttribute="bottom" constant="6" id="mSh-BR-hbq"/>
                             <constraint firstItem="1zi-FC-caJ" firstAttribute="top" secondItem="whY-80-1ZM" secondAttribute="topMargin" id="nR7-0M-9Qj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yFP-He-Sb0" secondAttribute="trailing" constant="15" id="o5j-Zg-ViJ"/>
                             <constraint firstItem="RGc-TG-NFr" firstAttribute="centerX" secondItem="whY-80-1ZM" secondAttribute="centerX" id="rlU-EE-QOQ"/>
                             <constraint firstItem="rHJ-13-fY8" firstAttribute="leading" secondItem="RGc-TG-NFr" secondAttribute="leading" id="t8b-bQ-gZU"/>
-                            <constraint firstItem="cCi-rt-Jt9" firstAttribute="centerX" secondItem="0Pe-hu-b3I" secondAttribute="centerX" id="uV4-fh-Fv8"/>
+                            <constraint firstItem="9LA-wo-ovr" firstAttribute="top" secondItem="yFP-He-Sb0" secondAttribute="bottom" constant="8" id="wpz-7C-vCU"/>
                             <constraint firstItem="1zi-FC-caJ" firstAttribute="leading" secondItem="whY-80-1ZM" secondAttribute="leadingMargin" constant="-20" id="zeH-dT-r6Y"/>
                             <constraint firstItem="RGc-TG-NFr" firstAttribute="leading" secondItem="6La-up-uWH" secondAttribute="leading" id="zjm-8v-6to"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="atTimeButton" destination="RGc-TG-NFr" id="QHx-dG-Rqj"/>
-                        <outlet property="balanceLabel" destination="cCi-rt-Jt9" id="aWx-Or-G3m"/>
-                        <outlet property="discountLabel" destination="tAN-Wu-WPF" id="6mb-zR-M2n"/>
                         <outlet property="makeOrderButton" destination="rHJ-13-fY8" id="vv6-9m-lp9"/>
                         <outlet property="nowButton" destination="6La-up-uWH" id="2MD-Md-1JV"/>
                         <outlet property="nowButtonHeight" destination="9Z9-Ug-6gi" id="QBL-CW-lqr"/>
+                        <outlet property="totalPriceDetailsStackView" destination="9LA-wo-ovr" id="h24-vN-8yS"/>
                         <outlet property="totalPriceLabel" destination="ANp-0h-KLf" id="pKu-OG-bwD"/>
-                        <outlet property="totalPriceWithDelivery" destination="0Pe-hu-b3I" id="ISW-x5-DqV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fi7-EC-8Ny" userLabel="First Responder" sceneMemberID="firstResponder"/>
