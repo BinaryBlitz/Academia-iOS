@@ -19,6 +19,7 @@ pod 'EZSwipeController', git: 'https://github.com/DanShevlyuk/EZSwipeController.
 pod 'PureLayout'
 pod 'CWStatusBarNotification', '~> 2.3.4'
 pod 'IDDaDataSuggestions', git: 'https://github.com/DanShevlyuk/IDDaDataSuggestions.git'
+pod 'OAStackView'
 
 # Fabric
 pod 'Fabric'

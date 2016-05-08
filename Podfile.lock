@@ -57,6 +57,7 @@ PODS:
   - LMGeocoder (1.0.4)
   - LoremIpsum (1.0.0)
   - MBProgressHUD (0.9.2)
+  - OAStackView (1.0.1)
   - pop (1.0.9)
   - PureLayout (3.0.1)
   - REFormattedNumberField (1.1.6)
@@ -88,6 +89,7 @@ DEPENDENCIES:
   - LMGeocoder
   - LoremIpsum
   - MBProgressHUD
+  - OAStackView
   - PureLayout
   - REFormattedNumberField
   - SCLAlertView-Objective-C
@@ -130,6 +132,7 @@ SPEC CHECKSUMS:
   LMGeocoder: a0f635f948b0ca420d8d338e54886744cdcb215d
   LoremIpsum: 9029c55d36501b2ee0b05cc9ecda11d3a0479160
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  OAStackView: 95e7cb79cbea25c2342f496a44bdbe8bd4c8d510
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   REFormattedNumberField: 70fc5fb1218ebd5ee9983820defd12806d5c6ec6
