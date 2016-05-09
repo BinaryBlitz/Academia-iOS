@@ -17,7 +17,9 @@ extern NSString *_Nonnull const ZPPNoInternetConnectionMessage;
 typedef void (^failureBlock)(NSError *_Nullable error, NSInteger statusCode);
 @class AFHTTPRequestOperation;
 @class AFHTTPRequestOperationManager;
+
 @interface ZPPServerManager : NSObject
+
 @property (strong, nonatomic, readonly)
     AFHTTPRequestOperationManager *_Nullable requestOperationManager;
 
