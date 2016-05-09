@@ -144,8 +144,6 @@
 		19DADF401BF36CE8007D9DF2 /* ZPPSearchResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF3F1BF36CE8007D9DF2 /* ZPPSearchResultController.m */; };
 		19DADF491BF61715007D9DF2 /* ZPPNoInternetConnectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF481BF61715007D9DF2 /* ZPPNoInternetConnectionVC.m */; };
 		19DADF4C1BF62086007D9DF2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF4B1BF62086007D9DF2 /* Reachability.m */; };
-		19DADF501BF62D1E007D9DF2 /* ZPPCardNumberTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF4F1BF62D1E007D9DF2 /* ZPPCardNumberTextField.m */; };
-		19DADF531BF62D60007D9DF2 /* ZPPCardExpiryField.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF521BF62D60007D9DF2 /* ZPPCardExpiryField.m */; };
 		19DADF571BF64A0B007D9DF2 /* ZPPOrderResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF561BF64A0B007D9DF2 /* ZPPOrderResultVC.m */; };
 		19DADF5A1BF658DD007D9DF2 /* ZPPSmsVerificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF591BF658DD007D9DF2 /* ZPPSmsVerificationManager.m */; };
 		19DADF5F1BF75E46007D9DF2 /* ZPPServerManager+ZPPPromoCodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADF5E1BF75E46007D9DF2 /* ZPPServerManager+ZPPPromoCodeManager.m */; };
@@ -417,10 +415,6 @@
 		19DADF481BF61715007D9DF2 /* ZPPNoInternetConnectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPNoInternetConnectionVC.m; sourceTree = "<group>"; };
 		19DADF4A1BF62086007D9DF2 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		19DADF4B1BF62086007D9DF2 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		19DADF4E1BF62D1E007D9DF2 /* ZPPCardNumberTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPCardNumberTextField.h; sourceTree = "<group>"; };
-		19DADF4F1BF62D1E007D9DF2 /* ZPPCardNumberTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPCardNumberTextField.m; sourceTree = "<group>"; };
-		19DADF511BF62D60007D9DF2 /* ZPPCardExpiryField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPCardExpiryField.h; sourceTree = "<group>"; };
-		19DADF521BF62D60007D9DF2 /* ZPPCardExpiryField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPCardExpiryField.m; sourceTree = "<group>"; };
 		19DADF551BF64A0B007D9DF2 /* ZPPOrderResultVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPOrderResultVC.h; sourceTree = "<group>"; };
 		19DADF561BF64A0B007D9DF2 /* ZPPOrderResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPOrderResultVC.m; sourceTree = "<group>"; };
 		19DADF581BF658DD007D9DF2 /* ZPPSmsVerificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPSmsVerificationManager.h; sourceTree = "<group>"; };
@@ -793,7 +787,7 @@
 		191D7DE41BD53DAB00DBAFC4 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				191D7DF71BD56C2B00DBAFC4 /* helpers */,
+				191D7DF71BD56C2B00DBAFC4 /* Helpers */,
 				191D7DE51BD53DC000DBAFC4 /* ZPPUser.h */,
 				191D7DE61BD53DC000DBAFC4 /* ZPPUser.m */,
 				191D7DE81BD53DD100DBAFC4 /* ZPPUserManager.h */,
@@ -805,17 +799,17 @@
 		191D7DEE1BD5695200DBAFC4 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				19DADF6C1BF76898007D9DF2 /* gifts */,
-				19DADF601BF760D5007D9DF2 /* order */,
-				19DADF5C1BF75E16007D9DF2 /* promocode */,
-				191D7DF01BD5699500DBAFC4 /* base */,
-				198A5C181BD5BDDE00710A36 /* dishes */,
-				191D7DEF1BD5698D00DBAFC4 /* registration */,
+				19DADF6C1BF76898007D9DF2 /* Gifts */,
+				19DADF601BF760D5007D9DF2 /* Order */,
+				19DADF5C1BF75E16007D9DF2 /* Promocode */,
+				191D7DF01BD5699500DBAFC4 /* Base */,
+				198A5C181BD5BDDE00710A36 /* Dishes */,
+				191D7DEF1BD5698D00DBAFC4 /* Registration */,
 			);
 			name = API;
 			sourceTree = "<group>";
 		};
-		191D7DEF1BD5698D00DBAFC4 /* registration */ = {
+		191D7DEF1BD5698D00DBAFC4 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
 				198A5C001BD5875B00710A36 /* ZPPServerManager+ZPPRegistration.h */,
@@ -823,25 +817,25 @@
 				19DADF581BF658DD007D9DF2 /* ZPPSmsVerificationManager.h */,
 				19DADF591BF658DD007D9DF2 /* ZPPSmsVerificationManager.m */,
 			);
-			name = registration;
+			name = Registration;
 			sourceTree = "<group>";
 		};
-		191D7DF01BD5699500DBAFC4 /* base */ = {
+		191D7DF01BD5699500DBAFC4 /* Base */ = {
 			isa = PBXGroup;
 			children = (
 				191D7DE11BD53B0B00DBAFC4 /* ZPPServerManager.h */,
 				191D7DE21BD53B0B00DBAFC4 /* ZPPServerManager.m */,
 			);
-			name = base;
+			name = Base;
 			sourceTree = "<group>";
 		};
-		191D7DF71BD56C2B00DBAFC4 /* helpers */ = {
+		191D7DF71BD56C2B00DBAFC4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				191D7DF41BD56C2600DBAFC4 /* ZPPUserHelper.h */,
 				191D7DF51BD56C2600DBAFC4 /* ZPPUserHelper.m */,
 			);
-			name = helpers;
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		191D7DF81BD5766C00DBAFC4 /* Buttons */ = {
@@ -869,14 +863,14 @@
 			name = gift;
 			sourceTree = "<group>";
 		};
-		1942354A1BE9337D0014BD9A /* gift */ = {
+		1942354A1BE9337D0014BD9A /* Gift */ = {
 			isa = PBXGroup;
 			children = (
 				19DADF681BF7678C007D9DF2 /* helper */,
 				1942354B1BE933E30014BD9A /* ZPPGift.h */,
 				1942354C1BE933E30014BD9A /* ZPPGift.m */,
 			);
-			name = gift;
+			name = Gift;
 			sourceTree = "<group>";
 		};
 		1948C5191BEB5C4D00084BC8 /* Order Total */ = {
@@ -921,7 +915,6 @@
 		1948C52F1BEBB39400084BC8 /* TextField */ = {
 			isa = PBXGroup;
 			children = (
-				19DADF4D1BF62D06007D9DF2 /* moneykit */,
 				1948C5301BEBB3B500084BC8 /* ZPPCustomTextField.h */,
 				1948C5311BEBB3B500084BC8 /* ZPPCustomTextField.m */,
 			);
@@ -1093,9 +1086,9 @@
 		198A5C091BD5B59F00710A36 /* Product */ = {
 			isa = PBXGroup;
 			children = (
-				19B3A9701C073CE70089F02A /* badge */,
-				1942354A1BE9337D0014BD9A /* gift */,
-				198A5C111BD5B6BE00710A36 /* helpers */,
+				19B3A9701C073CE70089F02A /* Badge */,
+				1942354A1BE9337D0014BD9A /* Gift */,
+				198A5C111BD5B6BE00710A36 /* Helpers */,
 				198A5C0A1BD5B5C000710A36 /* ZPPIngridient.h */,
 				198A5C0B1BD5B5C000710A36 /* ZPPIngridient.m */,
 				198A5C0E1BD5B60700710A36 /* ZPPDish.h */,
@@ -1113,7 +1106,7 @@
 			name = Product;
 			sourceTree = "<group>";
 		};
-		198A5C111BD5B6BE00710A36 /* helpers */ = {
+		198A5C111BD5B6BE00710A36 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				198A5C121BD5B6D900710A36 /* ZPPIngridientHelper.h */,
@@ -1127,16 +1120,16 @@
 				19B386171C19F1CC0050BE02 /* ZPPEnergyHelper.h */,
 				19B386181C19F1CC0050BE02 /* ZPPEnergyHelper.m */,
 			);
-			name = helpers;
+			name = Helpers;
 			sourceTree = "<group>";
 		};
-		198A5C181BD5BDDE00710A36 /* dishes */ = {
+		198A5C181BD5BDDE00710A36 /* Dishes */ = {
 			isa = PBXGroup;
 			children = (
 				198A5C191BD5BE0B00710A36 /* ZPPServerManager+ZPPDishesSeverManager.h */,
 				198A5C1A1BD5BE0B00710A36 /* ZPPServerManager+ZPPDishesSeverManager.m */,
 			);
-			name = dishes;
+			name = Dishes;
 			sourceTree = "<group>";
 		};
 		198FD9831BE7B82200A30B4D /* Credit Card */ = {
@@ -1200,7 +1193,7 @@
 			name = productEnergy;
 			sourceTree = "<group>";
 		};
-		19B3A9701C073CE70089F02A /* badge */ = {
+		19B3A9701C073CE70089F02A /* Badge */ = {
 			isa = PBXGroup;
 			children = (
 				19B3A9751C073D470089F02A /* ZPPBadge.h */,
@@ -1208,7 +1201,7 @@
 				19B3A9781C073DE00089F02A /* ZPPBadgeHelper.h */,
 				19B3A9791C073DE00089F02A /* ZPPBadgeHelper.m */,
 			);
-			name = badge;
+			name = Badge;
 			sourceTree = "<group>";
 		};
 		19B3A9741C073D170089F02A /* badge */ = {
@@ -1339,17 +1332,6 @@
 			name = NoInternetConnection;
 			sourceTree = "<group>";
 		};
-		19DADF4D1BF62D06007D9DF2 /* moneykit */ = {
-			isa = PBXGroup;
-			children = (
-				19DADF4E1BF62D1E007D9DF2 /* ZPPCardNumberTextField.h */,
-				19DADF4F1BF62D1E007D9DF2 /* ZPPCardNumberTextField.m */,
-				19DADF511BF62D60007D9DF2 /* ZPPCardExpiryField.h */,
-				19DADF521BF62D60007D9DF2 /* ZPPCardExpiryField.m */,
-			);
-			name = moneykit;
-			sourceTree = "<group>";
-		};
 		19DADF541BF6349A007D9DF2 /* order results */ = {
 			isa = PBXGroup;
 			children = (
@@ -1372,22 +1354,22 @@
 			name = "password renew";
 			sourceTree = "<group>";
 		};
-		19DADF5C1BF75E16007D9DF2 /* promocode */ = {
+		19DADF5C1BF75E16007D9DF2 /* Promocode */ = {
 			isa = PBXGroup;
 			children = (
 				19DADF5D1BF75E46007D9DF2 /* ZPPServerManager+ZPPPromoCodeManager.h */,
 				19DADF5E1BF75E46007D9DF2 /* ZPPServerManager+ZPPPromoCodeManager.m */,
 			);
-			name = promocode;
+			name = Promocode;
 			sourceTree = "<group>";
 		};
-		19DADF601BF760D5007D9DF2 /* order */ = {
+		19DADF601BF760D5007D9DF2 /* Order */ = {
 			isa = PBXGroup;
 			children = (
 				19DADF611BF760ED007D9DF2 /* ZPPServerManager+ZPPOrderServerManager.h */,
 				19DADF621BF760ED007D9DF2 /* ZPPServerManager+ZPPOrderServerManager.m */,
 			);
-			name = order;
+			name = Order;
 			sourceTree = "<group>";
 		};
 		19DADF641BF762CA007D9DF2 /* Helper */ = {
@@ -1408,13 +1390,13 @@
 			name = helper;
 			sourceTree = "<group>";
 		};
-		19DADF6C1BF76898007D9DF2 /* gifts */ = {
+		19DADF6C1BF76898007D9DF2 /* Gifts */ = {
 			isa = PBXGroup;
 			children = (
 				19DADF6D1BF768BC007D9DF2 /* ZPPServerManager+ZPPGiftServerManager.h */,
 				19DADF6E1BF768BC007D9DF2 /* ZPPServerManager+ZPPGiftServerManager.m */,
 			);
-			name = gifts;
+			name = Gifts;
 			sourceTree = "<group>";
 		};
 		19E6D4171BC66F1C00DF6EF9 /* base */ = {
@@ -1879,7 +1861,6 @@
 				19F3790A1BFE9132004827A0 /* ZPPCustomLabel.m in Sources */,
 				19DBC3CD1C0A4F50009EC8EF /* ZPPCommentCell.m in Sources */,
 				191D7DDD1BD5359700DBAFC4 /* UIView+UIViewCategory.m in Sources */,
-				19DADF501BF62D1E007D9DF2 /* ZPPCardNumberTextField.m in Sources */,
 				19B3A97A1C073DE00089F02A /* ZPPBadgeHelper.m in Sources */,
 				19DADF491BF61715007D9DF2 /* ZPPNoInternetConnectionVC.m in Sources */,
 				19E6D4161BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m in Sources */,
@@ -1948,7 +1929,6 @@
 				19DADF4C1BF62086007D9DF2 /* Reachability.m in Sources */,
 				19062D8E1BD69ACB003AC242 /* ZPPProfileVC.m in Sources */,
 				19DADF401BF36CE8007D9DF2 /* ZPPSearchResultController.m in Sources */,
-				19DADF531BF62D60007D9DF2 /* ZPPCardExpiryField.m in Sources */,
 				19F378F71BFA9EA0004827A0 /* ZPPDelivery.m in Sources */,
 				19D242701BEA31FD007A0FEB /* ZPPOrderHistoryCell.m in Sources */,
 				19B3A9861C0A445D0089F02A /* ZPPStarsCell.m in Sources */,

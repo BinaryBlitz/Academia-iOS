@@ -5,10 +5,8 @@ use_frameworks!
 pod 'AFNetworking', '~>2.6.3'
 pod 'CocoaLumberjack'
 pod 'DateTools'
-pod 'LoremIpsum'
 pod 'SDWebImage'
 pod 'INTULocationManager'
-pod 'BKMoneyKit'
 pod 'PureLayout'
 pod 'IDDaDataSuggestions', git: 'https://github.com/DanShevlyuk/IDDaDataSuggestions.git'
 
