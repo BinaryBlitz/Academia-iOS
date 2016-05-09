@@ -7,7 +7,8 @@
 //
 
 #import "ZPPServerManager.h"
-#import "AFNetworking.h"
+
+@import AFNetworking;
 
 NSString *const ZPPServerBaseUrl = @"http://128.199.51.211/";
 //NSString *const ZPPServerBaseUrl = @"http://zpapp.binaryblitz.ru/";
