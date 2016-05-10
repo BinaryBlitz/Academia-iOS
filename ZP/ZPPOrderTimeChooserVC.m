@@ -72,12 +72,15 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+    for (UIView *view in self.totalPriceDetailsStackView.arrangedSubviews) {
+        [self.totalPriceDetailsStackView removeArrangedSubview:view];
+    }
+  
     UIFont *font = [UIFont systemFontOfSize:17];
     
     CGFloat stackHeight = 0;
     CGFloat stackSpacing = 5;
-    
+
     UILabel *totalPriceWithDeliveryLabel = [UILabel new];
     totalPriceWithDeliveryLabel.font = font;
     totalPriceWithDeliveryLabel.textAlignment = NSTextAlignmentCenter;
