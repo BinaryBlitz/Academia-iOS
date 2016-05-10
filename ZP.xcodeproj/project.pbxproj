@@ -584,13 +584,13 @@
 			name = Card;
 			sourceTree = "<group>";
 		};
-		190C6BBA1BFA1B6F00533509 /* order time */ = {
+		190C6BBA1BFA1B6F00533509 /* Order time */ = {
 			isa = PBXGroup;
 			children = (
 				190C6BBB1BFA1BC800533509 /* ZPPOrderTimeChooserVC.h */,
 				190C6BBC1BFA1BC800533509 /* ZPPOrderTimeChooserVC.m */,
 			);
-			name = "order time";
+			name = "Order time";
 			sourceTree = "<group>";
 		};
 		190C6BBE1BFA2E4F00533509 /* Date */ = {
@@ -644,9 +644,9 @@
 		190F9C7A1BE3C0F20032E14D /* Order */ = {
 			isa = PBXGroup;
 			children = (
-				19F378FB1BFBBDD5004827A0 /* payment */,
-				190C6BBA1BFA1B6F00533509 /* order time */,
-				19DADF541BF6349A007D9DF2 /* order results */,
+				19F378FB1BFBBDD5004827A0 /* Payment */,
+				190C6BBA1BFA1B6F00533509 /* Order time */,
+				19DADF541BF6349A007D9DF2 /* Order results */,
 				190F9C7B1BE3C1330032E14D /* ZPPOrderTVC.h */,
 				190F9C7C1BE3C1330032E14D /* ZPPOrderTVC.m */,
 				1942353D1BE8F6C20014BD9A /* ZPPOrderItemVC.h */,
@@ -1332,13 +1332,13 @@
 			name = NoInternetConnection;
 			sourceTree = "<group>";
 		};
-		19DADF541BF6349A007D9DF2 /* order results */ = {
+		19DADF541BF6349A007D9DF2 /* Order results */ = {
 			isa = PBXGroup;
 			children = (
 				19DADF551BF64A0B007D9DF2 /* ZPPOrderResultVC.h */,
 				19DADF561BF64A0B007D9DF2 /* ZPPOrderResultVC.m */,
 			);
-			name = "order results";
+			name = "Order results";
 			sourceTree = "<group>";
 		};
 		19DADF5B1BF75C31007D9DF2 /* password renew */ = {
@@ -1446,13 +1446,13 @@
 			name = DeliveryItem;
 			sourceTree = "<group>";
 		};
-		19F378FB1BFBBDD5004827A0 /* payment */ = {
+		19F378FB1BFBBDD5004827A0 /* Payment */ = {
 			isa = PBXGroup;
 			children = (
 				19F378FC1BFBBDF3004827A0 /* ZPPPaymentWebController.h */,
 				19F378FD1BFBBDF3004827A0 /* ZPPPaymentWebController.m */,
 			);
-			name = payment;
+			name = Payment;
 			sourceTree = "<group>";
 		};
 		19F379071BFE911F004827A0 /* Label */ = {
