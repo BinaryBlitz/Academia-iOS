@@ -169,8 +169,10 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 }
 
 - (void)showCurrentLocation {
-    INTULocationManager *locMgr = [INTULocationManager sharedInstance];
-    [locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
+    
+    INTULocationManager *locationManger = [INTULocationManager sharedInstance];
+  
+    [locationManger requestLocationWithDesiredAccuracy:INTULocationAccuracyBlock
                timeout:10.0
                delayUntilAuthorized:YES
                block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
