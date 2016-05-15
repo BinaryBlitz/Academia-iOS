@@ -53,7 +53,6 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 
     self.needUpdate = YES;
 
-    [self showCurrentLocation];
     GMSCameraPosition *camera =
         [GMSCameraPosition cameraWithLatitude:55.75674918 longitude:37.60394961 zoom:10];
 
@@ -84,6 +83,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self addGradient];
+    [self showCurrentLocation];
 }
 
 - (void)mapView:(GMSMapView *)mapView idleAtCameraPosition:(GMSCameraPosition *)position {
@@ -169,11 +169,11 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 }
 
 - (void)showCurrentLocation {
-    
+  
     INTULocationManager *locationManger = [INTULocationManager sharedInstance];
   
     [locationManger requestLocationWithDesiredAccuracy:INTULocationAccuracyBlock
-               timeout:10.0
+               timeout:2.0
                delayUntilAuthorized:YES
                block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
                      if (status == INTULocationStatusSuccess) {
