@@ -240,8 +240,16 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
                     onSuccess:^(NSString *paymentURLString) {
                         [self.makeOrderButton stopIndication];
 
-                        NSURL *url = [NSURL URLWithString:paymentURLString];
-                        [self showWebViewWithURl:url];
+                        [[ZPPServerManager sharedManager] processPaymentURLString:paymentURLString
+                                onSuccess:^(NSString *redirectURLString) {
+                                    if ([redirectURLString containsString:@"sakses"]) {
+                                        [self pushSuccessOrderControllerWithAnimation];
+                                    } else {
+                                        [self showWarningWithText:@"Не удалось оплатить заказ"];
+                                    }
+                                } onFailure:^(NSError *error, NSInteger statusCode) {
+                                    [self showWarningWithText:@"Не удалось оплатить заказ"];
+                                }];
                     } onFailure:^(NSError *error, NSInteger statusCode) {
                         [self.makeOrderButton stopIndication];
                     }];
@@ -302,7 +310,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
                 andBindingId:card.bindingId
                 onSuccess:^(NSString *paymentURLString) {
                     NSURL *paymentURL  = [[NSURL alloc] initWithString:paymentURLString];
-                    [_webViewController configureWithURL:paymentURL];
+                    [self showWebViewWithURl:paymentURL];
                 } onFailure:^(NSError *error, NSInteger statusCode) {
                     NSLog(@"¯\\_(ツ)_/¯");
                 }];
@@ -323,6 +331,15 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
     self.paymentOrder = nil;
     [self.order clearOrder];
     [self dismissViewControllerAnimated: YES completion:nil];
+}
+
+- (void)pushSuccessOrderControllerWithAnimation {
+    UIViewController *orderResultViewContorller = [self.storyboard
+        instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
+
+    [self.navigationController pushViewController:orderResultViewContorller animated:YES];
+    self.paymentOrder = nil;
+    [self.order clearOrder];
 }
 
 - (void)checkOrderSender:(UIViewController *)viewController {

@@ -195,7 +195,6 @@
     [self.requestOperationManager POST:@"payment_cards"
         parameters:parameters
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-            NSLog(@"register new card response: %@", (NSDictionary *)responseObject);
             NSString *error = responseObject[@"error"];
             if (error) {
                 NSLog(@"Error: %@", error);
@@ -214,6 +213,36 @@
                 [[self class] failureWithBlock:failure error:error operation:operation];
             }
         }];
+}
+
+- (void)processPaymentURLString:(NSString *)paymentURL onSuccess:(void (^)(NSString *redirectURLString))success
+                             onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+    NSURL *url = [NSURL URLWithString:paymentURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]
+                                         initWithRequest:request];
+    
+    [operation setCompletionBlockWithSuccess:
+            ^(AFHTTPRequestOperation *operation, id responseObject) {
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                if (failure) {
+                    [[self class] failureWithBlock:failure error:error operation:operation];
+                }
+            }
+     ];
+    
+    [operation setRedirectResponseBlock:^NSURLRequest * _Nonnull (NSURLConnection * _Nonnull connection, NSURLRequest * _Nonnull request, NSURLResponse * _Nonnull redirectResponse) {
+        
+        if ([request.URL.absoluteString containsString:@"sakses"] || [request.URL.absoluteString containsString:@"feylur"]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                success(request.URL.absoluteString);
+            });
+        }
+        
+        return request;
+    }];
+    
+    [operation start];
 }
 
 #pragma mark - Time stuff
