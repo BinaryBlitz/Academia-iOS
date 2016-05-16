@@ -44,6 +44,9 @@
 - (void)registerNewCreditCardOnSuccess:(void (^)(NSString *registrationURLString))success
                           onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
+- (void)processPaymentURLString:(NSString *)paymentURL onSuccess:(void (^)(NSString *redirectURLString))success
+                            onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
 #pragma mark - Review
 
 - (void)sendComment:(NSString *)comment
