@@ -9,7 +9,7 @@
 #import "ZPPSearchResultController.h"
 
 @import LMGeocoder;
-@import IDDaDataSuggestions;
+#import <IDDaDataSuggestions/IDDaDataSuggestions.h>
 
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
