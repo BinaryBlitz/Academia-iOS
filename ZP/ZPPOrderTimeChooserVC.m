@@ -238,16 +238,16 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
                 [[ZPPServerManager sharedManager] createNewPaymentWithOrderId:order.identifier
                     andBindingId:self.order.card.bindingId
                     onSuccess:^(NSString *paymentURLString) {
-                        [self.makeOrderButton stopIndication];
-
                         [[ZPPServerManager sharedManager] processPaymentURLString:paymentURLString
                                 onSuccess:^(NSString *redirectURLString) {
+                                    [self.makeOrderButton stopIndication];
                                     if ([redirectURLString containsString:@"sakses"]) {
                                         [self pushSuccessOrderControllerWithAnimation];
                                     } else {
                                         [self showWarningWithText:@"Не удалось оплатить заказ"];
                                     }
                                 } onFailure:^(NSError *error, NSInteger statusCode) {
+                                    [self.makeOrderButton stopIndication];
                                     [self showWarningWithText:@"Не удалось оплатить заказ"];
                                 }];
                     } onFailure:^(NSError *error, NSInteger statusCode) {
@@ -302,6 +302,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 }
 
 - (void)payWithNewCard {
+    [self.makeOrderButton startIndicatingWithType:UIActivityIndicatorViewStyleGray];
     [[ZPPServerManager sharedManager] listPaymentCardsWithSuccess:^(NSArray *cards) {
         ZPPCreditCard *card = cards.lastObject;
         if (card) {
@@ -309,14 +310,17 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
             [[ZPPServerManager sharedManager] createNewPaymentWithOrderId:self.paymentOrder.identifier
                 andBindingId:card.bindingId
                 onSuccess:^(NSString *paymentURLString) {
+                    [self.makeOrderButton stopIndication];
                     NSURL *paymentURL  = [[NSURL alloc] initWithString:paymentURLString];
                     [self showWebViewWithURl:paymentURL];
                 } onFailure:^(NSError *error, NSInteger statusCode) {
+                    [self.makeOrderButton stopIndication];
                     NSLog(@"¯\\_(ツ)_/¯");
                 }];
         }
     } onFailure:^(NSError *error, NSInteger statusCode) {
         NSLog(@"(╯°□°）╯︵ ┻━┻ ");
+        [self.makeOrderButton stopIndication];
         if (statusCode == 0) {
             [self payWithNewCard];
         }
