@@ -126,7 +126,7 @@ static NSString *ZPPDaDataAPIKey = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
                                                 [self.addressSearchDelegate configureWithAddress:bestResult sender:self];
                                                 [self dismissViewControllerAnimated:YES completion:nil];
                                             } else {
-                                                [self presentAlertWithMessage:@"Адрес введен неверо. Попробуйте ещё раз"];
+                                                [self presentAlertWithMessage:@"Адрес введен неверно. Попробуйте ещё раз"];
                                                 [searchBar setText:nil];
                                                 [searchBar becomeFirstResponder];
                                             }
