@@ -25,7 +25,8 @@
 static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Питание\"";
 
 @interface ZPPPromoVC () <MFMailComposeViewControllerDelegate,
-                          MFMessageComposeViewControllerDelegate>
+                          MFMessageComposeViewControllerDelegate,
+                          UITextFieldDelegate>
 
 @property (strong, nonatomic) NSString *promocode;
 
@@ -46,6 +47,8 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
     self.mainTF = self.smsInviteButton.superview;
 
     [self.codeTextField makeBordered];
+    self.codeTextField.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    self.codeTextField.delegate = self;
 
     [self.doneButton addTarget:self
                         action:@selector(confirmCode:)
@@ -314,5 +317,20 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
                          [self.view layoutIfNeeded];
                      }];
 }
+
+#pragma mark - text field delegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSRange lowercaseCharRange = [string rangeOfCharacterFromSet:[NSCharacterSet lowercaseLetterCharacterSet]];
+    
+    if (lowercaseCharRange.location != NSNotFound) {
+        textField.text = [textField.text stringByReplacingCharactersInRange:range
+                                                                 withString:[string uppercaseString]];
+        return NO;
+    }
+    
+    return YES;
+}
+
 
 @end
