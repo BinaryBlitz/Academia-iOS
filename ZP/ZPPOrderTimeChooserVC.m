@@ -310,12 +310,20 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
             [[ZPPServerManager sharedManager] createNewPaymentWithOrderId:self.paymentOrder.identifier
                 andBindingId:card.bindingId
                 onSuccess:^(NSString *paymentURLString) {
-                    [self.makeOrderButton stopIndication];
-                    NSURL *paymentURL  = [[NSURL alloc] initWithString:paymentURLString];
-                    [self showWebViewWithURl:paymentURL];
+                    [[ZPPServerManager sharedManager] processPaymentURLString:paymentURLString
+                            onSuccess:^(NSString *redirectURLString) {
+                                [self.makeOrderButton stopIndication];
+                                if ([redirectURLString containsString:@"sakses"]) {
+                                    [self presentSuccessOrderController];
+                                } else {
+                                    [self showWarningWithText:@"Не удалось оплатить заказ"];
+                                }
+                            } onFailure:^(NSError *error, NSInteger statusCode) {
+                                [self.makeOrderButton stopIndication];
+                                [self showWarningWithText:@"Не удалось оплатить заказ"];
+                            }];
                 } onFailure:^(NSError *error, NSInteger statusCode) {
                     [self.makeOrderButton stopIndication];
-                    NSLog(@"¯\\_(ツ)_/¯");
                 }];
         }
     } onFailure:^(NSError *error, NSInteger statusCode) {
