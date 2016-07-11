@@ -10,8 +10,7 @@
 
 @import AFNetworking;
 
-NSString *const ZPPServerBaseUrl = @"http://128.199.51.211/";
-//NSString *const ZPPServerBaseUrl = @"http://zpapp.binaryblitz.ru/";
+NSString *const ZPPServerBaseUrl = @"https://polar-dawn-60511.herokuapp.com/";
 
 NSString *const ZPPNoInternetConnectionMessage = @"Проверьте интернет соединение";
 
