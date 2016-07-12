@@ -14,8 +14,7 @@ import Foundation
     
     var imageURLString: String?
     var imageURL: NSURL? {
-        let baseURLString = String(ZPPServerBaseUrl.characters.dropLast())
-        return NSURL(string: baseURLString + (imageURLString ?? ""))
+        return NSURL(string: (imageURLString ?? ""))
     }
     var hasAvailableScreen: Bool {
         return imageURLString != nil

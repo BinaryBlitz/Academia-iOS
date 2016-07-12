@@ -20,7 +20,6 @@
 
     NSURL *imgURL;
     if (imgUrlAsString && ![imgUrlAsString isEqual:[NSNull null]] ) {
-        imgUrlAsString = [ZPPServerBaseUrl stringByAppendingString:imgUrlAsString];
         imgURL = [NSURL URLWithString:imgUrlAsString];
     }
 
