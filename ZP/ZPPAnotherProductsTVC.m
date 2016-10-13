@@ -22,7 +22,7 @@ static NSString *ZPPProductAnotherCellIdentifier = @"ZPPProductAnotherCellIdenti
 static NSString *ZPPProductMainCellIdentifier = @"ZPPProductsMainCellIdentifier";
 
 static NSString *ZPPControllerName = @"ДОПОЛНИ СВОЙ ЛАНЧ!";
-static NSString *ZPPControllerDescrioption = @"НАПИТКИ / СМУЗИ / ДЕСЕРТЫ";
+static NSString *ZPPControllerDescrioption = @"НАПИТКИ / ДЕСЕРТЫ";
 
 @interface ZPPAnotherProductsTVC ()
 

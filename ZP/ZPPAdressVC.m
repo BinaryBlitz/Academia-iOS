@@ -118,7 +118,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
     if (self.poligon) {
         if (!GMSGeometryContainsLocation(self.mapView_.camera.target, self.poligon.path, YES)) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
-                                                                           message:@"Мы доставляем только внутри Садового Кольца"
+                                                                           message:@"Мы доставляем только в пределах Садового Кольца"
                                                                     preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction: [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
             [self presentViewController:alert animated:YES completion:nil];
