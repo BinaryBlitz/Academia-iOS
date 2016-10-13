@@ -306,7 +306,8 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
 
     CGRect r = [UIScreen mainScreen].bounds;
     UIView *v = [[UIView alloc] initWithFrame:r];
-    v.backgroundColor = [UIColor whiteColor];
+    UIColor *backgroundColor = [UIColor colorWithRed:254.0/255.0 green:238.0/255.0 blue:218.0/255.0 alpha:1.0];
+    v.backgroundColor = backgroundColor;
 
     CGFloat offset = 24;
     CGFloat len = r.size.width - offset * 2;
@@ -314,6 +315,7 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
     CGRect ivr = CGRectMake(offset, (r.size.height - len) / 2.0, len, len);
 
     UIImageView *iv = [[UIImageView alloc] initWithFrame:ivr];
+    iv.backgroundColor = backgroundColor;
     iv.image = [UIImage imageNamed:@"iconBigColor"];
     [v addSubview:iv];
 
@@ -322,8 +324,8 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
     UIView *bottomView = [[UIView alloc] initWithFrame:btmr];
     UIView *upperrView = [[UIView alloc] initWithFrame:upr];
 
-    bottomView.backgroundColor = [UIColor whiteColor];
-    upperrView.backgroundColor = [UIColor whiteColor];
+    bottomView.backgroundColor = backgroundColor;
+    upperrView.backgroundColor = backgroundColor;
     [iv addSubview:bottomView];
     [iv addSubview:upperrView];
 
