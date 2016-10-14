@@ -4,7 +4,6 @@ use_frameworks!
 target 'ZP' do
 # Tools
   pod 'AFNetworking', '~>2.6.3'
-  pod 'CocoaLumberjack'
   pod 'DateTools'
   pod 'SDWebImage'
   pod 'INTULocationManager'

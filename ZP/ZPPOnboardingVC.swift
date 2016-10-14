@@ -23,7 +23,7 @@ class ZPPOnboardingVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.grayColor()
+        view.backgroundColor = UIColor.gray
         
         
         textLabel.text = text
@@ -41,9 +41,9 @@ class ZPPOnboardingVC: UIViewController {
         }
 
 
-        let s = UIScreen.mainScreen().bounds.size;
+        let s = UIScreen.main.bounds.size;
         if s.height/s.width < 16/9.0 {
-            textLabel.font = textLabel.font.fontWithSize(22)
+            textLabel.font = textLabel.font.withSize(22)
         }
         // Do any additional setup after loading the view.
     }
@@ -53,7 +53,7 @@ class ZPPOnboardingVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func configure(backName:String, iphoneName:String, text: String) {
+    func configure(_ backName:String, iphoneName:String, text: String) {
         
         self.backName = backName
         self.text = text

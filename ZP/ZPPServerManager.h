@@ -6,10 +6,11 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-@import Foundation;
-@import CocoaLumberjack;
 
-static const int ddLogLevel = DDLogLevelDebug;
+@import Foundation;
+//@import CocoaLumberjack;
+
+//static const int ddLogLevel = DDLogLevelDebug;
 
 extern NSString *_Nonnull const ZPPServerBaseUrl;
 extern NSString *_Nonnull const ZPPNoInternetConnectionMessage;
