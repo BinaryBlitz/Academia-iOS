@@ -38,7 +38,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    
+    [super awakeFromNib];
     self.badgeView =
     [[JSBadgeView alloc] initWithParentView:self.addProductButton alignment:JSBadgeViewAlignmentTopRight];
 }

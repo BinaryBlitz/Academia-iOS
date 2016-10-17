@@ -15,7 +15,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    
+    [super awakeFromNib];
     self.starView.backgroundColor = [UIColor clearColor];
     self.starView.allowsHalfStars = NO;
     self.starView.continuous = NO;

@@ -117,7 +117,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
         balanceLabel.font = font;
         balanceLabel.textAlignment = NSTextAlignmentCenter;
         balanceLabel.text =
-                    [NSString stringWithFormat:@"Бонусы: %ld%@", balance, ZPPRoubleSymbol];
+                    [NSString stringWithFormat:@"Бонусы: %ld%@", (long)balance, ZPPRoubleSymbol];
         stackHeight += font.lineHeight + stackSpacing;
         [self.totalPriceDetailsStackView addArrangedSubview:balanceLabel];
     }
