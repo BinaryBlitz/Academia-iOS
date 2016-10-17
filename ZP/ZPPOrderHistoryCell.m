@@ -18,8 +18,7 @@
 
 - (void)configureWithOrder:(ZPPOrder *)order {
     NSString *dateString =
-        [NSString stringWithFormat:@"Заказ от %ld.%ld.%ld", [order.date day],
-                                   [order.date month], [order.date year]];
+        [NSString stringWithFormat:@"Заказ от %ld.%ld.%ld", (long)[order.date day], (long)[order.date month], (long)[order.date year]];
     self.orderName.text = dateString;
 
     self.descrLabel.text = [order orderDescr];  // descrString;

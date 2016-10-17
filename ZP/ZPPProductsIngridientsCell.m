@@ -11,6 +11,7 @@
 @implementation ZPPProductsIngridientsCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
 }
 

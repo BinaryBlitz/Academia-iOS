@@ -399,9 +399,9 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
 
 - (void)setOrderCount:(NSInteger)count {
     if (count > 0) {
-        self.orderCountBadgeView.badgeText = [NSString stringWithFormat:@"%ld", count];
+        self.orderCountBadgeView.badgeText = [NSString stringWithFormat:@"%ld", (long)count];
 
-        NSString *destString = [NSString stringWithFormat:@"ЗАКАЗЫ (%ld)", count];
+        NSString *destString = [NSString stringWithFormat:@"ЗАКАЗЫ (%ld)", (long)count];
         [self.mainMenu.ordersButton setTitle:destString forState:UIControlStateNormal];
     } else {
         self.orderCountBadgeView.badgeText = nil;

@@ -12,6 +12,7 @@
 @implementation ZPPOrderItemCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
 }
 

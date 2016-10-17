@@ -23,13 +23,13 @@
 - (NSString *)dateStringFromDate {
 //    NSString *day = [self day];
     
-    return [NSString stringWithFormat:@"%ld.%ld",[self day], [self month]];
+    return [NSString stringWithFormat:@"%ld.%ld",(long)[self day], (long)[self month]];
     
 }
 
 + (NSString *)zpp_formatedNum:(NSInteger)num {
     return num < 10 ? [NSString stringWithFormat:@"0%ld", (long)num]
-                    : [NSString stringWithFormat:@"%ld", num];
+                    : [NSString stringWithFormat:@"%ld", (long)num];
 }
 
 
