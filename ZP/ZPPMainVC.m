@@ -319,8 +319,8 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
     iv.image = [UIImage imageNamed:@"iconBigColor"];
     [v addSubview:iv];
 
-    CGRect btmr = CGRectMake(len * 0.272, 0.867 * len, 0.75 * len, 0.13 * len);
-    CGRect upr = CGRectMake(len * 0.13, 0.706 * len, len, 0.13 * len);
+    CGRect btmr = CGRectMake(len * 0.272, 0.87 * len, 0.75 * len, 0.13 * len);
+    CGRect upr = CGRectMake(len * 0.13, 0.706 * len, len, 0.18 * len);
     UIView *bottomView = [[UIView alloc] initWithFrame:btmr];
     UIView *upperrView = [[UIView alloc] initWithFrame:upr];
 
