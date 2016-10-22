@@ -10,7 +10,7 @@
 
 @import AFNetworking;
 
-NSString *const ZPPServerBaseUrl = @"https://polar-dawn-60511.herokuapp.com/";
+NSString *const ZPPServerBaseUrl = @"https://academia-delivery.herokuapp.com/";
 
 NSString *const ZPPNoInternetConnectionMessage = @"Проверьте интернет соединение";
 

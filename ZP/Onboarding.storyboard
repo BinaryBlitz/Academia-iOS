@@ -1,15 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Yg6-8h-tU3">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Yg6-8h-tU3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Roboto-Black.ttf">
+        <array key="Roboto-Black.ttf">
             <string>Roboto-Black</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <scenes>
         <!--Onboarding Top Controller-->
@@ -21,9 +22,9 @@
                         <viewControllerLayoutGuide type="bottom" id="E9d-7s-l7v"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="B0C-ug-r0z">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gGG-zd-TzD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -39,36 +40,31 @@
                         <viewControllerLayoutGuide type="bottom" id="gBK-Xd-0UI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="P85-q8-Z87">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pfU-Hm-KKt">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="560"/>
-                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pfU-Hm-KKt"/>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Msp-XX-OxL">
-                                <rect key="frame" x="271" y="28" width="59" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Ngi-aT-ggr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="24"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3kI-6U-Wa0">
-                                <rect key="frame" x="157" y="144" width="286" height="416"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3kI-6U-Wa0" secondAttribute="height" multiplier="95:138" id="cQb-jI-IWu"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ijO-0o-3ZC">
-                                <rect key="frame" x="0.0" y="560" width="600" height="40"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="l7m-J0-LhX"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Msp-XX-OxL" firstAttribute="centerX" secondItem="P85-q8-Z87" secondAttribute="centerX" id="54o-WF-0Gi"/>
                             <constraint firstItem="ijO-0o-3ZC" firstAttribute="top" secondItem="pfU-Hm-KKt" secondAttribute="bottom" id="72Y-tX-kh9"/>
