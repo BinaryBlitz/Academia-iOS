@@ -91,7 +91,7 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    [self showOnboarding];
+//    [self showOnboarding];
 }
 
 - (void)didReceiveMemoryWarning {
