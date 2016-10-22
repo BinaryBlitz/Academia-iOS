@@ -14,7 +14,7 @@
 @implementation ZPPAddressHelper
 
 + (ZPPAddress *)addresFromAddres:(LMAddress *)addr {
-    NSString *route = [self component:@"route" inArray:addr.lines ofType:@"short_name"];
+    NSString *route = [addr valueForKey:@"route"];//[self component:@"route" inArray:addr.lines ofType:@"short_name"];
     NSString *streetName = nil;
     if (route && addr.streetNumber) {
         streetName = [NSString stringWithFormat:@"%@, %@", route, addr.streetNumber];
