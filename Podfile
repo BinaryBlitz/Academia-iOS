@@ -2,7 +2,7 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'ZP' do
-# Tools
+  # Tools
   pod 'AFNetworking', '~>2.6.3'
   pod 'DateTools'
   pod 'SDWebImage'
@@ -10,7 +10,7 @@ target 'ZP' do
   pod 'PureLayout'
   pod 'IDDaDataSuggestions', git: 'https://github.com/DanShevlyuk/IDDaDataSuggestions.git'
 
-# UI
+  # UI
   pod 'OAStackView'
   pod 'JSBadgeView'
   pod 'SCLAlertView-Objective-C'
@@ -22,16 +22,22 @@ target 'ZP' do
   pod 'EZSwipeController', git: 'https://github.com/DanShevlyuk/EZSwipeController.git'
   pod 'CWStatusBarNotification', '~> 2.3.4'
 
-# Fabric
+  # Fabric
   pod 'Fabric'
   pod 'Crashlytics'
 
-# Maps
+  # Maps
   pod 'GoogleMaps'
   pod 'LMGeocoder'
 
-# Facebook SDK
+  # Facebook SDK
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
+end
+
+post_install do |installer|
+  installer.pods_project.build_configurations.each do |config|
+    config.build_settings['SWIFT_VERSION'] = '2.3'
+  end
 end
