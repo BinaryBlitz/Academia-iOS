@@ -75,7 +75,7 @@ DEPENDENCIES:
   - FBSDKShareKit
   - GoogleMaps
   - HCSStarRatingView
-  - IDDaDataSuggestions (from `https://github.com/DanShevlyuk/IDDaDataSuggestions.git`)
+  - IDDaDataSuggestions (from `https://github.com/InstaDev/IDDaDataSuggestions.git`)
   - INTULocationManager
   - JSBadgeView
   - LMGeocoder
@@ -89,12 +89,12 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   IDDaDataSuggestions:
-    :git: https://github.com/DanShevlyuk/IDDaDataSuggestions.git
+    :git: https://github.com/InstaDev/IDDaDataSuggestions.git
 
 CHECKOUT OPTIONS:
   IDDaDataSuggestions:
-    :commit: 13ef9e491ad360c0d3865a94cea877186fdaa173
-    :git: https://github.com/DanShevlyuk/IDDaDataSuggestions.git
+    :commit: e391a59bf90387dd6cba4123c6cb7d0e7ec3b162
+    :git: https://github.com/InstaDev/IDDaDataSuggestions.git
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
@@ -123,6 +123,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   VBFPopFlatButton: 39e48ab56277f3d056734a9b5ec5d0cc60d69778
 
-PODFILE CHECKSUM: ad06fbfe457b90d3be43967863778ded95be0337
+PODFILE CHECKSUM: 207ac9b0cdd8a3e789e9061a115866d4d5005fbf
 
 COCOAPODS: 1.1.1

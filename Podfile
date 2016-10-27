@@ -8,7 +8,7 @@ target 'ZP' do
   pod 'SDWebImage'
   pod 'INTULocationManager'
   pod 'PureLayout'
-  pod 'IDDaDataSuggestions', git: 'https://github.com/DanShevlyuk/IDDaDataSuggestions.git'
+  pod 'IDDaDataSuggestions', git: 'https://github.com/InstaDev/IDDaDataSuggestions.git'
 
   # UI
   pod 'OAStackView'
