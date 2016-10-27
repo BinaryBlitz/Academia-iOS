@@ -1958,6 +1958,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 4WGG8V34K4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ZP/Info.plist;
@@ -1969,6 +1970,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "ZP/ZP-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -1980,6 +1982,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 4WGG8V34K4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ZP/Info.plist;
@@ -1990,6 +1993,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ZP/ZP-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
