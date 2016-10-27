@@ -19,7 +19,7 @@ target 'ZP' do
   pod 'MBProgressHUD'
   pod 'ActionSheetPicker-3.0'
   pod 'HCSStarRatingView'
-  pod 'EZSwipeController', git: 'https://github.com/DanShevlyuk/EZSwipeController.git'
+  pod 'EZSwipeController'
   pod 'CWStatusBarNotification', '~> 2.3.4'
 
   # Fabric
@@ -34,10 +34,4 @@ target 'ZP' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
-end
-
-post_install do |installer|
-  installer.pods_project.build_configurations.each do |config|
-    config.build_settings['SWIFT_VERSION'] = '2.3'
-  end
 end
