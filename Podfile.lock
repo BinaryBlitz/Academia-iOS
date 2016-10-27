@@ -31,7 +31,7 @@ PODS:
     - Fabric (~> 1.6.3)
   - CWStatusBarNotification (2.3.5)
   - DateTools (1.7.0)
-  - EZSwipeController (0.4)
+  - EZSwipeController (0.6.1)
   - Fabric (1.6.10)
   - FBSDKCoreKit (4.16.0):
     - Bolts (~> 1.7)
@@ -68,7 +68,7 @@ DEPENDENCIES:
   - Crashlytics
   - CWStatusBarNotification (~> 2.3.4)
   - DateTools
-  - EZSwipeController (from `https://github.com/DanShevlyuk/EZSwipeController.git`)
+  - EZSwipeController
   - Fabric
   - FBSDKCoreKit
   - FBSDKLoginKit
@@ -88,15 +88,10 @@ DEPENDENCIES:
   - VBFPopFlatButton
 
 EXTERNAL SOURCES:
-  EZSwipeController:
-    :git: https://github.com/DanShevlyuk/EZSwipeController.git
   IDDaDataSuggestions:
     :git: https://github.com/DanShevlyuk/IDDaDataSuggestions.git
 
 CHECKOUT OPTIONS:
-  EZSwipeController:
-    :commit: 5df148096c5cccfb8a62156608a195b2e54b68b9
-    :git: https://github.com/DanShevlyuk/EZSwipeController.git
   IDDaDataSuggestions:
     :commit: 13ef9e491ad360c0d3865a94cea877186fdaa173
     :git: https://github.com/DanShevlyuk/IDDaDataSuggestions.git
@@ -108,7 +103,7 @@ SPEC CHECKSUMS:
   Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
   CWStatusBarNotification: 3d2738b25c3207f60cc50201388d3c96182545ff
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  EZSwipeController: 49aa0f869e66049ac433483120f458434272ee32
+  EZSwipeController: 255b0f8aed31963b0236802c926e27dd006a2532
   Fabric: c73f371ee543e3f0b80608f2674750e4910d1669
   FBSDKCoreKit: 7a6baaed4a2b2a244ba253346713bdbc74df135b
   FBSDKLoginKit: 469a56cebe2e1ed62b1621d0b155970fd6aac2d8
@@ -128,6 +123,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   VBFPopFlatButton: 39e48ab56277f3d056734a9b5ec5d0cc60d69778
 
-PODFILE CHECKSUM: e68569e141957a5aacbd5ddc59af0bd8373d5f4a
+PODFILE CHECKSUM: ad06fbfe457b90d3be43967863778ded95be0337
 
 COCOAPODS: 1.1.1
