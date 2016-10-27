@@ -28,5 +28,7 @@ Pods/
 *.pkey
 *.p12
 
-# OS X
+# macOS
 .DS_Store
+
+.env
