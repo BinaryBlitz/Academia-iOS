@@ -22,8 +22,8 @@
     NSString *lunchDescription = dict[@"description"];
     NSString *urlAppend = dict[@"image_url"];
 
-    NSString *urlAsString = [NSString stringWithFormat:@"%@%@", ZPPServerBaseUrl, urlAppend];
-    NSURL *imgURL = [NSURL URLWithString:urlAsString];
+//    NSString *urlAsString = [NSString stringWithFormat:@"%@%@", ZPPServerBaseUrl, urlAppend];
+    NSURL *imgURL = [NSURL URLWithString:urlAppend];
 
     ZPPLunch *l = [[ZPPLunch alloc] initWithName:name
                                       identifier:identifier
