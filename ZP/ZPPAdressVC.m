@@ -118,7 +118,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
     if (self.poligon) {
         if (!GMSGeometryContainsLocation(self.mapView_.camera.target, self.poligon.path, YES)) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
-                                                                           message:@"Мы доставляем только внутри Садового Кольца"
+                                                                           message:@"Мы доставляем только в пределах Садового Кольца"
                                                                     preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction: [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
             [self presentViewController:alert animated:YES completion:nil];
@@ -171,24 +171,25 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 }
 
 - (void)showCurrentLocation {
-  
-    INTULocationManager *locationManger = [INTULocationManager sharedInstance];
-    
-    [self moveCameraToCoordinate:self.mapView_.myLocation.coordinate];
-  
-    [locationManger requestLocationWithDesiredAccuracy:INTULocationAccuracyBlock
-               timeout:1.0
-               delayUntilAuthorized:YES
-               block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
-                     if (status == INTULocationStatusSuccess) {
-                         [self moveCameraToCoordinate:currentLocation.coordinate];
-                     } else if (status == INTULocationStatusTimedOut) {
-                         [self showCurrentLocation];
-                     } else {
-                         // An error occurred, more info is available by
-                         // looking at the specific status returned.
-                     }
-                 }];
+    if (!self.selectedAddress) {
+        INTULocationManager *locationManger = [INTULocationManager sharedInstance];
+        
+        [self moveCameraToCoordinate:self.mapView_.myLocation.coordinate];
+        
+        [locationManger requestLocationWithDesiredAccuracy:INTULocationAccuracyBlock
+                                                   timeout:1.0
+                                      delayUntilAuthorized:YES
+                                                     block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
+                                                         if (status == INTULocationStatusSuccess) {
+                                                             [self moveCameraToCoordinate:currentLocation.coordinate];
+                                                         } else if (status == INTULocationStatusTimedOut) {
+                                                             [self showCurrentLocation];
+                                                         } else {
+                                                             // An error occurred, more info is available by
+                                                             // looking at the specific status returned.
+                                                         }
+                                                     }];
+    }
 }
 
 #pragma mark - UITextFielDelegate

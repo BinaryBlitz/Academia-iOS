@@ -10,7 +10,7 @@
 
 @import Fabric;
 @import Crashlytics;
-@import CocoaLumberjack;
+
 @import LMGeocoder;
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
@@ -38,8 +38,8 @@ NSString *const ZPPGMSApiKey = @"AIzaSyCGZ0KYWFXJ8iqtaPkcut6ToWzF9zlWSd0";
         NSLog(@"url: %@", url);
     }];
     
-    [DDLog addLogger:[DDASLLogger sharedInstance]];
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+//    [DDLog addLogger:[DDASLLogger sharedInstance]];
+//    [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
     [Fabric with:@[ [Crashlytics class] ]];
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;

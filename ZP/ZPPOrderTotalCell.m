@@ -14,6 +14,7 @@
 @implementation ZPPOrderTotalCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
 }
 

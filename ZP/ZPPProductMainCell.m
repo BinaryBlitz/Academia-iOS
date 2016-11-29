@@ -11,6 +11,7 @@
 @implementation ZPPProductMainCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
 }
 

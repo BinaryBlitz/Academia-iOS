@@ -16,6 +16,7 @@ NSString *const ZPPProductEnergyCellIdentifier = @"ZPPProductEnergyCellIdentifie
 @implementation ZPPProductEnergyCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
 }
 

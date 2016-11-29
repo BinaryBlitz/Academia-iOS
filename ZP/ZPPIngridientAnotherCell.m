@@ -11,6 +11,7 @@
 @implementation ZPPIngridientAnotherCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
 }
 

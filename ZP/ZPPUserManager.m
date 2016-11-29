@@ -6,7 +6,7 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-#import "CocoaLumberjack.h"
+
 #import <Crashlytics/Crashlytics.h>
 #import "ZPPServerManager+ZPPRegistration.h"
 #import "ZPPUserManager.h"
@@ -93,7 +93,7 @@ NSString *const ZPPUserLogoutNotificationName = @"ZPPUserLogoutNotificationName"
     // [[NSUserDefaults standardUserDefaults] setObject:pushTokenData forKey:@"APNStokenData"];
     [[NSUserDefaults standardUserDefaults] synchronize];  //?
 
-    DDLogVerbose(@"push token setted %@", self.pushToken);
+//    DDLogVerbose(@"push token setted %@", self.pushToken);
 }
 
 - (void)userLogOut {

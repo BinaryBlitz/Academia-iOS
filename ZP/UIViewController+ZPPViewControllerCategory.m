@@ -102,10 +102,10 @@
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:hud];
     hud.customView = button;
-    hud.labelText = text;
+    hud.label.text = text;
     hud.mode = MBProgressHUDModeCustomView;
-    [hud show:YES];
-    [hud hide:YES afterDelay:2];
+    [hud showAnimated:YES];
+    [hud hideAnimated:YES afterDelay:2];
 }
 
 - (void)showNoInternetVC {

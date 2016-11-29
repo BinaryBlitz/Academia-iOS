@@ -15,7 +15,7 @@ class ZPPOnboardingTopController: EZSwipeController {
     var bottomView: UIView?
     
     let btnHeight: CGFloat = 40
-    private let descriptionLabels = [
+    fileprivate let descriptionLabels = [
         "Вкусная и полезная еда\nКаждый день новое меню",
         "Выбирай из набора ланчей: Diet Meal, Super Meal и Veggie meal",
         "Натуральные и свежие ингредиенты",
@@ -31,7 +31,7 @@ class ZPPOnboardingTopController: EZSwipeController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.blackColor()
+        view.backgroundColor = UIColor.black
         setNeedsStatusBarAppearanceUpdate()
         
         addButton()
@@ -39,46 +39,46 @@ class ZPPOnboardingTopController: EZSwipeController {
     
     func addButton() {
         
-        let screenS = UIScreen.mainScreen().bounds.size
+        let screenS = UIScreen.main.bounds.size
         let r = CGRect(x: 0 , y: screenS.height - btnHeight, width: screenS.width, height: btnHeight)
         let v = UIView(frame:r)
         
-        v.backgroundColor = UIColor.blackColor()
+        v.backgroundColor = UIColor.black
         
         view.addSubview(v)
         
-        view.bringSubviewToFront(v)
+        view.bringSubview(toFront: v)
         
-        let btn = UIButton(type: .Custom)
-        btn.setTitle("Пропустить", forState: .Normal)
+        let btn = UIButton(type: .custom)
+        btn.setTitle("Пропустить", for: UIControlState())
         v.addSubview(btn)
         
-        btn.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-        btn.titleLabel?.font = UIFont.systemFontOfSize(14)
-        btn.contentHorizontalAlignment = .Left
+        btn.setTitleColor(UIColor.lightGray, for: UIControlState())
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        btn.contentHorizontalAlignment = .left
         
         
-        btn.autoPinEdgeToSuperviewEdge(.Left, withInset: 10)
-        btn.autoPinEdgeToSuperviewEdge(.Top)
-        btn.autoPinEdgeToSuperviewEdge(.Bottom)
-        btn.autoSetDimension(.Width, toSize: 100)
+        btn.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+        btn.autoPinEdge(toSuperviewEdge: .top)
+        btn.autoPinEdge(toSuperviewEdge: .bottom)
+        btn.autoSetDimension(.width, toSize: 100)
         
-        btn.addTarget(self, action: #selector(skip), forControlEvents: .TouchUpInside)
+        btn.addTarget(self, action: #selector(skip), for: .touchUpInside)
         
         
-        let rbtn = UIButton(type: .Custom)
+        let rbtn = UIButton(type: .custom)
         let img = UIImage(named: "forwardArror")
 //        rbtn.setTitle("Далее", forState: .Normal)
-        rbtn.setImage(img, forState: .Normal)
-        rbtn.contentHorizontalAlignment = .Right
+        rbtn.setImage(img, for: UIControlState())
+        rbtn.contentHorizontalAlignment = .right
         
         v.addSubview(rbtn)
-        rbtn.autoPinEdgeToSuperviewEdge(.Right, withInset: 10)
-        rbtn.autoPinEdgeToSuperviewEdge(.Top)
-        rbtn.autoPinEdgeToSuperviewEdge(.Bottom)
-        rbtn.autoSetDimension(.Width, toSize: 30)
+        rbtn.autoPinEdge(toSuperviewEdge: .right, withInset: 10)
+        rbtn.autoPinEdge(toSuperviewEdge: .top)
+        rbtn.autoPinEdge(toSuperviewEdge: .bottom)
+        rbtn.autoSetDimension(.width, toSize: 30)
         
-        rbtn.addTarget(self, action: #selector(moveForward), forControlEvents: .TouchUpInside)
+        rbtn.addTarget(self, action: #selector(moveForward), for: .touchUpInside)
     }
     
     
@@ -92,11 +92,11 @@ class ZPPOnboardingTopController: EZSwipeController {
     }
     
     func skip() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent;
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent;
     }
 }
 
@@ -105,8 +105,8 @@ extension ZPPOnboardingTopController: EZSwipeControllerDataSource {
     func viewControllerData() -> [UIViewController] {
         let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
         
-        return descriptionLabels.enumerate().map { (index, label) -> ZPPOnboardingVC in
-            let item = onboardingStoryboard.instantiateViewControllerWithIdentifier(ZPPOnboardingVCID) as! ZPPOnboardingVC
+        return descriptionLabels.enumerated().map { (index, label) -> ZPPOnboardingVC in
+            let item = onboardingStoryboard.instantiateViewController(withIdentifier: ZPPOnboardingVCID) as! ZPPOnboardingVC
             let str = "Phone\(index + 1).png"
             let backStr = "back-\(index + 1).jpg"
             item.configure(backStr, iphoneName: str, text: label)

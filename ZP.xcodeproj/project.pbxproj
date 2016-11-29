@@ -13,7 +13,6 @@
 		19014A561BC034CF001E0D77 /* ZP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 19014A541BC034CF001E0D77 /* ZP.xcdatamodeld */; };
 		19014A581BC034CF001E0D77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19014A571BC034CF001E0D77 /* Assets.xcassets */; };
 		19014A5B1BC034CF001E0D77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19014A591BC034CF001E0D77 /* LaunchScreen.storyboard */; };
-		1902BD4E1BD7E714003E90A5 /* mainIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1902BD4D1BD7E713003E90A5 /* mainIcon.png */; };
 		19062D8E1BD69ACB003AC242 /* ZPPProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19062D8D1BD69ACB003AC242 /* ZPPProfileVC.m */; };
 		19062D901BD69DAF003AC242 /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19062D8F1BD69DAF003AC242 /* profile.storyboard */; };
 		1907C7401BF08B03003BA62E /* ZPPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1907C73F1BF08B03003BA62E /* ZPPAddress.m */; };
@@ -70,8 +69,6 @@
 		1948C53B1BEC17E600084BC8 /* ZPPLunchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C53A1BEC17E600084BC8 /* ZPPLunchHelper.m */; };
 		1948C53E1BEC19B800084BC8 /* ZPPStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C53D1BEC19B800084BC8 /* ZPPStuff.m */; };
 		1948C5411BEC204500084BC8 /* ZPPStuffHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C5401BEC204500084BC8 /* ZPPStuffHelper.m */; };
-		1948C5451BEC326000084BC8 /* big_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1948C5441BEC326000084BC8 /* big_logo.png */; };
-		1948C5471BEC38CA00084BC8 /* load.png in Resources */ = {isa = PBXBuildFile; fileRef = 1948C5461BEC38CA00084BC8 /* load.png */; };
 		1948C54B1BEC3A1800084BC8 /* ZPPLunchTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C54A1BEC3A1800084BC8 /* ZPPLunchTVC.m */; };
 		1955F3981C0BCD270010EED3 /* ZPPContactCourierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1955F3961C0BCD270010EED3 /* ZPPContactCourierCell.m */; };
 		1955F3991C0BCD270010EED3 /* ZPPContactCourierCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1955F3971C0BCD270010EED3 /* ZPPContactCourierCell.xib */; };
@@ -87,8 +84,6 @@
 		195BBF901C7686C0004D00A5 /* Phone1.png in Resources */ = {isa = PBXBuildFile; fileRef = 195BBF8B1C7686C0004D00A5 /* Phone1.png */; };
 		1963EF211BD3E91100665916 /* ZPPRegistrationBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1963EF201BD3E91100665916 /* ZPPRegistrationBaseVC.m */; };
 		19792D351C0C735700707D07 /* ZPPOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19792D341C0C735700707D07 /* ZPPOrderManager.m */; };
-		197FFBA71C7CBF25006D06A9 /* iconBigColorNoWords.png in Resources */ = {isa = PBXBuildFile; fileRef = 197FFBA61C7CBF25006D06A9 /* iconBigColorNoWords.png */; };
-		197FFBA91C7CBFA2006D06A9 /* iconBigColor.png in Resources */ = {isa = PBXBuildFile; fileRef = 197FFBA81C7CBFA2006D06A9 /* iconBigColor.png */; };
 		1984EE231BD110CC001D25D5 /* registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1984EE221BD110CC001D25D5 /* registration.storyboard */; };
 		1984EE271BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1984EE261BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.m */; };
 		1984EE2D1BD123A8001D25D5 /* ZPPRegistrationCodeInputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1984EE2C1BD123A8001D25D5 /* ZPPRegistrationCodeInputVC.m */; };
@@ -171,24 +166,12 @@
 		377198C21CC79080005EC204 /* ZPPNoCreditCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 377198C01CC79080005EC204 /* ZPPNoCreditCardCell.m */; };
 		377198C31CC79080005EC204 /* ZPPNoCreditCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 377198C11CC79080005EC204 /* ZPPNoCreditCardCell.xib */; };
 		BAFCED28C5EAE192D4403B22 /* Pods_ZP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C84A6DD94A85DCC8901370 /* Pods_ZP.framework */; };
+		BCB5C4481DB02E6600D27CF6 /* iconBigColor.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB5C4471DB02E6600D27CF6 /* iconBigColor.png */; };
+		BCB5C44A1DB02E9B00D27CF6 /* iconBigColorNoWords.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB5C4491DB02E9B00D27CF6 /* iconBigColorNoWords.png */; };
+		BCB5C44C1DB02EB500D27CF6 /* load.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB5C44B1DB02EB500D27CF6 /* load.png */; };
+		BCB5C44E1DB02EC000D27CF6 /* mainIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB5C44D1DB02EC000D27CF6 /* mainIcon.png */; };
+		BCB5C4501DB02ED700D27CF6 /* big_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB5C44F1DB02ED700D27CF6 /* big_logo.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		19014A621BC034CF001E0D77 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 19014A3D1BC034CF001E0D77 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 19014A441BC034CF001E0D77;
-			remoteInfo = ZP;
-		};
-		19014A6D1BC034CF001E0D77 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 19014A3D1BC034CF001E0D77 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 19014A441BC034CF001E0D77;
-			remoteInfo = ZP;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		19014A451BC034CF001E0D77 /* ZP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZP.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,9 +183,6 @@
 		19014A571BC034CF001E0D77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19014A5A1BC034CF001E0D77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19014A5C1BC034CF001E0D77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		19014A611BC034CF001E0D77 /* ZPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		19014A6C1BC034CF001E0D77 /* ZPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1902BD4D1BD7E713003E90A5 /* mainIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainIcon.png; sourceTree = "<group>"; };
 		19062D8C1BD69ACB003AC242 /* ZPPProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPProfileVC.h; sourceTree = "<group>"; };
 		19062D8D1BD69ACB003AC242 /* ZPPProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPProfileVC.m; sourceTree = "<group>"; };
 		19062D8F1BD69DAF003AC242 /* profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = profile.storyboard; sourceTree = "<group>"; };
@@ -300,8 +280,6 @@
 		1948C53D1BEC19B800084BC8 /* ZPPStuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPStuff.m; sourceTree = "<group>"; };
 		1948C53F1BEC204500084BC8 /* ZPPStuffHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPStuffHelper.h; sourceTree = "<group>"; };
 		1948C5401BEC204500084BC8 /* ZPPStuffHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPStuffHelper.m; sourceTree = "<group>"; };
-		1948C5441BEC326000084BC8 /* big_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big_logo.png; sourceTree = "<group>"; };
-		1948C5461BEC38CA00084BC8 /* load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load.png; sourceTree = "<group>"; };
 		1948C5491BEC3A1800084BC8 /* ZPPLunchTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPLunchTVC.h; sourceTree = "<group>"; };
 		1948C54A1BEC3A1800084BC8 /* ZPPLunchTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPLunchTVC.m; sourceTree = "<group>"; };
 		1955F3951C0BCD270010EED3 /* ZPPContactCourierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPContactCourierCell.h; sourceTree = "<group>"; };
@@ -321,8 +299,6 @@
 		1963EF201BD3E91100665916 /* ZPPRegistrationBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPRegistrationBaseVC.m; sourceTree = "<group>"; };
 		19792D331C0C735700707D07 /* ZPPOrderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPOrderManager.h; sourceTree = "<group>"; };
 		19792D341C0C735700707D07 /* ZPPOrderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPOrderManager.m; sourceTree = "<group>"; };
-		197FFBA61C7CBF25006D06A9 /* iconBigColorNoWords.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBigColorNoWords.png; sourceTree = "<group>"; };
-		197FFBA81C7CBFA2006D06A9 /* iconBigColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBigColor.png; sourceTree = "<group>"; };
 		1984EE221BD110CC001D25D5 /* registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = registration.storyboard; sourceTree = "<group>"; };
 		1984EE251BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPRegistrationPhoneInputVC.h; sourceTree = "<group>"; };
 		1984EE261BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPRegistrationPhoneInputVC.m; sourceTree = "<group>"; };
@@ -468,6 +444,11 @@
 		377198C11CC79080005EC204 /* ZPPNoCreditCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPNoCreditCardCell.xib; sourceTree = "<group>"; };
 		37F681D61CB19B9800B2E115 /* ZPPAddressDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZPPAddressDelegate.h; sourceTree = "<group>"; };
 		52C84A6DD94A85DCC8901370 /* Pods_ZP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCB5C4471DB02E6600D27CF6 /* iconBigColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBigColor.png; sourceTree = "<group>"; };
+		BCB5C4491DB02E9B00D27CF6 /* iconBigColorNoWords.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBigColorNoWords.png; sourceTree = "<group>"; };
+		BCB5C44B1DB02EB500D27CF6 /* load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load.png; sourceTree = "<group>"; };
+		BCB5C44D1DB02EC000D27CF6 /* mainIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainIcon.png; sourceTree = "<group>"; };
+		BCB5C44F1DB02ED700D27CF6 /* big_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big_logo.png; sourceTree = "<group>"; };
 		C8E9C8A9FF8D22F4AA974715 /* Pods-ZP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZP.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZP/Pods-ZP.release.xcconfig"; sourceTree = "<group>"; };
 		F1D5BA47A5E76A634384FEE5 /* Pods-ZP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZP/Pods-ZP.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -478,20 +459,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAFCED28C5EAE192D4403B22 /* Pods_ZP.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		19014A5E1BC034CF001E0D77 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		19014A691BC034CF001E0D77 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,8 +488,6 @@
 			isa = PBXGroup;
 			children = (
 				19014A451BC034CF001E0D77 /* ZP.app */,
-				19014A611BC034CF001E0D77 /* ZPTests.xctest */,
-				19014A6C1BC034CF001E0D77 /* ZPUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1499,15 +1464,15 @@
 			children = (
 				190C6BC21BFA43D700533509 /* spinner.png */,
 				1907C74A1BF0B5BE003BA62E /* barBackground.png */,
-				1948C5461BEC38CA00084BC8 /* load.png */,
-				1902BD4D1BD7E713003E90A5 /* mainIcon.png */,
+				BCB5C44D1DB02EC000D27CF6 /* mainIcon.png */,
+				BCB5C44B1DB02EB500D27CF6 /* load.png */,
 				198999451C77695900701FF9 /* back1.jpg */,
 				198999471C776B2F00701FF9 /* back2.jpg */,
 				1989993B1C7756D600701FF9 /* back4.jpg */,
 				198999411C7766CD00701FF9 /* back3.jpg */,
-				1948C5441BEC326000084BC8 /* big_logo.png */,
-				197FFBA81C7CBFA2006D06A9 /* iconBigColor.png */,
-				197FFBA61C7CBF25006D06A9 /* iconBigColorNoWords.png */,
+				BCB5C44F1DB02ED700D27CF6 /* big_logo.png */,
+				BCB5C4471DB02E6600D27CF6 /* iconBigColor.png */,
+				BCB5C4491DB02E9B00D27CF6 /* iconBigColorNoWords.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -1599,42 +1564,6 @@
 			productReference = 19014A451BC034CF001E0D77 /* ZP.app */;
 			productType = "com.apple.product-type.application";
 		};
-		19014A601BC034CF001E0D77 /* ZPTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 19014A781BC034CF001E0D77 /* Build configuration list for PBXNativeTarget "ZPTests" */;
-			buildPhases = (
-				19014A5D1BC034CF001E0D77 /* Sources */,
-				19014A5E1BC034CF001E0D77 /* Frameworks */,
-				19014A5F1BC034CF001E0D77 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				19014A631BC034CF001E0D77 /* PBXTargetDependency */,
-			);
-			name = ZPTests;
-			productName = ZPTests;
-			productReference = 19014A611BC034CF001E0D77 /* ZPTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		19014A6B1BC034CF001E0D77 /* ZPUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 19014A7B1BC034CF001E0D77 /* Build configuration list for PBXNativeTarget "ZPUITests" */;
-			buildPhases = (
-				19014A681BC034CF001E0D77 /* Sources */,
-				19014A691BC034CF001E0D77 /* Frameworks */,
-				19014A6A1BC034CF001E0D77 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				19014A6E1BC034CF001E0D77 /* PBXTargetDependency */,
-			);
-			name = ZPUITests;
-			productName = ZPUITests;
-			productReference = 19014A6C1BC034CF001E0D77 /* ZPUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1647,20 +1576,13 @@
 				TargetAttributes = {
 					19014A441BC034CF001E0D77 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = AMN3A39Y67;
+						DevelopmentTeam = 4WGG8V34K4;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
 							};
 						};
-					};
-					19014A601BC034CF001E0D77 = {
-						CreatedOnToolsVersion = 7.0;
-						TestTargetID = 19014A441BC034CF001E0D77;
-					};
-					19014A6B1BC034CF001E0D77 = {
-						CreatedOnToolsVersion = 7.0;
-						TestTargetID = 19014A441BC034CF001E0D77;
 					};
 				};
 			};
@@ -1678,8 +1600,6 @@
 			projectRoot = "";
 			targets = (
 				19014A441BC034CF001E0D77 /* ZP */,
-				19014A601BC034CF001E0D77 /* ZPTests */,
-				19014A6B1BC034CF001E0D77 /* ZPUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1701,9 +1621,9 @@
 				1948C5271BEBABFD00084BC8 /* promocode.storyboard in Resources */,
 				195BBF781C7681E2004D00A5 /* back-1.jpg in Resources */,
 				1907C7461BF0951D003BA62E /* ZPPOrderAddressCell.xib in Resources */,
+				BCB5C4501DB02ED700D27CF6 /* big_logo.png in Resources */,
 				198999421C7766CD00701FF9 /* back3.jpg in Resources */,
 				191C986E1BC050F300E10D4F /* ZPPProductMainCell.xib in Resources */,
-				197FFBA71C7CBF25006D06A9 /* iconBigColorNoWords.png in Resources */,
 				1984EE231BD110CC001D25D5 /* registration.storyboard in Resources */,
 				19B3A97C1C079EC20089F02A /* ZPPBadgeCell.xib in Resources */,
 				195BBF7A1C7681E2004D00A5 /* back-3.jpg in Resources */,
@@ -1711,6 +1631,7 @@
 				190E47781BC073EE00AC5379 /* ZPPProductMenuCell.xib in Resources */,
 				19B3A9881C0A456A0089F02A /* ZPPStarsCell.xib in Resources */,
 				19014A5B1BC034CF001E0D77 /* LaunchScreen.storyboard in Resources */,
+				BCB5C44C1DB02EB500D27CF6 /* load.png in Resources */,
 				19D242721BEA3211007A0FEB /* ZPPOrderHistoryCell.xib in Resources */,
 				195BBF901C7686C0004D00A5 /* Phone1.png in Resources */,
 				194235491BE931DE0014BD9A /* ZPPGiftCell.xib in Resources */,
@@ -1718,46 +1639,31 @@
 				19B3A98F1C0A4BB30089F02A /* ZPPCommentCell.xib in Resources */,
 				195BBF791C7681E2004D00A5 /* back-2.jpg in Resources */,
 				195BBF7B1C7681E2004D00A5 /* back-4.jpg in Resources */,
+				BCB5C44A1DB02E9B00D27CF6 /* iconBigColorNoWords.png in Resources */,
 				19014A581BC034CF001E0D77 /* Assets.xcassets in Resources */,
 				190C6BC31BFA43D700533509 /* spinner.png in Resources */,
 				1907C7651BF0E597003BA62E /* ZPPCreditCardInfoCell.xib in Resources */,
 				198FA5371BC17204008BC11B /* ZPPProductAnotherCell.xib in Resources */,
+				BCB5C44E1DB02EC000D27CF6 /* mainIcon.png in Resources */,
 				377198C31CC79080005EC204 /* ZPPNoCreditCardCell.xib in Resources */,
 				19EC6CB41C12046F00FC0BD4 /* ZPPBadgeForTwoCell.xib in Resources */,
-				197FFBA91C7CBFA2006D06A9 /* iconBigColor.png in Resources */,
 				190F9C811BE3C1810032E14D /* ZPPOrderItemCell.xib in Resources */,
 				195BBF8C1C7686C0004D00A5 /* Phone5.png in Resources */,
 				198999481C776B2F00701FF9 /* back2.jpg in Resources */,
-				1902BD4E1BD7E714003E90A5 /* mainIcon.png in Resources */,
-				1948C5471BEC38CA00084BC8 /* load.png in Resources */,
 				1984EE351BD13698001D25D5 /* ZPPBeginScreenCell.xib in Resources */,
 				198A5C051BD59F0000710A36 /* ZPPMainMenuView.xib in Resources */,
 				19D242611BEA1728007A0FEB /* gifts.storyboard in Resources */,
 				19014A531BC034CF001E0D77 /* Main.storyboard in Resources */,
 				195BBF8F1C7686C0004D00A5 /* Phone2.png in Resources */,
 				19A0984F1C7652DB0020A9BA /* Onboarding.storyboard in Resources */,
+				BCB5C4481DB02E6600D27CF6 /* iconBigColor.png in Resources */,
 				195BBF8E1C7686C0004D00A5 /* Phone3.png in Resources */,
 				1948C51E1BEB5CE900084BC8 /* ZPPOrderTotalCell.xib in Resources */,
 				19062D901BD69DAF003AC242 /* profile.storyboard in Resources */,
 				195BBF8D1C7686C0004D00A5 /* Phone4.png in Resources */,
-				1948C5451BEC326000084BC8 /* big_logo.png in Resources */,
 				1948C5251BEB83EC00084BC8 /* ZPPActivateCardCell.xib in Resources */,
 				19B386131C19EA2E0050BE02 /* ZPPProductEnergyCell.xib in Resources */,
 				198635661BDFB58E0070E3F7 /* help.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		19014A5F1BC034CF001E0D77 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		19014A6A1BC034CF001E0D77 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1819,7 +1725,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1940,34 +1846,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		19014A5D1BC034CF001E0D77 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		19014A681BC034CF001E0D77 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		19014A631BC034CF001E0D77 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 19014A441BC034CF001E0D77 /* ZP */;
-			targetProxy = 19014A621BC034CF001E0D77 /* PBXContainerItemProxy */;
-		};
-		19014A6E1BC034CF001E0D77 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 19014A441BC034CF001E0D77 /* ZP */;
-			targetProxy = 19014A6D1BC034CF001E0D77 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		19014A511BC034CF001E0D77 /* Main.storyboard */ = {
@@ -2079,15 +1958,19 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 12;
+				DEVELOPMENT_TEAM = 4WGG8V34K4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ZP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.maximkaplevich.ZP;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.binaryblitz.ZP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ZP/ZP-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -2099,62 +1982,18 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 12;
+				DEVELOPMENT_TEAM = 4WGG8V34K4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ZP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.maximkaplevich.ZP;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.binaryblitz.ZP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ZP/ZP-Bridging-Header.h";
-			};
-			name = Release;
-		};
-		19014A791BC034CF001E0D77 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = ZPTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ZPP.ZPTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZP.app/ZP";
-			};
-			name = Debug;
-		};
-		19014A7A1BC034CF001E0D77 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = ZPTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ZPP.ZPTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZP.app/ZP";
-			};
-			name = Release;
-		};
-		19014A7C1BC034CF001E0D77 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = ZPUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ZPP.ZPUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = ZP;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		19014A7D1BC034CF001E0D77 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = ZPUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ZPP.ZPUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = ZP;
-				USES_XCTRUNNER = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -2175,24 +2014,6 @@
 			buildConfigurations = (
 				19014A761BC034CF001E0D77 /* Debug */,
 				19014A771BC034CF001E0D77 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		19014A781BC034CF001E0D77 /* Build configuration list for PBXNativeTarget "ZPTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				19014A791BC034CF001E0D77 /* Debug */,
-				19014A7A1BC034CF001E0D77 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		19014A7B1BC034CF001E0D77 /* Build configuration list for PBXNativeTarget "ZPUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				19014A7C1BC034CF001E0D77 /* Debug */,
-				19014A7D1BC034CF001E0D77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

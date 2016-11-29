@@ -45,7 +45,8 @@ NSString *const ZPPOutOfStock = @"out_of_stock";
     
     NSString *dishImgURL;
     if (imgUrlAppend && ![imgUrlAppend isEqual:[NSNull null]]) {
-        dishImgURL = [ZPPServerBaseUrl stringByAppendingString:imgUrlAppend];
+        dishImgURL = imgUrlAppend;
+//        dishImgURL = [ZPPServerBaseUrl stringByAppendingString:imgUrlAppend];
     }
     // NSString *dishImgURL = [ZPPServerBaseUrl stringByAppendingString:imgUrlAppend];
     NSArray *ingsTmp = dict[ZPPDishIngridients];

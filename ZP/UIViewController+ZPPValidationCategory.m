@@ -21,7 +21,7 @@ NSString *const ZPPPromoCodeErrorMessage = @"Код должен быть дли
                                            @"символов";
 
 
-NSString *const ZPPPaswordEqualtyErrMessage = @"Пароли должны совпадать";
+NSString *const ZPPPaswordEqualtyErrMessage = @"Email или пароль неверные";
 
 NSString *const ZPPPhoneWarningMessage = @"Формат номера неправильный";
 

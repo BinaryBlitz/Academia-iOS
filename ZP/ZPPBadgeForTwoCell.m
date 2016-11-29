@@ -11,6 +11,7 @@
 @implementation ZPPBadgeForTwoCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
 }
 

@@ -11,6 +11,7 @@
 @implementation ZPPNoCreditCardCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
     
 //    self.layer.borderColor = [UIColor blackColor].CGColor;
