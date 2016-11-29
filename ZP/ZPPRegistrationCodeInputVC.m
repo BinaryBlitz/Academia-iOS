@@ -117,7 +117,7 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
                         [Answers logLoginWithMethod:@"PHONE"
                                             success:@YES
                                    customAttributes:@{}];
-                        
+
                         [[ZPPUserManager sharedInstance] setUser:user];
                         [self dismissViewControllerAnimated:YES completion:nil];
                     }

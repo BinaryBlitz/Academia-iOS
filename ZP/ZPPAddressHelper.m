@@ -36,15 +36,15 @@
     NSInteger index = [array indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
         return [(NSString *)([[obj objectForKey:@"types"] firstObject]) isEqualToString:component];
     }];
-    
+
     if (index == NSNotFound) {
         return nil;
     }
-    
+
     if (index >= array.count) {
         return nil;
     }
-    
+
     return [[array objectAtIndex:index] valueForKey:type];
 }
 
@@ -103,9 +103,9 @@
     }
 
     ZPPAddress *a =
-        [[ZPPAddress alloc] initWithCoordinate:c Country:nil city:nil address:unrestricted_value];		
-		
-    return a;		
+        [[ZPPAddress alloc] initWithCoordinate:c Country:nil city:nil address:unrestricted_value];
+
+    return a;
 }
 
 @end

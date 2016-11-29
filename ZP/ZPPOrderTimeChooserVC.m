@@ -62,7 +62,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 
     [self addCustomCloseButton];
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
-    
+
     self.totalPriceDetailsStackView.translatesAutoresizingMaskIntoConstraints = NO;
     self.totalPriceDetailsStackView.axis = UILayoutConstraintAxisVertical;
     self.totalPriceDetailsStackView.distribution = OAStackViewDistributionFillEqually;
@@ -75,9 +75,9 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
     for (UIView *view in self.totalPriceDetailsStackView.arrangedSubviews) {
         [self.totalPriceDetailsStackView removeArrangedSubview:view];
     }
-  
+
     UIFont *font = [UIFont systemFontOfSize:17];
-    
+
     CGFloat stackHeight = 0;
     CGFloat stackSpacing = 5;
 
@@ -88,14 +88,14 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
             [NSString stringWithFormat:@"Цена с доставкой: %ld%@", (long)[self.order totalPriceWithDelivery], ZPPRoubleSymbol];
     stackHeight += font.lineHeight + stackSpacing;
     [self.totalPriceDetailsStackView addArrangedSubview:totalPriceWithDeliveryLabel];
-  
+
     ZPPUser *user = [ZPPUserManager sharedInstance].user;
-    
+
     double price = [self.order totalPriceWithDelivery];
     if ([user.discount intValue] != 0) {
         double discount = (double)price * ([user.discount doubleValue] / 100.0);
         price -= discount;
-        
+
         UILabel *discountLabel = [UILabel new];
         discountLabel.font = font;
         discountLabel.textAlignment = NSTextAlignmentCenter;
@@ -104,14 +104,14 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
         stackHeight += font.lineHeight + stackSpacing;
         [self.totalPriceDetailsStackView addArrangedSubview:discountLabel];
     }
-    
+
     NSInteger balance;
     if ([user.balance intValue] > price) {
         balance = price;
     } else {
         balance = [user.balance integerValue];
     }
-    
+
     if (balance > 0) {
         UILabel *balanceLabel = [UILabel new];
         balanceLabel.font = font;
@@ -121,9 +121,9 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
         stackHeight += font.lineHeight + stackSpacing;
         [self.totalPriceDetailsStackView addArrangedSubview:balanceLabel];
     }
-    
+
     [self.totalPriceDetailsStackView autoSetDimension:ALDimensionHeight toSize:stackHeight];
-    
+
     self.totalPriceLabel.text =
                 [NSString stringWithFormat:@"Итого: %ld%@", (long)[self.order totalPriceWithAllTheThings], ZPPRoubleSymbol];
 }
@@ -164,7 +164,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
             [self startPayment];
         }]];
         [alert addAction: [UIAlertAction actionWithTitle:@"Нет" style:UIAlertActionStyleCancel handler:nil]];
-        
+
         [self presentViewController:alert animated:YES completion:nil];
     }
 }
@@ -233,7 +233,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
     [[ZPPServerManager sharedManager] POSTOrder:self.order
         onSuccess:^(ZPPOrder *order) {
             self.paymentOrder = order;
-            
+
             if (self.order.card) {
                 [[ZPPServerManager sharedManager] createNewPaymentWithOrderId:order.identifier
                     andBindingId:self.order.card.bindingId
@@ -266,16 +266,16 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
         }
         onFailure:^(NSError *error, NSInteger statusCode) {
             [self.makeOrderButton stopIndication];//redo
-            
+
             if (statusCode == 422) {
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Ошибка"
                                                                                          message:@"Недопустимое время доставки. Попробуйте ещё раз"
                                                                                   preferredStyle:UIAlertControllerStyleAlert];
-                
+
                 [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
                                                                     style:UIAlertActionStyleDefault
                                                                   handler:nil]];
-                
+
                 [self presentViewController:alertController animated:YES completion:nil];
             } else if (statusCode == 0) {
                 [self showWarningWithText:@"Проверьте соединение с интернетом"];
@@ -288,7 +288,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 - (void)didShowPageWithUrl:(NSURL *)url sender:(UIViewController *)vc {
     NSString *urlString = url.absoluteString;
     NSLog(@"URL %@", urlString);
-    
+
     if ([urlString containsString:@"sakses"]) {
         if (self.order.card == nil) {
             NSLog(@"new card");
@@ -357,7 +357,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 - (void)checkOrderSender:(UIViewController *)viewController {
     [[ZPPServerManager sharedManager] checkPaymentWithID:self.order.identifier
         onSuccess:^(NSInteger sta) {
-            
+
             if (sta == 2) {
                 UIViewController *orderResultViewContorller = [self.storyboard
                     instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
@@ -415,7 +415,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 }
 
 - (void)showTimePickerWithTimeManager:(ZPPTimeManager *)timeManager forSender:(UIButton *)sender {
-    
+
     NSArray *deliveryDates = [self deliveryDatesForTimeManager:timeManager];
     DTTimePeriod *lastTimePeriod = timeManager.openTimePeriodChain.lastObject;
     NSDate *closeDate = lastTimePeriod.EndDate;
@@ -442,7 +442,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
             self.order.deliverNow = NO;
             [sender setTitle:selectedValue forState:UIControlStateNormal];
             [self addCheckmarkToButton:self.atTimeButton];
-            
+
             NSDate *selectedDate = ((DTTimePeriod *)[deliveryDates objectAtIndex:selectedIndex]).StartDate;
             if ([timeManager.currentTime isEarlierThan:closeDate]) {
                 self.order.date = selectedDate;
@@ -457,9 +457,9 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 
 - (NSArray *)deliveryDatesForTimeManager:(ZPPTimeManager *)timeManager {
     NSMutableArray *deliveryDates = [NSMutableArray array];
-    
+
     NSDate *initialDate = [timeManager.currentTime dateByAddingMinutes:50];
-  
+
     DTTimePeriod *lastTimePeriod = timeManager.openTimePeriodChain.lastObject;
     NSDate *closeDate = lastTimePeriod.EndDate;
     if ([initialDate isLaterThan:closeDate]) {
@@ -470,9 +470,9 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
             initialDate = [[firstTimePeriod StartDate] dateByAddingMinutes:50];
         }
     }
-    
+
     initialDate = [initialDate dateBySubtractingSeconds:initialDate.second];
-    
+
     if ([initialDate minute] < 30) {
         NSInteger minute = [initialDate minute];
         initialDate = [initialDate dateByAddingMinutes:30 - minute];
@@ -480,13 +480,13 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
         NSInteger minute = [initialDate minute];
         initialDate = [initialDate dateByAddingMinutes:60 - minute];
     }
-    
+
     while ([initialDate isEarlierThan: closeDate]) {
         BOOL validDevliveryDate = false;
         DTTimePeriod *deliveryPeriod = [DTTimePeriod timePeriodWithStartDate:initialDate
                                                                      endDate:[initialDate dateByAddingMinutes:30]];
-        
-        
+
+
         for (int i = 0; i < [timeManager.openTimePeriodChain count]; i++) {
             DTTimePeriod *timePeriod = ((DTTimePeriod *)timeManager.openTimePeriodChain[i]).copy;
             if (i == 0) {
@@ -495,20 +495,20 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
             if (i == [timeManager.openTimePeriodChain count] - 1) {
                 timePeriod.EndDate = [timePeriod.EndDate dateByAddingMinutes:1];
             }
-            
+
             if ([deliveryPeriod isInside:timePeriod]) {
                 validDevliveryDate = true;
                 break;
             }
         }
-        
+
         if (validDevliveryDate) {
             [deliveryDates addObject:deliveryPeriod];
         }
-        
+
         initialDate = deliveryPeriod.EndDate;
     }
-    
+
     return [NSArray arrayWithArray:deliveryDates];
 }
 

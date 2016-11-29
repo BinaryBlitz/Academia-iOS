@@ -92,7 +92,7 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / ДЕСЕРТЫ";
 
     [cell configureWithStuff:stuff];
     [cell.addProductButton addTarget:self action:@selector(addToCard:) forControlEvents:UIControlEventTouchUpInside];
-    
+
     return cell;
 }
 

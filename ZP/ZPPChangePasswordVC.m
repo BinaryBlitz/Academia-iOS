@@ -57,7 +57,7 @@
 //    }
 //
 //    return YES;
-    
+
     return [self checkOldPassword] && [self checkNewPassword];
 }
 
@@ -72,22 +72,22 @@
 
 
 - (BOOL)checkNewPassword {
-    
+
     if (![self checkPasswordTextFied:self.userNewPasswordTextField]) {
         [self accentTextField:self.userNewPasswordTextField];
         [self showWarningWithText:ZPPPasswordErrMessage];
         return NO;
     }
-    
+
     if (![self checkPasswordEqualty:self.userNewPasswordTextField
                              second:self.againPasswordTextField]) {
         [self accentTextField:self.againPasswordTextField];
         [self showWarningWithText:ZPPPaswordEqualtyErrMessage];
         return NO;
     }
-    
+
     return YES;
-    
+
 }
 
 - (void)confirmNewPassword:(UIButton *)sender {

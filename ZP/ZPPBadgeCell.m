@@ -11,11 +11,11 @@
 @implementation ZPPBadgeCell
 
 //- (void)configureWithBadges:(NSArray *)badges {
-//    
+//
 //    CGFloat viewWidth = badges.count * [self cellHeight];
-//    
-//    UIView *v = 
-//    
+//
+//    UIView *v =
+//
 //}
 //
 //

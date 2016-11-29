@@ -109,14 +109,14 @@
 
 - (void)updateToken:(nullable NSString *)token onSuccess:(void (^)())success
           onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    
+
     NSDictionary *userDict = @{@"api_token": !token ? [NSNull null] : token,
                                @"platform":@"ios"};
-    
+
     NSDictionary *params =
     @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken,
        @"user" : userDict };
-    
+
     [self.requestOperationManager PATCH:@"user.json"
                              parameters:params
                                 success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
@@ -125,9 +125,9 @@
                                     }
                                 }
                                 failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
-                                    
+
                                     [[self class] failureWithBlock:failure error:error operation:operation];
-                                    
+
                                 }];
 }
 
@@ -136,7 +136,7 @@
                       completion:(void (^)(ZPPPasswordChangeStatus status,
                                            NSError *err,
                                            NSInteger stausCode))completion {
-    
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)),
                    dispatch_get_main_queue(), ^{
                        NSInteger st = arc4random() % 4;
@@ -247,7 +247,7 @@
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
             NSString *t = responseObject[@"api_token"];
-            
+
             if([t isEqual:[NSNull null]]) {
                 t = nil;
             }

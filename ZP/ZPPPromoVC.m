@@ -322,13 +322,13 @@ static NSString *ZPPInviteSubject = @"Промокод \"Здоровое Пит
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSRange lowercaseCharRange = [string rangeOfCharacterFromSet:[NSCharacterSet lowercaseLetterCharacterSet]];
-    
+
     if (lowercaseCharRange.location != NSNotFound) {
         textField.text = [textField.text stringByReplacingCharactersInRange:range
                                                                  withString:[string uppercaseString]];
         return NO;
     }
-    
+
     return YES;
 }
 
