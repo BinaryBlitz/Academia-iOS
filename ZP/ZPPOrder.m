@@ -103,43 +103,43 @@
     for (ZPPOrderItem *orderItem in self.items) {
         price += orderItem.count * [orderItem.item priceOfItem];
     }
-    
+
     return price;
 }
 
 - (NSInteger)totalPriceWithDelivery {
     NSInteger price = [self totalPrice];
-    
+
     if (price < 1000) {
         price += 200;
     }
-    
+
     return price;
 }
 
 - (NSInteger)totalPriceWithAllTheThings {
-    
+
     double price = [self totalPriceWithDelivery];
     ZPPUser *user = [ZPPUserManager sharedInstance].user;
-    
+
     // Discount
     if ([user.discount intValue] != 0) {
         double discount = price * ([user.discount doubleValue] / 100.0);
         price -= discount;
     }
-    
+
     // Balance
     if ([user.balance intValue] > price) {
         price -= price;
     } else {
         price -= [user.balance intValue];
     }
-    
+
     // No zero  payments
     if (price <= 0) {
         price = 1;
     }
-    
+
     return round(price);
 }
 

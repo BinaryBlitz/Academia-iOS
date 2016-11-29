@@ -29,7 +29,7 @@ static NSString *ZPPWrongEmailOrPasswordMessage = @"E-mail или пароль �
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
     self.mainTF = self.emailTextField;

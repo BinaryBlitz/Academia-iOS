@@ -122,7 +122,7 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
                                                                     preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction: [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
             [self presentViewController:alert animated:YES completion:nil];
-            
+
             return;
         }
     }
@@ -173,9 +173,9 @@ static NSString *ZPPSearchButtonText = @"ВВЕСТИ АДРЕС";
 - (void)showCurrentLocation {
     if (!self.selectedAddress) {
         INTULocationManager *locationManger = [INTULocationManager sharedInstance];
-        
+
         [self moveCameraToCoordinate:self.mapView_.myLocation.coordinate];
-        
+
         [locationManger requestLocationWithDesiredAccuracy:INTULocationAccuracyBlock
                                                    timeout:1.0
                                       delayUntilAuthorized:YES

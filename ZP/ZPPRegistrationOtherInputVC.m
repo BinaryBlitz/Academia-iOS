@@ -162,14 +162,14 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if ([textField isEqual:self.nameTextField]) {
-        
+
         if([self checkCurrentNameTextField]) {
             [self.secondNameTextField becomeFirstResponder];
         } else {
             return NO;
         }
     } else if ([textField isEqual:self.secondNameTextField]) {
-        
+
         if([self checkCurrentSecondNameTextField]) {
             [self.emailTextFild becomeFirstResponder];
         } else {
@@ -182,7 +182,7 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
             return NO;
         }
     }
-    
+
     return YES;
 }
 

@@ -61,7 +61,7 @@
         self.energy = energy;
 
         self.badges = badges;
-        
+
         self.isNoItems = noItems;
     }
     return self;

@@ -49,15 +49,15 @@
 }
 
 - (void)configureWithStuff:(ZPPStuff *)stuff {
-    
+
     self.nameLabel.text = stuff.name;
     self.productDescriptionLabel.text = stuff.stuffDescr;
     self.priceLabel.text = [NSString stringWithFormat:@"%@%@", stuff.price, ZPPRoubleSymbol];
-    
+
 //    [self.pictureImageView setImageWithURL:stuff.imgURl];
-    
+
     [self.pictureImageView sd_setImageWithURL:stuff.imgURl];
-    
+
     if([ZPPUserManager sharedInstance].user.apiToken) {
         self.addProductButton.hidden = NO;
     } else {

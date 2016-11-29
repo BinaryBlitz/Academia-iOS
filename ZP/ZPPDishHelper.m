@@ -36,13 +36,13 @@ NSString *const ZPPOutOfStock = @"out_of_stock";
     NSNumber *dishPrice = dict[ZPPDishPrice];
     NSString *imgUrlAppend = dict[ZPPDishImgURL];
     NSNumber *outOfStockNum = dict[ZPPOutOfStock];
-    
+
     BOOL outOfStock = NO;
-    
+
     if (outOfStockNum && [outOfStockNum isKindOfClass:[NSNumber class]]) {
         outOfStock = outOfStockNum.boolValue;
     }
-    
+
     NSString *dishImgURL;
     if (imgUrlAppend && ![imgUrlAppend isEqual:[NSNull null]]) {
         dishImgURL = imgUrlAppend;

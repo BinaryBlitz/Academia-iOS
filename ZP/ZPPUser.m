@@ -59,9 +59,9 @@
         self.phoneNumber = [coder decodeObjectForKey:ZPPPhoneNumber];
         self.userID = [coder decodeObjectForKey:ZPPUserID];
         self.promoCode = [coder decodeObjectForKey:ZPPUserPromocode];
-      
+
         self.balance = [coder decodeObjectForKey:ZPPUserBalance];
-        
+
         if ([coder decodeObjectForKey:ZPPUserDiscount]) {
             self.discount = [coder decodeObjectForKey:ZPPUserDiscount];
         } else {
@@ -79,7 +79,7 @@
     [coder encodeObject:self.phoneNumber forKey:ZPPPhoneNumber];
     [coder encodeObject:self.userID forKey:ZPPUserID];
     [coder encodeObject:self.promoCode forKey:ZPPUserPromocode];
-    
+
     [coder encodeObject:self.balance forKey:ZPPUserBalance];
     [coder encodeObject:self.discount forKey:ZPPUserDiscount];
 }

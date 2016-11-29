@@ -25,7 +25,7 @@
     NSString *cardNumber = dict[@"number"];
     NSString *bindingId = dict[@"binding_id"];
     NSString *dateString = dict[@"created_at"];
-    
+
     ZPPCreditCard *card = [[ZPPCreditCard alloc] initWithCardNumber:cardNumber serverId:serverId.integerValue bindingId:bindingId createdAt:[NSDate customDateFromString:dateString]];
     return card;
 }
@@ -38,7 +38,7 @@
         self.bindingId = bindingId;
         self.createdAt = createdAt;
     }
-    
+
     return self;
 }
 
