@@ -91,7 +91,7 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    [self showOnboarding];
+//    [self showOnboarding];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -306,7 +306,8 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
 
     CGRect r = [UIScreen mainScreen].bounds;
     UIView *v = [[UIView alloc] initWithFrame:r];
-    v.backgroundColor = [UIColor whiteColor];
+    UIColor *backgroundColor = [UIColor colorWithRed:254.0/255.0 green:238.0/255.0 blue:218.0/255.0 alpha:1.0];
+    v.backgroundColor = backgroundColor;
 
     CGFloat offset = 24;
     CGFloat len = r.size.width - offset * 2;
@@ -314,16 +315,17 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
     CGRect ivr = CGRectMake(offset, (r.size.height - len) / 2.0, len, len);
 
     UIImageView *iv = [[UIImageView alloc] initWithFrame:ivr];
+    iv.backgroundColor = backgroundColor;
     iv.image = [UIImage imageNamed:@"iconBigColor"];
     [v addSubview:iv];
 
-    CGRect btmr = CGRectMake(len * 0.272, 0.867 * len, 0.75 * len, 0.13 * len);
-    CGRect upr = CGRectMake(len * 0.13, 0.706 * len, len, 0.13 * len);
+    CGRect btmr = CGRectMake(len * 0.272, 0.87 * len, 0.75 * len, 0.13 * len);
+    CGRect upr = CGRectMake(len * 0.13, 0.706 * len, len, 0.18 * len);
     UIView *bottomView = [[UIView alloc] initWithFrame:btmr];
     UIView *upperrView = [[UIView alloc] initWithFrame:upr];
 
-    bottomView.backgroundColor = [UIColor whiteColor];
-    upperrView.backgroundColor = [UIColor whiteColor];
+    bottomView.backgroundColor = backgroundColor;
+    upperrView.backgroundColor = backgroundColor;
     [iv addSubview:bottomView];
     [iv addSubview:upperrView];
 
@@ -397,9 +399,9 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
 
 - (void)setOrderCount:(NSInteger)count {
     if (count > 0) {
-        self.orderCountBadgeView.badgeText = [NSString stringWithFormat:@"%ld", count];
+        self.orderCountBadgeView.badgeText = [NSString stringWithFormat:@"%ld", (long)count];
 
-        NSString *destString = [NSString stringWithFormat:@"ЗАКАЗЫ (%ld)", count];
+        NSString *destString = [NSString stringWithFormat:@"ЗАКАЗЫ (%ld)", (long)count];
         [self.mainMenu.ordersButton setTitle:destString forState:UIControlStateNormal];
     } else {
         self.orderCountBadgeView.badgeText = nil;

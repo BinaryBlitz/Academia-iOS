@@ -13,7 +13,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    
+    [super awakeFromNib];
     [self.codeTextField makeBordered];
 }
 

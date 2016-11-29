@@ -22,8 +22,8 @@
     NSString *stuffDescription = dict[@"description"];
     NSString *urlAppend = dict[@"image_url"];
 
-    NSString *urlAsString = [NSString stringWithFormat:@"%@%@", ZPPServerBaseUrl, urlAppend];
-    NSURL *imgURL = [NSURL URLWithString:urlAsString];
+//    NSString *urlAsString = [NSString stringWithFormat:@"%@%@", ZPPServerBaseUrl, urlAppend];
+    NSURL *imgURL = [NSURL URLWithString:urlAppend];
 
     ZPPStuff *s = [[ZPPStuff alloc] initWithName:name
                                       identifier:identifier

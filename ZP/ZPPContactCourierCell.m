@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-
+    [super awakeFromNib];
     NSDictionary *underlineAttribute = @{
         NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle),
         NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Medium" size:18.f]

@@ -25,7 +25,8 @@ NSString *const ZPPIngridientWeight = @"weight";
     NSString *urlAppend = dict[ZPPIngridientURL];
     NSString *urlAsString = nil;
     if (![urlAppend isEqual:[NSNull null]]) {
-        urlAsString = [ZPPServerBaseUrl stringByAppendingString:urlAppend];
+        urlAsString = urlAppend;
+//        urlAsString = [ZPPServerBaseUrl stringByAppendingString:urlAppend];
     }
 
     NSNumber *weight;  // dict[ZPPIngridientWeight];

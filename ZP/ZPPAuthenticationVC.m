@@ -92,7 +92,7 @@ static NSString *ZPPWrongEmailOrPasswordMessage = @"E-mail или пароль �
             [self dismissViewControllerAnimated:YES completion:nil];
         }
         onFailure:^(NSError *error, NSInteger statusCode) {
-            NSLog(@"%ld", statusCode);
+            NSLog(@"%ld", (long)statusCode);
 
             [self.doneButton stopIndication];
             if (statusCode == 401) {

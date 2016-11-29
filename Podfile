@@ -2,16 +2,15 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'ZP' do
-# Tools
+  # Tools
   pod 'AFNetworking', '~>2.6.3'
-  pod 'CocoaLumberjack'
   pod 'DateTools'
   pod 'SDWebImage'
   pod 'INTULocationManager'
   pod 'PureLayout'
-  pod 'IDDaDataSuggestions', git: 'https://github.com/DanShevlyuk/IDDaDataSuggestions.git'
+  pod 'IDDaDataSuggestions', git: 'https://github.com/InstaDev/IDDaDataSuggestions.git'
 
-# UI
+  # UI
   pod 'OAStackView'
   pod 'JSBadgeView'
   pod 'SCLAlertView-Objective-C'
@@ -20,18 +19,18 @@ target 'ZP' do
   pod 'MBProgressHUD'
   pod 'ActionSheetPicker-3.0'
   pod 'HCSStarRatingView'
-  pod 'EZSwipeController', git: 'https://github.com/DanShevlyuk/EZSwipeController.git'
+  pod 'EZSwipeController'
   pod 'CWStatusBarNotification', '~> 2.3.4'
 
-# Fabric
+  # Fabric
   pod 'Fabric'
   pod 'Crashlytics'
 
-# Maps
+  # Maps
   pod 'GoogleMaps'
   pod 'LMGeocoder'
 
-# Facebook SDK
+  # Facebook SDK
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'

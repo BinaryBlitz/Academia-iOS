@@ -82,7 +82,7 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
         cell.logoImageView.hidden = YES;
         cell.smallImageView.hidden = NO;
     } else {
-        cell.logoImageView.hidden = NO;
+        cell.logoImageView.hidden = YES;
         cell.smallImageView.hidden = YES;
     }
     
