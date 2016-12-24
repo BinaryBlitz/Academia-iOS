@@ -18,4 +18,4 @@ NSString *const ZPPSupportNumber = @"";
 
 NSString *const ZPPOnboardingVCID = @"ZPPOnboardingVCID";
 
-NSString *const ZPPRulesURL = @"http://128.199.51.211/docs/rules.pdf";
+NSString *const ZPPRulesURL = @"https://academia-delivery.herokuapp.com/docs/terms_of_service.html";
