@@ -19,11 +19,11 @@ NSString * const ZPPUserPassword = @"password";
 NSString * const ZPPUserPromocode = @"promo_code";
 NSString * const ZPPUserBalance = @"balance";
 NSString * const ZPPUserDiscount = @"discount";
-         
+
 NSString * const ZPPPromoCodeUsed = @"promo_used";
 NSString * const ZPPPlatform = @"platform";
 NSString * const ZPPAPNSToken = @"device_token";
-         
+
 @implementation ZPPUserHelper
 
 + (NSDictionary *)convertUser:(ZPPUser *)user {
@@ -52,11 +52,11 @@ NSString * const ZPPAPNSToken = @"device_token";
     if (user.apiToken) {
         d[ZPPAPIToken] = user.apiToken;
     }
-    
+
     if (user.pushToken) {
         d[ZPPAPNSToken] = user.pushToken;
     }
-    
+
     if(user.platform) {
         d[ZPPPlatform] = user.platform;
     }
@@ -75,7 +75,7 @@ NSString * const ZPPAPNSToken = @"device_token";
     BOOL promocodeUsed;
     NSString *balance;
     NSString *discount;
-  
+
     if (dict[ZPPAPIToken]) {
         apiToken = dict[ZPPAPIToken];
     }
@@ -108,11 +108,11 @@ NSString * const ZPPAPNSToken = @"device_token";
     if (dict[ZPPPromoCodeUsed]) {
         promocodeUsed = [dict[ZPPPromoCodeUsed] boolValue];
     }
-  
+
     if (dict[ZPPUserDiscount]) {
         discount = [dict[ZPPUserDiscount] stringValue];
     }
-  
+
     ZPPUser *user = [[ZPPUser alloc] initWihtName:firstName
                                          lastName:lastName
                                             email:email

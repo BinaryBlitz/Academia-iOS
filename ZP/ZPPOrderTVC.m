@@ -72,17 +72,17 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tintColor = [UIColor blackColor];
     self.tableView.sectionFooterHeight = 0.01;
-    
+
     _creditCards = @[];
     _selectedCardIndex = 0;
-    
+
     [[ZPPServerManager sharedManager] listPaymentCardsWithSuccess:^(NSArray *cards) {
         _creditCards = cards;
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
     } onFailure:^(NSError *error, NSInteger statusCode) {
         [self showWarningWithText:@"Не удалось загрузить привязанные карты ;("];
     }];
-    
+
     [Answers logCustomEventWithName:@"ORDER_OPEN" customAttributes:nil];
 }
 
@@ -159,13 +159,13 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
             ZPPCreditCard *card = _creditCards[indexPath.row];
             [cell.cardNumberLabel setText:card.number];
         }
-        
+
         if (indexPath.row == _selectedCardIndex) {
             cell.checkmarkImageView.hidden = NO;
         } else {
             cell.checkmarkImageView.hidden = YES;
         }
-        
+
         return cell;
     } else if (indexPath.section == 2) {
         ZPPOrderItem *orderItem = self.order.items[indexPath.row];
@@ -229,7 +229,7 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
 
         [self showItemModifier:orderItem];
     }
-    
+
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -242,10 +242,10 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
         title.font = [UIFont systemFontOfSize:21];
         [sectionTitleView addSubview:title];
         [title autoPinEdgesToSuperviewEdges];
-        
+
         return sectionTitleView;
     }
-    
+
     return [tableView headerViewForSection:section];
 }
 
@@ -290,25 +290,25 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
 }
 
 - (void)showResultScreenSender:(UIButton *)sender {
-    
+
     if (!self.order.address) {
         [self showWarningWithText: ZPPNoAddresMessage];
         NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:0];
         ZPPNoCreditCardCell *cell = [self.tableView cellForRowAtIndexPath:ip];
-        
+
         if (cell && [cell isKindOfClass:[ZPPNoCreditCardCell class]]) {
             [cell.actionButton shakeView];
         }
-        
+
         return;
     }
-    
+
     if (_creditCards.count != 0 && _selectedCardIndex < _creditCards.count) {
         self.order.card = _creditCards[_selectedCardIndex];
     } else {
         self.order.card = nil;
     }
-    
+
     ZPPOrderTimeChooserVC *orvc = [self resultScreen];
     [orvc configureWithOrder:self.order];
     [self.navigationController pushViewController:orvc animated:YES];

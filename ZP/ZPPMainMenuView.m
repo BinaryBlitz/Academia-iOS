@@ -26,13 +26,13 @@
                                 -self.frame.size.height,
                                 self.frame.size.width,
                                 self.frame.size.height);
-        
+
     } completion:^(BOOL finished) {
-        
+
         if(completion) {
             completion();
         }
-        
+
     }];
 }
 

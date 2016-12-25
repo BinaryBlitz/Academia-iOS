@@ -41,10 +41,10 @@
         ZPPLunch *l = [[self class] lunchFromDict:d];
         [tmpArr addObject:l];
     }
-    
+
 
     NSArray *res = [NSArray arrayWithArray:tmpArr];
-    
+
     [ZPPImageWorker preheatImagesOfObjects:res];
 
     return res;

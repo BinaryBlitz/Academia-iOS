@@ -13,7 +13,7 @@
 #import "ZPPLunchHelper.h"
 #import "ZPPStuffHelper.h"
 #import "ZPPTimeManager.h"
-#import "ZP-Swift.h"
+#import "Academia-Swift.h"
 
 @implementation ZPPServerManager (ZPPDishesSeverManager)
 
@@ -31,9 +31,9 @@
     [self.requestOperationManager GET:@"dishes.json"
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-            
+
             NSArray *dishes = [ZPPDishHelper parseDishes:responseObject];
-            
+
             if (success) {
                 success(dishes);
             }
@@ -45,7 +45,7 @@
 
 - (void)getDayMenuOnSuccess:(void (^)(NSArray *meals, NSArray *dishes, NSArray *stuff, ZPPTimeManager *timeManager))success
                   onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    
+
     ZPPUser *user = [ZPPUserManager sharedInstance].user;
     NSString *token = user.apiToken;
     NSDictionary *params;
@@ -58,19 +58,19 @@
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
             NSLog(@"%@",responseObject);
             [[ZPPTimeManager sharedManager] configureWithDict:responseObject];
-            
+
             NSString *welcomeScreenImageURL = responseObject[@"welcome_screen_image_url"];
             if (![welcomeScreenImageURL isEqual: [NSNull null]]) {
                 [[WelcomeScreenProvider sharedProvider] setImageURLString:welcomeScreenImageURL];
             } else {
                 [[WelcomeScreenProvider sharedProvider] setImageURLString:nil];
             }
-            
+
             ZPPTimeManager *timeManager = [ZPPTimeManager sharedManager];
             NSArray *lunchs = [ZPPDishHelper parseDishes:responseObject[@"lunches"]];
             NSArray *dishes = [ZPPDishHelper parseDishes:responseObject[@"dishes"]];
             NSArray *stuff = [ZPPStuffHelper parseStuff:responseObject[@"stuff"]];
-            
+
             if(success) {
                 success(lunchs, dishes, stuff, timeManager);
             }

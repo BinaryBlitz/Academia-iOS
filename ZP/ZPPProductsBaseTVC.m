@@ -24,14 +24,14 @@
     self.tableView.backgroundColor = [UIColor blackColor];
 
     [self registerCells];
-    
-    
-    
+
+
+
     UIView *v = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     v.backgroundColor = [UIColor whiteColor];
-    
+
     self.tableView.tableFooterView = v;
-    
+
     UIEdgeInsets insets = self.tableView.contentInset;
     self.tableView.contentInset =
     UIEdgeInsetsMake(insets.top, insets.left, insets.bottom - self.screenHeight, insets.right);

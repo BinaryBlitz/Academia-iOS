@@ -34,123 +34,124 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / ДЕСЕРТЫ";
 @implementation ZPPAnotherProductsTVC
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 }
 
 - (void)configureWithOrder:(ZPPOrder *)order {
-    self.order = order;
+  self.order = order;
 }
 - (void)configureWithStuffs:(NSArray *)stuffs {
-    self.anotherProducts = stuffs;
-    [self.tableView reloadData];
+  self.anotherProducts = stuffs;
+  [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+  return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 1;
-    } else {
-        return self.anotherProducts.count;
-    }
+  if (section == 0) {
+    return 1;
+  } else {
+    return self.anotherProducts.count;
+  }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        return [self mainCell];
-    } else {
-        return [self anotherProductCellForIndexPath:indexPath];
-    }
+  if (indexPath.section == 0) {
+    return [self mainCell];
+  } else {
+    return [self anotherProductCellForIndexPath:indexPath];
+  }
 }
 
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        return self.screenHeight;
-    } else {
-        return 120.0;
-    }
+  if (indexPath.section == 0) {
+    return self.screenHeight;
+  } else {
+    return 120.0;
+  }
 }
 
 - (ZPPProductAnotherCell *)anotherProductCellForIndexPath:(NSIndexPath *)indexPath {
-    ZPPProductAnotherCell *cell =
-        [self.tableView dequeueReusableCellWithIdentifier:ZPPProductAnotherCellIdentifier];
+  ZPPProductAnotherCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPProductAnotherCellIdentifier];
 
-    ZPPStuff *stuff = self.anotherProducts[indexPath.row];
+  ZPPStuff *stuff = self.anotherProducts[indexPath.row];
 
-    ZPPOrderItem *orderItem = [self.order orderItemForItem:stuff];
+  ZPPOrderItem *orderItem = [self.order orderItemForItem:stuff];
 
-    if (orderItem) {
-        [cell setBadgeCount:orderItem.count];
-    }
+  if (orderItem) {
+    [cell setBadgeCount:orderItem.count];
+  } else {
+    [cell setBadgeCount:0];
+  }
 
-    [cell configureWithStuff:stuff];
-    [cell.addProductButton addTarget:self action:@selector(addToCard:) forControlEvents:UIControlEventTouchUpInside];
-    
-    return cell;
+  [cell configureWithStuff:stuff];
+  [cell.addProductButton addTarget:self action:@selector(addToCard:) forControlEvents:UIControlEventTouchUpInside];
+
+  return cell;
 }
 
 - (ZPPProductMainCell *)mainCell {
-    ZPPProductMainCell *cell =
-        [self.tableView dequeueReusableCellWithIdentifier:ZPPProductMainCellIdentifier];
+  ZPPProductMainCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPProductMainCellIdentifier];
 
-    cell.nameLabel.text = ZPPControllerName;
-    cell.ingridientsDescriptionLabel.text = ZPPControllerDescrioption;
-    cell.priceLabel.text = @"";
-    [cell.addToBasketButton addTarget:self
-                               action:@selector(showAnotherCells)
-                     forControlEvents:UIControlEventTouchUpInside];
-    [cell.addToBasketButton setTitle:@"ПОСМОТРЕТЬ" forState:UIControlStateNormal];
+  cell.nameLabel.text = ZPPControllerName;
+  cell.ingridientsDescriptionLabel.text = ZPPControllerDescrioption;
+  cell.priceLabel.text = @"";
+  [cell.addToBasketButton addTarget:self
+                             action:@selector(showAnotherCells)
+                   forControlEvents:UIControlEventTouchUpInside];
+  [cell.addToBasketButton setTitle:@"ПОСМОТРЕТЬ" forState:UIControlStateNormal];
 
-    cell.topButtonView.hidden = NO;
+  cell.topButtonView.hidden = NO;
 
-    cell.ingridientsDescriptionLabel.numberOfLines = 1;
-    cell.ingridientsDescriptionLabel.minimumScaleFactor = 0.5;
-    cell.ingridientsDescriptionLabel.adjustsFontSizeToFitWidth = YES;
-    cell.productImageView.image = [UIImage imageNamed:@"back4.jpg"];
+  cell.ingridientsDescriptionLabel.numberOfLines = 1;
+  cell.ingridientsDescriptionLabel.minimumScaleFactor = 0.5;
+  cell.ingridientsDescriptionLabel.adjustsFontSizeToFitWidth = YES;
+  cell.productImageView.image = [UIImage imageNamed:@"back4.jpg"];
 
-    return cell;
+  return cell;
 }
 
 - (void)registerCells {
-    UINib *anotherCell = [UINib nibWithNibName:@"ZPPProductAnotherCell" bundle:nil];
-    [[self tableView] registerNib:anotherCell
-           forCellReuseIdentifier:ZPPProductAnotherCellIdentifier];
+  UINib *anotherCell = [UINib nibWithNibName:@"ZPPProductAnotherCell" bundle:nil];
+  [[self tableView] registerNib:anotherCell
+         forCellReuseIdentifier:ZPPProductAnotherCellIdentifier];
 
-    UINib *main = [UINib nibWithNibName:@"ZPPProductMainCell" bundle:nil];
-    [[self tableView] registerNib:main forCellReuseIdentifier:ZPPProductMainCellIdentifier];
+  UINib *main = [UINib nibWithNibName:@"ZPPProductMainCell" bundle:nil];
+  [[self tableView] registerNib:main forCellReuseIdentifier:ZPPProductMainCellIdentifier];
 }
 
 #pragma mark - actions
 
 - (void)showAnotherCells {  // redo
-    NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:1];
+  NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:1];
 
-    if (self.anotherProducts.count < 1) {
-        return;
-    }
+  if (self.anotherProducts.count < 1) {
+    return;
+  }
 
-    [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:YES];
+  [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 - (void)addToCard:(UIButton *)sender {
-    UITableViewCell *cell = [self parentCellForView:sender];
-    if (cell) {
-        NSIndexPath *ip = [self.tableView indexPathForCell:cell];
+  UITableViewCell *cell = [self parentCellForView:sender];
 
-        ZPPStuff *stuff = self.anotherProducts[ip.row];
+  if (cell) {
+    NSIndexPath *ip = [self.tableView indexPathForCell:cell];
 
-        if (self.productDelegate) {
-            [self.productDelegate addItemIntoOrder:stuff];
-        }
+    ZPPStuff *stuff = self.anotherProducts[ip.row];
+
+    if (self.productDelegate) {
+      [self.productDelegate addItemIntoOrder:stuff];
     }
-
-    [self.tableView reloadData];
+  }
+  
+  [self.tableView reloadData];
 }
 @end

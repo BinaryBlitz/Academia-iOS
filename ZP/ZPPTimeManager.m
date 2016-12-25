@@ -36,7 +36,7 @@
 
 + (ZPPTimeManager *)timeManagerWith:(NSArray *)managerData {
     ZPPTimeManager *timeManager = [ZPPTimeManager new];
-    
+
     NSMutableArray *openHoursGroup = [NSMutableArray array];
     for (NSDictionary *dict in managerData) {
         NSString *currentDateString = dict[@"current_time"];
@@ -50,7 +50,7 @@
         NSNumber *endMinute = dict[@"end_min"];
         NSDate *startDate = [[tmpDate dateByAddingHours:[startHour integerValue]] dateByAddingMinutes:[startMinute integerValue]];
         NSDate *endDate = [[tmpDate dateByAddingHours:[endHour integerValue]] dateByAddingMinutes:[endMinute integerValue]];
-        
+
         DTTimePeriod *timePeriod = [DTTimePeriod timePeriodWithStartDate:startDate endDate:endDate];
         [openHoursGroup addObject:timePeriod];
     }
@@ -59,9 +59,9 @@
         DTTimePeriod *second = (DTTimePeriod *)obj2;
         return [first.StartDate isEarlierThan:second.StartDate] ? NSOrderedAscending : NSOrderedDescending;
     }];
-    
+
     timeManager.openTimePeriodChain = [NSArray arrayWithArray:openHoursGroup];
-    
+
     return timeManager;
 }
 
@@ -96,7 +96,7 @@
     if (![lunches isEqual:[NSNull null]] && lunches.count > 0 ) {
         self.dishesForToday = YES;
     }
-    
+
     if(![dishes isEqual:[NSNull null]] && dishes.count > 0) {
         self.dishesForToday = YES;
     }

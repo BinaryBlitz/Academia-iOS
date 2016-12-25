@@ -66,7 +66,7 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
     self.tableView.backgroundView.layer.zPosition -= 1;
 
     [self setCustomNavigationBackButtonWithTransition];
-    
+
     [self loadOrders];
 }
 
@@ -93,7 +93,7 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
     } else {
         return self.doneOrders.count;
     }
-    
+
     return self.orders.count;
 }
 
@@ -106,13 +106,13 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
 
 
     ZPPOrder *order;
-    
+
     if(indexPath.section == 0) {
         order = self.onTheWayOrders[indexPath.row];
     } else {
         order = self.doneOrders[indexPath.row];
     }
-    
+
     [cell configureWithOrder:order];
 
     return cell;
@@ -163,7 +163,7 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
 
     [[ZPPServerManager sharedManager] GETOldOrdersOnSuccess:^(NSArray *orders) {
         [self.refreshControl endRefreshing];
-        
+
         [self parseOrders:orders];
 
         [self.tableView reloadData];
@@ -180,10 +180,10 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
 //    if(self.onTheWayOrders) {
 //        return;
 //    }
-    
+
     NSMutableArray *onTheWayOrders = [NSMutableArray array];
     NSMutableArray *payedOrders = [NSMutableArray array];
-    
+
     for(ZPPOrder *order in orders) {
         if(order.orderStatus == ZPPOrderStatusOnTheWay) {
             [onTheWayOrders addObject:order];
@@ -191,7 +191,7 @@ static NSString *ZPPOrderTotalCellIdentifier = @"ZPPOrderTotalCellIdentifier";
             [payedOrders addObject:order];
         }
     }
-    
+
     self.onTheWayOrders = [NSArray arrayWithArray:onTheWayOrders];
     self.doneOrders = [NSArray arrayWithArray:payedOrders];
     [self.tableView reloadData];

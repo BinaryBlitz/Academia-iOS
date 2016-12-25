@@ -17,7 +17,7 @@
 #import "NSDate+ZPPDateCategory.h"
 #import "ZPPUserManager.h"
 #import "ZPPTimeManager.h"
-#import "ZP-Swift.h"
+#import "Academia-Swift.h"
 
 typedef NS_ENUM(NSInteger, ZPPCurrentBeginState) {
     ZPPCurrentBeginStateClosed,
@@ -57,13 +57,13 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 
     cell.contentView.backgroundColor = [UIColor blackColor];
 
-    
+
     if ([[WelcomeScreenProvider sharedProvider] hasAvailableScreen]) {
         [self loadImageView:cell.backImageView url:[WelcomeScreenProvider sharedProvider].imageURL];
     } else {
         cell.backImageView.image = [UIImage imageNamed:@"back3.jpg"];
     }
-    
+
     if ([ZPPTimeManager sharedManager].dishesForToday || [self currentState] == ZPPCurrentBeginStateNotLoged) {
         [cell.beginButton setTitle:[self buttonText] forState:UIControlStateNormal];
     } else {
@@ -85,12 +85,12 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
         cell.logoImageView.hidden = YES;
         cell.smallImageView.hidden = YES;
     }
-    
+
     if ([[WelcomeScreenProvider sharedProvider] hasAvailableScreen]) {
         cell.logoImageView.hidden = YES;
         cell.smallImageView.hidden = YES;
     }
-    
+
     if (state == ZPPCurrentBeginStateNotLoged) {
         cell.showMenuPreviewButton.hidden = false;
         [cell.showMenuPreviewButton makeBorderedWithColor:[UIColor whiteColor]];
@@ -185,7 +185,7 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
     ZPPCurrentBeginState state = [self currentState];
 
     NSDate *openDate = [ZPPTimeManager sharedManager].openTime;
-    
+
     NSString *makePreorder = @"";
     if ([ZPPTimeManager sharedManager].openTime) {
         NSLog(@"open time: %@", [ZPPTimeManager sharedManager].openTime);
@@ -201,10 +201,10 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
                 dateString = weekdays[weekday - 1];
             }
         }
-        
+
          makePreorder = [NSString stringWithFormat:@"Сейчас мы закрыты. Мы открываемся %@ в %@", dateString, [openDate timeStringfromDate]];
     }
-    
+
     switch (state) {
         case ZPPCurrentBeginStateOpen:
             if ([[WelcomeScreenProvider sharedProvider] hasAvailableScreen]) {
@@ -241,7 +241,7 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
         default:
             break;
     }
-    
+
     return text;
 }
 
