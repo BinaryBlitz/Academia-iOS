@@ -172,7 +172,7 @@
                                               }];
             }
             completion:^(BOOL finished) {
-    
+
                 if (self.animating) {
                     [self animateForward:!isForward delay:1.5];
                 }

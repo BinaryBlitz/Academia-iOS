@@ -43,12 +43,12 @@ NSString *const ZPPUserLogoutNotificationName = @"ZPPUserLogoutNotificationName"
 }
 
 - (void)setUser:(ZPPUser *)user {
-    
+
     _user = user;
-    
+
     if (user) {
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:user];
-        
+
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"currentUser"];
 
         [[Crashlytics sharedInstance]

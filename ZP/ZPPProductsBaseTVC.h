@@ -24,12 +24,8 @@
 @interface ZPPProductsBaseTVC : UITableViewController
 @property (nonatomic, weak) id <ZPPProductsBaseTVCDelegate> delegate;
 @property (nonatomic, weak) id <ZPPProductScreenTVCDelegate> productDelegate;
-//@property (strong, nonatomic) Z
-
 
 @property (assign, nonatomic, readonly) CGFloat screenHeight;
 - (void)registerCells;
-
-
 
 @end

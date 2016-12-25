@@ -37,19 +37,19 @@ static NSString *ZPPDaDataAPIKey = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
     UIEdgeInsets insets = self.tableView.contentInset;
     self.tableView.contentInset =
         UIEdgeInsetsMake(insets.top + 20, insets.left, insets.bottom, insets.right);
-    
+
     [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
     [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
     [self setCustomNavigationBackButtonWithTransition];
 
     self.searchBar.delegate = self;
     self.searchBar.tintColor = [UIColor blackColor];
-    
+
     [self.tableView setRowHeight:UITableViewAutomaticDimension];
     self.tableView.estimatedRowHeight = 60;
-    
+
     [[IDDaDataSuggestions sharedInstance] setBaseURL:@"https://dadata.ru/api/v2/" apiKey:ZPPDaDataAPIKey];
-    
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -148,7 +148,7 @@ static NSString *ZPPDaDataAPIKey = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
     if (!text || text.length < 3) {
         return;
     }
-    
+
     [[IDDaDataSuggestions sharedInstance] getAddressSuggestionsForString:text
                                                             restrictions: @[@{@"region": @"москва"}]
                                                  hideRestrictionInResult:NO
@@ -158,7 +158,7 @@ static NSString *ZPPDaDataAPIKey = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
                                                                      [self.tableView reloadData];
                                                                  }
                                                                  failure:^(NSError *error) {
-                                                                     
+
                                                                  }];
 }
 

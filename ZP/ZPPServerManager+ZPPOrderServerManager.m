@@ -72,9 +72,9 @@
         @"api_token" : [ZPPUserManager sharedInstance].user.apiToken,
         @"payment" : @{@"use_binding" : @NO}
     };
-    
+
     NSString *urlString = [NSString stringWithFormat:@"orders/%@/payment.json", orderID];
-    
+
     [self.requestOperationManager POST:urlString
         parameters:params
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
@@ -109,7 +109,7 @@
 
             //order status 2 is good
             NSNumber *orederStatus = responseObject[@"order_status"];
-            
+
             if (success) {
                 NSInteger status = [orederStatus integerValue];
                 if (status) {
@@ -133,9 +133,9 @@
         @"api_token" : [ZPPUserManager sharedInstance].user.apiToken,
         @"payment" : @{@"binding_id" : bindingId }
     };
-    
+
     NSString *urlString = [NSString stringWithFormat:@"orders/%@/payments", orderId];
-    
+
     [self.requestOperationManager POST:urlString
         parameters:parameters
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
@@ -158,11 +158,11 @@
 - (void)listPaymentCardsWithSuccess: (void (^)(NSArray *cards))success
                           onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
     NSDictionary *parameters = @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
-    
+
     [self.requestOperationManager GET:@"payment_cards"
         parameters:parameters
         success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-              
+
             if (responseObject) {
                 NSLog(@"cards: %@", responseObject);
                 NSMutableArray *cards = [NSMutableArray array];
@@ -172,13 +172,13 @@
                         [cards addObject:card];
                     }
                 }
-                
+
                 [cards sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
                     ZPPCreditCard *firstCard = (ZPPCreditCard *)obj1;
                     ZPPCreditCard *secondCard = (ZPPCreditCard *)obj2;
                     return [firstCard.createdAt compare:secondCard.createdAt];
                 }];
-              
+
                 success([NSArray arrayWithArray:cards]);
             }
          } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
@@ -191,7 +191,7 @@
     NSDictionary *parameters = @{
         @"api_token" : [ZPPUserManager sharedInstance].user.apiToken
     };
-    
+
     [self.requestOperationManager POST:@"payment_cards"
         parameters:parameters
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
@@ -200,7 +200,7 @@
                 NSLog(@"Error: %@", error);
                 [[self class] failureWithBlock:failure error:error operation:operation];
             }
-            
+
             NSString *url = responseObject[@"url"];
             if (success) {
                 success(url);
@@ -221,7 +221,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]
                                          initWithRequest:request];
-    
+
     [operation setCompletionBlockWithSuccess:
             ^(AFHTTPRequestOperation *operation, id responseObject) {
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -230,18 +230,18 @@
                 }
             }
      ];
-    
+
     [operation setRedirectResponseBlock:^NSURLRequest * _Nonnull (NSURLConnection * _Nonnull connection, NSURLRequest * _Nonnull request, NSURLResponse * _Nonnull redirectResponse) {
-        
+
         if ([request.URL.absoluteString containsString:@"sakses"] || [request.URL.absoluteString containsString:@"feylur"]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 success(request.URL.absoluteString);
             });
         }
-        
+
         return request;
     }];
-    
+
     [operation start];
 }
 
@@ -251,7 +251,7 @@
               onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
     NSDictionary *parameters = @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
     NSString *urlString = @"working_hours";
-    
+
     [self.requestOperationManager GET:urlString
        parameters:parameters
        success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
@@ -329,13 +329,13 @@
         success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
 
             NSLog(@"points %@",responseObject);
-            
+
             NSArray *points = [ZPPAddressHelper parsePoints:responseObject];
-            
+
             if (success) {
                 success(points);
             }
-            
+
         }
         failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error){
 

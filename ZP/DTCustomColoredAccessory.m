@@ -30,7 +30,7 @@
 {
     DTCustomColoredAccessory *ret = [[DTCustomColoredAccessory alloc] initWithFrame:CGRectMake(0, 0, 11.0, 15.0)];
     ret.accessoryColor = color;
-    
+
     return ret;
 }
 
@@ -47,7 +47,7 @@
     CGContextSetLineCap(ctxt, kCGLineCapSquare);
     CGContextSetLineJoin(ctxt, kCGLineJoinMiter);
     CGContextSetLineWidth(ctxt, 3);
-    
+
     if (self.highlighted)
     {
         [self.highlightedColor setStroke];
@@ -56,14 +56,14 @@
     {
         [self.accessoryColor setStroke];
     }
-    
+
     CGContextStrokePath(ctxt);
 }
 
 - (void)setHighlighted:(BOOL)highlighted
 {
     [super setHighlighted:highlighted];
-    
+
     [self setNeedsDisplay];
 }
 
@@ -73,7 +73,7 @@
     {
         return [UIColor blackColor];
     }
-    
+
     return _accessoryColor;
 }
 
@@ -83,7 +83,7 @@
     {
         return [UIColor whiteColor];
     }
-    
+
     return _highlightedColor;
 }
 

@@ -79,7 +79,7 @@ static NSString *ZPPOrderAddressCellIdentifier = @"ZPPOrderAddressCellIdentifier
     [self registrateCellForClass:[ZPPStarsCell class] reuseIdentifier:ZPPStarsCellIdentifier];
     [self registrateCellForClass:[ZPPCommentCell class] reuseIdentifier:ZPPCommentCellIdentifier];
     [self registrateCellForClass:[ZPPContactCourierCell class] reuseIdentifier:ZPPContactCourierCellIdentifier];
-    
+
     [self registrateCellForClass:[ZPPOrderItemCell class] reuseIdentifier:ZPPOrderItemCellReuseIdentifier];
     [self registrateCellForClass:[ZPPNoCreditCardCell class] reuseIdentifier:ZPPNoCreditCardCellIdentifier];
     [self registrateCellForClass:[ZPPOrderTotalCell class] reuseIdentifier:ZPPOrderTotalCellIdentifier];

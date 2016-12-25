@@ -15,7 +15,7 @@
     // Initialization code
     [super awakeFromNib];
     [self.actionButton makeBordered];
-    
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -18,18 +18,18 @@ NSString *const ZPPRulesVCID = @"ZPPRulesVCID";
     [self addCustomCloseButton];
 
 //    self.title = @"Правила";
-    
+
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
     self.navigationController.navigationBar.translucent = NO;
-    
+
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
     self.textView.scrollEnabled = NO;
     self.textView.scrollEnabled = YES;
 }
