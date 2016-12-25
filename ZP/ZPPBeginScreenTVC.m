@@ -17,7 +17,7 @@
 #import "NSDate+ZPPDateCategory.h"
 #import "ZPPUserManager.h"
 #import "ZPPTimeManager.h"
-#import "ZP-Swift.h"
+#import "Academia-Swift.h"
 
 typedef NS_ENUM(NSInteger, ZPPCurrentBeginState) {
     ZPPCurrentBeginStateClosed,

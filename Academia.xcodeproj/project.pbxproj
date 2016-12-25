@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17A686138D4CBA61D85CFEDF /* Pods_Academia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7EF5ED4BC2C128F0933DEE1 /* Pods_Academia.framework */; };
 		19014A4A1BC034CF001E0D77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19014A491BC034CF001E0D77 /* main.m */; };
 		19014A4D1BC034CF001E0D77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19014A4C1BC034CF001E0D77 /* AppDelegate.m */; };
 		19014A531BC034CF001E0D77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19014A511BC034CF001E0D77 /* Main.storyboard */; };
@@ -165,7 +166,6 @@
 		37204FE71CB64E150010448E /* WelcomeScreenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37204FE61CB64E150010448E /* WelcomeScreenProvider.swift */; };
 		377198C21CC79080005EC204 /* ZPPNoCreditCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 377198C01CC79080005EC204 /* ZPPNoCreditCardCell.m */; };
 		377198C31CC79080005EC204 /* ZPPNoCreditCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 377198C11CC79080005EC204 /* ZPPNoCreditCardCell.xib */; };
-		BAFCED28C5EAE192D4403B22 /* Pods_ZP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C84A6DD94A85DCC8901370 /* Pods_ZP.framework */; };
 		BCB5C4481DB02E6600D27CF6 /* iconBigColor.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB5C4471DB02E6600D27CF6 /* iconBigColor.png */; };
 		BCB5C44A1DB02E9B00D27CF6 /* iconBigColorNoWords.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB5C4491DB02E9B00D27CF6 /* iconBigColorNoWords.png */; };
 		BCB5C44C1DB02EB500D27CF6 /* load.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB5C44B1DB02EB500D27CF6 /* load.png */; };
@@ -174,7 +174,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		19014A451BC034CF001E0D77 /* ZP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		016E791C7E6B254E1EBAC6D9 /* Pods-Academia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Academia.release.xcconfig"; path = "Pods/Target Support Files/Pods-Academia/Pods-Academia.release.xcconfig"; sourceTree = "<group>"; };
+		19014A451BC034CF001E0D77 /* Academia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Academia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19014A491BC034CF001E0D77 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		19014A4B1BC034CF001E0D77 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		19014A4C1BC034CF001E0D77 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -449,7 +450,9 @@
 		BCB5C44B1DB02EB500D27CF6 /* load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load.png; sourceTree = "<group>"; };
 		BCB5C44D1DB02EC000D27CF6 /* mainIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainIcon.png; sourceTree = "<group>"; };
 		BCB5C44F1DB02ED700D27CF6 /* big_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big_logo.png; sourceTree = "<group>"; };
+		C7EF5ED4BC2C128F0933DEE1 /* Pods_Academia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Academia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8E9C8A9FF8D22F4AA974715 /* Pods-ZP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZP.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZP/Pods-ZP.release.xcconfig"; sourceTree = "<group>"; };
+		CFFB82A2B702EDCD29B5522A /* Pods-Academia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Academia.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Academia/Pods-Academia.debug.xcconfig"; sourceTree = "<group>"; };
 		F1D5BA47A5E76A634384FEE5 /* Pods-ZP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZP/Pods-ZP.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -458,7 +461,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAFCED28C5EAE192D4403B22 /* Pods_ZP.framework in Frameworks */,
+				17A686138D4CBA61D85CFEDF /* Pods_Academia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +473,8 @@
 			children = (
 				F1D5BA47A5E76A634384FEE5 /* Pods-ZP.debug.xcconfig */,
 				C8E9C8A9FF8D22F4AA974715 /* Pods-ZP.release.xcconfig */,
+				CFFB82A2B702EDCD29B5522A /* Pods-Academia.debug.xcconfig */,
+				016E791C7E6B254E1EBAC6D9 /* Pods-Academia.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -487,7 +492,7 @@
 		19014A461BC034CF001E0D77 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				19014A451BC034CF001E0D77 /* ZP.app */,
+				19014A451BC034CF001E0D77 /* Academia.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1536,6 +1541,7 @@
 			children = (
 				1A340E98E08E039F101A2881 /* Pods.framework */,
 				52C84A6DD94A85DCC8901370 /* Pods_ZP.framework */,
+				C7EF5ED4BC2C128F0933DEE1 /* Pods_Academia.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1543,9 +1549,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		19014A441BC034CF001E0D77 /* ZP */ = {
+		19014A441BC034CF001E0D77 /* Academia */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 19014A751BC034CF001E0D77 /* Build configuration list for PBXNativeTarget "ZP" */;
+			buildConfigurationList = 19014A751BC034CF001E0D77 /* Build configuration list for PBXNativeTarget "Academia" */;
 			buildPhases = (
 				65307899315EC4C8C34D8C7B /* [CP] Check Pods Manifest.lock */,
 				19014A411BC034CF001E0D77 /* Sources */,
@@ -1559,9 +1565,9 @@
 			);
 			dependencies = (
 			);
-			name = ZP;
+			name = Academia;
 			productName = ZP;
-			productReference = 19014A451BC034CF001E0D77 /* ZP.app */;
+			productReference = 19014A451BC034CF001E0D77 /* Academia.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1576,7 +1582,7 @@
 				TargetAttributes = {
 					19014A441BC034CF001E0D77 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 4WGG8V34K4;
+						DevelopmentTeam = AMN3A39Y67;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -1586,7 +1592,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 19014A401BC034CF001E0D77 /* Build configuration list for PBXProject "ZP" */;
+			buildConfigurationList = 19014A401BC034CF001E0D77 /* Build configuration list for PBXProject "Academia" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1599,7 +1605,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				19014A441BC034CF001E0D77 /* ZP */,
+				19014A441BC034CF001E0D77 /* Academia */,
 			);
 		};
 /* End PBXProject section */
@@ -1682,7 +1688,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZP/Pods-ZP-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Academia/Pods-Academia-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		19FC12121BCD2ED100DDE41C /* ShellScript */ = {
@@ -1710,7 +1716,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZP/Pods-ZP-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Academia/Pods-Academia-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		65307899315EC4C8C34D8C7B /* [CP] Check Pods Manifest.lock */ = {
@@ -1957,7 +1963,7 @@
 		};
 		19014A761BC034CF001E0D77 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F1D5BA47A5E76A634384FEE5 /* Pods-ZP.debug.xcconfig */;
+			baseConfigurationReference = CFFB82A2B702EDCD29B5522A /* Pods-Academia.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1965,12 +1971,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 15;
-				DEVELOPMENT_TEAM = 4WGG8V34K4;
+				DEVELOPMENT_TEAM = AMN3A39Y67;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ZP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.binaryblitz.ZP;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.maximkaplevich.Academia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ZP/ZP-Bridging-Header.h";
@@ -1982,7 +1988,7 @@
 		};
 		19014A771BC034CF001E0D77 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C8E9C8A9FF8D22F4AA974715 /* Pods-ZP.release.xcconfig */;
+			baseConfigurationReference = 016E791C7E6B254E1EBAC6D9 /* Pods-Academia.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1990,12 +1996,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 15;
-				DEVELOPMENT_TEAM = 4WGG8V34K4;
+				DEVELOPMENT_TEAM = AMN3A39Y67;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ZP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.binaryblitz.ZP;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.maximkaplevich.Academia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ZP/ZP-Bridging-Header.h";
@@ -2007,7 +2013,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		19014A401BC034CF001E0D77 /* Build configuration list for PBXProject "ZP" */ = {
+		19014A401BC034CF001E0D77 /* Build configuration list for PBXProject "Academia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				19014A731BC034CF001E0D77 /* Debug */,
@@ -2016,7 +2022,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		19014A751BC034CF001E0D77 /* Build configuration list for PBXNativeTarget "ZP" */ = {
+		19014A751BC034CF001E0D77 /* Build configuration list for PBXNativeTarget "Academia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				19014A761BC034CF001E0D77 /* Debug */,

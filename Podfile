@@ -1,7 +1,7 @@
 platform :ios, '8.0'
 use_frameworks!
 
-target 'ZP' do
+target 'Academia' do
   # Tools
   pod 'AFNetworking', '~> 2.6'
   pod 'DateTools', '~> 1.7'
