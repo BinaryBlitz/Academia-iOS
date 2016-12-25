@@ -443,6 +443,7 @@
 		377198BF1CC79080005EC204 /* ZPPNoCreditCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPNoCreditCardCell.h; sourceTree = "<group>"; };
 		377198C01CC79080005EC204 /* ZPPNoCreditCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPNoCreditCardCell.m; sourceTree = "<group>"; };
 		377198C11CC79080005EC204 /* ZPPNoCreditCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPNoCreditCardCell.xib; sourceTree = "<group>"; };
+		379768721E10011400823AEF /* Academia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Academia.entitlements; sourceTree = "<group>"; };
 		37F681D61CB19B9800B2E115 /* ZPPAddressDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZPPAddressDelegate.h; sourceTree = "<group>"; };
 		52C84A6DD94A85DCC8901370 /* Pods_ZP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCB5C4471DB02E6600D27CF6 /* iconBigColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBigColor.png; sourceTree = "<group>"; };
@@ -482,6 +483,7 @@
 		19014A3C1BC034CF001E0D77 = {
 			isa = PBXGroup;
 			children = (
+				379768721E10011400823AEF /* Academia.entitlements */,
 				19014A471BC034CF001E0D77 /* ZP */,
 				19014A461BC034CF001E0D77 /* Products */,
 				B9AAD5556FA2D274BB8C3D21 /* Frameworks */,
@@ -1968,6 +1970,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Academia.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1993,6 +1996,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Academia.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
