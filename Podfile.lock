@@ -27,22 +27,22 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - Crashlytics (3.8.3):
+  - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - CWStatusBarNotification (2.3.5)
   - DateTools (1.7.0)
   - EZSwipeController (0.6.1)
   - Fabric (1.6.11)
-  - FBSDKCoreKit (4.17.0):
+  - FBSDKCoreKit (4.19.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.17.0):
+  - FBSDKLoginKit (4.19.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.17.0):
+  - FBSDKShareKit (4.19.0):
     - FBSDKCoreKit
-  - GoogleMaps (2.1.1):
-    - GoogleMaps/Maps (= 2.1.1)
-  - GoogleMaps/Base (2.1.1)
-  - GoogleMaps/Maps (2.1.1):
+  - GoogleMaps (2.2.0):
+    - GoogleMaps/Maps (= 2.2.0)
+  - GoogleMaps/Base (2.2.0)
+  - GoogleMaps/Maps (2.2.0):
     - GoogleMaps/Base
   - HCSStarRatingView (1.4.5)
   - IDDaDataSuggestions (0.1.0):
@@ -55,7 +55,7 @@ PODS:
   - pop (1.0.9)
   - PureLayout (3.0.2)
   - REFormattedNumberField (1.1.6)
-  - SCLAlertView-Objective-C (1.0.6)
+  - SCLAlertView-Objective-C (1.1.1)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -100,15 +100,15 @@ SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   CWStatusBarNotification: 3d2738b25c3207f60cc50201388d3c96182545ff
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   EZSwipeController: 255b0f8aed31963b0236802c926e27dd006a2532
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  FBSDKCoreKit: 30a21d2d7b92984b3d80497113433c00824c35e9
-  FBSDKLoginKit: 42b7129ac0373ca99eaf4cbebf4d07bd42371f59
-  FBSDKShareKit: 9b573d03fbee36cbaf42d5bb1f2bc019e0d72347
-  GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
+  FBSDKCoreKit: 894b2b6eda6a4c8c4204e92e59cc355709ef045c
+  FBSDKLoginKit: 83ca4d8f12a2022570af9fd6aacf27f6b425b99f
+  FBSDKShareKit: 5953758366278430dc322d5cdc906db361ed7f81
+  GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
   HCSStarRatingView: bff3f89314d3b5013ce826ea11897d3129ff6b8c
   IDDaDataSuggestions: 41989bd9e09def789326e7f126606548f201fb47
   INTULocationManager: 73f8254b3d05c897c56bb13c190e5b7c648c0998
@@ -119,10 +119,10 @@ SPEC CHECKSUMS:
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   REFormattedNumberField: 70fc5fb1218ebd5ee9983820defd12806d5c6ec6
-  SCLAlertView-Objective-C: ca78280817e66e74366b78579350dee2ff277e23
+  SCLAlertView-Objective-C: d397ae2b52bae7dedf7188fa1616fcb89200b33a
   SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
   VBFPopFlatButton: 39e48ab56277f3d056734a9b5ec5d0cc60d69778
 
 PODFILE CHECKSUM: 55fdaf476033b1730b42a98b902730819fef55a1
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0
