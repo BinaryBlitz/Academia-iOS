@@ -24,26 +24,26 @@ NSString *const ZPPNoInternetConnectionMessage = @"Проверьте интер
 @implementation ZPPServerManager
 
 + (ZPPServerManager *)sharedManager {
-    static ZPPServerManager *manager = nil;
+  static ZPPServerManager *manager = nil;
 
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        manager = [[ZPPServerManager alloc] init];
-    });
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    manager = [[ZPPServerManager alloc] init];
+  });
 
-    return manager;
+  return manager;
 }
 
 - (id)init {
-    self = [super init];
-    if (self) {
-        NSString *apiPath = [NSString stringWithFormat:@"%@", ZPPServerBaseUrl];
-        self.baseURL = apiPath;
-        NSURL *url = [NSURL URLWithString:apiPath];
+  self = [super init];
+  if (self) {
+    NSString *apiPath = [NSString stringWithFormat:@"%@", ZPPServerBaseUrl];
+    self.baseURL = apiPath;
+    NSURL *url = [NSURL URLWithString:apiPath];
 
-        self.requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
-    }
-    return self;
+    self.requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
+  }
+  return self;
 }
 
 #pragma mark - support
@@ -52,9 +52,9 @@ NSString *const ZPPNoInternetConnectionMessage = @"Проверьте интер
                    error:(NSError *)error
                operation:(AFHTTPRequestOperation *)operation {
 //    DDLogError(@"err %@ \nerr resp %@", error, operation.responseObject);
-    if (block) {
-        block(error, operation.response.statusCode);
-    }
+  if (block) {
+    block(error, operation.response.statusCode);
+  }
 }
 
 @end

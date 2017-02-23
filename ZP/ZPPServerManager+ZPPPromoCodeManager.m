@@ -17,28 +17,28 @@ NSString *const ZPPWrongCardNumber = @"Неправильный код, попр
 - (void)POSTPromocCode:(NSString *)code
              onSuccess:(void (^)())success
              onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {//redo
-    if (!code) {
-        if (failure) {
-            failure(nil, -1);
-        }
+  if (!code) {
+    if (failure) {
+      failure(nil, -1);
     }
+  }
 
-    NSDictionary *params =
-        @{ @"code" : code,
-           @"api_token" : [ZPPUserManager sharedInstance].user.apiToken };
+  NSDictionary *params =
+      @{@"code": code,
+          @"api_token": [ZPPUserManager sharedInstance].user.apiToken};
 
-    [self.requestOperationManager POST:@"promo_codes/redeem.json"
-        parameters:params
-        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+  [self.requestOperationManager POST:@"promo_codes/redeem.json"
+                          parameters:params
+                             success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
 
-            if (success) {
-                success();
-            }
-        }
-        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+                               if (success) {
+                                 success();
+                               }
+                             }
+                             failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
 
-            [[self class] failureWithBlock:failure error:error operation:operation];
-        }];
+                               [[self class] failureWithBlock:failure error:error operation:operation];
+                             }];
 }
 
 @end

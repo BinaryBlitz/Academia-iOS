@@ -25,6 +25,7 @@ static NSString *ZPPShowRegistrationOtherScreenSegueIdentifier =
     @"ZPPShowRegistrationOtherScreenSegueIdentifier";
 
 static NSString *ZPPCodeWarningMessage = @"Неправильный код";
+
 @interface ZPPRegistrationCodeInputVC ()  //<UITextFieldDelegate>
 
 //@property (strong, nonatomic) ZPPUser *user;
@@ -35,56 +36,56 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
 @implementation ZPPRegistrationCodeInputVC
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
-    if ([[ZPPSmsVerificationManager shared] canSendAgain]) {
-        [[ZPPSmsVerificationManager shared] startTimer];
-    }
+  if ([[ZPPSmsVerificationManager shared] canSendAgain]) {
+    [[ZPPSmsVerificationManager shared] startTimer];
+  }
 
-    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+  [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
-    [self setButtonTextForTime:[ZPPSmsVerificationManager shared].currentTime];
-    __weak typeof(self) weakSelf = self;
-    [ZPPSmsVerificationManager shared].timerCounter = ^(NSInteger time) {
+  [self setButtonTextForTime:[ZPPSmsVerificationManager shared].currentTime];
+  __weak typeof(self) weakSelf = self;
+  [ZPPSmsVerificationManager shared].timerCounter = ^(NSInteger time) {
 
-        [weakSelf setButtonTextForTime:time];
-    };
+    [weakSelf setButtonTextForTime:time];
+  };
 
-    self.mainTF = self.codeTextField;
-    self.bottomConstraint = self.bottomSuperviewConstraint;
+  self.mainTF = self.codeTextField;
+  self.bottomConstraint = self.bottomSuperviewConstraint;
 
-    [self.codeTextField makeBordered];
-    //    self.codeTextField.delegate = self;
+  [self.codeTextField makeBordered];
+  //    self.codeTextField.delegate = self;
 
-    [self.againCodeButton addTarget:self
-                             action:@selector(sendAgain)
-                   forControlEvents:UIControlEventTouchUpInside];
-    // Do any additional setup after loading the view.
+  [self.againCodeButton addTarget:self
+                           action:@selector(sendAgain)
+                 forControlEvents:UIControlEventTouchUpInside];
+  // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+  [super viewWillAppear:animated];
 
-    [self setCustomBackButton];
-    [self addCustomCloseButton];
+  [self setCustomBackButton];
+  [self addCustomCloseButton];
 
-    //  [self registerForKeyboardNotifications];
+  //  [self registerForKeyboardNotifications];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+  [super viewDidAppear:animated];
 
-    [self.codeTextField becomeFirstResponder];
+  [self.codeTextField becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    // [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [super viewWillDisappear:animated];
+  // [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 //- (void)setUser:(ZPPUser *)user {
@@ -98,131 +99,130 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
 #pragma mark - action
 
 - (IBAction)submitCodeAction:(id)sender {
-    //    if (![self checkCode]) {
-    //        [self accentTextField:self.codeTextField];
-    //        [self showWarningWithText:ZPPCodeWarningMessage];
-    //    } else {
-    //      [[ZPPSmsVerificationManager shared] invalidateTimer];
+  //    if (![self checkCode]) {
+  //        [self accentTextField:self.codeTextField];
+  //        [self showWarningWithText:ZPPCodeWarningMessage];
+  //    } else {
+  //      [[ZPPSmsVerificationManager shared] invalidateTimer];
 
-    UIButton *b = (UIButton *)sender;
-    [b startIndicating];
-    [[ZPPServerManager sharedManager] verifyPhoneNumber:self.user.phoneNumber
-        code:self.codeTextField.text
-        token:self.token
-        onSuccess:^(NSString *token) {
-            if (token) {
-                [[ZPPServerManager sharedManager] getCurrentUserWithToken:token
-                    onSuccess:^(ZPPUser *user) {
-                        [b stopIndication];
-                        [Answers logLoginWithMethod:@"PHONE"
-                                            success:@YES
-                                   customAttributes:@{}];
+  UIButton *b = (UIButton *) sender;
+  [b startIndicating];
+  [[ZPPServerManager sharedManager] verifyPhoneNumber:self.user.phoneNumber
+                                                 code:self.codeTextField.text
+                                                token:self.token
+                                            onSuccess:^(NSString *token) {
+                                              if (token) {
+                                                [[ZPPServerManager sharedManager] getCurrentUserWithToken:token
+                                                                                                onSuccess:^(ZPPUser *user) {
+                                                                                                  [b stopIndication];
+                                                                                                  [Answers logLoginWithMethod:@"PHONE"
+                                                                                                                      success:@YES
+                                                                                                             customAttributes:@{}];
 
-                        [[ZPPUserManager sharedInstance] setUser:user];
-                        [self dismissViewControllerAnimated:YES completion:nil];
-                    }
-                    onFailure:^(NSError *error, NSInteger statusCode) {
-                        [b stopIndication];
-                        [self showWarningWithText:ZPPNoInternetConnectionMessage];
+                                                                                                  [[ZPPUserManager sharedInstance] setUser:user];
+                                                                                                  [self dismissViewControllerAnimated:YES completion:nil];
+                                                                                                }
+                                                                                                onFailure:^(NSError *error, NSInteger statusCode) {
+                                                                                                  [b stopIndication];
+                                                                                                  [self showWarningWithText:ZPPNoInternetConnectionMessage];
+                                                                                                }];
+                                              } else {
+                                                [b stopIndication];
+                                                [self performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier
+                                                                          sender:nil];
+                                              }
 
-                    }];
-            } else {
-                [b stopIndication];
-                [self performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier
-                                          sender:nil];
-            }
+                                              //[b stopIndication];
 
-            //[b stopIndication];
+                                              //            if (user.firstName) {
+                                              //                [[ZPPUserManager sharedInstance] setUser:user];
+                                              //
+                                              //                [self dismissViewControllerAnimated:YES completion:nil];
+                                              //            }
 
-            //            if (user.firstName) {
-            //                [[ZPPUserManager sharedInstance] setUser:user];
-            //
-            //                [self dismissViewControllerAnimated:YES completion:nil];
-            //            }
+                                            }
+                                            onFailure:^(NSError *error, NSInteger statusCode) {
+                                              [b stopIndication];
 
-        }
-        onFailure:^(NSError *error, NSInteger statusCode) {
-            [b stopIndication];
+                                              if (statusCode == 403) {
+                                                [self accentTextField:self.codeTextField];
+                                                [self showWarningWithText:ZPPCodeWarningMessage];
+                                              }
 
-            if (statusCode == 403) {
-                [self accentTextField:self.codeTextField];
-                [self showWarningWithText:ZPPCodeWarningMessage];
-            }
+                                              //                if (statusCode == 422) {
+                                              //                    [self
+                                              //                    performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier
+                                              //                                              sender:nil];
+                                              //                }
+                                              //
+                                            }];
 
-            //                if (statusCode == 422) {
-            //                    [self
-            //                    performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier
-            //                                              sender:nil];
-            //                }
-            //
-        }];
-
-    //[self performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier
-    // sender:nil];
-    //    }
+  //[self performSegueWithIdentifier:ZPPShowRegistrationOtherScreenSegueIdentifier
+  // sender:nil];
+  //    }
 }
 
 - (BOOL)checkCode {
 //    NSLog(@"text field %@ code %@", self.codeTextField.text, self.token);
 
-    return NO;//[self.codeTextField.text isEqual:self.code];
+  return NO;//[self.codeTextField.text isEqual:self.code];
 
-    //   return [self.codeTextField.text isEqualToString:self.code];
-    // return YES;
+  //   return [self.codeTextField.text isEqualToString:self.code];
+  // return YES;
 }
 
 - (void)sendAgain {
-    if (![[ZPPSmsVerificationManager shared] canSendAgain]) {
-        return;
-    }
+  if (![[ZPPSmsVerificationManager shared] canSendAgain]) {
+    return;
+  }
 
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
-    [[ZPPServerManager sharedManager] sendSmsToPhoneNumber:self.user.phoneNumber
-        onSuccess:^(NSString *tmpToken) {
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            [self showSuccessWithText:@"Код отправлен"];
-            [[ZPPSmsVerificationManager shared] startTimer];
-
-        }
-        onFailure:^(NSError *error, NSInteger statusCode) {
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            [self showWarningWithText:ZPPNoInternetConnectionMessage];
-        }];
+  [[ZPPServerManager sharedManager] sendSmsToPhoneNumber:self.user.phoneNumber
+                                               onSuccess:^(NSString *tmpToken) {
+                                                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                                 [self showSuccessWithText:@"Код отправлен"];
+                                                 [[ZPPSmsVerificationManager shared] startTimer];
+                                               }
+                                               onFailure:^(NSError *error, NSInteger statusCode) {
+                                                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                                 [self showWarningWithText:ZPPNoInternetConnectionMessage];
+                                               }];
 }
 
 #pragma mark - navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:ZPPShowRegistrationOtherScreenSegueIdentifier]) {
-        ZPPRegistrationOtherInputVC *destVC =
-            (ZPPRegistrationOtherInputVC *)segue.destinationViewController;
+  if ([segue.identifier isEqualToString:ZPPShowRegistrationOtherScreenSegueIdentifier]) {
+    ZPPRegistrationOtherInputVC *destVC =
+        (ZPPRegistrationOtherInputVC *) segue.destinationViewController;
 
-        ZPPUser *user = [self user];
+    ZPPUser *user = [self user];
 
-        [destVC setUser:user];
-    }
+    [destVC setUser:user];
+  }
 }
 
 #pragma mark - support
 
 - (void)setButtonTextForTime:(NSInteger)time {
-    NSAttributedString *text;
-    if (time != -1) {
-        time = ZPPMaxCount - time;
+  NSAttributedString *text;
+  if (time != -1) {
+    time = ZPPMaxCount - time;
 
-        NSString *timeString = [NSString
-            stringWithFormat:@"До повторной отправки %ld " @"секунд",
-                             (long)time];
+    NSString *timeString = [NSString
+        stringWithFormat:@"До повторной отправки %ld " @"секунд",
+                         (long) time];
 
-        text = [[NSAttributedString alloc] initWithString:timeString attributes:@{}];
-    } else {
-        NSDictionary *underlineAttribute =
-            @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) };
-        text = [[NSAttributedString alloc] initWithString:@"Отправить повторно"
-                                               attributes:underlineAttribute];
-    }
+    text = [[NSAttributedString alloc] initWithString:timeString attributes:@{}];
+  } else {
+    NSDictionary *underlineAttribute =
+        @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
+    text = [[NSAttributedString alloc] initWithString:@"Отправить повторно"
+                                           attributes:underlineAttribute];
+  }
 
-    [self.againCodeButton setAttributedTitle:text forState:UIControlStateNormal];
+  [self.againCodeButton setAttributedTitle:text forState:UIControlStateNormal];
 }
 
 @end

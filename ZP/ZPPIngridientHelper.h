@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class ZPPIngridient;
+
 @interface ZPPIngridientHelper : NSObject
 
 //+ (ZPPIngridient *)ingridientFromDict:(NSDictionary *)dict ;

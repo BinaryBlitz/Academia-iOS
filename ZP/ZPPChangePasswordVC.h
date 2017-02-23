@@ -10,6 +10,7 @@
 #import "ZPPRegistrationBaseVC.h"
 
 @interface ZPPChangePasswordVC : ZPPRegistrationBaseVC
+
 @property (weak, nonatomic) IBOutlet UITextField *oldPasswordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *userNewPasswordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *againPasswordTextField;

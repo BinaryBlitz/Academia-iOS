@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class ZPPOrder;
+
 @interface ZPPOrderHelper : NSObject
 
 + (NSArray *)parseOrdersFromDicts:(NSArray *)dicts;

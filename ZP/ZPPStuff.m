@@ -9,6 +9,7 @@
 #import "ZPPStuff.h"
 
 @interface ZPPStuff ()
+
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSNumber *stufId;
 @property (strong, nonatomic) NSNumber *price;
@@ -24,31 +25,31 @@
                        descr:(NSString *)descr
                        price:(NSNumber *)price
                       imgURL:(NSURL *)imgURL {
-    self = [super init];
-    if (self) {
-        self.name = name;
-        self.stufId = identifier;
-        self.stuffDescr = descr;
-        self.price = price;
-        self.imgURl = imgURL;
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    self.name = name;
+    self.stufId = identifier;
+    self.stuffDescr = descr;
+    self.price = price;
+    self.imgURl = imgURL;
+  }
+  return self;
 }
 
 - (NSString *)nameOfItem {
-    return self.name;
+  return self.name;
 }
 
 - (NSInteger)priceOfItem {
-    return self.price.integerValue;
+  return self.price.integerValue;
 }
 
 - (NSString *)identifierOfItem {
-    return [NSString stringWithFormat:@"%@", self.stufId];
+  return [NSString stringWithFormat:@"%@", self.stufId];
 }
 
 - (NSURL *)URLOfImage {
-    return self.imgURl;
+  return self.imgURl;
 }
 
 @end

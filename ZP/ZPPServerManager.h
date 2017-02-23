@@ -21,8 +21,7 @@ typedef void (^failureBlock)(NSError *_Nullable error, NSInteger statusCode);
 
 @interface ZPPServerManager : NSObject
 
-@property (strong, nonatomic, readonly)
-    AFHTTPRequestOperationManager *_Nullable requestOperationManager;
+@property (strong, nonatomic, readonly) AFHTTPRequestOperationManager *_Nullable requestOperationManager;
 
 + (nonnull ZPPServerManager *)sharedManager;
 + (void)failureWithBlock:(nullable failureBlock)block

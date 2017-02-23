@@ -12,7 +12,7 @@
 
 @interface ZPPAdressVC : UIViewController
 
-@property (weak, nonatomic) id<ZPPAddressDelegate> addressDelegate;
+@property (weak, nonatomic) id <ZPPAddressDelegate> addressDelegate;
 
 
 @end

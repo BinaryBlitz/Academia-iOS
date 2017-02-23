@@ -27,15 +27,15 @@
                        descr:(NSString *)descr
                        price:(NSNumber *)price
                       imgURL:(NSURL *)imgUrl {
-    self = [super init];
-    if (self) {
-        self.name = name;
-        self.subtitle = subtitle;
-        self.lunchDescription = descr;
-        self.price = price;
-        self.imgURL = imgUrl;
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    self.name = name;
+    self.subtitle = subtitle;
+    self.lunchDescription = descr;
+    self.price = price;
+    self.imgURL = imgUrl;
+  }
+  return self;
 }
 
 //- (instancetype)initWithDict:(NSDictionary *)dict {
@@ -50,19 +50,19 @@
 //}
 
 - (NSString *)nameOfItem {
-    return self.name;
+  return self.name;
 }
 
 - (NSInteger)priceOfItem {
-    return self.price.integerValue;
+  return self.price.integerValue;
 }
 
 - (NSString *)identifierOfItem {
-    return [NSString stringWithFormat:@"%@", self.lunchIdentifier];
+  return [NSString stringWithFormat:@"%@", self.lunchIdentifier];
 }
 
 - (NSURL *)URLOfImage {
-    return self.imgURL;
+  return self.imgURL;
 }
 
 @end

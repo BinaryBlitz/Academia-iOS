@@ -14,15 +14,15 @@
 @implementation ZPPStarsCell
 
 - (void)awakeFromNib {
-    // Initialization code
-    [super awakeFromNib];
-    self.starView.backgroundColor = [UIColor clearColor];
-    self.starView.allowsHalfStars = NO;
-    self.starView.continuous = NO;
+  // Initialization code
+  [super awakeFromNib];
+  self.starView.backgroundColor = [UIColor clearColor];
+  self.starView.allowsHalfStars = NO;
+  self.starView.continuous = NO;
 
-    self.starView.tintColor = [UIColor blackColor]; //[UIColor colorWithRed:1 green:215.0/255.0 blue:0 alpha:1.0];
+  self.starView.tintColor = [UIColor blackColor]; //[UIColor colorWithRed:1 green:215.0/255.0 blue:0 alpha:1.0];
 
-    self.starView.minimumValue = -1.f;
+  self.starView.minimumValue = -1.f;
 
 //    NSDictionary *underlineAttribute =
 //    @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) };
@@ -34,9 +34,9 @@
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+  [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+  // Configure the view for the selected state
 }
 
 @end

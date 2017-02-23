@@ -10,6 +10,7 @@
 
 @class ZPPAddress;
 @class LMAddress;
+
 @interface ZPPAddressHelper : NSObject
 
 + (ZPPAddress *)addresFromAddres:(LMAddress *)addr;

@@ -36,6 +36,7 @@ static NSString *ZPPOrderResultVCIdentifier = @"ZPPOrderResultVCIdentifier";
 static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnectionVCIdentifier";
 
 @interface ZPPOrderTimeChooserVC () <ZPPPaymentViewDelegate, ZPPNoInternetDelegate>
+
 @property (strong, nonatomic) ZPPOrder *order;
 
 @property (strong, nonatomic) ZPPOrder *paymentOrder;
@@ -52,464 +53,462 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 @end
 
 @implementation ZPPOrderTimeChooserVC {
-    ZPPPaymentWebController *_webViewController;
+  ZPPPaymentWebController *_webViewController;
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
-    [self configureButtons];
+  [self configureButtons];
 
-    [self addCustomCloseButton];
-    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+  [self addCustomCloseButton];
+  [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
-    self.totalPriceDetailsStackView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.totalPriceDetailsStackView.axis = UILayoutConstraintAxisVertical;
-    self.totalPriceDetailsStackView.distribution = OAStackViewDistributionFillEqually;
-    self.totalPriceDetailsStackView.alignment = OAStackViewAlignmentCenter;
+  self.totalPriceDetailsStackView.translatesAutoresizingMaskIntoConstraints = NO;
+  self.totalPriceDetailsStackView.axis = UILayoutConstraintAxisVertical;
+  self.totalPriceDetailsStackView.distribution = OAStackViewDistributionFillEqually;
+  self.totalPriceDetailsStackView.alignment = OAStackViewAlignmentCenter;
 
-    [Answers logCustomEventWithName:@"ORDER_TIME_CHOOSER_OPEN" customAttributes:@{}];
+  [Answers logCustomEventWithName:@"ORDER_TIME_CHOOSER_OPEN" customAttributes:@{}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    for (UIView *view in self.totalPriceDetailsStackView.arrangedSubviews) {
-        [self.totalPriceDetailsStackView removeArrangedSubview:view];
-    }
+  for (UIView *view in self.totalPriceDetailsStackView.arrangedSubviews) {
+    [self.totalPriceDetailsStackView removeArrangedSubview:view];
+  }
 
-    UIFont *font = [UIFont systemFontOfSize:17];
+  UIFont *font = [UIFont systemFontOfSize:17];
 
-    CGFloat stackHeight = 0;
-    CGFloat stackSpacing = 5;
+  CGFloat stackHeight = 0;
+  CGFloat stackSpacing = 5;
 
-    UILabel *totalPriceWithDeliveryLabel = [UILabel new];
-    totalPriceWithDeliveryLabel.font = font;
-    totalPriceWithDeliveryLabel.textAlignment = NSTextAlignmentCenter;
-    totalPriceWithDeliveryLabel.text =
-            [NSString stringWithFormat:@"Цена с доставкой: %ld%@", (long)[self.order totalPriceWithDelivery], ZPPRoubleSymbol];
+  UILabel *totalPriceWithDeliveryLabel = [UILabel new];
+  totalPriceWithDeliveryLabel.font = font;
+  totalPriceWithDeliveryLabel.textAlignment = NSTextAlignmentCenter;
+  totalPriceWithDeliveryLabel.text =
+      [NSString stringWithFormat:@"Цена с доставкой: %ld%@", (long) [self.order totalPriceWithDelivery], ZPPRoubleSymbol];
+  stackHeight += font.lineHeight + stackSpacing;
+  [self.totalPriceDetailsStackView addArrangedSubview:totalPriceWithDeliveryLabel];
+
+  ZPPUser *user = [ZPPUserManager sharedInstance].user;
+
+  double price = [self.order totalPriceWithDelivery];
+  if ([user.discount intValue] != 0) {
+    double discount = (double) price * ([user.discount doubleValue] / 100.0);
+    price -= discount;
+
+    UILabel *discountLabel = [UILabel new];
+    discountLabel.font = font;
+    discountLabel.textAlignment = NSTextAlignmentCenter;
+    discountLabel.text =
+        [NSString stringWithFormat:@"Скидка: %d%@", (int) round(discount), ZPPRoubleSymbol];
     stackHeight += font.lineHeight + stackSpacing;
-    [self.totalPriceDetailsStackView addArrangedSubview:totalPriceWithDeliveryLabel];
+    [self.totalPriceDetailsStackView addArrangedSubview:discountLabel];
+  }
 
-    ZPPUser *user = [ZPPUserManager sharedInstance].user;
+  NSInteger balance;
+  if ([user.balance intValue] > price) {
+    balance = price;
+  } else {
+    balance = [user.balance integerValue];
+  }
 
-    double price = [self.order totalPriceWithDelivery];
-    if ([user.discount intValue] != 0) {
-        double discount = (double)price * ([user.discount doubleValue] / 100.0);
-        price -= discount;
+  if (balance > 0) {
+    UILabel *balanceLabel = [UILabel new];
+    balanceLabel.font = font;
+    balanceLabel.textAlignment = NSTextAlignmentCenter;
+    balanceLabel.text =
+        [NSString stringWithFormat:@"Бонусы: %ld%@", (long) balance, ZPPRoubleSymbol];
+    stackHeight += font.lineHeight + stackSpacing;
+    [self.totalPriceDetailsStackView addArrangedSubview:balanceLabel];
+  }
 
-        UILabel *discountLabel = [UILabel new];
-        discountLabel.font = font;
-        discountLabel.textAlignment = NSTextAlignmentCenter;
-        discountLabel.text =
-                [NSString stringWithFormat:@"Скидка: %d%@", (int)round(discount), ZPPRoubleSymbol];
-        stackHeight += font.lineHeight + stackSpacing;
-        [self.totalPriceDetailsStackView addArrangedSubview:discountLabel];
-    }
+  [self.totalPriceDetailsStackView autoSetDimension:ALDimensionHeight toSize:stackHeight];
 
-    NSInteger balance;
-    if ([user.balance intValue] > price) {
-        balance = price;
-    } else {
-        balance = [user.balance integerValue];
-    }
-
-    if (balance > 0) {
-        UILabel *balanceLabel = [UILabel new];
-        balanceLabel.font = font;
-        balanceLabel.textAlignment = NSTextAlignmentCenter;
-        balanceLabel.text =
-                    [NSString stringWithFormat:@"Бонусы: %ld%@", (long)balance, ZPPRoubleSymbol];
-        stackHeight += font.lineHeight + stackSpacing;
-        [self.totalPriceDetailsStackView addArrangedSubview:balanceLabel];
-    }
-
-    [self.totalPriceDetailsStackView autoSetDimension:ALDimensionHeight toSize:stackHeight];
-
-    self.totalPriceLabel.text =
-                [NSString stringWithFormat:@"Итого: %ld%@", (long)[self.order totalPriceWithAllTheThings], ZPPRoubleSymbol];
+  self.totalPriceLabel.text =
+      [NSString stringWithFormat:@"Итого: %ld%@", (long) [self.order totalPriceWithAllTheThings], ZPPRoubleSymbol];
 }
 
 - (void)dealloc {
-    self.order.date = nil;
+  self.order.date = nil;
 }
 
 - (void)viewDidLayoutSubviews {
-    if (!self.once) {
-        if ([ZPPTimeManager sharedManager].isOpen) {
-            self.once = YES;
-            [self addCheckmarkToButton:self.nowButton];
-            self.order.date = [[ZPPTimeManager sharedManager].currentTime dateByAddingMinutes:50];
-        } else {
-            self.once = YES;
-            self.nowButton.hidden = YES;
-            self.order.date = nil;
+  if (!self.once) {
+    if ([ZPPTimeManager sharedManager].isOpen) {
+      self.once = YES;
+      [self addCheckmarkToButton:self.nowButton];
+      self.order.date = [[ZPPTimeManager sharedManager].currentTime dateByAddingMinutes:50];
+    } else {
+      self.once = YES;
+      self.nowButton.hidden = YES;
+      self.order.date = nil;
 
-            self.nowButtonHeight.constant = 0;
-        }
+      self.nowButtonHeight.constant = 0;
     }
+  }
 }
 
 - (void)configureWithOrder:(ZPPOrder *)order {
-    self.order = order;
+  self.order = order;
 }
 
 - (void)makeOrderAction:(UIButton *)sender {
-    if (!self.order.date) {
-        [self.atTimeButton shakeView];
-        [self showWarningWithText:@"Выберите время доставки"];
-    } else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Оплата заказа"
-                                                                       message:@"Вы уверены, что хотите оплатить заказ?"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction: [UIAlertAction actionWithTitle:@"Да" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self startPayment];
-        }]];
-        [alert addAction: [UIAlertAction actionWithTitle:@"Нет" style:UIAlertActionStyleCancel handler:nil]];
+  if (!self.order.date) {
+    [self.atTimeButton shakeView];
+    [self showWarningWithText:@"Выберите время доставки"];
+  } else {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Оплата заказа"
+                                                                   message:@"Вы уверены, что хотите оплатить заказ?"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Да" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+      [self startPayment];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Нет" style:UIAlertActionStyleCancel handler:nil]];
 
-        [self presentViewController:alert animated:YES completion:nil];
-    }
+    [self presentViewController:alert animated:YES completion:nil];
+  }
 }
 
 - (void)orderNowAction:(UIButton *)sender {
-    [self addCheckmarkToButton:sender];
-    self.order.deliverNow = YES;
-    [self.atTimeButton setTitle:@"ВЫБРАТЬ ВРЕМЯ" forState:UIControlStateNormal];
+  [self addCheckmarkToButton:sender];
+  self.order.deliverNow = YES;
+  [self.atTimeButton setTitle:@"ВЫБРАТЬ ВРЕМЯ" forState:UIControlStateNormal];
 }
 
 - (void)orderAtTimeAction:(UIButton *)sender {
-    [self addTimePicker:sender];
+  [self addTimePicker:sender];
 }
 
 - (void)configureButtons {
-    [self.nowButton makeBordered];
-    [self.atTimeButton makeBordered];
-    [self.makeOrderButton makeBordered];
+  [self.nowButton makeBordered];
+  [self.atTimeButton makeBordered];
+  [self.makeOrderButton makeBordered];
 
-    [self.nowButton addTarget:self
-                       action:@selector(orderNowAction:)
-             forControlEvents:UIControlEventTouchUpInside];
+  [self.nowButton addTarget:self
+                     action:@selector(orderNowAction:)
+           forControlEvents:UIControlEventTouchUpInside];
 
-    [self.atTimeButton addTarget:self
-                          action:@selector(orderAtTimeAction:)
-                forControlEvents:UIControlEventTouchUpInside];
+  [self.atTimeButton addTarget:self
+                        action:@selector(orderAtTimeAction:)
+              forControlEvents:UIControlEventTouchUpInside];
 
-    [self.makeOrderButton addTarget:self
-                             action:@selector(makeOrderAction:)
-                   forControlEvents:UIControlEventTouchUpInside];
+  [self.makeOrderButton addTarget:self
+                           action:@selector(makeOrderAction:)
+                 forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - support
 
 - (void)addCheckmarkToButton:(UIButton *)button {
-    if ([button.subviews containsObject:self.checkMark]) {
-        return;
-    } else {
-        [self.checkMark removeFromSuperview];
-        [button addSubview:self.checkMark];
-    }
+  if ([button.subviews containsObject:self.checkMark]) {
+    return;
+  } else {
+    [self.checkMark removeFromSuperview];
+    [button addSubview:self.checkMark];
+  }
 }
 
 #pragma mark - lazy
 
 - (UIImageView *)checkMark {
-    if (!_checkMark) {
-        CGRect r = self.nowButton.frame;
-        CGFloat leng = r.size.height / 2.0;
+  if (!_checkMark) {
+    CGRect r = self.nowButton.frame;
+    CGFloat leng = r.size.height / 2.0;
 
-        UIImageView *iv = [[UIImageView alloc]
-            initWithFrame:CGRectMake(r.size.width - leng * 1.5f, (r.size.height - leng) / 2.0, leng,
-                                     leng)];
-        iv.image = [UIImage imageNamed:@"checkMark"];
+    UIImageView *iv = [[UIImageView alloc]
+        initWithFrame:CGRectMake(r.size.width - leng * 1.5f, (r.size.height - leng) / 2.0, leng,
+            leng)];
+    iv.image = [UIImage imageNamed:@"checkMark"];
 
-        _checkMark = iv;
-    }
+    _checkMark = iv;
+  }
 
-    return _checkMark;
+  return _checkMark;
 }
 
 #pragma mark - payment
 
 - (void)startPayment {
-    [self.makeOrderButton startIndicatingWithType:UIActivityIndicatorViewStyleGray];
-    [[ZPPServerManager sharedManager] POSTOrder:self.order
-        onSuccess:^(ZPPOrder *order) {
-            self.paymentOrder = order;
+  [self.makeOrderButton startIndicatingWithType:UIActivityIndicatorViewStyleGray];
+  [[ZPPServerManager sharedManager] POSTOrder:self.order
+                                    onSuccess:^(ZPPOrder *order) {
+                                      self.paymentOrder = order;
 
-            if (self.order.card) {
-                [[ZPPServerManager sharedManager] createNewPaymentWithOrderId:order.identifier
-                    andBindingId:self.order.card.bindingId
-                    onSuccess:^(NSString *paymentURLString) {
-                        [[ZPPServerManager sharedManager] processPaymentURLString:paymentURLString
-                                onSuccess:^(NSString *redirectURLString) {
-                                    [self.makeOrderButton stopIndication];
-                                    if ([redirectURLString containsString:@"sakses"]) {
-                                        [self pushSuccessOrderControllerWithAnimation];
-                                    } else {
-                                        [self showWarningWithText:@"Не удалось оплатить заказ"];
+                                      if (self.order.card) {
+                                        [[ZPPServerManager sharedManager] createNewPaymentWithOrderId:order.identifier
+                                                                                         andBindingId:self.order.card.bindingId
+                                                                                            onSuccess:^(NSString *paymentURLString) {
+                                                                                              [[ZPPServerManager sharedManager] processPaymentURLString:paymentURLString
+                                                                                                                                              onSuccess:^(NSString *redirectURLString) {
+                                                                                                                                                [self.makeOrderButton stopIndication];
+                                                                                                                                                if ([redirectURLString containsString:@"sakses"]) {
+                                                                                                                                                  [self pushSuccessOrderControllerWithAnimation];
+                                                                                                                                                } else {
+                                                                                                                                                  [self showWarningWithText:@"Не удалось оплатить заказ"];
+                                                                                                                                                }
+                                                                                                                                              } onFailure:^(NSError *error, NSInteger statusCode) {
+                                                                                                    [self.makeOrderButton stopIndication];
+                                                                                                    [self showWarningWithText:@"Не удалось оплатить заказ"];
+                                                                                                  }];
+                                                                                            } onFailure:^(NSError *error, NSInteger statusCode) {
+                                              [self.makeOrderButton stopIndication];
+                                            }];
+                                      } else {
+                                        [[ZPPServerManager sharedManager] registerNewCreditCardOnSuccess:^(NSString *registrationURLString) {
+                                          [self.makeOrderButton stopIndication];
+
+                                          NSURL *url = [NSURL URLWithString:registrationURLString];
+                                          [self showWebViewWithURl:url];
+                                        }                                                      onFailure:^(NSError *error, NSInteger statusCode) {
+                                          [self.makeOrderButton stopIndication];
+                                        }];
+                                      }
                                     }
-                                } onFailure:^(NSError *error, NSInteger statusCode) {
-                                    [self.makeOrderButton stopIndication];
-                                    [self showWarningWithText:@"Не удалось оплатить заказ"];
-                                }];
-                    } onFailure:^(NSError *error, NSInteger statusCode) {
-                        [self.makeOrderButton stopIndication];
-                    }];
-            } else {
-                [[ZPPServerManager sharedManager] registerNewCreditCardOnSuccess:^(NSString *registrationURLString) {
-                    [self.makeOrderButton stopIndication];
+                                    onFailure:^(NSError *error, NSInteger statusCode) {
+                                      [self.makeOrderButton stopIndication];//redo
 
-                    NSURL *url = [NSURL URLWithString:registrationURLString];
-                    [self showWebViewWithURl:url];
-                } onFailure:^(NSError *error, NSInteger statusCode) {
-                    [self.makeOrderButton stopIndication];
-                }];
-            }
-        }
-        onFailure:^(NSError *error, NSInteger statusCode) {
-            [self.makeOrderButton stopIndication];//redo
+                                      if (statusCode == 422) {
+                                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Ошибка"
+                                                                                                                 message:@"Недопустимое время доставки. Попробуйте ещё раз"
+                                                                                                          preferredStyle:UIAlertControllerStyleAlert];
 
-            if (statusCode == 422) {
-                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Ошибка"
-                                                                                         message:@"Недопустимое время доставки. Попробуйте ещё раз"
-                                                                                  preferredStyle:UIAlertControllerStyleAlert];
+                                        [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                                                            style:UIAlertActionStyleDefault
+                                                                                          handler:nil]];
 
-                [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
-                                                                    style:UIAlertActionStyleDefault
-                                                                  handler:nil]];
-
-                [self presentViewController:alertController animated:YES completion:nil];
-            } else if (statusCode == 0) {
-                [self showWarningWithText:@"Проверьте соединение с интернетом"];
-            } else {
-                [self showWarningWithText:@"Что-то пошло не так. Попробуйте позже."];
-            }
-        }];
+                                        [self presentViewController:alertController animated:YES completion:nil];
+                                      } else if (statusCode == 0) {
+                                        [self showWarningWithText:@"Проверьте соединение с интернетом"];
+                                      } else {
+                                        [self showWarningWithText:@"Что-то пошло не так. Попробуйте позже."];
+                                      }
+                                    }];
 }
 
 - (void)didShowPageWithUrl:(NSURL *)url sender:(UIViewController *)vc {
-    NSString *urlString = url.absoluteString;
-    NSLog(@"URL %@", urlString);
+  NSString *urlString = url.absoluteString;
+  NSLog(@"URL %@", urlString);
 
-    if ([urlString containsString:@"sakses"]) {
-        if (self.order.card == nil) {
-            NSLog(@"new card");
-            [self payWithNewCard];
-        } else {
-            [self presentSuccessOrderController];
-        }
-    } else if ([urlString containsString:@"feylur"]) {
-        //smth
+  if ([urlString containsString:@"sakses"]) {
+    if (self.order.card == nil) {
+      NSLog(@"new card");
+      [self payWithNewCard];
+    } else {
+      [self presentSuccessOrderController];
     }
+  } else if ([urlString containsString:@"feylur"]) {
+    //smth
+  }
 }
 
 - (void)payWithNewCard {
-    [self.makeOrderButton startIndicatingWithType:UIActivityIndicatorViewStyleGray];
-    [[ZPPServerManager sharedManager] listPaymentCardsWithSuccess:^(NSArray *cards) {
-        ZPPCreditCard *card = cards.lastObject;
-        if (card) {
-            self.order.card = card;
-            [[ZPPServerManager sharedManager] createNewPaymentWithOrderId:self.paymentOrder.identifier
-                andBindingId:card.bindingId
-                onSuccess:^(NSString *paymentURLString) {
-                    [[ZPPServerManager sharedManager] processPaymentURLString:paymentURLString
-                            onSuccess:^(NSString *redirectURLString) {
-                                [self.makeOrderButton stopIndication];
-                                if ([redirectURLString containsString:@"sakses"]) {
-                                    [self presentSuccessOrderController];
-                                } else {
-                                    [self showWarningWithText:@"Не удалось оплатить заказ"];
-                                }
-                            } onFailure:^(NSError *error, NSInteger statusCode) {
-                                [self.makeOrderButton stopIndication];
-                                [self showWarningWithText:@"Не удалось оплатить заказ"];
-                            }];
-                } onFailure:^(NSError *error, NSInteger statusCode) {
-                    [self.makeOrderButton stopIndication];
-                }];
-        }
-    } onFailure:^(NSError *error, NSInteger statusCode) {
-        NSLog(@"(╯°□°）╯︵ ┻━┻ ");
-        [self.makeOrderButton stopIndication];
-        if (statusCode == 0) {
-            [self payWithNewCard];
-        }
-    }];
+  [self.makeOrderButton startIndicatingWithType:UIActivityIndicatorViewStyleGray];
+  [[ZPPServerManager sharedManager] listPaymentCardsWithSuccess:^(NSArray *cards) {
+    ZPPCreditCard *card = cards.lastObject;
+    if (card) {
+      self.order.card = card;
+      [[ZPPServerManager sharedManager] createNewPaymentWithOrderId:self.paymentOrder.identifier
+                                                       andBindingId:card.bindingId
+                                                          onSuccess:^(NSString *paymentURLString) {
+                                                            [[ZPPServerManager sharedManager] processPaymentURLString:paymentURLString
+                                                                                                            onSuccess:^(NSString *redirectURLString) {
+                                                                                                              [self.makeOrderButton stopIndication];
+                                                                                                              if ([redirectURLString containsString:@"sakses"]) {
+                                                                                                                [self presentSuccessOrderController];
+                                                                                                              } else {
+                                                                                                                [self showWarningWithText:@"Не удалось оплатить заказ"];
+                                                                                                              }
+                                                                                                            } onFailure:^(NSError *error, NSInteger statusCode) {
+                                                                  [self.makeOrderButton stopIndication];
+                                                                  [self showWarningWithText:@"Не удалось оплатить заказ"];
+                                                                }];
+                                                          } onFailure:^(NSError *error, NSInteger statusCode) {
+            [self.makeOrderButton stopIndication];
+          }];
+    }
+  }                                                   onFailure:^(NSError *error, NSInteger statusCode) {
+    NSLog(@"(╯°□°）╯︵ ┻━┻ ");
+    [self.makeOrderButton stopIndication];
+    if (statusCode == 0) {
+      [self payWithNewCard];
+    }
+  }];
 }
 
 - (void)presentSuccessOrderController {
-    UIViewController *orderResultViewContorller = [self.storyboard
-        instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
+  UIViewController *orderResultViewContorller = [self.storyboard
+      instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
 
-    [self.navigationController pushViewController:orderResultViewContorller animated:NO];
-    self.paymentOrder = nil;
-    [self.order clearOrder];
-    [self dismissViewControllerAnimated: YES completion:nil];
+  [self.navigationController pushViewController:orderResultViewContorller animated:NO];
+  self.paymentOrder = nil;
+  [self.order clearOrder];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)pushSuccessOrderControllerWithAnimation {
-    UIViewController *orderResultViewContorller = [self.storyboard
-        instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
+  UIViewController *orderResultViewContorller = [self.storyboard
+      instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
 
-    [self.navigationController pushViewController:orderResultViewContorller animated:YES];
-    self.paymentOrder = nil;
-    [self.order clearOrder];
+  [self.navigationController pushViewController:orderResultViewContorller animated:YES];
+  self.paymentOrder = nil;
+  [self.order clearOrder];
 }
 
 - (void)checkOrderSender:(UIViewController *)viewController {
-    [[ZPPServerManager sharedManager] checkPaymentWithID:self.order.identifier
-        onSuccess:^(NSInteger sta) {
+  [[ZPPServerManager sharedManager] checkPaymentWithID:self.order.identifier
+                                             onSuccess:^(NSInteger sta) {
 
-            if (sta == 2) {
-                UIViewController *orderResultViewContorller = [self.storyboard
-                    instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
+                                               if (sta == 2) {
+                                                 UIViewController *orderResultViewContorller = [self.storyboard
+                                                     instantiateViewControllerWithIdentifier:ZPPOrderResultVCIdentifier];
 
-                [self.navigationController pushViewController:orderResultViewContorller animated:NO];
-                self.paymentOrder = nil;
+                                                 [self.navigationController pushViewController:orderResultViewContorller animated:NO];
+                                                 self.paymentOrder = nil;
 
-                [self.order clearOrder];
-                [viewController dismissViewControllerAnimated: YES completion:nil];
-
-            }
-
-        }
-        onFailure:^(NSError *error, NSInteger statusCode) {
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            ZPPNoInternetConnectionVC *noInternetConnection =
-                [sb instantiateViewControllerWithIdentifier:ZPPNoInternetConnectionVCIdentifier];
-            noInternetConnection.noInternetDelegate = self;
-            [viewController presentViewController:noInternetConnection animated:YES completion:nil];
-            self.viewControllerToHide = viewController;
-        }];
+                                                 [self.order clearOrder];
+                                                 [viewController dismissViewControllerAnimated:YES completion:nil];
+                                               }
+                                             }
+                                             onFailure:^(NSError *error, NSInteger statusCode) {
+                                               UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                                               ZPPNoInternetConnectionVC *noInternetConnection =
+                                                   [sb instantiateViewControllerWithIdentifier:ZPPNoInternetConnectionVCIdentifier];
+                                               noInternetConnection.noInternetDelegate = self;
+                                               [viewController presentViewController:noInternetConnection animated:YES completion:nil];
+                                               self.viewControllerToHide = viewController;
+                                             }];
 }
 
 - (void)showWebViewWithURl:(NSURL *)url {
-    _webViewController = [ZPPPaymentWebController new];
-    [_webViewController configureWithURL:url];
-    _webViewController.paymentDelegate = self;
-    _webViewController.title = @"Оплата";
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:_webViewController];
+  _webViewController = [ZPPPaymentWebController new];
+  [_webViewController configureWithURL:url];
+  _webViewController.paymentDelegate = self;
+  _webViewController.title = @"Оплата";
+  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:_webViewController];
 
-    navigationController.navigationBar.barTintColor = [UIColor blackColor];
+  navigationController.navigationBar.barTintColor = [UIColor blackColor];
 
-    [self presentViewController:navigationController animated:YES completion:nil];
+  [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (void)tryAgainSender:(id)sender {
-    [self checkOrderSender:self.viewControllerToHide];
+  [self checkOrderSender:self.viewControllerToHide];
 }
 
 #pragma mark - time shooser
 
 - (void)addTimePicker:(UIButton *)sender {
-    [[ZPPServerManager sharedManager]
-            getWorkingHours:^(ZPPTimeManager *timeManager) {
-                [self showTimePickerWithTimeManager:timeManager forSender:sender];
-            } onFailure:^(NSError *error, NSInteger statusCode) {
-                UIAlertController *alert =
-                        [UIAlertController alertControllerWithTitle:@"Ошибка"
-                                                            message:@"Не удалось обновить доступное время доставки. Проверьте интернет соединение."
-                                                     preferredStyle:UIAlertControllerStyleAlert];
-                [alert addAction:[UIAlertAction actionWithTitle:@"OK"
-                                                          style:UIAlertActionStyleDefault handler:nil]];
-                [self presentViewController:alert animated:YES completion:nil];
-            }];
+  [[ZPPServerManager sharedManager]
+      getWorkingHours:^(ZPPTimeManager *timeManager) {
+        [self showTimePickerWithTimeManager:timeManager forSender:sender];
+      } onFailure:^(NSError *error, NSInteger statusCode) {
+    UIAlertController *alert =
+        [UIAlertController alertControllerWithTitle:@"Ошибка"
+                                            message:@"Не удалось обновить доступное время доставки. Проверьте интернет соединение."
+                                     preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                              style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+  }];
 }
 
 - (void)showTimePickerWithTimeManager:(ZPPTimeManager *)timeManager forSender:(UIButton *)sender {
 
-    NSArray *deliveryDates = [self deliveryDatesForTimeManager:timeManager];
-    DTTimePeriod *lastTimePeriod = timeManager.openTimePeriodChain.lastObject;
-    NSDate *closeDate = lastTimePeriod.EndDate;
-    NSString *descrString;
-    if ([[timeManager.currentTime dateByAddingMinutes:50 + 30] isEarlierThan:closeDate]) {
-        descrString = @"Сегодня в";
-    } else {
-        descrString = @"Завтра в";
-    }
-    NSMutableArray *keys = [NSMutableArray array];
-    for (DTTimePeriod *tp in deliveryDates) {
-        NSDateFormatter *formatter = [NSDateFormatter new];
-        formatter.dateFormat = @"HH:mm";
-        NSString *key = [NSString stringWithFormat:@"%@ - %@",
-                         [formatter stringFromDate:tp.StartDate],
-                         [formatter stringFromDate:tp.EndDate] ];
-        [keys addObject:key];
-    }
+  NSArray *deliveryDates = [self deliveryDatesForTimeManager:timeManager];
+  DTTimePeriod *lastTimePeriod = timeManager.openTimePeriodChain.lastObject;
+  NSDate *closeDate = lastTimePeriod.EndDate;
+  NSString *descrString;
+  if ([[timeManager.currentTime dateByAddingMinutes:50 + 30] isEarlierThan:closeDate]) {
+    descrString = @"Сегодня в";
+  } else {
+    descrString = @"Завтра в";
+  }
+  NSMutableArray *keys = [NSMutableArray array];
+  for (DTTimePeriod *tp in deliveryDates) {
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.dateFormat = @"HH:mm";
+    NSString *key = [NSString stringWithFormat:@"%@ - %@",
+                                               [formatter stringFromDate:tp.StartDate],
+                                               [formatter stringFromDate:tp.EndDate]];
+    [keys addObject:key];
+  }
 
-    [ActionSheetStringPicker showPickerWithTitle:descrString
-        rows:keys
-        initialSelection:0
-        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-            self.order.deliverNow = NO;
-            [sender setTitle:selectedValue forState:UIControlStateNormal];
-            [self addCheckmarkToButton:self.atTimeButton];
+  [ActionSheetStringPicker showPickerWithTitle:descrString
+                                          rows:keys
+                              initialSelection:0
+                                     doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                       self.order.deliverNow = NO;
+                                       [sender setTitle:selectedValue forState:UIControlStateNormal];
+                                       [self addCheckmarkToButton:self.atTimeButton];
 
-            NSDate *selectedDate = ((DTTimePeriod *)[deliveryDates objectAtIndex:selectedIndex]).StartDate;
-            if ([timeManager.currentTime isEarlierThan:closeDate]) {
-                self.order.date = selectedDate;
-            } else {
-                self.order.date = [selectedDate dateByAddingDays:1];
-            }
-            NSLog(@"selected date: %@", self.order.date);
-        }
-        cancelBlock:nil
-        origin:sender];
+                                       NSDate *selectedDate = ((DTTimePeriod * )
+                                       [deliveryDates objectAtIndex:selectedIndex]).StartDate;
+                                       if ([timeManager.currentTime isEarlierThan:closeDate]) {
+                                         self.order.date = selectedDate;
+                                       } else {
+                                         self.order.date = [selectedDate dateByAddingDays:1];
+                                       }
+                                       NSLog(@"selected date: %@", self.order.date);
+                                     }
+                                   cancelBlock:nil
+                                        origin:sender];
 }
 
 - (NSArray *)deliveryDatesForTimeManager:(ZPPTimeManager *)timeManager {
-    NSMutableArray *deliveryDates = [NSMutableArray array];
+  NSMutableArray *deliveryDates = [NSMutableArray array];
 
-    NSDate *initialDate = [timeManager.currentTime dateByAddingMinutes:50];
+  NSDate *initialDate = [timeManager.currentTime dateByAddingMinutes:50];
 
-    DTTimePeriod *lastTimePeriod = timeManager.openTimePeriodChain.lastObject;
-    NSDate *closeDate = lastTimePeriod.EndDate;
-    if ([initialDate isLaterThan:closeDate]) {
-        DTTimePeriod *firstTimePeriod = timeManager.openTimePeriodChain.firstObject;
-        if ([firstTimePeriod.StartDate timeIntervalSinceDate:initialDate] > 50 * 60) {
-            initialDate = firstTimePeriod.StartDate;
-        } else {
-            initialDate = [[firstTimePeriod StartDate] dateByAddingMinutes:50];
-        }
+  DTTimePeriod *lastTimePeriod = timeManager.openTimePeriodChain.lastObject;
+  NSDate *closeDate = lastTimePeriod.EndDate;
+  if ([initialDate isLaterThan:closeDate]) {
+    DTTimePeriod *firstTimePeriod = timeManager.openTimePeriodChain.firstObject;
+    if ([firstTimePeriod.StartDate timeIntervalSinceDate:initialDate] > 50 * 60) {
+      initialDate = firstTimePeriod.StartDate;
+    } else {
+      initialDate = [[firstTimePeriod StartDate] dateByAddingMinutes:50];
+    }
+  }
+
+  initialDate = [initialDate dateBySubtractingSeconds:initialDate.second];
+
+  if ([initialDate minute] < 30) {
+    NSInteger minute = [initialDate minute];
+    initialDate = [initialDate dateByAddingMinutes:30 - minute];
+  } else if ([initialDate minute] > 30) {
+    NSInteger minute = [initialDate minute];
+    initialDate = [initialDate dateByAddingMinutes:60 - minute];
+  }
+
+  while ([initialDate isEarlierThan:closeDate]) {
+    BOOL validDevliveryDate = false;
+    DTTimePeriod *deliveryPeriod = [DTTimePeriod timePeriodWithStartDate:initialDate
+                                                                 endDate:[initialDate dateByAddingMinutes:30]];
+
+    for (int i = 0; i < [timeManager.openTimePeriodChain count]; i++) {
+      DTTimePeriod *timePeriod = ((DTTimePeriod *) timeManager.openTimePeriodChain[i]).copy;
+      if (i == 0) {
+        timePeriod.StartDate = [timePeriod.StartDate dateByAddingMinutes:30];
+      }
+      if (i == [timeManager.openTimePeriodChain count] - 1) {
+        timePeriod.EndDate = [timePeriod.EndDate dateByAddingMinutes:1];
+      }
+
+      if ([deliveryPeriod isInside:timePeriod]) {
+        validDevliveryDate = true;
+        break;
+      }
     }
 
-    initialDate = [initialDate dateBySubtractingSeconds:initialDate.second];
-
-    if ([initialDate minute] < 30) {
-        NSInteger minute = [initialDate minute];
-        initialDate = [initialDate dateByAddingMinutes:30 - minute];
-    } else if ([initialDate minute] > 30) {
-        NSInteger minute = [initialDate minute];
-        initialDate = [initialDate dateByAddingMinutes:60 - minute];
+    if (validDevliveryDate) {
+      [deliveryDates addObject:deliveryPeriod];
     }
 
-    while ([initialDate isEarlierThan: closeDate]) {
-        BOOL validDevliveryDate = false;
-        DTTimePeriod *deliveryPeriod = [DTTimePeriod timePeriodWithStartDate:initialDate
-                                                                     endDate:[initialDate dateByAddingMinutes:30]];
+    initialDate = deliveryPeriod.EndDate;
+  }
 
-
-        for (int i = 0; i < [timeManager.openTimePeriodChain count]; i++) {
-            DTTimePeriod *timePeriod = ((DTTimePeriod *)timeManager.openTimePeriodChain[i]).copy;
-            if (i == 0) {
-                timePeriod.StartDate = [timePeriod.StartDate dateByAddingMinutes:30];
-            }
-            if (i == [timeManager.openTimePeriodChain count] - 1) {
-                timePeriod.EndDate = [timePeriod.EndDate dateByAddingMinutes:1];
-            }
-
-            if ([deliveryPeriod isInside:timePeriod]) {
-                validDevliveryDate = true;
-                break;
-            }
-        }
-
-        if (validDevliveryDate) {
-            [deliveryDates addObject:deliveryPeriod];
-        }
-
-        initialDate = deliveryPeriod.EndDate;
-    }
-
-    return [NSArray arrayWithArray:deliveryDates];
+  return [NSArray arrayWithArray:deliveryDates];
 }
 
 @end

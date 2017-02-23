@@ -52,229 +52,227 @@ static NSString *ZPPOrderAddressCellIdentifier = @"ZPPOrderAddressCellIdentifier
 @implementation ZPPOrderHistoryOrderTVC
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    [self registerTableViewCells];
-    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
-    [self setNeedsStatusBarAppearanceUpdate];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+  [super viewDidLoad];
+  [self registerTableViewCells];
+  [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+  [self setNeedsStatusBarAppearanceUpdate];
+  self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.tintColor = [UIColor blackColor];
-    self.tableView.sectionFooterHeight = 0.01;
+  self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+  self.tableView.tintColor = [UIColor blackColor];
+  self.tableView.sectionFooterHeight = 0.01;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+  [super viewWillAppear:animated];
 
-    [self setCustomNavigationBackButtonWithTransition];
-    [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
-    [self.navigationController presentTransparentNavigationBar];
+  [self setCustomNavigationBackButtonWithTransition];
+  [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
+  [self.navigationController presentTransparentNavigationBar];
 
-    [self addCustomCloseButton];
+  [self addCustomCloseButton];
 
-    [self.tableView reloadData];
+  [self.tableView reloadData];
 }
 
 - (void)registerTableViewCells {
-    [self registrateCellForClass:[ZPPStarsCell class] reuseIdentifier:ZPPStarsCellIdentifier];
-    [self registrateCellForClass:[ZPPCommentCell class] reuseIdentifier:ZPPCommentCellIdentifier];
-    [self registrateCellForClass:[ZPPContactCourierCell class] reuseIdentifier:ZPPContactCourierCellIdentifier];
+  [self registrateCellForClass:[ZPPStarsCell class] reuseIdentifier:ZPPStarsCellIdentifier];
+  [self registrateCellForClass:[ZPPCommentCell class] reuseIdentifier:ZPPCommentCellIdentifier];
+  [self registrateCellForClass:[ZPPContactCourierCell class] reuseIdentifier:ZPPContactCourierCellIdentifier];
 
-    [self registrateCellForClass:[ZPPOrderItemCell class] reuseIdentifier:ZPPOrderItemCellReuseIdentifier];
-    [self registrateCellForClass:[ZPPNoCreditCardCell class] reuseIdentifier:ZPPNoCreditCardCellIdentifier];
-    [self registrateCellForClass:[ZPPOrderTotalCell class] reuseIdentifier:ZPPOrderTotalCellIdentifier];
-    [self registrateCellForClass:[ZPPOrderAddressCell class] reuseIdentifier:ZPPOrderAddressCellIdentifier];
+  [self registrateCellForClass:[ZPPOrderItemCell class] reuseIdentifier:ZPPOrderItemCellReuseIdentifier];
+  [self registrateCellForClass:[ZPPNoCreditCardCell class] reuseIdentifier:ZPPNoCreditCardCellIdentifier];
+  [self registrateCellForClass:[ZPPOrderTotalCell class] reuseIdentifier:ZPPOrderTotalCellIdentifier];
+  [self registrateCellForClass:[ZPPOrderAddressCell class] reuseIdentifier:ZPPOrderAddressCellIdentifier];
 }
 
 - (void)configureWithOrder:(ZPPOrder *)order {
-    self.order = order;
-    [self.tableView reloadData];
+  self.order = order;
+  [self.tableView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (self.order.orderStatus == ZPPOrderStatusDelivered ||
-        self.order.orderStatus == ZPPOrderStatusOnTheWay) {
-        return 3;
-    } else {
-        return 2;
-    }
+  if (self.order.orderStatus == ZPPOrderStatusDelivered ||
+      self.order.orderStatus == ZPPOrderStatusOnTheWay) {
+    return 3;
+  } else {
+    return 2;
+  }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return self.order.items.count;
-    } else if (section == 1) {
-        return 1;
+  if (section == 0) {
+    return self.order.items.count;
+  } else if (section == 1) {
+    return 1;
+  } else {
+    if (self.order.orderStatus == ZPPOrderStatusDelivered) {
+      return 2;
     } else {
-        if (self.order.orderStatus == ZPPOrderStatusDelivered) {
-            return 2;
-        } else {
-            return 1;
-        }
+      return 1;
     }
+  }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        ZPPOrderItem *orderItem = self.order.items[indexPath.row];
+  if (indexPath.section == 0) {
+    ZPPOrderItem *orderItem = self.order.items[indexPath.row];
 
-        ZPPOrderItemCell *cell = [tableView dequeueReusableCellWithIdentifier:ZPPOrderItemCellReuseIdentifier];
-        [cell configureWithOrderItem:orderItem];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.accessoryView = nil;
+    ZPPOrderItemCell *cell = [tableView dequeueReusableCellWithIdentifier:ZPPOrderItemCellReuseIdentifier];
+    [cell configureWithOrderItem:orderItem];
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.accessoryView = nil;
 
-        return cell;
-    } else if (indexPath.section == 1) {
-        ZPPOrderTotalCell *cell = [tableView dequeueReusableCellWithIdentifier:ZPPOrderTotalCellIdentifier];
-        [cell configureWithOrder:self.order];
-        cell.deliveryLabel.text = [self.order.address formatedDescr];
-        cell.deliveryLabel.font = [UIFont systemFontOfSize:17];
-        return cell;
+    return cell;
+  } else if (indexPath.section == 1) {
+    ZPPOrderTotalCell *cell = [tableView dequeueReusableCellWithIdentifier:ZPPOrderTotalCellIdentifier];
+    [cell configureWithOrder:self.order];
+    cell.deliveryLabel.text = [self.order.address formatedDescr];
+    cell.deliveryLabel.font = [UIFont systemFontOfSize:17];
+    return cell;
+  } else {
+    if (indexPath.row == 0) {
+      if (self.order.orderStatus == ZPPOrderStatusDelivered) {
+        return [self starCell];
+      } else {
+        return [self contactCell];
+      }
     } else {
-        if (indexPath.row == 0) {
-            if (self.order.orderStatus == ZPPOrderStatusDelivered) {
-                return [self starCell];
-            } else {
-                return [self contactCell];
-            }
-        } else {
-            ZPPCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:ZPPCommentCellIdentifier];
+      ZPPCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:ZPPCommentCellIdentifier];
 
-            [cell.actionButton addTarget:self
-                                  action:@selector(sendComment:)
-                        forControlEvents:UIControlEventTouchUpInside];
+      [cell.actionButton addTarget:self
+                            action:@selector(sendComment:)
+                  forControlEvents:UIControlEventTouchUpInside];
 
-            cell.commentTV.delegate = self;
-            if (!self.order.commentString) {
-                self.comment = @"";
-                cell.commentTV.text = ZPPCommentPlaceHoldeText;
-                cell.commentTV.textColor = [UIColor lightGrayColor];
-            } else {
-                cell.commentTV.text = self.order.commentString;
-                cell.actionButton.hidden = YES;
-                cell.commentTV.editable = NO;
-            }
+      cell.commentTV.delegate = self;
+      if (!self.order.commentString) {
+        self.comment = @"";
+        cell.commentTV.text = ZPPCommentPlaceHoldeText;
+        cell.commentTV.textColor = [UIColor lightGrayColor];
+      } else {
+        cell.commentTV.text = self.order.commentString;
+        cell.actionButton.hidden = YES;
+        cell.commentTV.editable = NO;
+      }
 
-            return cell;
-        }
+      return cell;
     }
-    return [UITableViewCell new];
+  }
+  return [UITableViewCell new];
 }
 
 - (ZPPStarsCell *)starCell {
-    ZPPStarsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPStarsCellIdentifier];
+  ZPPStarsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPStarsCellIdentifier];
 
-    [cell.starView addTarget:self
-                      action:@selector(valueChanged:)
-            forControlEvents:UIControlEventValueChanged];
+  [cell.starView addTarget:self
+                    action:@selector(valueChanged:)
+          forControlEvents:UIControlEventValueChanged];
 
-    cell.starView.value = self.order.starValue;
+  cell.starView.value = self.order.starValue;
 
-    return cell;
+  return cell;
 }
 
 - (ZPPContactCourierCell *)contactCell {
-    return [self.tableView dequeueReusableCellWithIdentifier:ZPPContactCourierCellIdentifier];
+  return [self.tableView dequeueReusableCellWithIdentifier:ZPPContactCourierCellIdentifier];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    return;
+  return;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        return 46.f;
-    } else if (indexPath.section == 2) {
-        return 120.f;
-    } else {
-        return 100.f;
-    }
+  if (indexPath.section == 0) {
+    return 46.f;
+  } else if (indexPath.section == 2) {
+    return 120.f;
+  } else {
+    return 100.f;
+  }
 }
 
 - (void)valueChanged:(id)sender {
-    if ([sender isKindOfClass:[HCSStarRatingView class]]) {
-        HCSStarRatingView *ratingView = (HCSStarRatingView *)sender;
+  if ([sender isKindOfClass:[HCSStarRatingView class]]) {
+    HCSStarRatingView *ratingView = (HCSStarRatingView *) sender;
 
-        [self sendStars:ratingView.value sender:ratingView];
-    }
+    [self sendStars:ratingView.value sender:ratingView];
+  }
 }
 
 - (void)showCommentCell:(UIButton *)sender {
-    sender.hidden = YES;
-    self.shouldShowComment = YES;
-    [self.tableView beginUpdates];
+  sender.hidden = YES;
+  self.shouldShowComment = YES;
+  [self.tableView beginUpdates];
 
-    NSIndexPath *ip = [NSIndexPath indexPathForRow:1 inSection:2];
+  NSIndexPath *ip = [NSIndexPath indexPathForRow:1 inSection:2];
 
-    [self.tableView insertRowsAtIndexPaths:@[ ip ] withRowAnimation:UITableViewRowAnimationTop];
+  [self.tableView insertRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationTop];
 
-    [self.tableView endUpdates];
+  [self.tableView endUpdates];
 
-    ZPPCommentCell *cell = [self.tableView cellForRowAtIndexPath:ip];
+  ZPPCommentCell *cell = [self.tableView cellForRowAtIndexPath:ip];
 
-    if (cell) {
-        [cell.commentTV becomeFirstResponder];
-    }
+  if (cell) {
+    [cell.commentTV becomeFirstResponder];
+  }
 }
 
 - (void)sendStars:(float)starValue sender:(HCSStarRatingView *)starView {
-    [[ZPPServerManager sharedManager] patchStarsWithValue:@(starValue)
-        forOrderWithID:self.order.identifier
-        onSuccess:^{
-            self.order.starValue = starValue;
-        }
-        onFailure:^(NSError *error, NSInteger statusCode) {
-            [self showWarningWithText:ZPPNoInternetConnectionMessage];
-            [self.tableView reloadData];
-        }];
+  [[ZPPServerManager sharedManager] patchStarsWithValue:@(starValue)
+                                         forOrderWithID:self.order.identifier
+                                              onSuccess:^{
+                                                self.order.starValue = starValue;
+                                              }
+                                              onFailure:^(NSError *error, NSInteger statusCode) {
+                                                [self showWarningWithText:ZPPNoInternetConnectionMessage];
+                                                [self.tableView reloadData];
+                                              }];
 }
 
 - (void)sendComment:(UIButton *)sender {
-    [sender startIndicatingWithType:UIActivityIndicatorViewStyleGray];
+  [sender startIndicatingWithType:UIActivityIndicatorViewStyleGray];
 
-    UITableViewCell *c = [self parentCellForView:sender];
+  UITableViewCell *c = [self parentCellForView:sender];
 
-    if (c && [c isKindOfClass:[ZPPCommentCell class]]) {
-        ZPPCommentCell *cell = (ZPPCommentCell *)c;
+  if (c && [c isKindOfClass:[ZPPCommentCell class]]) {
+    ZPPCommentCell *cell = (ZPPCommentCell *) c;
 
-        NSString *comment = cell.commentTV.text;
-        [sender startIndicating];
-        [[ZPPServerManager sharedManager] sendComment:comment
-            forOrderWithID:self.order.identifier
-            onSuccess:^{
-                [sender stopIndication];
-                [self showSuccessWithText:@"Комментарий отправлен!"];
-                sender.hidden = YES;
-                [cell.commentTV resignFirstResponder];
-                cell.commentTV.editable = NO;
+    NSString *comment = cell.commentTV.text;
+    [sender startIndicating];
+    [[ZPPServerManager sharedManager] sendComment:comment
+                                   forOrderWithID:self.order.identifier
+                                        onSuccess:^{
+                                          [sender stopIndication];
+                                          [self showSuccessWithText:@"Комментарий отправлен!"];
+                                          sender.hidden = YES;
+                                          [cell.commentTV resignFirstResponder];
+                                          cell.commentTV.editable = NO;
 
-                self.order.commentString = comment;
-
-            }
-            onFailure:^(NSError *error, NSInteger statusCode) {
-                [sender stopIndication];
-
-            }];
-    }
+                                          self.order.commentString = comment;
+                                        }
+                                        onFailure:^(NSError *error, NSInteger statusCode) {
+                                          [sender stopIndication];
+                                        }];
+  }
 }
 
 #pragma mark - textview delegate
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-    if ([textView.text isEqualToString:ZPPCommentPlaceHoldeText]) {
-        textView.text = @"";
-        textView.textColor = [UIColor blackColor];
-    }
-    [textView becomeFirstResponder];
+  if ([textView.text isEqualToString:ZPPCommentPlaceHoldeText]) {
+    textView.text = @"";
+    textView.textColor = [UIColor blackColor];
+  }
+  [textView becomeFirstResponder];
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    if ([textView.text isEqualToString:@""]) {
-        textView.text = ZPPCommentPlaceHoldeText;
-        textView.textColor = [UIColor lightGrayColor];
-    }
-    [textView resignFirstResponder];
+  if ([textView.text isEqualToString:@""]) {
+    textView.text = ZPPCommentPlaceHoldeText;
+    textView.textColor = [UIColor lightGrayColor];
+  }
+  [textView resignFirstResponder];
 }
 
 @end

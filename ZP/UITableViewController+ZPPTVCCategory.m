@@ -11,21 +11,21 @@
 @implementation UITableViewController (ZPPTVCCategory)
 
 - (void)configureBackgroundWithImageWithName:(NSString *)imgName {
-    CGRect r = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds),
-                          16 * CGRectGetWidth([UIScreen mainScreen].bounds) / 9);
+  CGRect r = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds),
+      16 * CGRectGetWidth([UIScreen mainScreen].bounds) / 9);
 
-    UIImageView *iv = [[UIImageView alloc] initWithFrame:r];
+  UIImageView *iv = [[UIImageView alloc] initWithFrame:r];
 
-    iv.image = [UIImage imageNamed:imgName];
-    iv.contentMode = UIViewContentModeScaleAspectFill;
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.backgroundView = iv;
+  iv.image = [UIImage imageNamed:imgName];
+  iv.contentMode = UIViewContentModeScaleAspectFill;
+  self.tableView.backgroundColor = [UIColor clearColor];
+  self.tableView.backgroundView = iv;
 }
 
-- (void)registrateCellForClass:(Class) class reuseIdentifier:(NSString *)reuseIdentifier {
-    NSString *className = NSStringFromClass(class);
-    UINib *nib = [UINib nibWithNibName:className bundle:nil];
-    [[self tableView] registerNib:nib forCellReuseIdentifier:reuseIdentifier];
+- (void)registrateCellForClass:(Class)class reuseIdentifier:(NSString *)reuseIdentifier {
+  NSString *className = NSStringFromClass(class);
+  UINib *nib = [UINib nibWithNibName:className bundle:nil];
+  [[self tableView] registerNib:nib forCellReuseIdentifier:reuseIdentifier];
 }
 
 @end

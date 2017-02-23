@@ -7,6 +7,7 @@
 //
 
 #import "ZPPEnergy.h"
+
 @interface ZPPEnergy ()
 
 @property (strong, nonatomic) NSNumber *fats;
@@ -19,20 +20,18 @@
 @implementation ZPPEnergy
 
 - (instancetype)initWithFats:(NSNumber *)fats
-            kilocalories:(NSNumber *)kilocalories
-           carbohydrates:(NSNumber *)carbohydrates
-                proteins:(NSNumber *)proteins {
-    self = [super init];
-    if (self) {
+                kilocalories:(NSNumber *)kilocalories
+               carbohydrates:(NSNumber *)carbohydrates
+                    proteins:(NSNumber *)proteins {
+  self = [super init];
+  if (self) {
 
-
-        self.fats = fats;
-        self.kilocalories = kilocalories;
-        self.carbohydrates = carbohydrates;
-        self.proteins = proteins;
-
-    }
-    return self;
+    self.fats = fats;
+    self.kilocalories = kilocalories;
+    self.carbohydrates = carbohydrates;
+    self.proteins = proteins;
+  }
+  return self;
 }
 
 @end

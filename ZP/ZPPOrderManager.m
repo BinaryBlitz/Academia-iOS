@@ -10,7 +10,7 @@
 #import "ZPPServerManager+ZPPOrderServerManager.h"
 #import "ZPPOrder.h"
 
-@interface ZPPOrderManager()
+@interface ZPPOrderManager ()
 
 @property (strong, nonatomic) NSArray *onTheWayOrders;
 
@@ -19,63 +19,62 @@
 @implementation ZPPOrderManager
 
 + (ZPPOrderManager *)sharedManager {
-    static ZPPOrderManager *manager = nil;
+  static ZPPOrderManager *manager = nil;
 
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        manager = [[ZPPOrderManager alloc] init];
-    });
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    manager = [[ZPPOrderManager alloc] init];
+  });
 
-    return manager;
+  return manager;
 }
 
 - (id)init {
-    self = [super init];
-    if (self) {
-        //_isOpen = YES;
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    //_isOpen = YES;
+  }
+  return self;
 }
 
+- (void)updateOrdersCompletion:(void (^)(NSInteger count))completion {
 
-- (void)updateOrdersCompletion:(void(^)(NSInteger count))completion  {
+  [[ZPPServerManager sharedManager] GETOldOrdersOnSuccess:^(NSArray *orders) {
+    // [self.refreshControl endRefreshing];
 
-    [[ZPPServerManager sharedManager] GETOldOrdersOnSuccess:^(NSArray *orders) {
-       // [self.refreshControl endRefreshing];
+    [self parseOrders:orders];
 
-        [self parseOrders:orders];
+    if (completion) {
+      completion(self.onTheWayOrders.count);
+    }
 
-        if(completion) {
-            completion(self.onTheWayOrders.count);
-        }
+    // [self.tableView reloadData];
+  }                                             onFailure:^(NSError *error, NSInteger statusCode) {
 
-       // [self.tableView reloadData];
-    } onFailure:^(NSError *error, NSInteger statusCode) {
+    if (completion) {
+      completion(-1);
+    }
+    // [self.refreshControl endRefreshing];
 
-        if(completion) {
-            completion(-1);
-        }
-       // [self.refreshControl endRefreshing];
-
-       // [self showWarningWithText:ZPPNoInternetConnectionMessage];
-    }];
+    // [self showWarningWithText:ZPPNoInternetConnectionMessage];
+  }];
 }
 
 - (void)parseOrders:(NSArray *)orders {
-    NSMutableArray *onTheWayOrders = [NSMutableArray array];
-    NSMutableArray *payedOrders = [NSMutableArray array];
+  NSMutableArray *onTheWayOrders = [NSMutableArray array];
+  NSMutableArray *payedOrders = [NSMutableArray array];
 
-    for(ZPPOrder *order in orders) {
-        if(order.orderStatus == ZPPOrderStatusOnTheWay) {
-            [onTheWayOrders addObject:order];
-        } else if (order.orderStatus == ZPPOrderStatusDelivered) {
-            [payedOrders addObject:order];
-        }
+  for (ZPPOrder *order in orders) {
+    if (order.orderStatus == ZPPOrderStatusOnTheWay) {
+      [onTheWayOrders addObject:order];
+    } else if (order.orderStatus == ZPPOrderStatusDelivered) {
+      [payedOrders addObject:order];
     }
+  }
 
-    self.onTheWayOrders = [NSArray arrayWithArray:onTheWayOrders];
-   // self.doneOrders = [NSArray arrayWithArray:payedOrders];
-    //[self.tableView reloadData];
+  self.onTheWayOrders = [NSArray arrayWithArray:onTheWayOrders];
+  // self.doneOrders = [NSArray arrayWithArray:payedOrders];
+  //[self.tableView reloadData];
 }
 
 

@@ -15,24 +15,24 @@ static NSString *ZPPGiftDescription = @"Подарочная карта";
 
 + (NSArray *)testGifts {
   //  NSString *descr = ZPPGiftDescription;
-    ZPPGift *firstGift = [[ZPPGift alloc] initWith:ZPPGiftDescription
-                                       description:nil
-                                             price:@(3000)
-                                        identifier:@(3000)];
-    ZPPGift *secondGift = [[ZPPGift alloc] initWith:ZPPGiftDescription
-                                        description:nil
-                                              price:@(6000)
-                                         identifier:@(6000)];
-    ZPPGift *thirdGift = [[ZPPGift alloc] initWith:ZPPGiftDescription
-                                       description:nil
-                                             price:@(8000)
-                                        identifier:@(8000)];
+  ZPPGift *firstGift = [[ZPPGift alloc] initWith:ZPPGiftDescription
+                                     description:nil
+                                           price:@(3000)
+                                      identifier:@(3000)];
+  ZPPGift *secondGift = [[ZPPGift alloc] initWith:ZPPGiftDescription
+                                      description:nil
+                                            price:@(6000)
+                                       identifier:@(6000)];
+  ZPPGift *thirdGift = [[ZPPGift alloc] initWith:ZPPGiftDescription
+                                     description:nil
+                                           price:@(8000)
+                                      identifier:@(8000)];
 
-    return @[ firstGift, secondGift, thirdGift ];
+  return @[firstGift, secondGift, thirdGift];
 }
 
 + (NSArray *)parseGiftFromDicts:(NSArray *)dicts {//redo
-    return [[self class] testGifts];
+  return [[self class] testGifts];
 }
 
 @end

@@ -9,12 +9,12 @@
 #import "ZPPProductsBaseTVC.h"
 
 @protocol ZPPBeginScreenTVCDelegate <NSObject>
-- (void) didPressBeginButton;
-- (void) showMenuPreview;
+
+- (void)didPressBeginButton;
+- (void)showMenuPreview;
 @end
 
-
-@interface ZPPBeginScreenTVC: ZPPProductsBaseTVC
+@interface ZPPBeginScreenTVC : ZPPProductsBaseTVC
 
 @property (nonatomic, weak) id <ZPPBeginScreenTVCDelegate> beginDelegate;
 

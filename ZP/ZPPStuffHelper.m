@@ -15,37 +15,37 @@
 @implementation ZPPStuffHelper
 
 + (ZPPStuff *)stuffFromDict:(NSDictionary *)dict {
-    NSString *name = dict[@"name"];
-    // NSString *subtitle = dict[@"subtitle"];
-    NSNumber *identifier = dict[@"id"];
-    NSNumber *price = dict[@"price"];
-    NSString *stuffDescription = dict[@"description"];
-    NSString *urlAppend = dict[@"image_url"];
+  NSString *name = dict[@"name"];
+  // NSString *subtitle = dict[@"subtitle"];
+  NSNumber *identifier = dict[@"id"];
+  NSNumber *price = dict[@"price"];
+  NSString *stuffDescription = dict[@"description"];
+  NSString *urlAppend = dict[@"image_url"];
 
 //    NSString *urlAsString = [NSString stringWithFormat:@"%@%@", ZPPServerBaseUrl, urlAppend];
-    NSURL *imgURL = [NSURL URLWithString:urlAppend];
+  NSURL *imgURL = [NSURL URLWithString:urlAppend];
 
-    ZPPStuff *s = [[ZPPStuff alloc] initWithName:name
-                                      identifier:identifier
-                                           descr:stuffDescription
-                                           price:price
-                                          imgURL:imgURL];
+  ZPPStuff *s = [[ZPPStuff alloc] initWithName:name
+                                    identifier:identifier
+                                         descr:stuffDescription
+                                         price:price
+                                        imgURL:imgURL];
 
-    return s;
+  return s;
 }
 
 + (NSArray *)parseStuff:(NSArray *)dishes {
-    NSMutableArray *tmpArr = [NSMutableArray array];
-    for (NSDictionary *d in dishes) {
-        ZPPStuff *l = [[self class] stuffFromDict:d];
-        [tmpArr addObject:l];
-    }
+  NSMutableArray *tmpArr = [NSMutableArray array];
+  for (NSDictionary *d in dishes) {
+    ZPPStuff *l = [[self class] stuffFromDict:d];
+    [tmpArr addObject:l];
+  }
 
-    NSArray *arr = [NSArray arrayWithArray:tmpArr];
+  NSArray *arr = [NSArray arrayWithArray:tmpArr];
 
-    [ZPPImageWorker preheatImagesOfObjects:arr];
+  [ZPPImageWorker preheatImagesOfObjects:arr];
 
-    return arr;
+  return arr;
 }
 
 @end

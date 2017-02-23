@@ -44,69 +44,69 @@ static NSString *ZPPShowAuthenticationSegueIdentifier = @"ZPPShowAuthenticationS
 @implementation ZPPRegistrationPhoneInputVC
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
-    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+  [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+  self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 
-    self.mainTF = (UITextField *)self.phoneNumberTextFiled;
-    self.bottomConstraint = self.bottomSuperviewConstraint;
+  self.mainTF = (UITextField *) self.phoneNumberTextFiled;
+  self.bottomConstraint = self.bottomSuperviewConstraint;
 
-    self.phoneNumberTextFiled.format = @"(XXX) XXX-XX-XX";
+  self.phoneNumberTextFiled.format = @"(XXX) XXX-XX-XX";
 
-    UIView *v = self.phoneNumberTextFiled.superview;
+  UIView *v = self.phoneNumberTextFiled.superview;
 
-    [v makeBordered];
+  [v makeBordered];
 
-    [self setNeedsStatusBarAppearanceUpdate];
+  [self setNeedsStatusBarAppearanceUpdate];
 
-    UITapGestureRecognizer *gr =
-        [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+  UITapGestureRecognizer *gr =
+      [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
 
-    gr.numberOfTapsRequired = 1;
-    gr.numberOfTouchesRequired = 1;
+  gr.numberOfTapsRequired = 1;
+  gr.numberOfTouchesRequired = 1;
 
-    [self.phoneNumberTextFiled.superview addGestureRecognizer:gr];
+  [self.phoneNumberTextFiled.superview addGestureRecognizer:gr];
 
-    [self.rulesButton addTarget:self
-                         action:@selector(showRules)
-               forControlEvents:UIControlEventTouchUpInside];
-    NSDictionary *underlineAttribute =
-        @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) };
-    NSAttributedString *atrstr = [[NSAttributedString alloc]
-        initWithString:
-            @"Нажимая кнопку \"ДАЛЕЕ\" вы принимаете правила"
-            attributes:underlineAttribute];
+  [self.rulesButton addTarget:self
+                       action:@selector(showRules)
+             forControlEvents:UIControlEventTouchUpInside];
+  NSDictionary *underlineAttribute =
+      @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
+  NSAttributedString *atrstr = [[NSAttributedString alloc]
+      initWithString:
+          @"Нажимая кнопку \"ДАЛЕЕ\" вы принимаете правила"
+          attributes:underlineAttribute];
 
-    self.rulesButton.titleLabel.minimumScaleFactor = 0.5;
-    self.rulesButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+  self.rulesButton.titleLabel.minimumScaleFactor = 0.5;
+  self.rulesButton.titleLabel.adjustsFontSizeToFitWidth = YES;
 
-    [self.rulesButton setAttributedTitle:atrstr forState:UIControlStateNormal];
+  [self.rulesButton setAttributedTitle:atrstr forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.navigationController presentTransparentNavigationBar];
+  [super viewWillAppear:animated];
+  [self.navigationController presentTransparentNavigationBar];
 
-    [self addCustomCloseButton];
-    // [self setCustomBackButton];
+  [self addCustomCloseButton];
+  // [self setCustomBackButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    //    [self.phoneNumberTextFiled becomeFirstResponder];
+  [super viewDidAppear:animated];
+  //    [self.phoneNumberTextFiled becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+  [super viewWillDisappear:animated];
 
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /*
@@ -121,77 +121,76 @@ navigation
 */
 
 #pragma mark - actions
+
 - (IBAction)acceptAction:(UIButton *)sender {
-    if ([self checkPhoneTextField:self.phoneNumberTextFiled]) {
-        NSString *number = self.user.phoneNumber;  // self.phoneNumberTextFiled.text;
+  if ([self checkPhoneTextField:self.phoneNumberTextFiled]) {
+    NSString *number = self.user.phoneNumber;  // self.phoneNumberTextFiled.text;
 
-        [sender startIndicating];
+    [sender startIndicating];
 
-        [[ZPPServerManager sharedManager] sendSmsToPhoneNumber:number
-            onSuccess:^(NSString *tmpToken) {
-                [sender stopIndication];
-                self.code = tmpToken;
-                [self performSegueWithIdentifier:ZPPShowNumberEnterScreenSegueIdentifier
-                                          sender:nil];
-
-            }
-            onFailure:^(NSError *error, NSInteger statusCode) {
-                [sender stopIndication];
-                [self showWarningWithText:ZPPNoInternetConnectionMessage];
-            }];
-
-    } else {
-        [self.phoneNumberTextFiled.superview shakeView];
-        [self showWarningWithText:ZPPPhoneWarningMessage];
-    }
+    [[ZPPServerManager sharedManager] sendSmsToPhoneNumber:number
+                                                 onSuccess:^(NSString *tmpToken) {
+                                                   [sender stopIndication];
+                                                   self.code = tmpToken;
+                                                   [self performSegueWithIdentifier:ZPPShowNumberEnterScreenSegueIdentifier
+                                                                             sender:nil];
+                                                 }
+                                                 onFailure:^(NSError *error, NSInteger statusCode) {
+                                                   [sender stopIndication];
+                                                   [self showWarningWithText:ZPPNoInternetConnectionMessage];
+                                                 }];
+  } else {
+    [self.phoneNumberTextFiled.superview shakeView];
+    [self showWarningWithText:ZPPPhoneWarningMessage];
+  }
 }
 
 - (void)showRules {
-    ZPPPaymentWebController *wc = [[ZPPPaymentWebController alloc] init];
-    NSString *urlString =
-        [ZPPRulesURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSURL *url = [NSURL URLWithString:urlString];
+  ZPPPaymentWebController *wc = [[ZPPPaymentWebController alloc] init];
+  NSString *urlString =
+      [ZPPRulesURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+  NSURL *url = [NSURL URLWithString:urlString];
 
-    wc.title = @"Правила";
-    [wc configureWithURL:url];
-    //    wc.paymentDelegate = self;
+  wc.title = @"Правила";
+  [wc configureWithURL:url];
+  //    wc.paymentDelegate = self;
 
-    UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:wc];
+  UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:wc];
 
-    navC.navigationBar.barTintColor = [UIColor blackColor];
+  navC.navigationBar.barTintColor = [UIColor blackColor];
 
-    [self presentViewController:navC animated:YES completion:nil];
+  [self presentViewController:navC animated:YES completion:nil];
 }
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:ZPPShowNumberEnterScreenSegueIdentifier]) {
-        ZPPRegistrationCodeInputVC *destVC =
-            (ZPPRegistrationCodeInputVC *)segue.destinationViewController;
+  if ([segue.identifier isEqualToString:ZPPShowNumberEnterScreenSegueIdentifier]) {
+    ZPPRegistrationCodeInputVC *destVC =
+        (ZPPRegistrationCodeInputVC *) segue.destinationViewController;
 
-        ZPPUser *user = [self user];
+    ZPPUser *user = [self user];
 
-        [destVC setUser:user];
-        [destVC setToken:self.code];
-        //        self.code = nil;
-    }
+    [destVC setUser:user];
+    [destVC setToken:self.code];
+    //        self.code = nil;
+  }
 }
 
 #pragma mark - UITextFieldDelegate
 
 - (ZPPUser *)user {
-    ZPPUser *user = [[ZPPUser alloc] init];
+  ZPPUser *user = [[ZPPUser alloc] init];
 
-    NSString *phoneNumber =
-        [NSString stringWithFormat:@"+7%@", self.phoneNumberTextFiled.unformattedText];
+  NSString *phoneNumber =
+      [NSString stringWithFormat:@"+7%@", self.phoneNumberTextFiled.unformattedText];
 
-    user.phoneNumber = phoneNumber;
-    return user;
+  user.phoneNumber = phoneNumber;
+  return user;
 }
 
 - (void)dismissKeyboard {
-    [self.phoneNumberTextFiled resignFirstResponder];
+  [self.phoneNumberTextFiled resignFirstResponder];
 }
 
 @end

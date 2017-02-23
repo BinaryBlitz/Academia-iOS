@@ -40,102 +40,102 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
 @implementation ZPPRegistrationOtherInputVC
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
-    NSMutableArray *arr = [NSMutableArray array];
+  NSMutableArray *arr = [NSMutableArray array];
 
-    [arr addObject:self.nameTextField];
-    [arr addObject:self.secondNameTextField];
-    [arr addObject:self.emailTextFild];
+  [arr addObject:self.nameTextField];
+  [arr addObject:self.secondNameTextField];
+  [arr addObject:self.emailTextFild];
 
-    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
-    //    [arr addObject:self.passwordTextField];
-    //    [arr addObject:self.againPasswordTextField];
+  [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+  //    [arr addObject:self.passwordTextField];
+  //    [arr addObject:self.againPasswordTextField];
 
-    self.nameTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
-    self.secondNameTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+  self.nameTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+  self.secondNameTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
 
-    self.textFields = [NSArray arrayWithArray:arr];
+  self.textFields = [NSArray arrayWithArray:arr];
 
-    for (UITextField *tf in self.textFields) {
-        [tf makeBordered];
-        tf.delegate = self;
-    }
+  for (UITextField *tf in self.textFields) {
+    [tf makeBordered];
+    tf.delegate = self;
+  }
 
-    [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
-    [self addCustomCloseButton];
-    [self.navigationItem
-        setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] init]]];
+  [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
+  [self addCustomCloseButton];
+  [self.navigationItem
+      setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] init]]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self.nameTextField becomeFirstResponder];
+  [super viewDidAppear:animated];
+  [self.nameTextField becomeFirstResponder];
 }
 
 - (void)setUser:(ZPPUser *)user {
-    _user = user;
+  _user = user;
 }
 
 - (IBAction)saveProfileAction:(UIButton *)sender {
-    [self saveAction:sender];
+  [self saveAction:sender];
 }
 
 - (void)saveAction:(UIButton *)sender {
-    if (![self chekAll]) {
-        return;
-    }
+  if (![self chekAll]) {
+    return;
+  }
 
-    [self configureUser];
-    [sender startIndicating];
-    [[ZPPServerManager sharedManager] POSTRegistrateUser:self.user
-        onSuccess:^(ZPPUser *user) {
-            [sender stopIndication];
-            [[ZPPUserManager sharedInstance] setUser:user];
+  [self configureUser];
+  [sender startIndicating];
+  [[ZPPServerManager sharedManager] POSTRegistrateUser:self.user
+                                             onSuccess:^(ZPPUser *user) {
+                                               [sender stopIndication];
+                                               [[ZPPUserManager sharedInstance] setUser:user];
 
-            self.user = user;
+                                               self.user = user;
 
-            [Answers logSignUpWithMethod:@"PHONE" success:@YES customAttributes:@{}];
+                                               [Answers logSignUpWithMethod:@"PHONE" success:@YES customAttributes:@{}];
 
-            [self performSegueWithIdentifier:ZPPShowRegistrationResultSegueIdentifier sender:nil];
-        }
-        onFailure:^(NSError *error, NSInteger statusCode) {
-            [sender stopIndication];
-        }];
+                                               [self performSegueWithIdentifier:ZPPShowRegistrationResultSegueIdentifier sender:nil];
+                                             }
+                                             onFailure:^(NSError *error, NSInteger statusCode) {
+                                               [sender stopIndication];
+                                             }];
 }
 
 - (BOOL)chekAll {
-    return [self checkCurrentNameTextField] && [self checkCurrentSecondNameTextField] &&
-           [self checkCurrentEmailTextField];
+  return [self checkCurrentNameTextField] && [self checkCurrentSecondNameTextField] &&
+      [self checkCurrentEmailTextField];
 }
 
 - (BOOL)checkCurrentNameTextField {
-    if (![self checkNameTextField:self.nameTextField]) {
-        [self accentTextField:self.nameTextField];
-        [self showWarningWithText:ZPPNameErrMessage];
-        return NO;
-    }
-    return YES;
+  if (![self checkNameTextField:self.nameTextField]) {
+    [self accentTextField:self.nameTextField];
+    [self showWarningWithText:ZPPNameErrMessage];
+    return NO;
+  }
+  return YES;
 }
 
 - (BOOL)checkCurrentSecondNameTextField {
-    if (![self checkNameTextField:self.secondNameTextField]) {
-        [self accentTextField:self.secondNameTextField];
-        [self showWarningWithText:ZPPSurnameErrMaessage];
+  if (![self checkNameTextField:self.secondNameTextField]) {
+    [self accentTextField:self.secondNameTextField];
+    [self showWarningWithText:ZPPSurnameErrMaessage];
 
-        return NO;
-    }
-    return YES;
+    return NO;
+  }
+  return YES;
 }
 
 - (BOOL)checkCurrentEmailTextField {
-    if (![self checkEmailTextField:self.emailTextFild]) {
-        [self accentTextField:self.emailTextFild];
-        [self showWarningWithText:ZPPEmailErrMessage];
-        return NO;
-    }
+  if (![self checkEmailTextField:self.emailTextFild]) {
+    [self accentTextField:self.emailTextFild];
+    [self showWarningWithText:ZPPEmailErrMessage];
+    return NO;
+  }
 
-    return YES;
+  return YES;
 }
 
 //- (void)accentTextField:(UITextField *)tf {
@@ -144,14 +144,14 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
 //}
 
 - (void)configureUser {
-    self.user.firstName = self.nameTextField.text;
-    self.user.lastName = self.secondNameTextField.text;
-    self.user.password = self.passwordTextField.text;
-    self.user.email = self.emailTextFild.text;
-    NSString *pushToken = [ZPPUserManager sharedInstance].pushToken;
-    if (pushToken && ![pushToken isEqual:[NSNull null]]) {
-        self.user.pushToken = pushToken;
-    }
+  self.user.firstName = self.nameTextField.text;
+  self.user.lastName = self.secondNameTextField.text;
+  self.user.password = self.passwordTextField.text;
+  self.user.email = self.emailTextFild.text;
+  NSString *pushToken = [ZPPUserManager sharedInstance].pushToken;
+  if (pushToken && ![pushToken isEqual:[NSNull null]]) {
+    self.user.pushToken = pushToken;
+  }
 }
 
 //-(BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -161,29 +161,29 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
 #pragma mark - text field delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if ([textField isEqual:self.nameTextField]) {
+  if ([textField isEqual:self.nameTextField]) {
 
-        if([self checkCurrentNameTextField]) {
-            [self.secondNameTextField becomeFirstResponder];
-        } else {
-            return NO;
-        }
-    } else if ([textField isEqual:self.secondNameTextField]) {
-
-        if([self checkCurrentSecondNameTextField]) {
-            [self.emailTextFild becomeFirstResponder];
-        } else {
-            return NO;
-        }
-    } else if([textField isEqual:self.emailTextFild]) {
-        if([self checkCurrentEmailTextField]) {
-            [self saveAction:self.saveButton];
-        } else {
-            return NO;
-        }
+    if ([self checkCurrentNameTextField]) {
+      [self.secondNameTextField becomeFirstResponder];
+    } else {
+      return NO;
     }
+  } else if ([textField isEqual:self.secondNameTextField]) {
 
-    return YES;
+    if ([self checkCurrentSecondNameTextField]) {
+      [self.emailTextFild becomeFirstResponder];
+    } else {
+      return NO;
+    }
+  } else if ([textField isEqual:self.emailTextFild]) {
+    if ([self checkCurrentEmailTextField]) {
+      [self saveAction:self.saveButton];
+    } else {
+      return NO;
+    }
+  }
+
+  return YES;
 }
 
 #pragma mark - Navigation
@@ -191,15 +191,15 @@ static NSString *ZPPEmailErrMessage = @"Введите e-mail";
 // In a storyboard-based application, you will often want to do a little preparation before
 // navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+  // Get the new view controller using [segue destinationViewController].
+  // Pass the selected object to the new view controller.
 
-    if ([segue.identifier isEqualToString:ZPPShowRegistrationResultSegueIdentifier]) {
-        ZPPRegistrationSuccesVC *destVC =
-            (ZPPRegistrationSuccesVC *)segue.destinationViewController;
+  if ([segue.identifier isEqualToString:ZPPShowRegistrationResultSegueIdentifier]) {
+    ZPPRegistrationSuccesVC *destVC =
+        (ZPPRegistrationSuccesVC *) segue.destinationViewController;
 
-        [destVC setUser:self.user];
-    }
+    [destVC setUser:self.user];
+  }
 }
 
 @end

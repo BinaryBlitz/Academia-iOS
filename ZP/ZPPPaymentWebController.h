@@ -10,11 +10,11 @@
 @import WebKit;
 
 @protocol ZPPPaymentViewDelegate <NSObject>
-- (void) didShowPageWithUrl: (NSURL *) url sender:(UIViewController *)vc;
+
+- (void)didShowPageWithUrl:(NSURL *)url sender:(UIViewController *)vc;
 @end
 
-
-@interface ZPPPaymentWebController : UIViewController <WKNavigationDelegate,WKUIDelegate>
+@interface ZPPPaymentWebController : UIViewController <WKNavigationDelegate, WKUIDelegate>
 
 @property (nonatomic, weak) id <ZPPPaymentViewDelegate> paymentDelegate;
 

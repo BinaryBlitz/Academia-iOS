@@ -24,26 +24,26 @@
              description:(NSString *)giftDescription
                    price:(NSNumber *)price
               identifier:(NSNumber *)giftIdentifier {
-    self = [super init];
-    if (self) {
-        self.name = name;
-        self.giftDescription = giftDescription;
-        self.price = price;
-        self.giftIdentifier = giftIdentifier;
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    self.name = name;
+    self.giftDescription = giftDescription;
+    self.price = price;
+    self.giftIdentifier = giftIdentifier;
+  }
+  return self;
 }
 
 - (NSString *)nameOfItem {
-    return [NSString stringWithFormat:@"%@ на %@%@", self.name, self.price, ZPPRoubleSymbol];
+  return [NSString stringWithFormat:@"%@ на %@%@", self.name, self.price, ZPPRoubleSymbol];
 }
 
 - (NSInteger)priceOfItem {
-    return self.price.integerValue;
+  return self.price.integerValue;
 }
 
 - (NSString *)identifierOfItem {
-     return [NSString stringWithFormat:@"%@", self.giftIdentifier];
+  return [NSString stringWithFormat:@"%@", self.giftIdentifier];
 }
 
 @end

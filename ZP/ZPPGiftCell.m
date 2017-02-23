@@ -24,30 +24,30 @@
 @implementation ZPPGiftCell
 
 - (void)awakeFromNib {
-    // Initialization code
-    [super awakeFromNib];
-    self.badgeView = [[JSBadgeView alloc] initWithParentView:self.addButton
-                                                   alignment:JSBadgeViewAlignmentTopRight];
+  // Initialization code
+  [super awakeFromNib];
+  self.badgeView = [[JSBadgeView alloc] initWithParentView:self.addButton
+                                                 alignment:JSBadgeViewAlignmentTopRight];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+  [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+  // Configure the view for the selected state
 }
 
 - (void)configureWithGift:(ZPPGift *)gift {
-    self.nameLabel.text = gift.name;
-    self.giftDescriptionLabel.text = gift.giftDescription;
-    self.priceLabel.text = [NSString stringWithFormat:@"%@%@", gift.price, ZPPRoubleSymbol];
+  self.nameLabel.text = gift.name;
+  self.giftDescriptionLabel.text = gift.giftDescription;
+  self.priceLabel.text = [NSString stringWithFormat:@"%@%@", gift.price, ZPPRoubleSymbol];
 }
 
 - (void)setBadgeCount:(NSInteger)badgeCount {
-    if (badgeCount) {
-        self.badgeView.badgeText = [NSString stringWithFormat:@"%@", @(badgeCount)];
-    } else {
-        self.badgeView.badgeText = nil;
-    }
+  if (badgeCount) {
+    self.badgeView.badgeText = [NSString stringWithFormat:@"%@", @(badgeCount)];
+  } else {
+    self.badgeView.badgeText = nil;
+  }
 }
 
 @end
