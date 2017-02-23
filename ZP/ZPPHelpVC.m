@@ -16,8 +16,6 @@
 
 #import <MessageUI/MessageUI.h>
 
-@import CoreText;
-
 @interface ZPPHelpVC () <MFMailComposeViewControllerDelegate>
 
 @end

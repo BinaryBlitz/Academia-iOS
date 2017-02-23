@@ -12,7 +12,6 @@
 #import "ZPPEnergy.h"
 #import "ZPPEnergyHelper.h"
 #import "ZPPIngridientHelper.h"
-#import "ZPPServerManager.h"
 
 #import "ZPPImageWorker.h"
 

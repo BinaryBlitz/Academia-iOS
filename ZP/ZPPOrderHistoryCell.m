@@ -8,7 +8,6 @@
 
 #import "ZPPOrderHistoryCell.h"
 #import "ZPPOrder.h"
-#import "ZPPOrderItem.h"
 
 #import "ZPPConsts.h"
 //#import <DateTools.h>

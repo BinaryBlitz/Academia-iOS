@@ -15,12 +15,9 @@
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 
-#import "ZPPDish.h"
-
 #import "ZPPServerManager+ZPPOrderServerManager.h"
 
 #import "ZPPOrderHistoryOrderTVC.h"
-#import "ZPPOrderTotalCell.h"
 
 #import "ZPPConsts.h"
 

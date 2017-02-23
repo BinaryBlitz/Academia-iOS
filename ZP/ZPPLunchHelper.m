@@ -8,7 +8,6 @@
 
 #import "ZPPLunchHelper.h"
 #import "ZPPLunch.h"
-#import "ZPPServerManager.h"
 
 #import "ZPPImageWorker.h"
 

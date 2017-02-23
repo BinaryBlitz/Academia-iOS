@@ -13,7 +13,6 @@
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "ZPPRegistrationCodeInputVC.h"
 #import "ZPPRegistrationPhoneInputVC.h"
-#import "ZPPRulesVC.h"
 #import "ZPPUser.h"
 
 #import "ZPPServerManager+ZPPRegistration.h"
@@ -22,7 +21,6 @@
 
 #import "UIView+UIViewCategory.h"
 #import "UIViewController+ZPPValidationCategory.h"
-#import "UIViewController+ZPPViewControllerCategory.h"
 
 #import "ZPPPaymentWebController.h"
 

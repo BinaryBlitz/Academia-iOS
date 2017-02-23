@@ -11,9 +11,7 @@
 @import INTULocationManager;
 @import LMGeocoder;
 @import GoogleMaps;
-@import CoreLocation;
 
-#import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIView+UIViewCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "ZPPAddress.h"

@@ -21,7 +21,6 @@
 #import "ZPPServerManager+ZPPRegistration.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "ZPPOrderManager.h"
-#import "ZPPDish.h"
 
 static float kZPPButtonDiametr = 40.0f;
 static float kZPPButtonOffset = 15.0f;
