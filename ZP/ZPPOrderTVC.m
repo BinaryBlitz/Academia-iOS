@@ -1,11 +1,3 @@
-//
-//  ZPPOrderTVC.m
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 30/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import "ZPPOrderTVC.h"
 
 @import Crashlytics;

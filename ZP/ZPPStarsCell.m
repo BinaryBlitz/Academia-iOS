@@ -1,11 +1,3 @@
-//
-//  ZPPStarsCell.m
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 28/11/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import "ZPPStarsCell.h"
 //#import <HCSStarRatingView.h>
 

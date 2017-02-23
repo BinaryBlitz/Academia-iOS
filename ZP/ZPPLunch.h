@@ -1,11 +1,3 @@
-//
-//  ZPPLunch.h
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 06/11/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 #import "ZPPItemProtocol.h"
 #import "ZPPWithImageURL.h"

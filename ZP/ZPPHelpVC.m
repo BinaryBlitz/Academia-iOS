@@ -1,11 +1,3 @@
-//
-//  ZPPHelpVC.m
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 27/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIView+UIViewCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"

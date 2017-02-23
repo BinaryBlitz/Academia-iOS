@@ -1,11 +1,3 @@
-//
-//  ZPPUserManager.m
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 19/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 
 #import <Crashlytics/Crashlytics.h>
 #import "ZPPServerManager+ZPPRegistration.h"

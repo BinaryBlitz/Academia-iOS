@@ -1,11 +1,3 @@
-//
-//  ZPPAuthenticationVC.h
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 29/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import "ZPPRegistrationBaseVC.h"
 
 @interface ZPPAuthenticationVC : ZPPRegistrationBaseVC

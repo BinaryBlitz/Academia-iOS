@@ -1,11 +1,3 @@
-//
-//  ZPPEnergy.m
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 10/12/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import "ZPPEnergy.h"
 
 @interface ZPPEnergy ()

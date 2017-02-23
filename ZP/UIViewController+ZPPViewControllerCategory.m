@@ -1,11 +1,3 @@
-//
-//  UIViewController+ZPPViewControllerCategory.m
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 16/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "ZPPNoInternetConnectionVC.h"
 #import "CWStatusBarNotification.h"

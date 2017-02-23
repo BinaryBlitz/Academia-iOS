@@ -1,11 +1,3 @@
-//
-//  ZPPOrderResultVC.m
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 13/11/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import <Crashlytics/Crashlytics.h>
 #import "UIView+UIViewCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"

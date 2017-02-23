@@ -1,11 +1,3 @@
-//
-//  ZPPOrderItem.m
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 27/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import "ZPPOrderItem.h"
 
 @interface ZPPOrderItem ()

@@ -1,11 +1,3 @@
-//
-//  ZPPOnboardingTopController.swift
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 18/02/16.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import EZSwipeController
 import PureLayout

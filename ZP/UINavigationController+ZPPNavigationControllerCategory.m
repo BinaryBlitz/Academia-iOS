@@ -1,11 +1,3 @@
-//
-//  UINavigationController+ZPPNavigationControllerCategory.m
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 16/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
 
 @implementation UINavigationController (ZPPNavigationControllerCategory)

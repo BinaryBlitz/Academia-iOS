@@ -1,11 +1,3 @@
-//
-//  ZPPRegistrationSuccesVC.m
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 18/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import "ZPPRegistrationSuccesVC.h"
 #import "ZPPUser.h"
 
