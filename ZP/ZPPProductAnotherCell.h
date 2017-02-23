@@ -11,6 +11,7 @@
 @class ZPPStuff;
 
 @interface ZPPProductAnotherCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *pictureImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *productDescriptionLabel;
@@ -19,6 +20,6 @@
 
 - (void)configureWithStuff:(ZPPStuff *)stuff;
 
-- (void)setBadgeCount:(NSInteger )badgeCount;
+- (void)setBadgeCount:(NSInteger)badgeCount;
 
 @end

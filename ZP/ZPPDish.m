@@ -44,46 +44,47 @@
                       badges:(NSArray *)badges
                      noItems:(BOOL)noItems
                       energy:(ZPPEnergy *)energy {
-    self = [super init];
-    if (self) {
-        self.name = name;
-        self.dishID = dishID;
-        if (![subtitle isEqual:[NSNull null]]) {
-            self.subtitle = subtitle;
-        } else {
-            self.subtitle = nil;
-        }
-        self.dishDescription = dishDescription;
-        self.price = price;
-        self.urlAsString = urlAsString;
-        self.ingridients = ingridients;
-
-        self.energy = energy;
-
-        self.badges = badges;
-
-        self.isNoItems = noItems;
+  self = [super init];
+  if (self) {
+    self.name = name;
+    self.dishID = dishID;
+    if (![subtitle isEqual:[NSNull null]]) {
+      self.subtitle = subtitle;
+    } else {
+      self.subtitle = nil;
     }
-    return self;
+    self.dishDescription = dishDescription;
+    self.price = price;
+    self.urlAsString = urlAsString;
+    self.ingridients = ingridients;
+
+    self.energy = energy;
+
+    self.badges = badges;
+
+    self.isNoItems = noItems;
+  }
+  return self;
 }
 
 - (NSInteger)priceOfItem {
-    return [self.price integerValue];
+  return [self.price integerValue];
 }
+
 - (NSString *)nameOfItem {
-    return self.name;
+  return self.name;
 }
 
 - (NSString *)identifierOfItem {
-    return self.dishID;
+  return self.dishID;
 }
 
 - (NSURL *)URLOfImage {
-    NSURL *res;
-    if (self.urlAsString) {
-        res = [NSURL URLWithString:self.urlAsString];
-    }
-    return res;
+  NSURL *res;
+  if (self.urlAsString) {
+    res = [NSURL URLWithString:self.urlAsString];
+  }
+  return res;
 }
 
 @end

@@ -9,7 +9,7 @@
 #import "ZPPCreditCard.h"
 #import "NSDate+ZPPDateCategory.h"
 
-@interface ZPPCreditCard()
+@interface ZPPCreditCard ()
 
 @property (assign, nonatomic) NSInteger serverId;
 @property (strong, nonatomic) NSString *number;
@@ -20,26 +20,26 @@
 
 @implementation ZPPCreditCard
 
-+ (ZPPCreditCard *)initWithDictionary: (NSDictionary *)dict {
-    NSNumber *serverId = dict[@"id"];
-    NSString *cardNumber = dict[@"number"];
-    NSString *bindingId = dict[@"binding_id"];
-    NSString *dateString = dict[@"created_at"];
++ (ZPPCreditCard *)initWithDictionary:(NSDictionary *)dict {
+  NSNumber *serverId = dict[@"id"];
+  NSString *cardNumber = dict[@"number"];
+  NSString *bindingId = dict[@"binding_id"];
+  NSString *dateString = dict[@"created_at"];
 
-    ZPPCreditCard *card = [[ZPPCreditCard alloc] initWithCardNumber:cardNumber serverId:serverId.integerValue bindingId:bindingId createdAt:[NSDate customDateFromString:dateString]];
-    return card;
+  ZPPCreditCard *card = [[ZPPCreditCard alloc] initWithCardNumber:cardNumber serverId:serverId.integerValue bindingId:bindingId createdAt:[NSDate customDateFromString:dateString]];
+  return card;
 }
 
-- (instancetype)initWithCardNumber:(NSString *)cardNumber serverId:(NSInteger)serverId bindingId:(NSString *) bindingId createdAt:(NSDate *)createdAt {
-    self = [super init];
-    if (self) {
-        self.serverId = serverId;
-        self.number = cardNumber;
-        self.bindingId = bindingId;
-        self.createdAt = createdAt;
-    }
+- (instancetype)initWithCardNumber:(NSString *)cardNumber serverId:(NSInteger)serverId bindingId:(NSString *)bindingId createdAt:(NSDate *)createdAt {
+  self = [super init];
+  if (self) {
+    self.serverId = serverId;
+    self.number = cardNumber;
+    self.bindingId = bindingId;
+    self.createdAt = createdAt;
+  }
 
-    return self;
+  return self;
 }
 
 @end

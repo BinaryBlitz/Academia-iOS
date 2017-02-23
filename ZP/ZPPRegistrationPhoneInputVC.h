@@ -13,6 +13,7 @@
 @class ZPPUser;
 
 @interface ZPPRegistrationPhoneInputVC : ZPPRegistrationBaseVC
+
 @property (weak, nonatomic) IBOutlet REFormattedNumberField *phoneNumberTextFiled;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomSuperviewConstraint;
 

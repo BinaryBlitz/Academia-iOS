@@ -32,134 +32,132 @@ static NSString *ZPPDaDataAPIKey = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
 @implementation ZPPSearchResultController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
-    UIEdgeInsets insets = self.tableView.contentInset;
-    self.tableView.contentInset =
-        UIEdgeInsetsMake(insets.top + 20, insets.left, insets.bottom, insets.right);
+  UIEdgeInsets insets = self.tableView.contentInset;
+  self.tableView.contentInset =
+      UIEdgeInsetsMake(insets.top + 20, insets.left, insets.bottom, insets.right);
 
-    [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
-    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
-    [self setCustomNavigationBackButtonWithTransition];
+  [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
+  [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+  [self setCustomNavigationBackButtonWithTransition];
 
-    self.searchBar.delegate = self;
-    self.searchBar.tintColor = [UIColor blackColor];
+  self.searchBar.delegate = self;
+  self.searchBar.tintColor = [UIColor blackColor];
 
-    [self.tableView setRowHeight:UITableViewAutomaticDimension];
-    self.tableView.estimatedRowHeight = 60;
+  [self.tableView setRowHeight:UITableViewAutomaticDimension];
+  self.tableView.estimatedRowHeight = 60;
 
-    [[IDDaDataSuggestions sharedInstance] setBaseURL:@"https://dadata.ru/api/v2/" apiKey:ZPPDaDataAPIKey];
-
+  [[IDDaDataSuggestions sharedInstance] setBaseURL:@"https://dadata.ru/api/v2/" apiKey:ZPPDaDataAPIKey];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+  [super viewWillAppear:animated];
 
-    [self.searchBar becomeFirstResponder];
-    [self.searchBar setText:self.initialAddressString];
+  [self.searchBar becomeFirstResponder];
+  [self.searchBar setText:self.initialAddressString];
 }
 
 - (void)configureWithAddress:(ZPPAddress *)address {
-    self.initialAddressString = [address formatedDescr];
+  self.initialAddressString = [address formatedDescr];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+  return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.results.count;
+  return self.results.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ZPPSearchResultCellIdentifier];
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ZPPSearchResultCellIdentifier];
 
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:ZPPSearchResultCellIdentifier];
-    }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  if (!cell) {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                  reuseIdentifier:ZPPSearchResultCellIdentifier];
+  }
+  cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    cell.contentView.backgroundColor = [UIColor clearColor];
-    cell.backgroundColor = [UIColor clearColor];
+  cell.contentView.backgroundColor = [UIColor clearColor];
+  cell.backgroundColor = [UIColor clearColor];
 
-    ZPPAddress *address = self.results[indexPath.row];
+  ZPPAddress *address = self.results[indexPath.row];
 
-    cell.textLabel.text = [address formatedDescr];
-    cell.textLabel.numberOfLines = 0;
+  cell.textLabel.text = [address formatedDescr];
+  cell.textLabel.numberOfLines = 0;
 
-    return cell;
+  return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZPPAddress *address = self.results[indexPath.row];
+  ZPPAddress *address = self.results[indexPath.row];
 
-    if ([self.searchBar.text isEqualToString: address.address]) {
-        [self searchBarSearchButtonClicked:self.searchBar];
-    } else {
-        self.searchBar.text = address.address;
-        [self searchWithText:address.address];
-    }
+  if ([self.searchBar.text isEqualToString:address.address]) {
+    [self searchBarSearchButtonClicked:self.searchBar];
+  } else {
+    self.searchBar.text = address.address;
+    [self searchWithText:address.address];
+  }
 }
 
 #pragma mark - Search delegate
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    [self dismissViewControllerAnimated:YES completion:nil];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    [self searchWithText:searchText];
+  [self searchWithText:searchText];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    ZPPAddress *address = self.results.lastObject;
+  ZPPAddress *address = self.results.lastObject;
 
-    if (self.addressSearchDelegate && address) {
-        [[LMGeocoder sharedInstance] geocodeAddressString:address.address
-                                                  service:kLMGeocoderGoogleService
-                                        completionHandler:^(NSArray *results, NSError *error) {
-                                            ZPPAddress *bestResult = [ZPPAddressHelper addresFromAddres:results.lastObject];
-                                            if (bestResult) {
-                                                [self.addressSearchDelegate configureWithAddress:bestResult sender:self];
-                                                [self dismissViewControllerAnimated:YES completion:nil];
-                                            } else {
-                                                [self presentAlertWithMessage:@"Адрес введен неверно. Попробуйте ещё раз"];
-                                                [searchBar setText:nil];
-                                                [searchBar becomeFirstResponder];
-                                            }
-                                        }];
-    }
+  if (self.addressSearchDelegate && address) {
+    [[LMGeocoder sharedInstance] geocodeAddressString:address.address
+                                              service:kLMGeocoderGoogleService
+                                    completionHandler:^(NSArray *results, NSError *error) {
+                                      ZPPAddress *bestResult = [ZPPAddressHelper addresFromAddres:results.lastObject];
+                                      if (bestResult) {
+                                        [self.addressSearchDelegate configureWithAddress:bestResult sender:self];
+                                        [self dismissViewControllerAnimated:YES completion:nil];
+                                      } else {
+                                        [self presentAlertWithMessage:@"Адрес введен неверно. Попробуйте ещё раз"];
+                                        [searchBar setText:nil];
+                                        [searchBar becomeFirstResponder];
+                                      }
+                                    }];
+  }
 }
 
 - (void)presentAlertWithMessage:(NSString *)message {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
-                                                                   message:message
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-    [self presentViewController:alert animated:YES completion:nil];
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                 message:message
+                                                          preferredStyle:UIAlertControllerStyleAlert];
+  [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+  [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Address searching
 
 - (void)searchWithText:(NSString *)text {
-    if (!text || text.length < 3) {
-        return;
-    }
+  if (!text || text.length < 3) {
+    return;
+  }
 
-    [[IDDaDataSuggestions sharedInstance] getAddressSuggestionsForString:text
-                                                            restrictions: @[@{@"region": @"москва"}]
-                                                 hideRestrictionInResult:NO
-                                                                 success:^(NSArray *suggestions) {
-                                                                     NSArray *addresses = [ZPPAddressHelper addressesFromDaDataDicts:suggestions];
-                                                                     self.results = addresses;
-                                                                     [self.tableView reloadData];
-                                                                 }
-                                                                 failure:^(NSError *error) {
-
-                                                                 }];
+  [[IDDaDataSuggestions sharedInstance] getAddressSuggestionsForString:text
+                                                          restrictions:@[@{@"region": @"москва"}]
+                                               hideRestrictionInResult:NO
+                                                               success:^(NSArray *suggestions) {
+                                                                 NSArray *addresses = [ZPPAddressHelper addressesFromDaDataDicts:suggestions];
+                                                                 self.results = addresses;
+                                                                 [self.tableView reloadData];
+                                                               }
+                                                               failure:^(NSError *error) {
+                                                               }];
 }
 
 @end

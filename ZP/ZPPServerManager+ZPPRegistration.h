@@ -9,19 +9,20 @@
 #import "ZPPServerManager.h"
 
 typedef NS_ENUM(NSInteger, ZPPPasswordChangeStatus) {
-    ZPPPasswordChangeStatusOldWrong,
-    ZPPPasswordChangeStatusNewWrong,
-    ZPPPasswordChangeStatusSuccess,
-    ZPPPasswordChangeStatusUndefined
+  ZPPPasswordChangeStatusOldWrong,
+  ZPPPasswordChangeStatusNewWrong,
+  ZPPPasswordChangeStatusSuccess,
+  ZPPPasswordChangeStatusUndefined
 };
 
 typedef NS_ENUM(NSInteger, ZPPUserStatus) {
-    ZPPUserStatusExist,
-    ZPPUserStatusNotExist,
-    ZPPUserStatusUndefined
+  ZPPUserStatusExist,
+  ZPPUserStatusNotExist,
+  ZPPUserStatusUndefined
 };
 
 @class ZPPUser;
+
 @interface ZPPServerManager (ZPPRegistration)
 
 - (void)POSTRegistrateUser:(ZPPUser *)user
@@ -49,12 +50,12 @@ typedef NS_ENUM(NSInteger, ZPPUserStatus) {
 - (void)PATChPasswordOldPassword:(NSString *)oldPassword
                      newPassword:(NSString *)userNewPassword
                       completion:(void (^)(ZPPPasswordChangeStatus status,
-                                           NSError *err,
-                                           NSInteger stausCode))completion;
+                          NSError *err,
+                          NSInteger stausCode))completion;
 
 - (void)checkUserWithPhoneNumber:(NSString *)phoneNumber
                       completion:(void (^)(ZPPUserStatus status, NSError *err, NSInteger stausCode))
-                                     completion;
+                          completion;
 
 - (void)renewPasswordWithNumber:(NSString *)number
                            code:(NSString *)code
@@ -73,7 +74,6 @@ typedef NS_ENUM(NSInteger, ZPPUserStatus) {
                     token:(NSString *)token
                 onSuccess:(void (^)(NSString *token))success
                 onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
-
 
 #pragma mark - push
 

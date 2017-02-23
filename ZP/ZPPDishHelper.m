@@ -29,59 +29,59 @@ NSString *const ZPPOutOfStock = @"out_of_stock";
 @implementation ZPPDishHelper
 
 + (ZPPDish *)dishFromDict:(NSDictionary *)dict {
-    NSString *name = dict[ZPPDishName];
-    NSString *dishID = dict[ZPPDishID];
-    NSString *dishDescription = dict[ZPPDishDescription];
-    NSString *subtitle = dict[ZPPDishSubtitle];
-    NSNumber *dishPrice = dict[ZPPDishPrice];
-    NSString *imgUrlAppend = dict[ZPPDishImgURL];
-    NSNumber *outOfStockNum = dict[ZPPOutOfStock];
+  NSString *name = dict[ZPPDishName];
+  NSString *dishID = dict[ZPPDishID];
+  NSString *dishDescription = dict[ZPPDishDescription];
+  NSString *subtitle = dict[ZPPDishSubtitle];
+  NSNumber *dishPrice = dict[ZPPDishPrice];
+  NSString *imgUrlAppend = dict[ZPPDishImgURL];
+  NSNumber *outOfStockNum = dict[ZPPOutOfStock];
 
-    BOOL outOfStock = NO;
+  BOOL outOfStock = NO;
 
-    if (outOfStockNum && [outOfStockNum isKindOfClass:[NSNumber class]]) {
-        outOfStock = outOfStockNum.boolValue;
-    }
+  if (outOfStockNum && [outOfStockNum isKindOfClass:[NSNumber class]]) {
+    outOfStock = outOfStockNum.boolValue;
+  }
 
-    NSString *dishImgURL;
-    if (imgUrlAppend && ![imgUrlAppend isEqual:[NSNull null]]) {
-        dishImgURL = imgUrlAppend;
+  NSString *dishImgURL;
+  if (imgUrlAppend && ![imgUrlAppend isEqual:[NSNull null]]) {
+    dishImgURL = imgUrlAppend;
 //        dishImgURL = [ZPPServerBaseUrl stringByAppendingString:imgUrlAppend];
-    }
-    // NSString *dishImgURL = [ZPPServerBaseUrl stringByAppendingString:imgUrlAppend];
-    NSArray *ingsTmp = dict[ZPPDishIngridients];
-    NSArray *ingridients = [ZPPIngridientHelper parseIngridients:ingsTmp];
-    NSArray *badgesDicts = dict[ZPPDishBadges];
-    NSArray *badges = [ZPPBadgeHelper parseBadgeArray:badgesDicts];
+  }
+  // NSString *dishImgURL = [ZPPServerBaseUrl stringByAppendingString:imgUrlAppend];
+  NSArray *ingsTmp = dict[ZPPDishIngridients];
+  NSArray *ingridients = [ZPPIngridientHelper parseIngridients:ingsTmp];
+  NSArray *badgesDicts = dict[ZPPDishBadges];
+  NSArray *badges = [ZPPBadgeHelper parseBadgeArray:badgesDicts];
 
-    ZPPEnergy *energy = [ZPPEnergyHelper parseEnergyDict:dict];
+  ZPPEnergy *energy = [ZPPEnergyHelper parseEnergyDict:dict];
 
-    ZPPDish *dish = [[ZPPDish alloc] initWithName:name
-                                           dishID:dishID
-                                         subtitle:subtitle
-                                  dishDescription:dishDescription
-                                            price:dishPrice
-                                           imgURL:dishImgURL
-                                      ingridients:ingridients
-                                           badges:badges
-                                          noItems:outOfStock
-                                           energy:energy];
+  ZPPDish *dish = [[ZPPDish alloc] initWithName:name
+                                         dishID:dishID
+                                       subtitle:subtitle
+                                dishDescription:dishDescription
+                                          price:dishPrice
+                                         imgURL:dishImgURL
+                                    ingridients:ingridients
+                                         badges:badges
+                                        noItems:outOfStock
+                                         energy:energy];
 
-    return dish;
+  return dish;
 }
 
 + (NSArray *)parseDishes:(NSArray *)dishes {
-    NSMutableArray *tmpArr = [NSMutableArray array];
-    for (NSDictionary *d in dishes) {
-        ZPPDish *dish = [[self class] dishFromDict:d];
-        [tmpArr addObject:dish];
-    }
+  NSMutableArray *tmpArr = [NSMutableArray array];
+  for (NSDictionary *d in dishes) {
+    ZPPDish *dish = [[self class] dishFromDict:d];
+    [tmpArr addObject:dish];
+  }
 
-    NSArray *res = [NSArray arrayWithArray:tmpArr];
+  NSArray *res = [NSArray arrayWithArray:tmpArr];
 
-    [ZPPImageWorker preheatImagesOfObjects:res];
+  [ZPPImageWorker preheatImagesOfObjects:res];
 
-    return res;
+  return res;
 }
 
 //- (NSArray *)parseMeals:(NSArray *)meals {

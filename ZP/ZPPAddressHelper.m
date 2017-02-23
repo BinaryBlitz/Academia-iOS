@@ -14,98 +14,98 @@
 @implementation ZPPAddressHelper
 
 + (ZPPAddress *)addresFromAddres:(LMAddress *)addr {
-    NSString *route = [addr valueForKey:@"route"];//[self component:@"route" inArray:addr.lines ofType:@"short_name"];
-    NSString *streetName = nil;
-    if (route && addr.streetNumber) {
-        streetName = [NSString stringWithFormat:@"%@, %@", route, addr.streetNumber];
-    } else if (route) {
-        streetName = [NSString stringWithFormat:@"%@", route];
-    } else {
-        return nil;
-    }
+  NSString *route = [addr valueForKey:@"route"];//[self component:@"route" inArray:addr.lines ofType:@"short_name"];
+  NSString *streetName = nil;
+  if (route && addr.streetNumber) {
+    streetName = [NSString stringWithFormat:@"%@, %@", route, addr.streetNumber];
+  } else if (route) {
+    streetName = [NSString stringWithFormat:@"%@", route];
+  } else {
+    return nil;
+  }
 
-    ZPPAddress *address = [[ZPPAddress alloc] initWithCoordinate:addr.coordinate
-                                                         Country:addr.country
-                                                            city:addr.locality
-                                                         address:streetName];
+  ZPPAddress *address = [[ZPPAddress alloc] initWithCoordinate:addr.coordinate
+                                                       Country:addr.country
+                                                          city:addr.locality
+                                                       address:streetName];
 
-    return address;
+  return address;
 }
 
 + (NSString *)component:(NSString *)component inArray:(NSArray *)array ofType:(NSString *)type {
-    NSInteger index = [array indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
-        return [(NSString *)([[obj objectForKey:@"types"] firstObject]) isEqualToString:component];
-    }];
+  NSInteger index = [array indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
+    return [(NSString *) ([[obj objectForKey:@"types"] firstObject]) isEqualToString:component];
+  }];
 
-    if (index == NSNotFound) {
-        return nil;
-    }
+  if (index == NSNotFound) {
+    return nil;
+  }
 
-    if (index >= array.count) {
-        return nil;
-    }
+  if (index >= array.count) {
+    return nil;
+  }
 
-    return [[array objectAtIndex:index] valueForKey:type];
+  return [[array objectAtIndex:index] valueForKey:type];
 }
 
 + (ZPPAddress *)addressFromDict:(NSDictionary *)dict {
-    NSString *address = dict[@"address"];
-    double lat = [dict[@"latitude"] doubleValue];
-    double lon = [dict[@"longitude"] doubleValue];
+  NSString *address = dict[@"address"];
+  double lat = [dict[@"latitude"] doubleValue];
+  double lon = [dict[@"longitude"] doubleValue];
 
-    CLLocationCoordinate2D loc = CLLocationCoordinate2DMake(lat, lon);
+  CLLocationCoordinate2D loc = CLLocationCoordinate2DMake(lat, lon);
 
-    ZPPAddress *a =
-        [[ZPPAddress alloc] initWithCoordinate:loc Country:nil city:nil address:address];
+  ZPPAddress *a =
+      [[ZPPAddress alloc] initWithCoordinate:loc Country:nil city:nil address:address];
 
-    return a;
+  return a;
 }
 
 + (NSArray *)parsePoints:(NSArray *)points {
-    NSMutableArray *tmp = [NSMutableArray array];
-    for (NSDictionary *d in points) {
-        NSNumber *lat = d[@"latitude"];
-        NSNumber *lon = d[@"longitude"];
+  NSMutableArray *tmp = [NSMutableArray array];
+  for (NSDictionary *d in points) {
+    NSNumber *lat = d[@"latitude"];
+    NSNumber *lon = d[@"longitude"];
 
-        if ([lat isEqual:[NSNull null]] || [lon isEqual:[NSNull null]]) {
-            continue;
-        }
-        CLLocationCoordinate2D c = CLLocationCoordinate2DMake([lat doubleValue], [lon doubleValue]);
-
-        ZPPAddress *adr =
-            [[ZPPAddress alloc] initWithCoordinate:c Country:nil city:nil address:nil];
-
-        [tmp addObject:adr];
+    if ([lat isEqual:[NSNull null]] || [lon isEqual:[NSNull null]]) {
+      continue;
     }
-    return [NSArray arrayWithArray:tmp];
+    CLLocationCoordinate2D c = CLLocationCoordinate2DMake([lat doubleValue], [lon doubleValue]);
+
+    ZPPAddress *adr =
+        [[ZPPAddress alloc] initWithCoordinate:c Country:nil city:nil address:nil];
+
+    [tmp addObject:adr];
+  }
+  return [NSArray arrayWithArray:tmp];
 }
 
 + (NSArray *)addressesFromDaDataDicts:(NSArray *)dicts {
-    NSMutableArray *tmp = [NSMutableArray array];
-    for (NSDictionary *d in dicts) {
-         ZPPAddress *a = [[self class] addresFromDaDataDict:d];
+  NSMutableArray *tmp = [NSMutableArray array];
+  for (NSDictionary *d in dicts) {
+    ZPPAddress *a = [[self class] addresFromDaDataDict:d];
 
-         [tmp addObject:a];
-     }
+    [tmp addObject:a];
+  }
 
-    return [NSArray arrayWithArray:tmp];
+  return [NSArray arrayWithArray:tmp];
 }
 
 + (ZPPAddress *)addresFromDaDataDict:(NSDictionary *)dict {
-    NSDictionary *locationDict = dict[@"data"];
-    NSString *unrestricted_value = dict[@"unrestricted_value"];
+  NSDictionary *locationDict = dict[@"data"];
+  NSString *unrestricted_value = dict[@"unrestricted_value"];
 
-    CLLocationCoordinate2D c = CLLocationCoordinate2DMake(0, 0);
-    if (locationDict[@"geo_lat"] && ![locationDict[@"geo_lat"] isEqual:[NSNull null]]) {
-        double lat = [locationDict[@"geo_lat"] doubleValue];
-        double lon = [locationDict[@"geo_lon"] doubleValue];
-        c = CLLocationCoordinate2DMake(lat, lon);
-    }
+  CLLocationCoordinate2D c = CLLocationCoordinate2DMake(0, 0);
+  if (locationDict[@"geo_lat"] && ![locationDict[@"geo_lat"] isEqual:[NSNull null]]) {
+    double lat = [locationDict[@"geo_lat"] doubleValue];
+    double lon = [locationDict[@"geo_lon"] doubleValue];
+    c = CLLocationCoordinate2DMake(lat, lon);
+  }
 
-    ZPPAddress *a =
-        [[ZPPAddress alloc] initWithCoordinate:c Country:nil city:nil address:unrestricted_value];
+  ZPPAddress *a =
+      [[ZPPAddress alloc] initWithCoordinate:c Country:nil city:nil address:unrestricted_value];
 
-    return a;
+  return a;
 }
 
 @end

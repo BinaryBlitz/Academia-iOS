@@ -12,15 +12,15 @@
 @implementation ZPPActivateCardCell
 
 - (void)awakeFromNib {
-    // Initialization code
-    [super awakeFromNib];
-    [self.codeTextField makeBordered];
+  // Initialization code
+  [super awakeFromNib];
+  [self.codeTextField makeBordered];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+  [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+  // Configure the view for the selected state
 }
 
 @end

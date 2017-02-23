@@ -26,56 +26,53 @@
 
 static NSString
     *ZPPUserNotExistMessage = @"Пользователь с таким номером не "
-                              @"зарегистрирован";  // TODO
+    @"зарегистрирован";  // TODO
 
 static NSString *ZPPPasswordRenewCodeInputIdentifier = @"ZPPPasswordRenewCodeInputIdentifier";
-
-
 
 @implementation ZPPPasswordRenewPhoneInputVC
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
-    [self.doneButton addTarget:self
-                        action:@selector(doneAction:)
-              forControlEvents:UIControlEventTouchUpInside];
+  [self.doneButton addTarget:self
+                      action:@selector(doneAction:)
+            forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)doneAction:(UIButton *)sender {
-    //  [sender startIndicating];
-    if (![self checkPhoneTextField:self.phoneNumberTextFiled]) {
-        [self.phoneNumberTextFiled.superview shakeView];
-        [self.phoneNumberTextFiled becomeFirstResponder];
-        [self showWarningWithText:ZPPPhoneWarningMessage];
+  //  [sender startIndicating];
+  if (![self checkPhoneTextField:self.phoneNumberTextFiled]) {
+    [self.phoneNumberTextFiled.superview shakeView];
+    [self.phoneNumberTextFiled becomeFirstResponder];
+    [self showWarningWithText:ZPPPhoneWarningMessage];
+  } else {
+    [sender startIndicating];
+    [[ZPPServerManager sharedManager]
+        checkUserWithPhoneNumber:[self user].phoneNumber
+                      completion:^(ZPPUserStatus status, NSError *err, NSInteger stausCode) {
+                        //[sender stopIndication];
 
-    } else {
-        [sender startIndicating];
-        [[ZPPServerManager sharedManager]
-            checkUserWithPhoneNumber:[self user].phoneNumber
-                          completion:^(ZPPUserStatus status, NSError *err, NSInteger stausCode) {
-                              //[sender stopIndication];
+                        switch (status) {
+                          case ZPPUserStatusExist:
+                            [self sendCode];
+                            break;
+                          case ZPPUserStatusNotExist:
+                            [sender stopIndication];
+                            [self showWarningWithText:ZPPUserNotExistMessage];
+                            break;
 
-                              switch (status) {
-                                  case ZPPUserStatusExist:
-                                      [self sendCode];
-                                      break;
-                                  case ZPPUserStatusNotExist:
-                                      [sender stopIndication];
-                                      [self showWarningWithText:ZPPUserNotExistMessage];
-                                      break;
+                          case ZPPUserStatusUndefined:
+                            [sender stopIndication];
+                            [self showWarningWithText:ZPPNoInternetConnectionMessage];
+                            break;
 
-                                  case ZPPUserStatusUndefined:
-                                      [sender stopIndication];
-                                      [self showWarningWithText:ZPPNoInternetConnectionMessage];
-                                      break;
-
-                                  default:
-                                      [sender stopIndication];
-                                      break;
-                              }
-                          }];
-    }
+                          default:
+                            [sender stopIndication];
+                            break;
+                        }
+                      }];
+  }
 }
 
 - (void)sendCode {
@@ -102,13 +99,12 @@ static NSString *ZPPPasswordRenewCodeInputIdentifier = @"ZPPPasswordRenewCodeInp
 }
 
 - (void)showCodeInput {
-    ZPPPasswordRenewCodeInput *vc = [self.storyboard instantiateViewControllerWithIdentifier:ZPPPasswordRenewCodeInputIdentifier];
+  ZPPPasswordRenewCodeInput *vc = [self.storyboard instantiateViewControllerWithIdentifier:ZPPPasswordRenewCodeInputIdentifier];
 
-    [vc setUser:[self user]];
- //   [vc setCode:self.code];
+  [vc setUser:[self user]];
+  //   [vc setCode:self.code];
 
-    [self.navigationController pushViewController:vc animated:YES];
-
+  [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

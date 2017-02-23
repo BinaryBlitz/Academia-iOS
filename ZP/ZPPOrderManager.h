@@ -14,7 +14,6 @@
 
 + (ZPPOrderManager *)sharedManager;
 
-
-- (void)updateOrdersCompletion:(void(^)(NSInteger count))completion;
+- (void)updateOrdersCompletion:(void (^)(NSInteger count))completion;
 
 @end

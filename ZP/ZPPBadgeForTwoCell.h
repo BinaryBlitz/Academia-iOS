@@ -12,5 +12,4 @@
 @interface ZPPBadgeForTwoCell : ZPPBadgeCell
 
 
-
 @end

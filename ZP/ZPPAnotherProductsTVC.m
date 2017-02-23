@@ -40,6 +40,7 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / ДЕСЕРТЫ";
 - (void)configureWithOrder:(ZPPOrder *)order {
   self.order = order;
 }
+
 - (void)configureWithStuffs:(NSArray *)stuffs {
   self.anotherProducts = stuffs;
   [self.tableView reloadData];
@@ -151,7 +152,7 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / ДЕСЕРТЫ";
       [self.productDelegate addItemIntoOrder:stuff];
     }
   }
-  
+
   [self.tableView reloadData];
 }
 @end

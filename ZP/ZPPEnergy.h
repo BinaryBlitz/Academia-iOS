@@ -15,10 +15,9 @@
 @property (strong, nonatomic, readonly) NSNumber *carbohydrates;
 @property (strong, nonatomic, readonly) NSNumber *proteins;
 
-
 - (instancetype)initWithFats:(NSNumber *)fats
-            kilocalories:(NSNumber *)kilocalories
-           carbohydrates:(NSNumber *)carbohydrates
+                kilocalories:(NSNumber *)kilocalories
+               carbohydrates:(NSNumber *)carbohydrates
                     proteins:(NSNumber *)proteins;
 
 

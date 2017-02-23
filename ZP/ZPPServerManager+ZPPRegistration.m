@@ -17,49 +17,48 @@
 - (void)POSTRegistrateUser:(ZPPUser *)user
                  onSuccess:(void (^)(ZPPUser *user))success
                  onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    NSDictionary *userDict = [ZPPUserHelper convertUser:user];
+  NSDictionary *userDict = [ZPPUserHelper convertUser:user];
 
-    NSDictionary *params = @{ @"user" : userDict };
-    [self.requestOperationManager POST:@"user.json"
-        parameters:params
-        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-            ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
-            if (success) {
-                success(user);
-            }
-        }
-        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
-            [[self class] failureWithBlock:failure error:error operation:operation];
-        }];
+  NSDictionary *params = @{@"user": userDict};
+  [self.requestOperationManager POST:@"user.json"
+                          parameters:params
+                             success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+                               ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
+                               if (success) {
+                                 success(user);
+                               }
+                             }
+                             failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+                               [[self class] failureWithBlock:failure error:error operation:operation];
+                             }];
 }
 
 - (void)POSTAuthenticateUserWithEmail:(NSString *)email
                              password:(NSString *)password
                             onSuccess:(void (^)(ZPPUser *user))success
                             onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    if (!email || !password) {
-        if (failure) {
-            failure(nil, -1);
-        }
-        return;
+  if (!email || !password) {
+    if (failure) {
+      failure(nil, -1);
     }
+    return;
+  }
 
-    NSDictionary *params = @{ @"email" : email, @"password" : password };
+  NSDictionary *params = @{@"email": email, @"password": password};
 
-    [self.requestOperationManager POST:@"user/authenticate.json"
-        parameters:params
-        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+  [self.requestOperationManager POST:@"user/authenticate.json"
+                          parameters:params
+                             success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
 
-            ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
+                               ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
 
-            if (success) {
-                success(user);
-            }
-
-        }
-        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
-            [[self class] failureWithBlock:failure error:error operation:operation];
-        }];
+                               if (success) {
+                                 success(user);
+                               }
+                             }
+                             failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+                               [[self class] failureWithBlock:failure error:error operation:operation];
+                             }];
 }
 
 - (void)PATCHUpdateUserWithName:(NSString *)name
@@ -67,95 +66,92 @@
                           email:(NSString *)email
                       onSuccess:(void (^)())success
                       onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    if (!name && !lastName && !email) {
-        if (failure) {
-            failure(nil, -1);
-        }
-        return;
+  if (!name && !lastName && !email) {
+    if (failure) {
+      failure(nil, -1);
     }
+    return;
+  }
 
-    NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
+  NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
 
-    if (name) {
-        userDict[@"first_name"] = name;
-    }
+  if (name) {
+    userDict[@"first_name"] = name;
+  }
 
-    if (lastName) {
-        userDict[@"last_name"] = lastName;
-    }
+  if (lastName) {
+    userDict[@"last_name"] = lastName;
+  }
 
-    if (email) {
-        userDict[@"email"] = email;
-    }
+  if (email) {
+    userDict[@"email"] = email;
+  }
 
-    NSDictionary *params =
-        @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken,
-           @"user" : userDict };
+  NSDictionary *params =
+      @{@"api_token": [ZPPUserManager sharedInstance].user.apiToken,
+          @"user": userDict};
 
-    [self.requestOperationManager PATCH:@"user.json"
-        parameters:params
-        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-            if (success) {
-                success();
-            }
-        }
-        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+  [self.requestOperationManager PATCH:@"user.json"
+                           parameters:params
+                              success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+                                if (success) {
+                                  success();
+                                }
+                              }
+                              failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
 
-            [[self class] failureWithBlock:failure error:error operation:operation];
-
-        }];
+                                [[self class] failureWithBlock:failure error:error operation:operation];
+                              }];
 }
-
 
 - (void)updateToken:(nullable NSString *)token onSuccess:(void (^)())success
           onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
 
-    NSDictionary *userDict = @{@"api_token": !token ? [NSNull null] : token,
-                               @"platform":@"ios"};
+  NSDictionary *userDict = @{@"api_token": !token ? [NSNull null] : token,
+      @"platform": @"ios"};
 
-    NSDictionary *params =
-    @{ @"api_token" : [ZPPUserManager sharedInstance].user.apiToken,
-       @"user" : userDict };
+  NSDictionary *params =
+      @{@"api_token": [ZPPUserManager sharedInstance].user.apiToken,
+          @"user": userDict};
 
-    [self.requestOperationManager PATCH:@"user.json"
-                             parameters:params
-                                success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-                                    if (success) {
-                                        success();
-                                    }
+  [self.requestOperationManager PATCH:@"user.json"
+                           parameters:params
+                              success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+                                if (success) {
+                                  success();
                                 }
-                                failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+                              }
+                              failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
 
-                                    [[self class] failureWithBlock:failure error:error operation:operation];
-
-                                }];
+                                [[self class] failureWithBlock:failure error:error operation:operation];
+                              }];
 }
 
 - (void)PATChPasswordOldPassword:(NSString *)oldPassword
                      newPassword:(NSString *)userNewPassword
                       completion:(void (^)(ZPPPasswordChangeStatus status,
-                                           NSError *err,
-                                           NSInteger stausCode))completion {
+                          NSError *err,
+                          NSInteger stausCode))completion {
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)),
-                   dispatch_get_main_queue(), ^{
-                       NSInteger st = arc4random() % 4;
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (2 * NSEC_PER_SEC)),
+      dispatch_get_main_queue(), ^{
+        NSInteger st = arc4random() % 4;
 
-                       completion(st, nil, 200);
-                   });
+        completion(st, nil, 200);
+      });
 }
 
 // redo!
 - (void)checkUserWithPhoneNumber:(NSString *)phoneNumber
                       completion:(void (^)(ZPPUserStatus status, NSError *err, NSInteger stausCode))
-                                     completion {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)),
-                   dispatch_get_main_queue(), ^{
+                          completion {
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (1.5 * NSEC_PER_SEC)),
+      dispatch_get_main_queue(), ^{
 
-                       if (completion) {
-                           completion(arc4random() % 3, nil, 200);
-                       }
-                   });
+        if (completion) {
+          completion(arc4random() % 3, nil, 200);
+        }
+      });
 }
 
 - (void)renewPasswordWithNumber:(NSString *)number
@@ -163,51 +159,51 @@
                        password:(NSString *)password
                       onSuccess:(void (^)())success
                       onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)),
-                   dispatch_get_main_queue(), ^{
-                       if (success) {
-                           success();
-                       }
-                   });
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (2 * NSEC_PER_SEC)),
+      dispatch_get_main_queue(), ^{
+        if (success) {
+          success();
+        }
+      });
 }
 
 - (void)getCurrentUserOnSuccess:(void (^)(ZPPUser *user))success
                       onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
 
-    [self getCurrentUserWithToken:[ZPPUserManager sharedInstance].user.apiToken
-                        onSuccess:success
-                        onFailure:failure];
+  [self getCurrentUserWithToken:[ZPPUserManager sharedInstance].user.apiToken
+                      onSuccess:success
+                      onFailure:failure];
 }
 
 - (void)getCurrentUserWithToken:(NSString *)token
                       onSuccess:(void (^)(ZPPUser *user))success
                       onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    if (!token) {
-        if (failure) {
-            failure(nil, -1);
-        }
-
-        return;
+  if (!token) {
+    if (failure) {
+      failure(nil, -1);
     }
 
-    NSDictionary *params = @{ @"api_token" : token };
+    return;
+  }
 
-    [self.requestOperationManager GET:@"user.json"
-        parameters:params
-        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-            NSLog(@"resp %@", responseObject);
+  NSDictionary *params = @{@"api_token": token};
 
-            ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
+  [self.requestOperationManager GET:@"user.json"
+                         parameters:params
+                            success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+                              NSLog(@"resp %@", responseObject);
 
-            if (success) {
-                success(user);
-            }
-            [[ZPPUserManager sharedInstance] setUser:user];
-        }
-        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
-            NSLog(@"err %@", error);
-            [[self class] failureWithBlock:failure error:error operation:operation];
-        }];
+                              ZPPUser *user = [ZPPUserHelper userFromDict:responseObject];
+
+                              if (success) {
+                                success(user);
+                              }
+                              [[ZPPUserManager sharedInstance] setUser:user];
+                            }
+                            failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+                              NSLog(@"err %@", error);
+                              [[self class] failureWithBlock:failure error:error operation:operation];
+                            }];
 }
 
 #pragma mark - new registration
@@ -215,23 +211,22 @@
 - (void)sendSmsToPhoneNumber:(NSString *)phoneNumber
                    onSuccess:(void (^)(NSString *tempToken))success
                    onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    NSLog(@"phone number %@", phoneNumber);
-    NSDictionary *params = @{ @"phone_number" : phoneNumber };
+  NSLog(@"phone number %@", phoneNumber);
+  NSDictionary *params = @{@"phone_number": phoneNumber};
 
-    [self.requestOperationManager POST:@"verification_tokens.json"
-        parameters:params
-        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+  [self.requestOperationManager POST:@"verification_tokens.json"
+                          parameters:params
+                             success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
 
-            NSLog(@"verf resp %@", responseObject);
-            NSString *tempToken = responseObject[@"token"];
-            if (success) {
-                success(tempToken);
-            }
-
-        }
-        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
-            [[self class] failureWithBlock:failure error:error operation:operation];
-        }];
+                               NSLog(@"verf resp %@", responseObject);
+                               NSString *tempToken = responseObject[@"token"];
+                               if (success) {
+                                 success(tempToken);
+                               }
+                             }
+                             failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+                               [[self class] failureWithBlock:failure error:error operation:operation];
+                             }];
 }
 
 - (void)verifyPhoneNumber:(NSString *)phoneNumber
@@ -239,26 +234,26 @@
                     token:(NSString *)token
                 onSuccess:(void (^)(NSString *token))success
                 onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
-    NSDictionary *params = @{ @"code" : code };
+  NSDictionary *params = @{@"code": code};
 
-    NSString *urlString = [NSString stringWithFormat:@"verification_tokens/%@.json", token];
+  NSString *urlString = [NSString stringWithFormat:@"verification_tokens/%@.json", token];
 
-    [self.requestOperationManager PATCH:urlString
-        parameters:params
-        success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-            NSString *t = responseObject[@"api_token"];
+  [self.requestOperationManager PATCH:urlString
+                           parameters:params
+                              success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+                                NSString *t = responseObject[@"api_token"];
 
-            if([t isEqual:[NSNull null]]) {
-                t = nil;
-            }
+                                if ([t isEqual:[NSNull null]]) {
+                                  t = nil;
+                                }
 
-            if (success) {
-                success(t);
-            }
-        }
-        failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
-            [[self class] failureWithBlock:failure error:error operation:operation];
-        }];
+                                if (success) {
+                                  success(t);
+                                }
+                              }
+                              failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+                                [[self class] failureWithBlock:failure error:error operation:operation];
+                              }];
 }
 
 @end

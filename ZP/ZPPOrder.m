@@ -21,12 +21,12 @@
 @implementation ZPPOrder
 
 - (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.orderStatus = ZPPOrderStatusNotSended;
-        self.deliverNow = YES;
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    self.orderStatus = ZPPOrderStatusNotSended;
+    self.deliverNow = YES;
+  }
+  return self;
 }
 
 - (instancetype)initWithIdentifier:(NSString *)identifier
@@ -36,145 +36,144 @@
                               date:(NSDate *)date
                             review:(NSString *)review
                             rating:(float)rating {
-    self = [super init];
-    if (self) {
-        self.identifier = identifier;
-        self.items = items;
-        self.address = address;
-        self.orderStatus = status;
-        self.date = date;
-        self.starValue = rating;
-        self.commentString = review;
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    self.identifier = identifier;
+    self.items = items;
+    self.address = address;
+    self.orderStatus = status;
+    self.date = date;
+    self.starValue = rating;
+    self.commentString = review;
+  }
+  return self;
 }
 
-- (void)addItem:(id<ZPPItemProtocol>)item {
-    ZPPOrderItem *oi = [self orderItemForItem:item];
-    if (oi) {
-        [oi addOneItem];
-    } else {
-        oi = [[ZPPOrderItem alloc] initWithItem:item];
-        [self.items addObject:oi];
-    }
-
+- (void)addItem:(id <ZPPItemProtocol>)item {
+  ZPPOrderItem *oi = [self orderItemForItem:item];
+  if (oi) {
+    [oi addOneItem];
+  } else {
+    oi = [[ZPPOrderItem alloc] initWithItem:item];
+    [self.items addObject:oi];
+  }
 }
 
-- (void)removeItem:(id<ZPPItemProtocol>)item {
-    ZPPOrderItem *oi = [self orderItemForItem:item];
+- (void)removeItem:(id <ZPPItemProtocol>)item {
+  ZPPOrderItem *oi = [self orderItemForItem:item];
 
-    if (oi) {
-        [oi removeOneItem];
-        if (oi.count == 0) {
-            [self.items removeObject:oi];
-        }
+  if (oi) {
+    [oi removeOneItem];
+    if (oi.count == 0) {
+      [self.items removeObject:oi];
     }
+  }
 }
 
 - (void)checkAllAndRemoveEmpty {
-    for (int i = 0; i < self.items.count; i++) {
-        ZPPOrderItem *orderItem = self.items[i];
-        if (orderItem.count == 0) {
-            [self.items removeObject:orderItem];
-            i--;
-        }
+  for (int i = 0; i < self.items.count; i++) {
+    ZPPOrderItem *orderItem = self.items[i];
+    if (orderItem.count == 0) {
+      [self.items removeObject:orderItem];
+      i--;
     }
+  }
 }
 
-- (ZPPOrderItem *)orderItemForItem:(id<ZPPItemProtocol>)item {
-    for (ZPPOrderItem *oi in self.items) {
-        if ([[oi.item identifierOfItem] isEqual:[item identifierOfItem]]) {
-            return oi;
-        }
+- (ZPPOrderItem *)orderItemForItem:(id <ZPPItemProtocol>)item {
+  for (ZPPOrderItem *oi in self.items) {
+    if ([[oi.item identifierOfItem] isEqual:[item identifierOfItem]]) {
+      return oi;
     }
-    return nil;
+  }
+  return nil;
 }
 
 - (NSInteger)totalCount {
-    NSInteger res = 0;
-    for (ZPPOrderItem *oi in self.items) {
-        res += oi.count;
-    }
-    return res;
+  NSInteger res = 0;
+  for (ZPPOrderItem *oi in self.items) {
+    res += oi.count;
+  }
+  return res;
 }
 
 - (NSInteger)totalPrice {
-    NSInteger price = 0;
-    for (ZPPOrderItem *orderItem in self.items) {
-        price += orderItem.count * [orderItem.item priceOfItem];
-    }
+  NSInteger price = 0;
+  for (ZPPOrderItem *orderItem in self.items) {
+    price += orderItem.count * [orderItem.item priceOfItem];
+  }
 
-    return price;
+  return price;
 }
 
 - (NSInteger)totalPriceWithDelivery {
-    NSInteger price = [self totalPrice];
+  NSInteger price = [self totalPrice];
 
-    if (price < 1000) {
-        price += 200;
-    }
+  if (price < 1000) {
+    price += 200;
+  }
 
-    return price;
+  return price;
 }
 
 - (NSInteger)totalPriceWithAllTheThings {
 
-    double price = [self totalPriceWithDelivery];
-    ZPPUser *user = [ZPPUserManager sharedInstance].user;
+  double price = [self totalPriceWithDelivery];
+  ZPPUser *user = [ZPPUserManager sharedInstance].user;
 
-    // Discount
-    if ([user.discount intValue] != 0) {
-        double discount = price * ([user.discount doubleValue] / 100.0);
-        price -= discount;
-    }
+  // Discount
+  if ([user.discount intValue] != 0) {
+    double discount = price * ([user.discount doubleValue] / 100.0);
+    price -= discount;
+  }
 
-    // Balance
-    if ([user.balance intValue] > price) {
-        price -= price;
-    } else {
-        price -= [user.balance intValue];
-    }
+  // Balance
+  if ([user.balance intValue] > price) {
+    price -= price;
+  } else {
+    price -= [user.balance intValue];
+  }
 
-    // No zero  payments
-    if (price <= 0) {
-        price = 1;
-    }
+  // No zero  payments
+  if (price <= 0) {
+    price = 1;
+  }
 
-    return round(price);
+  return round(price);
 }
 
 - (BOOL)deliveryIncluded {
-    return [self totalPrice] != [self totalPriceWithDelivery];
+  return [self totalPrice] != [self totalPriceWithDelivery];
 }
 
 - (NSMutableArray *)items {
-    if (!_items) {
-        _items = [NSMutableArray array];
-    }
-    return _items;
+  if (!_items) {
+    _items = [NSMutableArray array];
+  }
+  return _items;
 }
 
 - (NSString *)orderDescr {
-    NSString *descrString = @"";
-    for (ZPPOrderItem *item in self.items) {
-        NSString *str = [item.item nameOfItem];
-        if (descrString.length != 0) {
-            str = [@", " stringByAppendingString:str];
-        } else {
-            str = [str capitalizedString];
-        }
-        descrString = [descrString stringByAppendingString:str];
+  NSString *descrString = @"";
+  for (ZPPOrderItem *item in self.items) {
+    NSString *str = [item.item nameOfItem];
+    if (descrString.length != 0) {
+      str = [@", " stringByAppendingString:str];
+    } else {
+      str = [str capitalizedString];
     }
+    descrString = [descrString stringByAppendingString:str];
+  }
 
-    return descrString;
+  return descrString;
 }
 
 - (void)clearOrder {
-    self.items = nil;
-    self.identifier = nil;
-    self.address = nil;
-    self.date = nil;
-    self.orderStatus = ZPPOrderStatusNotSended;
+  self.items = nil;
+  self.identifier = nil;
+  self.address = nil;
+  self.date = nil;
+  self.orderStatus = ZPPOrderStatusNotSended;
 }
 
 @end

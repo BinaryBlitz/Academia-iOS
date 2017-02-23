@@ -9,6 +9,7 @@
 #import "ZPPIngridient.h"
 
 @interface ZPPIngridient ()
+
 @property (copy, nonatomic) NSString *name;
 @property (copy, nonatomic) NSString *ingridientID;
 @property (copy, nonatomic) NSString *urlAsString;
@@ -24,24 +25,24 @@
 
 - (instancetype)initWithName:(NSString *)name
                 ingridientID:(NSString *)ingridientID
-                 urlAsString:(NSString *)urlAsString  weight:(NSNumber *)weight{
-    self = [super init];
-    if (self) {
-        self.name = name;
-        self.ingridientID = ingridientID;
-        self.urlAsString = urlAsString;
-        self.weight = weight;
-    }
-    return self;
+                 urlAsString:(NSString *)urlAsString weight:(NSNumber *)weight {
+  self = [super init];
+  if (self) {
+    self.name = name;
+    self.ingridientID = ingridientID;
+    self.urlAsString = urlAsString;
+    self.weight = weight;
+  }
+  return self;
 }
 
 - (NSURL *)URLOfImage {
-    NSURL *res;
-    if (self.urlAsString) {
-        res = [NSURL URLWithString:self.urlAsString];
-    }
+  NSURL *res;
+  if (self.urlAsString) {
+    res = [NSURL URLWithString:self.urlAsString];
+  }
 
-    return res;
+  return res;
 }
 
 @end

@@ -10,7 +10,7 @@
 
 @class ZPPOrder;
 
-@interface ZPPOrderHistoryOrderTVC: UITableViewController
+@interface ZPPOrderHistoryOrderTVC : UITableViewController
 
 @property (strong, nonatomic, readonly) ZPPOrder *order;
 

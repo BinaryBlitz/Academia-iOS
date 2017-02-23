@@ -10,18 +10,18 @@
 #import "ZPPItemProtocol.h"
 
 typedef NS_ENUM(NSInteger, ZPPOrderStatus) {
-    ZPPOrderStatusNew,
-    ZPPOrderStatusOnTheWay,
-    ZPPOrderStatusRejected,
-    ZPPOrderStatusDelivered,
-    ZPPOrderStatusNotSended
+  ZPPOrderStatusNew,
+  ZPPOrderStatusOnTheWay,
+  ZPPOrderStatusRejected,
+  ZPPOrderStatusDelivered,
+  ZPPOrderStatusNotSended
 };
 
 @class ZPPAddress;
 @class ZPPOrderItem;
 @class ZPPCreditCard;
 
-@interface ZPPOrder: NSObject
+@interface ZPPOrder : NSObject
 
 @property (strong, nonatomic, readonly) NSMutableArray *items;
 @property (strong, nonatomic) NSDate *date;
@@ -44,9 +44,9 @@ typedef NS_ENUM(NSInteger, ZPPOrderStatus) {
                             review:(NSString *)review
                             rating:(float)rating;
 
-- (void)addItem:(id<ZPPItemProtocol>)item;
-- (void)removeItem:(id<ZPPItemProtocol>)item;
-- (ZPPOrderItem *)orderItemForItem:(id<ZPPItemProtocol>)item;
+- (void)addItem:(id <ZPPItemProtocol>)item;
+- (void)removeItem:(id <ZPPItemProtocol>)item;
+- (ZPPOrderItem *)orderItemForItem:(id <ZPPItemProtocol>)item;
 - (void)checkAllAndRemoveEmpty;
 - (NSInteger)totalCount;
 - (NSInteger)totalPrice;

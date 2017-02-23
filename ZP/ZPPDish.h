@@ -12,7 +12,7 @@
 
 @class ZPPEnergy;
 
-@interface ZPPDish : NSObject <ZPPItemProtocol,ZPPWithImageURL>
+@interface ZPPDish : NSObject <ZPPItemProtocol, ZPPWithImageURL>
 
 @property (copy, nonatomic, readonly) NSString *name;
 @property (copy, nonatomic, readonly) NSString *dishID;

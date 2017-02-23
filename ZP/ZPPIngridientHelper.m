@@ -20,40 +20,40 @@ NSString *const ZPPIngridientWeight = @"weight";
 @implementation ZPPIngridientHelper
 
 + (ZPPIngridient *)ingridientFromDict:(NSDictionary *)dict {
-    NSString *name = dict[ZPPIngridientName];
-    NSString *ingridientID = dict[ZPPIngridientID];
-    NSString *urlAppend = dict[ZPPIngridientURL];
-    NSString *urlAsString = nil;
-    if (![urlAppend isEqual:[NSNull null]]) {
-        urlAsString = urlAppend;
+  NSString *name = dict[ZPPIngridientName];
+  NSString *ingridientID = dict[ZPPIngridientID];
+  NSString *urlAppend = dict[ZPPIngridientURL];
+  NSString *urlAsString = nil;
+  if (![urlAppend isEqual:[NSNull null]]) {
+    urlAsString = urlAppend;
 //        urlAsString = [ZPPServerBaseUrl stringByAppendingString:urlAppend];
-    }
+  }
 
-    NSNumber *weight;  // dict[ZPPIngridientWeight];
+  NSNumber *weight;  // dict[ZPPIngridientWeight];
 
-    if (dict[ZPPIngridientWeight] && ![dict[ZPPIngridientWeight] isEqual:[NSNull null]]) {
-        weight = dict[ZPPIngridientWeight];
-    }
+  if (dict[ZPPIngridientWeight] && ![dict[ZPPIngridientWeight] isEqual:[NSNull null]]) {
+    weight = dict[ZPPIngridientWeight];
+  }
 
-    return [[ZPPIngridient alloc] initWithName:name
-                                  ingridientID:ingridientID
-                                   urlAsString:urlAsString
-                                        weight:weight];
+  return [[ZPPIngridient alloc] initWithName:name
+                                ingridientID:ingridientID
+                                 urlAsString:urlAsString
+                                      weight:weight];
 }
 
 + (NSArray *)parseIngridients:(NSArray *)ingridients {
-    NSMutableArray *tmpArr = [NSMutableArray array];
+  NSMutableArray *tmpArr = [NSMutableArray array];
 
-    for (NSDictionary *d in ingridients) {
-        ZPPIngridient *ingridient = [[self class] ingridientFromDict:d];
-        [tmpArr addObject:ingridient];
-    }
+  for (NSDictionary *d in ingridients) {
+    ZPPIngridient *ingridient = [[self class] ingridientFromDict:d];
+    [tmpArr addObject:ingridient];
+  }
 
-    NSArray *res = [NSArray arrayWithArray:tmpArr];
+  NSArray *res = [NSArray arrayWithArray:tmpArr];
 
-    [ZPPImageWorker preheatImagesOfObjects:res];
+  [ZPPImageWorker preheatImagesOfObjects:res];
 
-    return res;
+  return res;
 }
 
 @end

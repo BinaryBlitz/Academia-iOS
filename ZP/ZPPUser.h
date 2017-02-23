@@ -8,9 +8,9 @@
 
 @import Foundation;
 
-@interface ZPPUser: NSObject
+@interface ZPPUser : NSObject
 
-@property (copy, nonatomic, nullable) NSString * firstName;
+@property (copy, nonatomic, nullable) NSString *firstName;
 @property (copy, nonatomic, nullable) NSString *lastName;
 @property (copy, nonatomic, nullable) NSString *email;
 @property (copy, nonatomic, nullable) NSString *phoneNumber;
@@ -27,14 +27,14 @@
 @property (copy, nonatomic, readonly, nullable) NSString *platform;
 
 - (nonnull instancetype)initWihtName:(nullable NSString *)name
-                    lastName:(nullable NSString *)lastName
-                       email:(nullable NSString *)email
-                 phoneNumber:(nullable NSString *)phoneNumber
-                      userID:(nullable NSString *)userID
-                      apiKey:(nullable NSString *)apiKey
-                   promocode:(nullable NSString *)promocode
-                     balance:(nullable NSString *)balance
-                     discount:(nullable NSString *)discount
-                   promoUsed:(BOOL)promoUsed;
+                            lastName:(nullable NSString *)lastName
+                               email:(nullable NSString *)email
+                         phoneNumber:(nullable NSString *)phoneNumber
+                              userID:(nullable NSString *)userID
+                              apiKey:(nullable NSString *)apiKey
+                           promocode:(nullable NSString *)promocode
+                             balance:(nullable NSString *)balance
+                            discount:(nullable NSString *)discount
+                           promoUsed:(BOOL)promoUsed;
 
 @end

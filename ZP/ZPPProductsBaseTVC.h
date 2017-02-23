@@ -12,16 +12,18 @@
 //@class ZPPOrder;
 
 @protocol ZPPProductsBaseTVCDelegate <NSObject>
-- (void) didScroll: (UIScrollView *) sender;
+
+- (void)didScroll:(UIScrollView *)sender;
 
 @end
 
-
 @protocol ZPPProductScreenTVCDelegate <NSObject>
-- (void) addItemIntoOrder:(id<ZPPItemProtocol>)item;
+
+- (void)addItemIntoOrder:(id <ZPPItemProtocol>)item;
 @end //
 
 @interface ZPPProductsBaseTVC : UITableViewController
+
 @property (nonatomic, weak) id <ZPPProductsBaseTVCDelegate> delegate;
 @property (nonatomic, weak) id <ZPPProductScreenTVCDelegate> productDelegate;
 

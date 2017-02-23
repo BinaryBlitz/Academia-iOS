@@ -38,157 +38,155 @@ static NSString *ZPPActivateCardCellIdentifier = @"ZPPActivateCardCellIdentifier
 @implementation ZPPGiftTVC
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self
-                            action:@selector(loadGifts)
-                  forControlEvents:UIControlEventValueChanged];
+  self.refreshControl = [[UIRefreshControl alloc] init];
+  [self.refreshControl addTarget:self
+                          action:@selector(loadGifts)
+                forControlEvents:UIControlEventValueChanged];
 
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+  self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 
-    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+  [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
-    [self registrateCells];
+  [self registrateCells];
 
-    // [self loadGifts];
+  // [self loadGifts];
 
-    [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
+  [self configureBackgroundWithImageWithName:ZPPBackgroundImageName];
 
-    self.tableView.backgroundView.layer.zPosition -= 1;
+  self.tableView.backgroundView.layer.zPosition -= 1;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self loadGifts];
+  [super viewWillAppear:animated];
+  [self loadGifts];
 
-    [self.navigationController presentTransparentNavigationBar];
-    [self addCustomCloseButton];
+  [self.navigationController presentTransparentNavigationBar];
+  [self addCustomCloseButton];
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 - (void)configureWithOrder:(ZPPOrder *)order {
-    self.order = order;
-    [self.tableView reloadData];
+  self.order = order;
+  [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    //#warning Incomplete implementation, return the number of sections
-    return 2;
+  //#warning Incomplete implementation, return the number of sections
+  return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //#warning Incomplete implementation, return the number of rows
-    if (section == 0) {
-        return self.gifts.count;
-    } else {
-        return 1;
-    }
+  //#warning Incomplete implementation, return the number of rows
+  if (section == 0) {
+    return self.gifts.count;
+  } else {
+    return 1;
+  }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        ZPPGiftCell *cell =
-            [self.tableView dequeueReusableCellWithIdentifier:ZPPGiftCellIdentifier];
+  if (indexPath.section == 0) {
+    ZPPGiftCell *cell =
+        [self.tableView dequeueReusableCellWithIdentifier:ZPPGiftCellIdentifier];
 
-        ZPPGift *g = self.gifts[indexPath.row];
+    ZPPGift *g = self.gifts[indexPath.row];
 
-        [cell configureWithGift:g];
+    [cell configureWithGift:g];
 
-        ZPPOrderItem *orderItem = [self.order orderItemForItem:g];
+    ZPPOrderItem *orderItem = [self.order orderItemForItem:g];
 
-        if (orderItem) {
-            [cell setBadgeCount:orderItem.count];
-        }
-
-        [cell.addButton addTarget:self
-                           action:@selector(addToCard:)
-                 forControlEvents:UIControlEventTouchUpInside];
-
-        return cell;
-    } else {
-        ZPPActivateCardCell *cell =
-            [tableView dequeueReusableCellWithIdentifier:ZPPActivateCardCellIdentifier];
-
-        [cell.doneButton addTarget:self
-                            action:@selector(activateCard:)
-                  forControlEvents:UIControlEventTouchUpInside];
-
-        return cell;
+    if (orderItem) {
+      [cell setBadgeCount:orderItem.count];
     }
+
+    [cell.addButton addTarget:self
+                       action:@selector(addToCard:)
+             forControlEvents:UIControlEventTouchUpInside];
+
+    return cell;
+  } else {
+    ZPPActivateCardCell *cell =
+        [tableView dequeueReusableCellWithIdentifier:ZPPActivateCardCellIdentifier];
+
+    [cell.doneButton addTarget:self
+                        action:@selector(activateCard:)
+              forControlEvents:UIControlEventTouchUpInside];
+
+    return cell;
+  }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        return 110.f;
-    } else {
-        return 175.f;
-    }
+  if (indexPath.section == 0) {
+    return 110.f;
+  } else {
+    return 175.f;
+  }
 }
 
 #pragma mark - actions
 
 - (void)addToCard:(UIView *)sender {
-    UITableViewCell *cell = [self parentCellForView:sender];
+  UITableViewCell *cell = [self parentCellForView:sender];
 
-    if (cell) {
-        NSIndexPath *ip = [self.tableView indexPathForCell:cell];
+  if (cell) {
+    NSIndexPath *ip = [self.tableView indexPathForCell:cell];
 
-        ZPPGift *g = self.gifts[ip.row];
+    ZPPGift *g = self.gifts[ip.row];
 
-        [self.order addItem:g];
+    [self.order addItem:g];
 
-        [self.tableView reloadData];
-        //  [self.tableView reloadRowsAtIndexPaths:[]
-        //  withRowAnimation:<#(UITableViewRowAnimation)#>]
-    }
+    [self.tableView reloadData];
+    //  [self.tableView reloadRowsAtIndexPaths:[]
+    //  withRowAnimation:<#(UITableViewRowAnimation)#>]
+  }
 }
 
 - (void)activateCard:(UIButton *)sender {
-    [sender startIndicating];
+  [sender startIndicating];
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)),
-                   dispatch_get_main_queue(), ^{
-                       [sender stopIndication];
-                       [self showSuccessWithText:@"Карта добавлена"];
-
-                   });
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (2.0 * NSEC_PER_SEC)),
+      dispatch_get_main_queue(), ^{
+        [sender stopIndication];
+        [self showSuccessWithText:@"Карта добавлена"];
+      });
 }
 
 - (void)loadGifts {
-    [self.refreshControl beginRefreshing];
+  [self.refreshControl beginRefreshing];
 
-    if (self.tableView.contentOffset.y == 0) {
-        [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y -
-                                                            self.refreshControl.frame.size.height)
-                                animated:YES];
-    }
+  if (self.tableView.contentOffset.y == 0) {
+    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y -
+            self.refreshControl.frame.size.height)
+                            animated:YES];
+  }
 
-    [[ZPPServerManager sharedManager] GETGiftsOnSuccess:^(NSArray *gifts) {
-        [self.refreshControl endRefreshing];
-        self.gifts = gifts;
-        [self.tableView reloadData];
-    } onFailure:^(NSError *error, NSInteger statusCode) {
-        [self.refreshControl endRefreshing];
+  [[ZPPServerManager sharedManager] GETGiftsOnSuccess:^(NSArray *gifts) {
+    [self.refreshControl endRefreshing];
+    self.gifts = gifts;
+    [self.tableView reloadData];
+  }                                         onFailure:^(NSError *error, NSInteger statusCode) {
+    [self.refreshControl endRefreshing];
 
-        [self showWarningWithText:ZPPNoInternetConnectionMessage];
-
-    }];
+    [self showWarningWithText:ZPPNoInternetConnectionMessage];
+  }];
 }
 
 #pragma mark - support
 
 - (void)registrateCells {
-    [self registrateCellForClass:[ZPPGiftCell class] reuseIdentifier:ZPPGiftCellIdentifier];
-    [self registrateCellForClass:[ZPPActivateCardCell class]
-                 reuseIdentifier:ZPPActivateCardCellIdentifier];
+  [self registrateCellForClass:[ZPPGiftCell class] reuseIdentifier:ZPPGiftCellIdentifier];
+  [self registrateCellForClass:[ZPPActivateCardCell class]
+               reuseIdentifier:ZPPActivateCardCellIdentifier];
 }
 
 #pragma mark - test

@@ -15,26 +15,26 @@ static NSString *ZPPPasswordRenewPasswordInputIdentifier =
 @implementation ZPPPasswordRenewCodeInput
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
-    [self.nextRenewButton addTarget:self
-                             action:@selector(nextButtonAction:)
-                   forControlEvents:UIControlEventTouchUpInside];
+  [self.nextRenewButton addTarget:self
+                           action:@selector(nextButtonAction:)
+                 forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)nextButtonAction:(UIButton *)sender {
-    if ([self checkCode]) {
-        [self showPasswordInput];
-    }
+  if ([self checkCode]) {
+    [self showPasswordInput];
+  }
 }
 
 - (void)showPasswordInput {
-    ZPPPasswordRenewPasswordInput *vc = (ZPPPasswordRenewPasswordInput *)[self.storyboard
-        instantiateViewControllerWithIdentifier:ZPPPasswordRenewPasswordInputIdentifier];
+  ZPPPasswordRenewPasswordInput *vc = (ZPPPasswordRenewPasswordInput *) [self.storyboard
+      instantiateViewControllerWithIdentifier:ZPPPasswordRenewPasswordInputIdentifier];
 
-    [vc configureWithUser:self.user code:self.token];
+  [vc configureWithUser:self.user code:self.token];
 
-    [self.navigationController pushViewController:vc animated:YES];
+  [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

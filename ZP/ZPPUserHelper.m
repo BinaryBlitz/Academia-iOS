@@ -9,122 +9,122 @@
 #import "ZPPUserHelper.h"
 #import "ZPPUser.h"
 
-NSString * const ZPPFirstName = @"first_name";
-NSString * const ZPPLastName = @"last_name";
-NSString * const ZPPUserEmail = @"email";
-NSString * const ZPPPhoneNumber = @"phone_number";
-NSString * const ZPPAPIToken = @"api_token";
-NSString * const ZPPUserID = @"id";
-NSString * const ZPPUserPassword = @"password";
-NSString * const ZPPUserPromocode = @"promo_code";
-NSString * const ZPPUserBalance = @"balance";
-NSString * const ZPPUserDiscount = @"discount";
+NSString *const ZPPFirstName = @"first_name";
+NSString *const ZPPLastName = @"last_name";
+NSString *const ZPPUserEmail = @"email";
+NSString *const ZPPPhoneNumber = @"phone_number";
+NSString *const ZPPAPIToken = @"api_token";
+NSString *const ZPPUserID = @"id";
+NSString *const ZPPUserPassword = @"password";
+NSString *const ZPPUserPromocode = @"promo_code";
+NSString *const ZPPUserBalance = @"balance";
+NSString *const ZPPUserDiscount = @"discount";
 
-NSString * const ZPPPromoCodeUsed = @"promo_used";
-NSString * const ZPPPlatform = @"platform";
-NSString * const ZPPAPNSToken = @"device_token";
+NSString *const ZPPPromoCodeUsed = @"promo_used";
+NSString *const ZPPPlatform = @"platform";
+NSString *const ZPPAPNSToken = @"device_token";
 
 @implementation ZPPUserHelper
 
 + (NSDictionary *)convertUser:(ZPPUser *)user {
-    NSMutableDictionary *d = [NSMutableDictionary dictionary];
+  NSMutableDictionary *d = [NSMutableDictionary dictionary];
 
-    if (user.firstName) {
-        d[ZPPFirstName] = user.firstName;
-    }
+  if (user.firstName) {
+    d[ZPPFirstName] = user.firstName;
+  }
 
-    if (user.lastName) {
-        d[ZPPLastName] = user.lastName;
-    }
+  if (user.lastName) {
+    d[ZPPLastName] = user.lastName;
+  }
 
-    if (user.email) {
-        d[ZPPUserEmail] = user.email;
-    }
+  if (user.email) {
+    d[ZPPUserEmail] = user.email;
+  }
 
-    if (user.phoneNumber) {
-        d[ZPPPhoneNumber] = user.phoneNumber;
-    }
+  if (user.phoneNumber) {
+    d[ZPPPhoneNumber] = user.phoneNumber;
+  }
 
-    if (user.userID) {
-        d[ZPPUserID] = user.userID;
-    }
+  if (user.userID) {
+    d[ZPPUserID] = user.userID;
+  }
 
-    if (user.apiToken) {
-        d[ZPPAPIToken] = user.apiToken;
-    }
+  if (user.apiToken) {
+    d[ZPPAPIToken] = user.apiToken;
+  }
 
-    if (user.pushToken) {
-        d[ZPPAPNSToken] = user.pushToken;
-    }
+  if (user.pushToken) {
+    d[ZPPAPNSToken] = user.pushToken;
+  }
 
-    if(user.platform) {
-        d[ZPPPlatform] = user.platform;
-    }
+  if (user.platform) {
+    d[ZPPPlatform] = user.platform;
+  }
 
-    return [NSDictionary dictionaryWithDictionary:d];
+  return [NSDictionary dictionaryWithDictionary:d];
 }
 
 + (ZPPUser *)userFromDict:(NSDictionary *)dict {  // redo implementation 😓
-    NSString *firstName;
-    NSString *lastName;
-    NSString *email;
-    NSString *phoneNumber;
-    NSString *userID;
-    NSString *apiToken;
-    NSString *promocode;
-    BOOL promocodeUsed;
-    NSString *balance;
-    NSString *discount;
+  NSString *firstName;
+  NSString *lastName;
+  NSString *email;
+  NSString *phoneNumber;
+  NSString *userID;
+  NSString *apiToken;
+  NSString *promocode;
+  BOOL promocodeUsed;
+  NSString *balance;
+  NSString *discount;
 
-    if (dict[ZPPAPIToken]) {
-        apiToken = dict[ZPPAPIToken];
-    }
-    if (dict[ZPPFirstName]) {
-        firstName = [dict objectForKey:ZPPFirstName];
-    }
-    if (dict[ZPPLastName]) {
-        lastName = dict[ZPPLastName];
-    }
-    if (dict[ZPPUserEmail]) {
-        email = [dict objectForKey:ZPPUserEmail];
-    }
+  if (dict[ZPPAPIToken]) {
+    apiToken = dict[ZPPAPIToken];
+  }
+  if (dict[ZPPFirstName]) {
+    firstName = [dict objectForKey:ZPPFirstName];
+  }
+  if (dict[ZPPLastName]) {
+    lastName = dict[ZPPLastName];
+  }
+  if (dict[ZPPUserEmail]) {
+    email = [dict objectForKey:ZPPUserEmail];
+  }
 
-    if (dict[ZPPPhoneNumber]) {
-        phoneNumber = dict[ZPPPhoneNumber];
-    }
+  if (dict[ZPPPhoneNumber]) {
+    phoneNumber = dict[ZPPPhoneNumber];
+  }
 
-    if (dict[ZPPUserID]) {
-        userID = dict[ZPPUserID];
-    }
+  if (dict[ZPPUserID]) {
+    userID = dict[ZPPUserID];
+  }
 
-    if (dict[ZPPUserPromocode]) {
-        promocode = dict[ZPPUserPromocode];
-    }
+  if (dict[ZPPUserPromocode]) {
+    promocode = dict[ZPPUserPromocode];
+  }
 
-    if (dict[ZPPUserBalance]) {
-        balance = [dict[ZPPUserBalance] stringValue];
-    }
+  if (dict[ZPPUserBalance]) {
+    balance = [dict[ZPPUserBalance] stringValue];
+  }
 
-    if (dict[ZPPPromoCodeUsed]) {
-        promocodeUsed = [dict[ZPPPromoCodeUsed] boolValue];
-    }
+  if (dict[ZPPPromoCodeUsed]) {
+    promocodeUsed = [dict[ZPPPromoCodeUsed] boolValue];
+  }
 
-    if (dict[ZPPUserDiscount]) {
-        discount = [dict[ZPPUserDiscount] stringValue];
-    }
+  if (dict[ZPPUserDiscount]) {
+    discount = [dict[ZPPUserDiscount] stringValue];
+  }
 
-    ZPPUser *user = [[ZPPUser alloc] initWihtName:firstName
-                                         lastName:lastName
-                                            email:email
-                                      phoneNumber:phoneNumber
-                                           userID:userID
-                                           apiKey:apiToken
-                                        promocode:promocode
-                                          balance:balance
-                                         discount:discount
-                                        promoUsed:promocodeUsed];
+  ZPPUser *user = [[ZPPUser alloc] initWihtName:firstName
+                                       lastName:lastName
+                                          email:email
+                                    phoneNumber:phoneNumber
+                                         userID:userID
+                                         apiKey:apiToken
+                                      promocode:promocode
+                                        balance:balance
+                                       discount:discount
+                                      promoUsed:promocodeUsed];
 
-    return user;
+  return user;
 }
 
 @end

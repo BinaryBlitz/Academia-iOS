@@ -15,39 +15,39 @@
 @implementation ZPPOrderResultVC
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
-    [Answers logCustomEventWithName:@"ORDER_MADE" customAttributes:@{}];
+  [Answers logCustomEventWithName:@"ORDER_MADE" customAttributes:@{}];
 
-    //  [self.callCourierButton makeBorderedWithColor:[UIColor whiteColor]];
+  //  [self.callCourierButton makeBorderedWithColor:[UIColor whiteColor]];
 
-    [self.backToMenuButton makeBorderedWithColor:[UIColor whiteColor]];
+  [self.backToMenuButton makeBorderedWithColor:[UIColor whiteColor]];
 
-    self.navigationItem.hidesBackButton = YES;
+  self.navigationItem.hidesBackButton = YES;
 
-    [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
+  [self addPictureToNavItemWithNamePicture:ZPPLogoImageName];
 
-    [self.backToMenuButton addTarget:self
-                              action:@selector(closeScreen)
-                    forControlEvents:UIControlEventTouchUpInside];
+  [self.backToMenuButton addTarget:self
+                            action:@selector(closeScreen)
+                  forControlEvents:UIControlEventTouchUpInside];
 
-    NSDictionary *underlineAttribute = @{
-        NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle),
-        NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Medium" size:18.f]
-    };
-    NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:self.phoneTextView.text
-                                                                  attributes:underlineAttribute];
+  NSDictionary *underlineAttribute = @{
+      NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
+      NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Medium" size:18.f]
+  };
+  NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:self.phoneTextView.text
+                                                                attributes:underlineAttribute];
 
-    self.phoneTextView.attributedText = attrStr;
-    self.phoneTextView.textAlignment = NSTextAlignmentCenter;
+  self.phoneTextView.attributedText = attrStr;
+  self.phoneTextView.textAlignment = NSTextAlignmentCenter;
 }
 
 - (void)closeScreen {
-    [self dismissViewControllerAnimated:YES completion:nil];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+  return UIStatusBarStyleLightContent;
 }
 
 @end

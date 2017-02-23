@@ -25,52 +25,52 @@
 @implementation ZPPPasswordRenewPasswordInput
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
-    [self.okButton addTarget:self
-                      action:@selector(okButtonAction:)
-            forControlEvents:UIControlEventTouchUpInside];
+  [self.okButton addTarget:self
+                    action:@selector(okButtonAction:)
+          forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)configureWithUser:(ZPPUser *)user code:(NSString *)code {
-    self.user = user;
-    self.code = code;
+  self.user = user;
+  self.code = code;
 }
 
 - (void)okButtonAction:(UIButton *)sender {
-    if ([self checkNewPassword]) {
-        [sender startIndicating];
-        [[ZPPServerManager sharedManager] renewPasswordWithNumber:self.user.phoneNumber
-            code:self.code
-            password:self.userNewPasswordTextField.text
-            onSuccess:^{
-                [sender stopIndication];
-                [self showSuccessWithText:@"Пароль обновлен!"];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)),
-                               dispatch_get_main_queue(), ^{
-                                   [self popToAuthenticationScreen];
-                               });
-            }
-            onFailure:^(NSError *error, NSInteger statusCode) {
-                [sender stopIndication];
-                [self showWarningWithText:ZPPNoInternetConnectionMessage];
-            }];
-    }
+  if ([self checkNewPassword]) {
+    [sender startIndicating];
+    [[ZPPServerManager sharedManager] renewPasswordWithNumber:self.user.phoneNumber
+                                                         code:self.code
+                                                     password:self.userNewPasswordTextField.text
+                                                    onSuccess:^{
+                                                      [sender stopIndication];
+                                                      [self showSuccessWithText:@"Пароль обновлен!"];
+                                                      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (2 * NSEC_PER_SEC)),
+                                                          dispatch_get_main_queue(), ^{
+                                                            [self popToAuthenticationScreen];
+                                                          });
+                                                    }
+                                                    onFailure:^(NSError *error, NSInteger statusCode) {
+                                                      [sender stopIndication];
+                                                      [self showWarningWithText:ZPPNoInternetConnectionMessage];
+                                                    }];
+  }
 }
 
 - (void)popToAuthenticationScreen {
-    UIViewController *destVC = nil;
-    for (UIViewController *vc in self.navigationController.viewControllers) {
-        if ([vc isKindOfClass:[ZPPAuthenticationVC class]]) {
-            destVC = vc;
-        }
+  UIViewController *destVC = nil;
+  for (UIViewController *vc in self.navigationController.viewControllers) {
+    if ([vc isKindOfClass:[ZPPAuthenticationVC class]]) {
+      destVC = vc;
     }
+  }
 
-    if (!destVC) {
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    } else {
-        [self.navigationController popToViewController:destVC animated:YES];
-    }
+  if (!destVC) {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+  } else {
+    [self.navigationController popToViewController:destVC animated:YES];
+  }
 }
 
 @end

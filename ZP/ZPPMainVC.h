@@ -17,7 +17,7 @@
 @property (strong, nonatomic) ZPPOrder *order;
 
 - (void)showRegistration;
-- (void)addItemIntoOrder:(id<ZPPItemProtocol>)item;
+- (void)addItemIntoOrder:(id <ZPPItemProtocol>)item;
 - (void)showNoInternetScreen;
 
 @end
