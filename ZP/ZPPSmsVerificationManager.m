@@ -26,10 +26,11 @@ const NSInteger ZPPMaxCount = 60;
 
 - (instancetype)init {
   self = [super init];
+
   if (self) {
     self.currentTime = -1;
-    // [self propertiesInitializing];
   }
+
   return self;
 }
 
@@ -86,10 +87,6 @@ const NSInteger ZPPMaxCount = 60;
     self.currentTime++;
     self.timerCounter(self.currentTime);
   } else {
-    //        self.timerCounter(-1);
-    //        [self.timer invalidate];
-    //        self.timer = nil;
-    //        self.currentTime = -1;
     [self invalidateTimer];
   }
 }

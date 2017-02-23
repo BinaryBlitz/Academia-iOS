@@ -12,11 +12,6 @@
         onSuccess:(void (^)(ZPPOrder *order))success
         onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
-- (void)POSTPaymentWithOrderID:(NSString *)orderID
-                     onSuccess:(void (^)(NSString *paymnetURL))success
-                     onFailure:(void (^)(NSError *error, NSInteger statusCode))failure
-__attribute__((deprecated("use createNewPaymentWithOrderId instead")));
-
 - (void)checkPaymentWithID:(NSString *)orderID
                  onSuccess:(void (^)(NSInteger sta))success
                  onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;

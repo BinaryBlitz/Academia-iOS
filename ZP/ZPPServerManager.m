@@ -43,7 +43,6 @@ NSString *const ZPPNoInternetConnectionMessage = @"Проверьте интер
 + (void)failureWithBlock:(failureBlock)block
                    error:(NSError *)error
                operation:(AFHTTPRequestOperation *)operation {
-//    DDLogError(@"err %@ \nerr resp %@", error, operation.responseObject);
   if (block) {
     block(error, operation.response.statusCode);
   }

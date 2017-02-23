@@ -55,35 +55,6 @@
                              }];
 }
 
-- (void)POSTPaymentWithOrderID:(NSString *)orderID
-                     onSuccess:(void (^)(NSString *paymnetURL))success
-                     onFailure:(void (^)(NSError *error, NSInteger statusCode))failure
-__attribute__((deprecated("use createNewPaymentWithOrderId instead"))) {
-  NSDictionary *params = @{
-      @"api_token": [ZPPUserManager sharedInstance].user.apiToken,
-      @"payment": @{@"use_binding": @NO}
-  };
-
-  NSString *urlString = [NSString stringWithFormat:@"orders/%@/payment.json", orderID];
-
-  [self.requestOperationManager POST:urlString
-                          parameters:params
-                             success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-
-                               NSLog(@"payment resp %@", responseObject);
-                               NSString *url = responseObject[@"url"];
-                               if (success) {
-                                 success(url);
-                               }
-                             }
-                             failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
-
-                               if (failure) {
-                                 [[self class] failureWithBlock:failure error:error operation:operation];
-                               }
-                             }];
-}
-
 - (void)checkPaymentWithID:(NSString *)orderID
                  onSuccess:(void (^)(NSInteger sta))success
                  onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {

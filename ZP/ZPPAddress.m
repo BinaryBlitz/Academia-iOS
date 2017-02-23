@@ -16,16 +16,18 @@
                               city:(NSString *)city
                            address:(NSString *)address {
   self = [super init];
+
   if (self) {
     self.coordinate = coordinate;
     self.city = city;
     self.country = country;
     self.address = address;
   }
+
   return self;
 }
 
-- (NSString *)formatedDescr {
+- (NSString *)formattedDescription {
   return [NSString stringWithFormat:@"%@", self.address];
 }
 

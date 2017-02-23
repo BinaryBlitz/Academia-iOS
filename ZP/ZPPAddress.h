@@ -13,7 +13,6 @@
                               city:(NSString *)city
                            address:(NSString *)address;
 
-- (NSString *)formatedDescr;
-
+- (NSString *)formattedDescription;
 
 @end

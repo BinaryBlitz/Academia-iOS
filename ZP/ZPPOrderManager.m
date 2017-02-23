@@ -23,32 +23,26 @@
 
 - (id)init {
   self = [super init];
+
   if (self) {
-    //_isOpen = YES;
   }
+
   return self;
 }
 
 - (void)updateOrdersCompletion:(void (^)(NSInteger count))completion {
 
   [[ZPPServerManager sharedManager] GETOldOrdersOnSuccess:^(NSArray *orders) {
-    // [self.refreshControl endRefreshing];
-
     [self parseOrders:orders];
 
     if (completion) {
       completion(self.onTheWayOrders.count);
     }
-
-    // [self.tableView reloadData];
   }                                             onFailure:^(NSError *error, NSInteger statusCode) {
 
     if (completion) {
       completion(-1);
     }
-    // [self.refreshControl endRefreshing];
-
-    // [self showWarningWithText:ZPPNoInternetConnectionMessage];
   }];
 }
 
@@ -65,9 +59,6 @@
   }
 
   self.onTheWayOrders = [NSArray arrayWithArray:onTheWayOrders];
-  // self.doneOrders = [NSArray arrayWithArray:payedOrders];
-  //[self.tableView reloadData];
 }
-
 
 @end

@@ -5,11 +5,9 @@
 
 @interface ZPPAddressHelper : NSObject
 
-+ (ZPPAddress *)addresFromAddres:(LMAddress *)addr;
++ (ZPPAddress *)addressFromAddress:(LMAddress *)addr;
 + (ZPPAddress *)addressFromDict:(NSDictionary *)dict;
-+ (NSArray *)addressesFromDaDataDicts:(NSArray *)dicts;
-
++ (NSArray *)addressesFromDaDataDictionaries:(NSArray *)dictionaries;
 + (NSArray *)parsePoints:(NSArray *)points;
-
 
 @end

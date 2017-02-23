@@ -50,7 +50,7 @@ static NSString *ZPPDaDataAPIKey = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
 }
 
 - (void)configureWithAddress:(ZPPAddress *)address {
-  self.initialAddressString = [address formatedDescr];
+  self.initialAddressString = [address formattedDescription];
 }
 
 #pragma mark - Table view data source
@@ -77,7 +77,7 @@ static NSString *ZPPDaDataAPIKey = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
 
   ZPPAddress *address = self.results[indexPath.row];
 
-  cell.textLabel.text = [address formatedDescr];
+  cell.textLabel.text = [address formattedDescription];
   cell.textLabel.numberOfLines = 0;
 
   return cell;
@@ -111,7 +111,7 @@ static NSString *ZPPDaDataAPIKey = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
     [[LMGeocoder sharedInstance] geocodeAddressString:address.address
                                               service:kLMGeocoderGoogleService
                                     completionHandler:^(NSArray *results, NSError *error) {
-                                      ZPPAddress *bestResult = [ZPPAddressHelper addresFromAddres:results.lastObject];
+                                      ZPPAddress *bestResult = [ZPPAddressHelper addressFromAddress:results.lastObject];
                                       if (bestResult) {
                                         [self.addressSearchDelegate configureWithAddress:bestResult sender:self];
                                         [self dismissViewControllerAnimated:YES completion:nil];
@@ -143,7 +143,7 @@ static NSString *ZPPDaDataAPIKey = @"bfdacc45560db9c73425f30f5c630842e5c8c1ad";
                                                           restrictions:@[@{@"region": @"москва"}]
                                                hideRestrictionInResult:NO
                                                                success:^(NSArray *suggestions) {
-                                                                 NSArray *addresses = [ZPPAddressHelper addressesFromDaDataDicts:suggestions];
+                                                                 NSArray *addresses = [ZPPAddressHelper addressesFromDaDataDictionaries:suggestions];
                                                                  self.results = addresses;
                                                                  [self.tableView reloadData];
                                                                }

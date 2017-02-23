@@ -86,9 +86,9 @@ forControlEvents:UIControlEventTouchUpInside];
                                           if (results.count && !error) {
                                             LMAddress *address = [results firstObject];
                                             ZPPAddress *adr =
-                                                [ZPPAddressHelper addresFromAddres:address];
+                                                [ZPPAddressHelper addressFromAddress:address];
 
-                                            self.addresTextField.text = [adr formatedDescr];
+                                            self.addresTextField.text = [adr formattedDescription];
 
                                             self.selectedAddress = adr;
                                           }
@@ -129,7 +129,7 @@ forControlEvents:UIControlEventTouchUpInside];
                    if (results.count && !error) {
                      LMAddress *addr = [results firstObject];
 
-                     ZPPAddress *address = [ZPPAddressHelper addresFromAddres:addr];
+                     ZPPAddress *address = [ZPPAddressHelper addressFromAddress:addr];
 
                      if (self.addressDelegate) {
                        [self.addressDelegate configureWithAddress:address sender:self];
@@ -258,7 +258,7 @@ forControlEvents:UIControlEventTouchUpInside];
     if (address.coordinate.latitude != (double) 0 || address.coordinate.longitude != (double) 0) {
       [self moveCameraToCoordinate:address.coordinate];
       self.needUpdate = NO;
-      self.addresTextField.text = [address formatedDescr];
+      self.addresTextField.text = [address formattedDescription];
       self.selectedAddress = address;
     } else {
       [self showCurrentLocation];

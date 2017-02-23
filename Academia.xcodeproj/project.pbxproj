@@ -63,14 +63,10 @@
 		1948C5251BEB83EC00084BC8 /* ZPPActivateCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1948C5241BEB83EC00084BC8 /* ZPPActivateCardCell.xib */; };
 		1948C5271BEBABFD00084BC8 /* promocode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1948C5261BEBABFD00084BC8 /* promocode.storyboard */; };
 		1948C52B1BEBACA500084BC8 /* ZPPPromoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C52A1BEBACA500084BC8 /* ZPPPromoVC.m */; };
-		1948C52E1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C52D1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.m */; };
 		1948C5321BEBB3B500084BC8 /* ZPPCustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C5311BEBB3B500084BC8 /* ZPPCustomTextField.m */; };
 		1948C5351BEBBC5E00084BC8 /* ZPPChangePasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C5341BEBBC5E00084BC8 /* ZPPChangePasswordVC.m */; };
-		1948C5381BEC14C100084BC8 /* ZPPLunch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C5371BEC14C100084BC8 /* ZPPLunch.m */; };
-		1948C53B1BEC17E600084BC8 /* ZPPLunchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C53A1BEC17E600084BC8 /* ZPPLunchHelper.m */; };
 		1948C53E1BEC19B800084BC8 /* ZPPStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C53D1BEC19B800084BC8 /* ZPPStuff.m */; };
 		1948C5411BEC204500084BC8 /* ZPPStuffHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C5401BEC204500084BC8 /* ZPPStuffHelper.m */; };
-		1948C54B1BEC3A1800084BC8 /* ZPPLunchTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1948C54A1BEC3A1800084BC8 /* ZPPLunchTVC.m */; };
 		1955F3981C0BCD270010EED3 /* ZPPContactCourierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1955F3961C0BCD270010EED3 /* ZPPContactCourierCell.m */; };
 		1955F3991C0BCD270010EED3 /* ZPPContactCourierCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1955F3971C0BCD270010EED3 /* ZPPContactCourierCell.xib */; };
 		195BBF781C7681E2004D00A5 /* back-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 195BBF731C7681E2004D00A5 /* back-1.jpg */; };
@@ -156,7 +152,6 @@
 		19EC6CB61C120B1800FC0BD4 /* ZPPProductIngredietntsJustCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC6CB51C120B1800FC0BD4 /* ZPPProductIngredietntsJustCell.xib */; };
 		19F378F01BFA85AD004827A0 /* ZPPPasswordRenewPhoneInputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378EF1BFA85AD004827A0 /* ZPPPasswordRenewPhoneInputVC.m */; };
 		19F378F31BFA93BC004827A0 /* ZPPPasswordRenewCodeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378F21BFA93BC004827A0 /* ZPPPasswordRenewCodeInput.m */; };
-		19F378F71BFA9EA0004827A0 /* ZPPDelivery.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378F61BFA9EA0004827A0 /* ZPPDelivery.m */; };
 		19F378FA1BFB14CA004827A0 /* ZPPPasswordRenewPasswordInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378F91BFB14CA004827A0 /* ZPPPasswordRenewPasswordInput.m */; };
 		19F378FE1BFBBDF3004827A0 /* ZPPPaymentWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F378FD1BFBBDF3004827A0 /* ZPPPaymentWebController.m */; };
 		19F379011BFE2489004827A0 /* DTCustomColoredAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F379001BFE2489004827A0 /* DTCustomColoredAccessory.m */; };
@@ -267,22 +262,14 @@
 		1948C5261BEBABFD00084BC8 /* promocode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = promocode.storyboard; sourceTree = "<group>"; };
 		1948C5291BEBACA500084BC8 /* ZPPPromoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPPromoVC.h; sourceTree = "<group>"; };
 		1948C52A1BEBACA500084BC8 /* ZPPPromoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPPromoVC.m; sourceTree = "<group>"; };
-		1948C52C1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "UITextField+ZPPTextFieldCategory.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		1948C52D1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UITextField+ZPPTextFieldCategory.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1948C5301BEBB3B500084BC8 /* ZPPCustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPCustomTextField.h; sourceTree = "<group>"; };
 		1948C5311BEBB3B500084BC8 /* ZPPCustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPCustomTextField.m; sourceTree = "<group>"; };
 		1948C5331BEBBC5E00084BC8 /* ZPPChangePasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ZPPChangePasswordVC.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		1948C5341BEBBC5E00084BC8 /* ZPPChangePasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ZPPChangePasswordVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		1948C5361BEC14C100084BC8 /* ZPPLunch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPLunch.h; sourceTree = "<group>"; };
-		1948C5371BEC14C100084BC8 /* ZPPLunch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPLunch.m; sourceTree = "<group>"; };
-		1948C5391BEC17E600084BC8 /* ZPPLunchHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPLunchHelper.h; sourceTree = "<group>"; };
-		1948C53A1BEC17E600084BC8 /* ZPPLunchHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPLunchHelper.m; sourceTree = "<group>"; };
 		1948C53C1BEC19B800084BC8 /* ZPPStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ZPPStuff.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		1948C53D1BEC19B800084BC8 /* ZPPStuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ZPPStuff.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1948C53F1BEC204500084BC8 /* ZPPStuffHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ZPPStuffHelper.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		1948C5401BEC204500084BC8 /* ZPPStuffHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ZPPStuffHelper.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		1948C5491BEC3A1800084BC8 /* ZPPLunchTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPLunchTVC.h; sourceTree = "<group>"; };
-		1948C54A1BEC3A1800084BC8 /* ZPPLunchTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPLunchTVC.m; sourceTree = "<group>"; };
 		1955F3951C0BCD270010EED3 /* ZPPContactCourierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPContactCourierCell.h; sourceTree = "<group>"; };
 		1955F3961C0BCD270010EED3 /* ZPPContactCourierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPContactCourierCell.m; sourceTree = "<group>"; };
 		1955F3971C0BCD270010EED3 /* ZPPContactCourierCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPContactCourierCell.xib; sourceTree = "<group>"; };
@@ -422,8 +409,6 @@
 		19F378EF1BFA85AD004827A0 /* ZPPPasswordRenewPhoneInputVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ZPPPasswordRenewPhoneInputVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		19F378F11BFA93BC004827A0 /* ZPPPasswordRenewCodeInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ZPPPasswordRenewCodeInput.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		19F378F21BFA93BC004827A0 /* ZPPPasswordRenewCodeInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ZPPPasswordRenewCodeInput.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		19F378F51BFA9EA0004827A0 /* ZPPDelivery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPDelivery.h; sourceTree = "<group>"; };
-		19F378F61BFA9EA0004827A0 /* ZPPDelivery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPDelivery.m; sourceTree = "<group>"; };
 		19F378F81BFB14CA004827A0 /* ZPPPasswordRenewPasswordInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ZPPPasswordRenewPasswordInput.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		19F378F91BFB14CA004827A0 /* ZPPPasswordRenewPasswordInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ZPPPasswordRenewPasswordInput.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		19F378FC1BFBBDF3004827A0 /* ZPPPaymentWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPPPaymentWebController.h; sourceTree = "<group>"; };
@@ -591,8 +576,6 @@
 				191C98601BC044A700E10D4F /* ZPPProductTVC.m */,
 				19EC24A61BC6601000C333F6 /* ZPPAnotherProductsTVC.h */,
 				19EC24A71BC6601000C333F6 /* ZPPAnotherProductsTVC.m */,
-				1948C5491BEC3A1800084BC8 /* ZPPLunchTVC.h */,
-				1948C54A1BEC3A1800084BC8 /* ZPPLunchTVC.m */,
 			);
 			name = products;
 			sourceTree = "<group>";
@@ -1045,7 +1028,6 @@
 			children = (
 				19792D321C0C733100707D07 /* OrderManager */,
 				1910D9F71C05F1D200F2536F /* TimeManager */,
-				19F378F41BFA9E7C004827A0 /* DeliveryItem */,
 				19DADF641BF762CA007D9DF2 /* Helper */,
 				1986356B1BDFD04B0070E3F7 /* ZPPOrder.h */,
 				1986356C1BDFD04B0070E3F7 /* ZPPOrder.m */,
@@ -1075,8 +1057,6 @@
 				198A5C0B1BD5B5C000710A36 /* ZPPIngridient.m */,
 				198A5C0E1BD5B60700710A36 /* ZPPDish.h */,
 				198A5C0F1BD5B60700710A36 /* ZPPDish.m */,
-				1948C5361BEC14C100084BC8 /* ZPPLunch.h */,
-				1948C5371BEC14C100084BC8 /* ZPPLunch.m */,
 				1948C53C1BEC19B800084BC8 /* ZPPStuff.h */,
 				1948C53D1BEC19B800084BC8 /* ZPPStuff.m */,
 				198635711BDFD2320070E3F7 /* ZPPItemProtocol.h */,
@@ -1095,8 +1075,6 @@
 				198A5C131BD5B6D900710A36 /* ZPPIngridientHelper.m */,
 				198A5C151BD5B8B900710A36 /* ZPPDishHelper.h */,
 				198A5C161BD5B8B900710A36 /* ZPPDishHelper.m */,
-				1948C5391BEC17E600084BC8 /* ZPPLunchHelper.h */,
-				1948C53A1BEC17E600084BC8 /* ZPPLunchHelper.m */,
 				1948C53F1BEC204500084BC8 /* ZPPStuffHelper.h */,
 				1948C5401BEC204500084BC8 /* ZPPStuffHelper.m */,
 				19B386171C19F1CC0050BE02 /* ZPPEnergyHelper.h */,
@@ -1300,7 +1278,6 @@
 				379C64181CA69CC100A32C90 /* ViewController */,
 				379C64191CA69CC800A32C90 /* NavigationController */,
 				379C641A1CA69CD200A32C90 /* TableViewController */,
-				379C641B1CA69CD900A32C90 /* TextField */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1419,15 +1396,6 @@
 			name = badgeforTwo;
 			sourceTree = "<group>";
 		};
-		19F378F41BFA9E7C004827A0 /* DeliveryItem */ = {
-			isa = PBXGroup;
-			children = (
-				19F378F51BFA9EA0004827A0 /* ZPPDelivery.h */,
-				19F378F61BFA9EA0004827A0 /* ZPPDelivery.m */,
-			);
-			name = DeliveryItem;
-			sourceTree = "<group>";
-		};
 		19F378FB1BFBBDD5004827A0 /* Payment */ = {
 			isa = PBXGroup;
 			children = (
@@ -1527,15 +1495,6 @@
 				19D242641BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.m */,
 			);
 			name = TableViewController;
-			sourceTree = "<group>";
-		};
-		379C641B1CA69CD900A32C90 /* TextField */ = {
-			isa = PBXGroup;
-			children = (
-				1948C52C1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.h */,
-				1948C52D1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.m */,
-			);
-			name = TextField;
 			sourceTree = "<group>";
 		};
 		B9AAD5556FA2D274BB8C3D21 /* Frameworks */ = {
@@ -1786,8 +1745,6 @@
 				1907C7441BF09500003BA62E /* ZPPOrderAddressCell.m in Sources */,
 				19DADF571BF64A0B007D9DF2 /* ZPPOrderResultVC.m in Sources */,
 				1910D9FA1C05F20800F2536F /* ZPPTimeManager.m in Sources */,
-				1948C54B1BEC3A1800084BC8 /* ZPPLunchTVC.m in Sources */,
-				1948C5381BEC14C100084BC8 /* ZPPLunch.m in Sources */,
 				19D242691BEA1C67007A0FEB /* ZPPConsts.m in Sources */,
 				1907C7641BF0E597003BA62E /* ZPPCreditCardInfoCell.m in Sources */,
 				1948C5231BEB83B100084BC8 /* ZPPActivateCardCell.m in Sources */,
@@ -1815,8 +1772,6 @@
 				1907C7401BF08B03003BA62E /* ZPPAddress.m in Sources */,
 				1907C74F1BF0C2AC003BA62E /* ZPPCreditCard.m in Sources */,
 				198A5C171BD5B8B900710A36 /* ZPPDishHelper.m in Sources */,
-				1948C53B1BEC17E600084BC8 /* ZPPLunchHelper.m in Sources */,
-				1948C52E1BEBB34D00084BC8 /* UITextField+ZPPTextFieldCategory.m in Sources */,
 				19DADF631BF760ED007D9DF2 /* ZPPServerManager+ZPPOrderServerManager.m in Sources */,
 				1984EE301BD12CD9001D25D5 /* ZPPRegistrationOtherInputVC.m in Sources */,
 				19A098551C7654B00020A9BA /* ZPPOnboardingTopController.swift in Sources */,
@@ -1845,7 +1800,6 @@
 				19DADF4C1BF62086007D9DF2 /* Reachability.m in Sources */,
 				19062D8E1BD69ACB003AC242 /* ZPPProfileVC.m in Sources */,
 				19DADF401BF36CE8007D9DF2 /* ZPPSearchResultController.m in Sources */,
-				19F378F71BFA9EA0004827A0 /* ZPPDelivery.m in Sources */,
 				19D242701BEA31FD007A0FEB /* ZPPOrderHistoryCell.m in Sources */,
 				19B3A9861C0A445D0089F02A /* ZPPStarsCell.m in Sources */,
 				19792D351C0C735700707D07 /* ZPPOrderManager.m in Sources */,

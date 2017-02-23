@@ -8,7 +8,9 @@
 @property (strong, nonatomic, readonly) NSDate *createdAt;
 
 + (ZPPCreditCard *)initWithDictionary:(NSDictionary *)dict;
-
-- (instancetype)initWithCardNumber:(NSString *)cardNumber serverId:(NSInteger)serverId bindingId:(NSString *)bindingId createdAt:(NSDate *)createdAt;
+- (instancetype)initWithCardNumber:(NSString *)cardNumber
+                          serverId:(NSInteger)serverId
+                         bindingId:(NSString *)bindingId
+                         createdAt:(NSDate *)createdAt;
 
 @end

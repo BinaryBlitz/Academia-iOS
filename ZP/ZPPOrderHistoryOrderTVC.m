@@ -118,7 +118,7 @@ static NSString *ZPPOrderAddressCellIdentifier = @"ZPPOrderAddressCellIdentifier
   } else if (indexPath.section == 1) {
     ZPPOrderTotalCell *cell = [tableView dequeueReusableCellWithIdentifier:ZPPOrderTotalCellIdentifier];
     [cell configureWithOrder:self.order];
-    cell.deliveryLabel.text = [self.order.address formatedDescr];
+    cell.deliveryLabel.text = [self.order.address formattedDescription];
     cell.deliveryLabel.font = [UIFont systemFontOfSize:17];
     return cell;
   } else {

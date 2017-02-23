@@ -58,9 +58,11 @@
 
 - (id)init {
   self = [super init];
+
   if (self) {
     _isOpen = NO;
   }
+
   return self;
 }
 

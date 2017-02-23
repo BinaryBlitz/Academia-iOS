@@ -18,12 +18,19 @@
   NSString *bindingId = dict[@"binding_id"];
   NSString *dateString = dict[@"created_at"];
 
-  ZPPCreditCard *card = [[ZPPCreditCard alloc] initWithCardNumber:cardNumber serverId:serverId.integerValue bindingId:bindingId createdAt:[NSDate customDateFromString:dateString]];
+  ZPPCreditCard *card = [[ZPPCreditCard alloc] initWithCardNumber:cardNumber
+                                                         serverId:serverId.integerValue
+                                                        bindingId:bindingId
+                                                        createdAt:[NSDate customDateFromString:dateString]];
   return card;
 }
 
-- (instancetype)initWithCardNumber:(NSString *)cardNumber serverId:(NSInteger)serverId bindingId:(NSString *)bindingId createdAt:(NSDate *)createdAt {
+- (instancetype)initWithCardNumber:(NSString *)cardNumber
+                          serverId:(NSInteger)serverId
+                         bindingId:(NSString *)bindingId
+                         createdAt:(NSDate *)createdAt {
   self = [super init];
+
   if (self) {
     self.serverId = serverId;
     self.number = cardNumber;
