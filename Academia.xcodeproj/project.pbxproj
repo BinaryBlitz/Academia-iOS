@@ -1967,7 +1967,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CFFB82A2B702EDCD29B5522A /* Pods-Academia.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Academia.entitlements;
@@ -1993,7 +1992,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 016E791C7E6B254E1EBAC6D9 /* Pods-Academia.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Academia.entitlements;
