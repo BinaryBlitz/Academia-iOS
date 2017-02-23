@@ -1,11 +1,3 @@
-//
-//  ZPPPasswordRenewPhoneInputVC.m
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 17/11/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import "ZPPPasswordRenewPhoneInputVC.h"
 #import "UIButton+ZPPButtonCategory.h"
 #import "ZPPServerManager+ZPPRegistration.h"

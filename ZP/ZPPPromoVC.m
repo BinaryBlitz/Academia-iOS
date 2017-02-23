@@ -1,11 +1,3 @@
-//
-//  ZPPPromoVC.m
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 05/11/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import <MessageUI/MessageUI.h>
 #import "UIButton+ZPPButtonCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"

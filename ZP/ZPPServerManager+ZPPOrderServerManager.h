@@ -1,11 +1,3 @@
-//
-//  ZPPServerManager+ZPPOrderServerManager.h
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 14/11/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import "ZPPServerManager.h"
 
 @class ZPPOrder;

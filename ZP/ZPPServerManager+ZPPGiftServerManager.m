@@ -1,11 +1,3 @@
-//
-//  ZPPServerManager+ZPPGiftServerManager.m
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 14/11/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import "ZPPServerManager+ZPPGiftServerManager.h"
 #import "ZPPGiftHelper.h"
 #import "AFNetworking.h"

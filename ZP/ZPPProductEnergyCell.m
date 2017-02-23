@@ -1,11 +1,3 @@
-//
-//  ZPPProductEnergyCell.m
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 10/12/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import "ZPPProductEnergyCell.h"
 
 #import "ZPPDish.h"

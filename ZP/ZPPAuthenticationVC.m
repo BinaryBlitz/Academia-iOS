@@ -1,11 +1,3 @@
-//
-//  ZPPAuthenticationVC.m
-//  ZP
-//
-//  Created by Andrey Mikhaylov on 29/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 #import "ZPPAuthenticationVC.h"
 
 #import "ZPPServerManager+ZPPRegistration.h"
