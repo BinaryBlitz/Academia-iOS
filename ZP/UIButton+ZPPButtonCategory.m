@@ -20,6 +20,7 @@
       [v removeFromSuperview];
     }
   }
+
   self.enabled = YES;
 }
 
@@ -30,17 +31,14 @@
 - (void)startIndicatingWithType:(UIActivityIndicatorViewStyle)style {
   [self stopIndication];
   [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-  UIActivityIndicatorView *v =
-      [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
+  UIActivityIndicatorView *v = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
   [v startAnimating];
 
   CGSize size = v.frame.size;
 
-  v.frame = CGRectMake(8, (self.frame.size.height - size.height) / 2.0, v.frame.size.width,
-      v.frame.size.height);
+  v.frame = CGRectMake(8, (self.frame.size.height - size.height) / 2.0, v.frame.size.width, v.frame.size.height);
 
   [self addSubview:v];
-
   self.enabled = NO;
 }
 
