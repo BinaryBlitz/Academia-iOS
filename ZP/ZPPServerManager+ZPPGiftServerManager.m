@@ -7,7 +7,6 @@
 //
 
 #import "ZPPServerManager+ZPPGiftServerManager.h"
-#import "ZPPUserManager.h"
 #import "ZPPGiftHelper.h"
 #import "AFNetworking.h"
 

@@ -8,7 +8,6 @@
 
 #import "ZPPOrder.h"
 #import "ZPPOrderItem.h"
-#import "ZPPCreditCard.h"
 #import "ZPPUser.h"
 #import "ZPPUserManager.h"
 

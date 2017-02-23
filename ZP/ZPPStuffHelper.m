@@ -9,7 +9,6 @@
 #import "ZPPStuffHelper.h"
 #import "ZPPStuff.h"
 
-#import "ZPPServerManager.h"
 #import "ZPPImageWorker.h"
 
 @implementation ZPPStuffHelper

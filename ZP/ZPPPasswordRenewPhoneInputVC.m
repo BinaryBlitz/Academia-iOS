@@ -12,8 +12,6 @@
 #import "UIViewController+ZPPValidationCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 
-#import "ZPPSmsVerificationManager.h"
-
 #import "ZPPPasswordRenewCodeInput.h"
 
 #import "ZPPUser.h"

@@ -8,7 +8,6 @@
 
 #import "ZPPIngridientHelper.h"
 #import "ZPPIngridient.h"
-#import "ZPPServerManager.h"
 
 #import "ZPPImageWorker.h"
 

@@ -9,7 +9,6 @@
 #import "ZPPBadgeHelper.h"
 #import "ZPPBadge.h"
 #import "ZPPImageWorker.h"
-#import "ZPPServerManager.h"
 
 @implementation ZPPBadgeHelper
 

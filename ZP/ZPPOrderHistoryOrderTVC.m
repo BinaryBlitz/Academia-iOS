@@ -9,7 +9,6 @@
 #import "ZPPOrderHistoryOrderTVC.h"
 
 @import HCSStarRatingView;
-#import "DTCustomColoredAccessory.h"
 
 #import "ZPPStarsCell.h"
 #import "ZPPCommentCell.h"
@@ -17,7 +16,6 @@
 #import "ZPPOrderTotalCell.h"
 #import "ZPPOrderItemCell.h"
 #import "ZPPNoCreditCardCell.h"
-#import "ZPPOrderTotalCell.h"
 #import "ZPPOrderAddressCell.h"
 
 #import "UITableViewController+ZPPTVCCategory.h"

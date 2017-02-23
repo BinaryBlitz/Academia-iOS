@@ -7,7 +7,6 @@
 //
 
 #import "ZPPCreditCardInfoCell.h"
-#import "ZPPCreditCard.h"
 
 @implementation ZPPCreditCardInfoCell
 

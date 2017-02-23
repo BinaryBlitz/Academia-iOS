@@ -9,7 +9,6 @@
 #import "ZPPPaymentWebController.h"
 
 #import "UIViewController+ZPPViewControllerCategory.h"
-#import "UINavigationController+ZPPNavigationControllerCategory.h"
 
 @interface ZPPPaymentWebController ()
 

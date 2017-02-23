@@ -8,13 +8,10 @@
 
 #import "ZPPAnotherProductsTVC.h"
 
-@import AFNetworking;
-@import SDWebImage;
 #import "ZPPProductAnotherCell.h"
 #import "ZPPProductMainCell.h"
 #import "ZPPStuff.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
-#import "ZPPConsts.h"
 #import "ZPPOrder.h"
 #import "ZPPOrderItem.h"
 

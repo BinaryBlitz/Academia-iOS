@@ -10,23 +10,19 @@
 
 @import ActionSheetPicker_3_0;
 @import Crashlytics;
-@import SafariServices;
 @import DateTools;
 @import PureLayout;
 
 #import <OAStackView/OAStackView.h>
 #import "UIButton+ZPPButtonCategory.h"
-#import "UINavigationController+ZPPNavigationControllerCategory.h"
 #import "UIView+UIViewCategory.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 
 #import "ZPPOrder.h"
 #import "ZPPConsts.h"
-#import "NSDate+ZPPDateCategory.h"
 #import "ZPPNoInternetConnectionVC.h"
 #import "ZPPServerManager+ZPPOrderServerManager.h"
 #import "ZPPPaymentWebController.h"
-#import "ZPPServerManager.h"
 #import "ZPPTimeManager.h"
 #import "ZPPCreditCard.h"
 #import "ZPPUserManager.h"
@@ -442,8 +438,8 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
                                        [sender setTitle:selectedValue forState:UIControlStateNormal];
                                        [self addCheckmarkToButton:self.atTimeButton];
 
-                                       NSDate *selectedDate = ((DTTimePeriod * )
-                                       [deliveryDates objectAtIndex:selectedIndex]).StartDate;
+                                       NSDate *selectedDate = ((DTTimePeriod *)
+                                           [deliveryDates objectAtIndex:selectedIndex]).StartDate;
                                        if ([timeManager.currentTime isEarlierThan:closeDate]) {
                                          self.order.date = selectedDate;
                                        } else {

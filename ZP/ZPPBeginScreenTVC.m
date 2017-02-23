@@ -10,8 +10,6 @@
 
 @import SDWebImage;
 @import DateTools;
-@import PureLayout;
-#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "ZPPBeginScreenCell.h"
 #import "UIView+UIViewCategory.h"
 #import "NSDate+ZPPDateCategory.h"

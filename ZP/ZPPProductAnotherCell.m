@@ -10,7 +10,6 @@
 #import "ZPPStuff.h"
 
 #import "ZPPUserManager.h"
-#import "ZPPUser.h"
 
 //#import <UIImageView+AFNetworking.h>
 //
@@ -18,7 +17,6 @@
 #import "ZPPConsts.h"
 
 @import JSBadgeView;
-@import AFNetworking;
 @import SDWebImage;
 
 @interface ZPPProductAnotherCell ()
