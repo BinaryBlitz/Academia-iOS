@@ -1,12 +1,11 @@
 #import "ZPPOrderAddressCell.h"
-@import LMGeocoder;
+#import "ZPPAddress.h"
 
 @implementation ZPPOrderAddressCell
 
-- (void)configureWithAddress:(LMAddress *)address {
+- (void)configureWithAddress:(ZPPAddress *)address {
   self.addresDescrLabel.text = @"Адрес доставки";
-  self.addresLabel.text = [NSString stringWithFormat:@"%@, %@", [address route], [address streetNumber]];
-
+  self.addresLabel.text = [NSString stringWithFormat:@"%@", [address formattedDescription]];
   //   [self.chooseAnotherButton setTitle:@"Выбрать другой адерс" forState:UIControlStateNormal];
 
   NSDictionary *underlineAttribute =

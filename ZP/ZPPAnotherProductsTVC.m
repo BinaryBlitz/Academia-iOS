@@ -90,7 +90,7 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / ДЕСЕРТЫ";
 - (ZPPProductMainCell *)mainCell {
   ZPPProductMainCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPProductMainCellIdentifier];
 
-  cell.nameLabel.text = ZPPControllerName;
+  [cell setTitle:ZPPControllerName];
   cell.ingridientsDescriptionLabel.text = ZPPControllerDescrioption;
   cell.priceLabel.text = @"";
   [cell.addToBasketButton addTarget:self

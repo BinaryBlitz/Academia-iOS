@@ -1,8 +1,8 @@
 @import Foundation;
-@import LMGeocoder;
+#import "ZPPAddress.h"
 
 @protocol ZPPAddressDelegate <NSObject>
 
-- (void)configureWithAddress:(LMAddress *)address sender:(id)sender;
+- (void)configureWithAddress:(ZPPAddress *)address sender:(id)sender;
 
 @end

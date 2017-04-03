@@ -287,7 +287,12 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
       [self presentSuccessOrderController];
     }
   } else if ([urlString containsString:@"feylur"]) {
-    //smth
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Платеж не был завершен"
+                                        message:@"При обработке произошла ошибка."
+                                 preferredStyle:UIAlertControllerStyleAlert];
+
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Ок" style:UIAlertActionStyleCancel handler:nil]];
+
   }
 }
 
