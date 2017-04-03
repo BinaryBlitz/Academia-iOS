@@ -14,7 +14,6 @@
 
   self.screenHeight = [UIScreen mainScreen].bounds.size.height;
   self.tableView.backgroundColor = [UIColor blackColor];
-
   [self registerCells];
 
   UIView *v = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -26,6 +25,21 @@
   self.tableView.contentInset =
       UIEdgeInsetsMake(insets.top, insets.left, insets.bottom - self.screenHeight, insets.right);
 }
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  if (self.shouldScrollToFirstRow) {
+    [UIView animateWithDuration:0.6 animations:^{
+      [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]
+                            atScrollPosition:UITableViewScrollPositionTop
+                                    animated:TRUE];
+    } completion:^(BOOL finished) {
+      [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                            atScrollPosition:UITableViewScrollPositionTop
+                                    animated:TRUE];
+    }];
+  }
+}
+
 
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];

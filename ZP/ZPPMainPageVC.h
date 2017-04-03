@@ -1,5 +1,4 @@
 @import UIKit;
-
-@interface ZPPMainPageVC : UIPageViewController <UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIScrollViewDelegate>
-
+#import "ZPPMainVCDelegate.h"
+@interface ZPPMainPageVC : UIPageViewController <UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIScrollViewDelegate, ZPPMainVCDelegate>
 @end

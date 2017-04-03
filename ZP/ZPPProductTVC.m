@@ -296,7 +296,11 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     } else if (indexPath.row == 1) {
       return 67.0;
     } else if (indexPath.row == self.numberOfRows - 1) {
-      return UITableViewAutomaticDimension;
+      if (self.dish.dishDescription.length > 0) {
+        return UITableViewAutomaticDimension;
+      } else {
+        return 0;
+      }
     } else {
       if (!self.isLunch) {
         return [UIScreen mainScreen].bounds.size.width / 3.0 + 10;

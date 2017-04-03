@@ -11,6 +11,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
 
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *dishesCategoryButtons;
+
+
 - (void)showCompletion:(void (^)())completion;
 - (void)dismissCompletion:(void (^)())completion;
 

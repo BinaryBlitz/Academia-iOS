@@ -12,13 +12,25 @@ class ZPPOnboardingVC: UIViewController {
 
   @IBOutlet weak var textLabel: UILabel!
   @IBOutlet weak var iphoneImageView: UIImageView!
+
+  var shouldShowDescriptionPreview: Bool = false
+  
   override func viewDidLoad() {
     super.viewDidLoad()
 
     view.backgroundColor = UIColor.gray
 
+    let font = UIFont(name: "Roboto-Black", size: 24)
+    let attribs = [
+      NSForegroundColorAttributeName: UIColor.white,
+      NSStrokeColorAttributeName: UIColor.black,
+      NSFontAttributeName: font ?? UIFont.systemFont(ofSize: 24),
+      NSStrokeWidthAttributeName: 1.0
+    ] as [String : Any]
 
-    textLabel.text = text
+    let attributedText = NSAttributedString(string: "\(text)", attributes: attribs)
+    textLabel.attributedText = attributedText
+
     let backImg = UIImage(named: backName!)
 
     if let bi = backImg {

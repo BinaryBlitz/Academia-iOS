@@ -431,6 +431,7 @@
 		379768721E10011400823AEF /* Academia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Academia.entitlements; path = ../Academia.entitlements; sourceTree = "<group>"; };
 		37F681D61CB19B9800B2E115 /* ZPPAddressDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ZPPAddressDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		52C84A6DD94A85DCC8901370 /* Pods_ZP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88123FE21E9291A600215D07 /* ZPPMainVCDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZPPMainVCDelegate.h; sourceTree = "<group>"; };
 		BCB5C4471DB02E6600D27CF6 /* iconBigColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBigColor.png; sourceTree = "<group>"; };
 		BCB5C4491DB02E9B00D27CF6 /* iconBigColorNoWords.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBigColorNoWords.png; sourceTree = "<group>"; };
 		BCB5C44B1DB02EB500D27CF6 /* load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load.png; sourceTree = "<group>"; };
@@ -708,6 +709,7 @@
 				191C98531BC0438C00E10D4F /* ZPPMainVC.h */,
 				191C98541BC0438C00E10D4F /* ZPPMainVC.m */,
 				19F379021BFE2AED004827A0 /* ZPPConfigureWithOrder.h */,
+				88123FE21E9291A600215D07 /* ZPPMainVCDelegate.h */,
 			);
 			name = Main;
 			sourceTree = "<group>";

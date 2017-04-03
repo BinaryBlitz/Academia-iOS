@@ -4,6 +4,7 @@
 @import VBFPopFlatButton;
 #import "ZPPUserManager.h"
 #import "ZPPMainMenuView.h"
+#import "ZPPMainPageVC.h"
 
 #import "ZPPGiftTVC.h"
 #import "ZPPNoInternetConnectionVC.h"
@@ -18,7 +19,7 @@ static float kZPPButtonDiametr = 40.0f;
 static float kZPPButtonOffset = 15.0f;
 
 static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонусов";
-
+static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
 @interface ZPPMainVC () <ZPPNoInternetDelegate>
 
 @property (strong, nonatomic) VBFPopFlatButton *menuButton;
@@ -85,6 +86,14 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if ([segue.identifier isEqualToString:embedPageVCSegueIdentifier]) {
+    ZPPMainPageVC *destVC =
+    (ZPPMainPageVC *) segue.destinationViewController;
+    self.delegate = destVC;
+  }
 }
 
 #pragma mark - ui
@@ -224,6 +233,11 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
                      animated:YES
                    completion:^{
                    }];
+}
+
+- (void)showCategory:(UIButton*) sender {
+  [self dissmisMenu];
+  [self.delegate loadDishes:sender.tag];
 }
 
 - (void)showOnboarding {
@@ -396,6 +410,10 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
 - (void)tryAgainSender:(id)sender {
 }
 
+#pragma mark - begin screen delegate
+- (void)didPressBeginButton {
+}
+
 #pragma mark - lazy
 
 - (ZPPMainMenuView *)mainMenu {
@@ -429,6 +447,11 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
     [_mainMenu.myCardsButton addTarget:self
                                 action:@selector(showMyCards)
                       forControlEvents:UIControlEventTouchUpInside];
+
+    for (UIButton* button in self.mainMenu.dishesCategoryButtons) {
+      [button addTarget:self
+                 action:@selector(showCategory:) forControlEvents:UIControlEventTouchUpInside];
+    }
   }
   return _mainMenu;
 }

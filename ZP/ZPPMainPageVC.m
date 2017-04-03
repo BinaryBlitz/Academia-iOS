@@ -5,6 +5,7 @@
 #import "ZPPMainVC.h"
 #import "ZPPProductTVC.h"
 #import "ZPPUserManager.h"
+#import "ZPPMainVCDelegate.h"
 
 #import "ZPPServerManager+ZPPDishesSeverManager.h"
 
@@ -14,11 +15,12 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
 @interface ZPPMainPageVC () <ZPPProductsBaseTVCDelegate,
     ZPPBeginScreenTVCDelegate,
-    ZPPProductScreenTVCDelegate>
+    ZPPProductScreenTVCDelegate, ZPPMainVCDelegate>
 
 @property (strong, nonatomic) NSArray *productViewControllers;
 @property (strong, nonatomic) UIPageControl *pageControl;
 @property (strong, nonatomic) NSArray *dishes;
+@property (nonatomic) BOOL shouldScrollToFirstRow;
 
 @end
 
@@ -28,6 +30,8 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
   [super viewDidLoad];
 
   ZPPBeginScreenTVC *beginScreen = [self startScreen];
+
+  self.shouldScrollToFirstRow = YES;
 
   [self configureScreensWithArr:@[beginScreen]];
 
@@ -51,7 +55,6 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  [self loadDishes];
 }
 
 #pragma mark - page vc delegate
@@ -170,7 +173,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
 #pragma mark - dishes
 
-- (void)loadDishes {
+- (void)loadDishes:(NSInteger)categoryIndex {
   __weak typeof(self) weakSelf = self;
   [[ZPPServerManager sharedManager]
       getDayMenuOnSuccess:^(NSArray *meals, NSArray *dishes, NSArray *stuff,
@@ -280,6 +283,12 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
   for (ZPPProductsBaseTVC *vc in self.productViewControllers) {
     vc.delegate = self;
+  }
+
+  if (self.shouldScrollToFirstRow && self.productViewControllers.count > 1) {
+    ZPPProductsBaseTVC *firstDishesController = (ZPPProductsBaseTVC *)self.productViewControllers[1];
+    firstDishesController.shouldScrollToFirstRow = YES;
+    self.shouldScrollToFirstRow = NO;
   }
 
   self.pageControl.numberOfPages = self.productViewControllers.count;

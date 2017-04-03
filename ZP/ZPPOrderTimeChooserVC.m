@@ -165,6 +165,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 }
 
 - (void)orderAtTimeAction:(UIButton *)sender {
+  sender.enabled = NO;
   [self addTimePicker:sender];
 }
 
@@ -426,6 +427,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
                                           rows:keys
                               initialSelection:0
                                      doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                       sender.enabled = YES;
                                        self.order.deliverNow = NO;
                                        [sender setTitle:selectedValue forState:UIControlStateNormal];
                                        [self addCheckmarkToButton:self.atTimeButton];
@@ -439,7 +441,9 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
                                        }
                                        NSLog(@"selected date: %@", self.order.date);
                                      }
-                                   cancelBlock:nil
+                                   cancelBlock:^(ActionSheetStringPicker *picker) {
+                                     sender.enabled = YES;
+                                   }
                                         origin:sender];
 }
 
