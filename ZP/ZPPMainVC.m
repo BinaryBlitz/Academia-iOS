@@ -5,30 +5,33 @@
 #import "ZPPUserManager.h"
 #import "ZPPMainMenuView.h"
 #import "ZPPMainPageVC.h"
-
+#import "Academia-Swift.h"
+#import "ZPPCategory.h"
 #import "ZPPGiftTVC.h"
 #import "ZPPNoInternetConnectionVC.h"
 #import "ZPPOrder.h"
 #import "ZPPOrderHistoryTVC.h"
 #import "ZPPOrderTVC.h"
 #import "ZPPServerManager+ZPPRegistration.h"
+#import "ZPPServerManager+ZPPDishesSeverManager.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "ZPPOrderManager.h"
 
 static float kZPPButtonDiametr = 40.0f;
 static float kZPPButtonOffset = 15.0f;
 
-static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонусов";
 static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
-@interface ZPPMainVC () <ZPPNoInternetDelegate>
+@interface ZPPMainVC () <ZPPNoInternetDelegate, ZPPMainMenuDelegate, ZPPMainMenuDelegate>
 
 @property (strong, nonatomic) VBFPopFlatButton *menuButton;
-@property (strong, nonatomic) ZPPMainMenuView *mainMenu;
+@property (strong, nonatomic) ZPPMainMenuTableView *mainMenu;
 @property (strong, nonatomic) VBFPopFlatButton *button;
 @property (strong, nonatomic) UIView *buttonView;
 @property (strong, nonatomic) UIView *orderView;
 @property (strong, nonatomic) JSBadgeView *badgeView;
 @property (strong, nonatomic) JSBadgeView *orderCountBadgeView;
+
+@property (weak, nonatomic) ZPPMainPageVC *pageVC;
 
 @property (assign, nonatomic) BOOL menuShowed;
 @property (assign, nonatomic) BOOL animationShoved;
@@ -60,6 +63,7 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
     [self.view addSubview:self.buttonView];
 
     [self setUserBalance];
+    [self loadCategoriesIfNeeded];
     [self updateBadge];
   } else {
     [self removeAllAfterLogOut];
@@ -92,6 +96,7 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
   if ([segue.identifier isEqualToString:embedPageVCSegueIdentifier]) {
     ZPPMainPageVC *destVC =
     (ZPPMainPageVC *) segue.destinationViewController;
+    self.pageVC = destVC;
     self.delegate = destVC;
   }
 }
@@ -126,16 +131,15 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
 
 - (void)showMenu {
   self.menuShowed = YES;
+  [self loadCategoriesIfNeeded];
   [self.button animateToType:buttonCloseType];
-  [self.mainMenu showCompletion:^{
-  }];
+  [self.mainMenu show];
 }
 
 - (void)dissmisMenu {
   [self.button animateToType:buttonMenuType];
   self.menuShowed = NO;
-  [self.mainMenu dismissCompletion:^{
-  }];
+  [self.mainMenu dismiss];
 }
 
 - (void)showOrderButton {
@@ -233,11 +237,6 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
                      animated:YES
                    completion:^{
                    }];
-}
-
-- (void)showCategory:(UIButton*) sender {
-  [self dissmisMenu];
-  [self.delegate loadDishes:sender.tag];
 }
 
 - (void)showOnboarding {
@@ -341,13 +340,18 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
                    }];
 }
 
-- (void)setUserBalance {
-  if ([ZPPUserManager sharedInstance].user.balance.integerValue > 0) {
-    self.mainMenu.balanceLabel.text = [NSString
-        stringWithFormat:ZPPBalanceString, [ZPPUserManager sharedInstance].user.balance];
-  } else {
-    self.mainMenu.balanceLabel.text = @"";
+- (void)loadCategoriesIfNeeded {
+  if (self.mainMenu.categories.count == 0) {
+    [[ZPPServerManager sharedManager] getDayMenu];
+    [[ZPPServerManager sharedManager] getCategoriesOnSuccess:^(NSArray *categories) {
+      self.mainMenu.categories = categories;
+    } onFailure:^(NSError *error, NSInteger statusCode) {
+    }];
   }
+}
+
+- (void)setUserBalance {
+  self.mainMenu.balance = [ZPPUserManager sharedInstance].user.balance.integerValue;
 }
 
 - (void)removeAllAfterLogOut {
@@ -384,25 +388,33 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
   }
 }
 
-- (void)setOrderCount {
-  NSInteger c = [ZPPOrderManager sharedManager].onTheWayOrders.count;
-  [self setOrderCount:c];
-  [[ZPPOrderManager sharedManager] updateOrdersCompletion:^(NSInteger count) {
-    [self setOrderCount:count];
-  }];
+#pragma mark - main menu delegate
+
+- (void)didSelectCategory:(ZPPCategory *)category {
+  [self dissmisMenu];
+  if(self.pageVC) {
+    [self.pageVC loadDishes:category._id];
+  }
 }
 
-- (void)setOrderCount:(NSInteger)count {
-  if (count > 0) {
-    self.orderCountBadgeView.badgeText = [NSString stringWithFormat:@"%ld", (long) count];
+- (void)didSelectProfile {
+  [self showProfile];
+}
 
-    NSString *destString = [NSString stringWithFormat:@"ЗАКАЗЫ (%ld)", (long) count];
-    [self.mainMenu.ordersButton setTitle:destString forState:UIControlStateNormal];
-  } else {
-    self.orderCountBadgeView.badgeText = nil;
-    NSString *destString = [NSString stringWithFormat:@"ЗАКАЗЫ"];
-    [self.mainMenu.ordersButton setTitle:destString forState:UIControlStateNormal];
-  }
+- (void)didSelectHelp {
+  [self showHelp];
+}
+
+- (void)didSelectOrders {
+  [self showGifts];
+}
+
+- (void)setOrderCount {
+  NSInteger c = [ZPPOrderManager sharedManager].onTheWayOrders.count;
+  self.mainMenu.ordersCount = c;
+  [[ZPPOrderManager sharedManager] updateOrdersCompletion:^(NSInteger count) {
+    self.mainMenu.ordersCount = c;
+  }];
 }
 
 #pragma mark - no internet connection delegate
@@ -412,46 +424,18 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
 
 #pragma mark - begin screen delegate
 - (void)didPressBeginButton {
+  [self showMenu];
 }
 
 #pragma mark - lazy
 
-- (ZPPMainMenuView *)mainMenu {
+- (ZPPMainMenuTableView *)mainMenu {
   if (!_mainMenu) {
-    NSString *nibName = NSStringFromClass([ZPPMainMenuView class]);
-    _mainMenu =
-        [[[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil] firstObject];
     CGSize s = [UIScreen mainScreen].bounds.size;
-    _mainMenu.frame = CGRectMake(0, -s.height, s.width, s.height);
-
-    [_mainMenu.profileButton addTarget:self
-                                action:@selector(showProfile)
-                      forControlEvents:UIControlEventTouchUpInside];
-
-    [_mainMenu.helpButton addTarget:self
-                             action:@selector(showHelp)
-                   forControlEvents:UIControlEventTouchUpInside];
-
-    [_mainMenu.giftCardButton addTarget:self
-                                 action:@selector(showGifts)
-                       forControlEvents:UIControlEventTouchUpInside];
-
-    [_mainMenu.ordersButton addTarget:self
-                               action:@selector(showOrderHistory)
-                     forControlEvents:UIControlEventTouchUpInside];
-
-    [_mainMenu.promoButton addTarget:self
-                              action:@selector(showPromoCodeInput)
-                    forControlEvents:UIControlEventTouchUpInside];
-
-    [_mainMenu.myCardsButton addTarget:self
-                                action:@selector(showMyCards)
-                      forControlEvents:UIControlEventTouchUpInside];
-
-    for (UIButton* button in self.mainMenu.dishesCategoryButtons) {
-      [button addTarget:self
-                 action:@selector(showCategory:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    CGRect frame = CGRectMake(0, -s.height, s.width, s.height);
+    ZPPMainMenuTableView* mainMenu = [[ZPPMainMenuTableView alloc] initWithFrame:frame];
+    _mainMenu = mainMenu;
+    mainMenu.menuDelegate = self;
   }
   return _mainMenu;
 }

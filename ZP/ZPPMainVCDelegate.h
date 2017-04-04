@@ -9,6 +9,6 @@
 
 @protocol ZPPMainVCDelegate <NSObject>
 
-- (void)loadDishes:(NSInteger)index;
+- (void)loadDishes:(NSNumber*)index;
 
 @end

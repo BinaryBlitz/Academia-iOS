@@ -4,10 +4,13 @@
 
 @interface ZPPServerManager (ZPPDishesSeverManager)
 
-- (void)GETDishesOnSuccesOnSuccess:(void (^)(NSArray *dishes))success
-                         onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+- (void)getCategoriesOnSuccess:(void (^)(NSArray *categories))success
+                     onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
-- (void)getDayMenuOnSuccess:(void (^)(NSArray *meals, NSArray *dishes, NSArray *stuff, ZPPTimeManager *timeManager))success
-                  onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+- (void)getDishesWithCategory:(NSNumber *) categoryId
+                    onSuccess:(void (^)(NSArray *dishes))success
+                    onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
+
+- (void)getDayMenu;
 
 @end

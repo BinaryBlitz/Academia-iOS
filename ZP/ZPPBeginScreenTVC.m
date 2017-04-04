@@ -53,7 +53,7 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
     cell.backImageView.image = [UIImage imageNamed:@"back3.jpg"];
   }
 
-  if ([ZPPTimeManager sharedManager].dishesForToday || [self currentState] == ZPPCurrentBeginStateNotLoged) {
+  if ([self currentState] == ZPPCurrentBeginStateNotLoged) {
     [cell.beginButton setTitle:[self buttonText] forState:UIControlStateNormal];
   } else {
     cell.beginButton.hidden = YES;

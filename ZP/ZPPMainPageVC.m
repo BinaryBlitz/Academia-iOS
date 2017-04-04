@@ -51,6 +51,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
   [self addPageControl];
   [[ZPPUserManager sharedInstance] checkUser];
+  [self loadDishes:0];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -173,26 +174,16 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
 #pragma mark - dishes
 
-- (void)loadDishes:(NSInteger)categoryIndex {
+- (void)loadDishes:(NSNumber*)categoryId {
   __weak typeof(self) weakSelf = self;
   [[ZPPServerManager sharedManager]
-      getDayMenuOnSuccess:^(NSArray *meals, NSArray *dishes, NSArray *stuff,
-          ZPPTimeManager *timeManager) {
+   getDishesWithCategory:categoryId onSuccess:^(NSArray *dishes) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (strongSelf) {
           NSArray *dishControllers = [strongSelf dishControllersFromArr:dishes];
-          NSArray *mealControllers = [strongSelf lunchControllersFromArr:meals];
 
           NSArray *arr =
-              [@[[strongSelf startScreen]] arrayByAddingObjectsFromArray:mealControllers];
-          arr = [arr arrayByAddingObjectsFromArray:dishControllers];
-
-          if (stuff.count) {
-            ZPPAnotherProductsTVC *stuffTVC = [strongSelf generateAnotherProductsVC:stuff];
-            stuffTVC.productDelegate = strongSelf;
-            arr = [arr arrayByAddingObject:stuffTVC];
-          }
-
+              [@[[strongSelf startScreen]] arrayByAddingObjectsFromArray:dishControllers];
           [strongSelf configureScreensWithArr:arr];
         }
       }
