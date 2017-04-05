@@ -35,6 +35,17 @@
                                  ];
 }
 
+- (void)setIngridientsDescription:(NSString *)title {
+  self.ingridientsDescriptionLabel.attributedText=[[NSAttributedString alloc]
+                                  initWithString:title
+                                  attributes:@{
+                                               NSStrokeWidthAttributeName: @-1.0,
+                                               NSStrokeColorAttributeName:[UIColor blackColor],
+                                               NSForegroundColorAttributeName:[UIColor whiteColor]
+                                               }
+                                  ];
+}
+
 - (void)drawRect:(CGRect)rect {
   UIView *view = self.productImageView;
   if (![[view.layer.sublayers firstObject] isKindOfClass:[CAGradientLayer class]]) {

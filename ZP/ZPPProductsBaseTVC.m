@@ -31,7 +31,7 @@
     [UIView animateWithDuration:0.8 animations:^{
       [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]
                             atScrollPosition:UITableViewScrollPositionTop
-                                    animated:NO];
+                                    animated:YES];
       self.shouldScrollToFirstRow = NO;
     } completion:^(BOOL finished) {
       [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]

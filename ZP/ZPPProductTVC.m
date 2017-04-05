@@ -131,9 +131,9 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 
   [self loadImageView:cell.productImageView indexPath:ip url:imgURL];
 
-  cell.nameLabel.text = self.dish.name;
-  cell.ingridientsDescriptionLabel.text = self.dish.subtitle;
-  cell.priceLabel.text = [NSString stringWithFormat:@"%@ ₽", self.dish.price];
+  [cell setTitle: self.dish.name];
+  [cell setIngridientsDescription: self.dish.subtitle];
+  [cell setPrice: [NSString stringWithFormat:@"%@ ₽", self.dish.price]];
 
   [cell.addToBasketButton makeBorderedWithColor:[UIColor whiteColor]];
   cell.contentView.backgroundColor = [UIColor blackColor];
