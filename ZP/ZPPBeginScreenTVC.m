@@ -32,6 +32,12 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.tableView.alwaysBounceVertical = NO;
+
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:ZPPUserLoginNotificationName object:nil];
+}
+
+- (void)reloadData {
+  [self.tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

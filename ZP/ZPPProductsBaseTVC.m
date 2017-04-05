@@ -28,14 +28,15 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   if (self.shouldScrollToFirstRow) {
-    [UIView animateWithDuration:0.6 animations:^{
+    [UIView animateWithDuration:0.8 animations:^{
       [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]
                             atScrollPosition:UITableViewScrollPositionTop
-                                    animated:TRUE];
+                                    animated:NO];
+      self.shouldScrollToFirstRow = NO;
     } completion:^(BOOL finished) {
       [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
                             atScrollPosition:UITableViewScrollPositionTop
-                                    animated:TRUE];
+                                    animated:YES];
     }];
   }
 }
