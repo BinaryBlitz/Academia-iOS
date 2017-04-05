@@ -3,7 +3,7 @@
 @protocol ZPPBeginScreenTVCDelegate <NSObject>
 
 - (void)didPressBeginButton;
-- (void)showMenuPreview;
+- (void)didPressPreviewButton;
 @end
 
 @interface ZPPBeginScreenTVC : ZPPProductsBaseTVC

@@ -53,11 +53,8 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
     cell.backImageView.image = [UIImage imageNamed:@"back3.jpg"];
   }
 
-  if ([self currentState] == ZPPCurrentBeginStateNotLoged) {
-    [cell.beginButton setTitle:[self buttonText] forState:UIControlStateNormal];
-  } else {
-    cell.beginButton.hidden = YES;
-  }
+  [cell.beginButton setTitle:[self buttonText] forState:UIControlStateNormal];
+
   cell.descrLabel.text = [self descrBottomText];
   cell.upperDescrLabel.text = [self descrUpperText];
 
@@ -125,7 +122,7 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 - (void)previewButtonAction:(UIButton *)sender {
   if (self.beginDelegate &&
       [self.beginDelegate conformsToProtocol:@protocol(ZPPBeginScreenTVCDelegate)]) {
-    [self.beginDelegate showMenuPreview];
+    [self.beginDelegate didPressPreviewButton];
   }
 }
 

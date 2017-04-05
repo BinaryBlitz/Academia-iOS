@@ -13,5 +13,6 @@
 - (void)showRegistration;
 - (void)addItemIntoOrder:(id <ZPPItemProtocol>)item;
 - (void)showNoInternetScreen;
+- (void)showMenu;
 
 @end

@@ -51,7 +51,6 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
   [self addPageControl];
   [[ZPPUserManager sharedInstance] checkUser];
-  [self loadDishes:0];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -119,7 +118,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
         [[UIPageControl alloc] initWithFrame:CGRectMake(0, 50, rect.size.width, 30)];
 
     pageControl.numberOfPages = self.productViewControllers.count;
-    pageControl.enabled = NO;
+    pageControl.enabled = YES;
     pageControl.hidesForSinglePage = YES;
 
     [self.view addSubview:pageControl];
@@ -130,27 +129,21 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 #pragma mark - ZPPProductBaseDelegate
 
 - (void)didScroll:(UIScrollView *)sender {
-  if (sender.contentOffset.y > 10) {
-    self.pageControl.hidden = YES;
-  } else {
-    self.pageControl.hidden = NO;
-  }
+
 }
 
 #pragma mark - ZPPBeginScreenTVCDelegate
 
-- (void)didPressBeginButton {
+- (void) didPressBeginButton {
   if (![[ZPPUserManager sharedInstance] checkUser]) {
-    [[self mainVC] showRegistration];
+    [self.mainVC showRegistration];
   } else {
-    if (self.productViewControllers.count > 1) {  // REDO костыль
-      [self setViewControllers:@[self.productViewControllers[1]]
-                     direction:UIPageViewControllerNavigationDirectionForward
-                      animated:YES
-                    completion:nil];  // redo
-      self.pageControl.currentPage = 1;
-    }
+    [self.mainVC showMenu];
   }
+}
+
+- (void) didPressPreviewButton {
+  [self.mainVC showMenu];
 }
 
 - (void)showMenuPreview {
@@ -285,7 +278,9 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
   self.pageControl.numberOfPages = self.productViewControllers.count;
 
   ZPPProductsBaseTVC *destVC;
-  if (currentIndex < self.productViewControllers.count) {
+  if (currentIndex == 0 && self.productViewControllers.count > 1) {
+    destVC = self.productViewControllers[1];
+  } else if (currentIndex < self.productViewControllers.count) {
     destVC = self.productViewControllers[currentIndex];
   }
 

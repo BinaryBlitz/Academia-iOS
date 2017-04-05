@@ -21,7 +21,7 @@ static float kZPPButtonDiametr = 40.0f;
 static float kZPPButtonOffset = 15.0f;
 
 static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
-@interface ZPPMainVC () <ZPPNoInternetDelegate, ZPPMainMenuDelegate, ZPPMainMenuDelegate>
+@interface ZPPMainVC () <ZPPNoInternetDelegate, ZPPMainMenuDelegate>
 
 @property (strong, nonatomic) VBFPopFlatButton *menuButton;
 @property (strong, nonatomic) ZPPMainMenuTableView *mainMenu;
@@ -48,6 +48,10 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
+  [self.view addSubview:self.mainMenu];
+  [self.view addSubview:self.buttonView];
+  [self loadCategoriesIfNeeded];
+
   if ([[ZPPUserManager sharedInstance] checkUser]) {
     [[ZPPServerManager sharedManager] getCurrentUserOnSuccess:^(ZPPUser *user) {
           [ZPPUserManager sharedInstance].user.balance = user.balance;
@@ -59,11 +63,7 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
 
     [self setOrderCount];
 
-    [self.view addSubview:self.mainMenu];
-    [self.view addSubview:self.buttonView];
-
     [self setUserBalance];
-    [self loadCategoriesIfNeeded];
     [self updateBadge];
   } else {
     [self removeAllAfterLogOut];
@@ -97,7 +97,6 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
     ZPPMainPageVC *destVC =
     (ZPPMainPageVC *) segue.destinationViewController;
     self.pageVC = destVC;
-    self.delegate = destVC;
   }
 }
 
@@ -116,6 +115,7 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
   [self presentViewController:theInitialViewController
                      animated:YES
                    completion:^{
+                     
                    }];
 }
 
@@ -134,6 +134,7 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
   [self loadCategoriesIfNeeded];
   [self.button animateToType:buttonCloseType];
   [self.mainMenu show];
+
 }
 
 - (void)dissmisMenu {
@@ -355,12 +356,6 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
 }
 
 - (void)removeAllAfterLogOut {
-  if ([self.view.subviews containsObject:self.mainMenu]) {
-    [self.mainMenu removeFromSuperview];
-  }
-  if ([self.view.subviews containsObject:self.buttonView]) {
-    [self.buttonView removeFromSuperview];
-  }
   if ([self.view.subviews containsObject:self.orderView]) {
     [self.orderView removeFromSuperview];
     _order = nil;
@@ -420,11 +415,6 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
 #pragma mark - no internet connection delegate
 
 - (void)tryAgainSender:(id)sender {
-}
-
-#pragma mark - begin screen delegate
-- (void)didPressBeginButton {
-  [self showMenu];
 }
 
 #pragma mark - lazy
