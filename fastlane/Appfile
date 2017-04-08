@@ -1,7 +1,10 @@
-app_identifier 'ru.binaryblitz.ZP' # The bundle identifier of your app
-apple_id 'itsdanya@gmail.com' # Your Apple email address
+# The bundle identifier of your app
+app_identifier 'ru.maximkaplevich.Academia'
+# Your Apple email address
+apple_id 'app@binaryblitz.ru'
 
-team_id '4WGG8V34K4'  # Developer Portal Team ID
+# Developer Portal Team ID
+team_id 'AMN3A39Y67'
 
 # you can even provide different app identifiers, Apple IDs and team names per lane:
 # More information: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md
