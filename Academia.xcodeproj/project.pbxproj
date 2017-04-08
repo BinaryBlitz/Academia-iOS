@@ -1585,6 +1585,7 @@
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = AMN3A39Y67;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1980,7 +1981,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.maximkaplevich.Academia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c58c7772-780f-4686-9f2f-ad130db387dc";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development ru.maximkaplevich.Academia";
 				SWIFT_OBJC_BRIDGING_HEADER = "ZP/ZP-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1996,7 +1998,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Academia.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = AMN3A39Y67;
 				ENABLE_BITCODE = NO;
@@ -2005,7 +2007,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.maximkaplevich.Academia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "16a89206-a853-447b-bd55-d2f33ce83980";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore ru.maximkaplevich.Academia";
 				SWIFT_OBJC_BRIDGING_HEADER = "ZP/ZP-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
