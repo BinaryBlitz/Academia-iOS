@@ -1973,7 +1973,7 @@
 				CODE_SIGN_ENTITLEMENTS = Academia.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = AMN3A39Y67;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ZP/Info.plist;
@@ -1999,7 +1999,7 @@
 				CODE_SIGN_ENTITLEMENTS = Academia.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = AMN3A39Y67;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ZP/Info.plist;
