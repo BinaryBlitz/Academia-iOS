@@ -25,22 +25,6 @@
   self.tableView.contentInset =
       UIEdgeInsetsMake(insets.top, insets.left, insets.bottom - self.screenHeight, insets.right);
 }
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  if (self.shouldScrollToFirstRow) {
-    [UIView animateWithDuration:0.8 animations:^{
-      [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]
-                            atScrollPosition:UITableViewScrollPositionTop
-                                    animated:YES];
-      self.shouldScrollToFirstRow = NO;
-    } completion:^(BOOL finished) {
-      [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
-                            atScrollPosition:UITableViewScrollPositionTop
-                                    animated:YES];
-    }];
-  }
-}
-
 
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];

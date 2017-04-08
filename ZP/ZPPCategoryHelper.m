@@ -17,7 +17,13 @@
   for (NSDictionary *dict in array) {
     NSString *name = dict[@"name"];
     NSNumber *identifier = dict[@"id"];
-    ZPPCategory *category = [[ZPPCategory alloc] initWithIdentificator:identifier name:name];
+    BOOL complementaryValue = NO;
+    id complementary = dict[@"complementary"];
+
+    if (complementary && ![complementary isEqual:[NSNull null]]) {
+      complementaryValue = [complementary boolValue];
+    }
+    ZPPCategory *category = [[ZPPCategory alloc] initWithIdentificator:identifier name:name complementary:complementaryValue];
     [tmpArr addObject:category];
   }
   return [NSArray arrayWithArray:tmpArr];

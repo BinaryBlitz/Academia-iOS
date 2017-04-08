@@ -15,7 +15,6 @@
 @end //
 
 @interface ZPPProductsBaseTVC : UITableViewController
-@property (nonatomic) BOOL shouldScrollToFirstRow;
 @property (nonatomic, weak) id <ZPPProductsBaseTVCDelegate> delegate;
 @property (nonatomic, weak) id <ZPPProductScreenTVCDelegate> productDelegate;
 

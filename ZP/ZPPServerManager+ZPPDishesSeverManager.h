@@ -1,4 +1,5 @@
 #import "ZPPServerManager.h"
+#import "ZPPCategory.h"
 
 @class ZPPTimeManager;
 
@@ -7,7 +8,7 @@
 - (void)getCategoriesOnSuccess:(void (^)(NSArray *categories))success
                      onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 
-- (void)getDishesWithCategory:(NSNumber *) categoryId
+- (void)getDishesWithCategory:(ZPPCategory *) category
                     onSuccess:(void (^)(NSArray *dishes))success
                     onFailure:(void (^)(NSError *error, NSInteger statusCode))failure;
 

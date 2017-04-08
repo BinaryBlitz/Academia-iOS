@@ -39,7 +39,7 @@ static NSString *ZPPIngridientAnotherCellIdentifier = @"ZPPIngridientAnotherCell
 static NSString *ZPPProductIngredietntsJustCellID = @"ZPPProductIngredietntsJustCellID";
 static NSString *ZPPBadgeForTwoCellID = @"ZPPBadgeForTwoCellID";
 
-static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
+static NSString *ZPPIsTutorialAnimationShowed = @"ZPPTutorialAnimationShowed";
 
 @interface ZPPProductTVC ()
 
@@ -372,18 +372,20 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 
-    NSIndexPath *ip = [NSIndexPath indexPathForRow:2 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:ip
-                          atScrollPosition:UITableViewScrollPositionBottom
+    [UIView animateWithDuration:1.0 animations:^{
+      [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]
+                          atScrollPosition:UITableViewScrollPositionTop
                                   animated:YES];
+    }];
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (0.5 * NSEC_PER_SEC)),
         dispatch_get_main_queue(), ^{
           [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-          NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:0];
-          [self.tableView               scrollToRowAtIndexPath:ip
-                                atScrollPosition:UITableViewScrollPositionTop
-                                        animated:YES];
+          [UIView animateWithDuration:0.8 animations:^{
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                                  atScrollPosition:UITableViewScrollPositionTop
+                                          animated:YES];
+          }];
         });
   }
 }

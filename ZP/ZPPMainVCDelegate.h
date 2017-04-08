@@ -6,9 +6,10 @@
 //  Copyright © 2017 BinaryBlitz. All rights reserved.
 //
 @import Foundation;
+#import "ZPPCategory.h"
 
 @protocol ZPPMainVCDelegate <NSObject>
 
-- (void)loadDishes:(NSNumber*)index;
+- (void)loadDishes:(ZPPCategory*)category;
 
 @end

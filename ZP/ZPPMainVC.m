@@ -388,7 +388,7 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
 - (void)didSelectCategory:(ZPPCategory *)category {
   [self dissmisMenu];
   if(self.pageVC) {
-    [self.pageVC loadDishes:category._id];
+    [self.pageVC loadDishes:category];
   }
 }
 

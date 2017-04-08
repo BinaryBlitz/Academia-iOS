@@ -33,7 +33,7 @@
 
 }
 
-- (void)getDishesWithCategory:(NSNumber *) categoryId
+- (void)getDishesWithCategory:(ZPPCategory *) category
                     onSuccess:(void (^)(NSArray *dishes)) success
                     onFailure:(void (^)(NSError *error, NSInteger statusCode)) failure {
   ZPPUser *user = [ZPPUserManager sharedInstance].user;
@@ -42,14 +42,19 @@
     [params setValue:user.apiToken forKey:@"api_token"];
   }
 
-  [self.requestOperationManager GET:[NSString stringWithFormat:@"categories/%@/dishes.json", categoryId]
+  [self.requestOperationManager GET:[NSString stringWithFormat:@"categories/%@/dishes.json", category._id]
                          parameters:params
                             success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
-
-                              NSArray *dishes = [ZPPDishHelper parseDishes:responseObject];
-
-                              if (success) {
-                                success(dishes);
+                              if (category.complementary) {
+                                NSArray *dishes = [ZPPStuffHelper parseStuff:responseObject];
+                                if (success) {
+                                  success(dishes);
+                                }
+                              } else {
+                                NSArray *dishes = [ZPPDishHelper parseDishes:responseObject];
+                                if (success) {
+                                  success(dishes);
+                                }
                               }
                             }
                             failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
@@ -96,6 +101,8 @@
                               for(NSDictionary* categoryDict in (NSArray *)responseObject) {
                                 NSNumber *identificator = 0;
                                 NSString *name = @"";
+                                BOOL complementary = NO;
+
                                 if (categoryDict[@"id"]) {
                                   identificator = categoryDict[@"id"];
                                 }
@@ -103,7 +110,11 @@
                                   identificator = categoryDict[@"name"];
                                 }
 
-                                ZPPCategory* category = [[ZPPCategory alloc] initWithIdentificator:identificator name:name];
+                                if (categoryDict[@"complementary"]) {
+                                  complementary = categoryDict[@"complementary"];
+                                }
+
+                                ZPPCategory* category = [[ZPPCategory alloc] initWithIdentificator:identificator name:name complementary:complementary];
                                 [categories addObject:category];
                               }
 

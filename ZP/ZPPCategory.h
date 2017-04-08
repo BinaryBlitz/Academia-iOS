@@ -12,8 +12,10 @@
 
 @property (strong, nonatomic) NSNumber *_id;
 @property (strong, nonatomic) NSString *name;
+@property (assign, nonatomic) BOOL complementary;
 
 - (instancetype)initWithIdentificator:(NSNumber *)identificator
-                                 name:(NSString *)name;
+                                 name:(NSString *)name
+                                 complementary:(BOOL)complementary;
 
 @end

@@ -11,9 +11,11 @@
 
 @implementation ZPPCategory
 - (instancetype)initWithIdentificator:(NSNumber *)identificator
-                                 name:(NSString *)name {
+                                 name:(NSString *)name
+                        complementary:(BOOL)complementary{
   self._id = identificator;
   self.name = name;
+  self.complementary = complementary;
 
   return self;
 }
