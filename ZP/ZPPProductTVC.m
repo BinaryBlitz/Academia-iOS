@@ -194,25 +194,9 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPTutorialAnimationShowed";
 - (ZPPProductsIngridientsCell *)ingridientsCellForIndexPath:(NSIndexPath *)ip {
   ZPPProductsIngridientsCell *cell =
       [self.tableView dequeueReusableCellWithIdentifier:ZPPProductIngridientsCellIdentifier];
-
-  NSInteger beg = ip.row - 2;
-
-  for (int i = 0; i < 3; i++) {
-    NSInteger index = beg * 3 + i;
-    UIImageView *iv = cell.ingredientsImageViews[i];
-    UILabel *label = cell.ingredientsLabels[i];
-    if (index >= self.dish.ingridients.count) {
-      iv.image = nil;
-      label.text = @"";
-      continue;
-    }
-
-    ZPPIngridient *ingr = self.dish.ingridients[index];
-    NSURL *url = [NSURL URLWithString:ingr.urlAsString];
-    [iv setImageWithURL:url];
-    label.text = ingr.name;
-  }
-  return cell;
+    ZPPIngridient *ingr = self.dish.ingridients[ip.row - 2];
+    cell.nameLabel.text = ingr.name;
+    return cell;
 }
 
 - (ZPPBadgeCell *)badgeCellForIndexPath:(NSIndexPath *)ip {
@@ -303,7 +287,7 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPTutorialAnimationShowed";
       }
     } else {
       if (!self.isLunch) {
-        return [UIScreen mainScreen].bounds.size.width / 3.0 + 10;
+        return 20;
       } else {
         return UITableViewAutomaticDimension;
       }
@@ -344,15 +328,7 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPTutorialAnimationShowed";
 }
 
 - (NSInteger)numberOfRows {
-  if (!self.isLunch) {
-    NSInteger incr = 0;
-    if (self.dish.ingridients.count % 3 > 0) {
-      incr++;
-    }
-    return 3 + incr + self.dish.ingridients.count / 3;
-  } else {
-    return 3 + self.dish.ingridients.count;
-  }
+  return 3 + self.dish.ingridients.count;
 }
 
 #pragma mark - action
