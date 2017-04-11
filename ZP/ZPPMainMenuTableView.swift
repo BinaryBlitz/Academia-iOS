@@ -59,7 +59,7 @@ private let headerIdentifier = "ZPPMenuSectionSeparatorView"
       case .profile:
         return "Профиль"
       case .orders:
-        return "Отзывы"
+        return "Заказы"
       case .help:
         return "Помощь"
       }

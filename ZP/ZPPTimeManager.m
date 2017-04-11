@@ -3,6 +3,8 @@
 @import DateTools;
 #import "NSDate+ZPPDateCategory.h"
 
+NSString *const ZPPTimeManagerDidUpdateNotificationName = @"ZPPTimeManagerDidUpdateNotificationName";
+
 @interface ZPPTimeManager ()
 
 @property (assign, nonatomic) BOOL isOpen;
@@ -93,6 +95,7 @@
   if (![dishes isEqual:[NSNull null]] && dishes.count > 0) {
     self.dishesForToday = YES;
   }
+  [[NSNotificationCenter defaultCenter] postNotificationName:ZPPTimeManagerDidUpdateNotificationName object:nil];
 }
 
 @end

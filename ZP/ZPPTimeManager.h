@@ -1,6 +1,7 @@
 @import Foundation;
 
 @interface ZPPTimeManager : NSObject
+extern NSString *const ZPPTimeManagerDidUpdateNotificationName;
 
 @property (assign, nonatomic, readonly) BOOL isOpen;
 @property (strong, nonatomic, readonly) NSDate *openTime;

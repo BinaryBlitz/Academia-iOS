@@ -34,6 +34,8 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
   self.tableView.alwaysBounceVertical = NO;
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:ZPPUserLoginNotificationName object:nil];
+
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:ZPPTimeManagerDidUpdateNotificationName object:nil];
 }
 
 - (void)reloadData {
@@ -238,9 +240,7 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 }
 
 - (ZPPCurrentBeginState)currentState {
-  if (![[ZPPUserManager sharedInstance] checkUser]) {
-    return ZPPCurrentBeginStateNotLoged;
-  } else if (![ZPPTimeManager sharedManager].isOpen) {
+  if (![ZPPTimeManager sharedManager].isOpen) {
     return ZPPCurrentBeginStateClosed;
   } else {
     return ZPPCurrentBeginStateOpen;

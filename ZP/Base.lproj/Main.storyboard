@@ -161,7 +161,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="238" sectionHeaderHeight="28" sectionFooterHeight="28" id="aBb-wN-SGX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="dataSource" destination="ru3-Vo-8Zs" id="mD2-Q7-05x"/>
                             <outlet property="delegate" destination="ru3-Vo-8Zs" id="Oh2-qQ-rsn"/>
@@ -175,7 +175,6 @@
         <!--Begin ScreenTVC-->
         <scene sceneID="eR8-gR-GFl">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="p8X-UL-Q7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="ZPPBeginScreenTVCStoryboardID" id="i7M-1E-tJA" customClass="ZPPBeginScreenTVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="AaI-db-2kv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -187,6 +186,7 @@
                         </connections>
                     </tableView>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p8X-UL-Q7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4421" y="318"/>
         </scene>

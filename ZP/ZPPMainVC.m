@@ -401,7 +401,7 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
 }
 
 - (void)didSelectOrders {
-  [self showGifts];
+  [self showOrderHistory];
 }
 
 - (void)setOrderCount {
