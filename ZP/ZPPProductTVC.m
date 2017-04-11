@@ -110,9 +110,9 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPTutorialAnimationShowed";
     if (indexPath.row == 0) {
       return [self productMainCellForIp:indexPath];
     } else if (indexPath.row == 1) {
-      return [self menuCell];
-    } else if (indexPath.row == [self.tableView numberOfRowsInSection:0] - 1) {
       return [self aboutCell];
+    } else if (indexPath.row == 2) {
+      return [self menuCell];
     } else {
       return [self commonIngridientCellForIndexPath:indexPath];
     }
@@ -179,7 +179,7 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPTutorialAnimationShowed";
   ZPPIngridientAnotherCell *cell =
       [self.tableView dequeueReusableCellWithIdentifier:ZPPIngridientAnotherCellIdentifier];
 
-  ZPPIngridient *ingr = self.dish.ingridients[ip.row - 2];
+  ZPPIngridient *ingr = self.dish.ingridients[ip.row - 3];
 
   cell.nameLabel.text = ingr.name;
   if (ingr.weight) {
@@ -194,7 +194,7 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPTutorialAnimationShowed";
 - (ZPPProductsIngridientsCell *)ingridientsCellForIndexPath:(NSIndexPath *)ip {
   ZPPProductsIngridientsCell *cell =
       [self.tableView dequeueReusableCellWithIdentifier:ZPPProductIngridientsCellIdentifier];
-    ZPPIngridient *ingr = self.dish.ingridients[ip.row - 2];
+    ZPPIngridient *ingr = self.dish.ingridients[ip.row - 3];
     cell.nameLabel.text = ingr.name;
     return cell;
 }
@@ -278,13 +278,13 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPTutorialAnimationShowed";
     if (indexPath.row == 0) {
       return self.screenHeight;
     } else if (indexPath.row == 1) {
-      return 67.0;
-    } else if (indexPath.row == self.numberOfRows - 1) {
       if (self.dish.dishDescription.length > 0) {
         return UITableViewAutomaticDimension;
       } else {
         return 0;
       }
+    } else if (indexPath.row == 2) {
+      return 67.0;
     } else {
       if (!self.isLunch) {
         return 20;
@@ -301,6 +301,20 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPTutorialAnimationShowed";
   } else {
     return [UIScreen mainScreen].bounds.size.width / 3.0 + 20;
   }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+  if (section == 0) {
+    return 40;
+  } else {
+    return 0;
+  }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+  UIView *view = [[UIView alloc] init];
+  view.backgroundColor = [UIColor whiteColor];
+  return view;
 }
 
 - (void)registerCells {
