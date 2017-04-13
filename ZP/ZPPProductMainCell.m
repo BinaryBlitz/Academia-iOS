@@ -17,7 +17,7 @@
   self.nameLabel.attributedText=[[NSAttributedString alloc]
                              initWithString:title
                              attributes:@{
-                                          NSStrokeWidthAttributeName: @-1.0,
+                                          NSStrokeWidthAttributeName: @-2.0,
                                           NSStrokeColorAttributeName:[UIColor blackColor],
                                           NSForegroundColorAttributeName:[UIColor whiteColor]
                                           }
@@ -28,7 +28,7 @@
   self.priceLabel.attributedText=[[NSAttributedString alloc]
                                  initWithString:title
                                  attributes:@{
-                                              NSStrokeWidthAttributeName: @-1.0,
+                                              NSStrokeWidthAttributeName: @-2.0,
                                               NSStrokeColorAttributeName:[UIColor blackColor],
                                               NSForegroundColorAttributeName:[UIColor whiteColor]
                                               }
@@ -39,7 +39,7 @@
   self.ingridientsDescriptionLabel.attributedText=[[NSAttributedString alloc]
                                   initWithString:title
                                   attributes:@{
-                                               NSStrokeWidthAttributeName: @-1.0,
+                                               NSStrokeWidthAttributeName: @-2.0,
                                                NSStrokeColorAttributeName:[UIColor blackColor],
                                                NSForegroundColorAttributeName:[UIColor whiteColor]
                                                }
