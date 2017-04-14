@@ -175,7 +175,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (strongSelf) {
           NSArray *dishControllers;
-          if (category.complementary) {
+          if (category.complementary && dishes.count > 0) {
             ZPPAnotherProductsTVC *stuffTVC = [strongSelf generateAnotherProductsVC:dishes];
             stuffTVC.productDelegate = strongSelf;
             dishControllers = [[NSArray alloc] initWithObjects:stuffTVC, nil];
@@ -291,7 +291,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
     destVC = self.productViewControllers[0];
   }
 
-  BOOL animated = self.productViewControllers.count > 0;
+  BOOL animated = self.productViewControllers.count > 1;
 
   __weak typeof(self) weakSelf = self;
   [self setViewControllers:@[destVC]

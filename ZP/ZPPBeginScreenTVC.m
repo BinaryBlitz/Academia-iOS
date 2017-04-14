@@ -146,15 +146,9 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
   NSDate *d = [NSDate new];
 
   switch (state) {
-    case ZPPCurrentBeginStateOpen:
-      if ([[WelcomeScreenProvider sharedProvider] hasAvailableScreen]) {
-        return nil;
-      }
+    case ZPPCurrentBeginStateNotLoged:
       break;
-    case ZPPCurrentBeginStateClosed:
-      if ([[WelcomeScreenProvider sharedProvider] hasAvailableScreen]) {
-        return nil;
-      }
+    default:
       if ([d hour] < 6) {
         text = [NSString stringWithFormat:@"%@%@", nightString, userName];
       } else if ([d hour] < 11) {
@@ -164,10 +158,6 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
       } else {
         text = [NSString stringWithFormat:@"%@%@", eveningString, userName];
       }
-      break;
-    case ZPPCurrentBeginStateNotLoged:
-      break;
-    default:
       break;
   }
   return text;
