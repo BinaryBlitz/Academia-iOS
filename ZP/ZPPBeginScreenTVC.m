@@ -197,6 +197,8 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
     }
 
     makePreorder = [NSString stringWithFormat:@"Сейчас мы закрыты. Мы открываемся %@ в %@", dateString, [openDate timeStringfromDate]];
+  } else if (![ZPPTimeManager sharedManager].isOpen) {
+    makePreorder = @"Сейчас мы закрыты";
   }
 
   switch (state) {
@@ -212,6 +214,7 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
       text = makePreorder.copy;
       break;
     case ZPPCurrentBeginStateNotLoged:
+      break;
       break;
     default:
       break;
@@ -240,11 +243,14 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 }
 
 - (ZPPCurrentBeginState)currentState {
-  if (![ZPPTimeManager sharedManager].isOpen) {
+  if (![[ZPPUserManager sharedInstance] checkUser]) {
+    return ZPPCurrentBeginStateNotLoged;
+  } else if (![ZPPTimeManager sharedManager].isOpen) {
     return ZPPCurrentBeginStateClosed;
   } else {
     return ZPPCurrentBeginStateOpen;
   }
+
 }
 
 @end

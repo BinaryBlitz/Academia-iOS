@@ -107,6 +107,7 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
 }
 
 - (void)showRegistration {
+  [self dissmisMenu];
   UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"registration" bundle:nil];
 
   UIViewController *theInitialViewController =
@@ -393,7 +394,11 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
 }
 
 - (void)didSelectProfile {
-  [self showProfile];
+  if (![[ZPPUserManager sharedInstance] checkUser]) {
+    [self showRegistration];
+  } else {
+    [self showProfile];
+  }
 }
 
 - (void)didSelectHelp {
@@ -401,7 +406,11 @@ static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
 }
 
 - (void)didSelectOrders {
-  [self showOrderHistory];
+  if (![[ZPPUserManager sharedInstance] checkUser]) {
+    [self showRegistration];
+  } else {
+    [self showOrderHistory];
+  }
 }
 
 - (void)setOrderCount {
