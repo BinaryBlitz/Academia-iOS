@@ -62,6 +62,19 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPTutorialAnimationShowed";
   self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  if (![ZPPUserManager sharedInstance].user.apiToken && self.order.items.count > 0) {
+    [self.order clearOrder];
+  }
+  [self.tableView reloadData];
+}
+
+-(void)clearOrder {
+  [self.order clearOrder];
+  [self.tableView reloadData];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self showBottomCells];
@@ -145,24 +158,21 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPTutorialAnimationShowed";
   ZPPOrderItem *orderItem = [self.order orderItemForItem:self.dish];
   NSString *buttonText = cell.addToBasketButton.titleLabel.text;
 
-  if (![ZPPUserManager sharedInstance].user.apiToken) {
-    cell.addToBasketButton.hidden = YES;
+  cell.addToBasketButton.hidden = NO;
+  if (self.dish.isNoItems) {
+    buttonText = @"Блюдо закончилось";
+    cell.addToBasketButton.enabled = NO;
+    [cell.addToBasketButton makeBorderedWithColor:[UIColor clearColor]];
+    cell.addToBasketButton.backgroundColor = [UIColor colorWithWhite:2 / 2.5 alpha:1];
+    cell.addToBasketButton.titleLabel.font = [UIFont boldFontOfSize:16];
+  } else if (orderItem) {
+    buttonText = @"ЗАКАЗАТЬ ЕЩЕ";
+    cell.addToBasketButton.enabled = YES;
   } else {
-    cell.addToBasketButton.hidden = NO;
-    if (self.dish.isNoItems) {
-      buttonText = @"Блюдо закончилось";
-      cell.addToBasketButton.enabled = NO;
-      [cell.addToBasketButton makeBorderedWithColor:[UIColor clearColor]];
-      cell.addToBasketButton.backgroundColor = [UIColor colorWithWhite:2 / 2.5 alpha:1];
-      cell.addToBasketButton.titleLabel.font = [UIFont boldFontOfSize:16];
-    } else if (orderItem) {
-      buttonText = @"ЗАКАЗАТЬ ЕЩЕ";
-      cell.addToBasketButton.enabled = YES;
-    } else {
-      cell.addToBasketButton.enabled = YES;
-    }
-    [cell.addToBasketButton setTitle:buttonText.uppercaseString forState:UIControlStateNormal];
+    buttonText = @"ЗАКАЗАТЬ";
+    cell.addToBasketButton.enabled = YES;
   }
+  [cell.addToBasketButton setTitle:buttonText.uppercaseString forState:UIControlStateNormal];
 
   return cell;
 }
@@ -348,8 +358,21 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPTutorialAnimationShowed";
 #pragma mark - action
 
 - (void)addToBasketAction:(UIButton *)sender {
-  [self.productDelegate addItemIntoOrder:self.dish];
-  [self.tableView reloadData];
+  if (![ZPPUserManager sharedInstance].user.apiToken) {
+    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"registration" bundle:nil];
+
+    UIViewController *theInitialViewController =
+    [secondStoryBoard instantiateInitialViewController];
+
+    [self presentViewController:theInitialViewController
+                       animated:YES
+                     completion:^{
+
+                     }];
+  } else {
+    [self.productDelegate addItemIntoOrder:self.dish];
+    [self.tableView reloadData];
+  }
 }
 
 #pragma mark - animation

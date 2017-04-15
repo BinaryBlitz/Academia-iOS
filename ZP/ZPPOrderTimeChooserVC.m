@@ -280,12 +280,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
   NSLog(@"URL %@", urlString);
 
   if ([urlString containsString:@"sakses"]) {
-    if (self.order.card == nil) {
-      NSLog(@"new card");
-      [self payWithNewCard];
-    } else {
-      [self presentSuccessOrderController];
-    }
+    [vc dismissViewControllerAnimated:YES completion:nil];
   } else if ([urlString containsString:@"feylur"]) {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Платеж не был завершен"
                                         message:@"При обработке произошла ошибка."

@@ -14,6 +14,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  [self.navigationItem setTitle:@"Новая карта"];
+
   self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 
   [self.navigationController.navigationBar setTitleTextAttributes:
