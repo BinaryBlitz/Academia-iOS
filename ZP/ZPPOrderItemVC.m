@@ -49,7 +49,6 @@
   [self.minusButton makeBordered];
   self.plusButton.layer.cornerRadius = 35.0;
   self.minusButton.layer.cornerRadius = 35.0;
-
   [self updateScreen];
 }
 

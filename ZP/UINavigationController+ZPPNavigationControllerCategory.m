@@ -23,9 +23,10 @@
   UIImage *backImage = [[UIImage imageNamed:@"back_button_normal.png"]
       resizableImageWithCapInsets:UIEdgeInsetsMake(0, 12.0f, 0, 12.0f)];
   [backButton setBackgroundImage:backImage forState:UIControlStateNormal];
-  [backButton setTitle:@"Back" forState:UIControlStateNormal];
+  [backButton setTitle:@" " forState:UIControlStateNormal];
   [backButton addTarget:self action:@selector(popBack) forControlEvents:UIControlEventTouchUpInside];
   UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+  [backButtonItem setTitle:@" "];
   self.navigationItem.leftBarButtonItem = backButtonItem;
 }
 

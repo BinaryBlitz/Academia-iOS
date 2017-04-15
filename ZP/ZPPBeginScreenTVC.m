@@ -12,6 +12,7 @@
 typedef NS_ENUM(NSInteger, ZPPCurrentBeginState) {
   ZPPCurrentBeginStateClosed,
   ZPPCurrentBeginStateOpen,
+  ZPPCurrentBeginStateLoading,
   ZPPCurrentBeginStateNotLoged
 };
 
@@ -96,6 +97,12 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
     cell.showMenuPreviewButton.hidden = true;
   }
 
+  if (state == ZPPCurrentBeginStateLoading) {
+    cell.beginButton.hidden = true;
+  } else {
+    cell.beginButton.hidden = false;
+  }
+
   return cell;
 }
 
@@ -147,6 +154,8 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 
   switch (state) {
     case ZPPCurrentBeginStateNotLoged:
+      break;
+    case ZPPCurrentBeginStateLoading:
       break;
     default:
       if ([d hour] < 6) {
@@ -233,7 +242,9 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 }
 
 - (ZPPCurrentBeginState)currentState {
-  if (![[ZPPUserManager sharedInstance] checkUser]) {
+  if (![ZPPTimeManager sharedManager].isLoaded) {
+    return ZPPCurrentBeginStateLoading;
+  } else if (![[ZPPUserManager sharedInstance] checkUser]) {
     return ZPPCurrentBeginStateNotLoged;
   } else if (![ZPPTimeManager sharedManager].isOpen) {
     return ZPPCurrentBeginStateClosed;

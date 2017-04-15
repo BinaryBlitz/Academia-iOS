@@ -4,6 +4,7 @@
 extern NSString *const ZPPTimeManagerDidUpdateNotificationName;
 
 @property (assign, nonatomic, readonly) BOOL isOpen;
+@property (assign, nonatomic, readonly) BOOL isLoaded;
 @property (strong, nonatomic, readonly) NSDate *openTime;
 @property (strong, nonatomic, readonly) NSDate *currentTime;
 @property (assign, nonatomic, readonly) BOOL dishesForToday;

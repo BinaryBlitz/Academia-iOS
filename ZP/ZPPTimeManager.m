@@ -8,6 +8,7 @@ NSString *const ZPPTimeManagerDidUpdateNotificationName = @"ZPPTimeManagerDidUpd
 @interface ZPPTimeManager ()
 
 @property (assign, nonatomic) BOOL isOpen;
+@property (assign, nonatomic) BOOL isLoaded;
 @property (strong, nonatomic) NSDate *openTime;
 @property (strong, nonatomic) NSDate *currentTime;
 @property (assign, nonatomic) BOOL dishesForToday;
@@ -69,6 +70,7 @@ NSString *const ZPPTimeManagerDidUpdateNotificationName = @"ZPPTimeManagerDidUpd
 }
 
 - (void)configureWithDict:(NSDictionary *)dict {
+  self.isLoaded = YES;
   id isOpen = dict[@"is_open"];
 
   if (isOpen && ![isOpen isEqual:[NSNull null]]) {
