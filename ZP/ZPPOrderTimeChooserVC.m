@@ -280,6 +280,13 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
   NSLog(@"URL %@", urlString);
 
   if ([urlString containsString:@"sakses"]) {
+    if (self.order.card == nil) {
+      [vc dismissViewControllerAnimated:YES completion:nil];
+      NSLog(@"new card");
+      [self payWithNewCard];
+    } else {
+      [self presentSuccessOrderController];
+    }
     [vc dismissViewControllerAnimated:YES completion:nil];
   } else if ([urlString containsString:@"feylur"]) {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Платеж не был завершен"
@@ -371,9 +378,8 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 
 - (void)showWebViewWithURl:(NSURL *)url {
   _webViewController = [ZPPPaymentWebController new];
-  [_webViewController configureWithURL:url];
+  [_webViewController configureWithURL:url title:@"Оплата"];
   _webViewController.paymentDelegate = self;
-  _webViewController.title = @"Оплата";
   UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:_webViewController];
 
   navigationController.navigationBar.barTintColor = [UIColor blackColor];

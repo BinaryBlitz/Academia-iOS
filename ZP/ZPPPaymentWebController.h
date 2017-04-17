@@ -10,6 +10,6 @@
 
 @property (nonatomic, weak) id <ZPPPaymentViewDelegate> paymentDelegate;
 
-- (void)configureWithURL:(NSURL *)url;
+- (void)configureWithURL:(NSURL *)url title:(NSString *)title;
 
 @end

@@ -260,9 +260,8 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
 
 - (void)showWebViewWithURl:(NSURL *)url {
   _webViewController = [ZPPPaymentWebController new];
-  [_webViewController configureWithURL:url];
+  [_webViewController configureWithURL:url title:@"Новая карта"];
   _webViewController.paymentDelegate = self;
-  _webViewController.title = @"Оплата";
   UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:_webViewController];
 
   navigationController.navigationBar.barTintColor = [UIColor blackColor];

@@ -14,8 +14,6 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  [self.navigationItem setTitle:@"Новая карта"];
-
   self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 
   [self.navigationController.navigationBar setTitleTextAttributes:
@@ -45,8 +43,9 @@
   [self.webView loadRequest:nsrequest];
 }
 
-- (void)configureWithURL:(NSURL *)url {
+- (void)configureWithURL:(NSURL *)url title:(NSString *)title {
   self.url = url;
+  [self.navigationItem setTitle:title];
 
   NSURLRequest *nsrequest = [NSURLRequest requestWithURL:self.url];
   [self.webView loadRequest:nsrequest];
