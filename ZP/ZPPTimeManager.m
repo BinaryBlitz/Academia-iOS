@@ -87,16 +87,6 @@ NSString *const ZPPTimeManagerDidUpdateNotificationName = @"ZPPTimeManagerDidUpd
     self.currentTime = [NSDate customDateFromString:curentTimeString];
   }
 
-  NSArray *lunches = dict[@"lunches"];
-  NSArray *dishes = dict[@"dishes"];
-
-  if (![lunches isEqual:[NSNull null]] && lunches.count > 0) {
-    self.dishesForToday = YES;
-  }
-
-  if (![dishes isEqual:[NSNull null]] && dishes.count > 0) {
-    self.dishesForToday = YES;
-  }
   [[NSNotificationCenter defaultCenter] postNotificationName:ZPPTimeManagerDidUpdateNotificationName object:nil];
 }
 

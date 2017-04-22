@@ -71,7 +71,7 @@
     params = @{@"api_token": [ZPPUserManager sharedInstance].user.apiToken};
   }
 
-  [self.requestOperationManager GET:@"day.json"
+  [self.requestOperationManager GET:@"store.json"
                          parameters:params
                             success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
                               NSLog(@"%@", responseObject);
