@@ -161,6 +161,12 @@
 		37204FE71CB64E150010448E /* WelcomeScreenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37204FE61CB64E150010448E /* WelcomeScreenProvider.swift */; };
 		377198C21CC79080005EC204 /* ZPPNoCreditCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 377198C01CC79080005EC204 /* ZPPNoCreditCardCell.m */; };
 		377198C31CC79080005EC204 /* ZPPNoCreditCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 377198C11CC79080005EC204 /* ZPPNoCreditCardCell.xib */; };
+		88123FE81E92E5BD00215D07 /* ZPPCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 88123FE71E92E5BD00215D07 /* ZPPCategory.m */; };
+		88123FED1E92FBA100215D07 /* ZPPMainMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88123FEC1E92FBA100215D07 /* ZPPMainMenuTableViewCell.xib */; };
+		88123FEF1E92FC6600215D07 /* ZPPMainMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88123FEE1E92FC6600215D07 /* ZPPMainMenuTableViewCell.swift */; };
+		88123FF21E93017400215D07 /* ZPPMenuSectionSeparatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88123FF11E93017400215D07 /* ZPPMenuSectionSeparatorView.xib */; };
+		882EA86D1E93F72900BC81BE /* ZPPMainMenuTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88123FEA1E92F99F00215D07 /* ZPPMainMenuTableView.swift */; };
+		882EA86F1E940E3500BC81BE /* ZPPCategoryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 882EA86E1E940E3500BC81BE /* ZPPCategoryHelper.m */; };
 		BCB5C4481DB02E6600D27CF6 /* iconBigColor.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB5C4471DB02E6600D27CF6 /* iconBigColor.png */; };
 		BCB5C44A1DB02E9B00D27CF6 /* iconBigColorNoWords.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB5C4491DB02E9B00D27CF6 /* iconBigColorNoWords.png */; };
 		BCB5C44C1DB02EB500D27CF6 /* load.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB5C44B1DB02EB500D27CF6 /* load.png */; };
@@ -431,6 +437,15 @@
 		379768721E10011400823AEF /* Academia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Academia.entitlements; path = ../Academia.entitlements; sourceTree = "<group>"; };
 		37F681D61CB19B9800B2E115 /* ZPPAddressDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ZPPAddressDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		52C84A6DD94A85DCC8901370 /* Pods_ZP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88123FE21E9291A600215D07 /* ZPPMainVCDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZPPMainVCDelegate.h; sourceTree = "<group>"; };
+		88123FE31E92E37500215D07 /* ZPPCategory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = ZPPCategory.h; sourceTree = "<group>"; };
+		88123FE71E92E5BD00215D07 /* ZPPCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPCategory.m; sourceTree = "<group>"; };
+		88123FEA1E92F99F00215D07 /* ZPPMainMenuTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZPPMainMenuTableView.swift; sourceTree = "<group>"; };
+		88123FEC1E92FBA100215D07 /* ZPPMainMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPMainMenuTableViewCell.xib; sourceTree = "<group>"; };
+		88123FEE1E92FC6600215D07 /* ZPPMainMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZPPMainMenuTableViewCell.swift; sourceTree = "<group>"; };
+		88123FF11E93017400215D07 /* ZPPMenuSectionSeparatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZPPMenuSectionSeparatorView.xib; sourceTree = "<group>"; };
+		882EA86E1E940E3500BC81BE /* ZPPCategoryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPPCategoryHelper.m; sourceTree = "<group>"; };
+		882EA8701E940E4D00BC81BE /* ZPPCategoryHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZPPCategoryHelper.h; sourceTree = "<group>"; };
 		BCB5C4471DB02E6600D27CF6 /* iconBigColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBigColor.png; sourceTree = "<group>"; };
 		BCB5C4491DB02E9B00D27CF6 /* iconBigColorNoWords.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconBigColorNoWords.png; sourceTree = "<group>"; };
 		BCB5C44B1DB02EB500D27CF6 /* load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load.png; sourceTree = "<group>"; };
@@ -708,6 +723,7 @@
 				191C98531BC0438C00E10D4F /* ZPPMainVC.h */,
 				191C98541BC0438C00E10D4F /* ZPPMainVC.m */,
 				19F379021BFE2AED004827A0 /* ZPPConfigureWithOrder.h */,
+				88123FE21E9291A600215D07 /* ZPPMainVCDelegate.h */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -764,6 +780,7 @@
 		191D7DEE1BD5695200DBAFC4 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				88123FE91E92E78200215D07 /* Categories */,
 				19DADF6C1BF76898007D9DF2 /* Gifts */,
 				19DADF601BF760D5007D9DF2 /* Order */,
 				19DADF5C1BF75E16007D9DF2 /* Promocode */,
@@ -1040,9 +1057,13 @@
 		198A5C031BD59EE100710A36 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				88123FF01E93014C00215D07 /* SectionSeparator */,
 				198A5C041BD59F0000710A36 /* ZPPMainMenuView.xib */,
 				198A5C061BD5A90B00710A36 /* ZPPMainMenuView.h */,
 				198A5C071BD5A90B00710A36 /* ZPPMainMenuView.m */,
+				88123FEA1E92F99F00215D07 /* ZPPMainMenuTableView.swift */,
+				88123FEC1E92FBA100215D07 /* ZPPMainMenuTableViewCell.xib */,
+				88123FEE1E92FC6600215D07 /* ZPPMainMenuTableViewCell.swift */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -1064,6 +1085,8 @@
 				19B386141C19F0BA0050BE02 /* ZPPEnergy.h */,
 				19B386151C19F0BA0050BE02 /* ZPPEnergy.m */,
 				37204FE61CB64E150010448E /* WelcomeScreenProvider.swift */,
+				88123FE31E92E37500215D07 /* ZPPCategory.h */,
+				88123FE71E92E5BD00215D07 /* ZPPCategory.m */,
 			);
 			name = Product;
 			sourceTree = "<group>";
@@ -1079,6 +1102,8 @@
 				1948C5401BEC204500084BC8 /* ZPPStuffHelper.m */,
 				19B386171C19F1CC0050BE02 /* ZPPEnergyHelper.h */,
 				19B386181C19F1CC0050BE02 /* ZPPEnergyHelper.m */,
+				882EA86E1E940E3500BC81BE /* ZPPCategoryHelper.m */,
+				882EA8701E940E4D00BC81BE /* ZPPCategoryHelper.h */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1497,6 +1522,21 @@
 			name = TableViewController;
 			sourceTree = "<group>";
 		};
+		88123FE91E92E78200215D07 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		88123FF01E93014C00215D07 /* SectionSeparator */ = {
+			isa = PBXGroup;
+			children = (
+				88123FF11E93017400215D07 /* ZPPMenuSectionSeparatorView.xib */,
+			);
+			name = SectionSeparator;
+			sourceTree = "<group>";
+		};
 		B9AAD5556FA2D274BB8C3D21 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1545,6 +1585,7 @@
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = AMN3A39Y67;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1580,6 +1621,7 @@
 				19B3A9821C07AC430089F02A /* ZPPIngridientAnotherCell.xib in Resources */,
 				1907C74B1BF0B5BE003BA62E /* barBackground.png in Resources */,
 				1955F3991C0BCD270010EED3 /* ZPPContactCourierCell.xib in Resources */,
+				88123FED1E92FBA100215D07 /* ZPPMainMenuTableViewCell.xib in Resources */,
 				195BBF7C1C7681E2004D00A5 /* back-5.jpg in Resources */,
 				19EC6CB61C120B1800FC0BD4 /* ZPPProductIngredietntsJustCell.xib in Resources */,
 				198999461C77695900701FF9 /* back1.jpg in Resources */,
@@ -1624,6 +1666,7 @@
 				195BBF8F1C7686C0004D00A5 /* Phone2.png in Resources */,
 				19A0984F1C7652DB0020A9BA /* Onboarding.storyboard in Resources */,
 				BCB5C4481DB02E6600D27CF6 /* iconBigColor.png in Resources */,
+				88123FF21E93017400215D07 /* ZPPMenuSectionSeparatorView.xib in Resources */,
 				195BBF8E1C7686C0004D00A5 /* Phone3.png in Resources */,
 				1948C51E1BEB5CE900084BC8 /* ZPPOrderTotalCell.xib in Resources */,
 				19062D901BD69DAF003AC242 /* profile.storyboard in Resources */,
@@ -1692,7 +1735,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1738,6 +1781,7 @@
 				191D7DDD1BD5359700DBAFC4 /* UIView+UIViewCategory.m in Sources */,
 				19B3A97A1C073DE00089F02A /* ZPPBadgeHelper.m in Sources */,
 				19DADF491BF61715007D9DF2 /* ZPPNoInternetConnectionVC.m in Sources */,
+				88123FEF1E92FC6600215D07 /* ZPPMainMenuTableViewCell.swift in Sources */,
 				19E6D4161BC66E5200DF6EF9 /* ZPPProductsBaseTVC.m in Sources */,
 				19DA03E11BC12ADE00DC0636 /* UIFont+ZPPFontCategory.m in Sources */,
 				190F9C841BE3C19A0032E14D /* ZPPOrderItemCell.m in Sources */,
@@ -1777,6 +1821,7 @@
 				19A098551C7654B00020A9BA /* ZPPOnboardingTopController.swift in Sources */,
 				19EC24A81BC6601000C333F6 /* ZPPAnotherProductsTVC.m in Sources */,
 				19D242651BEA1BEE007A0FEB /* UITableViewController+ZPPTVCCategory.m in Sources */,
+				882EA86D1E93F72900BC81BE /* ZPPMainMenuTableView.swift in Sources */,
 				1984EE271BD12268001D25D5 /* ZPPRegistrationPhoneInputVC.m in Sources */,
 				191C98611BC044A700E10D4F /* ZPPProductTVC.m in Sources */,
 				1948C5411BEC204500084BC8 /* ZPPStuffHelper.m in Sources */,
@@ -1786,6 +1831,7 @@
 				19EC24A51BC65E3D00C333F6 /* ZPPProductAnotherCell.m in Sources */,
 				1984EE331BD13664001D25D5 /* ZPPBeginScreenCell.m in Sources */,
 				19F378F01BFA85AD004827A0 /* ZPPPasswordRenewPhoneInputVC.m in Sources */,
+				882EA86F1E940E3500BC81BE /* ZPPCategoryHelper.m in Sources */,
 				19D2427A1BEA4CEC007A0FEB /* ZPPOrderHistoryOrderTVC.m in Sources */,
 				194235431BE930210014BD9A /* ZPPGiftTVC.m in Sources */,
 				1942353F1BE8F6C20014BD9A /* ZPPOrderItemVC.m in Sources */,
@@ -1801,6 +1847,7 @@
 				19062D8E1BD69ACB003AC242 /* ZPPProfileVC.m in Sources */,
 				19DADF401BF36CE8007D9DF2 /* ZPPSearchResultController.m in Sources */,
 				19D242701BEA31FD007A0FEB /* ZPPOrderHistoryCell.m in Sources */,
+				88123FE81E92E5BD00215D07 /* ZPPCategory.m in Sources */,
 				19B3A9861C0A445D0089F02A /* ZPPStarsCell.m in Sources */,
 				19792D351C0C735700707D07 /* ZPPOrderManager.m in Sources */,
 				191C98681BC047C500E10D4F /* ZPPProductsIngridientsCell.m in Sources */,
@@ -1926,15 +1973,15 @@
 				CODE_SIGN_ENTITLEMENTS = Academia.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = AMN3A39Y67;
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ZP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.maximkaplevich.Academia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c58c7772-780f-4686-9f2f-ad130db387dc";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development ru.maximkaplevich.Academia";
 				SWIFT_OBJC_BRIDGING_HEADER = "ZP/ZP-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1950,16 +1997,16 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Academia.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 3;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = AMN3A39Y67;
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ZP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.maximkaplevich.Academia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "16a89206-a853-447b-bd55-d2f33ce83980";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore ru.maximkaplevich.Academia";
 				SWIFT_OBJC_BRIDGING_HEADER = "ZP/ZP-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";

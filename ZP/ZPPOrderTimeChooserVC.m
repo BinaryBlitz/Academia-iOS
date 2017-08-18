@@ -165,6 +165,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 }
 
 - (void)orderAtTimeAction:(UIButton *)sender {
+  sender.enabled = NO;
   [self addTimePicker:sender];
 }
 
@@ -280,13 +281,20 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 
   if ([urlString containsString:@"sakses"]) {
     if (self.order.card == nil) {
+      [vc dismissViewControllerAnimated:YES completion:nil];
       NSLog(@"new card");
       [self payWithNewCard];
     } else {
       [self presentSuccessOrderController];
     }
+    [vc dismissViewControllerAnimated:YES completion:nil];
   } else if ([urlString containsString:@"feylur"]) {
-    //smth
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Платеж не был завершен"
+                                        message:@"При обработке произошла ошибка."
+                                 preferredStyle:UIAlertControllerStyleAlert];
+
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Ок" style:UIAlertActionStyleCancel handler:nil]];
+
   }
 }
 
@@ -370,9 +378,8 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
 
 - (void)showWebViewWithURl:(NSURL *)url {
   _webViewController = [ZPPPaymentWebController new];
-  [_webViewController configureWithURL:url];
+  [_webViewController configureWithURL:url title:@"Оплата"];
   _webViewController.paymentDelegate = self;
-  _webViewController.title = @"Оплата";
   UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:_webViewController];
 
   navigationController.navigationBar.barTintColor = [UIColor blackColor];
@@ -426,6 +433,7 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
                                           rows:keys
                               initialSelection:0
                                      doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                       sender.enabled = YES;
                                        self.order.deliverNow = NO;
                                        [sender setTitle:selectedValue forState:UIControlStateNormal];
                                        [self addCheckmarkToButton:self.atTimeButton];
@@ -439,7 +447,9 @@ static NSString *ZPPNoInternetConnectionVCIdentifier = @"ZPPNoInternetConnection
                                        }
                                        NSLog(@"selected date: %@", self.order.date);
                                      }
-                                   cancelBlock:nil
+                                   cancelBlock:^(ActionSheetStringPicker *picker) {
+                                     sender.enabled = YES;
+                                   }
                                         origin:sender];
 }
 

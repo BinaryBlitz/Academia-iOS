@@ -4,6 +4,8 @@
 @import PureLayout;
 #import "DTCustomColoredAccessory.h"
 
+#import "ZPPPaymentWebController.h"
+
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "UIView+UIViewCategory.h"
 #import "UINavigationController+ZPPNavigationControllerCategory.h"
@@ -39,13 +41,14 @@ static NSString *ZPPOrderTimeChooserVCIdentifier = @"ZPPOrderTimeChooserVCIdenti
 
 static NSString *ZPPNoAddresMessage = @"Выберите адрес доставки!";
 
-@interface ZPPOrderTVC () <ZPPAddressDelegate>
+@interface ZPPOrderTVC () <ZPPAddressDelegate, ZPPPaymentViewDelegate>
 
 @property (strong, nonatomic) ZPPOrder *order;
 
 @end
 
 @implementation ZPPOrderTVC {
+  ZPPPaymentWebController *_webViewController;
   NSArray *_creditCards;
   int _selectedCardIndex;
 }
@@ -203,6 +206,10 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   if (indexPath.section == 1 && _selectedCardIndex != indexPath.row) {
+    if (indexPath.row == _creditCards.count) {
+      [self registerCreditCard];
+      return;
+    }
     ZPPCreditCardInfoCell *selectedCell = [tableView cellForRowAtIndexPath:
         [NSIndexPath indexPathForRow:_selectedCardIndex inSection:1]];
     selectedCell.checkmarkImageView.hidden = YES;
@@ -216,6 +223,50 @@ static NSString *ZPPNoAddresMessage = @"Выберите адрес достав
   }
 
   [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+-(void)registerCreditCard {
+  [[ZPPServerManager sharedManager] registerNewCreditCardOnSuccess:^(NSString *registrationURLString) {
+
+    NSURL *url = [NSURL URLWithString:registrationURLString];
+    [self showWebViewWithURl:url];
+  }                                                      onFailure:^(NSError *error, NSInteger statusCode) {
+  }];
+}
+
+- (void)didShowPageWithUrl:(NSURL *)url sender:(UIViewController *)vc {
+  NSString *urlString = url.absoluteString;
+  NSLog(@"URL %@", urlString);
+  if ([urlString containsString:@"sakses"]) {
+    [vc dismissViewControllerAnimated:YES completion:nil];
+    [[ZPPServerManager sharedManager] listPaymentCardsWithSuccess:^(NSArray *cards) {
+      _creditCards = cards;
+      [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+    }                                                   onFailure:^(NSError *error, NSInteger statusCode) {
+      [self showWarningWithText:@"Не удалось загрузить привязанные карты ;("];
+    }];
+  } else if ([urlString containsString:@"feylur"]) {
+    [vc dismissViewControllerAnimated:YES completion:nil];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Карта не была добавлена"
+                                                                             message:@"При добавлении карты произошл ошибка."
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Ок" style:UIAlertActionStyleCancel handler:nil]];
+
+    [self presentViewController:alertController animated:true completion:nil];
+    
+  }
+}
+
+- (void)showWebViewWithURl:(NSURL *)url {
+  _webViewController = [ZPPPaymentWebController new];
+  [_webViewController configureWithURL:url title:@"Новая карта"];
+  _webViewController.paymentDelegate = self;
+  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:_webViewController];
+
+  navigationController.navigationBar.barTintColor = [UIColor blackColor];
+
+  [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

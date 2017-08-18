@@ -2,7 +2,7 @@
 #import "ZPPUser.h"
 
 extern NSString *const ZPPUserLogoutNotificationName;
-
+extern NSString *const ZPPUserLoginNotificationName;
 @interface ZPPUserManager : NSObject
 
 @property (strong, nonatomic, readonly) ZPPUser *user;

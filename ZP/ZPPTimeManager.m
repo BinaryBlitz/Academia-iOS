@@ -3,9 +3,12 @@
 @import DateTools;
 #import "NSDate+ZPPDateCategory.h"
 
+NSString *const ZPPTimeManagerDidUpdateNotificationName = @"ZPPTimeManagerDidUpdateNotificationName";
+
 @interface ZPPTimeManager ()
 
 @property (assign, nonatomic) BOOL isOpen;
+@property (assign, nonatomic) BOOL isLoaded;
 @property (strong, nonatomic) NSDate *openTime;
 @property (strong, nonatomic) NSDate *currentTime;
 @property (assign, nonatomic) BOOL dishesForToday;
@@ -67,6 +70,7 @@
 }
 
 - (void)configureWithDict:(NSDictionary *)dict {
+  self.isLoaded = YES;
   id isOpen = dict[@"is_open"];
 
   if (isOpen && ![isOpen isEqual:[NSNull null]]) {
@@ -83,16 +87,7 @@
     self.currentTime = [NSDate customDateFromString:curentTimeString];
   }
 
-  NSArray *lunches = dict[@"lunches"];
-  NSArray *dishes = dict[@"dishes"];
-
-  if (![lunches isEqual:[NSNull null]] && lunches.count > 0) {
-    self.dishesForToday = YES;
-  }
-
-  if (![dishes isEqual:[NSNull null]] && dishes.count > 0) {
-    self.dishesForToday = YES;
-  }
+  [[NSNotificationCenter defaultCenter] postNotificationName:ZPPTimeManagerDidUpdateNotificationName object:nil];
 }
 
 @end

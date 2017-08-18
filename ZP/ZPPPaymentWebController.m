@@ -43,8 +43,9 @@
   [self.webView loadRequest:nsrequest];
 }
 
-- (void)configureWithURL:(NSURL *)url {
+- (void)configureWithURL:(NSURL *)url title:(NSString *)title {
   self.url = url;
+  [self.navigationItem setTitle:title];
 
   NSURLRequest *nsrequest = [NSURLRequest requestWithURL:self.url];
   [self.webView loadRequest:nsrequest];

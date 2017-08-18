@@ -1,6 +1,5 @@
 @import Foundation;
-
-@class ZPPAddress;
+#import "ZPPAddress.h"
 
 @protocol ZPPAddressDelegate <NSObject>
 

@@ -5,6 +5,8 @@
 #import "ZPPMainVC.h"
 #import "ZPPProductTVC.h"
 #import "ZPPUserManager.h"
+#import "ZPPMainVCDelegate.h"
+#import "ZPPCategory.h"
 
 #import "ZPPServerManager+ZPPDishesSeverManager.h"
 
@@ -14,11 +16,12 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
 @interface ZPPMainPageVC () <ZPPProductsBaseTVCDelegate,
     ZPPBeginScreenTVCDelegate,
-    ZPPProductScreenTVCDelegate>
+    ZPPProductScreenTVCDelegate, ZPPMainVCDelegate>
 
 @property (strong, nonatomic) NSArray *productViewControllers;
 @property (strong, nonatomic) UIPageControl *pageControl;
 @property (strong, nonatomic) NSArray *dishes;
+@property (nonatomic) BOOL shouldScrollToFirstRow;
 
 @end
 
@@ -28,6 +31,8 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
   [super viewDidLoad];
 
   ZPPBeginScreenTVC *beginScreen = [self startScreen];
+
+  self.shouldScrollToFirstRow = YES;
 
   [self configureScreensWithArr:@[beginScreen]];
 
@@ -51,7 +56,6 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  [self loadDishes];
 }
 
 #pragma mark - page vc delegate
@@ -115,7 +119,7 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
         [[UIPageControl alloc] initWithFrame:CGRectMake(0, 50, rect.size.width, 30)];
 
     pageControl.numberOfPages = self.productViewControllers.count;
-    pageControl.enabled = NO;
+    pageControl.enabled = YES;
     pageControl.hidesForSinglePage = YES;
 
     [self.view addSubview:pageControl];
@@ -126,27 +130,21 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 #pragma mark - ZPPProductBaseDelegate
 
 - (void)didScroll:(UIScrollView *)sender {
-  if (sender.contentOffset.y > 10) {
-    self.pageControl.hidden = YES;
-  } else {
-    self.pageControl.hidden = NO;
-  }
+
 }
 
 #pragma mark - ZPPBeginScreenTVCDelegate
 
-- (void)didPressBeginButton {
+- (void) didPressBeginButton {
   if (![[ZPPUserManager sharedInstance] checkUser]) {
-    [[self mainVC] showRegistration];
+    [self.mainVC showRegistration];
   } else {
-    if (self.productViewControllers.count > 1) {  // REDO костыль
-      [self setViewControllers:@[self.productViewControllers[1]]
-                     direction:UIPageViewControllerNavigationDirectionForward
-                      animated:YES
-                    completion:nil];  // redo
-      self.pageControl.currentPage = 1;
-    }
+    [self.mainVC showMenu];
   }
+}
+
+- (void) didPressPreviewButton {
+  [self.mainVC showMenu];
 }
 
 - (void)showMenuPreview {
@@ -170,25 +168,23 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
 
 #pragma mark - dishes
 
-- (void)loadDishes {
+- (void)loadDishes:(ZPPCategory*)category {
   __weak typeof(self) weakSelf = self;
   [[ZPPServerManager sharedManager]
-      getDayMenuOnSuccess:^(NSArray *meals, NSArray *dishes, NSArray *stuff,
-          ZPPTimeManager *timeManager) {
+   getDishesWithCategory:category onSuccess:^(NSArray *dishes) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (strongSelf) {
-          NSArray *dishControllers = [strongSelf dishControllersFromArr:dishes];
-          NSArray *mealControllers = [strongSelf lunchControllersFromArr:meals];
+          NSArray *dishControllers;
+          if (category.complementary && dishes.count > 0) {
+            ZPPAnotherProductsTVC *stuffTVC = [strongSelf generateAnotherProductsVC:dishes];
+            stuffTVC.productDelegate = strongSelf;
+            dishControllers = [[NSArray alloc] initWithObjects:stuffTVC, nil];
+          } else {
+            dishControllers = [strongSelf dishControllersFromArr:dishes];
+          }
 
           NSArray *arr =
-              [@[[strongSelf startScreen]] arrayByAddingObjectsFromArray:mealControllers];
-          arr = [arr arrayByAddingObjectsFromArray:dishControllers];
-
-          if (stuff.count) {
-            ZPPAnotherProductsTVC *stuffTVC = [strongSelf generateAnotherProductsVC:stuff];
-            stuffTVC.productDelegate = strongSelf;
-            arr = [arr arrayByAddingObject:stuffTVC];
-          }
+              [@[[strongSelf startScreen]] arrayByAddingObjectsFromArray:dishControllers];
 
           [strongSelf configureScreensWithArr:arr];
         }
@@ -285,7 +281,9 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
   self.pageControl.numberOfPages = self.productViewControllers.count;
 
   ZPPProductsBaseTVC *destVC;
-  if (currentIndex < self.productViewControllers.count) {
+  if (currentIndex == 0 && self.productViewControllers.count > 1) {
+    destVC = self.productViewControllers[1];
+  } else if (currentIndex < self.productViewControllers.count) {
     destVC = self.productViewControllers[currentIndex];
   }
 
@@ -293,10 +291,17 @@ static NSString *ZPPBeginScreenTVCStoryboardID = @"ZPPBeginScreenTVCStoryboardID
     destVC = self.productViewControllers[0];
   }
 
+  BOOL animated = self.productViewControllers.count > 1;
+
+  __weak typeof(self) weakSelf = self;
   [self setViewControllers:@[destVC]
                  direction:UIPageViewControllerNavigationDirectionForward
-                  animated:NO
-                completion:nil];
+                  animated:animated
+                completion:^(BOOL finished) {
+                  weakSelf.pageControl.currentPage = [weakSelf.productViewControllers indexOfObject:destVC];
+                  weakSelf.pageControl.numberOfPages = weakSelf.productViewControllers.count;
+                }];
+
 }
 
 - (ZPPMainVC *)mainVC {

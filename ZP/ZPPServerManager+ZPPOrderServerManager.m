@@ -102,6 +102,7 @@
                              success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
 
                                NSLog(@"payment response: %@", (NSDictionary *) responseObject);
+                               NSLog(@"%@", responseObject[@"info"]);
                                NSString *url = responseObject[@"redirect"];
                                if (success) {
                                  success(url);

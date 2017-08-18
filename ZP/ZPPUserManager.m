@@ -6,6 +6,7 @@
 // static const int ddLogLevel = DDLogLevelDebug;
 
 NSString *const ZPPUserLogoutNotificationName = @"ZPPUserLogoutNotificationName";
+NSString *const ZPPUserLoginNotificationName = @"ZPPUserLoginNotificationName";
 
 @interface ZPPUserManager ()
 
@@ -36,8 +37,6 @@ NSString *const ZPPUserLogoutNotificationName = @"ZPPUserLogoutNotificationName"
 
 - (void)setUser:(ZPPUser *)user {
 
-  _user = user;
-
   if (user) {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:user];
 
@@ -52,11 +51,15 @@ NSString *const ZPPUserLogoutNotificationName = @"ZPPUserLogoutNotificationName"
 
     if (self.pushToken) {
     }
+    if (!_user && user) {
+      [[NSNotificationCenter defaultCenter] postNotificationName:ZPPUserLoginNotificationName object:nil];
+    }
   } else {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"currentUser"];
     [[NSNotificationCenter defaultCenter] postNotificationName:ZPPUserLogoutNotificationName
                                                         object:nil];
   }
+  _user = user;
 }
 
 - (void)setAPNsToken:(NSData *)pushTokenData {

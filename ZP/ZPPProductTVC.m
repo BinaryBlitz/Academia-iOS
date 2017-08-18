@@ -39,7 +39,7 @@ static NSString *ZPPIngridientAnotherCellIdentifier = @"ZPPIngridientAnotherCell
 static NSString *ZPPProductIngredietntsJustCellID = @"ZPPProductIngredietntsJustCellID";
 static NSString *ZPPBadgeForTwoCellID = @"ZPPBadgeForTwoCellID";
 
-static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
+static NSString *ZPPIsTutorialAnimationShowed = @"ZPPTutorialAnimationShowed";
 
 @interface ZPPProductTVC ()
 
@@ -60,6 +60,19 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
   [super viewDidLoad];
   self.tableView.estimatedRowHeight = 100.f;
   self.tableView.rowHeight = UITableViewAutomaticDimension;
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  if (![ZPPUserManager sharedInstance].user.apiToken && self.order.items.count > 0) {
+    [self.order clearOrder];
+  }
+  [self.tableView reloadData];
+}
+
+-(void)clearOrder {
+  [self.order clearOrder];
+  [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -110,9 +123,9 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     if (indexPath.row == 0) {
       return [self productMainCellForIp:indexPath];
     } else if (indexPath.row == 1) {
-      return [self menuCell];
-    } else if (indexPath.row == [self.tableView numberOfRowsInSection:0] - 1) {
       return [self aboutCell];
+    } else if (indexPath.row == 2) {
+      return [self menuCell];
     } else {
       return [self commonIngridientCellForIndexPath:indexPath];
     }
@@ -131,9 +144,9 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 
   [self loadImageView:cell.productImageView indexPath:ip url:imgURL];
 
-  cell.nameLabel.text = self.dish.name;
-  cell.ingridientsDescriptionLabel.text = self.dish.subtitle;
-  cell.priceLabel.text = [NSString stringWithFormat:@"%@ ₽", self.dish.price];
+  [cell setTitle: self.dish.name];
+  [cell setIngridientsDescription: self.dish.subtitle];
+  [cell setPrice: [NSString stringWithFormat:@"%@ ₽", self.dish.price]];
 
   [cell.addToBasketButton makeBorderedWithColor:[UIColor whiteColor]];
   cell.contentView.backgroundColor = [UIColor blackColor];
@@ -145,24 +158,21 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
   ZPPOrderItem *orderItem = [self.order orderItemForItem:self.dish];
   NSString *buttonText = cell.addToBasketButton.titleLabel.text;
 
-  if (![ZPPUserManager sharedInstance].user.apiToken) {
-    cell.addToBasketButton.hidden = YES;
+  cell.addToBasketButton.hidden = NO;
+  if (self.dish.isNoItems) {
+    buttonText = @"Блюдо закончилось";
+    cell.addToBasketButton.enabled = NO;
+    [cell.addToBasketButton makeBorderedWithColor:[UIColor clearColor]];
+    cell.addToBasketButton.backgroundColor = [UIColor colorWithWhite:2 / 2.5 alpha:1];
+    cell.addToBasketButton.titleLabel.font = [UIFont boldFontOfSize:16];
+  } else if (orderItem) {
+    buttonText = @"ЗАКАЗАТЬ ЕЩЕ";
+    cell.addToBasketButton.enabled = YES;
   } else {
-    cell.addToBasketButton.hidden = NO;
-    if (self.dish.isNoItems) {
-      buttonText = @"Блюдо закончилось";
-      cell.addToBasketButton.enabled = NO;
-      [cell.addToBasketButton makeBorderedWithColor:[UIColor clearColor]];
-      cell.addToBasketButton.backgroundColor = [UIColor colorWithWhite:2 / 2.5 alpha:1];
-      cell.addToBasketButton.titleLabel.font = [UIFont boldFontOfSize:16];
-    } else if (orderItem) {
-      buttonText = @"ЗАКАЗАТЬ ЕЩЕ";
-      cell.addToBasketButton.enabled = YES;
-    } else {
-      cell.addToBasketButton.enabled = YES;
-    }
-    [cell.addToBasketButton setTitle:buttonText.uppercaseString forState:UIControlStateNormal];
+    buttonText = @"ЗАКАЗАТЬ";
+    cell.addToBasketButton.enabled = YES;
   }
+  [cell.addToBasketButton setTitle:buttonText.uppercaseString forState:UIControlStateNormal];
 
   return cell;
 }
@@ -179,7 +189,7 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
   ZPPIngridientAnotherCell *cell =
       [self.tableView dequeueReusableCellWithIdentifier:ZPPIngridientAnotherCellIdentifier];
 
-  ZPPIngridient *ingr = self.dish.ingridients[ip.row - 2];
+  ZPPIngridient *ingr = self.dish.ingridients[ip.row - 3];
 
   cell.nameLabel.text = ingr.name;
   if (ingr.weight) {
@@ -194,25 +204,9 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 - (ZPPProductsIngridientsCell *)ingridientsCellForIndexPath:(NSIndexPath *)ip {
   ZPPProductsIngridientsCell *cell =
       [self.tableView dequeueReusableCellWithIdentifier:ZPPProductIngridientsCellIdentifier];
-
-  NSInteger beg = ip.row - 2;
-
-  for (int i = 0; i < 3; i++) {
-    NSInteger index = beg * 3 + i;
-    UIImageView *iv = cell.ingredientsImageViews[i];
-    UILabel *label = cell.ingredientsLabels[i];
-    if (index >= self.dish.ingridients.count) {
-      iv.image = nil;
-      label.text = @"";
-      continue;
-    }
-
-    ZPPIngridient *ingr = self.dish.ingridients[index];
-    NSURL *url = [NSURL URLWithString:ingr.urlAsString];
-    [iv setImageWithURL:url];
-    label.text = ingr.name;
-  }
-  return cell;
+    ZPPIngridient *ingr = self.dish.ingridients[ip.row - 3];
+    cell.nameLabel.text = ingr.name;
+    return cell;
 }
 
 - (ZPPBadgeCell *)badgeCellForIndexPath:(NSIndexPath *)ip {
@@ -294,12 +288,16 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     if (indexPath.row == 0) {
       return self.screenHeight;
     } else if (indexPath.row == 1) {
+      if (self.dish.dishDescription.length > 0) {
+        return UITableViewAutomaticDimension;
+      } else {
+        return 0;
+      }
+    } else if (indexPath.row == 2) {
       return 67.0;
-    } else if (indexPath.row == self.numberOfRows - 1) {
-      return UITableViewAutomaticDimension;
     } else {
       if (!self.isLunch) {
-        return [UIScreen mainScreen].bounds.size.width / 3.0 + 10;
+        return 20;
       } else {
         return UITableViewAutomaticDimension;
       }
@@ -313,6 +311,20 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
   } else {
     return [UIScreen mainScreen].bounds.size.width / 3.0 + 20;
   }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+  if (section == 0) {
+    return 40;
+  } else {
+    return 0;
+  }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+  UIView *view = [[UIView alloc] init];
+  view.backgroundColor = [UIColor whiteColor];
+  return view;
 }
 
 - (void)registerCells {
@@ -340,22 +352,27 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
 }
 
 - (NSInteger)numberOfRows {
-  if (!self.isLunch) {
-    NSInteger incr = 0;
-    if (self.dish.ingridients.count % 3 > 0) {
-      incr++;
-    }
-    return 3 + incr + self.dish.ingridients.count / 3;
-  } else {
-    return 3 + self.dish.ingridients.count;
-  }
+  return 3 + self.dish.ingridients.count;
 }
 
 #pragma mark - action
 
 - (void)addToBasketAction:(UIButton *)sender {
-  [self.productDelegate addItemIntoOrder:self.dish];
-  [self.tableView reloadData];
+  if (![ZPPUserManager sharedInstance].user.apiToken) {
+    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"registration" bundle:nil];
+
+    UIViewController *theInitialViewController =
+    [secondStoryBoard instantiateInitialViewController];
+
+    [self presentViewController:theInitialViewController
+                       animated:YES
+                     completion:^{
+
+                     }];
+  } else {
+    [self.productDelegate addItemIntoOrder:self.dish];
+    [self.tableView reloadData];
+  }
 }
 
 #pragma mark - animation
@@ -368,18 +385,20 @@ static NSString *ZPPIsTutorialAnimationShowed = @"ZPPIsTutorialAnimationShowed";
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 
-    NSIndexPath *ip = [NSIndexPath indexPathForRow:2 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:ip
-                          atScrollPosition:UITableViewScrollPositionBottom
-                                  animated:YES];
+    [UIView animateWithDuration:1.0 animations:^{
+      [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]
+                          atScrollPosition:UITableViewScrollPositionTop
+                                  animated:NO];
+    }];
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (0.5 * NSEC_PER_SEC)),
         dispatch_get_main_queue(), ^{
           [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-          NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:0];
-          [self.tableView               scrollToRowAtIndexPath:ip
-                                atScrollPosition:UITableViewScrollPositionTop
-                                        animated:YES];
+          [UIView animateWithDuration:1.0 animations:^{
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                                  atScrollPosition:UITableViewScrollPositionTop
+                                          animated:NO];
+          }];
         });
   }
 }

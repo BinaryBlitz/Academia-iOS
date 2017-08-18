@@ -4,30 +4,34 @@
 @import VBFPopFlatButton;
 #import "ZPPUserManager.h"
 #import "ZPPMainMenuView.h"
-
+#import "ZPPMainPageVC.h"
+#import "Academia-Swift.h"
+#import "ZPPCategory.h"
 #import "ZPPGiftTVC.h"
 #import "ZPPNoInternetConnectionVC.h"
 #import "ZPPOrder.h"
 #import "ZPPOrderHistoryTVC.h"
 #import "ZPPOrderTVC.h"
 #import "ZPPServerManager+ZPPRegistration.h"
+#import "ZPPServerManager+ZPPDishesSeverManager.h"
 #import "UIViewController+ZPPViewControllerCategory.h"
 #import "ZPPOrderManager.h"
 
 static float kZPPButtonDiametr = 40.0f;
 static float kZPPButtonOffset = 15.0f;
 
-static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонусов";
-
-@interface ZPPMainVC () <ZPPNoInternetDelegate>
+static NSString *embedPageVCSegueIdentifier = @"mainPageVCEmbed";
+@interface ZPPMainVC () <ZPPNoInternetDelegate, ZPPMainMenuDelegate>
 
 @property (strong, nonatomic) VBFPopFlatButton *menuButton;
-@property (strong, nonatomic) ZPPMainMenuView *mainMenu;
+@property (strong, nonatomic) ZPPMainMenuTableView *mainMenu;
 @property (strong, nonatomic) VBFPopFlatButton *button;
 @property (strong, nonatomic) UIView *buttonView;
 @property (strong, nonatomic) UIView *orderView;
 @property (strong, nonatomic) JSBadgeView *badgeView;
 @property (strong, nonatomic) JSBadgeView *orderCountBadgeView;
+
+@property (weak, nonatomic) ZPPMainPageVC *pageVC;
 
 @property (assign, nonatomic) BOOL menuShowed;
 @property (assign, nonatomic) BOOL animationShoved;
@@ -44,6 +48,10 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
+  [self.view addSubview:self.mainMenu];
+  [self.view addSubview:self.buttonView];
+  [self loadCategoriesIfNeeded];
+
   if ([[ZPPUserManager sharedInstance] checkUser]) {
     [[ZPPServerManager sharedManager] getCurrentUserOnSuccess:^(ZPPUser *user) {
           [ZPPUserManager sharedInstance].user.balance = user.balance;
@@ -54,9 +62,6 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
                                                     }];
 
     [self setOrderCount];
-
-    [self.view addSubview:self.mainMenu];
-    [self.view addSubview:self.buttonView];
 
     [self setUserBalance];
     [self updateBadge];
@@ -87,6 +92,14 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
   [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if ([segue.identifier isEqualToString:embedPageVCSegueIdentifier]) {
+    ZPPMainPageVC *destVC =
+    (ZPPMainPageVC *) segue.destinationViewController;
+    self.pageVC = destVC;
+  }
+}
+
 #pragma mark - ui
 
 - (BOOL)prefersStatusBarHidden {
@@ -94,6 +107,7 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
 }
 
 - (void)showRegistration {
+  [self dissmisMenu];
   UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"registration" bundle:nil];
 
   UIViewController *theInitialViewController =
@@ -102,6 +116,7 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
   [self presentViewController:theInitialViewController
                      animated:YES
                    completion:^{
+                     
                    }];
 }
 
@@ -117,16 +132,16 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
 
 - (void)showMenu {
   self.menuShowed = YES;
+  [self loadCategoriesIfNeeded];
   [self.button animateToType:buttonCloseType];
-  [self.mainMenu showCompletion:^{
-  }];
+  [self.mainMenu show];
+
 }
 
 - (void)dissmisMenu {
   [self.button animateToType:buttonMenuType];
   self.menuShowed = NO;
-  [self.mainMenu dismissCompletion:^{
-  }];
+  [self.mainMenu dismiss];
 }
 
 - (void)showOrderButton {
@@ -327,22 +342,21 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
                    }];
 }
 
-- (void)setUserBalance {
-  if ([ZPPUserManager sharedInstance].user.balance.integerValue > 0) {
-    self.mainMenu.balanceLabel.text = [NSString
-        stringWithFormat:ZPPBalanceString, [ZPPUserManager sharedInstance].user.balance];
-  } else {
-    self.mainMenu.balanceLabel.text = @"";
+- (void)loadCategoriesIfNeeded {
+  if (self.mainMenu.categories.count == 0) {
+    [[ZPPServerManager sharedManager] getDayMenu];
+    [[ZPPServerManager sharedManager] getCategoriesOnSuccess:^(NSArray *categories) {
+      self.mainMenu.categories = categories;
+    } onFailure:^(NSError *error, NSInteger statusCode) {
+    }];
   }
 }
 
+- (void)setUserBalance {
+  self.mainMenu.balance = [ZPPUserManager sharedInstance].user.balance.integerValue;
+}
+
 - (void)removeAllAfterLogOut {
-  if ([self.view.subviews containsObject:self.mainMenu]) {
-    [self.mainMenu removeFromSuperview];
-  }
-  if ([self.view.subviews containsObject:self.buttonView]) {
-    [self.buttonView removeFromSuperview];
-  }
   if ([self.view.subviews containsObject:self.orderView]) {
     [self.orderView removeFromSuperview];
     _order = nil;
@@ -370,25 +384,41 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
   }
 }
 
-- (void)setOrderCount {
-  NSInteger c = [ZPPOrderManager sharedManager].onTheWayOrders.count;
-  [self setOrderCount:c];
-  [[ZPPOrderManager sharedManager] updateOrdersCompletion:^(NSInteger count) {
-    [self setOrderCount:count];
-  }];
+#pragma mark - main menu delegate
+
+- (void)didSelectCategory:(ZPPCategory *)category {
+  [self dissmisMenu];
+  if(self.pageVC) {
+    [self.pageVC loadDishes:category];
+  }
 }
 
-- (void)setOrderCount:(NSInteger)count {
-  if (count > 0) {
-    self.orderCountBadgeView.badgeText = [NSString stringWithFormat:@"%ld", (long) count];
-
-    NSString *destString = [NSString stringWithFormat:@"ЗАКАЗЫ (%ld)", (long) count];
-    [self.mainMenu.ordersButton setTitle:destString forState:UIControlStateNormal];
+- (void)didSelectProfile {
+  if (![[ZPPUserManager sharedInstance] checkUser]) {
+    [self showRegistration];
   } else {
-    self.orderCountBadgeView.badgeText = nil;
-    NSString *destString = [NSString stringWithFormat:@"ЗАКАЗЫ"];
-    [self.mainMenu.ordersButton setTitle:destString forState:UIControlStateNormal];
+    [self showProfile];
   }
+}
+
+- (void)didSelectHelp {
+  [self showHelp];
+}
+
+- (void)didSelectOrders {
+  if (![[ZPPUserManager sharedInstance] checkUser]) {
+    [self showRegistration];
+  } else {
+    [self showOrderHistory];
+  }
+}
+
+- (void)setOrderCount {
+  NSInteger c = [ZPPOrderManager sharedManager].onTheWayOrders.count;
+  self.mainMenu.ordersCount = c;
+  [[ZPPOrderManager sharedManager] updateOrdersCompletion:^(NSInteger count) {
+    self.mainMenu.ordersCount = c;
+  }];
 }
 
 #pragma mark - no internet connection delegate
@@ -398,37 +428,13 @@ static NSString *ZPPBalanceString = @"Текущий баланс: %@ бонус
 
 #pragma mark - lazy
 
-- (ZPPMainMenuView *)mainMenu {
+- (ZPPMainMenuTableView *)mainMenu {
   if (!_mainMenu) {
-    NSString *nibName = NSStringFromClass([ZPPMainMenuView class]);
-    _mainMenu =
-        [[[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil] firstObject];
     CGSize s = [UIScreen mainScreen].bounds.size;
-    _mainMenu.frame = CGRectMake(0, -s.height, s.width, s.height);
-
-    [_mainMenu.profileButton addTarget:self
-                                action:@selector(showProfile)
-                      forControlEvents:UIControlEventTouchUpInside];
-
-    [_mainMenu.helpButton addTarget:self
-                             action:@selector(showHelp)
-                   forControlEvents:UIControlEventTouchUpInside];
-
-    [_mainMenu.giftCardButton addTarget:self
-                                 action:@selector(showGifts)
-                       forControlEvents:UIControlEventTouchUpInside];
-
-    [_mainMenu.ordersButton addTarget:self
-                               action:@selector(showOrderHistory)
-                     forControlEvents:UIControlEventTouchUpInside];
-
-    [_mainMenu.promoButton addTarget:self
-                              action:@selector(showPromoCodeInput)
-                    forControlEvents:UIControlEventTouchUpInside];
-
-    [_mainMenu.myCardsButton addTarget:self
-                                action:@selector(showMyCards)
-                      forControlEvents:UIControlEventTouchUpInside];
+    CGRect frame = CGRectMake(0, -s.height, s.width, s.height);
+    ZPPMainMenuTableView* mainMenu = [[ZPPMainMenuTableView alloc] initWithFrame:frame];
+    _mainMenu = mainMenu;
+    mainMenu.menuDelegate = self;
   }
   return _mainMenu;
 }

@@ -14,7 +14,6 @@
 
   self.screenHeight = [UIScreen mainScreen].bounds.size.height;
   self.tableView.backgroundColor = [UIColor blackColor];
-
   [self registerCells];
 
   UIView *v = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];

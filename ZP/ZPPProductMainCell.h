@@ -9,4 +9,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *addToBasketButton;
 @property (weak, nonatomic) IBOutlet UIView *topButtonView;
 
+- (void) setTitle:(NSString*)title;
+- (void) setPrice:(NSString*)title;
+- (void) setIngridientsDescription:(NSString*)title;
+
 @end

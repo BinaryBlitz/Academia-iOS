@@ -141,8 +141,7 @@ navigation
       [ZPPRulesURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
   NSURL *url = [NSURL URLWithString:urlString];
 
-  wc.title = @"Правила";
-  [wc configureWithURL:url];
+  [wc configureWithURL:url title:@"Правила"];
   //    wc.paymentDelegate = self;
 
   UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:wc];

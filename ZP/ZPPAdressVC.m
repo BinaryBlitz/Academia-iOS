@@ -86,13 +86,15 @@ forControlEvents:UIControlEventTouchUpInside];
                                           if (results.count && !error) {
                                             LMAddress *address = [results firstObject];
                                             ZPPAddress *adr =
-                                                [ZPPAddressHelper addressFromAddress:address];
-
-                                            self.addresTextField.text = [adr formattedDescription];
+                                            [ZPPAddressHelper addressFromAddress:address];
+                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                              self.addresTextField.text = [adr formattedDescription];
+                                            });
 
                                             self.selectedAddress = adr;
                                           }
                                         }];
+
   } else {
     self.needUpdate = YES;
   }

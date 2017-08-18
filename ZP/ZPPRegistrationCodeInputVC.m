@@ -175,6 +175,7 @@ static NSString *ZPPCodeWarningMessage = @"Неправильный код";
                                                  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                                  [self showSuccessWithText:@"Код отправлен"];
                                                  [[ZPPSmsVerificationManager shared] startTimer];
+                                                 self.token = tmpToken;
                                                }
                                                onFailure:^(NSError *error, NSInteger statusCode) {
                                                  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

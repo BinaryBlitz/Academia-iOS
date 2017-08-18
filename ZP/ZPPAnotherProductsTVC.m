@@ -24,6 +24,9 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / ДЕСЕРТЫ";
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
+  [headerView setBackgroundColor:[UIColor whiteColor]];
+  [self.tableView setTableHeaderView:headerView];
 }
 
 - (void)configureWithOrder:(ZPPOrder *)order {
@@ -38,34 +41,22 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / ДЕСЕРТЫ";
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 2;
+  return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  if (section == 0) {
-    return 1;
-  } else {
     return self.anotherProducts.count;
-  }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  if (indexPath.section == 0) {
-    return [self mainCell];
-  } else {
-    return [self anotherProductCellForIndexPath:indexPath];
-  }
+  return [self anotherProductCellForIndexPath:indexPath];
 }
 
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  if (indexPath.section == 0) {
-    return self.screenHeight;
-  } else {
-    return 120.0;
-  }
+  return 120.0;
 }
 
 - (ZPPProductAnotherCell *)anotherProductCellForIndexPath:(NSIndexPath *)indexPath {
@@ -90,7 +81,7 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / ДЕСЕРТЫ";
 - (ZPPProductMainCell *)mainCell {
   ZPPProductMainCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ZPPProductMainCellIdentifier];
 
-  cell.nameLabel.text = ZPPControllerName;
+  [cell setTitle:ZPPControllerName];
   cell.ingridientsDescriptionLabel.text = ZPPControllerDescrioption;
   cell.priceLabel.text = @"";
   [cell.addToBasketButton addTarget:self
@@ -120,7 +111,7 @@ static NSString *ZPPControllerDescrioption = @"НАПИТКИ / ДЕСЕРТЫ";
 #pragma mark - actions
 
 - (void)showAnotherCells {  // redo
-  NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:1];
+  NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:0];
 
   if (self.anotherProducts.count < 1) {
     return;

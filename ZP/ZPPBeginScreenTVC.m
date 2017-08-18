@@ -12,6 +12,7 @@
 typedef NS_ENUM(NSInteger, ZPPCurrentBeginState) {
   ZPPCurrentBeginStateClosed,
   ZPPCurrentBeginStateOpen,
+  ZPPCurrentBeginStateLoading,
   ZPPCurrentBeginStateNotLoged
 };
 
@@ -32,6 +33,14 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.tableView.alwaysBounceVertical = NO;
+
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:ZPPUserLoginNotificationName object:nil];
+
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:ZPPTimeManagerDidUpdateNotificationName object:nil];
+}
+
+- (void)reloadData {
+  [self.tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -53,11 +62,8 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
     cell.backImageView.image = [UIImage imageNamed:@"back3.jpg"];
   }
 
-  if ([ZPPTimeManager sharedManager].dishesForToday || [self currentState] == ZPPCurrentBeginStateNotLoged) {
-    [cell.beginButton setTitle:[self buttonText] forState:UIControlStateNormal];
-  } else {
-    cell.beginButton.hidden = YES;
-  }
+  [cell.beginButton setTitle:[self buttonText] forState:UIControlStateNormal];
+
   cell.descrLabel.text = [self descrBottomText];
   cell.upperDescrLabel.text = [self descrUpperText];
 
@@ -89,6 +95,12 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
                          forControlEvents:UIControlEventTouchUpInside];
   } else {
     cell.showMenuPreviewButton.hidden = true;
+  }
+
+  if (state == ZPPCurrentBeginStateLoading) {
+    cell.beginButton.hidden = true;
+  } else {
+    cell.beginButton.hidden = false;
   }
 
   return cell;
@@ -125,7 +137,7 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 - (void)previewButtonAction:(UIButton *)sender {
   if (self.beginDelegate &&
       [self.beginDelegate conformsToProtocol:@protocol(ZPPBeginScreenTVCDelegate)]) {
-    [self.beginDelegate showMenuPreview];
+    [self.beginDelegate didPressPreviewButton];
   }
 }
 
@@ -141,15 +153,11 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
   NSDate *d = [NSDate new];
 
   switch (state) {
-    case ZPPCurrentBeginStateOpen:
-      if ([[WelcomeScreenProvider sharedProvider] hasAvailableScreen]) {
-        return nil;
-      }
+    case ZPPCurrentBeginStateNotLoged:
       break;
-    case ZPPCurrentBeginStateClosed:
-      if ([[WelcomeScreenProvider sharedProvider] hasAvailableScreen]) {
-        return nil;
-      }
+    case ZPPCurrentBeginStateLoading:
+      break;
+    default:
       if ([d hour] < 6) {
         text = [NSString stringWithFormat:@"%@%@", nightString, userName];
       } else if ([d hour] < 11) {
@@ -159,10 +167,6 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
       } else {
         text = [NSString stringWithFormat:@"%@%@", eveningString, userName];
       }
-      break;
-    case ZPPCurrentBeginStateNotLoged:
-      break;
-    default:
       break;
   }
   return text;
@@ -192,6 +196,8 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
     }
 
     makePreorder = [NSString stringWithFormat:@"Сейчас мы закрыты. Мы открываемся %@ в %@", dateString, [openDate timeStringfromDate]];
+  } else if (![ZPPTimeManager sharedManager].isOpen) {
+    makePreorder = @"Сейчас мы закрыты";
   }
 
   switch (state) {
@@ -207,6 +213,7 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
       text = makePreorder.copy;
       break;
     case ZPPCurrentBeginStateNotLoged:
+      break;
       break;
     default:
       break;
@@ -235,13 +242,16 @@ static NSString *ZPPBeginScreenCellIdentifier = @"ZPPBeginScreenCellIdentifier";
 }
 
 - (ZPPCurrentBeginState)currentState {
-  if (![[ZPPUserManager sharedInstance] checkUser]) {
+  if (![ZPPTimeManager sharedManager].isLoaded) {
+    return ZPPCurrentBeginStateLoading;
+  } else if (![[ZPPUserManager sharedInstance] checkUser]) {
     return ZPPCurrentBeginStateNotLoged;
   } else if (![ZPPTimeManager sharedManager].isOpen) {
     return ZPPCurrentBeginStateClosed;
   } else {
     return ZPPCurrentBeginStateOpen;
   }
+
 }
 
 @end

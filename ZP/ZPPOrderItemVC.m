@@ -49,7 +49,6 @@
   [self.minusButton makeBordered];
   self.plusButton.layer.cornerRadius = 35.0;
   self.minusButton.layer.cornerRadius = 35.0;
-
   [self updateScreen];
 }
 
@@ -114,7 +113,7 @@
   VBFPopFlatButton *button = [[VBFPopFlatButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)
                                                           buttonType:buttonOkType
                                                          buttonStyle:buttonPlainStyle
-                                               animateToInitialState:YES];
+                                               animateToInitialState:NO];
 
   MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
   [self.navigationController.view addSubview:hud];

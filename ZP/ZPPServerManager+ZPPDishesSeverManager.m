@@ -2,32 +2,59 @@
 #import "AFNetworking.h"
 #import "ZPPUserManager.h"
 #import "ZPPDishHelper.h"
+#import "ZPPCategoryHelper.h"
 #import "ZPPStuffHelper.h"
 #import "ZPPTimeManager.h"
 #import "Academia-Swift.h"
+#import "ZPPCategory.h"
 
 @implementation ZPPServerManager (ZPPDishesSeverManager)
 
-- (void)GETDishesOnSuccesOnSuccess:(void (^)(NSArray *dishes))success
-                         onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+- (void)getCategoriesOnSuccess:(void (^)(NSArray *))success onFailure:(void (^)(NSError *, NSInteger))failure {
   ZPPUser *user = [ZPPUserManager sharedInstance].user;
-  if (!user.apiToken) {
-    if (failure) {
-      failure(nil, 422);
-    }
-    return;
+  NSMutableDictionary *params = [NSMutableDictionary new];
+  if (user.apiToken) {
+    [params setValue:user.apiToken forKey:@"api_token"];
   }
 
-  NSDictionary *params = @{@"api_token": [ZPPUserManager sharedInstance].user.apiToken};
-
-  [self.requestOperationManager GET:@"dishes.json"
+  [self.requestOperationManager GET:@"categories.json"
                          parameters:params
                             success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
 
-                              NSArray *dishes = [ZPPDishHelper parseDishes:responseObject];
+                              NSArray *categories = [ZPPCategoryHelper parseCategories:responseObject];
 
                               if (success) {
-                                success(dishes);
+                                success(categories);
+                              }
+                            }
+                            failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+                              [[self class] failureWithBlock:failure error:error operation:operation];
+                            }];
+
+}
+
+- (void)getDishesWithCategory:(ZPPCategory *) category
+                    onSuccess:(void (^)(NSArray *dishes)) success
+                    onFailure:(void (^)(NSError *error, NSInteger statusCode)) failure {
+  ZPPUser *user = [ZPPUserManager sharedInstance].user;
+  NSMutableDictionary *params = [NSMutableDictionary new];
+  if (user.apiToken) {
+    [params setValue:user.apiToken forKey:@"api_token"];
+  }
+
+  [self.requestOperationManager GET:[NSString stringWithFormat:@"categories/%@/dishes.json", category._id]
+                         parameters:params
+                            success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+                              if (category.complementary) {
+                                NSArray *dishes = [ZPPStuffHelper parseStuff:responseObject];
+                                if (success) {
+                                  success(dishes);
+                                }
+                              } else {
+                                NSArray *dishes = [ZPPDishHelper parseDishes:responseObject];
+                                if (success) {
+                                  success(dishes);
+                                }
                               }
                             }
                             failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
@@ -35,8 +62,7 @@
                             }];
 }
 
-- (void)getDayMenuOnSuccess:(void (^)(NSArray *meals, NSArray *dishes, NSArray *stuff, ZPPTimeManager *timeManager))success
-                  onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+- (void)getDayMenu {
 
   ZPPUser *user = [ZPPUserManager sharedInstance].user;
   NSString *token = user.apiToken;
@@ -45,30 +71,61 @@
     params = @{@"api_token": [ZPPUserManager sharedInstance].user.apiToken};
   }
 
-  [self.requestOperationManager GET:@"day.json"
+  [self.requestOperationManager GET:@"store.json"
                          parameters:params
                             success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
                               NSLog(@"%@", responseObject);
                               [[ZPPTimeManager sharedManager] configureWithDict:responseObject];
+                            } failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
+        [[self class] failureWithBlock:nil error:error operation:operation];
+      }];
 
-                              NSString *welcomeScreenImageURL = responseObject[@"welcome_screen_image_url"];
-                              if (![welcomeScreenImageURL isEqual:[NSNull null]]) {
-                                [[WelcomeScreenProvider sharedProvider] setImageURLString:welcomeScreenImageURL];
-                              } else {
-                                [[WelcomeScreenProvider sharedProvider] setImageURLString:nil];
+}
+
+- (void)GETCategoriesOnSuccesOnSuccess:(void (^)(NSArray *categories))success
+                         onFailure:(void (^)(NSError *error, NSInteger statusCode))failure {
+  ZPPUser *user = [ZPPUserManager sharedInstance].user;
+  NSString *token = user.apiToken;
+  NSDictionary *params;
+  if (token) {
+    params = @{@"api_token": [ZPPUserManager sharedInstance].user.apiToken};
+  }
+
+  [self.requestOperationManager GET:@"categories.json"
+                         parameters:params
+                            success:^(AFHTTPRequestOperation *_Nonnull operation, id _Nonnull responseObject) {
+                              NSLog(@"%@", responseObject);
+
+                              NSMutableArray *categories = [NSMutableArray array];
+
+                              for(NSDictionary* categoryDict in (NSArray *)responseObject) {
+                                NSNumber *identificator = 0;
+                                NSString *name = @"";
+                                BOOL complementary = NO;
+
+                                if (categoryDict[@"id"]) {
+                                  identificator = categoryDict[@"id"];
+                                }
+                                if (categoryDict[@"name"]) {
+                                  identificator = categoryDict[@"name"];
+                                }
+
+                                if (categoryDict[@"complementary"]) {
+                                  complementary = categoryDict[@"complementary"];
+                                }
+
+                                ZPPCategory* category = [[ZPPCategory alloc] initWithIdentificator:identificator name:name complementary:complementary];
+                                [categories addObject:category];
                               }
-
-                              ZPPTimeManager *timeManager = [ZPPTimeManager sharedManager];
-                              NSArray *lunchs = [ZPPDishHelper parseDishes:responseObject[@"lunches"]];
-                              NSArray *dishes = [ZPPDishHelper parseDishes:responseObject[@"dishes"]];
-                              NSArray *stuff = [ZPPStuffHelper parseStuff:responseObject[@"stuff"]];
 
                               if (success) {
-                                success(lunchs, dishes, stuff, timeManager);
+                                success([NSArray arrayWithArray:categories]);
                               }
                             } failure:^(AFHTTPRequestOperation *_Nonnull operation, NSError *_Nonnull error) {
-        [[self class] failureWithBlock:failure error:error operation:operation];
-      }];
+                              [[self class] failureWithBlock:failure error:error operation:operation];
+                            }];
+
 }
+
 
 @end
